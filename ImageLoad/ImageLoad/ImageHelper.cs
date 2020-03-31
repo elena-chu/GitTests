@@ -11,7 +11,7 @@ namespace ImageLoad
     {
         public static bool AreByteArraysEqual(byte[] array1, byte[] array2)
         {
-            if(array1 == null || array2 == null)
+            if(array1 == null || array2 == null) 
             {
                 return false;
             }
