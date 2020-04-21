@@ -604,12 +604,12 @@ namespace ImageLoad
             float col1_g = (255 - image2.AddedColor.G) / 255f;
             float col1_b = (255 - image2.AddedColor.B) / 255f;
 
-            //float col2_r = image2.AddedColor.R / 255f;
-            //float col2_g = image2.AddedColor.G / 255f;
-            //float col2_b = image2.AddedColor.B / 255f;
-            float col2_r = (255 - image1.AddedColor.R) / 255f;
-            float col2_g = (255 - image1.AddedColor.G) / 255f;
-            float col2_b = (255 - image1.AddedColor.B) / 255f;
+            float col2_r = image2.AddedColor.R / 255f;
+            float col2_g = image2.AddedColor.G / 255f;
+            float col2_b = image2.AddedColor.B / 255f;
+            //float col2_r = (255 - image1.AddedColor.R) / 255f;
+            //float col2_g = (255 - image1.AddedColor.G) / 255f;
+            //float col2_b = (255 - image1.AddedColor.B) / 255f;
 
 
             byte[] targ = new byte[length];
@@ -663,19 +663,19 @@ namespace ImageLoad
             int length = image1.Array.Length;
             int bytesPerPixel = image1.BytesPerPixel;
 
-            float col1_r = image1.AddedColor.R / 255f;
-            float col1_g = image1.AddedColor.G / 255f;
-            float col1_b = image1.AddedColor.B / 255f;
-            //float col1_r = (255 - image2.AddedColor.R) / 255f;
-            //float col1_g = (255 - image2.AddedColor.G) / 255f;
-            //float col1_b = (255 - image2.AddedColor.B) / 255f;
+            //float col1_r = image1.AddedColor.R / 255f;
+            //float col1_g = image1.AddedColor.G / 255f;
+            //float col1_b = image1.AddedColor.B / 255f;
+            float col1_r = (255 - image2.AddedColor.R) / 255f;
+            float col1_g = (255 - image2.AddedColor.G) / 255f;
+            float col1_b = (255 - image2.AddedColor.B) / 255f;
 
-            //float col2_r = image2.AddedColor.R / 255f;
-            //float col2_g = image2.AddedColor.G / 255f;
-            //float col2_b = image2.AddedColor.B / 255f;
-            float col2_r = (255 - image1.AddedColor.R) / 255f;
-            float col2_g = (255 - image1.AddedColor.G) / 255f;
-            float col2_b = (255 - image1.AddedColor.B) / 255f;
+            float col2_r = image2.AddedColor.R / 255f;
+            float col2_g = image2.AddedColor.G / 255f;
+            float col2_b = image2.AddedColor.B / 255f;
+            //float col2_r = (255 - image1.AddedColor.R) / 255f;
+            //float col2_g = (255 - image1.AddedColor.G) / 255f;
+            //float col2_b = (255 - image1.AddedColor.B) / 255f;
 
             byte[] targ = new byte[length];
             for (int i = 0; i < length; i += bytesPerPixel)
