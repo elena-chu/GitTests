@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="ImageLoad.SimpleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImageLoad"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+    <Grid Margin="20">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition />
+      </Grid.RowDefinitions>
+
+      <StackPanel Orientation="Horizontal" Margin=" 15"  >
+        <RadioButton Content="Lower" GroupName="gr" IsChecked="{Binding IsLower}" VerticalAlignment="Center" />
+        <RadioButton Content="Upper" GroupName="gr" Margin="10, 0, 20, 0" VerticalAlignment="Center" />
+
+        <Button Content="Load1" Style="{StaticResource ButtonStyle}" />
+        <Button Content="Load2" Style="{StaticResource ButtonStyle}" CommandParameter="2" />
+
+        <Slider x:Name="Slider" Minimum="0" Maximum="1" Width="250" Height="30" HorizontalAlignment="Left" Value="{Binding SlidedValue, Mode=TwoWay}" SnapsToDevicePixels="False" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15">
+        <TextBlock Text="View:" VerticalAlignment="Center" Margin="0,0,10,0" />
+        <RadioButton Content="Curtain" GroupName="eff" VerticalAlignment="Center" />
+        <RadioButton x:Name="Single" Content="Single Result" GroupName="eff" VerticalAlignment="Center" IsChecked="{Binding IsSingle, Mode=TwoWay}" />
+
+        <Button Content="Colorize lower" Style="{StaticResource ButtonStyle1}" Margin="20,0,10,0" Command="{Binding ColorizeCommand}"/>
+        <Button Content="Fusion" Style="{StaticResource ButtonStyle1}" Command="{Binding FusionCommand}" />
+      </StackPanel>
+
+      <Grid Grid.Row="2"  Width="{Binding Width}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Image Source="{Binding ImageLower}" Width="{Binding Width}" Height="{Binding Height}" 
+                   Stretch="None" ClipToBounds="True" UseLayoutRounding="True" Margin="1"
+                   HorizontalAlignment="Left"/>
+        <Grid x:Name="UpperImageContainer" HorizontalAlignment="Left"
+                    Width="{Binding Value, ElementName=Slider, Mode=OneWay, Converter={StaticResource SliderValueToWidthConverter}, ConverterParameter=512}">
+          <Rectangle Fill="#FF6D9EFF" Stretch="Fill" />
+          <Image Source="{Binding ImageUpper}" Width="{Binding Width}" Height="{Binding Height}" Stretch="None" ClipToBounds="True" UseLayoutRounding="True" Margin="1" />
+        </Grid>
+      </Grid>
+
+      <Grid Grid.Row="2"  Width="{Binding Width}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top"
+          Background="Beige"
+          Visibility="{Binding IsChecked, ElementName=Single, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Image Source="{Binding ImageSingle}" Width="{Binding Width}" Height="{Binding Height}" 
+                   Margin="1"
+                   HorizontalAlignment="Left" />
+      </Grid>
+
+    </Grid>
+  </Grid>
+</UserControl>

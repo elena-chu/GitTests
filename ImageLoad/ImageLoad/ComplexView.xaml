@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="ImageLoad.ComplexView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImageLoad"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="1100">
+  
+  <Grid Margin="20">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition  Width="20"/>
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+
+    <StackPanel Style="{StaticResource ControlSP}" Grid.ColumnSpan="3" >
+      <RadioButton Content="Lower" GroupName="gr" IsChecked="{Binding IsLower, Mode=TwoWay, FallbackValue=true}" VerticalAlignment="Center" />
+      <RadioButton Content="Upper" GroupName="gr" Margin="10, 0, 20, 0" VerticalAlignment="Center" />
+
+      <Button Content="Load1" Style="{StaticResource ButtonStyle}" />
+      <Button Content="Load2" Style="{StaticResource ButtonStyle}" CommandParameter="2" />
+
+      <StackPanel Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
+        <CheckBox IsChecked="{Binding IsUpperColored, FallbackValue=true}" Content="Upper Colored" VerticalAlignment="Center" />
+        <Rectangle Width="40" Height="28" Margin="10,0,10,0">
+          <Rectangle.Fill>
+            <SolidColorBrush Color="{Binding UpperColor}" />
+          </Rectangle.Fill>
+        </Rectangle>
+
+        <CheckBox IsChecked="{Binding IsLowerColored, FallbackValue=false}" Content="Lower Colored"  VerticalAlignment="Center"/>
+        <Rectangle Width="40" Height="28" Margin="10,0,10,0">
+          <Rectangle.Fill>
+            <SolidColorBrush Color="{Binding LowerColor}" />
+          </Rectangle.Fill>
+        </Rectangle>
+
+        <CheckBox Content="White colorized" IsChecked="{Binding IsWhiteColorized}"  Margin="20,0,10,0" VerticalAlignment="Center" />
+        <!--IsEnabled="{Binding Path=IsChecked, ElementName=ColorizeRB}"-->
+      </StackPanel>
+
+    </StackPanel>
+    
+
+    <StackPanel Grid.Row="1" Style="{StaticResource ControlSP}">
+      <TextBlock Text="Upper created by:" VerticalAlignment="Center" Margin="0,0,10,0" />
+      <RadioButton x:Name="AlfaRB" Content="Alfa" GroupName="createdBy" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="{Binding IsAlfa, Mode=OneWayToSource, FallbackValue=True}" />
+      <RadioButton x:Name="ColorizeRB" Content="Colorize" GroupName="createdBy" VerticalAlignment="Center" Margin="0,0,10,0" />
+
+    </StackPanel>
+
+    <StackPanel Grid.Row="2" Style="{StaticResource ControlSP}" >
+      <TextBlock Text="Move Curtain:" Width="100" />
+      <Slider x:Name="Slider" Minimum="0" Maximum="1" Width="250" Height="25" HorizontalAlignment="Left" Value="{Binding CurtainSlidedValue, Mode=TwoWay}" SnapsToDevicePixels="False" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="3"  Style="{StaticResource ControlSP}" >
+      <TextBlock Text="Opacity Upper:" Width="100" />
+      <Slider x:Name="OpacitySlider" Minimum="0" Maximum="1" Width="250" Height="25" HorizontalAlignment="Left" Value="{Binding OpacitySlidedValue, Mode=TwoWay}" SnapsToDevicePixels="False" />
+    </StackPanel>
+
+
+    <StackPanel Style="{StaticResource ControlSP}" Grid.Column="2" HorizontalAlignment="Right">
+      <RadioButton Content="Rgb" GroupName="schm" Margin="10, 0, 10, 0" IsChecked="{Binding IsRgb, Mode=TwoWay}" VerticalAlignment="Center" />
+      <RadioButton Content="Hsv" GroupName="schm" Margin="10, 0, 10, 0" IsChecked="{Binding IsHsv, Mode=TwoWay}" VerticalAlignment="Center" />
+      <RadioButton Content="Hsl" GroupName="schm" Margin="10, 0, 20, 0" IsChecked="{Binding IsHsl, Mode=TwoWay}" VerticalAlignment="Center" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" >
+      <Button Content="Fusion" Style="{StaticResource ButtonStyle1}" Command="{Binding FusionCommand}" Width="70" />
+
+      <RadioButton Content="Full Color" GroupName="fus" Margin="40, 0, 10, 0" VerticalAlignment="Center" />
+      <RadioButton Content="Gray at ends" GroupName="fus" Margin="10, 0, 10, 0" IsChecked="{Binding IsFusionGrayed, Mode=TwoWay}" VerticalAlignment="Center" />
+    </StackPanel>
+    
+    <StackPanel Grid.Column="3" Grid.Row="3"  Style="{StaticResource ControlSP}" >
+      <TextBlock Text="Fusion:" Width="100" />
+      <Slider x:Name="FusionSlider" Minimum="0" Maximum="1" Width="250" Height="25" HorizontalAlignment="Left" Value="{Binding FusionSlidedValue, Mode=TwoWay}" SnapsToDevicePixels="True" />
+    </StackPanel>
+
+    <Grid Grid.Row="4"  Width="{Binding Width}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Beige">
+      <Image Source="{Binding ImageLower}" Width="{Binding Width}" Height="{Binding Height}" 
+                   Stretch="None" ClipToBounds="True" UseLayoutRounding="True" Margin="1"
+                   HorizontalAlignment="Left"/>
+      <Grid x:Name="UpperImageContainer" HorizontalAlignment="Left"
+            Width="{Binding Value, ElementName=Slider, Mode=OneWay, Converter={StaticResource SliderValueToWidthConverter}, ConverterParameter=512}"
+            Opacity="{Binding Value, ElementName=OpacitySlider}"
+            >
+        <Rectangle Stretch="Fill" Visibility="{Binding IsChecked, ElementName=AlfaRB, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}" >
+          <Rectangle.Style>
+            <Style TargetType="Rectangle">
+              <Setter Property="Fill">
+                <Setter.Value>
+                    <SolidColorBrush Color="{Binding UpperColor}" />
+                </Setter.Value>
+              </Setter>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding IsUpperColored}" Value="False">
+                  <Setter Property="Fill" Value="White" />
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </Rectangle.Style>
+        </Rectangle>
+        <Image Source="{Binding ImageUpper}" Width="{Binding Width}" Height="{Binding Height}" Stretch="None" ClipToBounds="True" UseLayoutRounding="True" Margin="1"
+               />
+      </Grid>
+    </Grid>
+
+    <Grid Grid.Row="4" Grid.Column="3"  Width="{Binding Width}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top"
+          Background="Beige"
+          >
+      <Image Source="{Binding ImageSingle}" Width="{Binding Width}" Height="{Binding Height}" 
+            Margin="1"
+            HorizontalAlignment="Left" />
+    </Grid>
+
+  </Grid>
+</UserControl>

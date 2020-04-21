@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/FusTest/
+/ImageLoad/ImageLoad/ImageHelper - Copy.cs
+/ImageLoad/ImageLoad/MainViewModel - Copy.cs
