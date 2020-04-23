@@ -80,6 +80,8 @@
 
       <RadioButton Content="Full Color" GroupName="fus" Margin="40, 0, 10, 0" VerticalAlignment="Center" />
       <RadioButton Content="Gray at ends" GroupName="fus" Margin="10, 0, 10, 0" IsChecked="{Binding IsFusionGrayed, Mode=TwoWay}" VerticalAlignment="Center" />
+
+      <CheckBox Content="Fusion colored" IsChecked="{Binding IsFusionColored}" Margin="40, 0, 10, 0" VerticalAlignment="Center" />
     </StackPanel>
     
     <StackPanel Grid.Column="3" Grid.Row="3"  Style="{StaticResource ControlSP}" >

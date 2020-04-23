@@ -45,6 +45,7 @@ namespace ImageLoad
             IsAlfa = true;
             IsRgb = true;
             IsFusionGrayed = true;
+            IsFusionColored = true;
 
             LowerColor = Color.FromRgb(255, 189, 39);
             //UpperColor = Color.FromRgb((byte)(255 - LowerColor.R), (byte)(255 - LowerColor.G), (byte)(255 - LowerColor.B));
@@ -221,6 +222,17 @@ namespace ImageLoad
             set
             {
                 SetProperty(ref _isFusionGrayed, value);
+                SetFusion();
+            }
+        }
+
+        public bool _isFusionColored;
+        public bool IsFusionColored
+        {
+            get { return _isFusionColored; }
+            set
+            {
+                SetProperty(ref _isFusionColored, value);
                 SetFusion();
             }
         }
@@ -501,9 +513,9 @@ namespace ImageLoad
             {
                 type = "Rgb";
                 if (IsFusionGrayed)
-                    res = ImageHelper.SetFusionRgb_2(image1, image2, FusionSlidedValue);
+                    res = ImageHelper.SetFusionRgb_2(image1, image2, FusionSlidedValue, IsFusionColored);
                 else
-                    res = ImageHelper.SetFusionRgb(image1, image2, FusionSlidedValue);
+                    res = ImageHelper.SetFusionRgb(image1, image2, FusionSlidedValue, IsFusionColored);
             }
 
             DateTime endTime = DateTime.Now;

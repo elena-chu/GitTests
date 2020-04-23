@@ -589,7 +589,7 @@ namespace ImageLoad
         }
 
 
-        public static byte[] SetFusionRgb(ImageData image1, ImageData image2, double coeff)
+        public static byte[] SetFusionRgb(ImageData image1, ImageData image2, double coeff, bool colored = true)
         {
             if (!image1.IsImadedataValid() || !image2.IsImadedataValid() || image1.Array.Length != image2.Array.Length)
                 return image1.Array;
@@ -597,19 +597,28 @@ namespace ImageLoad
             int length = image1.Array.Length;
             int bytesPerPixel = image1.BytesPerPixel;
 
-            //float col1_r = image1.AddedColor.R / 255f;
-            //float col1_g = image1.AddedColor.G / 255f;
-            //float col1_b = image1.AddedColor.B / 255f;
-            float col1_r = (255 - image2.AddedColor.R) / 255f;
-            float col1_g = (255 - image2.AddedColor.G) / 255f;
-            float col1_b = (255 - image2.AddedColor.B) / 255f;
+            float col1_r, col1_g, col1_b, col2_r, col2_g, col2_b;
 
-            float col2_r = image2.AddedColor.R / 255f;
-            float col2_g = image2.AddedColor.G / 255f;
-            float col2_b = image2.AddedColor.B / 255f;
-            //float col2_r = (255 - image1.AddedColor.R) / 255f;
-            //float col2_g = (255 - image1.AddedColor.G) / 255f;
-            //float col2_b = (255 - image1.AddedColor.B) / 255f;
+            if (colored)
+            {
+                col1_r = image1.AddedColor.R / 255f;
+                col1_g = image1.AddedColor.G / 255f;
+                col1_b = image1.AddedColor.B / 255f;
+                //col1_r = (255 - image2.AddedColor.R) / 255f;
+                //col1_g = (255 - image2.AddedColor.G) / 255f;
+                //col1_b = (255 - image2.AddedColor.B) / 255f;
+
+                col2_r = image2.AddedColor.R / 255f;
+                col2_g = image2.AddedColor.G / 255f;
+                col2_b = image2.AddedColor.B / 255f;
+                // col2_r = (255 - image1.AddedColor.R) / 255f;
+                // col2_g = (255 - image1.AddedColor.G) / 255f;
+                // col2_b = (255 - image1.AddedColor.B) / 255f;
+            }
+            else
+            {
+                col1_r = col1_g = col1_b = col2_r = col2_g = col2_b = 1;
+            }
 
 
             byte[] targ = new byte[length];
@@ -641,9 +650,12 @@ namespace ImageLoad
                 r = (int)((col1_r * (gr1 * coeff_a ) + col2_r * (gr2 * coeff_b )) * 255 + 0.5);
                 g = (int)((col1_g * (gr1 * coeff_a) + col2_g * (gr2 * coeff_b)) * 255 + 0.5);
                 b = (int)((col1_b * (gr1 * coeff_a) + col2_b * (gr2 * coeff_b )) * 255 + 0.5);
-                
+
                 //--- end of enhanced a blending ---
 
+                r = Math.Max(Math.Min(r, 255), 0);
+                g = Math.Max(Math.Min(g, 255), 0);
+                b = Math.Max(Math.Min(b, 255), 0);
 
                 targ[i] = (byte)b;
                 targ[i + 1] = (byte)g;
@@ -655,7 +667,7 @@ namespace ImageLoad
             return targ;
         }
 
-        public static byte[] SetFusionRgb_2(ImageData image1, ImageData image2, double coeff)
+        public static byte[] SetFusionRgb_2(ImageData image1, ImageData image2, double coeff, bool colored = true)
         {
             if (!image1.IsImadedataValid() || !image2.IsImadedataValid() || image1.Array.Length != image2.Array.Length)
                 return image1.Array;
@@ -663,21 +675,33 @@ namespace ImageLoad
             int length = image1.Array.Length;
             int bytesPerPixel = image1.BytesPerPixel;
 
-            //float col1_r = image1.AddedColor.R / 255f;
-            //float col1_g = image1.AddedColor.G / 255f;
-            //float col1_b = image1.AddedColor.B / 255f;
-            float col1_r = (255 - image2.AddedColor.R) / 255f;
-            float col1_g = (255 - image2.AddedColor.G) / 255f;
-            float col1_b = (255 - image2.AddedColor.B) / 255f;
+            float col1_r, col1_g, col1_b, col2_r, col2_g, col2_b;
 
-            float col2_r = image2.AddedColor.R / 255f;
-            float col2_g = image2.AddedColor.G / 255f;
-            float col2_b = image2.AddedColor.B / 255f;
-            //float col2_r = (255 - image1.AddedColor.R) / 255f;
-            //float col2_g = (255 - image1.AddedColor.G) / 255f;
-            //float col2_b = (255 - image1.AddedColor.B) / 255f;
+            if (colored)
+            {
+                // col1_r = image1.AddedColor.R / 255f;
+                // col1_g = image1.AddedColor.G / 255f;
+                // col1_b = image1.AddedColor.B / 255f;
+                col1_r = (255 - image2.AddedColor.R) / 255f;
+                col1_g = (255 - image2.AddedColor.G) / 255f;
+                col1_b = (255 - image2.AddedColor.B) / 255f;
+
+                col2_r = image2.AddedColor.R / 255f;
+                col2_g = image2.AddedColor.G / 255f;
+                col2_b = image2.AddedColor.B / 255f;
+                // col2_r = (255 - image1.AddedColor.R) / 255f;
+                // col2_g = (255 - image1.AddedColor.G) / 255f;
+                // col2_b = (255 - image1.AddedColor.B) / 255f;
+            }
+            else
+            {
+                col1_r = col1_g = col1_b = col2_r = col2_g = col2_b = 1;
+            }
+
 
             byte[] targ = new byte[length];
+
+            //Parallel.ForEach(SteppedIntegerList(0, length, bytesPerPixel), i =>
             for (int i = 0; i < length; i += bytesPerPixel)
             {
                 float gr1 = image1.Array[i] / 255f;
@@ -692,7 +716,7 @@ namespace ImageLoad
                 int r, g, b;
 
                 //img = np.clip(amber*(V1*a+V2*(1-a))+blue*(V2*b+V1*(1-b)), 0.0, 1.0)
-                r = (int)((col1_r * (gr1 * coeff_a + gr2 * (1f - coeff_a)) + col2_r * (gr2*coeff_b + gr1*(1 - coeff_b))) * 255 + 0.5);
+                r = (int)((col1_r * (gr1 * coeff_a + gr2 * (1f - coeff_a)) + col2_r * (gr2 * coeff_b + gr1 * (1 - coeff_b))) * 255 + 0.5);
                 g = (int)((col1_g * (gr1 * coeff_a + gr2 * (1f - coeff_a)) + col2_g * (gr2 * coeff_b + gr1 * (1 - coeff_b))) * 255 + 0.5);
                 b = (int)((col1_b * (gr1 * coeff_a + gr2 * (1f - coeff_a)) + col2_b * (gr2 * coeff_b + gr1 * (1 - coeff_b))) * 255 + 0.5);
 
@@ -705,7 +729,7 @@ namespace ImageLoad
                 targ[i + 2] = (byte)r;
                 if (image1.BytesPerPixel > 3)
                     targ[i + 3] = image1.Array[i + 3];
-            }
+            };
 
             return targ;
         }
@@ -730,6 +754,15 @@ namespace ImageLoad
             {
                 float val = i / 255f;
                 BrightnessCorrectedValues[val] = val <= minColorValue ? 0f : val>= maxColorValue? 1f: (val - minColorValue) / (maxColorValue - minColorValue);
+            }
+        }
+
+        private static IEnumerable<int> SteppedIntegerList(int startIndex,
+            int endEndex, int stepSize)
+        {
+            for (int i = startIndex; i < endEndex; i += stepSize)
+            {
+                yield return i;
             }
         }
     }
