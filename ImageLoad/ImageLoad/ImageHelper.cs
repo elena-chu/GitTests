@@ -482,7 +482,7 @@ namespace ImageLoad
 
             return targ;
 
-        }
+        } 
 
         /// <summary>
         /// Gamma gives more brightness in dark part of image (1 - nothing, higher gamma - brighter image)

@@ -16,11 +16,11 @@ namespace ImageLoad
 {
     public class MainViewModel : BindableBase
     {
-        //private string path1 = @"D:\Elena\Tests\ImageLoad\ImageLoad\Images\Img_01.png";
-        //private string path2 = @"D:\Elena\Tests\ImageLoad\ImageLoad\Images\Img_02.png";
+        private string path1 = @"D:\Elena\Tests\ImageLoad\ImageLoad\Images\Img_01.png";
+        private string path2 = @"D:\Elena\Tests\ImageLoad\ImageLoad\Images\Img_02.png";
 
-        private string path1 = @"Images\Img_01.png";
-        private string path2 = @"Images\Img_02.png";
+        //private string path1 = @"Images\Img_01.png";
+        //private string path2 = @"Images\Img_02.png";
 
         private WriteableBitmap _writableBitmapUpper;
         private WriteableBitmap _writableBitmapLower;
