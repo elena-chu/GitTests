@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:ctrl="clr-namespace:Ws.Extensions.UI.Wpf.Controls;assembly=Ws.Extensions.UI.Wpf"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <!--<Style x:Key="styleAccordionBase" TargetType="ctrl:Accordion" BasedOn="{StaticResource {x:Type ctrl:Accordion}}"/>-->
+  <Style x:Key="styleAccordionBase" TargetType="ctrl:Accordion"/>
+  
+  <!--Default styles-->
+  <Style TargetType="ctrl:Accordion" BasedOn="{StaticResource styleAccordionBase}"/>
+</ResourceDictionary>

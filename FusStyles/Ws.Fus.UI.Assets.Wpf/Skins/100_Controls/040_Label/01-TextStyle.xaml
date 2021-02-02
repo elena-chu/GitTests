@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Label used as text -->
+  <Style x:Key="styleLabelTextBright_Base">
+    <Setter Property="Control.Foreground" Value="{StaticResource LabelTextBrightBrush}" />
+  </Style>
+  <Style x:Key="styleLabelTextDim_Base">
+    <Setter Property="Control.Foreground" Value="{StaticResource LabelTextDimBrush}" />
+  </Style>
+  <!-- For those who won't override -->
+  <Style x:Key="styleLabelTextBright" BasedOn="{StaticResource styleLabelTextBright_Base}" />
+  <Style x:Key="styleLabelTextDim" BasedOn="{StaticResource styleLabelTextDim_Base}" />
+</ResourceDictionary>

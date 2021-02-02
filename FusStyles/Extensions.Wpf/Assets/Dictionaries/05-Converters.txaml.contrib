@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:converters="clr-namespace:Ws.Extensions.UI.Wpf.Converters">
+  <!--Converters-->
+  <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+  <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+  <converters:GridLengthMultiConverter x:Key="GridLengthMultiConverter" />
+  <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+  <converters:ConverterProxy x:Key="converterProxy" />
+  <converters:TrimmedTextBlockVisibilityConverter x:Key="trimToVisibilityConverter" />
+  <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+</ResourceDictionary>

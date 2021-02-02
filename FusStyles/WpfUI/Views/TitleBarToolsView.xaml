@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="WpfUI.Views.TitleBarToolsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:extension="http://schemas.insightec.com/wpf/"
+             xmlns:local="clr-namespace:WpfUI.Views"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="300">
+  <UserControl.Resources>
+    <extension:BooleanToVisibilityConverter x:Key="BooleanToVisibilityHiddenConverter" Invisible="Hidden"/>
+
+    <Style TargetType="TextBlock">
+      <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
+    </Style>
+
+    <Style TargetType="Button">
+      <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
+    </Style>
+
+  </UserControl.Resources>
+  
+  <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+    <Button Content="?" Width="Auto" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding HelpCommand}" />
+    <Button x:Name="SettngsBtn" TextBlock.FontFamily="Wingdings 2" Content="î" Width="Auto" VerticalAlignment="Center" Margin="6, 6,10,6" Background="Black"
+            Command="{Binding OpenSettingsCommand}"
+            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    <TextBlock Text="{Binding TimeNow, StringFormat='\{0:MMM dd.yyyy HH:mm\}'}" Foreground="White" VerticalAlignment="Center" />
+    <Button Content="{lex:Loc IDS_LBL_QUIT}" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding QuitCommand}"
+            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
+  </StackPanel>
+
+</UserControl>

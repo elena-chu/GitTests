@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Ws.Fus.DicomViewer.UI.Wpf.Views.StripText"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ws.Fus.DicomViewer.UI.Wpf.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+
+    <Thickness x:Key="v_3" Left="2" Top="38" Right="2" Bottom="0" />
+
+    <Style x:Key="TextOvrlStyle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontFamily" Value="Arial" />
+      <Setter Property="Foreground" Value="YellowGreen" />
+      <Setter Property="Height" Value="18" />
+      <Setter Property="Width" Value="Auto" />
+    </Style>
+
+    <Style x:Key="TextOvrlStyle_r" TargetType="TextBlock" BasedOn="{StaticResource TextOvrlStyle}" >
+      <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+
+    <Style x:Key="TextOvrlStyle_l" TargetType="TextBlock" BasedOn="{StaticResource TextOvrlStyle}" >
+      <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <Style x:Key="TextOvrlStyle_v_1" TargetType="TextBlock" BasedOn="{StaticResource TextOvrlStyle}" >
+      <Setter Property="VerticalAlignment" Value="Top" />
+      <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+
+
+  </UserControl.Resources>
+  <Grid  Visibility="{Binding IsTextVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+   
+    <Grid x:Name="PatientDetails" Visibility="{Binding IsPatientDetailsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+      <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="{StaticResource v_3}" >
+        <TextBlock Style="{StaticResource TextOvrlStyle_r}" Text="{Binding PatientName}" />
+        <TextBlock Style="{StaticResource TextOvrlStyle_r}" Text="{Binding PatientId}" />
+        <TextBlock Style="{StaticResource TextOvrlStyle_r}" Text="{Binding ExamDate}" />
+        <TextBlock Style="{StaticResource TextOvrlStyle_r}" Text="{Binding ExamTime}" />
+      </StackPanel>
+    </Grid>
+    
+    <Grid x:Name="Annotations" Visibility="{Binding IsAnnotationsVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+      <TextBlock Style="{StaticResource TextOvrlStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+    </Grid>
+    
+    <Grid x:Name="ImageInfo" Visibility="{Binding IsImageInfoVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+      <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="{StaticResource v_3}" >
+        <TextBlock Style="{StaticResource TextOvrlStyle_l}" Text="{Binding PatientName}" />
+        <TextBlock Style="{StaticResource TextOvrlStyle_l}" Text="{Binding PatientId}" />
+        <TextBlock Style="{StaticResource TextOvrlStyle_l}" Text="{Binding ExamDate}" />
+        <TextBlock Style="{StaticResource TextOvrlStyle_l}" Text="{Binding ExamTime}" />
+      </StackPanel>
+    </Grid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Style x:Key="styleToolToggleButton_Base" TargetType="ToggleButton" BasedOn="{StaticResource styleToolButton_Base}">
+    <Style.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Background" Value="{StaticResource StrongBrush}" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <!-- For those who won't override -->
+  <Style x:Key="styleToolToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource styleToolToggleButton_Base}" />
+</ResourceDictionary>

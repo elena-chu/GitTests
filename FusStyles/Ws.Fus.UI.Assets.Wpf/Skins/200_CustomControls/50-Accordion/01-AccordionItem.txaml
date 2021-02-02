@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:ctrl="clr-namespace:Ws.Extensions.UI.Wpf.Controls;assembly=Ws.Extensions.UI.Wpf"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  
+  <!-- AccordionItem style -->
+  <!-- Strangely, but when the TargetType specified, this causes a design time exception in views, tha tuse this style -->
+  <Style x:Key="styleAccordionItemBase">
+    <Setter Property="Control.Background" Value="{StaticResource PrimaryBrush}" />
+  </Style>
+
+  <!--Default styles-->
+  <Style TargetType="ctrl:AccordionItem" BasedOn="{StaticResource styleAccordionItemBase}"/>
+</ResourceDictionary>

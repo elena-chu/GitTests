@@ -1,0 +1,72 @@
+<UserControl x:Class="Ws.Fus.ImageViewer.UI.Wpf.Views.StripsViewer"
+             x:Name="parent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dg="clr-namespace:Ws.Extensions.UI.Wpf.Patterns.DynamicGrid;assembly=Ws.Extensions.UI.Wpf"
+             xmlns:sm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:localConverters="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Converters"
+             xmlns:local="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Views"
+             xmlns:extension="http://schemas.insightec.com/wpf/"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+    <!--<BooleanToVisibilityConverter x:Key="bool2viz"/>
+    <extension:BooleanToTrueFalseValueConverter x:Key="NullToVisibilityConverter" IsThreeState="True" TrueValue="{x:Static Visibility.Visible}" NullValue="{x:Static Visibility.Collapsed}" FalseValue="{x:Static Visibility.Visible}" />
+    <sm:StripToCategoryConverter x:Key="stripToCategoryConverter" />
+    <sm:StripToStudyNumberConverter x:Key="studyNumberConverter" />
+    <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter" />
+    <DataTemplate DataType="{x:Type sliderVms:SliderModeControlViewModel}">
+      <sliderViews:SliderModeControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type flickerVms:FlickerModeControlViewModel}">
+      <flickerViews:FlickerModeControlView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type fusionVms:FusionModeControlViewModel}">
+      <fusionViews:FusionModeControlView/>
+    </DataTemplate>-->
+  </UserControl.Resources>
+  <!--<Grid Width="Auto">-->
+    <!--<Grid.RowDefinitions>
+      <RowDefinition Height="40" />
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Grid Height="Auto" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <ContentControl Grid.Column="0" Content="{Binding ImageModeControl}" />
+      <ToggleButton IsChecked="{Binding IsLinked}" Grid.Column="1" FontFamily="Wingdings" FontSize="18" Content="[" Width="28" Height="25" Margin="10,0,15,0"
+        Visibility="{Binding ImageModeControl, Converter={StaticResource NullToVisibilityConverter}}"/>
+    </Grid>-->
+    <dg:DynamicGrid x:Name="DynamicGrid" HorizontalAlignment="Right"
+      Rows="2"
+      Columns="3"
+      Items="{Binding StripViewers}">
+      <dg:DynamicGrid.ItemTemplate>
+        <DataTemplate>
+          <local:StripViewer/>
+        </DataTemplate>
+      </dg:DynamicGrid.ItemTemplate>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <local:StripViewer Grid.ColumnSpan="2" Grid.RowSpan="2" IsEnabled="False"/>
+      <local:StripViewer Grid.Column="2" Grid.Row="0" IsEnabled="False" />
+      <local:StripViewer Grid.Column="2" Grid.Row="1"/>
+    </Grid>
+    </dg:DynamicGrid>
+  <!--</Grid>-->
+</UserControl>

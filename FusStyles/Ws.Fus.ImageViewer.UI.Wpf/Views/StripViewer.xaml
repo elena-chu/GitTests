@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="Ws.Fus.ImageViewer.UI.Wpf.Views.StripViewer"
+             x:Name="root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Views"
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:localControls="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls"
+             xmlns:localConverters="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Converters"
+             xmlns:behaviors="clr-namespace:Ws.Extensions.UI.Wpf.Behaviors;assembly=Ws.Extensions.UI.Wpf"
+             UseLayoutRounding="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{Binding ViewModel}"
+             Cursor="{Binding Cursor}"
+             AllowDrop="True" Drop="Strip_Drop" DragEnter="Strip_DragEnter">
+
+  <UserControl.Resources>
+    <!--<localConverters:ToGraphicEngineWindowSizeConverter x:Key="toGraphicEngineWindowSizeConverter" Parameter="{Binding Source={x:Reference root}}"/>
+    <DataTemplate DataType="{x:Type simpleVms:SimpleModeViewModel}">
+      <simpleViews:SimpleModeViewer/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type sliderVms:SliderModeViewModel}">
+      <sliderViews:SliderModeViewer/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type flickerVms:FlickerModeViewModel}">
+      <flickerViews:FlickerModeViewer/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type fusionVms:FusionModeViewModel}">
+      <fusionViews:FusionModeViewer/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type modes:StripViewerModeViewModel}" >
+      <Canvas />
+    </DataTemplate>-->
+    
+  </UserControl.Resources>
+
+  <Grid>
+    <!--<localControls:GraphicEngineInteraction 
+        GraphicEngineEventCommand="{Binding GraphicEngineEventCommand}" 
+        SelectCommand="{Binding SelectImageCommand}"
+        UseLayoutRounding="True"
+        behaviors:ElementSize.ActualSizeEnabled="True"
+        behaviors:ElementSize.ActualSize="{Binding ActualSize, Converter={StaticResource toGraphicEngineWindowSizeConverter}, Mode=OneWayToSource}">
+      <Grid>
+        <ContentControl Content="{Binding ImageMode}" />
+        <ContentControl Content="{Binding Mode}" />
+      </Grid>
+    </localControls:GraphicEngineInteraction>-->
+    
+    <!-- Window permanent border -->
+    <Grid>
+      <Rectangle Style="{StaticResource BorderUpperLeftVerticalStyle}" />
+      <Rectangle Style="{StaticResource BorderUpperRightVerticalStyle}" />
+      <Rectangle Style="{StaticResource BorderBottomLeftVerticalStyle}" />
+      <Rectangle Style="{StaticResource BorderBottomRightVerticalStyle}" />
+      <Rectangle Style="{StaticResource BorderUpperLeftHorizontalStyle}" />
+      <Rectangle Style="{StaticResource BorderUpperRightHorizontalStyle}" />
+      <Rectangle Style="{StaticResource BorderBottomLeftHorizontalStyle}" />
+      <Rectangle Style="{StaticResource BorderBottomRightHorizontalStyle}" />
+    </Grid>
+
+    <!-- Window selection border -->
+    <Border BorderThickness="2.5" Visibility="{Binding IsEnabled, ElementName=root,Converter={StaticResource BooleanToVisibilityConverter}}" Opacity=".85">
+      <Border.BorderBrush>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="{StaticResource ActiveColor}"  Offset="0.0" />
+          <GradientStop Color="{StaticResource ActiveColor10}" Offset="0.25" />
+          <GradientStop Color="{StaticResource ActiveColor}"  Offset="0.5" />
+          <GradientStop Color="{StaticResource ActiveColor10}" Offset="0.75" />
+          <GradientStop Color="{StaticResource ActiveColor}"  Offset="1.0" />
+        </LinearGradientBrush>
+      </Border.BorderBrush>
+    </Border>
+
+    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal" DataContext="{Binding Mode}" Margin="7">
+      <Button x:Name="ChangeStripButton" Width="20" Height="20"
+          behaviors:OpenMenuOnClick.PrepareMenuCommand="{Binding GetReformattedStripsCommand}" >
+        <Button.ContextMenu>
+          <ContextMenu ItemsSource="{Binding ReformattedStrips}" Placement="Bottom">
+            <ContextMenu.ItemContainerStyle>
+              <Style TargetType="MenuItem">
+                <Setter Property="Header" Value="{Binding StripName}"/>
+                <Setter Property="Command" Value="{Binding DataContext.SwitchToReformattedStripCommand, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}}"/>
+                <Setter Property="CommandParameter" Value="{Binding }"/>
+              </Style>
+            </ContextMenu.ItemContainerStyle>
+          </ContextMenu>
+        </Button.ContextMenu>
+      </Button>
+    </StackPanel>
+
+  </Grid>
+
+</UserControl>

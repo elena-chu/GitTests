@@ -1,0 +1,68 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="$(TargetDir)Ws.Fus.UI.Assets.Wpf.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Ws.Fus.UI.Assets.Wpf" #>
+<#@ include file="$(ProjectDir)..\Extensions\T4\MultipleOutputHelper.ttinclude" #>
+<#@ include file="$(ProjectDir)..\Extensions.Wpf\MergeResourceDictionaries.ttinclude" #>
+<#+
+public virtual void Generate(bool isLocal = false)
+{
+    var projectDir = Host.ResolveAssemblyReference("$(ProjectDir)");
+    var manager = Manager.Create(Host, GenerationEnvironment);
+    var root = isLocal ? projectDir : Path.Combine(projectDir, "Assets");
+    //var baseSkinsDir = Path.Combine(root, "Base");
+    
+    //var baseDic = MergeResourceDictionaries(baseSkinsDir, projectDir, null);
+
+    var skinsDir = Path.Combine(root, "Skins");
+    var skins = Enum.GetNames(typeof(Skin));
+    
+    foreach (var skin in skins)
+    {
+        var otherSkins = skins.Except(new string[] {skin });
+        XElement dic = null;
+
+        var dirs = Directory.EnumerateDirectories(skinsDir, "*", SearchOption.TopDirectoryOnly).OrderBy(name => name);
+        foreach (var dir in dirs)
+        {
+            if (otherSkins.Any(otherSkin => dir.EndsWith($"_{otherSkin}")))
+                continue;
+
+            dic = MergeResourceDictionaries(dir, projectDir, dic);
+        }
+
+        if (dic == null)
+            continue;
+
+        manager.StartNewFile($"{skin}.xaml");
+        WriteResourceDictionary(dic);
+        manager.EndBlock();
+
+        if (SkinManager.AppSkin.ToString() == skin)
+        {
+            manager.StartNewFile("Current.xaml");
+            WriteResourceDictionary(dic);
+            manager.EndBlock();
+        }
+
+
+        //var dic = new XElement(baseDic); // clone
+        //var skinDir = Path.Combine(root, "Skins", skin);
+        //dic = MergeResourceDictionaries(skinDir, projectDir, dic);
+        //manager.StartNewFile($"{skin}.xaml");
+        //WriteResourceDictionary(dic);
+        //manager.EndBlock();
+    }
+    
+    //var currentSkin = SkinManager.AppSkin.ToString();
+    //var currentSkinDir = Path.Combine(root, "Skins", currentSkin);
+    //var currentDic = MergeResourceDictionaries(currentSkinDir, projectDir, baseDic);
+    //manager.StartNewFile("Current.xaml");
+    //WriteResourceDictionary(currentDic);
+    //manager.EndBlock();        
+
+    manager.Process(true);
+}
+#>

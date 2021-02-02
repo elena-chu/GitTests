@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Label used as header -->
+  <Style x:Key="styleLabelHeaderBright_Base">
+    <Setter Property="Control.Foreground" Value="{StaticResource LabelHeaderBrightBrush}" />
+  </Style>
+  <Style x:Key="styleLabelHeaderDim_Base">
+    <Setter Property="Control.Foreground" Value="{StaticResource LabelHeaderDimBrush}" />
+  </Style>
+  <!-- For those who won't override -->
+  <Style x:Key="styleLabelHeaderBright" BasedOn="{StaticResource styleLabelHeaderBright_Base}" />
+  <Style x:Key="styleLabelHeaderDim" BasedOn="{StaticResource styleLabelHeaderDim_Base}" />
+</ResourceDictionary>

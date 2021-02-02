@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="WpfUI.Views.ApplicationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfUI.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:const="clr-namespace:WpfUI"
+             xmlns:localView="clr-namespace:WpfUI.Views"
+             xmlns:extension="http://schemas.insightec.com/wpf/"
+             xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Style="{StaticResource TitleBarRowStyle}" />
+      <RowDefinition />
+      <RowDefinition Style="{StaticResource StatusBarRowStyle}" />
+    </Grid.RowDefinitions>
+
+
+    <Grid x:Name="TitleBar">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="{StaticResource NavigationMenuWidth}" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <Rectangle Grid.ColumnSpan="3" Stretch="Fill" >
+        <Rectangle.Fill>
+          <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Top_Background.png"  />
+        </Rectangle.Fill>
+      </Rectangle>
+      <Rectangle Grid.Column="1" Grid.ColumnSpan="2" Stretch="Fill" >
+        <Rectangle.Fill>
+          <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Top_Pattern.png" />
+        </Rectangle.Fill>
+      </Rectangle>
+      <Rectangle Stretch="Fill" Fill="{StaticResource LogoBrush}" Margin="10,6"/>
+
+      <localView:TitleBarToolsView Grid.Column="3" HorizontalAlignment="Right" />
+
+      <Rectangle Height="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="3" Fill="{StaticResource BaseBorderBrush}" VerticalAlignment="Bottom" />
+    </Grid>
+
+    <Rectangle Grid.Row="1" Stretch="Fill" HorizontalAlignment="Stretch" >
+      <Rectangle.Fill>
+        <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Main_Background.png" AlignmentX="Right" />
+      </Rectangle.Fill>
+    </Rectangle>
+    <Rectangle Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" >
+      <Rectangle.Fill>
+        <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Exablate_Neuro.png"  />
+      </Rectangle.Fill>
+    </Rectangle>
+
+    <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.ModuleMainRegion}" />
+
+    <Grid Grid.Row="2" x:Name="StatusBar">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+
+      <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.SystemStatusIndicationRegion}" VerticalAlignment="Stretch" />
+      <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.WaitMessageRegion}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+      <Rectangle Height="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Fill="{StaticResource BaseBorderBrush}" VerticalAlignment="top" />
+    </Grid>
+
+    <extension:BusyIndicator Grid.RowSpan="2" IsBusy="{Binding IsBusy, FallbackValue=False}" />
+    <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.FloatingScreenRegion}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+
+  </Grid>
+
+</UserControl>

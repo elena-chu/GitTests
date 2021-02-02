@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!--ScreenBase is the data context of this style -->
+  <Style x:Key="styleStripsViewer_Base" TargetType="UserControl">
+    <Setter Property="DataContext" Value="{Binding StripsViewerViewModel}" />
+    <Setter Property="Margin" Value="0" />
+  </Style>
+  <!-- For those who won't override -->
+  <Style x:Key="styleStripsViewer" TargetType="UserControl" BasedOn="{StaticResource styleStripsViewer_Base}" />
+</ResourceDictionary>
