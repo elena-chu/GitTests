@@ -1,4 +1,4 @@
-﻿using Serilog;
+﻿//using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,7 @@ namespace Ws.Fus.UI.Assets.Wpf
 
     public class SkinManager
     {
-        private static readonly ILogger _logger = Log.ForContext<SkinManager>();
+        //private static readonly ILogger _logger = Log.ForContext<SkinManager>();
 
         /// <summary>
         /// We use static skins, i.e. skins that can't be changed at runtime.
@@ -51,9 +51,9 @@ namespace Ws.Fus.UI.Assets.Wpf
             }
             catch (Exception ex)
             {
-                _logger.Error(ex,
-                    "Failed to load resources for path: {path}, name: {name}, thisAssembly: {thisAssembly}, callingAssembly: {callingAssembly}",
-                    rsrcPath, rsrcName, thisAssembly, callingAssemble);
+                //_logger.Error(ex,
+                //    "Failed to load resources for path: {path}, name: {name}, thisAssembly: {thisAssembly}, callingAssembly: {callingAssembly}",
+                //    rsrcPath, rsrcName, thisAssembly, callingAssemble);
                 throw;
             }
         }

@@ -43,5 +43,33 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             return (TileBrush)obj.GetValue(ActiveIconProperty);
         }
 
+        /// <summary>
+        /// Alpha Geometry: geometry that will be colored with Alpha active color
+        /// </summary>
+        public static DependencyProperty AlphaGeometryProperty = DependencyProperty.RegisterAttached("AlphaGeometry", typeof(Geometry), typeof(IconedButton));
+
+        public static void SetAlphaGeometry(FrameworkElement obj, Geometry value)
+        {
+            obj.SetValue(AlphaGeometryProperty, value);
+        }
+        public static Geometry GetAlphaGeometry(FrameworkElement obj)
+        {
+            return (Geometry)obj.GetValue(AlphaGeometryProperty);
+        }
+
+        /// <summary>
+        /// Beta Geometry: geometry that will be colored with Beta active color
+        /// </summary>
+        public static DependencyProperty BetaGeometryProperty = DependencyProperty.RegisterAttached("BetaGeometry", typeof(Geometry), typeof(IconedButton));
+
+        public static void SetBetaGeometry(FrameworkElement obj, Geometry value)
+        {
+            obj.SetValue(BetaGeometryProperty, value);
+        }
+        public static Geometry GetBetaGeometry(FrameworkElement obj)
+        {
+            return (Geometry)obj.GetValue(BetaGeometryProperty);
+        }
+
     }
 }
