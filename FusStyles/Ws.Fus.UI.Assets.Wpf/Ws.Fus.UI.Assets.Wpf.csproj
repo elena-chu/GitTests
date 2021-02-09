@@ -106,8 +106,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Skins\010_Colors_Standard\01-Colors.txaml" />
-    <None Include="Skins\100_Controls\200_Expander\PinableExpanderStyle.txaml" />
+    <Page Include="Skins\010_Colors_Standard\01-Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Skins\100_Controls\200_Expander\PinableExpanderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Include="Skins\200_CustomControls_Standard\50-Accordion\01-AccordionItem.txaml">
       <SubType>Designer</SubType>
     </None>
@@ -124,21 +130,22 @@
       <SubType>Designer</SubType>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
-    <None Include="Skins\100_Controls\060_ToggleButton\PinButtonStyle.txaml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Skins\100_Controls\040_Label\01-LabelStyle.xaml">
+    <Page Include="Skins\100_Controls\060_ToggleButton\PinButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Skins\100_Controls\040_Label\01-TextStyle.xaml">
+    </Page>
+    <Page Include="Skins\100_Controls\040_Label\01-LabelStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Skins\100_Controls\040_Label\01-TextStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Skins\100_Controls\040_Label\01-HeaderStyle.xaml">
+    </Page>
+    <Page Include="Skins\100_Controls\040_Label\01-HeaderStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </None>
+    </Page>
     <Page Include="Skins\050_Brushes\02-IconBrushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -155,10 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <None Include="Skins\100_Controls\060_ToggleButton\10-ToolToggleButton.xaml">
+    <Page Include="Skins\100_Controls\060_ToggleButton\10-ToolToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </None>
+    </Page>
     <Page Include="Skins\100_Controls\065_Buttons\ButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -166,6 +173,10 @@
     <Page Include="Skins\200_CustomControls\60_StatusIndicator\10-StatusIndicator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Skins\Assets.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Skins\Current.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -184,7 +195,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Skin.tt</DependentUpon>
     </Resource>
-    <None Include="Skins\050_Brushes\01-Brushes.txaml" />
+    <Page Include="Skins\050_Brushes\01-Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Include="Skins\200_CustomControls\50-Accordion\01-AccordionItem.txaml">
       <SubType>Designer</SubType>
     </None>
