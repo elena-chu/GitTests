@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="Ws.Fus.UI.Wpf.Menus.Views.NprMenusContainerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ws.Fus.UI.Wpf.Menus.Views"
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+  <UserControl.Resources>
+
+    <Style x:Key="LabelStyle" TargetType="TextBlock" >
+      <Setter Property="Foreground" Value="#FFdbdbdb" />
+      <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+  </UserControl.Resources>
+
+
+  <Grid Background="{Binding ApplicationBackgroundBrush}">
+    <!--<Grid.RowDefinitions>
+      <RowDefinition Height="{StaticResource MenuTitleRowHeght}" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Rectangle Fill="{StaticResource MDBrush}" Stretch="Fill" />
+    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" VerticalAlignment="Center" Margin="20,5,15,5" Foreground="White" />
+
+    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="8,2">
+      <Button  Height="18" Width="18" Content="X" Background="Red" Foreground="White" DataContext="{Binding ExitScreen}" Command="{Binding ActionCommand}" />
+      <TextBlock Text="EXIT" FontSize="10" VerticalAlignment="Center" Margin="5,1,5,1" Foreground="White" />
+    </StackPanel>-->
+
+    <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="25" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+
+      <ToggleButton Grid.Row="0" Grid.Column="0"  
+          Style="{StaticResource styleToolToggleButton}" 
+          FontFamily="Wingdings 2" 
+          Content="" 
+          DataContext="{Binding NPRPolygonsOverlay}"  />
+      <ToggleButton Grid.Row="0" Grid.Column="1" 
+          Style="{StaticResource styleToolToggleButton}" 
+          FontFamily="Wingdings" 
+          Content="¥" 
+          DataContext="{Binding RigidNPROverlay}" >
+        <!--Style="{StaticResource ToggleButtonWithSubMenuMeasureStyle}"-->
+        <!--<ToggleButton.ContextMenu>
+          <ContextMenu Style="{StaticResource ToolsContextMenuStyle}" ItemContainerStyle="{StaticResource ContextMenuItemMeasureStyle}" Placement="Right" >
+            <ContextMenu.Template>
+              <ControlTemplate TargetType="{x:Type ContextMenu}">
+                <Border x:Name="Border" Background="{StaticResource BasicBrush}" BorderThickness="1" TextBlock.FontFamily="Arial">
+                  <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" Orientation="Horizontal" Height="28"/>
+                </Border>
+              </ControlTemplate>
+            </ContextMenu.Template>
+          </ContextMenu>
+        </ToggleButton.ContextMenu>-->
+      </ToggleButton>
+
+      <Button Style="{StaticResource PrimaryButtonStyle}" 
+          Grid.Row="2"
+          Grid.ColumnSpan="2" 
+          Content="Approve CT NPRs" 
+          ToolTip="Approve CT NPRs" 
+          Command="{Binding ViewModel.ApproveCTCommand}"
+          Margin="0,0,0,15"/>
+      <Button Style="{StaticResource PrimaryButtonStyle}" 
+          Grid.Row="3" 
+          Grid.ColumnSpan="2" 
+          Content="Approve MRI NPRs" 
+          ToolTip="Approve MRI NPRs" 
+          Command="{Binding ViewModel.ApproveMRICommand}"/>
+
+      <Expander x:Name="MoreExp" Grid.Row="5" Header="More" Foreground="White" Grid.ColumnSpan="2" >
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+
+          <Button Style="{StaticResource styleToolButton}" FontFamily="Wingdings" Content=">" Grid.Column="0" Grid.Row="0" Command="{Binding ViewModel.ResetSinusesCommand}" ToolTip="Reset Sinuses" />
+          <Button Style="{StaticResource styleToolButton}" FontFamily="Wingdings" Content="m" Grid.Column="1" Grid.Row="0" Command="{Binding ViewModel.ResetCalcificationsCommand}" ToolTip="Reset Calcifications" />
+          <Button Style="{StaticResource styleToolButton}" FontFamily="Wingdings" Content="R" Grid.Column="0" Grid.Row="1" Command="{Binding ViewModel.ResetFoldsCommand}" ToolTip="Reset Folds" />
+          <ToggleButton Grid.Column="1" Grid.Row="1"  Style="{StaticResource styleToolToggleButton}" FontFamily="Wingdings" Content="c" DataContext="{Binding PreOpSegmentationOverlay}"/>
+          <!--<Button Grid.Row="2" Grid.ColumnSpan="2" Content="Re-acquire Fold Scan" Command="{Binding ViewModel.ScanFoldCommand}" FontSize="9"  Width="95"/>-->
+          <Button Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource styleToolButton}" Content="Re-acquire Fold Scan" DataContext="{Binding MemFoldsScan}" FontSize="9"  Width="95"/>
+        </Grid>
+      </Expander>
+
+    </Grid>
+
+    <!--<local:ViewerMenuView Grid.Row="4" HeaderBackground="{StaticResource MDMenuLevel2Brush}" 
+                          HeaderSelectedBackground ="{StaticResource MDBrush}"
+                          DataContext="{Binding ViewerMenu}"
+                          HeaderForeground="#FF99b8c4"/>-->
+
+
+  </Grid>
+</UserControl>

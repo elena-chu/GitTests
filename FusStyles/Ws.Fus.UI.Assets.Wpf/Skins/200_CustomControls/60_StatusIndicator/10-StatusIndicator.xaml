@@ -5,6 +5,7 @@
 
   <Style x:Key="StatusIndicator" TargetType="ContentControl">
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}" />
+    <Setter Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="True" />
     <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
     <Setter Property="Background" Value="{StaticResource ActiveBrush}" />
     <Setter Property="IsEnabled" Value="True" />
@@ -17,8 +18,8 @@
                 <Path x:Name="EllipseR" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="2"  StrokeDashCap="Round" />
               </Grid>
               <Grid x:Name="Active" Visibility="Hidden" Width="Auto" Height="Auto" >
-                <Path x:Name="Ellipse" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Background}" StrokeThickness="2" StrokeDashArray="2"  StrokeDashCap="Round" />
-                <Path x:Name="Path" Data="M40.179964,88.828841 L43.223852,85.537268 49.682442,92.415611 59.197805,81.994108 62.095761,85.591337 49.779623,99.328249 z" Margin="7.234,10.384,5.9,7.675" Stretch="Fill" Fill="{TemplateBinding Background}" StrokeThickness="0"/>
+                <Path x:Name="Ellipse" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeDashArray="2"  StrokeDashCap="Round" />
+                <Path x:Name="Path" Data="M40.179964,88.828841 L43.223852,85.537268 49.682442,92.415611 59.197805,81.994108 62.095761,85.591337 49.779623,99.328249 z" Margin="7.234,10.384,5.9,7.675" Stretch="Fill" Fill="{TemplateBinding Foreground}" StrokeThickness="0"/>
               </Grid>
               <Grid x:Name="Completed" Visibility="Hidden" Width="Auto" Height="Auto">
                 <Path x:Name="PathComplete" Data="M28.234001,10.383998 L17.726889,21.972372 10.595143,14.323877 7.2340026,17.983999 17.834198,29.659002 31.434,14.384 z M18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 36.334,28.424215 28.424215,36.334 18.667,36.334 8.9097853,36.334 1,28.424215 1,18.667 1,8.9097853 8.9097853,1 18.667,1 z" 
@@ -28,6 +29,10 @@
             </Grid>
           </Viewbox>
           <ControlTemplate.Triggers>
+            <Trigger Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="False">
+              <Setter Property="Stroke" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Ellipse" />
+              <Setter Property="Fill" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Path" />
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter Property="Opacity" Value=".3" TargetName="Root" />
               <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Ellipse" />

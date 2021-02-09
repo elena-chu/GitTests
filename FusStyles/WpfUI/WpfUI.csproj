@@ -93,6 +93,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Menus\AcPcMenuView.xaml.cs">
+      <DependentUpon>AcPcMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\CalibrationScanMenuView.xaml.cs">
+      <DependentUpon>CalibrationScanMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\NprMenusContainerView.xaml.cs">
+      <DependentUpon>NprMenusContainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\PlanningScanMenuView.xaml.cs">
+      <DependentUpon>PlanningScanMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\RegistrationMenuView.xaml.cs">
+      <DependentUpon>RegistrationMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\TargetingMenuView.xaml.cs">
+      <DependentUpon>TargetingMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\WpfUiModule.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Views\ApplicationView.xaml.cs">
@@ -117,6 +135,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Menus\AcPcMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\CalibrationScanMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\NprMenusContainerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\PlanningScanMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\RegistrationMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\TargetingMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ApplicationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

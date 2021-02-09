@@ -79,6 +79,9 @@
     <Compile Include="Behaviors\UiMode.cs" />
     <Compile Include="Behaviors\UiModeEnter.cs" />
     <Compile Include="Behaviors\UiModeShow.cs" />
+    <Compile Include="Controls\StepProgress\StepProgress.xaml.cs">
+      <DependentUpon>StepProgress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StripsMenu\StripsMenu.xaml.cs">
       <DependentUpon>StripsMenu.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
     <Page Include="Assets\Skins\Standard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>Skin.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StepProgress\StepProgress.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\StripsMenu\StripsMenu.xaml">

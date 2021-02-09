@@ -1,0 +1,128 @@
+<UserControl x:Class="Ws.Fus.Registration.UI.Wpf.RegistrationMenuView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:ivBeh="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Behaviors;assembly=Ws.Fus.ImageViewer.UI.Wpf"             
+  xmlns:extensions="http://schemas.insightec.com/wpf/"
+  mc:Ignorable="d" 
+  d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+    <extensions:NullToVisibilityConverter x:Key="null2Vis" />
+  </UserControl.Resources>
+
+  <!--xmlns:registration="clr-namespace:Ws.Fus.Registration.Interfaces.Entities;assembly=Ws.Fus.Registration.Interfaces"-->
+  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+    <!--<Grid.RowDefinitions>
+      <RowDefinition Height="{StaticResource OperativeScreenMenuTitleRowHeght}" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>-->
+
+    <!--<Rectangle Fill="{StaticResource RegistrationBrush}"
+        Stretch="Fill" />
+    <TextBlock Foreground="White"
+        Margin="20,5,15,5"
+        Text="REGISTRATION"
+        TextWrapping="Wrap"
+        VerticalAlignment="Center" />
+
+    <StackPanel Grid.Row="1"
+        Margin="8,2"
+        Orientation="Horizontal"
+        VerticalAlignment="Center">
+      <Button Background="Red"
+          Command="{Binding ExitCommand}" 
+          Content="X"
+          Foreground="White"
+          Height="18" Width="18" />
+      <TextBlock FontSize="9"
+          Foreground="White"
+          Margin="5,1,5,1"
+          Text="EXIT REGISTRATION MODE"
+          VerticalAlignment="Center" />
+    </StackPanel>-->
+
+    <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <!--<ColumnDefinition />-->
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <ToggleButton Grid.Row="0" Grid.Column="0"
+          ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
+          Content="¯"
+          DataContext="{Binding Commands.Overlays}"
+          FontFamily="Wingdings"
+          ToolTip="CT Overlay"
+          Style="{StaticResource styleToolToggleButton}" />
+
+      <Button Grid.Row="0" Grid.Column="1"
+          Command="{Binding AutoRegisterCommand}"
+          FontFamily="Wingdings 3"
+          Content="u"
+          Style="{StaticResource styleToolButton}"
+          ToolTip="Auto Register"/>
+      
+      <Button Grid.Row="1" Grid.Column="0"
+          Command="{Binding ClearStripsCommand}"     
+          FontFamily="Wingdings 2"
+          Content="¹"
+          ToolTip="Clears registration" 
+          Style="{StaticResource styleToolButton}"/>
+
+      <Button Grid.Row="3" Grid.Column="0"
+          Grid.ColumnSpan="2" 
+          Command="{Binding ApproveRegistrationCommand}"     
+          Content="Approve set"  
+          ToolTip="Approves registration" 
+          Style="{StaticResource PrimaryButtonStyle}"/>
+
+       <!--<ToggleButton Grid.Column="2"
+          Grid.Row="0"
+          ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
+          Content="P"
+          DataContext="{Binding Commands.Overlays}"
+          FontFamily="Wingdings"
+          Style="{StaticResource styleToolButton}" />
+          Visibility="{Binding Converter={StaticResource null2Vis}}"/>-->
+
+       <!--<Button
+            FontFamily="Wingdings 2"
+            Content="¹"
+            Grid.Column="1"
+            Grid.Row="0"
+            Command="{Binding ResetCommand}"
+            ToolTip ="Reset" />-->
+
+       <!-- <Button Grid.Column="0"
+          Grid.Row="1"
+          Content="P"
+          DataContext="{Binding Undo}"
+          FontFamily="Wingdings 3"
+          Style="{StaticResource styleToolButton}" />-->
+      
+      <!--<Button Grid.Column="1"
+          Grid.Row="1"
+          Content="Q"
+          DataContext="{Binding Redo}"
+          FontFamily="Wingdings 3"
+          Style="{StaticResource styleToolButton}" />-->
+
+    </Grid>
+
+  </Grid>
+</UserControl>

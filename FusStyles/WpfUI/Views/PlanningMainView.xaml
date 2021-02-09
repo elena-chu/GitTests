@@ -8,11 +8,16 @@
              xmlns:extensions="http://schemas.insightec.com/wpf/"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:local="clr-namespace:WpfUI.Views"
+             x:Name="Control"
              xmlns:locControls="clr-namespace:WpfUI.Controls"
              xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
              xmlns:sv="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Views;assembly=Ws.Fus.ImageViewer.UI.Wpf"
              xmlns:sm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
              xmlns:tm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
+             xmlns:acpc="clr-namespace:Ws.Fus.AcPc.UI.Wpf"
+             xmlns:menus="clr-namespace:Ws.Fus.UI.Wpf.Menus.Views"
+             xmlns:plan="clr-namespace:Ws.Fus.PlanningScans.UI.Wpf"
+             xmlns:reg="clr-namespace:Ws.Fus.Registration.UI.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
   <Grid Background="{StaticResource ApplicationBackgroundBrush}">
@@ -46,7 +51,9 @@
             <Setter Property="extensions:IndependentSize.Height" Value="80" />
             <Setter Property="IsActive" Value="{Binding IsActive}" />
             <Setter Property="ProgressNavigationState" Value="{Binding ScreenState}" />
-            <Setter Property="Command" Value="{Binding SwitchScreenCommand}" />
+            <Setter Property="DataContext" Value="{Binding ElementName=Control}"/>
+            <!--<Setter Property="Command" Value="{Binding SwitchScreenCommand}" />-->
+            <Setter Property="Command" Value="{Binding OpenStageCommand}" />
             <Setter Property="CallToAction" Value="{Binding CallToAction}" />
             <Setter Property="ToolTip" Value="{Binding StateDescription}"/>
             <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
@@ -152,6 +159,7 @@
                                 extensions:IndependentSize.Width="16" extensions:IndependentSize.Height="16" 
                                 Foreground="{StaticResource ApplicationForgroundBrush}" Opacity=".8"
                                 Background="{StaticResource ActiveBrush}"
+                                extensions:ProgressStatusDisplayer.ActiveAsForeground="False"
                                 HorizontalAlignment="Left"
                                 IsEnabled="{TemplateBinding IsEnabled}"
                                 ToolTip="{TemplateBinding ToolTip}" ToolTipService.ShowOnDisabled="True"/>
@@ -175,22 +183,22 @@
           <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <locControls:ProgressNavigationButton Grid.Row="0" DataContext="{Binding Path=[Calibration]}" Content="{lex:LocTextUpper IDS_LBL_MENU_CALIBRATION}" />
+        <locControls:ProgressNavigationButton x:Name="CalibBtn" Grid.Row="0" Content="{lex:LocTextUpper IDS_LBL_MENU_CALIBRATION}" Command="{Binding OpenStageCommand}" CommandParameter="Calibration" />
         <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"  />
 
-        <locControls:ProgressNavigationButton Grid.Row="1" DataContext="{Binding [PlanningScan]}" Content="{lex:LocTextUpper IDS_LBL_MENU_PLANNING_SCAN}" />
+        <locControls:ProgressNavigationButton x:Name="PlanBtn" Grid.Row="1" Content="{lex:LocTextUpper IDS_LBL_MENU_PLANNING_SCAN}" Command="{Binding OpenStageCommand}" CommandParameter="PlanningScan" />
         <Rectangle Grid.Row="1" Style="{StaticResource HorizontalMenuSeparator}"  />
 
-        <locControls:ProgressNavigationButton Grid.Row="2" DataContext="{Binding Path=[Registration]}" Content="{lex:LocTextUpper IDS_LBL_MENU_REGISTRATION}" />
+        <locControls:ProgressNavigationButton x:Name="RegBtn" Grid.Row="2"  Content="{lex:LocTextUpper IDS_LBL_MENU_REGISTRATION}" Command="{Binding OpenStageCommand}" CommandParameter="Registration" />
         <Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"  />
 
-        <locControls:ProgressNavigationButton Grid.Row="3" DataContext="{Binding Path=[ACPC]}" Content="{lex:LocTextUpper IDS_LBL_MENU_AC_PC}" />
+        <locControls:ProgressNavigationButton x:Name="AcPcBtn" Grid.Row="3"  Content="{lex:LocTextUpper IDS_LBL_MENU_AC_PC}" Command="{Binding OpenStageCommand}" CommandParameter="AcPc" />
         <Rectangle Grid.Row="3" Style="{StaticResource HorizontalMenuSeparator}"  />
 
-        <locControls:ProgressNavigationButton Grid.Row="4" DataContext="{Binding Path=[NPR]}" Content="{lex:LocTextUpper IDS_LBL_MENU_NPR}" />
+        <locControls:ProgressNavigationButton x:Name="NprBtn" Grid.Row="4"  Content="{lex:LocTextUpper IDS_LBL_MENU_NPR}" Command="{Binding OpenStageCommand}" CommandParameter="Npr" />
         <Rectangle Grid.Row="4" Style="{StaticResource HorizontalMenuSeparator}"  />
 
-        <locControls:ProgressNavigationButton Grid.Row="5" DataContext="{Binding Path=[Targeting]}" Content="{lex:LocTextUpper IDS_LBL_MENU_TARGETING}" />
+        <locControls:ProgressNavigationButton x:Name="TargBtn" Grid.Row="5"  Content="{lex:LocTextUpper IDS_LBL_MENU_TARGETING}" Command="{Binding OpenStageCommand}" CommandParameter="Targeting" />
         <Rectangle Grid.Row="5" Style="{StaticResource HorizontalMenuSeparator}"  />
 
       </Grid>
@@ -206,6 +214,17 @@
     <!--Temp code just from screens-->
 
     <Grid Grid.Column="1">
+      <Grid.Resources>
+        <Style x:Key="MenuStyle" TargetType="UserControl">
+          <Setter Property="Grid.Column" Value="0" />
+          <Setter Property="Grid.Row" Value="0" />
+          <Setter Property="Grid.RowSpan" Value="2" />
+          <Setter Property="HorizontalAlignment" Value="Stretch" />
+          <Setter Property="VerticalAlignment" Value="Stretch" />
+          <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+      </Grid.Resources>
+      
       <Grid.ColumnDefinitions>
         <ColumnDefinition  />
         <ColumnDefinition Width="Auto" />
@@ -216,7 +235,12 @@
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
 
-      <!--<menus:CalibrationScanMenuView Grid.RowSpan="2" DataContext="{Binding Menu}" />-->
+      <menus:CalibrationScanMenuView x:Name="CalibrtionMenu" Style="{StaticResource MenuStyle}" />
+      <plan:PlanningScanMenuView x:Name="PlanningScanMenu" Style="{StaticResource MenuStyle}" />
+      <reg:RegistrationMenuView x:Name="RegistrationMenu" Style="{StaticResource MenuStyle}" />
+      <acpc:AcPcMenuView x:Name="AcPcMenu" Style="{StaticResource MenuStyle}" />
+      <menus:NprMenusContainerView x:Name="NprMenu" Style="{StaticResource MenuStyle}" />
+      <menus:TargetingMenuView x:Name="TargetingMenu" Style="{StaticResource MenuStyle}" />
 
       <tm:ToolbarMenu Grid.Column="1" />
 

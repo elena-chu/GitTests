@@ -36,6 +36,21 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             obj.SetValue(ProgressStateProperty, value);
         }
 
+
+        public static readonly DependencyProperty ActiveAsForegroundProperty = DependencyProperty.RegisterAttached("ActiveAsForeground",
+            typeof(bool), typeof(ProgressStatusDisplayer), new UIPropertyMetadata(true));
+
+        public static bool GetActiveAsForeground(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(ActiveAsForegroundProperty);
+        }
+        public static void SetActiveAsForeground(DependencyObject obj, bool value)
+        {
+            obj.SetValue(ActiveAsForegroundProperty, value);
+        }
+
+
+
         /// <summary>
         /// Property, enabling to add to any object info about progress percentage. 
         /// Valid values are from 0 to 1
