@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+  
+  <ResourceDictionary.MergedDictionaries>
+    
+    <!--Colors, Brushes-->
+    <ResourceDictionary Source="010_Colors_Standard/01-Colors.xaml" />
+    <ResourceDictionary Source="050_Brushes/01-Brushes.xaml" />
+    <ResourceDictionary Source="050_Brushes/02-IconBrushes.xaml" />
+
+    <!--Generics,Layouts-->
+    <ResourceDictionary Source="060_Generic/01_GenericStyles.xaml"/>
+
+    <!--Controls-->
+    <ResourceDictionary Source="100_Controls/020_TextBlock/01-TextBlockStyle.xaml" />
+    <ResourceDictionary Source="100_Controls/040_Label/01-HeaderStyle.xaml" />
+    <ResourceDictionary Source="100_Controls/040_Label/01-LabelStyle.xaml" />
+    <ResourceDictionary Source="100_Controls/040_Label/01-TextStyle.xaml" />
+
+    <ResourceDictionary Source="100_Controls/050_ButtonBase/10-ToolButton.xaml" />
+    <ResourceDictionary Source="100_Controls/060_ToggleButton/10-ToolToggleButton.xaml" />
+    <ResourceDictionary Source="100_Controls/060_ToggleButton/PinButtonStyle.xaml" />
+    <ResourceDictionary Source="100_Controls/065_Buttons/ButtonStyle.xaml" />
+    <ResourceDictionary Source="100_Controls/200_Expander/PinableExpanderStyle.xaml" />
+
+    <ResourceDictionary Source="200_CustomControls/60_StatusIndicator/10-StatusIndicator.xaml" />
+
+
+
+  </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

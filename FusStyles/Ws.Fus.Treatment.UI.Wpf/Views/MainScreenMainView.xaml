@@ -54,8 +54,8 @@
           Stretch="Uniform"
           HorizontalAlignment="Left"
           VerticalAlignment="Bottom"
-          Width="{StaticResource XDouble.Size.MainMenuIcon}"
-          Height="{StaticResource XDouble.Size.MainMenuIcon}"
+          extensions:IndependentSize.Width="{StaticResource XDouble.Size.MainMenuIcon}"
+          extensions:IndependentSize.Height="{StaticResource XDouble.Size.MainMenuIcon}"
           IsHitTestVisible="False"
           Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}">
           <Path x:Name="HaloPath" Fill="{StaticResource ActiveBrush}" Opacity="0.5" Data="{StaticResource XGeometry.Doughnut}">
@@ -69,8 +69,8 @@
           HorizontalAlignment="Left"
           VerticalAlignment="Bottom"
           Stretch="Uniform"
-          Width="{StaticResource XDouble.Size.MainMenuIcon}"
-          Height="{StaticResource XDouble.Size.MainMenuIcon}"
+          extensions:IndependentSize.Width="{StaticResource XDouble.Size.MainMenuIcon}"
+          extensions:IndependentSize.Height="{StaticResource XDouble.Size.MainMenuIcon}"
           IsHitTestVisible="False">
           <Canvas Width="13.229169" Height="13.42748">
             <Canvas>
