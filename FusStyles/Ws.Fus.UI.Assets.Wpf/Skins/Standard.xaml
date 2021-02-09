@@ -177,7 +177,7 @@
     </DrawingBrush.Drawing>
   </DrawingBrush>
   <!--Planning Icon -->
-  <!--Temph-->
+  <!--Temp-->
   <Geometry x:Key="PlanningIconPath">
     M35.517998,17.5355 C35.517998,26.943948 27.678953,34.571001 18.008999,34.571001 8.339046,34.571001 0.5,26.943948 0.5,17.5355 0.5,8.1270533 8.339046,0.5 18.008999,0.5 27.678953,0.5 35.517998,8.1270533 35.517998,17.5355 z M28.172,17.5355 C28.172,23.279538 23.621646,27.935999 18.0085,27.935999 12.395354,27.935999 7.845,23.279538 7.845,17.5355 7.845,11.791462 12.395354,7.135 18.0085,7.135 23.621646,7.135 28.172,11.791462 28.172,17.5355 z
   </Geometry>
@@ -405,6 +405,7 @@
   <Style x:Key="styleToolButton" TargetType="ButtonBase" BasedOn="{StaticResource styleToolButton_Base}" />
   <!---->
   <!--Merged from file Skins\100_Controls\060_ToggleButton\10-ToolToggleButton.xaml-->
+  <!--Old-->
   <Style x:Key="styleToolToggleButton_Base" TargetType="ToggleButton" BasedOn="{StaticResource styleToolButton_Base}">
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
@@ -416,6 +417,7 @@
   <Style x:Key="styleToolToggleButton" TargetType="ToggleButton" BasedOn="{StaticResource styleToolToggleButton_Base}" />
   <!---->
   <!--Merged from file Skins\100_Controls\060_ToggleButton\PinButtonStyle.txaml-->
+  <!-- Old. Should be removed lter-->
   <Geometry x:Key="UnPinIcon">M4,2 L4,3 L8,3 L8,2 z M3,0 L4,0 L4,1 L8,1 L9,1 L9,2 L9,3 L9,6 L8,6 L4,6 L4,7 L3,7 L3,6 L3,4 L0,4 L0,3 L3,3 L3,2 L3,1 z</Geometry>
   <Style x:Key="PinButtonStyle" TargetType="ToggleButton">
     <Setter Property="Template" Value="{StaticResource PinButton}" />
@@ -604,6 +606,7 @@
   <!--Merged from file Skins\200_CustomControls\60_StatusIndicator\10-StatusIndicator.xaml-->
   <Style x:Key="StatusIndicator" TargetType="ContentControl">
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}" />
+    <Setter Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="True" />
     <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
     <Setter Property="Background" Value="{StaticResource ActiveBrush}" />
     <Setter Property="IsEnabled" Value="True" />
@@ -616,8 +619,8 @@
                 <Path x:Name="EllipseR" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeDashCap="Round" />
               </Grid>
               <Grid x:Name="Active" Visibility="Hidden" Width="Auto" Height="Auto">
-                <Path x:Name="Ellipse" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Background}" StrokeThickness="2" StrokeDashArray="2" StrokeDashCap="Round" />
-                <Path x:Name="Path" Data="M40.179964,88.828841 L43.223852,85.537268 49.682442,92.415611 59.197805,81.994108 62.095761,85.591337 49.779623,99.328249 z" Margin="7.234,10.384,5.9,7.675" Stretch="Fill" Fill="{TemplateBinding Background}" StrokeThickness="0" />
+                <Path x:Name="Ellipse" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeDashArray="2" StrokeDashCap="Round" />
+                <Path x:Name="Path" Data="M40.179964,88.828841 L43.223852,85.537268 49.682442,92.415611 59.197805,81.994108 62.095761,85.591337 49.779623,99.328249 z" Margin="7.234,10.384,5.9,7.675" Stretch="Fill" Fill="{TemplateBinding Foreground}" StrokeThickness="0" />
               </Grid>
               <Grid x:Name="Completed" Visibility="Hidden" Width="Auto" Height="Auto">
                 <Path x:Name="PathComplete" Data="M28.234001,10.383998 L17.726889,21.972372 10.595143,14.323877 7.2340026,17.983999 17.834198,29.659002 31.434,14.384 z M18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 36.334,28.424215 28.424215,36.334 18.667,36.334 8.9097853,36.334 1,28.424215 1,18.667 1,8.9097853 8.9097853,1 18.667,1 z" Stretch="Fill" Stroke="{TemplateBinding Background}" Fill="{TemplateBinding Background}" />
@@ -625,6 +628,10 @@
             </Grid>
           </Viewbox>
           <ControlTemplate.Triggers>
+            <Trigger Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="False">
+              <Setter Property="Stroke" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Ellipse" />
+              <Setter Property="Fill" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Path" />
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
               <Setter Property="Opacity" Value=".3" TargetName="Root" />
               <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Ellipse" />

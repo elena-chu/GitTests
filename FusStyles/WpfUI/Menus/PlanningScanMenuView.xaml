@@ -3,11 +3,11 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-  xmlns:planning="clr-namespace:Ws.Fus.PlanningScans.Interfaces.Entities;assembly=Ws.Fus.PlanningScans.Interfaces"
-  xmlns:mr="clr-namespace:Ws.Fus.Mr;assembly=Ws.Fus.Mr.Interfaces"             
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   mc:Ignorable="d" 
   d:DesignHeight="600" d:DesignWidth="300">
+  <!--xmlns:planning="clr-namespace:Ws.Fus.PlanningScans.Interfaces.Entities;assembly=Ws.Fus.PlanningScans.Interfaces"-->
+  <!--xmlns:mr="clr-namespace:Ws.Fus.Mr;assembly=Ws.Fus.Mr.Interfaces"-->
   <!--Width="{StaticResource OperativeScreenMenuWidth}"-->
 
   <UserControl.Resources>
@@ -57,29 +57,28 @@
           <RadioButton x:Name="AxialBtn"
               Grid.Column="0"
               GroupName="ScanOrientation"
-              IsChecked="{Binding ScanDir,
+              Style="{StaticResource RadioBtnVerticalStyle}"/>
+          <!--IsChecked="{Binding ScanDir,
                   Converter={StaticResource ComparisonConverter},
                   ConverterParameter={x:Static mr:ScanDirection.eScanDirAxial},
-                  Mode=TwoWay}"
-              Style="{StaticResource RadioBtnVerticalStyle}"/>
-          
+                  Mode=TwoWay}"-->
           <RadioButton x:Name="SagitalBtn"
               Grid.Column="1"
               GroupName="ScanOrientation"
-              IsChecked="{Binding ScanDir,
+              Style="{StaticResource RadioBtnVerticalStyle}"/>
+          <!--IsChecked="{Binding ScanDir,
                   Converter={StaticResource ComparisonConverter},
                   ConverterParameter={x:Static mr:ScanDirection.eScanDirSagittal},
-                  Mode=TwoWay}"
-              Style="{StaticResource RadioBtnVerticalStyle}"/>
-          
+                  Mode=TwoWay}"-->
+
           <RadioButton x:Name="CoronalBtn"
               Grid.Column="2"
               GroupName="ScanOrientation"
-              IsChecked="{Binding ScanDir,
+              Style="{StaticResource RadioBtnVerticalStyle}" />
+          <!--IsChecked="{Binding ScanDir,
                   Converter={StaticResource ComparisonConverter},
                   ConverterParameter={x:Static mr:ScanDirection.eScanDirCoronal},
-                  Mode=TwoWay}"              
-              Style="{StaticResource RadioBtnVerticalStyle}" />
+                  Mode=TwoWay}"-->
           <TextBlock Foreground="{Binding IsChecked, ElementName=AxialBtn, Converter={StaticResource ForegroundConverter}}"
             Style="{StaticResource RadioBtnVerticalLabelStyle}"
             Text="AXIAL"/>
@@ -152,9 +151,10 @@
         <!--<RadioButton x:Name="VolumetricBtn" IsChecked="{Binding ViewModel.Is3PlaneScan, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource RadioBtnVerticalStyle}"/>
         <RadioButton x:Name="ThreePlaneBtn" IsChecked="{Binding ViewModel.Is3PlaneScan, Mode=TwoWay}" Grid.Column="1" Style="{StaticResource RadioBtnVerticalStyle}"/>-->
 
-        <RadioButton x:Name="VolumetricBtn" IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.eVolumetricScan}, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource RadioBtnVerticalStyle}" Checked="ScanTypeChecked"/>
-        <RadioButton x:Name="ThreePlaneBtn" IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.e3PlaneScan},Mode=TwoWay}" Grid.Column="1" Style="{StaticResource RadioBtnVerticalStyle}" Checked="ScanTypeChecked"/>
-
+        <RadioButton x:Name="VolumetricBtn"  Grid.Column="0" Style="{StaticResource RadioBtnVerticalStyle}" Checked="ScanTypeChecked"/>
+        <!--IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.eVolumetricScan}, Mode=TwoWay}"-->
+        <RadioButton x:Name="ThreePlaneBtn"  Grid.Column="1" Style="{StaticResource RadioBtnVerticalStyle}" Checked="ScanTypeChecked"/>
+        <!--IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.e3PlaneScan},Mode=TwoWay}"-->
         <TextBlock Text="Volumetric" Foreground="{Binding IsChecked, ElementName=VolumetricBtn, Converter={StaticResource ForegroundConverter}}" Style="{StaticResource RadioBtnVerticalLabelStyle}" />
         <TextBlock Text="3Plane" Foreground="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource ForegroundConverter}}" Grid.Column="1" Style="{StaticResource RadioBtnVerticalLabelStyle}"  />
       </Grid>
