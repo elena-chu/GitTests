@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
@@ -69,6 +64,51 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static Geometry GetBetaGeometry(FrameworkElement obj)
         {
             return (Geometry)obj.GetValue(BetaGeometryProperty);
+        }
+
+        /// <summary>
+        /// Horizontal Alignment of Icon
+        /// </summary>
+        public static DependencyProperty IconHorizontalAlignmentProperty = DependencyProperty.RegisterAttached("IconHorizontalAlignment", typeof(HorizontalAlignment), typeof(IconedButton));
+
+        public static void SetIconHorizontalAlignment(FrameworkElement obj, HorizontalAlignment value)
+        {
+            obj.SetValue(IconHorizontalAlignmentProperty, value);
+        }
+        public static HorizontalAlignment GetIconHorizontalAlignment(FrameworkElement obj)
+        {
+            return (HorizontalAlignment)obj.GetValue(IconHorizontalAlignmentProperty);
+        }
+
+
+        /// <summary>
+        /// Used for anything that needs a running param from 0 to 1 - animation, rotation, etc.
+        /// </summary>
+        public static readonly DependencyProperty RunningPercentageProperty = DependencyProperty.RegisterAttached("RunningPercentage", typeof(double), typeof(IconedButton), new PropertyMetadata(0.0));
+
+        public static double GetRunningPercentage(DependencyObject obj)
+        {
+            return (double)obj.GetValue(RunningPercentageProperty);
+        }
+
+        public static void SetRunningPercentage(DependencyObject obj, double value)
+        {
+            obj.SetValue(RunningPercentageProperty, value);
+        }
+
+        /// <summary>
+        /// Icon size
+        /// </summary>
+        public static readonly DependencyProperty IconSizeProperty = DependencyProperty.RegisterAttached("IconSize", typeof(double), typeof(IconedButton), new PropertyMetadata(20.0));
+
+        public static double GetIconSize(DependencyObject obj)
+        {
+            return (double)obj.GetValue(IconSizeProperty);
+        }
+
+        public static void SetIconSize(DependencyObject obj, double value)
+        {
+            obj.SetValue(IconSizeProperty, value);
         }
 
     }

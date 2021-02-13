@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Controls\ComboBoxBinary.cs" />
     <Compile Include="Controls\MouseWheelDecorator.cs" />
+    <Compile Include="Controls\PhaseButton.cs" />
     <Compile Include="Controls\SizeToAspectRatio.cs" />
     <Compile Include="Behaviors\LeftClickContextMenu.cs" />
     <Compile Include="Behaviors\PinnableExpander.cs" />

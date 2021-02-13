@@ -1,0 +1,148 @@
+<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <Storyboard x:Key="XStoryboard.Rotate">
+    <DoubleAnimation
+      Storyboard.TargetName="RotateCircle"
+      Storyboard.TargetProperty="Angle" 
+      From="0"
+      To="360"
+      Duration="0:0:2"
+      RepeatBehavior="Forever"/>
+  </Storyboard>
+
+  <ControlTemplate x:Key="XControlTemplate.PhaseButton.CheckAnimatedCircle" TargetType="{x:Type extensions:PhaseButton}">
+    <Border
+      CornerRadius="{StaticResource XCornerRadius.Frame}"
+      Padding="0"
+      Width="{TemplateBinding Width}"
+      Height="{TemplateBinding Height}"
+      Background="{TemplateBinding Background}">
+      <Grid Margin="2,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ContentPresenter
+          x:Name="ContentPresenter"
+          Grid.Column="0"
+          Grid.ColumnSpan="2"
+          Margin="1,0"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          IsHitTestVisible="False"/>
+
+        <Border
+          x:Name="DashedCircleBorder"
+          Grid.Column="1"
+          Padding="0"
+          Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+          Visibility="Visible"
+          RenderTransformOrigin="0.5,0.5">
+          <Border.RenderTransform>
+            <RotateTransform x:Name="RotateCircle" Angle="0"/>
+          </Border.RenderTransform>
+          <Path
+            Width="22"
+            Height="22"
+            Data="{StaticResource XGeometry.DashedCircle}"
+            Fill="{TemplateBinding Foreground}"
+            Stretch="Uniform"/>
+        </Border>
+        <Border
+          x:Name="CheckmarkBorder"
+          Grid.Column="1"
+          Padding="0"
+          Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+          Visibility="Visible">
+          <Path
+            Width="9"
+            Height="9"
+            Data="{StaticResource XGeometry.Checkmark}"
+            Fill="{TemplateBinding Foreground}"
+            Stretch="Uniform"
+            Visibility="Visible"/>
+        </Border>
+        <Border
+          x:Name="FilledCircleCheckmarkBorder"
+          Grid.Column="1"
+          Padding="0"
+          Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+          Visibility="Hidden">
+          <Path
+            Width="22"
+            Height="22"
+            Data="{StaticResource XGeometry.FilledCircleCheckmark}"
+            Fill="{TemplateBinding Foreground}"
+            Stretch="Uniform"/>
+        </Border>
+      </Grid>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="CurrentPhase" Value="NotStarted">
+        <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Visible"/>
+        <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Visible"/>
+        <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Hidden"/>
+      </Trigger>
+      <Trigger Property="CurrentPhase" Value="Preparing">
+        <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Visible"/>
+        <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Visible"/>
+        <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Hidden"/>
+        <Trigger.EnterActions>
+          <BeginStoryboard x:Name="RotateStoryboard" Storyboard="{StaticResource XStoryboard.Rotate}"/>
+        </Trigger.EnterActions>
+      </Trigger>
+      <Trigger Property="CurrentPhase" Value="Executing">
+        <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Visible"/>
+        <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Visible"/>
+        <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Hidden"/>
+        <Trigger.ExitActions>
+          <StopStoryboard BeginStoryboardName="RotateStoryboard"/>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="CurrentPhase" Value="Completed">
+        <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Hidden"/>
+        <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Hidden"/>
+        <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Visible"/>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.PhaseButton.Primary" TargetType="{x:Type extensions:PhaseButton}" BasedOn="{StaticResource XStyle.ButtonBase.Primary}">
+    <Setter Property="Content" Value="{Binding CurrentCaption, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.PhaseButton.CheckAnimatedCircle}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Primary.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsPressed" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Pressed}"/>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Hover}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.PhaseButton.Secondary" TargetType="{x:Type extensions:PhaseButton}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
+    <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
+    <Setter Property="Content" Value="{Binding CurrentCaption, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsPressed" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>

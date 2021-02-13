@@ -10,6 +10,22 @@
   <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
   <SolidColorBrush x:Key="ButtonsForegroundBrush" Color="{StaticResource ButtonsForegroundColor}" />
 
+  <SolidColorBrush x:Key="XBrush.AlmostTransparent" Color="{StaticResource XColor.AlmostTransparent}"/>
+  <SolidColorBrush x:Key="XBrush.Inactive" Color="{StaticResource XColor.Inactive}"/>
+  
+  <!--Buttons-->
+  <SolidColorBrush x:Key="XBrush.Button.Primary.Background" Color="{StaticResource XColor.Button.Primary.Background}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Primary.Background.Hover" Color="{StaticResource XColor.Button.Primary.Background.Hover}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Primary.Background.Pressed" Color="{StaticResource XColor.Button.Primary.Background.Pressed}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Primary.BackgroundDisabled" Color="{StaticResource XColor.Button.Primary.Background.Disabled}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Primary.Foreground" Color="{StaticResource XColor.Button.Primary.Foreground}"/>
+  
+  <SolidColorBrush x:Key="XBrush.Button.Secondary.Background" Color="{StaticResource XColor.Button.Secondary.Background}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Hover" Color="{StaticResource XColor.Button.Secondary.Background.Hover}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Pressed" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Disabled" Color="{StaticResource XColor.Button.Secondary.Background.Disabled}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Secondary.Foreground" Color="{StaticResource XColor.Button.Secondary.Foreground}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Secondary.Foreground.Disabled" Color="{StaticResource XColor.Button.Secondary.Foreground.Disabled}"/>
 
   <!-- Gradient Brushes-->
   <LinearGradientBrush x:Key="ActiveToTransparentGradientBrush" StartPoint="0,0">

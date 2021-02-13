@@ -7,12 +7,14 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:local="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Views"
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="{StaticResource RegularMenuWidth}" />
-      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="0.2*" />
+      <ColumnDefinition Width="0.66*" />
     </Grid.ColumnDefinitions>
     <Rectangle Stretch="Fill" Fill="{StaticResource ApplicationBackgroundBrush}" />
     <Grid Style="{StaticResource MenuContainerStyle}">
@@ -59,8 +61,38 @@
           <Button Width="15" Height="15" FontFamily="Wingdings 3" Content="P" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="3" />
         </Grid>
       </StackPanel>
-      <Button Grid.Row="4" Content="{lex:Loc IDS_LBL_TRTM_START_TREATMENT}" Command="{Binding StartTreatmentCommand}" Margin="0, 20,0,0" Style="{StaticResource PrimaryButtonStyle}" Foreground="Black"/>
+      <Button
+        Grid.Row="4"
+        Margin="0,20,0,0"
+        Content="{lex:Loc IDS_LBL_TRTM_START_TREATMENT}"
+        Command="{Binding StartTreatmentCommand}"
+        Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>
-    <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource BaseBorderBrush}" />
+
+    <Border Grid.Column="1" Background="{StaticResource ApplicationBackgroundBrush}" />
+    <StackPanel Grid.Column="1">
+      <TextBlock FontSize="18" Margin="0,20,0,10" Text="Button Examples:" Foreground="YellowGreen" FontWeight="Bold"/>
+      <Button Margin="10" Content="Primary" Style="{StaticResource XStyle.Button.Primary}"/>
+      <Button Margin="10" Content="Secondary" Style="{StaticResource XStyle.Button.Secondary}"/>
+      <Button Margin="10" Content="Primary.WithIcon" extensions:IconedButton.IconSize="15" Style="{StaticResource XStyle.Button.Primary.WithIcon}"/>
+      <Button Margin="10" Content="Secondary.WithIcon" extensions:IconedButton.IconSize="15" Style="{StaticResource XStyle.Button.Secondary.WithIcon}"/>
+
+      <TextBlock FontSize="18" Margin="0,20,0,10" Text="Phase Button Example" Foreground="YellowGreen" FontWeight="Bold"/>
+      <TextBlock FontSize="15" Margin="0,0,0,10" Text="Click and Wait:" Foreground="YellowGreen"/>
+      <extensions:PhaseButton
+        Margin="10"
+        CurrentPhase="{Binding MyProcessPhase}"
+        CaptionNotStarted="Idle"
+        CaptionPreparing="Preparing..."
+        CaptionExecuting="Executing..."
+        CaptionCompleted="Completed!"
+        IconNotStarted="{StaticResource XGeometry.DashedCircleCheckmark}"
+        IconPreparing="{StaticResource XGeometry.DashedCircleCheckmark}"
+        IconExecuting="{StaticResource XGeometry.DashedCircleCheckmark}"
+        IconCompleted="{StaticResource XGeometry.FilledCircleCheckmark}"
+        Command="{Binding DoingSomethingCommand}"
+        Style="{StaticResource XStyle.PhaseButton.Primary}"/>
+
+    </StackPanel>
   </Grid>
 </UserControl>

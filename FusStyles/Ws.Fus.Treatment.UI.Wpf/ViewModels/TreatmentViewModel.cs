@@ -3,6 +3,8 @@ using Prism.Commands;
 using Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers;
 using Ws.Fus.ImageViewer.UI.Wpf.Navigation;
 using Ws.Fus.ImageViewer.UI.Wpf;
+using Ws.Extensions.UI.Wpf.Controls;
+using System.Threading.Tasks;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -18,6 +20,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
             StartTreatmentCommand = new DelegateCommand(StartTreatmentExecute);
             RefreshExamInfoCommand = new DelegateCommand(RefreshExamInfoExecute);
+            DoingSomethingCommand = new DelegateCommand(DoingSomethingCommandExecute);
         }
 
         public DelegateCommand StartTreatmentCommand { get; private set; }
@@ -54,7 +57,27 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             set { SetProperty(ref _examInfo, value); }
         }
 
+        private ProcessPhase _myProcessPhase = ProcessPhase.NotStarted;
+        public ProcessPhase MyProcessPhase
+        {
+            get { return _myProcessPhase; }
+            set
+            {
+                _myProcessPhase = value;
+                RaisePropertyChanged();
+            }
+        }
 
-
+        public DelegateCommand DoingSomethingCommand { get; private set; }
+        public async void DoingSomethingCommandExecute()
+        {
+            MyProcessPhase = ProcessPhase.Preparing;
+            await Task.Delay(3000);
+            MyProcessPhase = ProcessPhase.Executing;
+            await Task.Delay(3000);
+            MyProcessPhase = ProcessPhase.Completed;
+            await Task.Delay(5000);
+            MyProcessPhase = ProcessPhase.NotStarted;
+        }
     }
 }
