@@ -204,6 +204,7 @@
     <Compile Include="Geometry\Point3DExtensions.cs" />
     <Compile Include="Geometry\UnitVector3DExtensions.cs" />
     <Compile Include="Interop\IManagedWrapper.cs" />
+    <Compile Include="Patterns\ObservableDictionary.cs" />
     <Compile Include="Patterns\Seed\ISeeds.cs" />
     <Compile Include="Patterns\IGenericFactory{F,T}.cs" />
     <Compile Include="Patterns\IWrapper{T}.cs" />

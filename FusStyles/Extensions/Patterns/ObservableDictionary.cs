@@ -36,7 +36,7 @@ using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
 using System.Linq;
 
-namespace Ws.Extensions.Mvvm.ViewModels
+namespace Ws.Extensions.Patterns
 {
     [Serializable]
     public class ObservableDictionary<TKey, TValue> :
@@ -830,8 +830,9 @@ namespace Ws.Extensions.Mvvm.ViewModels
         public override bool Equals(object obj)
         {
             bool equals = false;
-            if (obj != null && obj is IDictionary<TKey, TValue> objAsDict)
+            if (obj != null && obj is IDictionary<TKey, TValue> )
             {
+                var objAsDict = obj as IDictionary<TKey, TValue>;
                 equals = Enumerable.SequenceEqual((objAsDict).OrderBy(kv => kv.Key).ToList(),
                                                  (this as IDictionary<TKey, TValue>).OrderBy(kv => kv.Key).ToList());
             }

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Ws.Extensions.Mvvm.ViewModels;
+using Ws.Extensions.Patterns;
 
 namespace Ws.Extensions.UI.Wpf.Controls
 {
@@ -33,9 +34,9 @@ namespace Ws.Extensions.UI.Wpf.Controls
             (sender as PhaseButton).NotifyPhaseChanged();
         }
 
-        public string CurrentCaption { get => Phases?[CurrentPhase].Caption; }
+        public string CurrentCaption => Phases?[CurrentPhase].Caption;
 
-        public Geometry CurrentIcon { get => Phases?[CurrentPhase].Icon; }
+        public Geometry CurrentIcon => Phases?[CurrentPhase].Icon;
 
         public void NotifyPhaseChanged()
         {
@@ -48,7 +49,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
             private string _caption;
             public string Caption
             {
-                get => _caption;
+                get { return _caption; }
                 set
                 {
                     if (value != _caption)
@@ -62,7 +63,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
             private Geometry _icon;
             public Geometry Icon
             {
-                get => _icon;
+                get { return _icon; }
                 set
                 {
                     _icon = value;

@@ -80,7 +80,6 @@
     <Compile Include="ViewModels\BindableWrapperOfBindable{T}.cs" />
     <Compile Include="ViewModels\BindableWrapper{T}.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedImplementation.cs" />
-    <Compile Include="ViewModels\ObservableDictionary.cs" />
     <Compile Include="ViewModels\Switch\CompositeSwitch.cs" />
     <Compile Include="ViewModels\ConcurrentDataBag.cs" />
     <Compile Include="ViewModels\Switch\IMultiSwitch{T}.cs" />
