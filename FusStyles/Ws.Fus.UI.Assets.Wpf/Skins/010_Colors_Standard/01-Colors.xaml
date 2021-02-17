@@ -16,14 +16,16 @@
   
   <!--Buttons-->
   <Color x:Key="XColor.Button.Primary.Background">#FF00E0FF</Color>
-  <Color x:Key="XColor.Button.Primary.Background.Hover">#D800E0FF</Color>
-  <Color x:Key="XColor.Button.Primary.Background.Pressed">#B200E0FF</Color>
-  <Color x:Key="XColor.Button.Primary.Background.Disabled">#4C00E0FF</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Hover">#FF00b4cc</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Pressed">#FF008799</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Progress">#FF007080</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Disabled">#FF143942</Color>
   <Color x:Key="XColor.Button.Primary.Foreground">#FF000000</Color>
 
-  <Color x:Key="XColor.Button.Secondary.Background">#4C03627C</Color>
-  <Color x:Key="XColor.Button.Secondary.Background.Hover">#9903627C</Color>
-  <Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF03627C</Color>
+  <Color x:Key="XColor.Button.Secondary.Background">#FF002d32</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Hover">#FF004150</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF005a6e</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Progress">#FF243d40</Color>
   <Color x:Key="XColor.Button.Secondary.Background.Disabled">#FF191919</Color>
   <Color x:Key="XColor.Button.Secondary.Foreground">#FFE5E5E5</Color>
   <Color x:Key="XColor.Button.Secondary.Foreground.Disabled">#FF666666</Color>

@@ -34,7 +34,7 @@
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/10-ToolToggleButton.xaml" />
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/PinButtonStyle.xaml" />
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/0651-ButtonStyles.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/0652-PhaseButtonStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/0652-ProgressStateButtonStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/ButtonStyle.xaml" />
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/PinableExpanderStyle.xaml" />
 

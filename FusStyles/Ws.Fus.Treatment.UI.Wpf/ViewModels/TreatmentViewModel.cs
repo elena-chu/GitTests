@@ -5,6 +5,7 @@ using Ws.Fus.ImageViewer.UI.Wpf.Navigation;
 using Ws.Fus.ImageViewer.UI.Wpf;
 using Ws.Extensions.UI.Wpf.Controls;
 using System.Threading.Tasks;
+using Ws.Extensions.UI.Wpf.Behaviors;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -57,13 +58,13 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             set { SetProperty(ref _examInfo, value); }
         }
 
-        private ProcessPhase _myProcessPhase = ProcessPhase.NotStarted;
-        public ProcessPhase MyProcessPhase
+        private ProgressState _myProgressState = ProgressState.Regular;
+        public ProgressState MyProgressState
         {
-            get { return _myProcessPhase; }
+            get { return _myProgressState; }
             set
             {
-                _myProcessPhase = value;
+                _myProgressState = value;
                 RaisePropertyChanged();
             }
         }
@@ -71,13 +72,11 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         public DelegateCommand DoingSomethingCommand { get; private set; }
         public async void DoingSomethingCommandExecute()
         {
-            MyProcessPhase = ProcessPhase.Preparing;
+            MyProgressState = ProgressState.Active;
             await Task.Delay(3000);
-            MyProcessPhase = ProcessPhase.Executing;
-            await Task.Delay(3000);
-            MyProcessPhase = ProcessPhase.Completed;
+            MyProgressState = ProgressState.Completed;
             await Task.Delay(5000);
-            MyProcessPhase = ProcessPhase.NotStarted;
+            MyProgressState = ProgressState.Regular;
         }
     }
 }

@@ -36,7 +36,7 @@ using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
 using System.Linq;
 
-namespace Ws.Extensions.Mvvm.ViewModels
+namespace Ws.Extensions.Patterns
 {
     [Serializable]
     public class ObservableDictionary<TKey, TValue> :

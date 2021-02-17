@@ -13,7 +13,7 @@
       RepeatBehavior="Forever"/>
   </Storyboard>
 
-  <ControlTemplate x:Key="XControlTemplate.PhaseButton.CheckAnimatedCircle" TargetType="{x:Type extensions:PhaseButton}">
+  <ControlTemplate x:Key="XControlTemplate.ProgressStateButton.CheckAnimatedCircle" TargetType="{x:Type extensions:ProgressStateButton}">
     <Border
       CornerRadius="{StaticResource XCornerRadius.Frame}"
       Padding="0"
@@ -81,28 +81,23 @@
       </Grid>
     </Border>
     <ControlTemplate.Triggers>
-      <Trigger Property="CurrentPhase" Value="NotStarted">
+      <Trigger Property="CurrentProgressState" Value="Regular">
         <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Visible"/>
         <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Visible"/>
         <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Hidden"/>
       </Trigger>
-      <Trigger Property="CurrentPhase" Value="Preparing">
+      <Trigger Property="CurrentProgressState" Value="Active">
         <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Visible"/>
         <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Visible"/>
         <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Hidden"/>
         <Trigger.EnterActions>
           <BeginStoryboard x:Name="RotateStoryboard" Storyboard="{StaticResource XStoryboard.Rotate}"/>
         </Trigger.EnterActions>
-      </Trigger>
-      <Trigger Property="CurrentPhase" Value="Executing">
-        <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Visible"/>
-        <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Visible"/>
-        <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Hidden"/>
         <Trigger.ExitActions>
           <StopStoryboard BeginStoryboardName="RotateStoryboard"/>
         </Trigger.ExitActions>
       </Trigger>
-      <Trigger Property="CurrentPhase" Value="Completed">
+      <Trigger Property="CurrentProgressState" Value="Completed">
         <Setter Property="Visibility" TargetName="DashedCircleBorder" Value="Hidden"/>
         <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Hidden"/>
         <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Visible"/>
@@ -110,9 +105,9 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.PhaseButton.Primary" TargetType="{x:Type extensions:PhaseButton}" BasedOn="{StaticResource XStyle.ButtonBase.Primary}">
+  <Style x:Key="XStyle.ProgressStateButton.Primary" TargetType="{x:Type extensions:ProgressStateButton}" BasedOn="{StaticResource XStyle.ButtonBase.Primary}">
     <Setter Property="Content" Value="{Binding CurrentCaption, RelativeSource={RelativeSource Self}}"/>
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.PhaseButton.CheckAnimatedCircle}"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ProgressStateButton.CheckAnimatedCircle}"/>
     <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Primary.Foreground}"/>
     <Style.Triggers>
@@ -128,7 +123,7 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.PhaseButton.Secondary" TargetType="{x:Type extensions:PhaseButton}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
+  <Style x:Key="XStyle.ProgressStateButton.Secondary" TargetType="{x:Type extensions:ProgressStateButton}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
     <Setter Property="Content" Value="{Binding CurrentCaption, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
