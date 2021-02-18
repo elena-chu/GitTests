@@ -830,7 +830,7 @@ namespace Ws.Extensions.Patterns
         public override bool Equals(object obj)
         {
             bool equals = false;
-            if (obj != null && obj is IDictionary<TKey, TValue> )
+            if (obj != null && obj is IDictionary<TKey, TValue>)
             {
                 var objAsDict = obj as IDictionary<TKey, TValue>;
                 equals = Enumerable.SequenceEqual((objAsDict).OrderBy(kv => kv.Key).ToList(),

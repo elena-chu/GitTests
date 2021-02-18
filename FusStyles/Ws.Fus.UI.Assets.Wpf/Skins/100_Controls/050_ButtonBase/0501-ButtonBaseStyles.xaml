@@ -48,6 +48,7 @@
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Disabled}"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
