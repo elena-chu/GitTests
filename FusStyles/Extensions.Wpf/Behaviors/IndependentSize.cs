@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Utils;
@@ -15,6 +11,8 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
     /// </summary>
     public class IndependentSize
     {
+        // Double properties ************************************
+
         /// <summary>
         /// Independent Width property of FrameworkElement. Updates the original Width property
         /// </summary>
@@ -35,15 +33,54 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
+            fe.Width = GetProportionalDoubleProperty(e);
+        }
 
-            double width;
-            if (double.TryParse(e.NewValue.ToString(), out width))
-            {
-                if (width == double.NaN)
-                    fe.Width = double.NaN;
-                else
-                    fe.Width = width / DpiUtils.GetToDeviceMatrix(null).M11;
-            }
+        /// <summary>
+        /// Independent MinWidth property of FrameworkElement. Updates the original MinWidth property
+        /// </summary>
+        public static DependencyProperty MinWidthProperty = DependencyProperty.RegisterAttached("MinWidth",
+            typeof(double), typeof(IndependentSize), new UIPropertyMetadata(double.NaN, OnMinWidthPropertyChanged));
+
+        public static void SetMinWidth(FrameworkElement obj, double value)
+        {
+            obj.SetValue(MinWidthProperty, value);
+        }
+        public static double GetMinWidth(FrameworkElement obj)
+        {
+            return (double)obj.GetValue(MinWidthProperty);
+        }
+
+        public static void OnMinWidthPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement fe = d as FrameworkElement;
+            if (fe == null || e.NewValue == null)
+                return;
+            fe.MinWidth = GetProportionalDoubleProperty(e);
+        }
+
+
+        /// <summary>
+        /// Independent MaxWidth property of FrameworkElement. Updates the original MaxWidth property
+        /// </summary>
+        public static DependencyProperty MaxWidthProperty = DependencyProperty.RegisterAttached("MaxWidth",
+            typeof(double), typeof(IndependentSize), new UIPropertyMetadata(double.NaN, OnMaxWidthPropertyChanged));
+
+        public static void SetMaxWidth(FrameworkElement obj, double value)
+        {
+            obj.SetValue(MaxWidthProperty, value);
+        }
+        public static double GetMaxWidth(FrameworkElement obj)
+        {
+            return (double)obj.GetValue(MaxWidthProperty);
+        }
+
+        public static void OnMaxWidthPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement fe = d as FrameworkElement;
+            if (fe == null || e.NewValue == null)
+                return;
+            fe.MaxWidth = GetProportionalDoubleProperty(e);
         }
 
         /// <summary>
@@ -66,16 +103,69 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
+            fe.Height = GetProportionalDoubleProperty(e);
+        }
 
+        /// <summary>
+        /// Independent MinHeight property of FrameworkElement. Updates the original MinHeight property
+        /// </summary>
+        public static DependencyProperty MinHeightProperty = DependencyProperty.RegisterAttached("MinHeight",
+            typeof(double), typeof(IndependentSize), new UIPropertyMetadata(double.NaN, OnMinHeightPropertyChanged));
+
+        public static void SetMinHeight(FrameworkElement obj, double value)
+        {
+            obj.SetValue(MinHeightProperty, value);
+        }
+        public static double GetMinHeight(FrameworkElement obj)
+        {
+            return (double)obj.GetValue(MinHeightProperty);
+        }
+
+        public static void OnMinHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement fe = d as FrameworkElement;
+            if (fe == null || e.NewValue == null)
+                return;
+            fe.MinHeight = GetProportionalDoubleProperty(e);
+        }
+
+        /// <summary>
+        /// Independent MaxHeight property of FrameworkElement. Updates the original MaxHeight property
+        /// </summary>
+        public static DependencyProperty MaxHeightProperty = DependencyProperty.RegisterAttached("MaxHeight",
+            typeof(double), typeof(IndependentSize), new UIPropertyMetadata(double.NaN, OnMaxHeightPropertyChanged));
+
+        public static void SetMaxHeight(FrameworkElement obj, double value)
+        {
+            obj.SetValue(MaxHeightProperty, value);
+        }
+        public static double GetMaxHeight(FrameworkElement obj)
+        {
+            return (double)obj.GetValue(MaxHeightProperty);
+        }
+
+        public static void OnMaxHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement fe = d as FrameworkElement;
+            if (fe == null || e.NewValue == null)
+                return;
+            fe.MaxHeight = GetProportionalDoubleProperty(e);
+        }
+
+        public static double GetProportionalDoubleProperty(DependencyPropertyChangedEventArgs e)
+        {
             double height;
             if (double.TryParse(e.NewValue.ToString(), out height))
             {
                 if (height == double.NaN)
-                    fe.Height = double.NaN;
+                    return double.NaN;
                 else
-                    fe.Height = height  /DpiUtils.GetToDeviceMatrix(null).M22;
+                    return height / DpiUtils.GetToDeviceMatrix(null).M22;
             }
+            return double.NaN;
         }
+
+        // GridLength properties ********************************
 
         /// <summary>
         /// Independent Column Width property of ColumnDefinition. Updates the original Width property.
@@ -138,6 +228,9 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                     rd.Height = new GridLength(height / DpiUtils.GetToDeviceMatrix(null).M22, GridUnitType.Pixel);
             }
         }
+
+
+        // Thickness properties *********************************
 
         /// <summary>
         /// Independent Margin property of FrameworkElement. Updates the original Margin property

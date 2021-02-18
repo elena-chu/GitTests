@@ -69,15 +69,14 @@
         Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>
 
-    <Border Grid.Column="1" Background="{StaticResource ApplicationBackgroundBrush}" />
-    <StackPanel Grid.Column="1">
+    <Border Grid.Column="1" Background="{StaticResource ApplicationBackgroundBrush}" Visibility="Collapsed"/>
+    <StackPanel Grid.Column="1" Visibility="Collapsed">
       <TextBlock FontSize="18" Margin="0,20,0,10" Text="Button Examples:" Foreground="YellowGreen" FontWeight="Bold"/>
       <Button Margin="10" Content="Primary" Style="{StaticResource XStyle.Button.Primary}"/>
       <Button Margin="10" Content="Primary Disabled" Style="{StaticResource XStyle.Button.Primary}" IsEnabled="False"/>
-      <Button Margin="10" Content="Primary.WithIcon" extensions:IconedButton.IconSize="20" Style="{StaticResource XStyle.Button.Primary.WithIcon}" extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.DashedCircleCheckmark}"/>
       <Button Margin="10" Content="Secondary" Style="{StaticResource XStyle.Button.Secondary}"/>
       <Button Margin="10" Content="Secondary Disabled" Style="{StaticResource XStyle.Button.Secondary}" IsEnabled="False"/>
-      <Button Margin="10" Content="Secondary.WithIcon" extensions:IconedButton.IconSize="15" Style="{StaticResource XStyle.Button.Secondary.WithIcon}" extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Lock}"/>
+      <Button Margin="10" Content="Secondary.WithIcon" extensions:IconedButton.IconSize="15" Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Lock}"/>
 
       <TextBlock FontSize="18" Margin="0,20,0,10" Text="Progress State Button Example" Foreground="YellowGreen" FontWeight="Bold"/>
       <TextBlock FontSize="15" Margin="0,0,0,10" Text="Click and Wait:" Foreground="YellowGreen"/>
@@ -92,6 +91,20 @@
         IconCompleted="{StaticResource XGeometry.FilledCircleCheckmark}"
         Command="{Binding DoingSomethingCommand}"
         Style="{StaticResource XStyle.ProgressStateButton.Primary}"/>
+
+      <Button
+        Margin="10"
+        Content="Icon, TextUnderneath"
+        Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
+        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Unlock}"/>
+      <Button
+        Margin="10"
+        extensions:IconedButton.IconSize="18"
+        Content="Icon, TextUnderneath Disabled"
+        IsEnabled="False"
+        Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
+        extensions:IndependentSize.MaxWidth="150"
+        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Lock}"/>
 
     </StackPanel>
   </Grid>

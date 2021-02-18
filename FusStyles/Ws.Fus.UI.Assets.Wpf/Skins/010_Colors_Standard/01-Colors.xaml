@@ -30,6 +30,8 @@
   <Color x:Key="XColor.Button.Secondary.Foreground">#FFE5E5E5</Color>
   <Color x:Key="XColor.Button.Secondary.Foreground.Disabled">#FF666666</Color>
 
+  <Color x:Key="XColor.Button.IconButton.Caption">#FFB2B2B2</Color>
+  <Color x:Key="XColor.Button.IconButton.Beta">#FF7F7F7F</Color>
 
 
   <!-- OLD COLORS-->
