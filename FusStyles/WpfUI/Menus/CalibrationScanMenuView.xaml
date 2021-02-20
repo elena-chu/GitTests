@@ -28,9 +28,7 @@
         <RowDefinition Height="*"  />
       </Grid.RowDefinitions>
 
-      <Button 
-         Style="{StaticResource PrimaryButtonStyle}" 
-         Content="TG" DataContext="{Binding TgScan}" />
+      <Button Style="{StaticResource XStyle.Button.Primary}" Content="TG" DataContext="{Binding TgScan}"/>
 
       <Grid x:Name="ProgressStatuses" Grid.Row="2">
         <Grid.RowDefinitions>

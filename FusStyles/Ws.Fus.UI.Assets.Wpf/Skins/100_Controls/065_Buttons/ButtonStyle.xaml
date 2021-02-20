@@ -1,12 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:extensions="http://schemas.insightec.com/wpf/"
-                    >
-
-  <Style x:Key="PrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonBaseStyle}">
-    <Setter Property="TextBlock.Foreground" Value="{StaticResource ButtonsForegroundBrush}" />
-    <Setter Property="TextBlock.FontWeight" Value="SemiBold" />
-  </Style>
+                    xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <Style x:Key="BigIconedButtonStyle" TargetType="Button" >
     <Setter Property="Background" Value="Transparent" />

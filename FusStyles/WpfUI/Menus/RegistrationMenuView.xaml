@@ -89,7 +89,7 @@
           Command="{Binding ApproveRegistrationCommand}"     
           Content="Approve set"  
           ToolTip="Approves registration" 
-          Style="{StaticResource PrimaryButtonStyle}"/>
+          Style="{StaticResource XStyle.Button.Primary}"/>
 
        <!--<ToggleButton Grid.Column="2"
           Grid.Row="0"

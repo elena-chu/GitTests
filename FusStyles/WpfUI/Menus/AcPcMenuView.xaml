@@ -130,7 +130,7 @@
       <Button Grid.Row="5" Grid.ColumnSpan="2"
           Content="Approve AC-PC"
           Command="{Binding ApproveAcPcCommand}"
-          Style="{StaticResource PrimaryButtonStyle}" />
+          Style="{StaticResource XStyle.Button.Primary}"/>
 
       <!-- Temp closed till Milestone 2-->
      

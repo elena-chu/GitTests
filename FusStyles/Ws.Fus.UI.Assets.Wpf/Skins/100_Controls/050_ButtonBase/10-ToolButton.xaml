@@ -3,13 +3,6 @@
 
   <!--<Geometry x:Key="Triangle">M116,21.6 L139.1,21.6 128.35,32.349997 z</Geometry>-->
 
-  <Style x:Key="PrimaryButtonBaseStyle" TargetType="ButtonBase">
-    <Setter Property="Height" Value="30" />
-    <Setter Property="Background" Value="{StaticResource ActiveBrush}" />
-    <Setter Property="Foreground" Value="{StaticResource ButtonsForegroundBrush}" />
-    <Setter Property="TextBlock.FontSize" Value="13" />
-  </Style>
-
   <Style x:Key="ToolButtonBaseStyle" TargetType="ButtonBase">
     <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
   </Style>
