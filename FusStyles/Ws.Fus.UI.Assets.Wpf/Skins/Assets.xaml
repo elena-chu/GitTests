@@ -15,8 +15,12 @@
     <!--Drawings-->
     <ResourceDictionary Source="055_Drawings/01-Geometries.xaml" />
 
+    <!--Animations-->
+    <ResourceDictionary Source="057_Animations/01-Animations.xaml" />
+
     <!--Generics,Layouts-->
     <ResourceDictionary Source="060_Generic/01_GenericStyles.xaml"/>
+    <ResourceDictionary Source="060_Generic/02-BorderStyles.xaml"/>
 
     <!--Controls-->
     <ResourceDictionary Source="100_Controls/020_TextBlock/01-TextBlockStyle.xaml" />

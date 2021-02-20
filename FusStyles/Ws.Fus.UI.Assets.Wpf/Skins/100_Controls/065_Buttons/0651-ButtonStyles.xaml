@@ -4,20 +4,26 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <!--Simple-->
-  <Style x:Key="XStyle.Button.Primary" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Primary}"/>
+  <Style x:Key="XStyle.Button.Primary" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase}">
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
+  </Style>
 
-  <Style x:Key="XStyle.Button.Secondary" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}"/>
+  <Style x:Key="XStyle.Button.Secondary" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase}">
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+  </Style>
 
-  
+
   <!--Text With Side Icon-->
-  <Style x:Key="XStyle.Button.Primary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Primary}">
+  <Style x:Key="XStyle.Button.Primary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase}">
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.TextWithSideIcon}"/>
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
   </Style>
 
-  <Style x:Key="XStyle.Button.Secondary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
+  <Style x:Key="XStyle.Button.Secondary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase}">
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.TextWithSideIcon}"/>
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>

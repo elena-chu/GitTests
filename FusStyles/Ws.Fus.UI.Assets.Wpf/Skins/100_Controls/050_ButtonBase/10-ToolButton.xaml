@@ -1,8 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <!--<Geometry x:Key="Triangle">M116,21.6 L139.1,21.6 128.35,32.349997 z</Geometry>-->
-
   <Style x:Key="ToolButtonBaseStyle" TargetType="ButtonBase">
     <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
   </Style>

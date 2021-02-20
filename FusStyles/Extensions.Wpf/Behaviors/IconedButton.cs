@@ -80,22 +80,6 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             return (HorizontalAlignment)obj.GetValue(IconHorizontalAlignmentProperty);
         }
 
-
-        /// <summary>
-        /// Used for anything that needs a running param from 0 to 1 - animation, rotation, etc.
-        /// </summary>
-        public static readonly DependencyProperty RunningPercentageProperty = DependencyProperty.RegisterAttached("RunningPercentage", typeof(double), typeof(IconedButton), new PropertyMetadata(0.0));
-
-        public static double GetRunningPercentage(DependencyObject obj)
-        {
-            return (double)obj.GetValue(RunningPercentageProperty);
-        }
-
-        public static void SetRunningPercentage(DependencyObject obj, double value)
-        {
-            obj.SetValue(RunningPercentageProperty, value);
-        }
-
         /// <summary>
         /// Icon size
         /// </summary>

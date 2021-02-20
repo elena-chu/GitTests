@@ -20,8 +20,12 @@
         <!--Drawings-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/055_Drawings/01-Geometries.xaml" />
 
+        <!--Animations-->
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/057_Animations/01-Animations.xaml" />
+
         <!--Generics,Layouts-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/01_GenericStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/02-BorderStyles.xaml"/>
 
         <!--Controls-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextBlock/01-TextBlockStyle.xaml" />

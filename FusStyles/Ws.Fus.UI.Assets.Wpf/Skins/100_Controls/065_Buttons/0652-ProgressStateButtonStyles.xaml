@@ -15,28 +15,34 @@
 
   <ControlTemplate x:Key="XControlTemplate.ProgressStateButton.CheckAnimatedCircle" TargetType="{x:Type extensions:ProgressStateButton}">
     <Border
-      CornerRadius="{StaticResource XCornerRadius.Frame}"
-      Padding="0"
+      x:Name="HoverBorder"
       Width="{TemplateBinding Width}"
       Height="{TemplateBinding Height}"
-      Background="{TemplateBinding Background}">
-      <Grid Margin="2,0">
+      extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+      Style="{StaticResource XStyle.Border.Hover}">
+      <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition/>
           <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+        <Border
+          x:Name="PressedBorder"
+          Grid.ColumnSpan="2"
+          Style="{StaticResource XStyle.Border.Pressed}"
+          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+          Opacity="0"/>
         <ContentPresenter
           x:Name="ContentPresenter"
           Grid.Column="0"
           Grid.ColumnSpan="2"
-          Margin="1,0"
+          Margin="1,0,1,2"
           HorizontalAlignment="Center"
           VerticalAlignment="Center"
           IsHitTestVisible="False"/>
-
         <Border
           x:Name="DashedCircleBorder"
           Grid.Column="1"
+          Margin="1,0"
           Padding="0"
           Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
           Visibility="Visible"
@@ -54,6 +60,7 @@
         <Border
           x:Name="CheckmarkBorder"
           Grid.Column="1"
+          Margin="1,0"
           Padding="0"
           Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
           Visibility="Visible">
@@ -68,6 +75,7 @@
         <Border
           x:Name="FilledCircleCheckmarkBorder"
           Grid.Column="1"
+          Margin="1,0"
           Padding="0"
           Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
           Visibility="Hidden">
@@ -102,42 +110,32 @@
         <Setter Property="Visibility" TargetName="CheckmarkBorder" Value="Hidden"/>
         <Setter Property="Visibility" TargetName="FilledCircleCheckmarkBorder" Value="Visible"/>
       </Trigger>
+      <Trigger Property="IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.ProgressStateButton.Primary" TargetType="{x:Type extensions:ProgressStateButton}" BasedOn="{StaticResource XStyle.ButtonBase.Primary}">
+  <Style x:Key="XStyle.ProgressStateButton.Primary" TargetType="{x:Type extensions:ProgressStateButton}" BasedOn="{StaticResource XStyle.Button.Primary}">
     <Setter Property="Content" Value="{Binding CurrentCaption, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ProgressStateButton.CheckAnimatedCircle}"/>
-    <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background}"/>
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Primary.Foreground}"/>
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Disabled}"/>
-      </Trigger>
-      <Trigger Property="IsPressed" Value="True">
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Pressed}"/>
-      </Trigger>
-      <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Hover}"/>
-      </Trigger>
-    </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.ProgressStateButton.Secondary" TargetType="{x:Type extensions:ProgressStateButton}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
+  <Style x:Key="XStyle.ProgressStateButton.Secondary" TargetType="{x:Type extensions:ProgressStateButton}" BasedOn="{StaticResource XStyle.Button.Secondary}">
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
     <Setter Property="Content" Value="{Binding CurrentCaption, RelativeSource={RelativeSource Self}}"/>
-    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Disabled}"/>
-      </Trigger>
-      <Trigger Property="IsPressed" Value="True">
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
-      </Trigger>
-      <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
-      </Trigger>
-    </Style.Triggers>
   </Style>
 </ResourceDictionary>

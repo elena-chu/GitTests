@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <Storyboard x:Key="XStoryboard.DoubleAnimation.RunningPercentage.RunUp">
+    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.RunningPercentage)" To="1.0" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.DoubleAnimation.RunningPercentage.RunDown">
+    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.RunningPercentage)" To="0.0" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+</ResourceDictionary>
