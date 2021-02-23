@@ -152,6 +152,30 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             fe.MaxHeight = GetProportionalDoubleProperty(e);
         }
 
+        /// <summary>
+        /// Independent FontSize property of Control. Updates the original FontSize property
+        /// </summary>
+        public static DependencyProperty FontSizeProperty = DependencyProperty.RegisterAttached("FontSize",
+            typeof(double), typeof(IndependentSize), new UIPropertyMetadata(OnFontSizeChanged));
+
+        public static void SetFontSize(FrameworkElement obj, double value)
+        {
+            obj.SetValue(FontSizeProperty, value);
+        }
+        public static double GetFontSize(FrameworkElement obj)
+        {
+            return (double)obj.GetValue(FontSizeProperty);
+        }
+
+        public static void OnFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Control fe = d as Control;
+            if (fe == null || e.NewValue == null)
+                return;
+            fe.FontSize = Math.Round(GetProportionalDoubleProperty(e));
+        }
+
+
         public static double GetProportionalDoubleProperty(DependencyPropertyChangedEventArgs e)
         {
             double height;

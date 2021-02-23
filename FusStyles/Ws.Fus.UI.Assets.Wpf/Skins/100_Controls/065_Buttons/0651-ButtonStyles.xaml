@@ -47,11 +47,11 @@
         extensions:IndependentSize.Height="36"
         extensions:IndependentSize.Width="36"
         CornerRadius="{StaticResource XCornerRadius.Frame}">
-        <Border Margin="6">
+        <Border extensions:IndependentSize.Margin="6,6,6,0">
           <Viewbox Stretch="Uniform">
             <Canvas Width="50" Height="50">
-              <Path x:Name="AlphaPath" Fill="{StaticResource XBrush.Button.IconButton.Alpha}" Data="{Binding (extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}"/>
-              <Path x:Name="BetaPath" Fill="{StaticResource XBrush.Button.IconButton.Beta}" Data="{Binding (extensions:IconedButton.BetaGeometry), RelativeSource={RelativeSource TemplatedParent}}"/>
+              <Path x:Name="AlphaPath" Fill="{StaticResource XBrush.Button.IconButton.Alpha}" Data="{TemplateBinding extensions:IconedButton.AlphaGeometry}"/>
+              <Path x:Name="BetaPath" Fill="{StaticResource XBrush.Button.IconButton.Beta}" Data="{TemplateBinding extensions:IconedButton.BetaGeometry}"/>
             </Canvas>
           </Viewbox>
         </Border>
@@ -82,7 +82,7 @@
       <Border
         x:Name="HoverBorder"
         Grid.Row="0"
-        Margin="6"
+        extensions:IndependentSize.Margin="6,6,6,0"
         Background="{TemplateBinding Background}"
         HorizontalAlignment="Center"
         VerticalAlignment="Bottom"
@@ -92,9 +92,9 @@
         <Border
           HorizontalAlignment="Center"
           VerticalAlignment="Center"
-          Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
-          Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}">
-          <Path x:Name="AlphaPath" Stretch="Uniform" Fill="{StaticResource ApplicationForgroundBrush}" Data="{Binding (extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}"/>
+          extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+          extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
+          <Path x:Name="AlphaPath" Stretch="Uniform" Fill="{StaticResource ApplicationForgroundBrush}" Data="{TemplateBinding extensions:IconedButton.AlphaGeometry}"/>
         </Border>
       </Border>
       <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -119,7 +119,7 @@
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{x:Null}"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="24"/>
     <Setter Property="extensions:IndependentSize.MinHeight" Value="66"/>
-    <Setter Property="FontSize" Value="16"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="Background" Value="Transparent"/>
     <Style.Triggers>

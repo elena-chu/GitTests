@@ -49,7 +49,7 @@
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
     <Setter Property="extensions:IndependentSize.Height" Value="36"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase}"/>
-    <Setter Property="FontSize" Value="16"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
     <Setter Property="Foreground" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToForegroundConverter}}"/>
     <Style.Triggers>
       <MultiTrigger>
@@ -86,8 +86,8 @@
           Opacity="0"/>
         <Border x:Name="IconBorder" Grid.Column="0" Margin="1,0" Padding="0" Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
           <Path
-            Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
-            Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+            extensions:IndependentSize.Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+            extensions:IndependentSize.Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
             Data="{Binding Path=(extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}"
             Fill="{TemplateBinding Foreground}"
             Stretch="Uniform"/>
