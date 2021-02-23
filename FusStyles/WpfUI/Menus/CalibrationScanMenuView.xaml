@@ -28,7 +28,10 @@
         <RowDefinition Height="*"  />
       </Grid.RowDefinitions>
 
-      <Button Style="{StaticResource XStyle.Button.Primary}" Content="TG" DataContext="{Binding TgScan}"/>
+
+      <Button 
+         Style="{StaticResource XStyle.Button.Primary}" 
+         Content="Auto-Calibrate" DataContext="{Binding TgScan}" />
 
       <Grid x:Name="ProgressStatuses" Grid.Row="2">
         <Grid.RowDefinitions>
@@ -75,7 +78,10 @@
             />
       </Grid>
 
-      <Button Content="LoadPrePlan" Grid.Row="4" />
+      <Button Grid.Row="4"
+            Content="Load Pre-Treatment Plan" 
+            Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" 
+            extension:IconedButton.AlphaGeometry="{StaticResource XGeometry.Lock}"/>
 
       <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" Grid.ColumnSpan="2" >
         <Grid>

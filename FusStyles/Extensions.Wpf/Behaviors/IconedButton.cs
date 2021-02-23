@@ -22,7 +22,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         {
             return (TileBrush)obj.GetValue(IconProperty);
         }
-        
+
         /// <summary>
         /// Icon property is describing brush used to draw the button's active icon, if it is different from regular
         /// </summary>
@@ -41,29 +41,29 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         /// <summary>
         /// Alpha Geometry: geometry that will be colored with Alpha active color
         /// </summary>
-        public static DependencyProperty AlphaGeometryProperty = DependencyProperty.RegisterAttached("AlphaGeometry", typeof(Geometry), typeof(IconedButton));
+        public static DependencyProperty AlphaGeometryProperty = DependencyProperty.RegisterAttached("AlphaGeometry", typeof(System.Windows.Media.Geometry), typeof(IconedButton));
 
-        public static void SetAlphaGeometry(FrameworkElement obj, Geometry value)
+        public static void SetAlphaGeometry(FrameworkElement obj, System.Windows.Media.Geometry value)
         {
             obj.SetValue(AlphaGeometryProperty, value);
         }
-        public static Geometry GetAlphaGeometry(FrameworkElement obj)
+        public static System.Windows.Media.Geometry GetAlphaGeometry(FrameworkElement obj)
         {
-            return (Geometry)obj.GetValue(AlphaGeometryProperty);
+            return (System.Windows.Media.Geometry)obj.GetValue(AlphaGeometryProperty);
         }
 
         /// <summary>
         /// Beta Geometry: geometry that will be colored with Beta active color
         /// </summary>
-        public static DependencyProperty BetaGeometryProperty = DependencyProperty.RegisterAttached("BetaGeometry", typeof(Geometry), typeof(IconedButton));
+        public static DependencyProperty BetaGeometryProperty = DependencyProperty.RegisterAttached("BetaGeometry", typeof(System.Windows.Media.Geometry), typeof(IconedButton));
 
-        public static void SetBetaGeometry(FrameworkElement obj, Geometry value)
+        public static void SetBetaGeometry(FrameworkElement obj, System.Windows.Media.Geometry value)
         {
             obj.SetValue(BetaGeometryProperty, value);
         }
-        public static Geometry GetBetaGeometry(FrameworkElement obj)
+        public static System.Windows.Media.Geometry GetBetaGeometry(FrameworkElement obj)
         {
-            return (Geometry)obj.GetValue(BetaGeometryProperty);
+            return (System.Windows.Media.Geometry)obj.GetValue(BetaGeometryProperty);
         }
 
         /// <summary>

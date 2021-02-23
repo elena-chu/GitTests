@@ -59,7 +59,7 @@
 
 
   <!-- ImageBrushes -->
-  <ImageBrush x:Key="LogoBrush" ImageSource="../../Images/Common/Insightec-Logo.png" Stretch="Uniform" ></ImageBrush>
+  <!--<ImageBrush x:Key="LogoBrush" ImageSource="../../Images/Common/Insightec-Logo.png" Stretch="Uniform" ></ImageBrush>-->
 
 
 

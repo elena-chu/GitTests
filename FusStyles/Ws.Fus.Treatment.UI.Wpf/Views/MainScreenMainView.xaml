@@ -27,8 +27,8 @@
           Grid.Row="0"
           HorizontalAlignment="Left"
           VerticalAlignment="Bottom"
-          MaxHeight="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.62}"
-          MaxWidth="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.6}">
+          MaxHeight="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
+          MaxWidth="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.48}">
           <Viewbox
             Stretch="Uniform"
             HorizontalAlignment="Center"

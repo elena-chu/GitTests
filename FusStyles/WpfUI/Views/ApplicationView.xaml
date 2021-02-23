@@ -39,7 +39,11 @@
           <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Top_Pattern.png" />
         </Rectangle.Fill>
       </Rectangle>
-      <Rectangle Stretch="Fill" Fill="{StaticResource LogoBrush}" Margin="10,6"/>
+      <Rectangle Stretch="Fill" extension:IndependentSize.Margin="13,8">
+        <Rectangle.Fill>
+          <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Insightec-Logo.png" Stretch="Uniform" />
+        </Rectangle.Fill>
+      </Rectangle>
 
       <localView:TitleBarToolsView Grid.Column="3" HorizontalAlignment="Right" />
 

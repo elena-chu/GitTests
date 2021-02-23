@@ -38,7 +38,7 @@
         Grid.Column="1"
         Text="{Binding Path=Title, ElementName=Control, Mode=OneWay }"
         Foreground="{StaticResource ApplicationForgroundBrush}"
-        Opacity=".75"
+        Opacity=".6"
         />
     <TextBlock x:Name="ValueTxt"
         Grid.Column="1"
