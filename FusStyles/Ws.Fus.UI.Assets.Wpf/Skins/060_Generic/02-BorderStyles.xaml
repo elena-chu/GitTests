@@ -5,6 +5,16 @@
   <Style x:Key="XStyle.Border" TargetType="{x:Type Border}">
     <Setter Property="CornerRadius" Value="{StaticResource XCornerRadius.Frame}"/>
     <Setter Property="Padding" Value="0"/>
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
+  </Style>
+
+  <Style x:Key="XStyle.Border.Background" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundDisabledConverter}}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <Style x:Key="XStyle.Border.Pressed" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
@@ -15,7 +25,6 @@
   <Style x:Key="XStyle.Border.Hover" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:ControlExtensions.RunningPercentage" Value="0.0"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
-    <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
     <Setter Property="Background">
       <Setter.Value>
         <MultiBinding Converter="{extensions:PercentageToHoverBrushConverter}">
@@ -25,13 +34,6 @@
       </Setter.Value>
     </Setter>
     <Style.Triggers>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsEnabled" Value="False"/>
-          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
-        </MultiTrigger.Conditions>
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Disabled}"/>
-      </MultiTrigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.RunningPercentage.RunUp}"/>
@@ -40,13 +42,6 @@
           <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.RunningPercentage.RunDown}"/>
         </Trigger.ExitActions>
       </Trigger>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsEnabled" Value="False"/>
-          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
-        </MultiTrigger.Conditions>
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Disabled}"/>
-      </MultiTrigger>
     </Style.Triggers>
   </Style>
 

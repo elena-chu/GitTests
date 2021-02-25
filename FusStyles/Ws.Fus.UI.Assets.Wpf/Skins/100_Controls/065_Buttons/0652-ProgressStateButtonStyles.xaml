@@ -15,78 +15,83 @@
 
   <ControlTemplate x:Key="XControlTemplate.ProgressStateButton.CheckAnimatedCircle" TargetType="{x:Type extensions:ProgressStateButton}">
     <Border
-      x:Name="HoverBorder"
+      x:Name="BackgroundBorder"
       Width="{TemplateBinding Width}"
       Height="{TemplateBinding Height}"
       extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-      Style="{StaticResource XStyle.Border.Hover}">
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition/>
-          <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Border
-          x:Name="PressedBorder"
-          Grid.ColumnSpan="2"
-          Style="{StaticResource XStyle.Border.Pressed}"
-          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-          Opacity="0"/>
-        <ContentPresenter
-          x:Name="ContentPresenter"
-          Grid.Column="0"
-          Grid.ColumnSpan="2"
-          Margin="1,0,1,2"
-          HorizontalAlignment="Center"
-          VerticalAlignment="Center"
-          IsHitTestVisible="False"/>
-        <Border
-          x:Name="DashedCircleBorder"
-          Grid.Column="1"
-          Margin="1,0"
-          Padding="0"
-          Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-          Visibility="Visible"
-          RenderTransformOrigin="0.5,0.5">
-          <Border.RenderTransform>
-            <RotateTransform x:Name="RotateCircle" Angle="0"/>
-          </Border.RenderTransform>
-          <Path
-            Width="22"
-            Height="22"
-            Data="{StaticResource XGeometry.DashedCircle}"
-            Fill="{TemplateBinding Foreground}"
-            Stretch="Uniform"/>
-        </Border>
-        <Border
-          x:Name="CheckmarkBorder"
-          Grid.Column="1"
-          Margin="1,0"
-          Padding="0"
-          Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-          Visibility="Visible">
-          <Path
-            Width="9"
-            Height="9"
-            Data="{StaticResource XGeometry.Checkmark}"
-            Fill="{TemplateBinding Foreground}"
-            Stretch="Uniform"
-            Visibility="Visible"/>
-        </Border>
-        <Border
-          x:Name="FilledCircleCheckmarkBorder"
-          Grid.Column="1"
-          Margin="1,0"
-          Padding="0"
-          Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-          Visibility="Hidden">
-          <Path
-            Width="22"
-            Height="22"
-            Data="{StaticResource XGeometry.FilledCircleCheckmark}"
-            Fill="{TemplateBinding Foreground}"
-            Stretch="Uniform"/>
-        </Border>
-      </Grid>
+      Style="{StaticResource XStyle.Border.Background}">
+      <Border
+        x:Name="HoverBorder"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        Style="{StaticResource XStyle.Border.Hover}">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <Border
+            x:Name="PressedBorder"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource XStyle.Border.Pressed}"
+            extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+            Opacity="0"/>
+          <ContentPresenter
+            x:Name="ContentPresenter"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="1,0,1,2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            IsHitTestVisible="False"/>
+          <Border
+            x:Name="DashedCircleBorder"
+            Grid.Column="1"
+            Margin="1,0"
+            Padding="0"
+            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+            Visibility="Visible"
+            RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+              <RotateTransform x:Name="RotateCircle" Angle="0"/>
+            </Border.RenderTransform>
+            <Path
+              Width="22"
+              Height="22"
+              Data="{StaticResource XGeometry.DashedCircle}"
+              Fill="{TemplateBinding Foreground}"
+              Stretch="Uniform"/>
+          </Border>
+          <Border
+            x:Name="CheckmarkBorder"
+            Grid.Column="1"
+            Margin="1,0"
+            Padding="0"
+            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+            Visibility="Visible">
+            <Path
+              Width="9"
+              Height="9"
+              Data="{StaticResource XGeometry.Checkmark}"
+              Fill="{TemplateBinding Foreground}"
+              Stretch="Uniform"
+              Visibility="Visible"/>
+          </Border>
+          <Border
+            x:Name="FilledCircleCheckmarkBorder"
+            Grid.Column="1"
+            Margin="1,0"
+            Padding="0"
+            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+            Visibility="Hidden">
+            <Path
+              Width="22"
+              Height="22"
+              Data="{StaticResource XGeometry.FilledCircleCheckmark}"
+              Fill="{TemplateBinding Foreground}"
+              Stretch="Uniform"/>
+          </Border>
+        </Grid>
+      </Border>
     </Border>
     <ControlTemplate.Triggers>
       <Trigger Property="CurrentProgressState" Value="Regular">

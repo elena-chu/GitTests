@@ -41,28 +41,39 @@ namespace Ws.Extensions.UI.Wpf.Converters
 
         private void SetColors()
         {
-            string resourceNameFromColor;
-            string resourceNameToColor;
+            FromColor = Colors.Transparent;
+            ToColor = Colors.Transparent;
+
+            string resourceNameFromColor = null;
+            string resourceNameToColor = null;
 
             switch (ControlTheme)
             {
-                default:
                 case ControlTheme.Primary:
                     {
-                        resourceNameFromColor = "XColor.Button.Primary.Background";
+                        resourceNameFromColor = "XColor.AlmostTransparent";
                         resourceNameToColor = "XColor.Button.Primary.Background.Hover";
                     }
                     break;
+
                 case ControlTheme.Secondary:
                     {
-                        resourceNameFromColor = "XColor.Button.Secondary.Background";
+                        resourceNameFromColor = "XColor.AlmostTransparent";
                         resourceNameToColor = "XColor.Button.Secondary.Background.Hover";
                     }
                     break;
+
+                case ControlTheme.None:
+                default:
+                    break;
             }
 
-            FromColor = (Color)Application.Current.TryFindResource(resourceNameFromColor);
-            ToColor = (Color)Application.Current.TryFindResource(resourceNameToColor);
+            if (!string.IsNullOrEmpty(resourceNameToColor) && !string.IsNullOrEmpty(resourceNameFromColor))
+            {
+                FromColor = (Color)Application.Current.TryFindResource(resourceNameFromColor);
+                ToColor = (Color)Application.Current.TryFindResource(resourceNameToColor);
+            }
+
             DiffColor = Color.Subtract(ToColor, FromColor);
         }
 
@@ -108,6 +119,10 @@ namespace Ws.Extensions.UI.Wpf.Converters
                 case ControlTheme.Secondary:
                     backgroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Secondary.Background");
                     break;
+
+                case ControlTheme.None:
+                default:
+                    return Binding.DoNothing;
             }
 
             return backgroundBrush;
@@ -121,7 +136,7 @@ namespace Ws.Extensions.UI.Wpf.Converters
 
     /// <summary>
     /// Receives: ControlTheme
-    /// Returns: Background brush
+    /// Returns: Background brush when pressed
     /// </summary>
     public class ControlThemeToBackgroundPressedConverter : ConverterMarkupExtension<ControlThemeToBackgroundPressedConverter>
     {
@@ -140,6 +155,46 @@ namespace Ws.Extensions.UI.Wpf.Converters
                 case ControlTheme.Secondary:
                     backgroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Secondary.Background.Pressed");
                     break;
+
+                case ControlTheme.None:
+                default:
+                    return Binding.DoNothing;
+            }
+
+            return backgroundBrush;
+        }
+
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Receives: ControlTheme
+    /// Returns: Background brush when disabled
+    /// </summary>
+    public class ControlThemeToBackgroundDisabledConverter : ConverterMarkupExtension<ControlThemeToBackgroundDisabledConverter>
+    {
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || !(value is Enum))
+                return Binding.DoNothing;
+
+            SolidColorBrush backgroundBrush = new SolidColorBrush();
+            switch ((ControlTheme)value)
+            {
+                case ControlTheme.Primary:
+                    backgroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Primary.Background.Disabled");
+                    break;
+
+                case ControlTheme.Secondary:
+                    backgroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Secondary.Background.Disabled");
+                    break;
+
+                case ControlTheme.None:
+                default:
+                    return Binding.DoNothing;
             }
 
             return backgroundBrush;
@@ -172,6 +227,46 @@ namespace Ws.Extensions.UI.Wpf.Converters
                 case ControlTheme.Secondary:
                     foregroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Secondary.Foreground");
                     break;
+
+                case ControlTheme.None:
+                default:
+                    return Binding.DoNothing;
+            }
+
+            return foregroundBrush;
+        }
+
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Receives: ControlTheme
+    /// Returns: Foreground brush when disabled
+    /// </summary>
+    public class ControlThemeToForegroundDisabledConverter : ConverterMarkupExtension<ControlThemeToForegroundDisabledConverter>
+    {
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null || !(value is Enum))
+                return Binding.DoNothing;
+
+            SolidColorBrush foregroundBrush = new SolidColorBrush();
+            switch ((ControlTheme)value)
+            {
+                case ControlTheme.Primary:
+                    foregroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Primary.Foreground.Disabled");
+                    break;
+
+                case ControlTheme.Secondary:
+                    foregroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Secondary.Foreground.Disabled");
+                    break;
+
+                case ControlTheme.None:
+                default:
+                    return Binding.DoNothing;
             }
 
             return foregroundBrush;
