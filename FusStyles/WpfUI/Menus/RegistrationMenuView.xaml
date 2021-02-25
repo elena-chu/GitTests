@@ -7,122 +7,62 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   mc:Ignorable="d" 
   d:DesignHeight="300" d:DesignWidth="300">
-  <UserControl.Resources>
-    <extensions:NullToVisibilityConverter x:Key="null2Vis" />
-  </UserControl.Resources>
 
-  <!--xmlns:registration="clr-namespace:Ws.Fus.Registration.Interfaces.Entities;assembly=Ws.Fus.Registration.Interfaces"-->
-  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
-    <!--<Grid.RowDefinitions>
-      <RowDefinition Height="{StaticResource OperativeScreenMenuTitleRowHeght}" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>-->
+  <StackPanel Margin="10" Background="{StaticResource ApplicationBackgroundBrush}">
+    <StackPanel.Resources>
+      <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
+        <Setter Property="Margin" Value="0,10"/>
+      </Style>
+      <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}">
+        <Setter Property="Margin" Value="0,10"/>
+      </Style>
+    </StackPanel.Resources>
 
-    <!--<Rectangle Fill="{StaticResource RegistrationBrush}"
-        Stretch="Fill" />
-    <TextBlock Foreground="White"
-        Margin="20,5,15,5"
-        Text="REGISTRATION"
-        TextWrapping="Wrap"
-        VerticalAlignment="Center" />
+    <ToggleButton
+      ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
+      DataContext="{Binding Commands.Overlays}"
+      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.CtOverlay.Alpha}"
+      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.CtOverlay.Beta}"
+      Content="CT Overlay"
+      ToolTip="CT Overlay"/>
 
-    <StackPanel Grid.Row="1"
-        Margin="8,2"
-        Orientation="Horizontal"
-        VerticalAlignment="Center">
-      <Button Background="Red"
-          Command="{Binding ExitCommand}" 
-          Content="X"
-          Foreground="White"
-          Height="18" Width="18" />
-      <TextBlock FontSize="9"
-          Foreground="White"
-          Margin="5,1,5,1"
-          Text="EXIT REGISTRATION MODE"
-          VerticalAlignment="Center" />
-    </StackPanel>-->
+    <Button
+      Command="{Binding AutoRegisterCommand}"
+      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.AutoRegister.Alpha}"
+      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.AutoRegister.Beta}"
+      Content="Auto Register"
+      ToolTip="Auto Register"/>
+    
+    <Button
+      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.CopyRegistration.Alpha}"
+      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.CopyRegistration.Beta}"
+      Content="Copy Registration"
+      ToolTip="Copy Registration"/>
 
-    <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition />
-        <ColumnDefinition />
-        <!--<ColumnDefinition />-->
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+    <Button
+      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ClearRegistration.Alpha}"
+      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.ClearRegistration.Beta}"
+      Content="Clear Registration"
+      ToolTip="Clear Registration"/>
 
-      <ToggleButton Grid.Row="0" Grid.Column="0"
-          ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
-          Content="¯"
-          DataContext="{Binding Commands.Overlays}"
-          FontFamily="Wingdings"
-          ToolTip="CT Overlay"
-          Style="{StaticResource styleToolToggleButton}" />
+    <Button
+      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ReferenceSeries.Alpha}"
+      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.ReferenceSeries.Beta}"
+      Content="Reference Series"
+      ToolTip="Reference Series"/>
 
-      <Button Grid.Row="0" Grid.Column="1"
-          Command="{Binding AutoRegisterCommand}"
-          FontFamily="Wingdings 3"
-          Content="u"
-          Style="{StaticResource styleToolButton}"
-          ToolTip="Auto Register"/>
-      
-      <Button Grid.Row="1" Grid.Column="0"
-          Command="{Binding ClearStripsCommand}"     
-          FontFamily="Wingdings 2"
-          Content="¹"
-          ToolTip="Clears registration" 
-          Style="{StaticResource styleToolButton}"/>
+    <Button
+      Command="{Binding ClearStripsCommand}" 
+      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ClearAll}"
+      Content="Clear All"
+      ToolTip="Clear All"/>
 
-      <Button Grid.Row="3" Grid.Column="0"
-          Grid.ColumnSpan="2" 
-          Command="{Binding ApproveRegistrationCommand}"     
-          Content="Approve set"  
-          ToolTip="Approves registration" 
-          Style="{StaticResource XStyle.Button.Primary}"/>
+    <Button
+      Margin="0,10"
+      Command="{Binding ApproveRegistrationCommand}"
+      Content="Approve Registration"
+      ToolTip="Approve Registration"
+      Style="{StaticResource XStyle.Button.Primary}"/>
 
-       <!--<ToggleButton Grid.Column="2"
-          Grid.Row="0"
-          ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
-          Content="P"
-          DataContext="{Binding Commands.Overlays}"
-          FontFamily="Wingdings"
-          Style="{StaticResource styleToolButton}" />
-          Visibility="{Binding Converter={StaticResource null2Vis}}"/>-->
-
-       <!--<Button
-            FontFamily="Wingdings 2"
-            Content="¹"
-            Grid.Column="1"
-            Grid.Row="0"
-            Command="{Binding ResetCommand}"
-            ToolTip ="Reset" />-->
-
-       <!-- <Button Grid.Column="0"
-          Grid.Row="1"
-          Content="P"
-          DataContext="{Binding Undo}"
-          FontFamily="Wingdings 3"
-          Style="{StaticResource styleToolButton}" />-->
-      
-      <!--<Button Grid.Column="1"
-          Grid.Row="1"
-          Content="Q"
-          DataContext="{Binding Redo}"
-          FontFamily="Wingdings 3"
-          Style="{StaticResource styleToolButton}" />-->
-
-    </Grid>
-
-  </Grid>
+  </StackPanel>
 </UserControl>

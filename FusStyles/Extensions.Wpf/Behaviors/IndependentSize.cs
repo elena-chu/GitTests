@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Utils;
@@ -11,6 +12,16 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
     /// </summary>
     public class IndependentSize
     {
+        static IndependentSize()
+        {
+            SystemEvents.DisplaySettingsChanged += new EventHandler(OnDisplaySettingsChanged);
+        }
+
+        private static void OnDisplaySettingsChanged(object sender, EventArgs e)
+        {
+            _screenProportionCalculated = false;
+        }
+
         // Double properties ************************************
 
         /// <summary>
@@ -33,7 +44,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
-            fe.Width = GetProportionalDoubleProperty(e);
+            fe.Width = GetProportionalDoublePropertyFromArgs(e);
         }
 
         /// <summary>
@@ -56,7 +67,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
-            fe.MinWidth = GetProportionalDoubleProperty(e);
+            fe.MinWidth = GetProportionalDoublePropertyFromArgs(e);
         }
 
 
@@ -80,7 +91,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
-            fe.MaxWidth = GetProportionalDoubleProperty(e);
+            fe.MaxWidth = GetProportionalDoublePropertyFromArgs(e);
         }
 
         /// <summary>
@@ -103,7 +114,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
-            fe.Height = GetProportionalDoubleProperty(e);
+            fe.Height = GetProportionalDoublePropertyFromArgs(e);
         }
 
         /// <summary>
@@ -126,7 +137,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
-            fe.MinHeight = GetProportionalDoubleProperty(e);
+            fe.MinHeight = GetProportionalDoublePropertyFromArgs(e);
         }
 
         /// <summary>
@@ -149,7 +160,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
-            fe.MaxHeight = GetProportionalDoubleProperty(e);
+            fe.MaxHeight = GetProportionalDoublePropertyFromArgs(e);
         }
 
         /// <summary>
@@ -169,24 +180,38 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
 
         public static void OnFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Control fe = d as Control;
-            if (fe == null || e.NewValue == null)
+            if (e.NewValue == null)
                 return;
-            fe.FontSize = Math.Round(GetProportionalDoubleProperty(e));
+
+            var fontSize = Math.Round(GetProportionalDoublePropertyFromArgs(e));
+
+            Control control = d as Control;
+            TextBlock textBlock = d as TextBlock;
+            if (control != null)
+                control.FontSize = fontSize;
+            else if (textBlock != null)
+                textBlock.FontSize = fontSize;
         }
 
-
-        public static double GetProportionalDoubleProperty(DependencyPropertyChangedEventArgs e)
+        public static double GetProportionalDoublePropertyFromArgs(DependencyPropertyChangedEventArgs e)
         {
-            double height;
-            if (double.TryParse(e.NewValue.ToString(), out height))
-            {
-                if (height == double.NaN)
-                    return double.NaN;
-                else
-                    return height / DpiUtils.GetToDeviceMatrix(null).M22;
-            }
+            double size;
+            if (double.TryParse(e.NewValue.ToString(), out size) && size != double.NaN)
+                return CalculateProportionalDouble(size);
             return double.NaN;
+        }
+
+        private static bool _screenProportionCalculated = false;
+        private static double _screenProportion;
+        public static double CalculateProportionalDouble(double value)
+        {
+            if (!_screenProportionCalculated)
+                _screenProportion = SystemParameters.PrimaryScreenHeight / 1080;
+
+            //var d = DpiUtils.GetToDeviceMatrix(null);
+            //return height / DpiUtils.GetToDeviceMatrix(null).M22;
+
+            return value * _screenProportion;
         }
 
         // GridLength properties ********************************

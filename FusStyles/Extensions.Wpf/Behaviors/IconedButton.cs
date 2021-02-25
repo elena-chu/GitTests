@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
@@ -83,17 +84,23 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         /// <summary>
         /// Icon size
         /// </summary>
-        public static readonly DependencyProperty IconSizeProperty = DependencyProperty.RegisterAttached("IconSize", typeof(double), typeof(IconedButton), new PropertyMetadata(20.0));
-
-        public static double GetIconSize(DependencyObject obj)
-        {
-            return (double)obj.GetValue(IconSizeProperty);
-        }
+        public static readonly DependencyProperty IconSizeProperty = DependencyProperty.RegisterAttached("IconSize", typeof(double), typeof(IconedButton), new PropertyMetadata(20.0, OnIconSizeChanged, CoerceIconSizeValue));
 
         public static void SetIconSize(DependencyObject obj, double value)
         {
             obj.SetValue(IconSizeProperty, value);
         }
 
+        public static double GetIconSize(DependencyObject obj)
+        {
+            return (double)obj.GetValue(IconSizeProperty);
+        }
+
+        private static void OnIconSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {}
+
+        private static object CoerceIconSizeValue(DependencyObject d, object baseValue)
+        {
+            return IndependentSize.CalculateProportionalDouble((double)baseValue);
+        }
     }
 }

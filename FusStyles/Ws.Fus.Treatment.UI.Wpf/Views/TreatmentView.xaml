@@ -69,7 +69,7 @@
         Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>
 
-    <Border Grid.Column="1" Background="{StaticResource ApplicationBackgroundBrush}" Visibility="Visible">
+    <Border Grid.Column="1" Background="{StaticResource ApplicationBackgroundBrush}" Visibility="Collapsed">
       <StackPanel Grid.Column="1">
         <TextBlock FontSize="18" Margin="0,20,0,10" Text="Button Examples:" Foreground="YellowGreen" FontWeight="Bold"/>
         <Button Margin="10" Content="Primary" Style="{StaticResource XStyle.Button.Primary}"/>
@@ -94,12 +94,12 @@
 
         <Button
         Margin="10"
+        extensions:IconedButton.IconSize="26"
         Content="Icon, Text Underneath"
         Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Unlock}"/>
         <Button
         Margin="10"
-        extensions:IconedButton.IconSize="18"
         Content="Icon, Text Underneath Disabled"
         IsEnabled="False"
         Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
@@ -108,8 +108,7 @@
 
         <ToggleButton
         Margin="10"
-        extensions:IconedButton.IconSize="18"
-        Content="Icon, Text Underneath Disabled"
+        Content="Toggle Icon, Text Underneath"
         Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
         extensions:IndependentSize.MaxWidth="150"
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Lock}"/>
