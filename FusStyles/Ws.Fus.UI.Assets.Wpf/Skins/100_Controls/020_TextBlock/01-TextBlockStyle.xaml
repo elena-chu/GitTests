@@ -5,7 +5,7 @@
 
   <Style TargetType="TextBlock" x:Key="TextBoxBaseStyle">
     <!--<Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />-->
-    <Setter Property="FontFamily" Value="Calibri" />
+    <!--<Setter Property="FontFamily" Value="Calibri" />-->
   </Style>
 
   <Style TargetType="TextBlock" BasedOn="{StaticResource TextBoxBaseStyle}" />
