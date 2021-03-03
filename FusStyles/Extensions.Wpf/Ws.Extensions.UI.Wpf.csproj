@@ -83,6 +83,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\ToolTipExtension.cs" />
     <Compile Include="Behaviors\GridExtentions.cs" />
     <Compile Include="Behaviors\ElementSize.cs" />
     <Compile Include="Behaviors\ControlExtensions.cs" />
@@ -135,7 +136,7 @@
     <Compile Include="Converters\NumericConverters.cs" />
     <Compile Include="Converters\SignedNumberConverter.cs" />
     <Compile Include="Converters\StringToNullableNumberConverter.cs" />
-    <Compile Include="Converters\TrimmedTextBlockVisibilityConverter.cs" />
+    <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Patterns\DragNDropHelper.cs" />
     <Compile Include="Patterns\DynamicGrid\DynamicGrid.xaml.cs">
       <DependentUpon>DynamicGrid.xaml</DependentUpon>

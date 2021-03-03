@@ -10,48 +10,51 @@
       <ResourceDictionary.MergedDictionaries>
         
         <!--Basics-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/01-Sizes.xaml" />
-        
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/01-Sizes.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/03-Controls.xaml"/>
+
         <!--Colors, Brushes-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/010_Colors_Standard/01-Colors.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/050_Brushes/01-Brushes.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/050_Brushes/02-IconBrushes.xaml" />
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/010_Colors_Standard/01-Colors.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/050_Brushes/01-Brushes.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/050_Brushes/02-IconBrushes.xaml"/>
 
         <!--Drawings-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/055_Drawings/01-Geometries.xaml" />
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/055_Drawings/01-Geometries.xaml"/>
 
         <!--Animations-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/057_Animations/01-Animations.xaml" />
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/057_Animations/01-Animations.xaml"/>
 
         <!--Generics,Layouts-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/01_GenericStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/02-BorderStyles.xaml"/>
 
         <!--Controls-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextBlock/01-TextBlockStyle.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-HeaderStyle.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-LabelStyle.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-TextStyle.xaml" />
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextBlock/01-TextBlockStyle.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextBlock/03-ToolTipStyles.xaml"/>
+
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-HeaderStyle.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-LabelStyle.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-TextStyle.xaml"/>
 
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/050_ButtonBase/0501-ButtonBaseStyles.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/050_ButtonBase/10-ToolButton.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/10-ToolToggleButton.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/PinButtonStyle.xaml" />
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/050_ButtonBase/10-ToolButton.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/10-ToolToggleButton.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/PinButtonStyle.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/0651-ButtonStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/0652-ProgressStateButtonStyles.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/ButtonStyle.xaml" />
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/PinableExpanderStyle.xaml" />
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/ButtonStyle.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/PinableExpanderStyle.xaml"/>
 
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/200_CustomControls/60_StatusIndicator/10-StatusIndicator.xaml" />
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/200_CustomControls/60_StatusIndicator/10-StatusIndicator.xaml"/>
 
-        <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Resources.xaml" />
-        <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Resources.xaml"/>
+        <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Themes/Generic.xaml"/>
         
-        <!--<ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/Current.xaml" />
+        <!--<ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/Current.xaml"/>
        
         
         
-        <ResourceDictionary Source="/Ws.Fus.ImageViewer.UI.Wpf;component/Assets/Skins/Current.xaml" />-->
+        <ResourceDictionary Source="/Ws.Fus.ImageViewer.UI.Wpf;component/Assets/Skins/Current.xaml"/>-->
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary> 
     </Application.Resources>

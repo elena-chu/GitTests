@@ -120,7 +120,7 @@
             Content="AC-PC length:"
             extensions:ProgressStatusDisplayer.ProgressState="{Binding IsAcPcValid, Converter={StaticResource TrueFalseConverter}}"
             IsEnabled="{Binding IsAcPcValid}" />
-        <TextBlock Style="{StaticResource LabelMenuStyle}" 
+        <TextBlock 
             Text="{Binding AcPcLength, StringFormat={}{0:#.0}mm}" 
             Grid.Column="1"
             Margin="0"

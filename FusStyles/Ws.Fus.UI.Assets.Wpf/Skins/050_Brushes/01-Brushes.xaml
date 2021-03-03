@@ -33,6 +33,9 @@
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Caption" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Alpha" Color="{StaticResource ApplicationForgroundColor}"/>
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Beta" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
+  
+  <!--Backgrounds-->
+  <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}"/>
 
   <!-- Gradient Brushes-->
   <LinearGradientBrush x:Key="ActiveToTransparentGradientBrush" StartPoint="0,0">

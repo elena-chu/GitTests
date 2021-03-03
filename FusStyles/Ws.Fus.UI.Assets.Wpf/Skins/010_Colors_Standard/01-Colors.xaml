@@ -33,6 +33,7 @@
   <Color x:Key="XColor.Button.IconButton.Caption">#FFB2B2B2</Color>
   <Color x:Key="XColor.Button.IconButton.Beta">#FF7F7F7F</Color>
 
+  <Color x:Key="XColor.Background.Emphasis">#991c1f21</Color>
 
   <!-- OLD COLORS-->
   <Color x:Key="MouseOverColor">#FF669933</Color> <!--Green-->

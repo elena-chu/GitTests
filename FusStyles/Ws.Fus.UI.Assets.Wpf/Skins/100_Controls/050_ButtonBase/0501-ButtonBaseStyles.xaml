@@ -54,9 +54,11 @@
   <Style x:Key="XStyle.ButtonBase" TargetType="{x:Type ButtonBase}">
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
     <Setter Property="extensions:IndependentSize.Height" Value="36"/>
+    <Setter Property="Padding" Value="0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
     <Setter Property="Foreground" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToForegroundConverter}}"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Style.Triggers>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -253,6 +255,7 @@
     <Setter Property="extensions:IndependentSize.MaxHeight" Value="80"/>
     <Setter Property="extensions:IndependentSize.MaxWidth" Value="100"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="14"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="Background" Value="Transparent"/>
     <Style.Triggers>

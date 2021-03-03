@@ -184,6 +184,8 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                 return;
 
             var fontSize = Math.Round(GetProportionalDoublePropertyFromArgs(e));
+            if (fontSize <= 0)
+                return;
 
             Control control = d as Control;
             TextBlock textBlock = d as TextBlock;
