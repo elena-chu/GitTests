@@ -81,27 +81,39 @@
       <Button Grid.Row="4"
             Content="Load Pre-Treatment Plan" 
             Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" 
-            extension:IconedButton.AlphaGeometry="{StaticResource XGeometry.Lock}"/>
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
 
-      <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" Grid.ColumnSpan="2" >
-        <Grid>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-
-          <Button Style="{StaticResource styleToolButton}" FontFamily="Wingdings" Content=">" Grid.Column="0" Grid.Row="0" DataContext="{Binding TrackerScan}" />
-          <Button Style="{StaticResource styleToolButton}" FontFamily="Wingdings" Content="" Grid.Column="1" DataContext="{Binding B0Scan}" />
-          <Button Style="{StaticResource styleToolButton}" FontFamily="Wingdings" Content="\" Grid.Column="0" Grid.Row="1" DataContext="{Binding LocalizerScan}" />
-          <Button Style="{StaticResource styleToolButton}" FontFamily="Wingdings" Content="¨" Grid.Column="1" Grid.Row="1" DataContext="{Binding MdRefScan}" />
-          <!--<Button Style="{StaticResource ToolButtonStyle}" FontFamily="Wingdings" Content="Q" Grid.Column="2" Grid.Row="1" DataContext="{Binding MdScan}" />-->
-        </Grid>
+      <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" Grid.ColumnSpan="2">
+        <UniformGrid Columns="2" VerticalAlignment="Bottom">
+          <UniformGrid.Resources>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
+              <Setter Property="extension:IndependentSize.Margin" Value="4,4"/>
+            </Style>
+          </UniformGrid.Resources>
+          <Button
+            Content="Locate Transducer"
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.LocateTransducer}"/>
+          <Button
+            Content="Find Central Frequency"
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
+            extension:IconedButton.IconSize="24"/>
+          <Button
+            Content="3D Localizer"
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"/>
+          <Button
+            Content="Calibrate TG"
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.CalibrateTg}"
+            extension:IconedButton.IconSize="24"/>
+          <Button
+            Content="Membrane Fold Scan"
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"/>
+          <Button
+            Content="Scan MD Reference"
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"/>
+          <Button
+            Content="Movement Evaluation"
+            extension:IconedButton.Icon="{StaticResource XCanvas.Calibration.MovementEvaluation}"/>
+        </UniformGrid>
       </Expander>
 
 

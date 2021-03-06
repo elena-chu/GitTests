@@ -2,11 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <Style x:Key="BigIconedButtonStyle" TargetType="Button" >
+  <Style x:Key="BigIconedButtonStyle1" TargetType="Button" >
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
     <Setter Property="FontSize" Value="13.5" />
-    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource IconBrush}" />
     <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource ActiveIconBrush}" />
     <Setter Property="Template">
       <Setter.Value>
@@ -38,7 +37,7 @@
                 <RowDefinition  />
                 <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
-              <Rectangle x:Name="Icon" extensions:IndependentSize.Width="48" extensions:IndependentSize.Height="48" Fill="{TemplateBinding  extensions:IconedButton.Icon}" Opacity=".75" 
+              <Rectangle x:Name="Icon" extensions:IndependentSize.Width="48" extensions:IndependentSize.Height="48" Fill="HotPink" Opacity=".75" 
                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" />
               <Rectangle x:Name="ActiveIcon" extensions:IndependentSize.Width="48" extensions:IndependentSize.Height="48" Fill="{TemplateBinding  extensions:IconedButton.ActiveIcon}" 
                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" />

@@ -19,9 +19,9 @@
           <Border
             Style="{StaticResource XStyle.Border}"
             Background="{StaticResource XBrush.Background.Emphasis}"
-            extensions:IndependentSize.Height="23">
+            extensions:IndependentSize.Height="25">
             <ContentPresenter
-              extensions:IndependentSize.Margin="5,1,5,3"
+              extensions:IndependentSize.Margin="7,1,7,3"
               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
               SnapsToDevicePixels="True">

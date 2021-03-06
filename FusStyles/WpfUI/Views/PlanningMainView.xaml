@@ -203,9 +203,9 @@
 
       </Grid>
 
-      <Button Grid.Row="2" Style="{StaticResource BigIconedButtonStyle}" Content="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}" />
+      <Button Grid.Row="2" Style="{StaticResource BigIconedButtonStyle1}" Content="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}" />
       <Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"  />
-      <Button Grid.Row="3" Style="{StaticResource BigIconedButtonStyle}" Content="{lex:LocTextUpper IDS_LBL_MENU_REPORT}" />
+      <Button Grid.Row="3" Style="{StaticResource BigIconedButtonStyle1}" Content="{lex:LocTextUpper IDS_LBL_MENU_REPORT}" />
     </Grid>
 
     <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.PlanningScreensRegion}" />

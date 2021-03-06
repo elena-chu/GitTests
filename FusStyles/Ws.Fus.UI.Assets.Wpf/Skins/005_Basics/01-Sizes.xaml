@@ -10,7 +10,7 @@
   
   <CornerRadius x:Key="XCornerRadius.Frame">4</CornerRadius>
 
-  <sys:Double x:Key="XDouble.FontSize.Base">14</sys:Double>
-  <sys:Double x:Key="XDouble.FontSize.ToolTip">13</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.ToolTip">14</sys:Double>
 
 </ResourceDictionary>

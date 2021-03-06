@@ -13,6 +13,7 @@
 
     <!--Drawings-->
     <ResourceDictionary Source="055_Drawings/01-Geometries.xaml"/>
+    <ResourceDictionary Source="055_Drawings/03-Icons.xaml"/>
 
     <!--Animations-->
     <ResourceDictionary Source="057_Animations/01-Animations.xaml"/>

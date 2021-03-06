@@ -26,15 +26,14 @@
         Grid.Row="0"
         Grid.Column="0"
         Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ManualNpr.Alpha}"
-        extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.ManualNpr.Beta}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Manual}"
         Content="Manual NPR"/>
+      
       <Button
         Grid.Row="0"
         Grid.Column="1"
         Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.SphericalNpr.Alpha}"
-        extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.SphericalNpr.Beta}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Spherical}"
         Content="Spherical NPR"/>
 
       <Button
@@ -42,19 +41,17 @@
         Grid.ColumnSpan="2"
         Margin="0,0,0,15"
         Content="Approve CT NPRs"
-        ToolTip="Approve CT NPRs"
         Command="{Binding ViewModel.ApproveCTCommand}"
         Style="{StaticResource XStyle.Button.Primary.TextWithSideIcon}"
-        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.DashedCircleCheckmark}"/>
+        extensions:IconedButton.Icon="{StaticResource XPath.DashedCircleCheckmark}"/>
 
       <Button
         Grid.Row="3"
         Grid.ColumnSpan="2"
         Content="Approve MRI NPRs"
-        ToolTip="Approve MRI NPRs"
         Command="{Binding ViewModel.ApproveMRICommand}"
         Style="{StaticResource XStyle.Button.Primary.TextWithSideIcon}"
-        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.DashedCircleCheckmark}"/>
+        extensions:IconedButton.Icon="{StaticResource XPath.DashedCircleCheckmark}"/>
 
       <Expander x:Name="MoreExp" Grid.Row="5" Foreground="White" Grid.ColumnSpan="2">
         <Expander.Style>
@@ -79,39 +76,35 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
+          <Grid.Resources>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}"/>
+          </Grid.Resources>
           <Button
             Grid.Column="0"
             Grid.Row="0"
-            Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-            extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ResetSinuses}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetSinuses}"
             Content="Reset Sinuses"/>
           <Button
             Grid.Column="1"
             Grid.Row="0"
-            Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-            extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ResetCalcifications}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetCalcifications}"
             Content="Reset Calcifications"/>
           <Button
             Grid.Column="0"
             Grid.Row="1"
-            Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-            extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ResetFolds}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetFolds}"
             Content="Reset Folds"/>
           <Button
             Grid.Column="1"
             Grid.Row="1"
-            Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-            extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Lock}"
             Content="CT Threshold"/>
-
           <Button
             Grid.Row="2"
             Grid.ColumnSpan="2"
             Margin="0,15,0,0"
             Content="Re-acquire Fold Scan"
-            ToolTip="Re-acquire Fold Scan"
             Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}"
-            extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ReacquireFoldScan}"/>
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ReacquireFolds}"/>
         </Grid>
       </Expander>
     </Grid>

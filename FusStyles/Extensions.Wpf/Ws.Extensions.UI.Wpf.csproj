@@ -207,10 +207,6 @@
     <None Include="Assets\CustomControlsDictionaries\50-Accordion\04-Accordion.txaml">
       <SubType>Designer</SubType>
     </None>
-    <Page Include="Assets\Dictionaries\025-TextBlock\050-StyleTooltipedText.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\BusyIndicator\BusyIndicator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -245,6 +241,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Dictionaries\025-TextBlock\" />
     <Folder Include="Assets\Images\" />
   </ItemGroup>
   <ItemGroup>

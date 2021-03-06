@@ -21,41 +21,31 @@
     <ToggleButton
       ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
       DataContext="{Binding Commands.Overlays}"
-      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.CtOverlay.Alpha}"
-      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.CtOverlay.Beta}"
-      Content="CT Overlay"
-      ToolTip="CT Overlay"/>
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.CtOverlay}"
+      Content="CT Overlay"/>
 
     <Button
       Command="{Binding AutoRegisterCommand}"
-      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.AutoRegister.Alpha}"
-      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.AutoRegister.Beta}"
-      Content="Auto Register"
-      ToolTip="Auto Register"/>
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
+      Content="Auto Register"/>
     
     <Button
-      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.CopyRegistration.Alpha}"
-      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.CopyRegistration.Beta}"
-      Content="Copy Registration"
-      ToolTip="Copy Registration"/>
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.Copy}"
+      Content="Copy Registration"/>
 
     <Button
-      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ClearRegistration.Alpha}"
-      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.ClearRegistration.Beta}"
-      Content="Clear Registration"
-      ToolTip="Clear Registration"/>
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.Clear}"
+      Content="Clear Registration"/>
 
     <Button
-      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ReferenceSeries.Alpha}"
-      extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.ReferenceSeries.Beta}"
-      Content="Reference Series"
-      ToolTip="Reference Series"/>
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.ReferenceSeries}"
+      Content="Reference Series"/>
 
     <Button
       Command="{Binding ClearStripsCommand}" 
-      extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.ClearAll}"
-      Content="Clear All"
-      ToolTip="Clear All"/>
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.ClearAll}"
+      extensions:IconedButton.IconSize="24"
+      Content="Clear All"/>
 
     <Button
       Margin="0,10"

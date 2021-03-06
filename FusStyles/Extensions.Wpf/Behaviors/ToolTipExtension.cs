@@ -68,16 +68,12 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             if (frameworkElement == null)
                 return;
 
-            TextBlock textBlock = frameworkElement as TextBlock;
-            if (textBlock == null)
-            {
-                textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
-                if (textBlock == null)
-                    return;
-            }
-
             if (turnOnAutoToolTip)
             {
+                TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
+                if (textBlock == null)
+                    return;
+
                 textBlock.TextTrimming = TextTrimming.WordEllipsis;
                 SetTrimmedTextAsToolTip(frameworkElement);
                 frameworkElement.SizeChanged += FrameworkElement_SizeChanged;
@@ -120,47 +116,30 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             if (frameworkElement == null)
                 return false;
 
-            TextBlock textBlock;
-            if (frameworkElement is TextBlock)
-                textBlock = frameworkElement as TextBlock;
-            else
-                textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
-
-            FrameworkElement container = GetFrameworkElementTextContainer(frameworkElement);
-
-            if (textBlock == null || container == null)
+            // Get text and measure
+            TextBlock textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
+            if (textBlock == null)
                 return false;
-
             textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            return textBlock.DesiredSize.Width > container.ActualWidth;
+
+            // Get text's ContentPresenter if exists
+            var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
+            if (contentPresenter != null && contentPresenter.IsDescendantOf(frameworkElement))
+                return textBlock.DesiredSize.Width > contentPresenter.ActualWidth;
+
+            return textBlock.DesiredSize.Width > frameworkElement.ActualWidth;
         }
 
         public static string GetFrameworkElementText<T>(T frameworkElement) where T : FrameworkElement
         {
-            if (frameworkElement is TextBlock)
-                return (frameworkElement as TextBlock).Text;
+            var textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
+            if (textBlock != null)
+                return textBlock.Text;
 
             if (frameworkElement is ComboBox && (frameworkElement as ComboBox).SelectedValue != null)
-            {
-                if ((frameworkElement as ComboBox).SelectedValue is string)
-                    return (frameworkElement as ComboBox).SelectedValue.ToString();
-                else
-                    return (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>().Text;
-            }
-
-            if (frameworkElement is Control)
-                return (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>().Text;
+                return (frameworkElement as ComboBox).SelectedValue.ToString();
 
             return string.Empty;
-        }
-
-        public static FrameworkElement GetFrameworkElementTextContainer<T>(T frameworkElement) where T : FrameworkElement
-        {
-            var contentPresenter = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<ContentPresenter>();
-            if (contentPresenter != null)
-                return contentPresenter;
-
-            return frameworkElement as FrameworkElement;
         }
     }
 }

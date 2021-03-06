@@ -17,17 +17,17 @@
   <Style x:Key="XStyle.Button.Primary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase}">
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.TextWithSideIcon}"/>
-    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>
+    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
-    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="18"/>
   </Style>
 
   <Style x:Key="XStyle.Button.Secondary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase}">
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.TextWithSideIcon}"/>
-    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
+    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
-    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="18"/>
   </Style>
 
   <Style x:Key="XStyle.Button.IconWithTextUnderneath" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.IconWithTextUnderneath}"/>

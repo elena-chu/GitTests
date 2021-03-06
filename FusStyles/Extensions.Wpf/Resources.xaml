@@ -13,16 +13,4 @@
   <converters:ConverterProxy x:Key="converterProxy" />
   <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
   <converters:ComparisonConverter x:Key="ComparisonConverter" />
-  <!---->
-  <!--Merged from file Assets\Dictionaries\025-TextBlock\050-StyleTooltipedText.txaml-->
-  <Style x:Key="tooltipedText" TargetType="{x:Type TextBlock}">
-    <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
-    <Setter Property="TextWrapping" Value="NoWrap" />
-    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-    <Style.Resources>
-      <Style TargetType="ToolTip">
-        <Setter Property="ToolTip.Visibility" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}, Converter={StaticResource trimToVisibilityConverter}}" />
-      </Style>
-    </Style.Resources>
-  </Style>
 </ResourceDictionary>

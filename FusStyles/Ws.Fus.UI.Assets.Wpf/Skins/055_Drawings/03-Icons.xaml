@@ -1,0 +1,346 @@
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <sys:Double x:Key="XDouble.IconCanvasSize">50</sys:Double>
+  
+  <SolidColorBrush x:Key="XBrush.Icon.Alpha" Color="{StaticResource ApplicationForgroundColor}"/>
+  <SolidColorBrush x:Key="XBrush.Icon.Beta" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
+  <SolidColorBrush x:Key="XBrush.Icon.Disabled" Color="{StaticResource XColor.Button.Secondary.Foreground.Disabled}"/>
+
+  <Style x:Key="XStyle.Canvas.Icon" TargetType="{x:Type Canvas}">
+    <Setter Property="Height" Value="{StaticResource XDouble.IconCanvasSize}"/>
+    <Setter Property="Width" Value="{StaticResource XDouble.IconCanvasSize}"/>
+  </Style>
+  
+  <Style x:Key="XStyle.Shape.Icon.Line" TargetType="{x:Type Shape}">
+    <Setter Property="StrokeThickness" Value="3"/>
+    <Setter Property="StrokeLineJoin" Value="Round"/>
+    <Setter Property="StrokeMiterLimit" Value="4"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Stroke" Value="{StaticResource XBrush.Icon.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.Area" TargetType="{x:Type Shape}">
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Fill" Value="{StaticResource XBrush.Icon.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.LineArea" TargetType="{x:Type Shape}" BasedOn="{StaticResource XStyle.Shape.Icon.Line}">
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Fill" Value="{StaticResource XBrush.Icon.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.LineAlpha" TargetType="{x:Type Shape}" BasedOn="{StaticResource XStyle.Shape.Icon.Line}">
+    <Setter Property="Stroke" Value="{StaticResource XBrush.Icon.Alpha}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.LineBeta" TargetType="{x:Type Shape}" BasedOn="{StaticResource XStyle.Shape.Icon.Line}">
+    <Setter Property="Stroke" Value="{StaticResource XBrush.Icon.Beta}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.AreaAlpha" TargetType="{x:Type Shape}" BasedOn="{StaticResource XStyle.Shape.Icon.Area}">
+    <Setter Property="Fill" Value="{StaticResource XBrush.Icon.Alpha}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.AreaBeta" TargetType="{x:Type Shape}" BasedOn="{StaticResource XStyle.Shape.Icon.Area}">
+    <Setter Property="Fill" Value="{StaticResource XBrush.Icon.Beta}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.LineAreaAlpha" TargetType="{x:Type Shape}" BasedOn="{StaticResource XStyle.Shape.Icon.LineArea}">
+    <Setter Property="Stroke" Value="{StaticResource XBrush.Icon.Alpha}"/>
+    <Setter Property="Fill" Value="{StaticResource XBrush.Icon.Alpha}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Shape.Icon.LineAreaBeta" TargetType="{x:Type Shape}" BasedOn="{StaticResource XStyle.Shape.Icon.LineBeta}">
+    <Setter Property="Stroke" Value="{StaticResource XBrush.Icon.Beta}"/>
+    <Setter Property="Fill" Value="{StaticResource XBrush.Icon.Beta}"/>
+  </Style>
+
+  <!--General--> <!--Replace these with Canvas-->
+  <Geometry x:Key="XGeometry.Checkmark">M 4.813415,0 1.827975,3.193168 0.587595,1.952791 0,2.540388 1.844145,4.384534 5.417185,0.603769 Z</Geometry>
+  <Geometry x:Key="XGeometry.DashedCircle">M 3.774143,1.697744 C 4.35894,1.360113 4.64906,0.7678 4.42353,0.374 4.02454,0.485266 3.658892,0.68334 3.29079,0.895865 2.9355,1.10099 2.592037,1.309155 2.304031,1.593156 2.531336,1.990468 3.189348,2.035374 3.774143,1.697744 Z M 9.4526,11.533125 c 0.5848,-0.337631 1.242821,-0.292728 1.471099,0.09948 C 10.62784,11.922513 10.27348,12.140133 9.90538,12.352657 9.55009,12.557783 9.19808,12.751151 8.80812,12.85857 8.57769,12.463065 8.86782,11.870756 9.4526,11.533122 Z M 1.696044,3.775843 C 2.033677,3.191048 1.988773,2.53303 1.596564,2.304752 1.306653,2.60061 1.089034,2.954968 0.876509,3.323072 0.671386,3.67836 0.478017,4.030369 0.370596,4.420323 0.766104,4.650754 1.358412,4.360633 1.696046,3.775843 Z m 9.835385,5.67846 C 11.869051,8.869508 12.46137,8.579387 12.855171,8.804912 12.7439,9.203909 12.54583,9.569552 12.333311,9.937656 12.12818,10.292944 11.920011,10.636409 11.63601,10.924414 11.238701,10.697112 11.193799,10.039098 11.531429,9.454303 Z M 0.936124,6.6153 C 0.936124,5.940038 0.568226,5.392629 0.114425,5.39104 0.011285,5.792214 0,6.207907 0,6.632957 0,7.043208 0.0085,7.44474 0.110492,7.836161 0.568226,7.837961 0.936124,7.290563 0.936124,6.6153 Z m 11.356917,0 c 0,-0.675262 0.367899,-1.222671 0.8217,-1.22426 0.10314,0.401174 0.114429,0.816867 0.114429,1.241917 0,0.410251 -0.009,0.811783 -0.110489,1.203204 -0.457741,0.0018 -0.82564,-0.545598 -0.82564,-1.220861 z M 1.697024,9.455022 C 1.359395,8.870228 0.767082,8.580107 0.373281,8.805632 c 0.111264,0.398997 0.309338,0.76464 0.521863,1.132744 0.205128,0.355287 0.41329,0.698754 0.69729,0.986757 0.397314,-0.227301 0.442219,-0.885315 0.10459,-1.470111 z m 9.835387,-5.678459 c -0.33764,-0.584795 -0.292731,-1.242813 0.0995,-1.471091 0.289899,0.295858 0.50753,0.650216 0.72005,1.018319 0.20513,0.355289 0.39849,0.707297 0.50591,1.097252 -0.3955,0.230431 -0.98781,-0.05969 -1.32544,-0.64448 z m -7.757288,7.756562 c -0.584795,-0.337632 -1.242812,-0.292729 -1.471092,0.09948 0.295858,0.289909 0.650218,0.507529 1.01832,0.720051 0.35529,0.205126 0.707299,0.398494 1.097259,0.505913 0.23043,-0.395505 -0.0597,-0.987814 -0.644487,-1.325447 z M 9.45358,1.697743 C 8.86879,1.360112 8.57867,0.767799 8.80419,0.373999 c 0.399,0.111267 0.76465,0.30934 1.13275,0.521865 0.355289,0.205125 0.698749,0.41329 0.986759,0.697291 C 10.696391,1.990467 10.03838,2.035373 9.45358,1.697743 Z m -2.839,10.595301 c -0.67526,0 -1.22267,0.367896 -1.22426,0.8217 0.40118,0.10314 0.81687,0.114424 1.24192,0.114424 0.41025,0 0.81178,-0.0085 1.2032,-0.110492 0.002,-0.457735 -0.5456,-0.825631 -1.22086,-0.825632 z m 0,-11.35692 C 5.93932,0.936125 5.39191,0.568228 5.39032,0.114424 5.7915,0.011285 6.20719,0 6.63224,0 c 0.41025,0 0.81178,0.0085 1.2032,0.110493 0.002,0.457734 -0.5456,0.82563 -1.22086,0.825631 z</Geometry>
+  <Geometry x:Key="XGeometry.DashedCircleCheckmark">M 8.71343,4.533483 5.72799,7.726651 4.48761,6.486274 3.900015,7.073871 5.74416,8.918017 9.3172,5.137252 Z M 3.774143,1.697744 C 4.35894,1.360113 4.64906,0.7678 4.42353,0.374 4.02454,0.485266 3.658892,0.68334 3.29079,0.895865 2.9355,1.10099 2.592037,1.309155 2.304031,1.593156 2.531336,1.990468 3.189348,2.035374 3.774143,1.697744 Z M 9.4526,11.533125 c 0.5848,-0.337632 1.24282,-0.292728 1.4711,0.09948 -0.29586,0.289908 -0.65022,0.507528 -1.01832,0.720052 C 9.55009,12.557783 9.19808,12.75115 8.80812,12.85857 8.57769,12.463064 8.86782,11.870755 9.4526,11.533122 Z M 1.696044,3.775843 C 2.033677,3.191048 1.988773,2.53303 1.596564,2.304752 1.306653,2.60061 1.089034,2.954968 0.876509,3.323072 0.671386,3.67836 0.478017,4.030369 0.370596,4.420323 0.766104,4.650754 1.358412,4.360633 1.696046,3.775843 Z m 9.835386,5.67846 c 0.33762,-0.584795 0.92994,-0.874916 1.32374,-0.649391 -0.11127,0.398997 -0.30934,0.76464 -0.52186,1.132744 -0.20513,0.355288 -0.4133,0.698753 -0.6973,0.986759 C 11.2387,10.697112 11.1938,10.039098 11.53143,9.454303 Z M 0.936124,6.6153 C 0.936124,5.940038 0.568226,5.392629 0.114425,5.39104 0.011285,5.792214 0,6.207907 0,6.632957 0,7.043208 0.0085,7.44474 0.110492,7.836161 0.568226,7.837961 0.936124,7.290563 0.936124,6.6153 Z m 11.356916,0 c 0,-0.675262 0.3679,-1.222671 0.8217,-1.22426 0.10314,0.401174 0.11443,0.816867 0.11443,1.241917 0,0.410251 -0.009,0.811783 -0.11049,1.203204 C 12.66094,7.837961 12.29304,7.290563 12.29304,6.6153 Z M 1.697024,9.455022 C 1.359395,8.870228 0.767082,8.580107 0.373281,8.805632 c 0.111264,0.398997 0.309338,0.76464 0.521863,1.132744 0.205128,0.355288 0.41329,0.698753 0.69729,0.986758 0.397314,-0.227302 0.442219,-0.885316 0.10459,-1.470112 z M 11.53241,3.776563 c -0.33764,-0.584795 -0.29273,-1.242813 0.0995,-1.471091 0.2899,0.295858 0.50753,0.650216 0.72005,1.018319 0.20513,0.355289 0.39849,0.707297 0.50591,1.097252 -0.3955,0.230431 -0.98781,-0.05969 -1.32544,-0.64448 z m -7.757287,7.756561 c -0.584795,-0.337632 -1.242812,-0.292728 -1.471092,0.09948 0.295858,0.289908 0.650218,0.507528 1.01832,0.720052 0.35529,0.205126 0.707299,0.398493 1.097259,0.505913 0.23043,-0.395506 -0.0597,-0.987815 -0.644487,-1.325448 z M 9.45358,1.697743 C 8.86879,1.360112 8.57867,0.767799 8.80419,0.373999 c 0.399,0.111267 0.76465,0.30934 1.13275,0.521865 0.35529,0.205125 0.69875,0.41329 0.98676,0.697291 -0.22731,0.397312 -0.88532,0.442218 -1.47012,0.104588 z m -2.839,10.595301 c -0.67526,0 -1.22267,0.367897 -1.22426,0.821701 0.40118,0.103139 0.81687,0.114423 1.24192,0.114423 0.41025,0 0.81178,-0.0085 1.2032,-0.110492 0.002,-0.457734 -0.5456,-0.82563 -1.22086,-0.825632 z m 0,-11.35692 C 5.93932,0.936125 5.39191,0.568228 5.39032,0.114424 5.7915,0.011285 6.20719,0 6.63224,0 c 0.41025,0 0.81178,0.0085 1.2032,0.110493 0.002,0.457734 -0.5456,0.82563 -1.22086,0.825631 z</Geometry>
+  <Geometry x:Key="XGeometry.FilledCircleCheckmark">M 6.060513,1.273544e-5 A 6.085485,6.085485 0 0 0 0,6.0854287 6.085485,6.085485 0 0 0 6.085411,12.171071 6.085485,6.085485 0 0 0 12.170829,6.0854287 6.085485,6.085485 0 0 0 6.085411,1.273544e-5 a 6.085485,6.085485 0 0 0 -0.0249,0 z M 8.276125,3.7061377 9.072762,4.5471527 5.111733,8.3533387 3.12001,6.3616157 3.806176,5.6756737 5.067363,6.8485697 Z</Geometry>
+
+  <Path x:Key="XPath.Checkmark" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Checkmark}" Fill="Black"/>
+  <Path x:Key="XPath.DashedCircle" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.DashedCircle}" Fill="Black"/>
+  <Path x:Key="XPath.DashedCircleCheckmark" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.DashedCircleCheckmark}" Fill="Black"/>
+
+  <!--General-->
+  <Geometry x:Key="XGeometry.Undo">M 21.745416 1.041087 8.8126958 14.609427 21.824766 27.34953 M 9.5532158 14.682509 c -1.17536 1.035548 32.5260902 -6.9283282 32.2392602 16.929962 -0.26194 21.788125 -29.01268 16.247896 -29.01268 16.247896</Geometry>
+  <Geometry x:Key="XGeometry.DoubleArrowUp">m 44.290955 47.858357 -18.75058 -18.75462 -19.83133 19.83566 m 0 -28.68479 18.75058 -18.7546103 19.83133 19.8356603</Geometry>
+  <Geometry x:Key="XGeometry.Lock">m 16.397266 21.002877 v -6.067274 c 0 -4.622615 3.680801 -8.3440872 8.25291 -8.3440872 h 0.699641 c 4.572116 0 8.252917 3.7214722 8.252917 8.3440872 v 6.067274 m -21.404222 0.446958 h 25.602976 c 0.900408 0 1.625288 0.744297 1.625288 1.668827 v 17.758952 c 0 0.924507 -0.72488 1.668804 -1.625288 1.668804 H 12.198512 c -0.900438 0 -1.625289 -0.744297 -1.625289 -1.668804 V 23.118662 c 0 -0.92453 0.724851 -1.668827 1.625289 -1.668827 z</Geometry>
+  <Geometry x:Key="XGeometry.TractOverlay">m 44.050706 13.702868 c 0 0 -0.59628 3.836687 -2.38513 7.416819 -1.78885 3.580132 -9.04582 11.195193 -11.12651 14.98522 -2.08064 3.790041 -5.49346 13.492537 -5.49346 13.492537 M 30.957766 0.22199885 C 31.979756 4.9460459 35.492356 19.252766 24.056016 49.515817 M 21.823086 0.56020185 c 0 0 -0.39909 2.78055405 1.47171 7.37013905 5.7113 14.0112471 5.96126 24.8995111 6.52113 41.8770181 M 9.8465757 11.393854 C 21.648606 15.151638 28.946076 25.243906 23.979896 49.352558 M 5.0128357 21.096364 c 0 0 11.4944303 -4.489745 16.4042903 3.778378 4.90987 8.268103 1.49706 23.731477 1.49706 23.731477</Geometry>
+  <Geometry x:Key="XGeometry.Sonicate">m 50.000005 24.17535 h -18.81106 m -12.73396 0 H -5e-6 M 24.999985 1.03673 v 47.92654</Geometry>
+  <Geometry x:Key="XGeometry.Target">M 50 24.999985 H 36.146234 m -22.480181 0 H 1.0000001e-8 M 25.000026 1.5e-5 v 13.85374 m 0 22.48022 v 13.66601 M 43.552951 25.000005 A 18.552923 18.552923 0 0 1 25.000026 43.552925 18.552923 18.552923 0 0 1 6.4471 25.000005 18.552923 18.552923 0 0 1 25.000026 6.447075 18.552923 18.552923 0 0 1 43.552951 25.000005 Z</Geometry>
+  <Geometry x:Key="XGeometry.FilledCircleCheckmark1">M 25 0 A 25.000034 25.000034 0 0 0 0 25 25.000034 25.000034 0 0 0 25 50 25.000034 25.000034 0 0 0 50 25 25.000034 25.000034 0 0 0 25 0 Z m 9.55218 15.16511 3.13158 3.27388 -16.48164 16.06793 -8.3393 -8.09616 3.21076 -3.30123 4.92029 4.64318 z</Geometry>
+  <Geometry x:Key="XGeometry.Checkmark1">m 15.862869 26.283325 5.918969 6.234946 12.805724 -14.010308</Geometry>
+  <Geometry x:Key="XGeometry.ExclamationMark">M 21.60075 11.151303 22.402866 30.8243 h 5.450531 l 0.543685 -19.672997 z m 3.399662 22.854784 a 3.6607405 3.2226099 0 0 0 -3.661084 3.223379 3.6607405 3.2226099 0 0 0 3.661084 3.222389 3.6607405 3.2226099 0 0 0 3.66007 -3.222389 3.6607405 3.2226099 0 0 0 -3.66007 -3.223379 z</Geometry>
+
+  <Canvas x:Key="XCanvas.Undo" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Undo}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Redo" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Undo}">
+      <Path.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform ScaleX="-1"/>
+          <TranslateTransform X="{StaticResource XDouble.IconCanvasSize}"/>
+        </TransformGroup>
+      </Path.RenderTransform>
+    </Path>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.DoubleArrowUp" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.DoubleArrowUp}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.DoubleArrowDown" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.DoubleArrowUp}">
+      <Path.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform ScaleY="-1"/>
+          <TranslateTransform Y="{StaticResource XDouble.IconCanvasSize}"/>
+        </TransformGroup>
+      </Path.RenderTransform>
+    </Path>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Lock" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Lock}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Stop" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Ellipse
+      Style="{StaticResource XStyle.Shape.Icon.LineAlpha}"
+      Width="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
+      Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ExclamationMark}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.ActionRequired" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Ellipse
+      Style="{StaticResource XStyle.Shape.Icon.LineAlpha}"
+      StrokeDashArray="3,2"
+      StrokeDashCap="Round"
+      Width="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
+      Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Checkmark1}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Done" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.FilledCircleCheckmark1}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Target" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Target}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Sonicate" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Sonicate}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.TractOverlay" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.TractOverlay}"/>
+  </Canvas>
+
+  <Geometry x:Key="XGeometry.TransducerLocationAlpha">m 36.831885 20.074073 c 6.67519 0 11.971207 5.42364 11.971207 11.937093 0 6.513453 -5.411346 11.793647 -12.086584 11.793647 -6.67519 0 -11.625219 -5.3224 -11.625219 -11.835853 M 21.34287 18.931536 a 4.4982194 4.3891983 0 0 1 -4.498224 4.389203 4.4982194 4.3891983 0 0 1 -4.498224 -4.389203 4.4982194 4.3891983 0 0 1 4.498224 -4.389157 4.4982194 4.3891983 0 0 1 4.498224 4.389157 z M 13.161414 32.197915 C 6.372253 31.155384 1.1969078 25.716562 1.1969078 19.163784 c 0 -6.467131 5.0408957 -11.8491599 11.6989812 -12.9909645</Geometry>
+  <Geometry x:Key="XGeometry.TransducerLocationBeta">m 18.238207 31.550969 h 31.4587 m -3.42169 -9.377933 H 27.436493 c 0 0 0.355642 -3.73933 3.392917 -5.545732 3.037228 -1.806401 15.147806 -0.96228 15.147806 -0.96228</Geometry>
+  <Geometry x:Key="XGeometry.TransducerLocationArrowHead">m 15.854575 34.471556 9.592309 -9.724041 9.525108 9.724041 z</Geometry>
+
+  <Canvas x:Key="XCanvas.TransducerLocation" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.TransducerLocationBeta}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.TransducerLocationAlpha}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.TransducerLocationArrowHead}"/>
+  </Canvas>
+
+  <!--NPR-->
+  <Geometry x:Key="XGeometry.Npr.SmallX">M 17.806984 25.899632 2.9600417 40.746597 m 0 -14.846965 14.8469423 14.846965</Geometry>
+  <Geometry x:Key="XGeometry.Npr.BrainOutlineShort">M 34.46305 17.414939 C 34.030322 13.510942 33.15315 9.9311015 29.404761 7.4726124 26.109158 5.3111016 20.728567 7.146011 20.728567 7.146011 c 0 0 -5.360265 -2.1414567 -8.364007 0.4101429 C 9.3608453 10.107734 8.5274147 13.919118 7.8439824 17.921096 7.4907085 19.989764 6.638467 22.31597 6.3957641 25.121249 5.9160225 30.666314 10.664569 37.767589 12.259033 38.054483</Geometry>
+  <Geometry x:Key="XGeometry.Npr.AgainArrows">m 18.112066 42.419467 c 0.566871 -1.812391 2.498484 -6.45745 2.498484 -6.45745 l 6.801842 2.067446 M 43.417915 24.390158 c -0.320741 0.792095 -2.565603 6.705819 -2.565603 6.705819 l -6.742172 -2.11443 m 6.322385 7.819932 c -1.233083 4.931647 -5.127951 8.533814 -9.741954 8.533814 -4.745376 0 -8.901607 -4.253232 -10.012297 -9.401256 m 0.248529 -5.722711 c 1.208388 -4.977008 5.122194 -8.622341 9.763768 -8.622341 4.701079 0 8.879382 4.242861 10.032667 9.317869</Geometry>
+  <Geometry x:Key="XGeometry.Npr.ArrowTail">m 28.80602 28.787813 c 1.802073 -1.682791 4.513319 -2.920086 7.173445 -2.920086 5.570018 0 10.085426 4.515407 10.085406 10.085422 0 5.570015 -4.515388 10.085403 -10.085406 10.085403 -2.720914 0 -5.190175 -1.077485 -7.004358 -2.829056</Geometry>
+  <Geometry x:Key="XGeometry.Npr.BrainOutline">M 35.821607 21.127428 C 34.431327 16.474631 34.372931 10.682077 29.439108 7.446101 26.15519 5.292273 20.793681 7.120657 20.793681 7.120657 c 0 0 -5.341259 -2.133863 -8.334351 0.408689 -2.993065 2.542533 -4.321465 6.507616 -5.002474 10.495405 -0.352021 2.061333 -2.491098 7.721083 -2.572704 10.525665 -0.08167 2.80698 -0.155718 9.123936 5.708709 13.930815 4.828956 3.958118 10.223549 4.010493 10.223549 4.010493</Geometry>
+  <Geometry x:Key="XGeometry.Npr.Manual">M 17.453706 11.386466 1.687138 43.682308 c 0 0 31.688449 -0.179215 32.357294 0 0.668849 0.179214 -16.368563 -11.14584 -16.368563 -11.14584 z</Geometry>
+  <Geometry x:Key="XGeometry.Npr.Pencil">m 35.417688 10.111411 6.123846 5.552267 m 0.164478 -11.9707667 5.882705 5.1486988 -18.377473 20.9974139 -5.47762 0.446582 -0.405082 -5.595259 z</Geometry>
+  <Geometry x:Key="XGeometry.Npr.LargeX">M 43.286122 30.120588 26.796582 46.61014 m 0 -16.489552 16.48954 16.489552</Geometry>
+  <Geometry x:Key="XGeometry.Npr.Spherical">m 33.642181 39.202771 c -2.933173 4.689605 -8.143741 7.808838 -14.082847 7.808838 -9.167117 0 -16.5985334 -7.431416 -16.5985334 -16.598533 0 -9.167118 7.4314164 -16.598537 16.5985334 -16.598537 0.900306 0 1.783868 0.07169 2.645295 0.20965</Geometry>
+  <Geometry x:Key="XGeometry.Npr.ArrowHead">M 24.925798 38.331705 H 36.629069 L 24.925798 50 Z</Geometry>
+  <Geometry x:Key="XGeometry.Npr.Folds">m 28.042543 10.716875 c 3.647214 1.683889 7.993867 6.939387 10.400636 4.804195 2.406747 -2.135191 -1.495629 -8.4866383 -6.283364 -11.8751018 -8.054282 -5.435836 -17.185868 -4.2507685 -23.3216795 0 C 4.0504106 7.0344317 0.71533977 14.925375 3.1220948 17.060567 5.528847 19.195778 10.279491 13.329115 13.651646 11.428599 18.74163 8.1917858 24.051009 8.8939212 28.042543 10.716875 Z</Geometry>
+  <Geometry x:Key="XGeometry.Npr.Sinuses">m 17.510657 10.618913 c -1.120949 -0.01509 -2.512751 0.344912 -3.29543 1.240098 -1.094466 1.251793 -1.492967 3.93971 -0.226727 4.581858 0.89685 0.454808 5.657204 -3.907595 5.232469 -5.180222 -0.130391 -0.390694 -0.838463 -0.630015 -1.710312 -0.641734 z m 7.142891 0 c -0.871849 0.01171 -1.57992 0.25104 -1.71031 0.641734 -0.424737 1.272627 4.335619 5.63503 5.232467 5.180222 1.26624 -0.642148 0.86774 -3.330065 -0.226726 -4.581858 -0.782679 -0.895186 -2.174481 -1.255174 -3.295431 -1.240098 z</Geometry>
+  <Geometry x:Key="XGeometry.Npr.Calcifications">m 14.506667 21.961757 c -1.959826 0 -3.537594 1.382841 -3.537594 3.100333 0 1.717507 1.577768 3.100327 3.537594 3.100327 h 2.929569 c 1.959828 0 3.537593 -1.38282 3.537593 -3.100327 0 -1.717492 -1.577765 -3.100333 -3.537593 -3.100333 z m -0.505372 8.030657 c -1.679851 0 -3.032222 1.352381 -3.032222 3.032223 v 2.235668 c 0 1.679846 1.352371 3.032223 3.032222 3.032223 h 0.03553 c 1.679852 0 3.032223 -1.352377 3.032223 -3.032223 v -2.235668 c 0 -1.679842 -1.352371 -3.032223 -3.032223 -3.032223 z</Geometry>
+
+  <Canvas x:Key="XCanvas.Nrp.Manual" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.Pencil}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Npr.Manual}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.Spherical" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.Pencil}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Npr.Spherical}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.RemoveManualMarkings" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.Pencil}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.SmallX}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.ResetSinuses" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.ArrowTail}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.ArrowHead}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Sinuses}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.RemoveSinuses" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LargeX}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Sinuses}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.ResetCalcifications" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.ArrowTail}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.ArrowHead}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Calcifications}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.RemoveCalcifications" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LargeX}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Calcifications}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.ResetFolds" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.ArrowTail}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.ArrowHead}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Folds}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.RemoveFolds" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LargeX}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Folds}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.ReacquireFolds" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.AgainArrows}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutlineShort}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Folds}"/>
+  </Canvas>
+
+  <!--Registration-->
+  <Geometry x:Key="XGeometry.Registration.Brain">m 12.337292 40.11466 c 0 0 1.054252 -5.344721 4.557247 -6.647876 3.502995 -1.30315 5.25783 -0.726642 6.312082 -1.603415 1.054202 -0.876774 0.74058 -2.324054 2.288603 -2.960614 1.547972 -0.636564 4.176896 0.510477 5.925072 -0.858758 1.748144 -1.36921 2.075396 -2.179589 2.255246 -3.723291 0.123057 -1.056738 -0.964601 -2.360264 -1.573064 -3.301272 -0.564972 -0.873733 -0.161979 -1.74074 -1.222658 -2.848157 -0.924552 -0.965212 -1.868269 -0.28225 -2.849118 -0.864767 -0.980831 -0.58251 -1.20101 -1.231082 -2.041725 -1.807595 -0.840699 -0.576509 -2.035101 0.480424 -2.815762 0.01802 -0.780677 -0.46241 -0.56714 -1.08696 -2.068408 -1.609423 -1.5013 -0.522462 -2.628955 0.234208 -3.729864 0.162144 -1.100958 -0.07206 -0.820708 -0.630555 -2.0484 -0.72664 -1.227725 -0.09608 -1.514666 1.363204 -2.722367 1.417251 -1.207719 0.05404 -1.991907 -0.820749 -3.3828687 0 -0.4317443 0.254754 -1.0108593 1.484791 -1.6461865 1.784775 -0.8473404 0.400092 -1.6354211 0.08195 -2.090369 0.461209 -1.4478869 1.207065 -0.6672592 2.22196 -1.5546636 2.972626 -0.887421 0.75066 -1.7014381 0.990872 -2.1818423 2.378098 -0.2707924 0.781959 0.2866095 1.645665 0.2721838 2.630109 -0.011593 0.761996 -0.651111 1.64207 -0.4790294 2.324267 0.3757473 1.489675 1.5145995 0.954845 2.7890301 2.486197 0.8635217 1.037603 0.7339885 3.22485 2.0284263 4.239748 1.2944212 1.014897 5.5380793 1.999767 5.5380793 1.999767 l -0.480455 4.029556</Geometry>
+  <Geometry x:Key="XGeometry.Registration.BrainTrimmed">m 12.244387 39.977896 c 0.243723 -2.529284 1.59861 -5.024612 4.486361 -6.725798 0.562371 -0.331308 2.149963 -1.088455 3.341142 -0.718592 M 31.297677 19.453447 c 0.01149 -0.563717 -0.588463 -1.28116 -0.996321 -1.583323 -1.370847 -1.015631 -1.767934 -0.08276 -2.740364 -0.6603 -0.972414 -0.577511 -0.948589 -1.064876 -1.782088 -1.636442 -0.833484 -0.571551 -2.017635 0.476313 -2.791595 0.0179 -0.773977 -0.458432 -0.562273 -1.077617 -2.050655 -1.595605 -1.488415 -0.517971 -2.606393 0.232197 -3.697853 0.160753 -1.091508 -0.07143 -0.813664 -0.625146 -2.030819 -0.720398 -1.217188 -0.09524 -1.501666 1.351504 -2.699002 1.405083 -1.197353 0.05353 -1.974811 -0.813698 -3.3538349 0 -0.4280388 0.252573 -1.0021834 1.472044 -1.6320579 1.769461 -0.8400679 0.39666 -1.6213847 0.08128 -2.072428 0.45725 -1.4354602 1.196695 -0.6615324 2.202885 -1.5413205 2.947109 -0.8798045 0.744224 -1.6868352 0.982381 -2.1631162 2.357694 -0.2684683 0.775242 0.2841496 1.631533 0.2698477 2.607543 -0.011494 0.755455 -0.6455228 1.627969 -0.4749181 2.304312 0.3725225 1.476905 1.5016003 0.946667 2.7650929 2.464885 0.8561103 1.028685 0.7276889 3.197171 2.011017 4.20336 1.2833116 1.006174 5.490547 1.982594 5.490547 1.982594 l -0.47633 3.994974</Geometry>
+  <Geometry x:Key="XGeometry.Registration.BrainSecondary">m 12.791014 10.460465 c 0 0 0.367003 -1.1590233 0.800702 -1.6394489 0.433698 -0.480424 1.701438 -0.3963491 2.909139 -1.0449229 1.207701 -0.648572 1.453584 -1.8061842 2.348657 -2.2219625 1.034228 -0.480424 1.581379 0.5644988 2.56221 0.3603179 0.980849 -0.2041791 1.487952 -1.4532827 2.27527 -1.4472773 0.787336 0.00597 1.861611 0.9848698 2.715677 1.0629392 0.854064 0.078075 1.654715 -0.9548442 2.769039 -0.7686797 1.114274 0.1861644 2.115146 1.8736555 2.975885 2.2940265 0.860723 0.4203709 1.481227 -1.0329119 2.261904 -0.6305573 0.780661 0.4023562 0.988683 1.8143676 2.12182 2.2940264 1.218997 0.5159981 1.970194 -0.3124216 2.795722 0.2762482 1.381174 0.9848881 1.080968 2.8164884 1.654749 3.8193754 0.573848 1.002884 2.081806 2.522227 1.067569 4.558023 -1.014188 2.0358 -5.885026 2.984639 -5.885026 2.984639</Geometry>
+  <Geometry x:Key="XGeometry.Registration.BrainSecondaryTrimmed">m 12.823769 10.45869 c 0 0 0.363853 -1.1490779 0.793829 -1.6253752 0.429977 -0.4763138 1.686835 -0.3929491 2.884172 -1.0359596 1.197336 -0.6430104 1.441108 -1.7906758 2.328499 -2.2028856 1.025352 -0.4763138 1.567806 0.5596457 2.54022 0.3572189 0.97243 -0.2024268 1.47518 -1.4408131 2.255742 -1.4348526 0.780578 0.00657 1.845633 0.9764203 2.692368 1.0538082 0.846734 0.077339 1.640514 -0.9466507 2.745274 -0.7620725 1.10471 0.1845617 2.096992 1.8575712 2.950344 2.2743294 0.853335 0.4167581 1.468514 -1.0240386 2.242491 -0.6251455 0.773961 0.3989096 0.980197 1.7988038 2.10361 2.2743459 1.208534 0.5115677 1.953284 -0.3097485 2.771726 0.2738705 1.36932 0.9764368 1.071641 2.7923501 1.640547 3.7866031 0.476183 0.832186 1.373885 1.136762 1.365642 3.572698</Geometry>
+  <Geometry x:Key="XGeometry.Registration.HeadOuter">M 18.823524 50 V 38.058497 h -5.18632 C 11.851578 37.585725 10.132926 36.912056 9.2951594 33.595511 V 26.720097 L 6.6416991 26.59947 C 4.6586032 26.218723 3.8642176 24.8623 4.4706766 23.945804 l 5.4275387 -8.202249 c 0 0 -0.5659022 -6.5714018 0 -7.3578973 C 12.722692 4.460215 17.314042 1.685827 24.670262 1.5102436 c 7.16296 -0.1709765 12.874187 1.5231103 17.552002 8.4434913 4.294032 6.3526251 5.208545 14.0757781 -1.326731 21.1087241 -2.75587 2.965737 -4.945101 4.583609 -4.945101 4.583609 V 50</Geometry>
+  <Geometry x:Key="XGeometry.Registration.HeadInner">m 30.161057 25.0314 3.276444 4.074188 m -4.723793 11.700684 v 3.894131 m 0 0.641143 v 3.926453 M 16.022519 20.930275 17.10803 18.759093 c 0 0 -0.63914 -6.167918 0 -6.999545 1.786311 -2.3242898 4.97201 -3.4945071 9.675892 -3.6151275 4.703865 -0.1206274 8.268171 3.7166995 10.081058 7.3309645 2.018864 4.024875 1.803011 9.826009 -1.326747 12.062128 0 0 -5.006709 4.121644 -6.703906 5.575511 -0.303423 0.259921 0 4.824852 0 4.824852 M 17.014339 33.474889 v -4.583608 c 0.274285 -0.956331 0.479701 -1.958577 1.688567 -2.291806 h 3.015297</Geometry>
+  <Geometry x:Key="XGeometry.Registration.AgainArrows">m 21.298191 40.059159 c 0.559153 -1.66347 2.464474 -5.92683 2.464474 -5.92683 l 6.709279 1.897554 M 46.673099 25.52589 c -0.316366 0.726999 -2.53068 6.154789 -2.53068 6.154789 L 37.49199 29.73999 m 5.894186 5.810805 c -1.216301 4.526409 -5.058158 7.832577 -9.609378 7.832577 -4.680791 0 -8.851755 -4.55173 -9.94732 -9.276724 m 0.401964 -3.982166 c 1.19195 -4.568051 5.052476 -7.91384 9.630905 -7.91384 4.637097 0 9.015168 4.638461 10.152751 9.296461</Geometry>
+  <Geometry x:Key="XGeometry.Registration.Clear">M 48.693715 34.003202 A 11.56085 11.56085 0 0 1 37.13286 45.564047 11.56085 11.56085 0 0 1 25.572022 34.003202 11.56085 11.56085 0 0 1 37.13286 22.442352 11.56085 11.56085 0 0 1 48.693715 34.003202 Z m -7.208388 -4.352475 -8.70495 8.704944 m 0 -8.704944 8.70495 8.704944</Geometry>
+  <Geometry x:Key="XGeometry.Registration.ClearAll">M 48.499461 25.000003 A 23.499461 23.499461 0 0 1 24.999996 48.499458 23.499461 23.499461 0 0 1 1.5005387 25.000003 23.499461 23.499461 0 0 1 24.999996 1.5005418 23.499461 23.499461 0 0 1 48.499461 25.000003 Z M 32.664827 17.448252 17.712199 32.400877 m 0 -14.952625 14.952628 14.952625</Geometry>
+  <Geometry x:Key="XGeometry.Registration.Play">M 23.830221 23.714238 V 41.438999 L 35.220455 32.435694 Z</Geometry>
+
+  <Canvas x:Key="XCanvas.Registration.CtOverlay" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.HeadInner}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.HeadOuter}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Registration.ClearAll" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.ClearAll}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Registration.AutoRegister" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.BrainSecondary}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.Brain}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAreaAlpha}" Data="{StaticResource XGeometry.Registration.Play}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Registration.Copy" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.BrainSecondary}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.Brain}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Registration.Clear" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.BrainSecondaryTrimmed}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.BrainTrimmed}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.Clear}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Registration.ReferenceSeries" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.BrainSecondaryTrimmed}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.BrainTrimmed}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.AgainArrows}"/>
+  </Canvas>
+
+  <!--Calibration-->
+  <Geometry x:Key="XGeometry.Calibration.BrainOutline">M 36.322258 18.804497 C 35.873734 14.757161 34.964519 11.045855 31.079202 8.497102 27.663212 6.256218 22.086077 8.1585 22.086077 8.1585 c 0 0 -5.556072 -2.220096 -8.669537 0.425186 -3.113417 2.645298 -3.9773 6.596626 -4.6857 10.745554 -0.366187 2.144614 -1.24954 4.556256 -1.50112 7.464544 -0.497272 5.748664 4.424734 13.110705 6.07745 13.408124</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.Folds">m 29.667233 11.860479 c 3.780437 1.745718 8.285859 7.194213 10.780549 4.980595 2.49466 -2.213569 -1.55026 -8.798246 -6.512892 -12.311138 -8.348487 -5.635433 -17.81364 -4.406855 -24.173591 0 C 4.798695 8.042828 1.341813 16.22353 3.83647 18.437115 6.331143 20.650733 11.255312 14.568644 14.750661 12.598335 20.026574 9.242674 25.52988 9.970601 29.667233 11.860479 Z</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.ScanArrows">m 19.374014 44.727171 c 0.587563 -1.878923 2.589745 -6.694556 2.589745 -6.694556 l 7.050296 2.143362 M 45.604232 26.035841 c -0.33244 0.821184 -2.65932 6.952059 -2.65932 6.952059 l -6.988451 -2.192082 m 6.553331 8.107076 c -1.27812 5.112742 -5.315258 8.847196 -10.097803 8.847196 -4.918703 0 -9.22678 -4.409428 -10.378027 -9.746482 m 0.257598 -5.932835 c 1.252517 -5.15977 5.30929 -8.938972 10.120429 -8.938972 4.872803 0 9.203733 4.398651 10.399143 9.660029</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.HeadLarge">M 25.538783 45.978992 V 36.075163 H 21.382741 C 19.951814 35.679072 18.574602 35.114651 17.903237 32.335986 V 26.575567 L 15.776888 26.474332 C 14.187752 26.155314 13.551156 25.018887 14.03716 24.25103 l 4.349336 -6.872062 c 0 0 -0.45349 -5.505697 0 -6.164636 2.263389 -3.2888158 5.942678 -5.6132699 11.837591 -5.7603871 5.74002 -0.1431693 10.316689 1.2761073 14.065259 7.0741711 3.441023 5.322393 4.173878 11.793041 -1.063174 17.685426 -2.208389 2.484758 -3.962748 3.840264 -3.962748 3.840264 v 12.026093</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.HeadLargeSecondary">M 14.622708 45.978992 V 36.075163 H 10.466666 C 9.0357395 35.679072 7.6585275 35.114651 6.9871626 32.335986 V 26.575567 L 4.8608142 26.474332 C 3.2716782 26.155314 2.6350812 25.018887 3.1210861 24.25103 l 4.3493361 -6.872062 c 0 0 -0.4534902 -5.505697 0 -6.164636 2.2633889 -3.2888158 5.9426768 -5.6133518 11.8375908 -5.7603871 2.1896 -0.054549 4.209931 0.1181065 6.079574 0.6745668</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.HeadSmall">M 9.4651145 46.919883 H 3.0000944 v -6.627024 m 37.5349786 6.627024 h 6.46502 V 40.292859 M 9.4651145 3.0803024 H 3.0000944 V 9.7073263 M 40.535073 3.0803024 h 6.46502 V 9.7073263 M 25.206993 41.294022 V 33.708455 H 21.958164 C 20.839582 33.405088 19.763002 32.972786 19.23817 30.844536 v -4.412029 l -1.66219 -0.07757 C 16.333726 26.1106 15.836089 25.240191 16.216008 24.652063 l 3.399947 -5.263468 c 0 0 -0.354509 -4.21694 0 -4.721647 1.76932 -2.518974 4.645476 -4.299336 9.253632 -4.411996 4.487031 -0.109651 8.064695 0.977396 10.995012 5.418269 2.689903 4.076527 3.262792 9.032559 -0.831119 13.545672 -1.726326 1.903144 -3.097729 2.941336 -3.097729 2.941336 v 9.211061</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.HeadSmallSecondary">M 16.681651 41.294022 V 33.708455 H 13.388719 C 12.254951 33.405088 11.163748 32.972786 10.631835 30.844536 V 26.432507 L 8.9470645 26.354941 C 7.6879697 26.1106 7.1835675 25.240191 7.5686475 24.652063 l 3.4460675 -5.263468 c 0 0 -0.359307 -4.21694 0 -4.721647 1.79334 -2.518974 4.708537 -4.299385 9.379191 -4.411996 1.734879 -0.04184 3.335629 0.09047 4.816991 0.516648</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.LoadPrePlan">M 11.73018 23.743798 H 47.181482 M 2.9452917 6.9403827 H 21.135969 l 2.519654 4.2255463 H 47.054892 V 43.059798 H 2.9452917 Z</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.Tg">m 44.032741 28.854217 -0.0737 -5.273572 -5.29138 -0.08285 -0.126186 -4.120568 11.283956 -0.01846 0.05271 11.810479 c -1.2706 1.008398 -4.059864 2.068362 -5.591079 2.590785 -1.531193 0.510274 -3.165568 0.76541 -4.903127 0.76541 -3.800902 0 -7.617884 -0.972296 -9.768107 -3.450767 -2.139346 -2.490618 -3.432481 -6.220127 -3.432481 -10.654642 0 -4.446669 1.187943 -8.571985 3.327311 -11.0504518 2.150222 -2.4906197 4.547324 -4.0191008 9.904835 -4.0673035 6.037043 -0.054314 10.151893 4.3846973 10.584636 9.1692673 l -5.585027 0.116576 c -0.65039 -2.2637 -1.952615 -4.067978 -5.343265 -4.5945771 -5.323831 -0.8268404 -7.185879 4.7278581 -7.165421 10.0582981 0 3.669108 0.659744 6.396267 2.14752 8.25512 3.935933 2.826764 6.010198 2.302446 9.978872 0.547202 z M 1.2397414e-4 5.9831419 H 23.686811 v 4.2486061 h -9.46651 V 33.997001 H 9.2299828 V 10.231748 H 1.2397414e-4 Z</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.TgLine">M 2.2610336 43.198217 H 48.973657</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.Frequency">M 0.10596404 34.272548 C 9.130992 34.000783 7.736721 4.1542668 17.044352 3.9583778 26.351984 3.7624898 24.899536 34.598192 34.056826 34.444418 43.214112 34.290614 41.795572 3.8407778 49.661322 3.8136428 M 9.203182e-5 46.186529 H 50.000092</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.3dCube">M 24.634459 46.676531 24.995848 29.549424 M 10.260425 20.817563 c 0.524467 0.227053 14.673886 8.438651 14.673886 8.438651 l 15.029147 -8.396582 m 0.140493 -0.174298 0.01094 17.481979 -15.10388 8.666976 L 9.896233 38.019266 9.885293 20.537309 24.989195 11.870396 Z</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.3dArrows">M 10.590093 39.991546 6.5963895 42.237927 8.3352092 45.156117 9.239682e-5 43.540981 2.7240543 35.739195 l 1.7388197 2.91819 4.0046446 -2.22804 z m 28.819999 0.115774 3.993703 2.246381 -1.73882 2.91819 8.335117 -1.615135 -2.723962 -7.801787 -1.738819 2.91819 -4.004645 -2.22804 z M 27.122655 12.093869 27.133597 7.6194484 h 3.477639 L 25.000103 1.4327978 19.388949 7.6194484 h 3.477639 l 0.01094 4.4744206 z</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.Save">M 24.99999 0.7499995 V 30.62381 M 14.310842 20.115235 24.99999 31.031814 35.689159 20.115235 m 8.924507 7.931185 v 16.351363 c 0 1.857129 -1.441792 3.352217 -3.232701 3.352217 H 8.6190355 c -1.790909 0 -3.232702 -1.495088 -3.232702 -3.352217 V 28.613645</Geometry>
+  <Geometry x:Key="XGeometry.Calibration.Transducer">M 47.190653 28.3967 H 28.088506 c -0.07132 0.02034 -0.136742 -4.117305 3.603072 -5.818386 1.976628 -0.89909 3.853586 -0.970761 3.853586 -0.970761 H 47.190653 M 19.497176 37.160262 H 49.25009 m -35.096596 0.0066 C 7.1822258 36.495452 2.2500938 31.290732 2.2500938 24.969658 c 0 -6.171397 5.170832 -11.278673 11.9034002 -12.141919 m 7.930179 12.129763 a 4.2309517 3.8829745 0 0 1 -4.230958 3.882965 4.2309517 3.8829745 0 0 1 -4.230942 -3.882965 4.2309517 3.8829745 0 0 1 4.230942 -3.88298 4.2309517 3.8829745 0 0 1 4.230958 3.88298 z</Geometry>
+
+  <Canvas x:Key="XCanvas.Calibration.LoadPrePlan" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.LoadPrePlan}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.Save" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.Save}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.LocateTransducer" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.Transducer}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.FindCentralFrequency" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.Frequency}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.3dLocalizer" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.3dCube}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Calibration.3dArrows}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.CalibrateTg" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.TgLine}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Calibration.Tg}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.MembraneFoldScan" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.BrainOutline}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Calibration.Folds}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Calibration.ScanArrows}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.ScanMdReference" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Calibration.HeadSmallSecondary}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.HeadSmall}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Calibration.MovementEvaluation" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Calibration.HeadLargeSecondary}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.HeadLarge}"/>
+  </Canvas>
+</ResourceDictionary>

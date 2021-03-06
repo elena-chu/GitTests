@@ -6,7 +6,7 @@
 
   <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
-    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="TextTrimming" Value="CharacterEllipsis"/>

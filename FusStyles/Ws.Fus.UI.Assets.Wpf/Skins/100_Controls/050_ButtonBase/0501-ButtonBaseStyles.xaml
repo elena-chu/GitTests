@@ -3,6 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
+  <Border x:Key="JustABorder" Width="30" Height="30" Background="Green"/>
 
   <ControlTemplate x:Key="XControlTemplate.ButtonBase" TargetType="{x:Type ButtonBase}">
     <Border
@@ -24,10 +25,17 @@
             Opacity="0"/>
           <ContentPresenter
             x:Name="ContentPresenter"
-            extensions:IndependentSize.Margin="1,0,1,2"
+            extensions:IndependentSize.Margin="1,0,1,1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            IsHitTestVisible="False"/>
+            IsHitTestVisible="False">
+            <ContentPresenter.Resources>
+              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="extensions:IndependentSize.FontSize" Value="{Binding Path=(extensions:IndependentSize.FontSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+                <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+              </Style>
+            </ContentPresenter.Resources>
+          </ContentPresenter>
         </Grid>
       </Border>
     </Border>
@@ -57,8 +65,8 @@
     <Setter Property="Padding" Value="0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
-    <Setter Property="Foreground" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToForegroundConverter}}"/>
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+    <Setter Property="Foreground" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToForegroundConverter}}"/>
     <Style.Triggers>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -96,33 +104,36 @@
             Style="{StaticResource XStyle.Border.Pressed}"
             extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
             Opacity="0"/>
-          <Border
-            x:Name="IconBorder"
+          <Viewbox
+            x:Name="IconViewbox"
             Grid.Column="0"
-            extensions:IndependentSize.Margin="1,0"
-            Padding="0"
-            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-            <Path
-              extensions:IndependentSize.Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-              extensions:IndependentSize.Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-              Data="{Binding Path=(extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}"
-              Fill="{TemplateBinding Foreground}"
-              Stretch="Uniform"/>
-          </Border>
+            extensions:IndependentSize.Margin="10,0,7,0"
+            Stretch="Uniform"
+            Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+            IsHitTestVisible="False">
+            <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+          </Viewbox>
           <ContentPresenter
             x:Name="ContentPresenter"
             Grid.Column="1"
             Grid.ColumnSpan="2"
-            extensions:IndependentSize.Margin="1,0,1,2"
+            extensions:IndependentSize.Margin="1,0,1,1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            IsHitTestVisible="False"/>
+            IsHitTestVisible="False">
+            <ContentPresenter.Resources>
+              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="extensions:IndependentSize.FontSize" Value="{Binding Path=(extensions:IndependentSize.FontSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+                <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+              </Style>
+            </ContentPresenter.Resources>
+          </ContentPresenter>
         </Grid>
       </Border>
     </Border>
     <ControlTemplate.Triggers>
       <Trigger Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right">
-        <Setter TargetName="IconBorder" Property="Grid.Column" Value="2"/>
+        <Setter TargetName="IconViewbox" Property="Grid.Column" Value="2"/>
         <Setter TargetName="ContentPresenter" Property="HorizontalAlignment" Value="Center"/>
       </Trigger>
       <Trigger Property="IsPressed" Value="True">
@@ -172,34 +183,19 @@
         <Border
           x:Name="PressedBorder"
           Height="{Binding ActualHeight, ElementName=BackgroundBorder}"
-          Width="{Binding ActualWidth, ElementName=HoverBorder}"
+          Width="{Binding ActualWidth, ElementName=BackgroundBorder}"
           HorizontalAlignment="{Binding HorizontalAlignment, ElementName=BackgroundBorder}"
           Style="{StaticResource XStyle.Border.Pressed}"
           extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
           Opacity="0"/>
       </Border>
       <Viewbox
-        x:Name="DualPathViewbox"
         Stretch="Uniform"
-        extensions:IndependentSize.Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        extensions:IndependentSize.Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        IsHitTestVisible="False"
-        Visibility="Visible">
-        <Canvas Width="50" Height="50">
-          <Path x:Name="AlphaPath" Fill="{StaticResource XBrush.Button.IconButton.Alpha}" Data="{Binding (extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}"/>
-          <Path x:Name="BetaPath" Fill="{StaticResource XBrush.Button.IconButton.Beta}" Data="{Binding (extensions:IconedButton.BetaGeometry), RelativeSource={RelativeSource TemplatedParent}}"/>
-        </Canvas>
+        Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+        Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+        IsHitTestVisible="False">
+        <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
       </Viewbox>
-      <Border
-        x:Name="SinglePathBorder"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        IsHitTestVisible="False"
-        extensions:IndependentSize.Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        extensions:IndependentSize.Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        Visibility="Collapsed">
-        <Path x:Name="AlphaPathSingle" Stretch="Uniform" Fill="{StaticResource ApplicationForgroundBrush}" Data="{Binding (extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}"/>
-      </Border>
       <ContentPresenter
         x:Name="ContentPresenter"
         Grid.Row="1"
@@ -212,20 +208,13 @@
             <Setter Property="MaxWidth" Value="{Binding ActualWidth, ElementName=MainGrid}"/>
             <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
             <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="extensions:IndependentSize.FontSize" Value="{Binding Path=(extensions:IndependentSize.FontSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+            <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
           </Style>
         </ContentPresenter.Resources>
       </ContentPresenter>
     </Grid>
     <ControlTemplate.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter TargetName="AlphaPath" Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
-        <Setter TargetName="BetaPath" Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
-        <Setter TargetName="AlphaPathSingle" Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
-      </Trigger>
-      <Trigger Property="extensions:IconedButton.BetaGeometry" Value="{x:Null}">
-        <Setter Property="Visibility" TargetName="DualPathViewbox" Value="Collapsed"/>
-        <Setter Property="Visibility" TargetName="SinglePathBorder" Value="Visible"/>
-      </Trigger>
       <Trigger Property="IsPressed" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard>
@@ -244,13 +233,12 @@
       </Trigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
-
+  
   <Style x:Key="XStyle.ButtonBase.IconWithTextUnderneath" TargetType="{x:Type ButtonBase}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.IconWithTextUnderneath}"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
-    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{x:Null}"/>
-    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{x:Null}"/>
-    <Setter Property="extensions:IconedButton.IconSize" Value="32"/>
+    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="28"/>
     <Setter Property="extensions:IndependentSize.MinHeight" Value="66"/>
     <Setter Property="extensions:IndependentSize.MaxHeight" Value="80"/>
     <Setter Property="extensions:IndependentSize.MaxWidth" Value="100"/>
@@ -262,9 +250,6 @@
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
-      </Trigger>
-      <Trigger Property="extensions:IconedButton.BetaGeometry" Value="{x:Null}">
-        <Setter Property="extensions:IconedButton.IconSize" Value="24"/>
       </Trigger>
     </Style.Triggers>
   </Style>
