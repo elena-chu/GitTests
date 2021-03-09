@@ -15,7 +15,8 @@ namespace Ws.Extensions.UI.Wpf.Converters
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool isStringWithContent = ConverterAssists.CheckValueValidity(value) && value is string && !string.IsNullOrEmpty(value as string);
-            ConverterAssists.GetInvert(parameter, out bool invert);
+            bool invert;
+            ConverterAssists.GetInvert(parameter, out invert);
             return invert ? !isStringWithContent : isStringWithContent;
         }
 
@@ -36,7 +37,9 @@ namespace Ws.Extensions.UI.Wpf.Converters
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool isStringWithContent = ConverterAssists.CheckValueValidity(value) && value is string && !string.IsNullOrEmpty(value as string);
-            ConverterAssists.GetInvertAndNegativeVisibility(parameter, out bool invert, out Visibility negativeVisibility);
+            bool invert;
+            Visibility negativeVisibility;
+            ConverterAssists.GetInvertAndNegativeVisibility(parameter, out invert, out negativeVisibility);
             return invert ? (isStringWithContent ? negativeVisibility : Visibility.Visible) :
                             (isStringWithContent ? Visibility.Visible : negativeVisibility);
         }
