@@ -1,18 +1,17 @@
-﻿<UserControl x:Class="WpfUI.Views.ApplicationView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfUI.Views"
-             xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True"
-             xmlns:const="clr-namespace:WpfUI"
-             xmlns:localView="clr-namespace:WpfUI.Views"
-             xmlns:extension="http://schemas.insightec.com/wpf/"
-             xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+﻿<UserControl
+  x:Class="WpfUI.Views.ApplicationView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:prism="http://prismlibrary.com/"
+  xmlns:extensions="http://schemas.insightec.com/wpf/"
+  xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:localView="clr-namespace:WpfUI.Views"
+  prism:ViewModelLocator.AutoWireViewModel="True"
+  mc:Ignorable="d" 
+  d:DesignHeight="300"
+  d:DesignWidth="300">
 
   <Grid>
     <Grid.RowDefinitions>
@@ -39,7 +38,7 @@
           <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Top_Pattern.png" />
         </Rectangle.Fill>
       </Rectangle>
-      <Rectangle Stretch="Fill" extension:IndependentSize.Margin="13,8">
+      <Rectangle Stretch="Fill" extensions:IndependentSize.Margin="13,8">
         <Rectangle.Fill>
           <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Insightec-Logo.png" Stretch="Uniform" />
         </Rectangle.Fill>
@@ -75,7 +74,7 @@
       <Rectangle Height="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Fill="{StaticResource BaseBorderBrush}" VerticalAlignment="top" />
     </Grid>
 
-    <extension:BusyIndicator Grid.RowSpan="2" IsBusy="{Binding IsBusy, FallbackValue=False}" />
+    <extensions:BusyIndicator Grid.RowSpan="2" IsBusy="{Binding IsBusy, FallbackValue=False}" />
     <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.FloatingScreenRegion}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 
   </Grid>

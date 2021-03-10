@@ -100,37 +100,37 @@
         <TextBlock FontSize="18" Margin="0,20,0,10" Text="Progress State Button Example" Foreground="YellowGreen" FontWeight="Bold"/>
         <TextBlock FontSize="15" Margin="0,0,0,10" Text="Click and Wait:" Foreground="YellowGreen"/>
         <extensions:ProgressStateButton
-        Margin="10"
-        CurrentProgressState="{Binding MyProgressState}"
-        CaptionRegular="Idle"
-        CaptionActive="Active..."
-        CaptionCompleted="Completed!"
-        IconRegular="{StaticResource XGeometry.DashedCircleCheckmark}"
-        IconActive="{StaticResource XGeometry.DashedCircleCheckmark}"
-        IconCompleted="{StaticResource XGeometry.FilledCircleCheckmark}"
-        Command="{Binding DoingSomethingCommand}"
-        Style="{StaticResource XStyle.ProgressStateButton.Primary}"/>
+          Margin="10"
+          CurrentProgressState="{Binding MyProgressState}"
+          CaptionRegular="Idle"
+          CaptionActive="Active..."
+          CaptionCompleted="Completed!"
+          IconRegular="{StaticResource XGeometry.DashedCircleCheckmark}"
+          IconActive="{StaticResource XGeometry.DashedCircleCheckmark}"
+          IconCompleted="{StaticResource XGeometry.FilledCircleCheckmark}"
+          Command="{Binding DoingSomethingCommand}"
+          Style="{StaticResource XStyle.ProgressStateButton.Primary}"/>
 
         <Button
-        Margin="10"
-        extensions:IconedButton.IconSize="24"
-        Content="Icon, Text Underneath"
-        Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Stop}"/>
+          Margin="10"
+          extensions:IconedButton.IconSize="24"
+          Content="Icon, Text Underneath"
+          Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Stop}"/>
         <Button
-        Margin="10"
-        Content="Icon, Text Underneath Disabled"
-        IsEnabled="False"
-        Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-        extensions:IndependentSize.MaxWidth="150"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetCalcifications}"/>
+          Margin="10"
+          Content="Icon, Text Underneath Disabled"
+          IsEnabled="False"
+          Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
+          extensions:IndependentSize.MaxWidth="150"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetCalcifications}"/>
 
         <ToggleButton
-        Margin="10"
-        Content="Toggle Icon, Text Underneath"
-        Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
-        extensions:IndependentSize.MaxWidth="150"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Manual}"/>
+          Margin="10"
+          Content="Toggle Icon, Text Underneath"
+          Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
+          extensions:IndependentSize.MaxWidth="150"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Manual}"/>
 
         <Border Height="30" Width="100">
           <TextBlock Text="This is very very very very very long text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>

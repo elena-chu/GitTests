@@ -28,20 +28,21 @@
 
     <Grid x:Name="MenuGrid" Background="{StaticResource ComplementaryBackgroundBrush}" ClipToBounds="True">
       <Grid.RowDefinitions>
-        <RowDefinition Height=".14*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height=".14*" />
-        <RowDefinition Height=".14*" />
+        <RowDefinition Height="0.125*" />
+        <RowDefinition Height="0.625*" />
+        <RowDefinition Height="0.125*" />
+        <RowDefinition Height="0.125*" />
       </Grid.RowDefinitions>
 
-      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource BaseBorderBrush}" />
-      
-      <StackPanel Grid.Row="0" Margin="10,3">
-        <Rectangle extensions:IndependentSize.Height="48" extensions:IndependentSize.Width="48"  Fill="{StaticResource IconBrush}" HorizontalAlignment="Left" />
-        <TextBlock FontSize="14" Foreground="{StaticResource ActiveBrush}" Margin="0,3,0,0" Text="{lex:LocTextUpper IDS_LBL_PLANNING}" HorizontalAlignment="Left" />
-      </StackPanel>
+      <RadioButton
+        GroupName="StagesRadioButtonGroup"
+        Content="{lex:LocTextUpper IDS_LBL_PLANNING}"
+        Style="{StaticResource XStyle.RadioButton.MainMenu}"
+        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Plan.Alpha}"
+        extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Plan.Beta}"
+        IsChecked="True"/>
      
-      <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"  />
+      <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>
       
       <Grid Height="Auto" Grid.Row="1">
         <Grid.Resources>
@@ -205,9 +206,21 @@
 
       </Grid>
 
-      <Button Grid.Row="2" Style="{StaticResource BigIconedButtonStyle1}" Content="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}" />
-      <Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"  />
-      <Button Grid.Row="3" Style="{StaticResource BigIconedButtonStyle1}" Content="{lex:LocTextUpper IDS_LBL_MENU_REPORT}" />
+      <RadioButton
+        GroupName="StagesRadioButtonGroup"
+        Grid.Row="2"
+        Content="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}"
+        Style="{StaticResource XStyle.RadioButton.MainMenu}"
+        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Surgical.Alpha}"
+        extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Surgical.Beta}"/>
+      <Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"/>
+      <RadioButton
+        GroupName="StagesRadioButtonGroup"
+        Grid.Row="3"
+        Content="{lex:LocTextUpper IDS_LBL_MENU_REPORT}"
+        Style="{StaticResource XStyle.RadioButton.MainMenu}"
+        extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Report.Alpha}"
+        extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Report.Beta}"/>
     </Grid>
 
     <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.PlanningScreensRegion}" />
