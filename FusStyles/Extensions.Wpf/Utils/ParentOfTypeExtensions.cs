@@ -119,5 +119,12 @@ namespace Ws.Extensions.UI.Wpf.Utils
             }
             return element.GetParents().OfType<T>().FirstOrDefault<T>();
         }
+
+        public static T ParentOfTypeOnCondition<T>(this DependencyObject element, Func<T,bool> condition) where T : DependencyObject
+        {
+            if (element == null)
+                return default(T);
+            return element.GetParents().OfType<T>().FirstOrDefault(x => condition(x));
+        }
     }
 }

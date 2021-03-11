@@ -11,7 +11,10 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
   <UserControl.Resources>
-    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}"/>
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+      <Setter Property="extensions:IndependentSize.Margin" Value="0,25,0,2"/>
+      <Setter Property="extensions:IndependentSize.FontSize" Value="14"/>
+    </Style>
   </UserControl.Resources>
   
   <Grid>
@@ -30,15 +33,15 @@
         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
       <StackPanel Orientation="Vertical">
-        <TextBlock Text="{lex:Loc IDS_LBL_USER_NAME}" Style="{StaticResource XStyle.TextBlock.Menu.Label}" />
+        <TextBlock Text="{lex:Loc IDS_LBL_USER_NAME}"/>
         <ComboBox />
       </StackPanel>
       <StackPanel Grid.Row="1" Orientation="Vertical">
-        <TextBlock Text="{lex:Loc IDS_LBL_TRTM_SELECT_PROFILE}" Style="{StaticResource XStyle.TextBlock.Menu.Label}" />
+        <TextBlock Text="{lex:Loc IDS_LBL_TRTM_SELECT_PROFILE}"/>
         <ComboBox />
       </StackPanel>
       <StackPanel Grid.Row="2" Orientation="Vertical">
-        <TextBlock Text="{lex:Loc IDS_LBL_BRAIN_SIDE}" Style="{StaticResource XStyle.TextBlock.Menu.Label}" />
+        <TextBlock Text="{lex:Loc IDS_LBL_BRAIN_SIDE}"/>
         <ComboBox SelectedValuePath="Tag">
           <ComboBoxItem Content="{lex:Loc IDS_LBL_LEFT}" Tag="True" />
           <ComboBoxItem Content="{lex:Loc IDS_LBL_RIGHT}" Tag="False" />
@@ -77,25 +80,13 @@
       Grid.Column="1"
       Background="{StaticResource ApplicationBackgroundBrush}"
       Visibility="Collapsed">
-      <Border.Resources>
-        <Geometry x:Key="TestGeoAlpha">M 19.235225 48.881852 V 37.302623 h -5.03628 c -1.733969 -0.463106 -3.4029 -1.123004 -4.2164298 -4.371747 V 26.196019 L 7.4058191 26.077857 C 5.4800941 25.704894 5.8167626 24.418992 5.2976046 23.478441 L 10.568125 15.443874 V 8.2363961 c 0 0 5.973275 -6.8530121 13.117752 -6.7348577 7.144495 0.1181612 13.539919 0.539851 18.271163 8.2708781 3.911343 6.3912765 4.088688 12.9944945 -1.288348 20.6771915 -4.216413 2.835728 -4.802039 4.489904 -4.802039 4.489904 V 49</Geometry>
-        <Geometry x:Key="TestGeoBeta">m 27.936908 22.17925 3.747932 4.371747 m -5.153408 11.342919 v 6.971168 M 14.584914 18.161967 15.639022 16.03517 V 9.6547799 c 0 0 4.450653 -3.8991277 9.018453 -4.0172821 4.567781 -0.1181612 9.486949 3.8991271 10.072559 7.5619442 0.585609 3.662816 1.522588 9.452429 -1.288365 11.815537 L 26.64856 30.09566 v 4.726215 M 15.170524 30.450127 v -4.489904 c 0.26635 -0.93678 0.465824 -1.918537 1.639717 -2.244954 h 2.928065</Geometry>
-
-        <Viewbox x:Key="TestViewbox" Stretch="Uniform">
-          <Canvas Width="50" Height="50">
-            <Path StrokeThickness="2.79099" Stroke="#FF000000" Data="M 18.850493 50 V 38.032787 H 13.65261 C 11.863002 37.558998 10.140519 36.883878 9.300885 33.560192 V 26.669974 L 6.641508 26.549087 C 4.653991 26.16752 3.857834 24.808177 4.465645 23.889707 l 5.43964 -8.21991 c 0 0 -0.567164 -6.58555 0 -7.37374 2.830773 -3.933894 7.43236 -6.714256 14.804981 -6.890217 7.17893 -0.171345 12.902889 1.526389 17.591133 8.461671 4.303606 6.366303 5.220158 14.106086 -1.329688 21.154174 -2.762014 2.972123 -4.956126 4.593479 -4.956126 4.593479 V 50"/>
-            <Path StrokeThickness="2.79099" Stroke="#FF000000" Data="m 30.213302 24.97764 3.283749 4.082961 m -4.734324 11.725877 v 3.902516 m 0 0.642524 v 3.934908 m -12.719485 -28.39874 1.087932 -2.175858 c 0 0 -0.640565 -6.181198 0 -7.014616 1.790293 -2.329294 4.983095 -3.502031 9.697464 -3.622911 4.714352 -0.120887 8.286605 3.724701 10.103534 7.346749 2.023365 4.033541 1.807031 9.847166 -1.329706 12.088099 0 0 -5.01787 4.13052 -6.718852 5.587517 -0.304099 0.260481 0 4.835241 0 4.835241 M 17.037274 33.43931 v -4.593477 c 0.274897 -0.958391 0.48077 -1.962795 1.692332 -2.296741 h 3.022019"/>
-          </Canvas>
-        </Viewbox>
-
-      </Border.Resources>
       <StackPanel Grid.Column="1">
         <TextBlock FontSize="18" Margin="0,20,0,10" Text="Button Examples:" Foreground="YellowGreen" FontWeight="Bold"/>
         <Button Margin="10" Content="Primary with very very very very very very long text" Style="{StaticResource XStyle.Button.Primary}"/>
         <Button Margin="10" Content="Primary Disabled" Style="{StaticResource XStyle.Button.Primary}" IsEnabled="False"/>
         <Button Margin="10" Content="Secondary" Style="{StaticResource XStyle.Button.Secondary}"/>
         <Button Margin="10" Content="Secondary Disabled" Style="{StaticResource XStyle.Button.Secondary}" IsEnabled="False"/>
-        <Button Margin="10" Content="Secondary.WithIcon" Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"/>
+        <Button Margin="10" Content="Secondary side icon with very very very very long text" Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"/>
 
         <TextBlock FontSize="18" Margin="0,20,0,10" Text="Progress State Button Example" Foreground="YellowGreen" FontWeight="Bold"/>
         <TextBlock FontSize="15" Margin="0,0,0,10" Text="Click and Wait:" Foreground="YellowGreen"/>
@@ -127,7 +118,7 @@
 
         <ToggleButton
           Margin="10"
-          Content="Toggle Icon, Text Underneath"
+          Content="Toggle Icon, with very very long text Underneath"
           Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
           extensions:IndependentSize.MaxWidth="150"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Manual}"/>

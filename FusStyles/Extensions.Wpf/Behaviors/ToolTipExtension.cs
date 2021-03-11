@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Utils;
 
@@ -6,29 +7,26 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
 {
     public static class ToolTipExtension
     {
-        /// <summary>
-        /// Gets the value of the AutoToolTipProperty dependency property
-        /// </summary>
+        #region AutoToolTip attached property
+
         public static bool GetAutoToolTip(DependencyObject obj)
         {
             return (bool)obj.GetValue(AutoToolTipProperty);
         }
 
-        /// <summary>
-        /// Sets the value of the AutoToolTipProperty dependency property
-        /// </summary>
         public static void SetAutoToolTip(DependencyObject obj, bool value)
         {
             obj.SetValue(AutoToolTipProperty, value);
         }
 
-        /// <summary>
-        /// Identified the attached AutoToolTip property. When true, this will set the TextBlock TextTrimming
-        /// property to WordEllipsis, and display a tooltip with the full text whenever the text is trimmed.
-        /// </summary>
         public static readonly DependencyProperty AutoToolTipProperty =
             DependencyProperty.RegisterAttached("AutoToolTip", typeof(bool), typeof(ToolTipExtension), new PropertyMetadata(false, OnAutoToolTipPropertyChanged));
 
+
+        #endregion
+
+
+        #region Events
 
         private static void OnAutoToolTipPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -42,11 +40,9 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                     frameworkElement.Loaded += OnLoadTurnAutoToolTipOn;
                 else
                     frameworkElement.Loaded += OnLoadTurnAutoToolTipOff;
-
-                return;
             }
-
-            OnAutoToolTipChanged((bool)e.NewValue, frameworkElement);
+            else
+                OnAutoToolTipChanged((bool)e.NewValue, frameworkElement);
         }
 
         private static void OnLoadTurnAutoToolTipOn(object sender, RoutedEventArgs e)
@@ -63,11 +59,30 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             frameworkElement.Loaded -= OnLoadTurnAutoToolTipOff;
         }
 
+        private static void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FrameworkElement frameworkElement = sender as FrameworkElement;
+            if (frameworkElement != null)
+                SetToolTipIfTrimmed(frameworkElement);
+        }
+
+        private static void FrameworkElement_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            FrameworkElement frameworkElement = sender as FrameworkElement;
+            if (frameworkElement != null)
+                SetToolTipIfTrimmed(frameworkElement);
+        }
+
+        #endregion
+
+
+        #region Set ToolTip
+
         private static void OnAutoToolTipChanged(bool turnOnAutoToolTip, FrameworkElement frameworkElement)
         {
             if (frameworkElement == null)
                 return;
-
+            
             if (turnOnAutoToolTip)
             {
                 TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
@@ -75,7 +90,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                     return;
 
                 textBlock.TextTrimming = TextTrimming.WordEllipsis;
-                SetTrimmedTextAsToolTip(frameworkElement);
+                SetToolTipIfTrimmed(frameworkElement);
                 frameworkElement.SizeChanged += FrameworkElement_SizeChanged;
                 if (frameworkElement is ComboBox)
                     ((ComboBox)frameworkElement).SelectionChanged += ComboBox_SelectionChanged;
@@ -88,41 +103,88 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             }
         }
 
-        private static void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            FrameworkElement frameworkElement = sender as FrameworkElement;
-            SetTrimmedTextAsToolTip(frameworkElement);
-        }
+        #endregion
 
-        private static void FrameworkElement_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            FrameworkElement frameworkElement = sender as FrameworkElement;
-            SetTrimmedTextAsToolTip(frameworkElement);
-        }
 
-        /// <summary>
-        /// Assigns the ToolTip for the given FrameworkElement based on whether the text is trimmed
-        /// </summary>
-        private static void SetTrimmedTextAsToolTip(FrameworkElement frameworkElement)
+        #region Set ToolTip
+
+        private static void SetToolTipIfTrimmed(FrameworkElement frameworkElement)
         {
             if (IsFrameworkElementTrimmed(frameworkElement))
-                ToolTipService.SetToolTip(frameworkElement, GetFrameworkElementText(frameworkElement));
+                SetToolTip(frameworkElement);
             else
                 ToolTipService.SetToolTip(frameworkElement, null);
         }
 
-        public static bool IsFrameworkElementTrimmed<T>(T frameworkElement) where T : FrameworkElement
+        private static void SetToolTip(FrameworkElement frameworkElement)
         {
-            if (frameworkElement == null)
+            if (frameworkElement.IsHitTestVisible)
+            {
+                ToolTipService.SetToolTip(frameworkElement, GetFrameworkElementText(frameworkElement));
+                return;
+            }
+
+            TextBlock textBlock = frameworkElement as TextBlock;
+            if (textBlock != null)
+            {
+                // LA: To be used when moving to VS2019 (remove function IsToolTipable):
+                //Func<FrameworkElement, bool> condition = x => x is Control && x.IsHitTestVisible;
+                //var parent = textBlock.ParentOfTypeOnCondition(condition);
+                var parent = textBlock.ParentOfTypeOnCondition<FrameworkElement>(IsToolTipableControl);
+                ToolTipService.SetToolTip(parent ?? textBlock, textBlock.Text);
+            }
+        }
+
+        private static bool IsToolTipableControl(FrameworkElement frameworkElement)
+        {
+            return frameworkElement != null && frameworkElement is Control && frameworkElement.IsHitTestVisible;
+        }
+
+        private static bool IsFrameworkElementTrimmed<T>(T frameworkElement) where T : FrameworkElement
+        {
+            if (frameworkElement is TextBlock)
+                return IsTextBlockTrimmed(frameworkElement as TextBlock);
+            else
+                return IsChildTextBlockTrimmed(frameworkElement);
+        }
+
+        private static bool IsTextBlockTrimmed(TextBlock textBlock)
+        {
+            if (string.IsNullOrEmpty(textBlock.Text))
                 return false;
 
-            // Get text and measure
-            TextBlock textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
-            if (textBlock == null)
-                return false;
             textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
 
-            // Get text's ContentPresenter if exists
+            // Measure against Border parent that might be narrower
+            var border = textBlock.ParentOfType<Border>();
+            if (border != null && textBlock.DesiredSize.Width > border.ActualWidth)
+                return true;
+
+            // Measure against ContentPresenter parent if exists
+            var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
+            if (contentPresenter != null)
+                return textBlock.DesiredSize.Width > contentPresenter.ActualWidth;
+
+            return textBlock.DesiredSize.Width > textBlock.ActualWidth;
+        }
+
+        private static bool IsChildTextBlockTrimmed(FrameworkElement frameworkElement)
+        {
+            // Get text and measure
+            TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
+            if (textBlock == null || string.IsNullOrEmpty(textBlock.Text))
+                return false;
+
+            textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            if (frameworkElement is ContentPresenter || frameworkElement is Border)
+                return textBlock.DesiredSize.Width > frameworkElement.ActualWidth;
+
+            // Measure against Border if exists between frameworkElement and text
+            var border = textBlock.ParentOfType<Border>();
+            if (border != null && border.IsDescendantOf(frameworkElement) && textBlock.DesiredSize.Width > border.ActualWidth)
+                return true;
+
+            // Measure against ContentPresenter if exists between frameworkElement and text
             var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
             if (contentPresenter != null && contentPresenter.IsDescendantOf(frameworkElement))
                 return textBlock.DesiredSize.Width > contentPresenter.ActualWidth;
@@ -130,7 +192,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             return textBlock.DesiredSize.Width > frameworkElement.ActualWidth;
         }
 
-        public static string GetFrameworkElementText<T>(T frameworkElement) where T : FrameworkElement
+        private static string GetFrameworkElementText<T>(T frameworkElement) where T : FrameworkElement
         {
             var textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
             if (textBlock != null)
@@ -142,4 +204,6 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             return string.Empty;
         }
     }
+
+    #endregion
 }

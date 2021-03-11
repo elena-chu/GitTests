@@ -3,14 +3,16 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-
-  <Style x:Key="XStyle.TextBlock.Base" TargetType="{x:Type TextBlock}">
+  <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+  </Style>
+
+  <Style x:Key="XStyle.TextBlock.Base" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
-    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+    <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}"/>
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
@@ -22,18 +24,9 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.TextBlock.Regular" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
-    <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}"/>
-  </Style>
-
   <Style x:Key="XStyle.TextBlock.ToolTip" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
-  </Style>
-
-  <Style TargetType="TextBlock" x:Key="XStyle.TextBlock.Menu.Label" BasedOn="{StaticResource XStyle.TextBlock.Regular}">
-    <Setter Property="extensions:IndependentSize.Margin" Value="0,25,0,2" />
-    <Setter Property="extensions:IndependentSize.FontSize" Value="14" />
   </Style>
 
 </ResourceDictionary>
