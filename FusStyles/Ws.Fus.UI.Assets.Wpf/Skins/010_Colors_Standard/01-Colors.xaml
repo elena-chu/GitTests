@@ -33,6 +33,8 @@
   <Color x:Key="XColor.Button.IconButton.Caption">#FFB2B2B2</Color>
   <Color x:Key="XColor.Button.IconButton.Beta">#FF7F7F7F</Color>
 
+  <Color x:Key="XColor.Switch.Background.On">#ff002d33</Color>
+
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
 
   <!-- OLD COLORS-->

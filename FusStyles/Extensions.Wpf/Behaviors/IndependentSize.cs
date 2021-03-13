@@ -208,7 +208,10 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static double CalculateProportionalDouble(double value)
         {
             if (!_screenProportionCalculated)
+            {
                 _screenProportion = SystemParameters.PrimaryScreenHeight / 1080;
+                _screenProportionCalculated = true;
+            }
 
             //var d = DpiUtils.GetToDeviceMatrix(null);
             //return height / DpiUtils.GetToDeviceMatrix(null).M22;
@@ -316,5 +319,79 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             catch (Exception ex) { }
         }
 
+
+        /// <summary>
+        /// Independent Padding property of FrameworkElement. Updates the original Padding property
+        /// </summary>
+        public static DependencyProperty PaddingProperty = DependencyProperty.RegisterAttached("Padding",
+            typeof(Thickness), typeof(IndependentSize), new UIPropertyMetadata(OnPaddingPropertyChanged));
+
+        public static void SetPadding(FrameworkElement obj, Thickness value)
+        {
+            obj.SetValue(PaddingProperty, value);
+        }
+        public static Thickness GetPadding(FrameworkElement obj)
+        {
+            return (Thickness)obj.GetValue(PaddingProperty);
+        }
+
+        public static void OnPaddingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null)
+                return;
+
+            Border border = d as Border;
+            TextBlock textBlock = d as TextBlock;
+            Control control = d as Control;
+
+            if (border != null || textBlock != null || control != null)
+            {
+                Thickness source = (Thickness)e.NewValue;
+                Thickness target = new Thickness(
+                    CalculateProportionalDouble(source.Left),
+                    CalculateProportionalDouble(source.Top),
+                    CalculateProportionalDouble(source.Right),
+                    CalculateProportionalDouble(source.Bottom));
+
+                if (border != null)
+                    border.Padding = target;
+                if (textBlock != null)
+                    textBlock.Padding = target;
+                if (control != null)
+                    control.Padding = target;
+            }
+        }
+
+        /// <summary>
+        /// Independent CornerRadius property of FrameworkElement. Updates the original CornerRadius property
+        /// </summary>
+        public static DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached("CornerRadius",
+            typeof(Thickness), typeof(IndependentSize), new UIPropertyMetadata(OnCornerRadiusPropertyChanged));
+
+        public static void SetCornerRadius(FrameworkElement obj, Thickness value)
+        {
+            obj.SetValue(CornerRadiusProperty, value);
+        }
+        public static Thickness GetCornerRadius(FrameworkElement obj)
+        {
+            return (Thickness)obj.GetValue(CornerRadiusProperty);
+        }
+
+        public static void OnCornerRadiusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null)
+                return;
+
+            Border border = d as Border;
+            if (border != null)
+            {
+                CornerRadius source = (CornerRadius)e.NewValue;
+                border.CornerRadius = new CornerRadius(
+                    CalculateProportionalDouble(source.TopLeft),
+                    CalculateProportionalDouble(source.TopRight),
+                    CalculateProportionalDouble(source.BottomRight),
+                    CalculateProportionalDouble(source.BottomLeft));
+            }
+        }
     }
 }

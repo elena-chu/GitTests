@@ -34,6 +34,12 @@
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Alpha" Color="{StaticResource ApplicationForgroundColor}"/>
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Beta" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
   
+  <!--Switch-->
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.On" Color="{StaticResource XColor.Button.Primary.Background}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Background.On" Color="{StaticResource XColor.Switch.Background.On}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Background.Off" Color="{StaticResource XColor.Button.Secondary.Background.Disabled}"/>
+
   <!--Backgrounds-->
   <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}"/>
 

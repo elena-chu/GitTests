@@ -9,8 +9,8 @@
       <ResourceDictionary.MergedDictionaries>
         
         <!--Basics-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/01-Sizes.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/03-Controls.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/010-Sizes.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/020-MiscDefinitions.xaml"/>
 
         <!--Colors, Brushes-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/010_Colors_Standard/01-Colors.xaml"/>
@@ -29,19 +29,24 @@
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/02-BorderStyles.xaml"/>
 
         <!--Controls-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextBlock/01-TextBlockStyle.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextBlock/03-ToolTipStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/010_Controls/010-ControlStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/010_Controls/020-ControlTemplates.xaml"/>
 
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-HeaderStyle.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-LabelStyle.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/040_Label/01-TextStyle.xaml"/>
+        <!--Text Elements-->
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/010-TextBlockStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/030-ToolTipStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/101-HeaderStyle.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/102-LabelStyle.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/103-TextStyle.xaml"/>
 
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/050_ButtonBase/0501-ButtonBaseStyles.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/050_ButtonBase/10-ToolButton.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/10-ToolToggleButton.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_ToggleButton/PinButtonStyle.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/0651-ButtonStyles.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/065_Buttons/0652-ProgressStateButtonStyles.xaml"/>
+        <!--Buttons-->
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/000-ButtonBaseStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/100-ToolButton.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/010-ButtonStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/011-ProgressStateButtonStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/101-ToolToggleButton.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/102-PinButtonStyle.xaml"/>
+        
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/PinableExpanderStyle.xaml"/>
 
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/200_CustomControls/60_StatusIndicator/10-StatusIndicator.xaml"/>

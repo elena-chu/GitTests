@@ -3,7 +3,7 @@
                     xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <Style x:Key="XStyle.Border" TargetType="{x:Type Border}">
-    <Setter Property="CornerRadius" Value="{StaticResource XCornerRadius.Frame}"/>
+    <Setter Property="extensions:IndependentSize.CornerRadius" Value="{StaticResource XCornerRadius.Frame}"/>
     <Setter Property="Padding" Value="0"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
   </Style>

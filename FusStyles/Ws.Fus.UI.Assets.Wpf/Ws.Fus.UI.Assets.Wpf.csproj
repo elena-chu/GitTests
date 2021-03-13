@@ -106,11 +106,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Page Include="Skins\005_Basics\03-Controls.xaml">
+    <Page Include="Skins\005_Basics\020-MiscDefinitions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\005_Basics\01-Sizes.xaml">
+    <Page Include="Skins\005_Basics\010-Sizes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -134,19 +134,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\020_TextBlock\03-ToolTipStyles.xaml">
+    <Page Include="Skins\100_Controls\010_Controls\020-ControlTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\050_ButtonBase\0501-ButtonBaseStyles.xaml">
+    <Page Include="Skins\100_Controls\010_Controls\010-ControlStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\065_Buttons\0651-ButtonStyles.xaml">
+    <Page Include="Skins\100_Controls\020_TextElements\030-ToolTipStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\065_Buttons\0652-ProgressStateButtonStyles.xaml">
+    <Page Include="Skins\100_Controls\060_Buttons\000-ButtonBaseStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Skins\100_Controls\060_Buttons\010-ButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Skins\100_Controls\060_Buttons\011-ProgressStateButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -170,19 +178,19 @@
       <SubType>Designer</SubType>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
-    <Page Include="Skins\100_Controls\060_ToggleButton\PinButtonStyle.xaml">
+    <Page Include="Skins\100_Controls\060_Buttons\102-PinButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Skins\100_Controls\040_Label\01-LabelStyle.xaml">
+    <Page Include="Skins\100_Controls\020_TextElements\102-LabelStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Skins\100_Controls\040_Label\01-TextStyle.xaml">
+    <Page Include="Skins\100_Controls\020_TextElements\103-TextStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\040_Label\01-HeaderStyle.xaml">
+    <Page Include="Skins\100_Controls\020_TextElements\101-HeaderStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -194,15 +202,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Skins\100_Controls\020_TextBlock\01-TextBlockStyle.xaml">
+    <Page Include="Skins\100_Controls\020_TextElements\010-TextBlockStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\050_ButtonBase\10-ToolButton.xaml">
+    <Page Include="Skins\100_Controls\060_Buttons\100-ToolButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\060_ToggleButton\10-ToolToggleButton.xaml">
+    <Page Include="Skins\100_Controls\060_Buttons\101-ToolToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

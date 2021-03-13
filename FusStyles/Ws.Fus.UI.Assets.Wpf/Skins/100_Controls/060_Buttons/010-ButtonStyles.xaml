@@ -35,7 +35,7 @@
   <Style x:Key="XStyle.ToggleButton.IconWithTextUnderneath" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconWithTextUnderneath}">
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
+        <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundPressedConverter}}"/>
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -135,4 +135,7 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+  
+  <!--ToggleButton with Switch-->
+  
 </ResourceDictionary>

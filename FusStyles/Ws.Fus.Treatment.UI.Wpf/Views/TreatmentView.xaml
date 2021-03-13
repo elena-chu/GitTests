@@ -88,6 +88,31 @@
         <Button Margin="10" Content="Secondary Disabled" Style="{StaticResource XStyle.Button.Secondary}" IsEnabled="False"/>
         <Button Margin="10" Content="Secondary side icon with very very very very long text" Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"/>
 
+        <ToggleButton Margin="10" extensions:IndependentSize.Height="36">
+          <ToggleButton.Style>
+            <Style TargetType="{x:Type ToggleButton}">
+              <Setter Property="Template">
+                <Setter.Value>
+                  <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ContentControl
+                      x:Name="Switch"
+                      Style="{StaticResource XStyle.ContentControl.Switch}"
+                      extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
+                  </ControlTemplate>
+                </Setter.Value>
+              </Setter>
+              <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                  <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                  <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
+                </Trigger>
+              </Style.Triggers>
+            </Style>
+          </ToggleButton.Style>
+        </ToggleButton>
+        
         <TextBlock FontSize="18" Margin="0,20,0,10" Text="Progress State Button Example" Foreground="YellowGreen" FontWeight="Bold"/>
         <TextBlock FontSize="15" Margin="0,0,0,10" Text="Click and Wait:" Foreground="YellowGreen"/>
         <extensions:ProgressStateButton

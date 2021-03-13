@@ -3,8 +3,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <FontFamily x:Key="XFontFamily.Base">Calibri</FontFamily>
-
   <Style x:Key="XStyle.Control.Base" TargetType="{x:Type Control}">
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
