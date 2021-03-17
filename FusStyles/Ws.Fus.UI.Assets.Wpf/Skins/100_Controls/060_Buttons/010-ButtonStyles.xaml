@@ -50,17 +50,18 @@
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Grid
-          Grid.Row="0"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Bottom"
-          MaxHeight="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
-          MaxWidth="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.48}">
+        Grid.Row="0"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        extensions:IndependentSize.Height="45"
+        MaxHeight="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
+        MaxWidth="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.48}">
         <Viewbox
-            Stretch="Uniform"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            IsHitTestVisible="False"
-            Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}">
+          Stretch="Uniform"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          IsHitTestVisible="False"
+          Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}">
           <Path x:Name="HaloPath" Fill="{StaticResource ActiveBrush}" Opacity="0.5" Data="{StaticResource XGeometry.Doughnut}">
             <Path.Effect>
               <BlurEffect Radius="12" KernelType="Gaussian"/>
@@ -68,10 +69,10 @@
           </Path>
         </Viewbox>
         <Viewbox
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Stretch="Uniform"
-            IsHitTestVisible="False">
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Stretch="Uniform"
+          IsHitTestVisible="False">
           <Canvas Width="{StaticResource XDouble.IconCanvasSize}" Height="{StaticResource XDouble.IconCanvasSize}">
             <Canvas>
               <Path x:Name="AlphaPath" Data="{Binding (extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}">
@@ -130,10 +131,10 @@
     <Setter Property="Command" Value="{Binding SwitchScreenCommand}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Inactive}"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
-    <Setter Property="extensions:IndependentSize.FontSize" Value="13.5"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="14"/>
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
-    <Setter Property="Margin" Value="10"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.MainMenu}"/>
     <Style.Triggers>
       <Trigger Property="IsPressed" Value="True">

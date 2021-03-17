@@ -37,6 +37,8 @@
 
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
 
+  <Color x:Key="XColor.Logo.Plus">#FF20CAF9</Color>
+
   <!-- OLD COLORS-->
   <Color x:Key="MouseOverColor">#FF669933</Color> <!--Green-->
     <Color x:Key="AccentHighColor">#FF2B7402</Color> <!--Green Dark-->

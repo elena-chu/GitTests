@@ -249,9 +249,7 @@
     <None Include="Skins\200_CustomControls\50-Accordion\02-Accordion.txaml" />
     <None Include="Skins\GenerateSkinsResources.ttinclude" />
     <Resource Include="Images\Common\Exablate_Neuro.png" />
-    <Resource Include="Images\Common\Insightec-Logo.png" />
     <Resource Include="Images\Common\Main_Background.png" />
-    <Resource Include="Images\Common\Top_Background.png" />
     <Resource Include="Images\Common\Top_Pattern.png" />
     <Content Include="Skins\Skin.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

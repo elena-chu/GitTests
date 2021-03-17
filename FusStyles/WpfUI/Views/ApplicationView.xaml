@@ -28,19 +28,18 @@
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
 
-      <Rectangle Grid.ColumnSpan="3" Stretch="Fill" >
-        <Rectangle.Fill>
-          <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Top_Background.png"  />
-        </Rectangle.Fill>
-      </Rectangle>
+      <Border x:Name="Background" Grid.ColumnSpan="3" Background="{StaticResource ApplicationBackgroundBrush}"/>
+
+      <ContentControl
+        x:Name="Logo"
+        Grid.Column="0"
+        HorizontalAlignment="Left"
+        extensions:IndependentSize.Margin="30,6,0,10"
+        Style="{StaticResource XStyle.ContentControl.Logo}"/>
+
       <Rectangle Grid.Column="1" Grid.ColumnSpan="2" Stretch="Fill" >
         <Rectangle.Fill>
           <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Top_Pattern.png" />
-        </Rectangle.Fill>
-      </Rectangle>
-      <Rectangle Stretch="Fill" extensions:IndependentSize.Margin="13,8">
-        <Rectangle.Fill>
-          <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Insightec-Logo.png" Stretch="Uniform" />
         </Rectangle.Fill>
       </Rectangle>
 

@@ -99,7 +99,7 @@
           <Button
             Content="Find Central Frequency"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
-            extensions:IconedButton.IconSize="24"/>
+            extensions:IconedButton.IconSize="20"/>
           <Button
             Content="3D Localizer"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"/>
