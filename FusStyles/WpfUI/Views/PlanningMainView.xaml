@@ -221,6 +221,7 @@
         Style="{StaticResource XStyle.RadioButton.MainMenu}"
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Report.Alpha}"
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Report.Beta}"/>
+      
     </Grid>
 
     <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.PlanningScreensRegion}" />

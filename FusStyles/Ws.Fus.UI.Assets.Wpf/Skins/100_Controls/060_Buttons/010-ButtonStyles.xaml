@@ -131,7 +131,7 @@
     <Setter Property="Command" Value="{Binding SwitchScreenCommand}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Inactive}"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
-    <Setter Property="extensions:IndependentSize.FontSize" Value="14"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
