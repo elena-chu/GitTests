@@ -30,9 +30,8 @@
             VerticalAlignment="Center"
             IsHitTestVisible="False">
             <ContentPresenter.Resources>
-              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                <Setter Property="extensions:IndependentSize.FontSize" Value="{Binding Path=(extensions:IndependentSize.FontSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
-                <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+              <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
               </Style>
             </ContentPresenter.Resources>
           </ContentPresenter>
@@ -64,6 +63,7 @@
     <Setter Property="extensions:IndependentSize.Height" Value="36"/>
     <Setter Property="Padding" Value="0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase}"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Setter Property="Foreground" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToForegroundConverter}}"/>
@@ -122,9 +122,8 @@
             VerticalAlignment="Center"
             IsHitTestVisible="False">
             <ContentPresenter.Resources>
-              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                <Setter Property="extensions:IndependentSize.FontSize" Value="{Binding Path=(extensions:IndependentSize.FontSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
-                <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+              <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
               </Style>
             </ContentPresenter.Resources>
           </ContentPresenter>
@@ -205,11 +204,10 @@
         VerticalAlignment="Top">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
             <Setter Property="MaxWidth" Value="{Binding ActualWidth, ElementName=MainGrid}"/>
             <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
             <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="extensions:IndependentSize.FontSize" Value="{Binding Path=(extensions:IndependentSize.FontSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
-            <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
           </Style>
         </ContentPresenter.Resources>
       </ContentPresenter>
@@ -242,6 +240,7 @@
     <Setter Property="extensions:IndependentSize.MinHeight" Value="66"/>
     <Setter Property="extensions:IndependentSize.MaxHeight" Value="80"/>
     <Setter Property="extensions:IndependentSize.MaxWidth" Value="100"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="14"/>
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>

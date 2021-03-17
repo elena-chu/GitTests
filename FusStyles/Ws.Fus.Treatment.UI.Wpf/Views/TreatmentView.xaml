@@ -143,7 +143,7 @@
 
         <ToggleButton
           Margin="10"
-          Content="Toggle Icon, with very very long text Underneath"
+          Content="Toggle with very very very very very very long text Underneath"
           Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
           extensions:IndependentSize.MaxWidth="150"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Manual}"/>
