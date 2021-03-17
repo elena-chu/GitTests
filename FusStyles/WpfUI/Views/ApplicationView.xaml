@@ -23,19 +23,21 @@
 
     <Grid x:Name="TitleBar">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="{StaticResource NavigationMenuWidth}" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width=".103*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
       <Border x:Name="Background" Grid.ColumnSpan="3" Background="{StaticResource ApplicationBackgroundBrush}"/>
 
+      <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10,4">
       <ContentControl
         x:Name="Logo"
         Grid.Column="0"
+        extensions:IndependentSize.Height="30"
         HorizontalAlignment="Left"
-        extensions:IndependentSize.Margin="30,6,0,10"
         Style="{StaticResource XStyle.ContentControl.Logo}"/>
+      </Border>
 
       <Rectangle Grid.Column="1" Grid.ColumnSpan="2" Stretch="Fill" >
         <Rectangle.Fill>
