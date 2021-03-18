@@ -120,7 +120,7 @@
             extensions:IconedButton.IconSize="19"/>
           <Button
             Command="{Binding MdRefScan}"
-            Content="Scan MD Reference"
+            Content="Acquire Movement Reference"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"
             extensions:IconedButton.IconSize="21"/>
           <Button
