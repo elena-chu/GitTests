@@ -63,6 +63,12 @@
           DataContext="{Binding Commands.Measure}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
           extensions:IconedButton.IconSize="24"/>
+
+        <Button
+          Content="Center on AC-PC"
+          DataContext="{Binding Commands.Measure}"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Center}"
+          extensions:IconedButton.IconSize="24"/>
       </UniformGrid>
 
       <Grid Grid.Row="1" Height="Auto" Margin="0,10">
