@@ -43,7 +43,7 @@
 
     <Button
       Command="{Binding ClearStripsCommand}" 
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.ClearAll}"
+      extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
       extensions:IconedButton.IconSize="24"
       Content="Clear All"/>
 

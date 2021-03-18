@@ -26,14 +26,14 @@
         Grid.Row="0"
         Grid.Column="0"
         Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Manual}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"
         Content="Manual NPR"/>
       
       <Button
         Grid.Row="0"
         Grid.Column="1"
         Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Spherical}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Spherical}"
         Content="Spherical NPR"/>
 
       <Button
@@ -82,22 +82,22 @@
           <Button
             Grid.Column="0"
             Grid.Row="0"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetSinuses}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.ResetSinuses}"
             Content="Reset Sinuses"/>
           <Button
             Grid.Column="1"
             Grid.Row="0"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetCalcifications}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.ResetCalcifications}"
             Content="Reset Calcifications"/>
           <Button
             Grid.Column="0"
             Grid.Row="1"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetFolds}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.ResetFolds}"
             Content="Reset Folds"/>
           <Button
             Grid.Column="1"
             Grid.Row="1"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.CtThreshold}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.CtThreshold}"
             Content="CT Threshold"/>
           <Button
             Grid.Row="2"
@@ -105,7 +105,7 @@
             Margin="0,15,0,0"
             Content="Re-acquire Fold Scan"
             Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ReacquireFolds}"/>
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.ReacquireFolds}"/>
         </Grid>
       </Expander>
     </Grid>

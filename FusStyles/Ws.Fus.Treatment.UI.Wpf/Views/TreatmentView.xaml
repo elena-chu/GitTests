@@ -139,14 +139,14 @@
           IsEnabled="False"
           Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
           extensions:IndependentSize.MaxWidth="150"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.ResetCalcifications}"/>
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.ResetCalcifications}"/>
 
         <ToggleButton
           Margin="10"
           Content="Toggle with very very very very very very long text Underneath"
           Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
           extensions:IndependentSize.MaxWidth="150"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.Manual}"/>
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"/>
 
         <Border Height="30" Width="100">
           <TextBlock Text="This is very very very very very long text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>

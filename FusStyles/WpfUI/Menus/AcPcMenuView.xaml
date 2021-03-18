@@ -12,105 +12,60 @@
     <ivConverters:MultiMeasureVmConverter x:Key="multiMsr" />
     <extensions:BooleanToTrueFalseValueConverter x:Key="TrueFalseConverter" TrueValue="{x:Static extensions:ProgressState.Completed}" FalseValue="{x:Static  extensions:ProgressState.Regular}" />
   </UserControl.Resources>
+
   <Grid Background="{StaticResource ApplicationBackgroundBrush}">
-    <!--<Grid.RowDefinitions>
-      <RowDefinition Height="{StaticResource OperativeScreenMenuTitleRowHeght}" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>-->
-
-    <!--<Rectangle Fill="{StaticResource ACPCBrush}"
-        Stretch="Fill" />-->
-    
-    <!--<TextBlock Foreground="White"
-        Margin="20,5,15,5"
-        Text="AC PC"
-        TextWrapping="Wrap"
-        VerticalAlignment="Center" />-->
-
-    <!--<StackPanel Grid.Row="1"
-        Margin="8,2"
-        Orientation="Horizontal"
-        VerticalAlignment="Center">
-
-      <Button Background="Red"
-          Command="{Binding ExitCommand}"
-          Content="X"
-          Foreground="White"
-          Height="18"
-          Width="18" />
-
-      <TextBlock FontSize="10"
-          Foreground="White"
-          Margin="5,1,5,1"
-          Text="EXIT"
-          VerticalAlignment="Center" />
-    </StackPanel>-->
-
-
     <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition />
-        <ColumnDefinition />
-        <!--<ColumnDefinition />-->
-      </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
-        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
 
-      <ToggleButton Grid.Row="0" Grid.Column="0"
+      <UniformGrid Grid.Row="0" Columns="2">
+        <UniformGrid.Resources>
+          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}"/>
+          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"/>
+        </UniformGrid.Resources>
+        
+        <ToggleButton
           ivBeh:UiModeEnter.Mode="ACPCOverlay"
           ivBeh:UiModeEnter.SubMode="ACOverlay"
-          Content="AC"
+          Content="Mark AC"
           DataContext="{Binding Commands.Measure}"
-          Style="{StaticResource styleToolToggleButton}" />
+          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Ac}"/>
 
-      <ToggleButton Grid.Row="0" Grid.Column="1"
+        <ToggleButton
           ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="PCOverlay"
-          Content="PC"
+          ivBeh:UiModeEnter.SubMode="ACOverlay"
+          Content="Mark PC"
           DataContext="{Binding Commands.Measure}"
-          FontSize="12"
-          Style="{StaticResource styleToolToggleButton}" />
+          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Pc}"/>
 
-      <ToggleButton Grid.Row="1" Grid.Column="0"
-          ivBeh:UiModeShow.Mode="ACPCOverlay"
-          Content="AcPc"
-          DataContext="{Binding Commands.Overlays}"
-          ToolTip="Toggle AC-PC Overlay"
-          Style="{StaticResource styleToolToggleButton}" />
+        <ToggleButton
+          ivBeh:UiModeEnter.Mode="ACPCOverlay"
+          ivBeh:UiModeEnter.SubMode="ACOverlay"
+          Content="AC-PC Overlay"
+          DataContext="{Binding Commands.Measure}"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"/>
 
-      <Button  Grid.Row="1" Grid.Column="1"
-          Content="w"
-          Command="{Binding FindAcPcCommand}"
-          FontFamily="Wingdings 3"
-          ToolTip="Recalculate"
-          Style="{StaticResource styleToolButton}" />
+        <ToggleButton
+          ivBeh:UiModeEnter.Mode="ACPCOverlay"
+          ivBeh:UiModeEnter.SubMode="ACOverlay"
+          Content="Recalculate"
+          DataContext="{Binding Commands.Measure}"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Recalculate}"/>
 
-      <Button Grid.Row="2" Grid.Column="0"
-          Content="i"
-          Command="{Binding ShowAcPcCommand}"
-          FontFamily="Wingdings 2"
-          ToolTip="Go to AC-PC"
-          Style="{StaticResource styleToolButton}" />
+        <Button
+          ivBeh:UiModeEnter.Mode="ACPCOverlay"
+          ivBeh:UiModeEnter.SubMode="ACOverlay"
+          Content="Clear Windows"
+          DataContext="{Binding Commands.Measure}"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
+          extensions:IconedButton.IconSize="24"/>
+      </UniformGrid>
 
-      <Button Grid.Row="2" Grid.Column="1"
-          Content="V"
-          Command="{Binding ClearAllCommand}"
-          FontFamily="Wingdings 2"
-          ToolTip="Clear All"
-          Style="{StaticResource styleToolButton}" />
-
-      <Grid Grid.Row="4" Grid.ColumnSpan="2" Height="Auto" Margin="0,10">
+      <Grid Grid.Row="1" Height="Auto" Margin="0,10">
         <Grid.ColumnDefinitions>
           <ColumnDefinition />
           <ColumnDefinition Width="Auto" />
@@ -127,10 +82,10 @@
             Visibility="{Binding IsAcPcValid, Converter={StaticResource BooleanToVisibilityConverter}}" />
       </Grid>
       
-      <Button Grid.Row="5" Grid.ColumnSpan="2"
-          Content="Approve AC-PC"
-          Command="{Binding ApproveAcPcCommand}"
-          Style="{StaticResource XStyle.Button.Primary}"/>
+      <Button Grid.Row="2"
+        Content="Approve AC-PC"
+        Command="{Binding ApproveAcPcCommand}"
+        Style="{StaticResource XStyle.Button.Primary}"/>
 
       <!-- Temp closed till Milestone 2-->
      
