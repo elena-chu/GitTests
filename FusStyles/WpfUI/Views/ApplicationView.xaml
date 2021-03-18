@@ -23,9 +23,9 @@
 
     <Grid x:Name="TitleBar">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width=".103*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="{StaticResource NavigationMenuWidth}" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
 
       <Border x:Name="Background" Grid.ColumnSpan="3" Background="{StaticResource ApplicationBackgroundBrush}"/>

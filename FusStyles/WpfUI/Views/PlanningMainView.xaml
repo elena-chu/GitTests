@@ -28,11 +28,13 @@
 
     <Grid x:Name="MenuGrid" Background="{StaticResource ComplementaryBackgroundBrush}" ClipToBounds="True">
       <Grid.RowDefinitions>
-        <RowDefinition Height="0.125*" />
-        <RowDefinition Height="0.625*" />
+        <RowDefinition Height="0.145*" />
+        <RowDefinition Height="0.605*" />
         <RowDefinition Height="0.125*" />
         <RowDefinition Height="0.125*" />
       </Grid.RowDefinitions>
+
+      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource BaseBorderBrush}" Grid.RowSpan="4" />
 
       <RadioButton
         GroupName="StagesRadioButtonGroup"
@@ -40,8 +42,13 @@
         Style="{StaticResource XStyle.RadioButton.MainMenu}"
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Plan.Alpha}"
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Plan.Beta}"
-        IsChecked="True"/>
-     
+        IsChecked="True"
+        extensions:IndependentSize.Margin="20, 0,20,60">
+        <RadioButton.RenderTransform >
+          <ScaleTransform  ScaleX="1.3" ScaleY="1.3" />
+        </RadioButton.RenderTransform>
+      </RadioButton>
+
       <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>
       
       <Grid Height="Auto" Grid.Row="1">

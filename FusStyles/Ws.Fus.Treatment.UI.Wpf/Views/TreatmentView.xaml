@@ -79,7 +79,7 @@
       x:Name="TestControls"
       Grid.Column="1"
       Background="{StaticResource ApplicationBackgroundBrush}"
-      Visibility="Collapsed">
+      Visibility="Visible">
       <StackPanel Grid.Column="1">
         <TextBlock FontSize="18" Margin="0,20,0,10" Text="Button Examples:" Foreground="YellowGreen" FontWeight="Bold"/>
         <Button Margin="10" Content="Primary with very very very very very very long text" Style="{StaticResource XStyle.Button.Primary}"/>
