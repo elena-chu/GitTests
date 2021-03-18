@@ -97,6 +97,7 @@
           <Button
             Grid.Column="1"
             Grid.Row="1"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Nrp.CtThreshold}"
             Content="CT Threshold"/>
           <Button
             Grid.Row="2"

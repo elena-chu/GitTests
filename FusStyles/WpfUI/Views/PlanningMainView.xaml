@@ -37,17 +37,14 @@
       <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource BaseBorderBrush}" Grid.RowSpan="4" />
 
       <RadioButton
-        GroupName="StagesRadioButtonGroup"
+        GroupName="ModulesRadioButtonGroup"
         Content="{lex:LocTextUpper IDS_LBL_PLANNING}"
         Style="{StaticResource XStyle.RadioButton.MainMenu}"
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Plan.Alpha}"
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Plan.Beta}"
         IsChecked="True"
-        extensions:IndependentSize.Margin="20, 0,20,60">
-        <RadioButton.RenderTransform >
-          <ScaleTransform  ScaleX="1.3" ScaleY="1.3" />
-        </RadioButton.RenderTransform>
-      </RadioButton>
+        extensions:IndependentSize.FontSize="20"
+        extensions:IconedButton.IconSize="60"/>
 
       <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>
       
@@ -214,7 +211,7 @@
       </Grid>
 
       <RadioButton
-        GroupName="StagesRadioButtonGroup"
+        GroupName="ModulesRadioButtonGroup"
         Grid.Row="2"
         Content="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}"
         Style="{StaticResource XStyle.RadioButton.MainMenu}"
@@ -222,13 +219,12 @@
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Surgical.Beta}"/>
       <Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"/>
       <RadioButton
-        GroupName="StagesRadioButtonGroup"
+        GroupName="ModulesRadioButtonGroup"
         Grid.Row="3"
         Content="{lex:LocTextUpper IDS_LBL_MENU_REPORT}"
         Style="{StaticResource XStyle.RadioButton.MainMenu}"
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Report.Alpha}"
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Report.Beta}"/>
-      
     </Grid>
 
     <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.PlanningScreensRegion}" />

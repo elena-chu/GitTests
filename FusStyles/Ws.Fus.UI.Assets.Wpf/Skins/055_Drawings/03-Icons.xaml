@@ -180,6 +180,9 @@
   <Geometry x:Key="XGeometry.Npr.Folds">m 28.042543 10.716875 c 3.647214 1.683889 7.993867 6.939387 10.400636 4.804195 2.406747 -2.135191 -1.495629 -8.4866383 -6.283364 -11.8751018 -8.054282 -5.435836 -17.185868 -4.2507685 -23.3216795 0 C 4.0504106 7.0344317 0.71533977 14.925375 3.1220948 17.060567 5.528847 19.195778 10.279491 13.329115 13.651646 11.428599 18.74163 8.1917858 24.051009 8.8939212 28.042543 10.716875 Z</Geometry>
   <Geometry x:Key="XGeometry.Npr.Sinuses">m 17.510657 10.618913 c -1.120949 -0.01509 -2.512751 0.344912 -3.29543 1.240098 -1.094466 1.251793 -1.492967 3.93971 -0.226727 4.581858 0.89685 0.454808 5.657204 -3.907595 5.232469 -5.180222 -0.130391 -0.390694 -0.838463 -0.630015 -1.710312 -0.641734 z m 7.142891 0 c -0.871849 0.01171 -1.57992 0.25104 -1.71031 0.641734 -0.424737 1.272627 4.335619 5.63503 5.232467 5.180222 1.26624 -0.642148 0.86774 -3.330065 -0.226726 -4.581858 -0.782679 -0.895186 -2.174481 -1.255174 -3.295431 -1.240098 z</Geometry>
   <Geometry x:Key="XGeometry.Npr.Calcifications">m 14.506667 21.961757 c -1.959826 0 -3.537594 1.382841 -3.537594 3.100333 0 1.717507 1.577768 3.100327 3.537594 3.100327 h 2.929569 c 1.959828 0 3.537593 -1.38282 3.537593 -3.100327 0 -1.717492 -1.577765 -3.100333 -3.537593 -3.100333 z m -0.505372 8.030657 c -1.679851 0 -3.032222 1.352381 -3.032222 3.032223 v 2.235668 c 0 1.679846 1.352371 3.032223 3.032222 3.032223 h 0.03553 c 1.679852 0 3.032223 -1.352377 3.032223 -3.032223 v -2.235668 c 0 -1.679842 -1.352371 -3.032223 -3.032223 -3.032223 z</Geometry>
+  <Geometry x:Key="XGeometry.Npr.LeftBrain">m 21.713848 7.4064502 c 0 0 -6.190263 -2.5186628 -9.283953 0.145375 -3.0936624 2.6640978 -4.4667105 6.8187608 -5.1706077 10.9972138 -0.3638537 2.15989 -2.5748248 8.090247 -2.659174 11.028921 -0.08441 2.941189 -0.1609518 9.560173 5.9005807 14.59688 4.991257 4.147365 10.567164 4.202243 10.567164 4.202243</Geometry>
+  <Geometry x:Key="XGeometry.Npr.RightBrain">m 20.627801 7.3498951 c 0 0 6.803954 -2.4621077 9.897643 0.2020098 3.093663 2.6640981 4.466711 6.8187611 5.170609 10.9972151 0.363853 2.159889 2.574823 8.090245 2.659173 11.028921 0.08441 2.941187 0.160952 9.560171 -5.90058 14.596878 -4.991258 4.147364 -10.567165 4.202244 -10.567165 4.202244</Geometry>
+  <Geometry x:Key="XGeometry.Npr.UpDownArrows">m 21.464455 43.408339 -8.52886 -11.464509 5.277933 -0.01197 v -3.25541 h 6.527275 v 3.24305 l 5.276911 -0.01197 z m 0 -32.274757 -8.52886 11.464529 5.277933 0.01197 v 3.25541 h 6.527275 v -3.243046 l 5.276911 0.01197 z</Geometry>
 
   <Canvas x:Key="XCanvas.Nrp.Manual" Style="{StaticResource XStyle.Canvas.Icon}">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.Pencil}"/>
@@ -233,6 +236,12 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LargeX}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Folds}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Nrp.CtThreshold" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LeftBrain}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" StrokeDashArray="1.3,1.3" Data="{StaticResource XGeometry.Npr.RightBrain}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.UpDownArrows}"/>
   </Canvas>
 
   <Canvas x:Key="XCanvas.Nrp.ReacquireFolds" Style="{StaticResource XStyle.Canvas.Icon}">

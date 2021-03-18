@@ -53,9 +53,7 @@
         Grid.Row="0"
         HorizontalAlignment="Left"
         VerticalAlignment="Bottom"
-        extensions:IndependentSize.Height="45"
-        MaxHeight="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
-        MaxWidth="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.48}">
+        extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}">
         <Viewbox
           Stretch="Uniform"
           HorizontalAlignment="Center"
@@ -135,6 +133,7 @@
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="50"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.MainMenu}"/>
     <Style.Triggers>
       <Trigger Property="IsPressed" Value="True">
