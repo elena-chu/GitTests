@@ -389,5 +389,7 @@
   <Canvas x:Key="XCanvas.AcPc.Center" Style="{StaticResource XStyle.Canvas.Icon}">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Corners}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.AcPc.Brain.Small}"/>
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="13" Canvas.Top="17" Width="8" Height="8"/>
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="25" Canvas.Top="22" Width="8" Height="8"/>
   </Canvas>
 </ResourceDictionary>
