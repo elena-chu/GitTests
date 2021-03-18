@@ -134,6 +134,8 @@
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="50"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.MainMenu}"/>
     <Style.Triggers>
       <Trigger Property="IsPressed" Value="True">
