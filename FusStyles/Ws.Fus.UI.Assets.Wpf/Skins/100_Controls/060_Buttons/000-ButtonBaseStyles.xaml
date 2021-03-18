@@ -108,7 +108,7 @@
           <Viewbox
             x:Name="IconViewbox"
             Grid.Column="0"
-            extensions:IndependentSize.Margin="10,0,7,0"
+            extensions:IndependentSize.Margin="8,0,7,0"
             Stretch="Uniform"
             Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
             IsHitTestVisible="False">

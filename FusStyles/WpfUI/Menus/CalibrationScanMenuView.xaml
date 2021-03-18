@@ -87,64 +87,48 @@
         extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
 
       <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" Grid.ColumnSpan="2">
-        <Grid>
-          <Grid.Resources>
+        <StackPanel>
+          <StackPanel.Resources>
             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}">
-              <Setter Property="extensions:IndependentSize.Margin" Value="0,10"/>
+              <Setter Property="extensions:IndependentSize.Margin" Value="0,8"/>
             </Style>
-          </Grid.Resources>
+          </StackPanel.Resources>
 
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-
-          <Button Grid.Row="0" 
-              Command="{Binding TrackersScan}"
-              Content="Movement Evaluation Mode"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MovementEvaluation}"
-              />
-
-          <TextBlock  Grid.Row="1"
-              Style="{StaticResource XStyle.TextBlock.Menu.Label}"
-              Text="Manual Calibration Scan"
-              extensions:IndependentSize.Margin="-10,15,0,8"
-              />
-
-          <Button Grid.Row="2" 
-              Command="{Binding TrackersScan}"
-              Content="Locate Transducer"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LocateTransducer}"
-              />
-          <Button Grid.Row="3"  
-              Command="{Binding B0Scan}"
-              Content="Find Central Frequency"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
-              extensions:IconedButton.IconSize="17"
-          />
-          <Button Grid.Row="4"  
-              Command="{Binding LocalizerScan}"
-              Content="Acquire Localizer"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"
-              />
-          <Button Grid.Row="5"  
-              Command="{Binding MdRefScan}"
-              Content="Acquire Movement Reference"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"
-              />
-          <Button Grid.Row="6"  
-              Command="{Binding MFScan}"
-              Content="Membrane Folds Scan"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"
-              />
-        </Grid>
+          <Button
+            Command="{Binding TrackersScan}"
+            Content="Movement Evaluation Mode"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MovementEvaluation}"
+            extensions:IconedButton.IconSize="20"/>
+          <TextBlock
+            Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+            Text="Manual Calibration Scan"
+            extensions:IndependentSize.Margin="0,15,0,8"/>
+          <Button
+            Command="{Binding TrackersScan}"
+            Content="Locate Transducer"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LocateTransducer}"
+            extensions:IconedButton.IconSize="20"/>
+          <Button
+            Command="{Binding B0Scan}"
+            Content="Find Central Frequency"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
+            extensions:IconedButton.IconSize="17"/>
+          <Button
+            Command="{Binding LocalizerScan}"
+            Content="Acquire Localizer"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"
+            extensions:IconedButton.IconSize="19"/>
+          <Button
+            Command="{Binding MdRefScan}"
+            Content="Acquire Movement Reference"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"
+            extensions:IconedButton.IconSize="21"/>
+          <Button
+            Command="{Binding MFScan}"
+            Content="Membrane Folds Scan"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"
+            extensions:IconedButton.IconSize="20"/>
+        </StackPanel>
       </Expander>
     </Grid>
   </Grid>
