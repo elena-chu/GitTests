@@ -61,8 +61,8 @@
       <Rectangle Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource BaseBorderBrush}" VerticalAlignment="top"/>
     </Grid>
 
-    <extensions:BusyIndicator Grid.RowSpan="2" IsBusy="{Binding IsBusy, FallbackValue=False}"/>
-    <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.FloatingScreenRegion}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+    <extensions:BusyIndicator Grid.RowSpan="2" Grid.ColumnSpan="2" IsBusy="{Binding IsBusy, FallbackValue=False}" />
+    <ContentControl Grid.Row="1" Grid.ColumnSpan="2" prism:RegionManager.RegionName="{x:Static core:RegionNames.FloatingScreenRegion}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 
   </Grid>
 

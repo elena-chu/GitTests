@@ -17,7 +17,7 @@
       </Style>
 
     </Grid.Resources>
-    
+
     <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
 
       <Grid.RowDefinitions>
@@ -30,12 +30,55 @@
         <RowDefinition Height="*"  />
       </Grid.RowDefinitions>
 
-
       <Button 
          Style="{StaticResource XStyle.Button.Primary}" 
-         Content="Auto-Calibrate" DataContext="{Binding TgScan}" />
+         Content="Auto-Calibrate" Command="{Binding AutoCalibScan}" />
 
       <Grid x:Name="ProgressStatuses" Grid.Row="2">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Rectangle 
+            Width="1" VerticalAlignment="Stretch"
+            Fill="{StaticResource ActiveBrush}" 
+            HorizontalAlignment="Left" 
+            extensions:IndependentSize.Margin="7,10,0,25"
+            Grid.RowSpan="9" />
+        <core:StepProgress 
+            Title="Transducer Focal Location"
+            Value="{Binding XdFocalPointValue}"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding TrackerScanState, Mode=OneWay}"
+            />
+        <core:StepProgress Grid.Row="2"
+            Title="Central Frequency"
+            Value="{Binding B0Frequency}"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding B0ScanState, Mode=OneWay}"
+            />
+        <core:StepProgress Grid.Row="4"
+            Title="3D Localizer"
+            Value="{Binding LocalizerScanStateValue, Mode=OneWay}"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding LocalizerScanState, Mode=OneWay}"            />
+        <core:StepProgress Grid.Row="6"
+            Title="Membrane Fold scan"
+            Value="{Binding MemFoldScanStateValue, Mode=OneWay}"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding MemFoldScanState, Mode=OneWay}"
+            />
+        <core:StepProgress Grid.Row="8"
+            Title="Movement Reference Scan"
+            Value="{Binding MdReferenceScanStateValue, Mode=OneWay}"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding  MdReferenceScanState, Mode=OneWay}"
+            />
+      </Grid>
+
+      <!--<Grid x:Name="ProgressStatuses" Grid.Row="2">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
           <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
@@ -78,15 +121,14 @@
             Value=""
             extensions:ProgressStatusDisplayer.ProgressState="Regular"
             />
-      </Grid>
+      </Grid>-->
 
-      <Button
-        Grid.Row="4"
-        Content="Load Pre-Treatment Plan" 
-        Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" 
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
+      <Button Grid.Row="4"
+            Content="Load Pre-Treatment Plan" 
+            Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" 
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
 
-      <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" Grid.ColumnSpan="2">
+      <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" >
         <StackPanel>
           <StackPanel.Resources>
             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}">
@@ -94,42 +136,53 @@
             </Style>
           </StackPanel.Resources>
 
-          <Button
-            Command="{Binding TrackersScan}"
-            Content="Movement Evaluation Mode"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MovementEvaluation}"
-            extensions:IconedButton.IconSize="20"/>
-          <TextBlock
-            Style="{StaticResource XStyle.TextBlock.Menu.Label}"
-            Text="Manual Calibration Scan"
-            extensions:IndependentSize.Margin="0,15,0,8"/>
-          <Button
-            Command="{Binding TrackersScan}"
-            Content="Locate Transducer"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LocateTransducer}"
-            extensions:IconedButton.IconSize="20"/>
-          <Button
-            Command="{Binding B0Scan}"
-            Content="Find Central Frequency"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
-            extensions:IconedButton.IconSize="17"/>
-          <Button
-            Command="{Binding LocalizerScan}"
-            Content="Acquire Localizer"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"
-            extensions:IconedButton.IconSize="19"/>
-          <Button
-            Command="{Binding MdRefScan}"
-            Content="Acquire Movement Reference"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"
-            extensions:IconedButton.IconSize="21"/>
-          <Button
-            Command="{Binding MFScan}"
-            Content="Membrane Folds Scan"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"
-            extensions:IconedButton.IconSize="20"/>
+          <Button  
+              Command="{Binding TrackersScan}"
+              Content="Movement Evaluation Mode"
+              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MovementEvaluation}"
+              extensions:IconedButton.IconSize="20"/>
+
+          <TextBlock 
+              Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+              Text="Manual Calibration Scan"
+              extensions:IndependentSize.Margin="0,15,0,8"
+              />
+
+          <Button  
+              Command="{Binding TrackersScan}"
+              Content="Locate Transducer"
+              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LocateTransducer}"
+              extensions:IconedButton.IconSize="20"
+              />
+          <Button   
+              Command="{Binding B0Scan}"
+              Content="Find Central Frequency"
+              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
+              extensions:IconedButton.IconSize="17"
+          />
+          <Button   
+              Command="{Binding LocalizerScan}"
+              Content="Acquire Localizer"
+              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"
+              extensions:IconedButton.IconSize="19"    
+              />
+          <Button   
+              Command="{Binding MFScan}"
+              Content="Membrane Folds Scan"
+              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"
+              extensions:IconedButton.IconSize="20"
+              />
+          <Button   
+              Command="{Binding MdRefScan}"
+              Content="Acquire Movement Reference"
+              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"
+              extensions:IconedButton.IconSize="21"
+              />
+
         </StackPanel>
       </Expander>
+
+
     </Grid>
   </Grid>
 </UserControl>

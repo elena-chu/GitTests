@@ -43,8 +43,9 @@
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Plan.Alpha}"
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Plan.Beta}"
         IsChecked="True"
-        extensions:IndependentSize.FontSize="20"
-        extensions:IconedButton.IconSize="60"/>
+        extensions:IndependentSize.FontSize="22"
+        extensions:IconedButton.IconSize="62"
+        extensions:IndependentSize.Margin="20,20,20,35"/>
 
       <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>
       
@@ -225,6 +226,7 @@
         Style="{StaticResource XStyle.RadioButton.MainMenu}"
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Report.Alpha}"
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Report.Beta}"/>
+      
     </Grid>
 
     <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.PlanningScreensRegion}" />

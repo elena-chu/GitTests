@@ -5,10 +5,99 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:ivBeh="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Behaviors;assembly=Ws.Fus.ImageViewer.UI.Wpf"             
   xmlns:extensions="http://schemas.insightec.com/wpf/"
+  xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
+  xmlns:lex="http://wpflocalizeextension.codeplex.com"
   mc:Ignorable="d" 
   d:DesignHeight="300" d:DesignWidth="300">
 
-  <StackPanel Margin="10" Background="{StaticResource ApplicationBackgroundBrush}">
+  <UserControl.Resources>
+    <extensions:NullToVisibilityConverter x:Key="null2Vis" />
+    <extensions:BooleanToTrueFalseValueConverter x:Key="StripTrueFalseValueConverter" IsThreeState="True" NullValue="{lex:LocTextUpper IDS_LBL_NO}" TrueValue="{lex:LocTextUpper IDS_LBL_YES}" FalseValue="{lex:LocTextUpper IDS_LBL_YES}" />
+    <extensions:BooleanToTrueFalseValueConverter x:Key="StateTrueFalseValueConverter" IsThreeState="True" NullValue="Active" TrueValue="Completed" FalseValue="Completed" />
+  </UserControl.Resources>
+
+
+  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+    <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
+      <Grid.Resources>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
+          <Setter Property="Margin" Value="0,10"/>
+        </Style>
+        <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}">
+          <Setter Property="Margin" Value="0,10"/>
+        </Style>
+      </Grid.Resources>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <!--<ColumnDefinition />-->
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <ToggleButton Grid.Row="0" Grid.Column="0"
+          ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.CtOverlay}"
+          Content="CT Overlay"
+          DataContext="{Binding Commands.Overlays}" />
+
+      <Button Grid.Row="0" Grid.Column="1"
+          Command="{Binding AutoRegisterCommand}"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
+          Content="Auto Register"
+          />
+
+      <Button Grid.Row="1" Grid.Column="0"
+          Command="{Binding ClearStripsCommand}"     
+          extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
+          extensions:IconedButton.IconSize="24"
+          Content="Clear Images"
+          />
+
+      <core:StepProgress Grid.Row="3" Grid.ColumnSpan="2"
+            Title="Reference set:"
+            Value="{Binding ReferenceStrip, Mode=OneWay, Converter={StaticResource StripTrueFalseValueConverter}}"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding ReferenceStrip, Mode=OneWay, Converter={StaticResource StateTrueFalseValueConverter}}"
+            ValuePosition="OneLine"
+            extensions:IndependentSize.Margin="4,0,4,15"             
+            />
+
+      <Button Grid.Row="4" Grid.Column="0"
+          Grid.ColumnSpan="2" 
+          Command="{Binding ApproveRegistrationCommand}"     
+          Content="Approve set"  
+          ToolTip="Approves registration" 
+          Style="{StaticResource XStyle.Button.Primary}"/>
+
+      <!-- This is Temp, before we have action buttons with styles -->
+      <Label Grid.Row="5" Grid.Column="0"
+             Content="Not Saved:" 
+             Foreground="White"
+             HorizontalAlignment="Center" />
+
+      <!-- This is Temp, before we have action buttons with styles -->
+      <CheckBox Grid.Row="5" Grid.Column="1"
+          HorizontalAlignment="Center"
+          IsChecked="{Binding HasUnapprovedStrips, Mode=OneWay}"
+          IsEnabled="False"
+          VerticalAlignment="Center" />
+
+
+    </Grid>
+
+  </Grid>
+
+  <!--<StackPanel Margin="10" Background="{StaticResource ApplicationBackgroundBrush}">
     <StackPanel.Resources>
       <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
         <Setter Property="Margin" Value="0,10"/>
@@ -54,5 +143,5 @@
       ToolTip="Approve Registration"
       Style="{StaticResource XStyle.Button.Primary}"/>
 
-  </StackPanel>
+  </StackPanel>-->
 </UserControl>
