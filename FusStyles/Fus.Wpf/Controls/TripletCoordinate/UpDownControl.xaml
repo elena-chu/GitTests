@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="Ws.Fus.UI.Wpf.Controls.TripletCoordinate.UpDownControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dm="clr-namespace:Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate"
+             xmlns:local="clr-namespace:Ws.Fus.UI.Wpf.Controls.TripletCoordinate"
+             xmlns:converters="clr-namespace:Ws.Extensions.UI.Wpf.Converters;assembly=Ws.Extensions.UI.Wpf"     
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" IsTabStop="False" 
+             Margin="2"
+            
+             >
+    <UserControl.Resources>
+        <SolidColorBrush Color="#E5E5E5" x:Key="whiteColor"/>
+        <SolidColorBrush Color="#666666" x:Key="offWhiteColor"/>
+        <SolidColorBrush Color="Red" x:Key="redColor"/>
+        <SolidColorBrush Color="Black" x:Key="blackColor"/>
+        <SolidColorBrush Color="#03627C"  Opacity="0.3" x:Key="blueColor"/>
+        <SolidColorBrush Color="#03627C"  Opacity="0.6" x:Key="azureColor"/>
+        <SolidColorBrush Color="#191919"  Opacity="1" x:Key="grayColor"/>
+
+        <converters:BoolToBrushConverter x:Key="booleanToBrush" SetBrush="White" UnsetBrush="Blue"/>
+        <converters:InvertedBooleanConverter x:Key="invertedBooleanConverter"/>
+        <Style x:Key="RepeatButton" TargetType="RepeatButton">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource blueColor}"/>
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Collapsed">
+                    <Setter Property="Background" Value="{StaticResource blueColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="NumberInTextBox" TargetType="TextBox">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=PartNumber}" ></ColumnDefinition>
+            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=PartButtons}"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+        <!-- The Number -->
+
+        <TextBox Grid.Column="0" Name="Number"   TextAlignment="Right"  Style="{DynamicResource ResourceKey=NumberInTextBox}"
+                 CaretIndex="0"  
+                Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Background}" 
+                Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Foreground}"
+                
+                FontSize="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=FontSize}" 
+                IsReadOnly="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=IsReadOnly}" 
+               
+                IsTabStop="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},
+                            Path=IsReadOnly,Converter={StaticResource invertedBooleanConverter}}"
+                Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=ValueDisplay,Mode=TwoWay
+            ,UpdateSourceTrigger=LostFocus}"
+                
+            >
+
+        </TextBox>
+        <!-- The 2 rows grid for the 2 Buttons -->
+
+        <Grid Grid.Column="1" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Background}" 
+            Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},
+                            Path=ButtonsVisibility}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!-- The Up Botton -->
+
+            <RepeatButton Name="ButtonUpControl" Grid.Row="0" Command="local:UpDownCommands.Up"  Style="{DynamicResource ResourceKey=RepeatButton}" 
+                          IsTabStop="False"
+                   Delay="500" Interval="20" 
+                   BorderBrush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Background}"
+                   Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Background}"
+                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Foreground}" 
+                >
+                <Viewbox  >
+                    <Polygon  
+                     Points="0,100 50,0 100,100 0,100"   
+                    Stroke="{Binding ElementName=ButtonUpControl,Path=IsPressed,Converter={StaticResource booleanToBrush }}"    StrokeThickness="10">
+                    </Polygon>
+                </Viewbox>
+            </RepeatButton>
+
+
+            <!-- The Down Botton -->
+
+
+            <RepeatButton Name="ButtonDownControl" Grid.Row="1" Command="local:UpDownCommands.Down" Style="{DynamicResource ResourceKey=RepeatButton}" IsTabStop="False"
+                     Delay="500" Interval="20" 
+                     BorderBrush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Background}"
+                    Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Background}"
+                    Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Foreground}" 
+                          Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},
+                        Path=ButtonsVisibility}"
+                          >
+                <Viewbox >
+                    <Polygon 
+                    Points="0,0 50,100 100,0 0,0"  
+                    Stroke="{Binding ElementName=ButtonDownControl,Path=IsPressed,Converter={StaticResource booleanToBrush }}"
+                    StrokeThickness="10">
+                    </Polygon>
+                </Viewbox>
+            </RepeatButton>
+
+
+        </Grid>
+        <!--Footer -->
+        <Border Grid.Row="1" Grid.ColumnSpan="2" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window},Path=Background}"
+                 Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},
+                            Path=FooterVisibility}" 
+                >
+            <TextBlock  Grid.Column="1"  HorizontalAlignment="Center"    
+                   Foreground="White"
+                   Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=Footer}"       />
+        </Border>
+    </Grid>
+</UserControl>

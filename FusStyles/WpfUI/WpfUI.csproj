@@ -213,6 +213,10 @@
       <Project>{79b49f0d-df9c-4c4f-8169-0686352589e1}</Project>
       <Name>Ws.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fus.Wpf\Ws.Fus.UI.Wpf.csproj">
+      <Project>{8e4a847e-2e40-4f5f-ad62-77220f10fb6f}</Project>
+      <Name>Ws.Fus.UI.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ws.Fus.ImageViewer.UI.Wpf\Ws.Fus.ImageViewer.UI.Wpf.csproj">
       <Project>{ba3a5528-aa5a-49ec-b5f5-3af32f79eedf}</Project>
       <Name>Ws.Fus.ImageViewer.UI.Wpf</Name>

@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Ws.Fus.UI.Wpf.Controls.TripletCoordinate.TripletCoordinateControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ws.Fus.UI.Wpf.Controls.TripletCoordinate"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"  >
+    <UserControl.Resources>
+        <SolidColorBrush Color="#E5E5E5" x:Key="whiteColor"/>
+        <SolidColorBrush Color="#666666" x:Key="offWhiteColor"/>
+        <SolidColorBrush Color="Red" x:Key="redColor"/>
+        <SolidColorBrush Color="Black" x:Key="blackColor"/>
+        <SolidColorBrush Color="#03627C"  Opacity="0.3" x:Key="blueColor"/>
+        <SolidColorBrush Color="#03627C"  Opacity="0.6" x:Key="azureColor"/>
+        <SolidColorBrush Color="#191919"  Opacity="1" x:Key="grayColor"/>
+
+
+        <Style x:Key="SingleStyle" TargetType="local:UpDownControl">
+            <!--Bind to DP from DM-->
+            <Setter Property="Increment" Value="{Binding Increment,Mode=OneWay}"/>
+            <Setter Property="MaxValue" Value="{Binding MaxValue,Mode=OneWay}"/>
+            <Setter Property="MinValue" Value="{Binding MinValue,Mode=OneWay}"/>
+            <Setter Property="Footer" Value="{Binding Footer,Mode=OneWay}"/>
+            <Setter Property="Value" Value="{Binding Coordinate,Mode=TwoWay}"/>
+            <Setter Property="ValueDisplay" Value="{Binding CoordinateDisplay,Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!--Bind to DP from Hosting Triplet Control -->
+            <Setter Property="SeverityLevel" Value="{Binding RelativeSource={RelativeSource AncestorType=local:TripletCoordinateControl},Path=SeverityLevel}"/>
+            <Setter Property="DisplayStatus" Value="{Binding RelativeSource={RelativeSource AncestorType=local:TripletCoordinateControl},Path=DisplayStatus}"/>
+
+            <Setter Property="ButtonsVisibility" Value="Hidden"/>
+            <Setter Property="FooterVisibility" Value="Visible"/>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="Background" Value="{StaticResource blueColor}"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource whiteColor}"></Setter>
+            <Setter Property="IsReadOnly" Value="False"></Setter>
+            <Style.Triggers>
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="DisplayStatus" Value="ReadOnly"/>
+                        <Condition Property="SeverityLevel"   Value="Low"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsReadOnly" Value="True"/>
+                    <Setter Property="Background" Value="{StaticResource blackColor}"/>
+                    <Setter Property="Foreground" Value="{StaticResource whiteColor}"/>
+                    <Setter Property="FooterVisibility" Value="Collapsed"/>
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+
+                        <Condition Property="DisplayStatus" Value="ReadOnly"/>
+                        <Condition Property="SeverityLevel"   Value="High"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsReadOnly" Value="True"/>
+                    <Setter Property="Background" Value="{StaticResource blackColor}"/>
+                    <Setter Property="Foreground" Value="{StaticResource redColor}"/>
+                    <Setter Property="FooterVisibility" Value="Collapsed"/>
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+
+                        <Condition Property="DisplayStatus" Value="Active"/>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsReadOnly" Value="False"/>
+                    <Setter Property="ButtonsVisibility" Value="Visible"/>
+                    <Setter Property="Background" Value="{StaticResource azureColor}"/>
+                </MultiTrigger>
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+
+                        <Condition Property="DisplayStatus" Value="Active"/>
+                        <Condition Property="IsChildWithFocus" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsReadOnly" Value="False"/>
+                    <Setter Property="ButtonsVisibility" Value="Visible"/>
+                    <Setter Property="Background" Value="{StaticResource azureColor}"/>
+                </MultiTrigger>
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+
+                        <Condition Property="DisplayStatus" Value="Disabled"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsReadOnly" Value="True"/>
+                    <Setter Property="Background" Value="{StaticResource grayColor}"/>
+                    <Setter Property="Foreground" Value="{StaticResource offWhiteColor}"/>
+                </MultiTrigger>
+
+            </Style.Triggers>
+
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <local:UpDownControl Style="{StaticResource  ResourceKey=SingleStyle}"  DataContext="{Binding Path=X}" Grid.Column="0"/>
+            <local:UpDownControl  Style="{StaticResource  ResourceKey=SingleStyle}"  DataContext="{Binding Path=Y}" Grid.Column="1"/>
+            <local:UpDownControl Style="{StaticResource  ResourceKey=SingleStyle}"  DataContext="{Binding Path=Z}" Grid.Column="2"/>
+        </Grid>
+
+
+    </Grid>
+</UserControl>
