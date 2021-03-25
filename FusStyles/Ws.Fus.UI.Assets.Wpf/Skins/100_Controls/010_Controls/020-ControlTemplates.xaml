@@ -10,15 +10,11 @@
         <ControlTemplate TargetType="{x:Type ContentControl}">
           <Viewbox Stretch="Uniform">
             <Canvas Width="90" Height="50">
-              <Rectangle x:Name="SwitchBackground" Canvas.Left="0" Canvas.Top="0" Width="90" Height="50" RadiusX="26" RadiusY="26" Fill="{StaticResource XBrush.Switch.Background.On}"/>
-              <Ellipse x:Name="SwitchIndicator" Canvas.Left="8" Canvas.Top="9" Width="32" Height="32" Fill="{StaticResource XBrush.Switch.Foreground.On}"/>
+              <Rectangle x:Name="SwitchBackground" Canvas.Left="0" Canvas.Top="0" Width="90" Height="50" RadiusX="26" RadiusY="26" Fill="{StaticResource XBrush.Switch.Background.Off}"/>
+              <Ellipse x:Name="SwitchIndicator" Canvas.Left="8" Canvas.Top="9" Width="32" Height="32" Fill="{StaticResource XBrush.Switch.Foreground.Off}"/>
             </Canvas>
           </Viewbox>
           <ControlTemplate.Triggers>
-            <EventTrigger RoutedEvent="Loaded" SourceName="SwitchIndicator">
-              <SkipStoryboardToFill BeginStoryboardName="ToRightBeginStoryboard"/>
-              <SkipStoryboardToFill BeginStoryboardName="ToLeftBeginStoryboard"/>
-            </EventTrigger>
             <DataTrigger Binding="{Binding Path=(extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="Right">
               <DataTrigger.EnterActions>
                 <BeginStoryboard x:Name="ToRightBeginStoryboard">

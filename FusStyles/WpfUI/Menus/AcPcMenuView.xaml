@@ -50,11 +50,14 @@
           DataContext="{Binding Commands.Measure}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Pc}"/>
 
-      <ToggleButton Grid.Row="1" Grid.Column="0"
-          ivBeh:UiModeShow.Mode="ACPCOverlay"
-          Content="AC-PC Overlay"
-          DataContext="{Binding Commands.Overlays}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"/>
+      <ToggleButton
+        Grid.Row="1"
+        Grid.Column="0"
+        ivBeh:UiModeShow.Mode="ACPCOverlay"
+        Content="AC-PC Overlay"
+        DataContext="{Binding Commands.Overlays}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"
+        Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneathAndSwitch}"/>
 
       <Button  Grid.Row="1" Grid.Column="1"
           Content="Recalculate"
