@@ -39,7 +39,13 @@
   <SolidColorBrush x:Key="XBrush.Switch.Background.On" Color="{StaticResource XColor.Switch.Background.On}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Background.Off" Color="{StaticResource XColor.Button.Secondary.Background.Disabled}"/>
+  
+  <!--RadioButtonPanel-->
+  <SolidColorBrush x:Key="XBrush.RadioButtonPanel.Background.Checked" Color="{StaticResource XColor.RadioButtonPanel.Background.Checked}"/>
 
+  <!--Frame-->
+  <SolidColorBrush x:Key="XBrush.Frame" Color="{StaticResource XColor.Frame}"/>
+  
   <!--Backgrounds-->
   <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}"/>
 

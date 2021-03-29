@@ -13,84 +13,98 @@
   <UserControl.Resources>
     <extensions:ComparisonConverter x:Key="ComparisonConverter" />
 
-    <Style x:Key="LabelStyle" TargetType="TextBlock" >
-      <Setter Property="Foreground" Value="#FFdbdbdb" />
-      <Setter Property="HorizontalAlignment" Value="Center" />
+    <Style x:Key="LStyle.TextBlock.Title" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+      <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Header3}"/>
+      <Setter Property="extensions:IndependentSize.Margin" Value="0,20,0,8"/>
     </Style>
-
-    <Style TargetType="RadioButton"  x:Key="RadioBtnVerticalStyle">
-      <Setter Property="HorizontalAlignment" Value="Center" />
-      <Setter Property="VerticalAlignment" Value="Center" />
-      <Setter Property="Margin" Value="0,5,0,0" />
-    </Style>
-
-    <Style TargetType="TextBlock" x:Key="RadioBtnVerticalLabelStyle">
-      <Setter Property="HorizontalAlignment" Value="Center" />
-      <Setter Property="Grid.Row" Value="1" />
-      <Setter Property="FontSize" Value="8" />
-      <Setter Property="Foreground" Value="LightGray" />
-    </Style>
-
+    
     <extensions:BooleanToTrueFalseValueConverter x:Key="ForegroundConverter" FalseValue="Gray" TrueValue="White" />
 
-    <DataTemplate x:Key="ScanDirectionSelectionTemplate">
+    <DataTemplate x:Key="LDataTemplate.ScanMode">
       <Grid>
         <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock  Text="Scan Orientation" Style="{StaticResource LabelStyle}"  />
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
+        <TextBlock
+          Grid.Row="0"
+          Grid.ColumnSpan="2"
+          Text="Scan Mode"
+          Style="{StaticResource LStyle.TextBlock.Title}"/>
+        <RadioButton
+          x:Name="VolumetricBtn"
+          Grid.Row="1"
+          Grid.Column="0"
+          Content="Volumetric"
+          Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}"
+          Checked="ScanTypeChecked"/>
+        <!--IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.eVolumetricScan}, Mode=TwoWay}"-->
+        <RadioButton
+          x:Name="ThreePlaneBtn"
+          Grid.Row="1"
+          Grid.Column="1"
+          Content="3 - Plane"
+          Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}"
+          Checked="ScanTypeChecked"/>
+        <!--IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.e3PlaneScan},Mode=TwoWay}"-->
+      </Grid>
+    </DataTemplate>
 
-          <Rectangle HorizontalAlignment="Stretch" Height="1" Fill="LightGray" Margin="15,5,15,0" Grid.Row="0" Grid.ColumnSpan="3" />
+    <DataTemplate x:Key="LDataTemplate.ScanOrientation">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-          <RadioButton x:Name="AxialBtn"
-              Grid.Column="0"
-              GroupName="ScanOrientation"
-              Style="{StaticResource RadioBtnVerticalStyle}"/>
-          <!--IsChecked="{Binding ScanDir,
-                  Converter={StaticResource ComparisonConverter},
-                  ConverterParameter={x:Static mr:ScanDirection.eScanDirAxial},
-                  Mode=TwoWay}"-->
-          <RadioButton x:Name="SagitalBtn"
-              Grid.Column="1"
-              GroupName="ScanOrientation"
-              Style="{StaticResource RadioBtnVerticalStyle}"/>
-          <!--IsChecked="{Binding ScanDir,
-                  Converter={StaticResource ComparisonConverter},
-                  ConverterParameter={x:Static mr:ScanDirection.eScanDirSagittal},
-                  Mode=TwoWay}"-->
-
-          <RadioButton x:Name="CoronalBtn"
-              Grid.Column="2"
-              GroupName="ScanOrientation"
-              Style="{StaticResource RadioBtnVerticalStyle}" />
-          <!--IsChecked="{Binding ScanDir,
-                  Converter={StaticResource ComparisonConverter},
-                  ConverterParameter={x:Static mr:ScanDirection.eScanDirCoronal},
-                  Mode=TwoWay}"-->
-          <TextBlock Foreground="{Binding IsChecked, ElementName=AxialBtn, Converter={StaticResource ForegroundConverter}}"
-            Style="{StaticResource RadioBtnVerticalLabelStyle}"
-            Text="AXIAL"/>
-          <TextBlock Grid.Column="1"
-            Foreground="{Binding IsChecked, ElementName=SagitalBtn, Converter={StaticResource ForegroundConverter}}"
-            Style="{StaticResource RadioBtnVerticalLabelStyle}" 
-            Text="SAGITAL" />
-          <TextBlock Grid.Column="2"
-              Foreground="{Binding IsChecked, ElementName=CoronalBtn, Converter={StaticResource ForegroundConverter}}"
-              Style="{StaticResource RadioBtnVerticalLabelStyle}"
-              Text="CORONAL" />
-        </Grid>
+        <TextBlock
+          Grid.Row="0"
+          Grid.ColumnSpan="3"
+          Text="Scan Orientation"
+          Style="{StaticResource LStyle.TextBlock.Title}"/>
+        <RadioButton
+          x:Name="AxialBtn"
+          GroupName="ScanOrientation"
+          Grid.Row="1"
+          Grid.Column="0"
+          Content="AX"
+          Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}"/>
+        <!--IsChecked="{Binding ScanDir,
+                Converter={StaticResource ComparisonConverter},
+                ConverterParameter={x:Static mr:ScanDirection.eScanDirAxial},
+                Mode=TwoWay}"-->
+        <RadioButton
+          x:Name="SagittalBtn"
+          GroupName="ScanOrientation"
+          Grid.Row="1"
+          Grid.Column="1"
+          Content="SAG"
+          Style="{StaticResource XStyle.RadioButton.RadioButtonPanel}"/>
+        <!--IsChecked="{Binding ScanDir,
+                Converter={StaticResource ComparisonConverter},
+                ConverterParameter={x:Static mr:ScanDirection.eScanDirSagittal},
+                Mode=TwoWay}"-->
+        <RadioButton
+          x:Name="CoronalBtn"
+          GroupName="ScanOrientation"
+          Grid.Row="1"
+          Grid.Column="2"
+          Content="COR"
+          Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}"/>
+        <!--IsChecked="{Binding ScanDir,
+                Converter={StaticResource ComparisonConverter},
+                ConverterParameter={x:Static mr:ScanDirection.eScanDirCoronal},
+                Mode=TwoWay}"-->
       </Grid>
     </DataTemplate>
   </UserControl.Resources>
@@ -135,35 +149,13 @@
       </Grid.RowDefinitions>
 
 
-      <TextBlock Grid.Row="0" Text="Scan Mode" Style="{StaticResource LabelStyle}"  />
-      <Grid Grid.Row="1" >
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+      <ContentPresenter Grid.Row="0" ContentTemplate="{StaticResource LDataTemplate.ScanMode}"/>
 
-        <Rectangle HorizontalAlignment="Stretch" Height="1" Fill="LightGray" Margin="30,5,30,0" Grid.ColumnSpan="3" />
-
-        <!--<RadioButton x:Name="VolumetricBtn" IsChecked="{Binding ViewModel.Is3PlaneScan, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource RadioBtnVerticalStyle}"/>
-        <RadioButton x:Name="ThreePlaneBtn" IsChecked="{Binding ViewModel.Is3PlaneScan, Mode=TwoWay}" Grid.Column="1" Style="{StaticResource RadioBtnVerticalStyle}"/>-->
-
-        <RadioButton x:Name="VolumetricBtn"  Grid.Column="0" Style="{StaticResource RadioBtnVerticalStyle}" Checked="ScanTypeChecked"/>
-        <!--IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.eVolumetricScan}, Mode=TwoWay}"-->
-        <RadioButton x:Name="ThreePlaneBtn"  Grid.Column="1" Style="{StaticResource RadioBtnVerticalStyle}" Checked="ScanTypeChecked"/>
-        <!--IsChecked="{Binding ScanType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static planning:PlanningScanType.e3PlaneScan},Mode=TwoWay}"-->
-        <TextBlock Text="Volumetric" Foreground="{Binding IsChecked, ElementName=VolumetricBtn, Converter={StaticResource ForegroundConverter}}" Style="{StaticResource RadioBtnVerticalLabelStyle}" />
-        <TextBlock Text="3Plane" Foreground="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource ForegroundConverter}}" Grid.Column="1" Style="{StaticResource RadioBtnVerticalLabelStyle}"  />
-      </Grid>
-
-      <ContentPresenter Grid.Row="3" ContentTemplate="{StaticResource ScanDirectionSelectionTemplate}" Content="{Binding }" />
+      <ContentPresenter Grid.Row="1" ContentTemplate="{StaticResource LDataTemplate.ScanOrientation}"/>
       <!--Visibility="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"-->
 
       <TextBlock Grid.Row="5" Text="Scan Type" 
-          Style="{StaticResource LabelStyle}"  />
+          Style="{StaticResource LStyle.TextBlock.Title}"  />
       
       <ComboBox Grid.Row="6" 
           ItemsSource="{Binding Protocols}" 
@@ -177,7 +169,7 @@
 
       <TextBlock Grid.Row="10" 
           Text="Acquired scan tracking" 
-          Style="{StaticResource LabelStyle}" />
+          Style="{StaticResource LStyle.TextBlock.Title}" />
       
       <Border Grid.Row="11" BorderThickness="1" CornerRadius="5" 
           HorizontalAlignment="Stretch" 
@@ -228,10 +220,10 @@
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
 
-          <!--<ContentPresenter Grid.Row="0" ContentTemplate="{StaticResource ScanDirectionSelectionTemplate}" Content="{Binding }"
+          <!--<ContentPresenter Grid.Row="0" ContentTemplate="{StaticResource LDataTemplate.ScanOrientation}" Content="{Binding }"
                         Visibility="{Binding IsChecked, ElementName=VolumetricBtn, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
 
-          <!--<TextBlock Grid.Row="2" Text="Scan Type" Style="{StaticResource LabelStyle}"  />
+          <!--<TextBlock Grid.Row="2" Text="Scan Type" Style="{StaticResource LStyle.TextBlock.Title}"  />
           <ComboBox Grid.Row="3" ItemsSource="{Binding Protocols}" SelectedItem="{Binding SelectedProtocol, Mode=TwoWay}"  Margin="0,5"/>-->
 
           <Button Grid.Row="5" 
@@ -242,7 +234,7 @@
 
           <TextBlock Grid.Row="6" 
               Text="Manual scan options:" 
-              Style="{StaticResource LabelStyle}"  />
+              Style="{StaticResource LStyle.TextBlock.Title}"  />
           
           <Button Grid.Row="7" 
               Content="Scan from MR" 

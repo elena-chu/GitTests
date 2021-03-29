@@ -1,0 +1,217 @@
+<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <!--Main Menu RadioButtons-->
+  <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility" Invisible="Hidden"/>
+
+  <ControlTemplate x:Key="XControlTemplate.RadioButton.MainMenu" TargetType="{x:Type RadioButton}">
+    <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid
+        Grid.Row="0"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}">
+        <Viewbox
+          Stretch="Uniform"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          IsHitTestVisible="False"
+          Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}">
+          <Path x:Name="HaloPath" Fill="{StaticResource ActiveBrush}" Opacity="0.5" Data="{StaticResource XGeometry.Doughnut}">
+            <Path.Effect>
+              <BlurEffect Radius="12" KernelType="Gaussian"/>
+            </Path.Effect>
+          </Path>
+        </Viewbox>
+        <Viewbox
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Stretch="Uniform"
+          IsHitTestVisible="False">
+          <Canvas Width="{StaticResource XDouble.IconCanvasSize}" Height="{StaticResource XDouble.IconCanvasSize}">
+            <Canvas>
+              <Path x:Name="AlphaPath" Data="{Binding (extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}">
+                <Path.Fill>
+                  <SolidColorBrush x:Name="AlphaBrush" Color="{StaticResource XColor.Inactive}"/>
+                </Path.Fill>
+              </Path>
+              <Path x:Name="BetaPath" Data="{Binding (extensions:IconedButton.BetaGeometry), RelativeSource={RelativeSource TemplatedParent}}">
+                <Path.Fill>
+                  <SolidColorBrush x:Name="BetaBrush" Color="{StaticResource XColor.Inactive}"/>
+                </Path.Fill>
+              </Path>
+            </Canvas>
+          </Canvas>
+        </Viewbox>
+      </Grid>
+      <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" Margin="0,5,0,0" IsHitTestVisible="False">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Fill" TargetName="AlphaPath" Value="{StaticResource ActiveBrush}"/>
+        <Setter Property="Fill" TargetName="BetaPath" Value="{StaticResource ApplicationForgroundBrush}"/>
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource ActiveBrush}" TargetName="ContentPresenter"/>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ColorAnimation Storyboard.TargetName="AlphaBrush" Storyboard.TargetProperty="Color" To="{StaticResource ActiveColor}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetName="BetaBrush" Storyboard.TargetProperty="Color" To="{StaticResource ApplicationForgroundColor}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="{StaticResource ActiveColor}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ColorAnimation Storyboard.TargetName="AlphaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetName="BetaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="{StaticResource XColor.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.RadioButton.MainMenu" TargetType="{x:Type RadioButton}">
+    <Setter Property="GroupName" Value="MainScreenNav"/>
+    <Setter Property="Command" Value="{Binding SwitchScreenCommand}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Inactive}"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="50"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.MainMenu}"/>
+    <Style.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Setter Property="Opacity" Value="{StaticResource XDouble.Opacity.Pressed}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <!--RadioButton Panel-->
+  <ControlTemplate x:Key="XControlTemplate.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
+    <Grid
+      x:Name="MainGrid"
+      Background="{StaticResource XBrush.AlmostTransparent}"
+      extensions:ControlExtensions.Placement="{TemplateBinding extensions:ControlExtensions.Placement}"
+      MaxWidth="{TemplateBinding MaxWidth}">
+      <Border
+        x:Name="BackgroundBorder"
+        extensions:IndependentSize.Height="36"
+        Style="{StaticResource XStyle.Border}"
+        Background="{TemplateBinding Background}"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        BorderThickness="{TemplateBinding BorderThickness}"
+        extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}"/>
+      <Border
+        x:Name="HoverBorder"
+        Height="{Binding ActualHeight, ElementName=BackgroundBorder}"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        Style="{StaticResource XStyle.Border.Hover}"
+        extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}">
+        <Border
+          x:Name="PressedBorder"
+          Style="{StaticResource XStyle.Border.Pressed}"
+          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+          Opacity="0"
+          extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}"/>
+      </Border>
+      <ContentPresenter
+        x:Name="ContentPresenter"
+        extensions:IndependentSize.Margin="2,0,2,2"
+        IsHitTestVisible="False"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+            <Setter Property="MaxWidth" Value="{Binding ActualWidth, ElementName=MainGrid}"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.Placement), ElementName=MainGrid}" Value="Left">
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="BackgroundBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="PressedBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.Placement), ElementName=MainGrid}" Value="Right">
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="BackgroundBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="PressedBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
+      </DataTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
+    <Setter Property="extensions:ControlExtensions.Placement" Value="Middle"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.RadioButtonPanel}"/>
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+    <Setter Property="extensions:IndependentSize.CornerRadius" Value="0"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Frame}"/>
+    <Setter Property="BorderThickness" Value="{StaticResource XThickness.Frame.Left}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.RadioButtonPanel.Background.Checked}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.RadioButtonPanel.Left" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
+    <Setter Property="extensions:ControlExtensions.Placement" Value="Left"/>
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.RadioButtonPanel.Right" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
+    <Setter Property="BorderThickness" Value="{StaticResource XThickness.Frame}"/>
+    <Setter Property="extensions:ControlExtensions.Placement" Value="Right"/>
+  </Style>
+
+</ResourceDictionary>

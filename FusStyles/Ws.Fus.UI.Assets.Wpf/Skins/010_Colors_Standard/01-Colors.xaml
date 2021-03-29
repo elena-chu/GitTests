@@ -35,6 +35,10 @@
 
   <Color x:Key="XColor.Switch.Background.On">#ff002d33</Color>
 
+  <Color x:Key="XColor.RadioButtonPanel.Background.Checked">#FF002027</Color>
+
+  <Color x:Key="XColor.Frame">#FF03627C</Color>
+
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
 
   <Color x:Key="XColor.Logo.Plus">#FF20CAF9</Color>
