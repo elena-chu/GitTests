@@ -23,7 +23,7 @@
       <ColumnDefinition Width="0.2*" />
       <ColumnDefinition Width="0.66*" />
     </Grid.ColumnDefinitions>
-    <Rectangle Stretch="Fill" Fill="{StaticResource ApplicationBackgroundBrush}" />
+    <Rectangle Stretch="Fill" Fill="{StaticResource XBrush.Application.Background}" />
     <Grid Style="{StaticResource MenuContainerStyle}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
@@ -78,7 +78,7 @@
     <Border
       x:Name="TestControls"
       Grid.Column="1"
-      Background="{StaticResource ApplicationBackgroundBrush}"
+      Background="{StaticResource XBrush.Application.Background}"
       Visibility="Visible">
       <StackPanel Grid.Column="1">
         <TextBlock FontSize="18" Margin="0,20,0,10" Text="Button Examples:" Foreground="YellowGreen" FontWeight="Bold"/>

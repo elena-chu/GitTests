@@ -6,8 +6,8 @@
   <Style x:Key="StatusIndicator" TargetType="ContentControl">
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}" />
     <Setter Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="True" />
-    <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
-    <Setter Property="Background" Value="{StaticResource ActiveBrush}" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Active}" />
     <Setter Property="IsEnabled" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
@@ -56,7 +56,7 @@
 
   <Style x:Key="NamedStatusIndicatorStyle" TargetType="ContentControl">
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}" />
-    <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="ContentControl">

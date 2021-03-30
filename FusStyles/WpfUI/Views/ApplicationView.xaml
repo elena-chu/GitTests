@@ -9,7 +9,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:localView="clr-namespace:WpfUI.Views"
   prism:ViewModelLocator.AutoWireViewModel="True"
-  Background="{StaticResource ApplicationBackgroundBrush}"
+  Background="{StaticResource XBrush.Application.Background}"
   mc:Ignorable="d" 
   d:DesignHeight="300"
   d:DesignWidth="300">
@@ -41,7 +41,7 @@
 
     <localView:TitleBarToolsView Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"/>
 
-    <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource BaseBorderBrush}" VerticalAlignment="Bottom"/>
+    <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource XBrush.Line}" VerticalAlignment="Bottom"/>
 
     <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Stretch="Fill" HorizontalAlignment="Stretch">
       <Rectangle.Fill>
@@ -58,7 +58,7 @@
       </Grid.ColumnDefinitions>
       <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.SystemStatusIndicationRegion}" VerticalAlignment="Stretch"/>
       <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.WaitMessageRegion}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-      <Rectangle Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource BaseBorderBrush}" VerticalAlignment="top"/>
+      <Rectangle Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource XBrush.Line}" VerticalAlignment="top"/>
     </Grid>
 
     <extensions:BusyIndicator Grid.RowSpan="2" Grid.ColumnSpan="2" IsBusy="{Binding IsBusy, FallbackValue=False}" />

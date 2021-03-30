@@ -14,11 +14,11 @@
     <extensions:BooleanToVisibilityConverter x:Key="BooleanToVisibilityHiddenConverter" Invisible="Hidden"/>
 
     <Style TargetType="TextBlock">
-      <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
+      <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
     </Style>
 
     <Style TargetType="Button">
-      <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
+      <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
     </Style>
 
   </UserControl.Resources>

@@ -19,10 +19,10 @@
   <Grid>
     <ListView Name="lvStrips" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
       DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-      Background="{StaticResource ApplicationBackgroundBrush}"
+      Background="{StaticResource XBrush.Application.Background}"
       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
       BorderThickness="0" BorderBrush="Transparent"
-      TextBlock.Foreground="{StaticResource ApplicationForgroundBrush}"
+      TextBlock.Foreground="{StaticResource XBrush.Application.Foreground}"
       ItemsSource="{Binding Path=Strips}"
       ItemTemplateSelector="{Binding Path=StripTemplateSelector}"        
       PreviewMouseLeftButtonDown="Strips_PreviewMouseLeftButtonDown"

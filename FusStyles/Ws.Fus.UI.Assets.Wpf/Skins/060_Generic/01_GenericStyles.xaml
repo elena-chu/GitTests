@@ -48,7 +48,7 @@
                 <ColumnDefinition Width="0.7*" />
                 <ColumnDefinition Width="0.3*" />
               </Grid.ColumnDefinitions>
-              <Rectangle Stretch="Fill" Fill="{StaticResource ActiveBrush}" Opacity="0.3" Grid.ColumnSpan="2" />
+              <Rectangle Stretch="Fill" Fill="{StaticResource XBrush.Application.Active}" Opacity="0.3" Grid.ColumnSpan="2" />
               <Rectangle Fill="{StaticResource ActiveRadialBrush}" Grid.Column="1"  
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                          Margin="0, -40, -70, -40">
@@ -68,7 +68,7 @@
   <Style TargetType="Rectangle" x:Key="HorizontalMenuSeparator">
     <Setter Property="VerticalAlignment" Value="Bottom" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Fill" Value="{StaticResource BaseBorderBrush}" />
+    <Setter Property="Fill" Value="{StaticResource XBrush.Line}" />
     <Setter Property="Height" Value="1" />
     <Setter Property="Margin" Value="0,0,1,0" />
   </Style>

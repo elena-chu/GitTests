@@ -109,7 +109,7 @@
     </DataTemplate>
   </UserControl.Resources>
   
-  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+  <Grid Background="{StaticResource XBrush.Application.Background}">
     <!--<Grid.RowDefinitions>
       <RowDefinition Height="{StaticResource OperativeScreenMenuTitleRowHeght}" />
       <RowDefinition Height="Auto" />

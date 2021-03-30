@@ -68,11 +68,11 @@
     <Border BorderThickness="2.5" Visibility="{Binding IsEnabled, ElementName=root,Converter={StaticResource BooleanToVisibilityConverter}}" Opacity=".85">
       <Border.BorderBrush>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-          <GradientStop Color="{StaticResource ActiveColor}"  Offset="0.0" />
-          <GradientStop Color="{StaticResource ActiveColor10}" Offset="0.25" />
-          <GradientStop Color="{StaticResource ActiveColor}"  Offset="0.5" />
-          <GradientStop Color="{StaticResource ActiveColor10}" Offset="0.75" />
-          <GradientStop Color="{StaticResource ActiveColor}"  Offset="1.0" />
+          <GradientStop Color="{StaticResource XColor.Application.Active}"  Offset="0.0" />
+          <GradientStop Color="{StaticResource XColor.Application.Active.AlmostTransparent}" Offset="0.25" />
+          <GradientStop Color="{StaticResource XColor.Application.Active}"  Offset="0.5" />
+          <GradientStop Color="{StaticResource XColor.Application.Active.AlmostTransparent}" Offset="0.75" />
+          <GradientStop Color="{StaticResource XColor.Application.Active}"  Offset="1.0" />
         </LinearGradientBrush>
       </Border.BorderBrush>
     </Border>

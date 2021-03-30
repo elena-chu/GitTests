@@ -13,10 +13,10 @@
       <ColumnDefinition Width="{StaticResource RegularMenuWidth}" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
-    <Rectangle Stretch="Fill" Fill="{StaticResource ApplicationBackgroundBrush}" />
+    <Rectangle Stretch="Fill" Fill="{StaticResource XBrush.Application.Background}" />
     <Grid>
       <TextBlock Text="Settings" Foreground="Yellow" />
     </Grid>
-    <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource BaseBorderBrush}" />
+    <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource XBrush.Line}" />
   </Grid>
 </UserControl>

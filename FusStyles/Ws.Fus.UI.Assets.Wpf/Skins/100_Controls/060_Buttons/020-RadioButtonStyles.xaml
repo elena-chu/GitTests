@@ -23,7 +23,7 @@
           VerticalAlignment="Center"
           IsHitTestVisible="False"
           Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}">
-          <Path x:Name="HaloPath" Fill="{StaticResource ActiveBrush}" Opacity="0.5" Data="{StaticResource XGeometry.Doughnut}">
+          <Path x:Name="HaloPath" Fill="{StaticResource XBrush.Application.Active}" Opacity="0.5" Data="{StaticResource XGeometry.Doughnut}">
             <Path.Effect>
               <BlurEffect Radius="12" KernelType="Gaussian"/>
             </Path.Effect>
@@ -38,12 +38,12 @@
             <Canvas>
               <Path x:Name="AlphaPath" Data="{Binding (extensions:IconedButton.AlphaGeometry), RelativeSource={RelativeSource TemplatedParent}}">
                 <Path.Fill>
-                  <SolidColorBrush x:Name="AlphaBrush" Color="{StaticResource XColor.Inactive}"/>
+                  <SolidColorBrush x:Name="AlphaBrush" Color="{StaticResource XColor.RadioButton.MainMenu.Inactive}"/>
                 </Path.Fill>
               </Path>
               <Path x:Name="BetaPath" Data="{Binding (extensions:IconedButton.BetaGeometry), RelativeSource={RelativeSource TemplatedParent}}">
                 <Path.Fill>
-                  <SolidColorBrush x:Name="BetaBrush" Color="{StaticResource XColor.Inactive}"/>
+                  <SolidColorBrush x:Name="BetaBrush" Color="{StaticResource XColor.RadioButton.MainMenu.Inactive}"/>
                 </Path.Fill>
               </Path>
             </Canvas>
@@ -60,26 +60,26 @@
     </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Fill" TargetName="AlphaPath" Value="{StaticResource ActiveBrush}"/>
-        <Setter Property="Fill" TargetName="BetaPath" Value="{StaticResource ApplicationForgroundBrush}"/>
-        <Setter Property="TextBlock.Foreground" Value="{StaticResource ActiveBrush}" TargetName="ContentPresenter"/>
+        <Setter Property="Fill" TargetName="AlphaPath" Value="{StaticResource XBrush.Application.Active}"/>
+        <Setter Property="Fill" TargetName="BetaPath" Value="{StaticResource XBrush.Application.Foreground}"/>
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource XBrush.Application.Active}" TargetName="ContentPresenter"/>
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard>
             <Storyboard>
-              <ColorAnimation Storyboard.TargetName="AlphaBrush" Storyboard.TargetProperty="Color" To="{StaticResource ActiveColor}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              <ColorAnimation Storyboard.TargetName="BetaBrush" Storyboard.TargetProperty="Color" To="{StaticResource ApplicationForgroundColor}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="{StaticResource ActiveColor}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetName="AlphaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetName="BetaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
             </Storyboard>
           </BeginStoryboard>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
           <BeginStoryboard>
             <Storyboard>
-              <ColorAnimation Storyboard.TargetName="AlphaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              <ColorAnimation Storyboard.TargetName="BetaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="{StaticResource XColor.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetName="AlphaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.RadioButton.MainMenu.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetName="BetaBrush" Storyboard.TargetProperty="Color" To="{StaticResource XColor.RadioButton.MainMenu.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="{StaticResource XColor.RadioButton.MainMenu.Inactive}" Duration="{StaticResource XDuration.Animation.Short}"/>
             </Storyboard>
           </BeginStoryboard>
         </Trigger.ExitActions>
@@ -90,7 +90,7 @@
   <Style x:Key="XStyle.RadioButton.MainMenu" TargetType="{x:Type RadioButton}">
     <Setter Property="GroupName" Value="MainScreenNav"/>
     <Setter Property="Command" Value="{Binding SwitchScreenCommand}"/>
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Inactive}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.RadioButton.MainMenu.Inactive}"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>

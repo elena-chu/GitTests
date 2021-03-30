@@ -23,7 +23,7 @@
 
     <Ellipse extensions:IndependentSize.Height = "14" 
         extensions:IndependentSize.Width = "14"
-        Fill="{StaticResource ApplicationBackgroundBrush}"
+        Fill="{StaticResource XBrush.Application.Background}"
         VerticalAlignment="Center"
         HorizontalAlignment="Left"
         />
@@ -39,7 +39,7 @@
     <TextBlock x:Name="TitleTxt"
         Grid.Column="1"
         Text="{Binding Path=Title, ElementName=Control, Mode=OneWay }"
-        Foreground="{StaticResource ApplicationForgroundBrush}"
+        Foreground="{StaticResource XBrush.Application.Foreground}"
         extensions:IndependentSize.FontSize="14"       
         Opacity=".6"
         />
@@ -47,7 +47,7 @@
         Grid.Column="1"
         Grid.Row="1"
         Text="{Binding Path=Value, ElementName=Control, Mode=OneWay }"
-        Foreground="{StaticResource ApplicationForgroundBrush}"
+        Foreground="{StaticResource XBrush.Application.Foreground}"
         extensions:IndependentSize.FontSize="14"       
         Opacity="1"
         />

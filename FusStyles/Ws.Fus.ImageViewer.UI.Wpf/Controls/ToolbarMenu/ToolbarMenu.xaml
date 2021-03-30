@@ -34,8 +34,8 @@
     <localConverters:MultiMeasureVmConverter x:Key="multiMsr" />-->
     
     <Style TargetType="MenuItem" x:Key="MenuItemStyle">
-      <Setter Property="Background" Value="{StaticResource ApplicationBackgroundBrush}" />
-      <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
+      <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}" />
+      <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
     </Style>
     <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}" x:Key="Switch">
       <Setter Property="IsCheckable" Value="True"/>
@@ -54,7 +54,7 @@
       </Grid.ColumnDefinitions>
 
       <Menu  DataContext="{Binding Commands}" 
-           Background="Transparent" Foreground="{StaticResource ApplicationForgroundBrush}" 
+           Background="Transparent" Foreground="{StaticResource XBrush.Application.Foreground}" 
            VerticalAlignment="Center" Margin="1">
         <MenuItem Header="_View" DataContext="{Binding Measure}">
           <MenuItem localBeh:UiModeEnter.Mode="Zoom"
@@ -134,7 +134,7 @@
       <Grid Grid.Column="1" VerticalAlignment="Center" Margin="1">
         <Grid.Resources>
           <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource ActiveBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}" />
             <Setter Property="FontSize" Value="14" />
           </Style>
         </Grid.Resources>

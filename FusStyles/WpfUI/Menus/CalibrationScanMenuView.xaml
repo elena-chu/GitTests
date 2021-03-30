@@ -10,7 +10,7 @@
   d:DesignHeight="300"
   d:DesignWidth="300">
 
-  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+  <Grid Background="{StaticResource XBrush.Application.Background}">
     <Grid.Resources>
       <Style x:Key="StepSeparationRowStyle" TargetType="RowDefinition">
         <Setter Property="extensions:IndependentSize.RowHeight" Value="22" />
@@ -48,7 +48,7 @@
         </Grid.RowDefinitions>
         <Rectangle 
             Width="1" VerticalAlignment="Stretch"
-            Fill="{StaticResource ActiveBrush}" 
+            Fill="{StaticResource XBrush.Application.Active}" 
             HorizontalAlignment="Left" 
             extensions:IndependentSize.Margin="7,10,0,25"
             Grid.RowSpan="9" />
@@ -92,7 +92,7 @@
         </Grid.RowDefinitions>
         <Rectangle 
             Width="1" VerticalAlignment="Stretch"
-            Fill="{StaticResource ActiveBrush}" 
+            Fill="{StaticResource XBrush.Application.Active}" 
             HorizontalAlignment="Left" 
             extensions:IndependentSize.Margin="7,10,0,25"
             Grid.RowSpan="9" />

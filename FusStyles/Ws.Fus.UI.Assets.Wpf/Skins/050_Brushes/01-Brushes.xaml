@@ -1,24 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <!-- Color Brushes-->
-  <SolidColorBrush x:Key="ApplicationBackgroundBrush" Color="{StaticResource ApplicationBackgroundColor}" />
-  <SolidColorBrush x:Key="ApplicationForgroundBrush" Color="{StaticResource ApplicationForgroundColor}" />
-  <SolidColorBrush x:Key="ComplementaryBackgroundBrush" Color="{StaticResource ComplementaryBackgroundColor}"/>
-  <SolidColorBrush x:Key="BaseBorderBrush" Color="{StaticResource BaseBorderColor}" />
-  <SolidColorBrush x:Key="ActiveBrush" Color="{StaticResource ActiveColor}" />
-  <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
-  <SolidColorBrush x:Key="ButtonsForegroundBrush" Color="{StaticResource ButtonsForegroundColor}" />
+  <!--Theme-->
+  <SolidColorBrush x:Key="XBrush.Application.Active" Color="{StaticResource XColor.Application.Active}"/>
+  <SolidColorBrush x:Key="XBrush.Application.Foreground" Color="{StaticResource XColor.Application.Foreground}"/>
+  <SolidColorBrush x:Key="XBrush.Application.Background" Color="{StaticResource XColor.Application.Background}"/>
+  <SolidColorBrush x:Key="XBrush.Application.Background.Complementary" Color="{StaticResource XColor.Application.Background.Complementary}"/>
 
+  <!--General-->
   <SolidColorBrush x:Key="XBrush.AlmostTransparent" Color="{StaticResource XColor.AlmostTransparent}"/>
-  <SolidColorBrush x:Key="XBrush.Inactive" Color="{StaticResource XColor.Inactive}"/>
-  
+  <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}"/>
+
   <!--Buttons-->
-  <SolidColorBrush x:Key="XBrush.Button.Primary.Background" Color="{StaticResource XColor.Button.Primary.Background}"/>
+  <SolidColorBrush x:Key="XBrush.Button.Primary.Background" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Button.Primary.Background.Hover" Color="{StaticResource XColor.Button.Primary.Background.Hover}"/>
   <SolidColorBrush x:Key="XBrush.Button.Primary.Background.Pressed" Color="{StaticResource XColor.Button.Primary.Background.Pressed}"/>
   <SolidColorBrush x:Key="XBrush.Button.Primary.Background.Disabled" Color="{StaticResource XColor.Button.Primary.Background.Disabled}"/>
-  <SolidColorBrush x:Key="XBrush.Button.Primary.Background.Progress" Color="{StaticResource XColor.Button.Primary.Background.Progress}"/>
   <SolidColorBrush x:Key="XBrush.Button.Primary.Foreground" Color="{StaticResource XColor.Button.Primary.Foreground}"/>
   <SolidColorBrush x:Key="XBrush.Button.Primary.Foreground.Disabled" Color="{StaticResource XColor.Button.Primary.Foreground}"/>
 
@@ -26,55 +23,51 @@
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Hover" Color="{StaticResource XColor.Button.Secondary.Background.Hover}"/>
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Pressed" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Disabled" Color="{StaticResource XColor.Button.Secondary.Background.Disabled}"/>
-  <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Progress" Color="{StaticResource XColor.Button.Secondary.Background.Progress}"/>
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Foreground" Color="{StaticResource XColor.Button.Secondary.Foreground}"/>
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Foreground.Disabled" Color="{StaticResource XColor.Button.Secondary.Foreground.Disabled}"/>
 
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Caption" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
-  <SolidColorBrush x:Key="XBrush.Button.IconButton.Alpha" Color="{StaticResource ApplicationForgroundColor}"/>
+  <SolidColorBrush x:Key="XBrush.Button.IconButton.Alpha" Color="{StaticResource XColor.Application.Foreground}"/>
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Beta" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
   
+  <SolidColorBrush x:Key="XBrush.RadioButtonPanel.Background.Checked" Color="{StaticResource XColor.RadioButtonPanel.Background.Checked}"/>
+  <SolidColorBrush x:Key="XBrush.RadioButton.MainMenu.Inactive" Color="{StaticResource XColor.RadioButton.MainMenu.Inactive}"/>
+
   <!--Switch-->
-  <SolidColorBrush x:Key="XBrush.Switch.Foreground.On" Color="{StaticResource XColor.Button.Primary.Background}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.On" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Background.On" Color="{StaticResource XColor.Switch.Background.On}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Background.Off" Color="{StaticResource XColor.Button.Secondary.Background.Disabled}"/>
   
-  <!--RadioButtonPanel-->
-  <SolidColorBrush x:Key="XBrush.RadioButtonPanel.Background.Checked" Color="{StaticResource XColor.RadioButtonPanel.Background.Checked}"/>
-
-  <!--Frame-->
+  <!--Frame/Line-->
   <SolidColorBrush x:Key="XBrush.Frame" Color="{StaticResource XColor.Frame}"/>
-  
-  <!--Backgrounds-->
-  <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}"/>
+  <SolidColorBrush x:Key="XBrush.Line" Color="{StaticResource XColor.Line}" />
 
   <!--Logo-->
-  <SolidColorBrush x:Key="XBrush.Logo.Plus" Color="{StaticResource XColor.Logo.Plus}"/>
-  <SolidColorBrush x:Key="XBrush.Logo.Text" Color="White"/>
+  <SolidColorBrush x:Key="XBrush.Logo.Plus" Color="{StaticResource XColor.Application.Active}"/>
+  <SolidColorBrush x:Key="XBrush.Logo.Text" Color="{StaticResource XColor.Application.Foreground}"/>
 
   <!-- Gradient Brushes-->
   <LinearGradientBrush x:Key="ActiveToTransparentGradientBrush" StartPoint="0,0">
-    <GradientStop Color="{StaticResource ActiveColor}"  Offset="0.0" />
-    <GradientStop Color="{StaticResource ActiveTransparentColor}" Offset="1.0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active}"  Offset="0.0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0" />
   </LinearGradientBrush>
 
   <LinearGradientBrush x:Key="ActiveToTransparentGradientReverseBrush" StartPoint="0,0">
-    <GradientStop Color="{StaticResource ActiveTransparentColor}" Offset="0.0" />
-    <GradientStop Color="{StaticResource ActiveColor}"  Offset="1.0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active}"  Offset="1.0" />
   </LinearGradientBrush>
 
   <LinearGradientBrush x:Key="ActiveToTransparentTwoSideGradientBrush" StartPoint="0,0" EndPoint="1,1">
-    <GradientStop Color="{StaticResource ActiveTransparentColor}"  Offset="0.0" />
-    <GradientStop Color="{StaticResource ActiveColor}" Offset="0.5" />
-    <!--<GradientStop Color="{StaticResource ActiveColor}" Offset="0.6" />-->
-    <GradientStop Color="{StaticResource ActiveTransparentColor}"  Offset="1.0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}"  Offset="0.0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0.5" />
+    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}"  Offset="1.0" />
   </LinearGradientBrush>
 
   <RadialGradientBrush x:Key="ActiveRadialBrush" GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
-    <GradientStop Color="{StaticResource ActiveColor}" Offset="0" />
-    <GradientStop Color="{StaticResource ActiveColor}" Offset="0.3" />
-    <GradientStop Color="{StaticResource ActiveTransparentColor}" Offset="1.0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0" />
+    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0.3" />
+    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0" />
   </RadialGradientBrush>
 
 

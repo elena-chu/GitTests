@@ -20,13 +20,13 @@
              xmlns:reg="clr-namespace:Ws.Fus.Registration.UI.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="300">
-  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+  <Grid Background="{StaticResource XBrush.Application.Background}">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="{StaticResource NavigationMenuWidth}" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <Grid x:Name="MenuGrid" Background="{StaticResource ComplementaryBackgroundBrush}" ClipToBounds="True">
+    <Grid x:Name="MenuGrid" Background="{StaticResource XBrush.Application.Background.Complementary}" ClipToBounds="True">
       <Grid.RowDefinitions>
         <RowDefinition Height="0.145*" />
         <RowDefinition Height="0.605*" />
@@ -34,7 +34,7 @@
         <RowDefinition Height="0.125*" />
       </Grid.RowDefinitions>
 
-      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource BaseBorderBrush}" Grid.RowSpan="4" />
+      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource XBrush.Line}" Grid.RowSpan="4" />
 
       <RadioButton
         GroupName="ModulesRadioButtonGroup"
@@ -52,7 +52,7 @@
         <Grid.Resources>
           <Style TargetType="{x:Type locControls:ProgressNavigationButton}">
             <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
-            <Setter Property="Foreground" Value="{StaticResource ApplicationForgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
             <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
             <Setter Property="extensions:IndependentSize.Height" Value="80" />
             <Setter Property="IsActive" Value="{Binding IsActive}" />
@@ -75,7 +75,7 @@
                         <VisualState x:Name="MouseOver">
                           <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(UIElement.Opacity)" To="1" Duration="0:0:0.5" />
-                            <ColorAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="{StaticResource ActiveColor}" Duration="0:0:0.5" />
+                            <ColorAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="{StaticResource XColor.Application.Active}" Duration="0:0:0.5" />
                             <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="StatusIndicator" To="1" Duration="0:0:0.1" />
                           </Storyboard>
                         </VisualState>
@@ -107,7 +107,7 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ActiveBkg">
                               <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ColorAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="{StaticResource ActiveColor}" Duration="0:0:0.1" />
+                            <ColorAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="{StaticResource XColor.Application.Active}" Duration="0:0:0.1" />
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ActiveBkg">
                               <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                             </ObjectAnimationUsingKeyFrames>
@@ -123,7 +123,7 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ActiveBkg">
                               <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ColorAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="{StaticResource ActiveColor}" Duration="0:0:0.1" />
+                            <ColorAnimation Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="{StaticResource XColor.Application.Active}" Duration="0:0:0.1" />
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(extensions:ProgressStatusDisplayer.ProgressState)" Storyboard.TargetName="StatusIndicator">
                               <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static extensions:ProgressState.Completed}" />
                             </ObjectAnimationUsingKeyFrames>
@@ -163,8 +163,8 @@
                         </Ellipse>
                         <ContentControl x:Name="StatusIndicator" Style="{StaticResource StatusIndicator}" VerticalAlignment="Bottom" Margin="2" 
                                 extensions:IndependentSize.Width="16" extensions:IndependentSize.Height="16" 
-                                Foreground="{StaticResource ApplicationForgroundBrush}" Opacity=".8"
-                                Background="{StaticResource ActiveBrush}"
+                                Foreground="{StaticResource XBrush.Application.Foreground}" Opacity=".8"
+                                Background="{StaticResource XBrush.Application.Active}"
                                 extensions:ProgressStatusDisplayer.ActiveAsForeground="False"
                                 HorizontalAlignment="Left"
                                 IsEnabled="{TemplateBinding IsEnabled}"

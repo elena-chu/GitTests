@@ -5,7 +5,7 @@
 
   <sys:Double x:Key="XDouble.IconCanvasSize">50</sys:Double>
   
-  <SolidColorBrush x:Key="XBrush.Icon.Alpha" Color="{StaticResource ApplicationForgroundColor}"/>
+  <SolidColorBrush x:Key="XBrush.Icon.Alpha" Color="{StaticResource XColor.Application.Foreground}"/>
   <SolidColorBrush x:Key="XBrush.Icon.Beta" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
   <SolidColorBrush x:Key="XBrush.Icon.Disabled" Color="{StaticResource XColor.Button.Secondary.Foreground.Disabled}"/>
 

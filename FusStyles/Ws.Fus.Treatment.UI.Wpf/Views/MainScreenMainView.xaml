@@ -18,8 +18,8 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
-    <Grid x:Name="MenuGrid" Background="{StaticResource ComplementaryBackgroundBrush}" ClipToBounds="True">
-      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource BaseBorderBrush}"/>
+    <Grid x:Name="MenuGrid" Background="{StaticResource XBrush.Application.Background.Complementary}" ClipToBounds="True">
+      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource XBrush.Line}"/>
       <Grid>
         <Grid.Resources>
           <Style TargetType="RadioButton" BasedOn="{StaticResource XStyle.RadioButton.MainMenu}"/>

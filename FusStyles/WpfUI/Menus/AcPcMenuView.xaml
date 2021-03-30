@@ -13,7 +13,7 @@
     <extensions:BooleanToTrueFalseValueConverter x:Key="TrueFalseConverter" TrueValue="{x:Static extensions:ProgressState.Completed}" FalseValue="{x:Static  extensions:ProgressState.Regular}" />
   </UserControl.Resources>
   
-  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+  <Grid Background="{StaticResource XBrush.Application.Background}">
 
     <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
       <Grid.Resources>
@@ -119,7 +119,7 @@
   </Grid>
 
 
-  <!--<Grid Background="{StaticResource ApplicationBackgroundBrush}">
+  <!--<Grid Background="{StaticResource XBrush.Application.Background}">
     <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />

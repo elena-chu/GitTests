@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
   
-  <Pen x:Key="IconPan" Thickness="1" Brush="{StaticResource ApplicationForgroundBrush}"/>
-  <Pen x:Key="ActiveIconPan" Thickness="1" Brush="{StaticResource ActiveBrush}"/>
+  <Pen x:Key="IconPan" Thickness="1" Brush="{StaticResource XBrush.Application.Foreground}"/>
+  <Pen x:Key="ActiveIconPan" Thickness="1" Brush="{StaticResource XBrush.Application.Active}"/>
   
   <!--Temp Icon -->
   <Geometry x:Key="IconPath">

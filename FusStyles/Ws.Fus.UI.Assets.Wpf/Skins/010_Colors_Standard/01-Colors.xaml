@@ -1,31 +1,29 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <Color x:Key="ApplicationBackgroundColor">#FF000000</Color> <!--Black-->
-  <Color x:Key="ComplementaryBackgroundColor">#FF191919</Color><!--Gray dark -->
-  <Color x:Key="BaseBorderColor">#FF333333</Color> <!--Gray dark lighter -->
-  <Color x:Key="ApplicationForgroundColor">#FFFFFFFF</Color> <!--White -->
-  <Color x:Key="ActiveColor">#FF00E0FF</Color> <!--Blue -->
-  <Color x:Key="ActiveColor30">#4D00E0FF</Color><!--Blue Opacity 30% -->
-  <Color x:Key="ActiveColor10">#1A00E0FF</Color><!--Blue OPacity 10%-->
-  <Color x:Key="ActiveTransparentColor">#0000E0FF</Color><!--Blue Transparent-->
-  <Color x:Key="ButtonsForegroundColor">#FF000000</Color><!--Black-->
+  <!--Theme-->
+  <Color x:Key="XColor.Application.Active">#FF20CAF9</Color>
+  <Color x:Key="XColor.Application.Foreground">#FFFFFFFF</Color>
+  <Color x:Key="XColor.Application.Background">#FF000000</Color>
+  <Color x:Key="XColor.Application.Background.Complementary">#FF191919</Color>
 
+  <!--Gradients-->
+  <Color x:Key="XColor.Application.Active.Transparent">#0020CAF9</Color>
+  <Color x:Key="XColor.Application.Active.AlmostTransparent">#1A00E0FF</Color>
+
+  <!--General-->
   <Color x:Key="XColor.AlmostTransparent">#01000000</Color>
-  <Color x:Key="XColor.Inactive">#FF999999</Color>
-  
+  <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
+
   <!--Buttons-->
-  <Color x:Key="XColor.Button.Primary.Background">#FF00E0FF</Color>
-  <Color x:Key="XColor.Button.Primary.Background.Hover">#FF00b4cc</Color>
-  <Color x:Key="XColor.Button.Primary.Background.Pressed">#FF008799</Color>
-  <Color x:Key="XColor.Button.Primary.Background.Progress">#FF007080</Color>
-  <Color x:Key="XColor.Button.Primary.Background.Disabled">#FF143942</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Hover">#FF1bacd4</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Pressed">#FF168dae</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Disabled">#FF0a3d4b</Color>
   <Color x:Key="XColor.Button.Primary.Foreground">#FF000000</Color>
 
   <Color x:Key="XColor.Button.Secondary.Background">#FF002d32</Color>
   <Color x:Key="XColor.Button.Secondary.Background.Hover">#FF004150</Color>
   <Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF005a6e</Color>
-  <Color x:Key="XColor.Button.Secondary.Background.Progress">#FF243d40</Color>
   <Color x:Key="XColor.Button.Secondary.Background.Disabled">#FF191919</Color>
   <Color x:Key="XColor.Button.Secondary.Foreground">#FFE5E5E5</Color>
   <Color x:Key="XColor.Button.Secondary.Foreground.Disabled">#FF666666</Color>
@@ -33,15 +31,16 @@
   <Color x:Key="XColor.Button.IconButton.Caption">#FFB2B2B2</Color>
   <Color x:Key="XColor.Button.IconButton.Beta">#FF7F7F7F</Color>
 
+  <Color x:Key="XColor.RadioButtonPanel.Background.Checked">#FF002027</Color>
+  <Color x:Key="XColor.RadioButton.MainMenu.Inactive">#FF999999</Color>
+
+  <!--Switch-->
   <Color x:Key="XColor.Switch.Background.On">#ff002d33</Color>
 
-  <Color x:Key="XColor.RadioButtonPanel.Background.Checked">#FF002027</Color>
-
+  <!--Frame/Line-->
   <Color x:Key="XColor.Frame">#FF03627C</Color>
+  <Color x:Key="XColor.Line">#FF333333</Color>
 
-  <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
-
-  <Color x:Key="XColor.Logo.Plus">#FF20CAF9</Color>
 
   <!-- OLD COLORS-->
   <Color x:Key="MouseOverColor">#FF669933</Color> <!--Green-->

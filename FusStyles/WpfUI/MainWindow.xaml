@@ -15,7 +15,7 @@
   mc:Ignorable="d"
   Title="MainWindow" 
   Height="1080" Width="1920"
-  Background="{StaticResource ApplicationBackgroundBrush}"
+  Background="{StaticResource XBrush.Application.Background}"
   WindowStartupLocation="CenterScreen"
   WindowState="Maximized"
   WindowStyle="None">

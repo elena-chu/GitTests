@@ -17,7 +17,7 @@
   </UserControl.Resources>
 
 
-  <Grid Background="{StaticResource ApplicationBackgroundBrush}">
+  <Grid Background="{StaticResource XBrush.Application.Background}">
     <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
       <Grid.Resources>
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
@@ -101,7 +101,7 @@
 
   </Grid>
 
-  <!--<StackPanel Margin="10" Background="{StaticResource ApplicationBackgroundBrush}">
+  <!--<StackPanel Margin="10" Background="{StaticResource XBrush.Application.Background}">
     <StackPanel.Resources>
       <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
         <Setter Property="Margin" Value="0,10"/>
