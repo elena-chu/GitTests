@@ -161,14 +161,17 @@
                             <ScaleTransform x:Name="CTAScaleTransform" />
                           </Ellipse.RenderTransform>
                         </Ellipse>
-                        <ContentControl x:Name="StatusIndicator" Style="{StaticResource StatusIndicator}" VerticalAlignment="Bottom" Margin="2" 
-                                extensions:IndependentSize.Width="16" extensions:IndependentSize.Height="16" 
-                                Foreground="{StaticResource XBrush.Application.Foreground}" Opacity=".8"
-                                Background="{StaticResource XBrush.Application.Active}"
-                                extensions:ProgressStatusDisplayer.ActiveAsForeground="False"
-                                HorizontalAlignment="Left"
-                                IsEnabled="{TemplateBinding IsEnabled}"
-                                ToolTip="{TemplateBinding ToolTip}" ToolTipService.ShowOnDisabled="True"/>
+                        <ContentControl
+                          x:Name="StatusIndicator"
+                          Margin="2"
+                          Style="{StaticResource XStyle.StatusIndicator}"
+                          Foreground="{StaticResource XBrush.Application.Foreground}"
+                          Background="{StaticResource XBrush.Application.Background.Complementary}"
+                          VerticalAlignment="Bottom"
+                          HorizontalAlignment="Left"
+                          IsEnabled="{TemplateBinding IsEnabled}"
+                          ToolTip="{TemplateBinding ToolTip}"
+                          ToolTipService.ShowOnDisabled="True"/>
                       </Grid>
                       <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" Margin="0" Opacity=".75" HorizontalAlignment="Left"
                                 TextBlock.FontFamily="{StaticResource XFontFamily.Base}"/>

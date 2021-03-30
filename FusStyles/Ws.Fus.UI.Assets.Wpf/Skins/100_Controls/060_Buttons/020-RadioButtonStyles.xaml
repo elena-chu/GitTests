@@ -200,7 +200,7 @@
         <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Background" Value="{StaticResource XBrush.RadioButtonPanel.Background.Checked}"/>
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
       </Trigger>
     </Style.Triggers>
   </Style>

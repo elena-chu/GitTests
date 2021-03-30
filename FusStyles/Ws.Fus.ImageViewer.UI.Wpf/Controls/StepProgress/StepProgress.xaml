@@ -21,15 +21,15 @@
       <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
 
-    <Ellipse extensions:IndependentSize.Height = "14" 
-        extensions:IndependentSize.Width = "14"
+    <Ellipse extensions:IndependentSize.Height = "16" 
+        extensions:IndependentSize.Width = "16"
         Fill="{StaticResource XBrush.Application.Background}"
         VerticalAlignment="Center"
         HorizontalAlignment="Left"
         />
-    <ContentControl Style="{StaticResource StatusIndicator}"
-        extensions:IndependentSize.Height = "14"
-        extensions:IndependentSize.Width = "14"
+    <ContentControl Style="{StaticResource XStyle.StatusIndicator}"
+        extensions:IndependentSize.Height = "16"
+        extensions:IndependentSize.Width = "16"
         Margin="0,0,7,0"
         VerticalAlignment="Center"
         HorizontalAlignment="Left"

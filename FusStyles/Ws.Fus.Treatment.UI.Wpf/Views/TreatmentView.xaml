@@ -88,6 +88,26 @@
         <Button Margin="10" Content="Secondary Disabled" Style="{StaticResource XStyle.Button.Secondary}" IsEnabled="False"/>
         <Button Margin="10" Content="Secondary side icon with very very very very long text" Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"/>
 
+        <StackPanel Margin="10" Orientation="Horizontal">
+          <ContentControl
+            Margin="10,0"
+            Style="{StaticResource XStyle.StatusIndicator}"
+            extensions:ProgressStatusDisplayer.ProgressState="Regular"/>
+          <ContentControl
+            Margin="10,0"
+            Style="{StaticResource XStyle.StatusIndicator}"
+            extensions:ProgressStatusDisplayer.ProgressState="Active"/>
+          <ContentControl
+            Margin="10,0"
+            Style="{StaticResource XStyle.StatusIndicator}"
+            extensions:ProgressStatusDisplayer.ProgressState="Active"
+            extensions:ProgressStatusDisplayer.AnimateActive="True"/>
+          <ContentControl
+            Margin="10,0"
+            Style="{StaticResource XStyle.StatusIndicator}"
+            extensions:ProgressStatusDisplayer.ProgressState="Completed"/>
+        </StackPanel>
+
         <ToggleButton Margin="10" extensions:IndependentSize.Height="36">
           <ToggleButton.Style>
             <Style TargetType="{x:Type ToggleButton}">

@@ -82,7 +82,7 @@
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ContentControl Style="{StaticResource NamedStatusIndicatorStyle}" 
+        <ContentControl Style="{StaticResource XStyle.StatusIndicator.WithText}" 
             Content="AC-PC length:"
             extensions:ProgressStatusDisplayer.ProgressState="{Binding IsAcPcValid, Converter={StaticResource TrueFalseConverter}}"
             IsEnabled="{Binding IsAcPcValid}" />
@@ -182,7 +182,7 @@
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         
-        <ContentControl Style="{StaticResource NamedStatusIndicatorStyle}" 
+        <ContentControl Style="{StaticResource XStyle.StatusIndicator.WithText}" 
             Content="AC-PC length:"
             extensions:ProgressStatusDisplayer.ProgressState="{Binding IsAcPcValid, Converter={StaticResource TrueFalseConverter}}"
             IsEnabled="{Binding IsAcPcValid}" />

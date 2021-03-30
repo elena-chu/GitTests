@@ -1,76 +1,115 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:extensions="http://schemas.insightec.com/wpf/"
-                    >
+                    xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <Style x:Key="StatusIndicator" TargetType="ContentControl">
-    <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}" />
-    <Setter Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="True" />
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
-    <Setter Property="Background" Value="{StaticResource XBrush.Application.Active}" />
-    <Setter Property="IsEnabled" Value="True" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="ContentControl">
-          <Viewbox>
-            <Grid x:Name="Root" Background="Transparent">
-              <Grid x:Name="Regular" Width="Auto" Height="Auto" >
-                <Path x:Name="EllipseR" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="2"  StrokeDashCap="Round" />
-              </Grid>
-              <Grid x:Name="Active" Visibility="Hidden" Width="Auto" Height="Auto" >
-                <Path x:Name="Ellipse" Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeDashArray="2"  StrokeDashCap="Round" />
-                <Path x:Name="Path" Data="M40.179964,88.828841 L43.223852,85.537268 49.682442,92.415611 59.197805,81.994108 62.095761,85.591337 49.779623,99.328249 z" Margin="7.234,10.384,5.9,7.675" Stretch="Fill" Fill="{TemplateBinding Foreground}" StrokeThickness="0"/>
-              </Grid>
-              <Grid x:Name="Completed" Visibility="Hidden" Width="Auto" Height="Auto">
-                <Path x:Name="PathComplete" Data="M28.234001,10.383998 L17.726889,21.972372 10.595143,14.323877 7.2340026,17.983999 17.834198,29.659002 31.434,14.384 z M18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 36.334,28.424215 28.424215,36.334 18.667,36.334 8.9097853,36.334 1,28.424215 1,18.667 1,8.9097853 8.9097853,1 18.667,1 z" 
-                  Stretch="Fill" Stroke="{TemplateBinding Background}"  
-                  Fill="{TemplateBinding Background}" />
-              </Grid>
-            </Grid>
-          </Viewbox>
-          <ControlTemplate.Triggers>
-            <Trigger Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="False">
-              <Setter Property="Stroke" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Ellipse" />
-              <Setter Property="Fill" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Path" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-              <Setter Property="Opacity" Value=".3" TargetName="Root" />
-              <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Ellipse" />
-              <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" TargetName="Path" />
-            </Trigger>
-            <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}">
-            </Trigger>
-            <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Active}">
-              <Setter Property="Visibility" Value="Hidden" TargetName="Regular" />
-              <Setter Property="Visibility" Value="Visible" TargetName="Active" />
-            </Trigger>
-            <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Completed}">
-              <Setter Property="Visibility" Value="Hidden" TargetName="Regular" />
-              <Setter Property="Visibility" Value="Visible" TargetName="Completed" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
+  <Storyboard x:Key="XStoryboard.Rotate">
+    <DoubleAnimation
+      Storyboard.TargetName="RotateCircle"
+      Storyboard.TargetProperty="Angle" 
+      From="0"
+      To="360"
+      Duration="0:0:2"
+      RepeatBehavior="Forever"/>
+  </Storyboard>
+
+  <ControlTemplate x:Key="XControlTemplate.StatusIndicator" TargetType="ContentControl">
+    <Grid x:Name="OuterGrid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+      <Ellipse
+        x:Name="Circle"
+        Stretch="UniformToFill"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Stroke="{TemplateBinding Foreground}"
+        Fill="Transparent"
+        StrokeThickness="1"
+        RenderTransformOrigin="0.5,0.5">
+        <Ellipse.RenderTransform>
+          <RotateTransform x:Name="RotateCircle" Angle="0"/>
+        </Ellipse.RenderTransform>
+      </Ellipse>
+      <Path
+        x:Name="Checkmark"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Data="{StaticResource XGeometry.Checkmark}"
+        Fill="{TemplateBinding Foreground}"
+        Stretch="Uniform"
+        Visibility="Visible"/>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}">
+        <Setter TargetName="Checkmark" Property="Visibility" Value="Collapsed"/>
+        <Setter TargetName="Circle" Property="StrokeDashArray" Value="1,0"/>
+        <Setter TargetName="Circle" Property="Width" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.95}"/>
+        <Setter TargetName="Circle" Property="Height" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.95}"/>
+      </Trigger>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Active}">
+        <Setter TargetName="Checkmark" Property="Width" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.4}"/>
+        <Setter TargetName="Checkmark" Property="Height" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.4}"/>
+        <Setter TargetName="Circle" Property="StrokeDashArray" Value="2,1.5"/>
+        <Setter TargetName="Circle" Property="StrokeThickness" Value="1.3"/>
+      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Active}"/>
+          <Condition Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="True"/>
+        </MultiTrigger.Conditions>
+        <MultiTrigger.EnterActions>
+          <BeginStoryboard x:Name="RotateStoryboard" Storyboard="{StaticResource XStoryboard.Rotate}"/>
+        </MultiTrigger.EnterActions>
+        <MultiTrigger.ExitActions>
+          <StopStoryboard BeginStoryboardName="RotateStoryboard"/>
+        </MultiTrigger.ExitActions>
+      </MultiTrigger>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Completed}">
+        <Setter TargetName="Checkmark" Property="Width" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.55}"/>
+        <Setter TargetName="Checkmark" Property="Height" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.55}"/>
+        <Setter TargetName="Checkmark" Property="Fill" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter TargetName="Circle" Property="StrokeThickness" Value="0"/>
+        <Setter TargetName="Circle" Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter TargetName="Circle" Property="Width" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.95}"/>
+        <Setter TargetName="Circle" Property="Height" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.95}"/>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.StatusIndicator" TargetType="ContentControl">
+    <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}"/>
+    <Setter Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="False"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="18"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="18"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
+    <Setter Property="IsEnabled" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.StatusIndicator}"/>
+    <Style.Triggers>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+      </Trigger>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+      </Trigger>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
-  <Style x:Key="NamedStatusIndicatorStyle" TargetType="ContentControl">
-    <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}" />
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+  <Style x:Key="XStyle.StatusIndicator.WithText" TargetType="ContentControl">
+    <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="ContentControl">
           <StackPanel Orientation="Horizontal">
-            <ContentControl Style="{StaticResource StatusIndicator}"
-                 extensions:IndependentSize.Height = "16"
-                 extensions:IndependentSize.Width = "16"
-                 Margin="0,0,7,0"
-                 VerticalAlignment="Center"
-                 extensions:ProgressStatusDisplayer.ProgressState ="{TemplateBinding extensions:ProgressStatusDisplayer.ProgressState}"
-                 IsEnabled="{TemplateBinding IsEnabled}"
-             />
-            <ContentPresenter VerticalAlignment="Center"
-                 Opacity=".7" />
+            <ContentControl
+              Style="{StaticResource XStyle.StatusIndicator}"
+              Margin="0,0,7,0"
+              VerticalAlignment="Center"
+              extensions:ProgressStatusDisplayer.ProgressState="{TemplateBinding extensions:ProgressStatusDisplayer.ProgressState}"
+              IsEnabled="{TemplateBinding IsEnabled}"/>
+            <ContentPresenter VerticalAlignment="Center"/>
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>
