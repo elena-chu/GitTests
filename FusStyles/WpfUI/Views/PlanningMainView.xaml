@@ -164,7 +164,7 @@
                         <ContentControl
                           x:Name="StatusIndicator"
                           Margin="2"
-                          Style="{StaticResource XStyle.StatusIndicator}"
+                          Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
                           Foreground="{StaticResource XBrush.Application.Foreground}"
                           Background="{StaticResource XBrush.Application.Background.Complementary}"
                           VerticalAlignment="Bottom"

@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="ViewModels\MainScreenBaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenMainViewModel.cs" />
+    <Compile Include="ViewModels\DebugViewModel.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
     <Compile Include="Views\DataBaseView.xaml.cs">
       <DependentUpon>DataBaseView.xaml</DependentUpon>
@@ -124,6 +125,9 @@
     </Compile>
     <Compile Include="Views\MainScreenMainView.xaml.cs">
       <DependentUpon>MainScreenMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebugView.xaml.cs">
+      <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TreatmentView.xaml.cs">
       <DependentUpon>TreatmentView.xaml</DependentUpon>
@@ -179,6 +183,10 @@
     <Page Include="Views\MainScreenMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DebugView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TreatmentView.xaml">
       <SubType>Designer</SubType>

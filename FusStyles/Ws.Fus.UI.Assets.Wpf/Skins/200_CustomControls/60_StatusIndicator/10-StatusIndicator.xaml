@@ -73,7 +73,7 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.StatusIndicator" TargetType="ContentControl">
+  <Style x:Key="XStyle.ContentControl.StatusIndicator" TargetType="ContentControl">
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}"/>
     <Setter Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="False"/>
     <Setter Property="extensions:IndependentSize.Width" Value="18"/>
@@ -95,7 +95,7 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.StatusIndicator.WithText" TargetType="ContentControl">
+  <Style x:Key="XStyle.ContentControl.StatusIndicator.WithText" TargetType="ContentControl">
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
     <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
@@ -104,16 +104,128 @@
         <ControlTemplate TargetType="ContentControl">
           <StackPanel Orientation="Horizontal">
             <ContentControl
-              Style="{StaticResource XStyle.StatusIndicator}"
-              Margin="0,0,7,0"
+              Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
+              extensions:IndependentSize.Margin="0,0,7,0"
               VerticalAlignment="Center"
               extensions:ProgressStatusDisplayer.ProgressState="{TemplateBinding extensions:ProgressStatusDisplayer.ProgressState}"
+              extensions:ProgressStatusDisplayer.AnimateActive="{TemplateBinding extensions:ProgressStatusDisplayer.AnimateActive}"
               IsEnabled="{TemplateBinding IsEnabled}"/>
             <ContentPresenter VerticalAlignment="Center"/>
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+  </Style>
+
+  <!--StatusIndicator ToggleButton-->
+  <ControlTemplate x:Key="XControlTemplate.ButtonBase.StatusIndicator" TargetType="{x:Type ButtonBase}">
+    <Border
+      x:Name="BackgroundBorder"
+      extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
+      extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
+      extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+      Style="{StaticResource XStyle.Border.Background}"
+      Background="{TemplateBinding Background}">
+      <Border
+        x:Name="HoverBorder"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        extensions:ControlExtensions.RunningPercentage="{TemplateBinding extensions:ControlExtensions.RunningPercentage}"
+        Style="{StaticResource XStyle.Border.Hover}">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding ActualWidth, ElementName=StatusIndicatorColumn}"/>
+            <ColumnDefinition/>
+            <ColumnDefinition x:Name="StatusIndicatorColumn" Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <Border
+            x:Name="PressedBorder"
+            Grid.ColumnSpan="3"
+            Style="{StaticResource XStyle.Border.Pressed}"
+            extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+            Opacity="0"/>
+          <ContentPresenter
+            x:Name="ContentPresenter"
+            Grid.Column="1"
+            extensions:IndependentSize.Margin="1,0,1,1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            IsHitTestVisible="False">
+            <ContentPresenter.Resources>
+              <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+              </Style>
+            </ContentPresenter.Resources>
+          </ContentPresenter>
+          <ContentControl
+            x:Name="StatusIndicator"
+            Grid.Column="2"
+            Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
+            extensions:IndependentSize.Width="24"
+            extensions:IndependentSize.Height="24"
+            extensions:IndependentSize.Margin="7,0,7,0"
+            IsHitTestVisible="False"
+            VerticalAlignment="Center"
+            Foreground="{TemplateBinding Foreground}"
+            Background="{TemplateBinding Background}"
+            extensions:ProgressStatusDisplayer.ProgressState="{TemplateBinding extensions:ProgressStatusDisplayer.ProgressState}"
+            extensions:ProgressStatusDisplayer.AnimateActive="False"/>
+        </Grid>
+      </Border>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+        <Setter TargetName="StatusIndicator" Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active"/>
+      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active"/>
+          <Condition Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="True"/>
+        </MultiTrigger.Conditions>
+        <Setter TargetName="StatusIndicator" Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="True"/>
+      </MultiTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.StatusIndicator" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase}">
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.StatusIndicator}"/>
+    <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular"/>
+    <Setter Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="True"/>
+    <Setter Property="IsChecked" Value="False"/>
+    <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
+    <Style.Triggers>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active">
+        <Setter Property="IsChecked" Value="True"/>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="True"/>
+        <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundPressedConverter}}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Button.Approval" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase}">
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.StatusIndicator}"/>
+    <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular"/>
+    <Setter Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="False"/>
+    <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
   </Style>
 
 </ResourceDictionary>

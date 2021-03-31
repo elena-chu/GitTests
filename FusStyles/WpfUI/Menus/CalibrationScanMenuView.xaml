@@ -30,10 +30,24 @@
         <RowDefinition Height="*"  />
       </Grid.RowDefinitions>
 
-      <Button 
-         Style="{StaticResource XStyle.Button.Primary}" 
-         Content="Auto-Calibrate" Command="{Binding AutoCalibScan}" />
-
+      <ToggleButton Command="{Binding AutoCalibScan}">
+        <ToggleButton.Style>
+          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.StatusIndicator}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Auto Calibrate"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active">
+                <Setter Property="Content" Value="Calibrating..."/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="Calibrated"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </ToggleButton.Style>
+      </ToggleButton>
+      
       <Grid x:Name="ProgressStatuses" Grid.Row="2">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />

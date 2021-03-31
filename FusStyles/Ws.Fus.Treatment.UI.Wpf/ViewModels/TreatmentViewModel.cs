@@ -21,7 +21,6 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
             StartTreatmentCommand = new DelegateCommand(StartTreatmentExecute);
             RefreshExamInfoCommand = new DelegateCommand(RefreshExamInfoExecute);
-            DoingSomethingCommand = new DelegateCommand(DoingSomethingCommandExecute);
         }
 
         public DelegateCommand StartTreatmentCommand { get; private set; }
@@ -58,25 +57,5 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             set { SetProperty(ref _examInfo, value); }
         }
 
-        private ProgressState _myProgressState = ProgressState.Regular;
-        public ProgressState MyProgressState
-        {
-            get { return _myProgressState; }
-            set
-            {
-                _myProgressState = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public DelegateCommand DoingSomethingCommand { get; private set; }
-        public async void DoingSomethingCommandExecute()
-        {
-            MyProgressState = ProgressState.Active;
-            await Task.Delay(3000);
-            MyProgressState = ProgressState.Completed;
-            await Task.Delay(5000);
-            MyProgressState = ProgressState.Regular;
-        }
     }
 }

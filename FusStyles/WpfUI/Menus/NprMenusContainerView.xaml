@@ -39,19 +39,42 @@
       <Button
         Grid.Row="2"
         Grid.ColumnSpan="2"
-        Margin="0,0,0,15"
-        Content="Approve CT NPRs"
+        extensions:IndependentSize.Margin="0,0,0,15"
         Command="{Binding ViewModel.ApproveCTCommand}"
-        Style="{StaticResource XStyle.Button.Primary.TextWithSideIcon}"
-        extensions:IconedButton.Icon="{StaticResource XPath.DashedCircleCheckmark}"/>
+        extensions:ProgressStatusDisplayer.ProgressState="{Binding CtApprovalState}">
+        <Button.Style>
+          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Approve CT NPRs"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="CT NPRs Approved"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Button.Style>
+      </Button>
 
       <Button
         Grid.Row="3"
         Grid.ColumnSpan="2"
-        Content="Approve MRI NPRs"
+        extensions:IndependentSize.Margin="0,0,0,15"
         Command="{Binding ViewModel.ApproveMRICommand}"
-        Style="{StaticResource XStyle.Button.Primary.TextWithSideIcon}"
-        extensions:IconedButton.Icon="{StaticResource XPath.DashedCircleCheckmark}"/>
+        extensions:ProgressStatusDisplayer.ProgressState="{Binding MriApprovalState}">
+        <Button.Style>
+          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Approve MRI NPRs"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="MRI NPRs Approved"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Button.Style>
+      </Button>
 
       <Expander x:Name="MoreExp" Grid.Row="5" Foreground="White" Grid.ColumnSpan="2">
         <Expander.Style>

@@ -40,7 +40,9 @@
     </Style.Triggers>
   </Style>
 
-  <ControlTemplate x:Key="XControlTemplate.ButtonBase.IconWithTextUnderneathAndSwitch" TargetType="{x:Type ToggleButton}">
+  
+  <!--Switch ToggleButton-->
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconWithTextUnderneathAndSwitch" TargetType="{x:Type ToggleButton}">
     <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}" MaxWidth="{TemplateBinding MaxWidth}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
@@ -96,7 +98,7 @@
   </ControlTemplate>
 
   <Style x:Key="XStyle.ToggleButton.IconWithTextUnderneathAndSwitch" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}">
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.IconWithTextUnderneathAndSwitch}"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.IconWithTextUnderneathAndSwitch}"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="30"/>
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">

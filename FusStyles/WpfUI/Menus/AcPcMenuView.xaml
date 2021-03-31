@@ -82,7 +82,7 @@
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ContentControl Style="{StaticResource XStyle.StatusIndicator.WithText}" 
+        <ContentControl Style="{StaticResource XStyle.ContentControl.StatusIndicator.WithText}" 
             Content="AC-PC length:"
             extensions:ProgressStatusDisplayer.ProgressState="{Binding IsAcPcValid, Converter={StaticResource TrueFalseConverter}}"
             IsEnabled="{Binding IsAcPcValid}" />
@@ -93,10 +93,24 @@
             Visibility="{Binding IsAcPcValid, Converter={StaticResource BooleanToVisibilityConverter}}" />
       </Grid>
 
-      <Button Grid.Row="5" Grid.ColumnSpan="2"
-          Content="Approve AC-PC"
-          Command="{Binding ApproveAcPcCommand}"
-          Style="{StaticResource XStyle.Button.Primary}" />
+      <Button
+        Grid.Row="5"
+        Grid.ColumnSpan="2"
+        Command="{Binding ApproveAcPcCommand}"
+        extensions:ProgressStatusDisplayer.ProgressState="{Binding AcPcState}">
+        <Button.Style>
+          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Approve AC-PC"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="AC-PC Approved"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Button.Style>
+      </Button>
 
       <!-- Temp closed till Milestone 2-->
 
@@ -182,7 +196,7 @@
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         
-        <ContentControl Style="{StaticResource XStyle.StatusIndicator.WithText}" 
+        <ContentControl Style="{StaticResource XStyle.ContentControl.StatusIndicator.WithText}" 
             Content="AC-PC length:"
             extensions:ProgressStatusDisplayer.ProgressState="{Binding IsAcPcValid, Converter={StaticResource TrueFalseConverter}}"
             IsEnabled="{Binding IsAcPcValid}" />

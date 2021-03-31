@@ -27,7 +27,7 @@
         VerticalAlignment="Center"
         HorizontalAlignment="Left"
         />
-    <ContentControl Style="{StaticResource XStyle.StatusIndicator}"
+    <ContentControl Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
         extensions:IndependentSize.Height = "16"
         extensions:IndependentSize.Width = "16"
         Margin="0,0,7,0"

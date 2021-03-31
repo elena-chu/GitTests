@@ -6,6 +6,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:views="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Views"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -75,107 +76,7 @@
         Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>
 
-    <Border
-      x:Name="TestControls"
-      Grid.Column="1"
-      Background="{StaticResource XBrush.Application.Background}"
-      Visibility="Visible">
-      <StackPanel Grid.Column="1">
-        <TextBlock FontSize="18" Margin="0,20,0,10" Text="Button Examples:" Foreground="YellowGreen" FontWeight="Bold"/>
-        <Button Margin="10" Content="Primary with very very very very very very long text" Style="{StaticResource XStyle.Button.Primary}"/>
-        <Button Margin="10" Content="Primary Disabled" Style="{StaticResource XStyle.Button.Primary}" IsEnabled="False"/>
-        <Button Margin="10" Content="Secondary" Style="{StaticResource XStyle.Button.Secondary}"/>
-        <Button Margin="10" Content="Secondary Disabled" Style="{StaticResource XStyle.Button.Secondary}" IsEnabled="False"/>
-        <Button Margin="10" Content="Secondary side icon with very very very very long text" Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"/>
-
-        <StackPanel Margin="10" Orientation="Horizontal">
-          <ContentControl
-            Margin="10,0"
-            Style="{StaticResource XStyle.StatusIndicator}"
-            extensions:ProgressStatusDisplayer.ProgressState="Regular"/>
-          <ContentControl
-            Margin="10,0"
-            Style="{StaticResource XStyle.StatusIndicator}"
-            extensions:ProgressStatusDisplayer.ProgressState="Active"/>
-          <ContentControl
-            Margin="10,0"
-            Style="{StaticResource XStyle.StatusIndicator}"
-            extensions:ProgressStatusDisplayer.ProgressState="Active"
-            extensions:ProgressStatusDisplayer.AnimateActive="True"/>
-          <ContentControl
-            Margin="10,0"
-            Style="{StaticResource XStyle.StatusIndicator}"
-            extensions:ProgressStatusDisplayer.ProgressState="Completed"/>
-        </StackPanel>
-
-        <ToggleButton Margin="10" extensions:IndependentSize.Height="36">
-          <ToggleButton.Style>
-            <Style TargetType="{x:Type ToggleButton}">
-              <Setter Property="Template">
-                <Setter.Value>
-                  <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <ContentControl
-                      x:Name="Switch"
-                      Style="{StaticResource XStyle.ContentControl.Switch}"
-                      extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
-                  </ControlTemplate>
-                </Setter.Value>
-              </Setter>
-              <Style.Triggers>
-                <Trigger Property="IsChecked" Value="True">
-                  <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
-                </Trigger>
-                <Trigger Property="IsChecked" Value="False">
-                  <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
-                </Trigger>
-              </Style.Triggers>
-            </Style>
-          </ToggleButton.Style>
-        </ToggleButton>
-        
-        <TextBlock FontSize="18" Margin="0,20,0,10" Text="Progress State Button Example" Foreground="YellowGreen" FontWeight="Bold"/>
-        <TextBlock FontSize="15" Margin="0,0,0,10" Text="Click and Wait:" Foreground="YellowGreen"/>
-        <extensions:ProgressStateButton
-          Margin="10"
-          CurrentProgressState="{Binding MyProgressState}"
-          CaptionRegular="Idle"
-          CaptionActive="Active..."
-          CaptionCompleted="Completed!"
-          IconRegular="{StaticResource XGeometry.DashedCircleCheckmark}"
-          IconActive="{StaticResource XGeometry.DashedCircleCheckmark}"
-          IconCompleted="{StaticResource XGeometry.FilledCircleCheckmark}"
-          Command="{Binding DoingSomethingCommand}"
-          Style="{StaticResource XStyle.ProgressStateButton.Primary}"/>
-
-        <Button
-          Margin="10"
-          extensions:IconedButton.IconSize="24"
-          Content="Icon, Text Underneath"
-          Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Stop}"/>
-        <Button
-          Margin="10"
-          Content="Icon, Text Underneath Disabled"
-          IsEnabled="False"
-          Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-          extensions:IndependentSize.MaxWidth="150"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.ResetCalcifications}"/>
-
-        <ToggleButton
-          Margin="10"
-          Content="Toggle with very very very very very very long text Underneath"
-          Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
-          extensions:IndependentSize.MaxWidth="150"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"/>
-
-        <Border Height="30" Width="100">
-          <TextBlock Text="This is very very very very very long text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-        </Border>
-
-        <Border Height="30" Width="100">
-          <TextBlock Text="Short text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-        </Border>
-      </StackPanel>
-    </Border>
+    <views:DebugView Grid.Column="1"/>
+    
   </Grid>
 </UserControl>

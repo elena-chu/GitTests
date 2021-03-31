@@ -162,10 +162,23 @@
           SelectedItem="{Binding SelectedProtocol, Mode=TwoWay}"  
           Margin="0,5"/>
 
-      <Button Grid.Row="8" 
-          Content="Scan" 
-          Command="{Binding ScanCommand}"  
-          Style="{StaticResource XStyle.Button.Primary}"/>
+      <Button
+        Grid.Row="8"
+        Command="{Binding ScanCommand}"
+        extensions:ProgressStatusDisplayer.ProgressState="{Binding ScanState}">
+        <Button.Style>
+          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Scan"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="Scan Completed"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Button.Style>
+      </Button>
 
       <TextBlock Grid.Row="10" 
           Text="Acquired scan tracking" 

@@ -76,12 +76,25 @@
             extensions:IndependentSize.Margin="4,0,4,15"             
             />
 
-      <Button Grid.Row="4" Grid.Column="0"
-          Grid.ColumnSpan="2" 
-          Command="{Binding ApproveRegistrationCommand}"     
-          Content="Approve set"  
-          ToolTip="Approves registration" 
-          Style="{StaticResource XStyle.Button.Primary}"/>
+      <Button
+        Grid.Row="4"
+        Grid.ColumnSpan="2"
+        Command="{Binding ApproveRegistrationCommand}"     
+        ToolTip="Approves registration" 
+        extensions:ProgressStatusDisplayer.ProgressState="{Binding RegistrationState}">
+        <Button.Style>
+          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Approve Set"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="Set Approved"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Button.Style>
+      </Button>
 
       <!-- This is Temp, before we have action buttons with styles -->
       <Label Grid.Row="5" Grid.Column="0"
