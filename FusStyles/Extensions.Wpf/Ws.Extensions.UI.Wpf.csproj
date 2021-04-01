@@ -119,6 +119,7 @@
     <Compile Include="Converters\ConverterAssists.cs" />
     <Compile Include="Converters\ConverterMarkupExtension.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\OrderConverters.cs" />
     <Compile Include="Converters\ObjectToVisibilityConverter.cs" />
     <Compile Include="Converters\ParametrizedConverter{T}.cs" />
     <Compile Include="Converters\BooleanToTrueFalseValueConverter.cs" />

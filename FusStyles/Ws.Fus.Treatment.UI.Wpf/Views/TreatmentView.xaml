@@ -14,7 +14,7 @@
   <UserControl.Resources>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
       <Setter Property="extensions:IndependentSize.Margin" Value="0,25,0,2"/>
-      <Setter Property="extensions:IndependentSize.FontSize" Value="14"/>
+      <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
     </Style>
   </UserControl.Resources>
   
@@ -43,7 +43,9 @@
       </StackPanel>
       <StackPanel Grid.Row="2" Orientation="Vertical">
         <TextBlock Text="{lex:Loc IDS_LBL_BRAIN_SIDE}"/>
-        <ComboBox SelectedValuePath="Tag">
+        <ComboBox
+          SelectedValuePath="Tag"
+          extensions:ControlExtensions.AlternativeText="Select:">
           <ComboBoxItem Content="{lex:Loc IDS_LBL_LEFT}" Tag="True" />
           <ComboBoxItem Content="{lex:Loc IDS_LBL_RIGHT}" Tag="False" />
         </ComboBox>

@@ -14,6 +14,10 @@
   <!--General-->
   <Color x:Key="XColor.AlmostTransparent">#01000000</Color>
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
+  
+  <!--Controls-->
+  <Color x:Key="XColor.Control.Background.Disabled">#FF191919</Color>
+  <Color x:Key="XColor.Control.Foreground.Disabled">#FF666666</Color>
 
   <!--Buttons-->
   <Color x:Key="XColor.Button.Primary.Background.Hover">#FF1bacd4</Color>
@@ -23,10 +27,9 @@
 
   <Color x:Key="XColor.Button.Secondary.Background">#FF002d32</Color>
   <Color x:Key="XColor.Button.Secondary.Background.Hover">#FF004150</Color>
-  <Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF005a6e</Color>
-  <Color x:Key="XColor.Button.Secondary.Background.Disabled">#FF191919</Color>
+  <!--<Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF005a6e</Color>-->
+  <Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF008a9e</Color>
   <Color x:Key="XColor.Button.Secondary.Foreground">#FFE5E5E5</Color>
-  <Color x:Key="XColor.Button.Secondary.Foreground.Disabled">#FF666666</Color>
 
   <Color x:Key="XColor.Button.IconButton.Caption">#FFB2B2B2</Color>
   <Color x:Key="XColor.Button.IconButton.Beta">#FF7F7F7F</Color>

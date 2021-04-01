@@ -4,6 +4,7 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <Style x:Key="XStyle.ContentControl.Switch" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
     <Setter Property="Template">
       <Setter.Value>
@@ -19,7 +20,7 @@
               <DataTrigger.EnterActions>
                 <BeginStoryboard x:Name="ToRightBeginStoryboard">
                   <Storyboard>
-                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Button.Secondary.Background.Disabled}" To="{StaticResource XColor.Switch.Background.On}" Duration="{StaticResource XDuration.Animation.Short}"/>
+                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Control.Background.Disabled}" To="{StaticResource XColor.Switch.Background.On}" Duration="{StaticResource XDuration.Animation.Short}"/>
                     <DoubleAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="(Canvas.Left)" From="8" To="50" Duration="{StaticResource XDuration.Animation.Short}"/>
                     <ColorAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Button.IconButton.Beta}" To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
                   </Storyboard>
@@ -28,7 +29,7 @@
               <DataTrigger.ExitActions>
                 <BeginStoryboard x:Name="ToLeftBeginStoryboard">
                   <Storyboard>
-                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Switch.Background.On}" To="{StaticResource XColor.Button.Secondary.Background.Disabled}" Duration="{StaticResource XDuration.Animation.Short}"/>
+                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Switch.Background.On}" To="{StaticResource XColor.Control.Background.Disabled}" Duration="{StaticResource XDuration.Animation.Short}"/>
                     <DoubleAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="(Canvas.Left)" To="8" Duration="{StaticResource XDuration.Animation.Short}"/>
                     <ColorAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Application.Active}" To="{StaticResource XColor.Button.IconButton.Beta}" Duration="{StaticResource XDuration.Animation.Short}"/>
                   </Storyboard>

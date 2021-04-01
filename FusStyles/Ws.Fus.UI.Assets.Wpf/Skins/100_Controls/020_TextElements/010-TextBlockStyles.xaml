@@ -4,10 +4,12 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <Style x:Key="XStyle.TextBlock.Base" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
     <Style.Triggers>
@@ -22,6 +24,7 @@
   </Style>
 
   <Style x:Key="XStyle.TextBlock.ToolTip" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>

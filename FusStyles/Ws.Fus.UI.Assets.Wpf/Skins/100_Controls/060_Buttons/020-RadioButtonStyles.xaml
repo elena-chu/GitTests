@@ -88,6 +88,7 @@
   </ControlTemplate>
 
   <Style x:Key="XStyle.RadioButton.MainMenu" TargetType="{x:Type RadioButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="GroupName" Value="MainScreenNav"/>
     <Setter Property="Command" Value="{Binding SwitchScreenCommand}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.RadioButton.MainMenu.Inactive}"/>
@@ -116,7 +117,7 @@
       MaxWidth="{TemplateBinding MaxWidth}">
       <Border
         x:Name="BackgroundBorder"
-        extensions:IndependentSize.Height="36"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
         Style="{StaticResource XStyle.Border}"
         Background="{TemplateBinding Background}"
         BorderBrush="{TemplateBinding BorderBrush}"
@@ -182,12 +183,13 @@
   </ControlTemplate>
 
   <Style x:Key="XStyle.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ControlExtensions.Placement" Value="Middle"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.RadioButtonPanel}"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
     <Setter Property="extensions:IndependentSize.CornerRadius" Value="0"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
-    <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
@@ -197,7 +199,7 @@
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground.Disabled}"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
         <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>

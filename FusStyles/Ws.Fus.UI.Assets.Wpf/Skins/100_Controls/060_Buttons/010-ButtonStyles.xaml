@@ -56,7 +56,7 @@
         x:Name="BackgroundBorder"
         Grid.Row="0"
         Grid.ColumnSpan="2"
-        extensions:IndependentSize.Height="36"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
         HorizontalAlignment="Stretch"
         Style="{StaticResource XStyle.Border}"/>
       <Viewbox

@@ -14,7 +14,7 @@
     <extensions:ComparisonConverter x:Key="ComparisonConverter" />
 
     <Style x:Key="LStyle.TextBlock.Title" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
-      <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Header3}"/>
+      <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Header3}"/>
       <Setter Property="extensions:IndependentSize.Margin" Value="0,20,0,8"/>
     </Style>
     

@@ -189,7 +189,7 @@ namespace Ws.Extensions.UI.Wpf.Converters
                     break;
 
                 case ControlTheme.Secondary:
-                    backgroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Secondary.Background.Disabled");
+                    backgroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Control.Background.Disabled");
                     break;
 
                 case ControlTheme.None:
@@ -261,7 +261,7 @@ namespace Ws.Extensions.UI.Wpf.Converters
                     break;
 
                 case ControlTheme.Secondary:
-                    foregroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Button.Secondary.Foreground.Disabled");
+                    foregroundBrush = (SolidColorBrush)Application.Current.TryFindResource("XBrush.Control.Foreground.Disabled");
                     break;
 
                 case ControlTheme.None:

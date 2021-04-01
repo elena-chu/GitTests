@@ -7,7 +7,7 @@
   
   <SolidColorBrush x:Key="XBrush.Icon.Alpha" Color="{StaticResource XColor.Application.Foreground}"/>
   <SolidColorBrush x:Key="XBrush.Icon.Beta" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
-  <SolidColorBrush x:Key="XBrush.Icon.Disabled" Color="{StaticResource XColor.Button.Secondary.Foreground.Disabled}"/>
+  <SolidColorBrush x:Key="XBrush.Icon.Disabled" Color="{StaticResource XColor.Control.Foreground.Disabled}"/>
 
   <Style x:Key="XStyle.Canvas.Icon" TargetType="{x:Type Canvas}">
     <Setter Property="Height" Value="{StaticResource XDouble.IconCanvasSize}"/>

@@ -42,5 +42,13 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty PlacementProperty = DependencyProperty.RegisterAttached("Placement", typeof(Placement), typeof(ControlExtensions), new PropertyMetadata(Placement.Middle));
         public static Placement GetPlacement(DependencyObject obj) { return (Placement)obj.GetValue(PlacementProperty); }
         public static void SetPlacement(DependencyObject obj, Placement value) { obj.SetValue(PlacementProperty, value); }
+
+        /// <summary>
+        /// Used for setting a control's alternative text
+        /// e.g. watermark for combo
+        /// </summary>
+        public static readonly DependencyProperty AlternativeTextProperty = DependencyProperty.RegisterAttached("AlternativeText", typeof(string), typeof(ControlExtensions), new PropertyMetadata(string.Empty));
+        public static string GetAlternativeText(DependencyObject obj) { return (string)obj.GetValue(AlternativeTextProperty); }
+        public static void SetAlternativeText(DependencyObject obj, string value) { obj.SetValue(AlternativeTextProperty, value); }
     }
 }

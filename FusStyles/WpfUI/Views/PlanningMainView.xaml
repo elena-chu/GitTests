@@ -43,7 +43,7 @@
         extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Plan.Alpha}"
         extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Plan.Beta}"
         IsChecked="True"
-        extensions:IndependentSize.FontSize="22"
+        extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Header3}"
         extensions:IconedButton.IconSize="62"/>
 
       <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>
@@ -53,7 +53,7 @@
           <Style TargetType="{x:Type locControls:ProgressNavigationButton}">
             <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
             <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
-            <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
+            <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
             <Setter Property="extensions:IndependentSize.Height" Value="80" />
             <Setter Property="IsActive" Value="{Binding IsActive}" />
             <Setter Property="ProgressNavigationState" Value="{Binding ScreenState}" />

@@ -6,6 +6,7 @@
   <Style x:Key="XStyle.Control.Base" TargetType="{x:Type Control}">
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
   </Style>
 
 </ResourceDictionary>

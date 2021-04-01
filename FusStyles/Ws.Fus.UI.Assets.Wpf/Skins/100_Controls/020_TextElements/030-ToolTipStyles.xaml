@@ -7,6 +7,7 @@
 
   <!--ToolTip-->
   <Style x:Key="{x:Type ToolTip}" BasedOn="{StaticResource XStyle.Control.Base}" TargetType="{x:Type ToolTip}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>

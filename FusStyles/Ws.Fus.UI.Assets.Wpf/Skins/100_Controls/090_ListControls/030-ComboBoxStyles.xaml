@@ -1,0 +1,162 @@
+<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <Style x:Key="XStyle.ToggleButton.RotatingArrow" TargetType="{x:Type ToggleButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Arrow}"/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="BackgroundBorder" Grid.ColumnSpan="2" Style="{StaticResource XStyle.Border.Background.Control}"/>
+            <Path
+              Grid.Column="1"
+              extensions:IndependentSize.Margin="0,0,12,0"
+              IsHitTestVisible="False"
+              Stretch="Uniform"
+              Data="{StaticResource XGeometry.Arrow.Down}"
+              Stroke="{TemplateBinding Foreground}"
+              StrokeThickness="1.3"
+              RenderTransformOrigin="0.5,0.3">
+              <Path.RenderTransform>
+                <RotateTransform x:Name="ArrowRotateTransform"/>
+              </Path.RenderTransform>
+            </Path>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+              <Trigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="ArrowRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="ArrowRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.ExitActions>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <ControlTemplate x:Key="XControlTemplate.ComboBox" TargetType="{x:Type ComboBox}">
+    <Grid Name="MainGrid" SnapsToDevicePixels="True">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Arrow}"/>
+      </Grid.ColumnDefinitions>
+
+      <!-- Popup -->
+      <Popup
+        Name="PART_Popup"
+        Grid.ColumnSpan="2"
+        AllowsTransparency="True"
+        RenderOptions.ClearTypeHint="Enabled"
+        IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+        PopupAnimation="Slide"
+        VerticalOffset="4"
+        MinWidth="{Binding ElementName=MainGrid, Path=ActualWidth}">
+        <Grid>
+          <Border
+            x:Name="DropDownBorder"
+            Style="{StaticResource XStyle.Border}"
+            Background="{StaticResource XBrush.Application.Background}"
+            BorderBrush="{StaticResource XBrush.Button.Secondary.Background.Pressed}"
+            BorderThickness="{StaticResource XThickness.Frame}"
+            Opacity="0.95">
+            <ContentControl x:Name="Popupcontent">
+              <ScrollViewer>
+                <ItemsPresenter TextElement.FontSize="{TemplateBinding FontSize}" KeyboardNavigation.DirectionalNavigation="Contained"/>
+              </ScrollViewer>
+            </ContentControl>
+          </Border>
+        </Grid>
+      </Popup>
+
+      <!-- ToggleButton -->
+      <ToggleButton 
+        x:Name="ToggleButtonPart"
+        Grid.ColumnSpan="2"
+        IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+        IsEnabled="{TemplateBinding IsEnabled}" 
+        Style="{StaticResource XStyle.ToggleButton.RotatingArrow}"
+        Foreground="{TemplateBinding Foreground}"/>
+
+      <!-- Selected Item -->
+      <ContentPresenter
+        x:Name="ContentPresenter"
+        Grid.Column="0"
+        Margin="{TemplateBinding Padding}"
+        IsHitTestVisible="False"
+        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+        Content="{TemplateBinding SelectionBoxItem}"
+        ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+        ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+            <Setter Property="FontSize" Value="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Setter Property="FontWeight" Value="{Binding FontWeight, RelativeSource={RelativeSource TemplatedParent}}"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+
+      <!--Watermark-->
+      <TextBlock
+        x:Name="WatermarkText"
+        Grid.Column="0"
+        Margin="{TemplateBinding Padding}"
+        IsHitTestVisible="False"
+        Style="{StaticResource XStyle.TextBlock.Base}"
+        Text="{TemplateBinding extensions:ControlExtensions.AlternativeText}"
+        FontSize="{TemplateBinding FontSize}"
+        Foreground="{StaticResource XBrush.Button.Secondary.Background.Pressed}"
+        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+        Visibility="Collapsed"/>
+    </Grid>
+
+    <ControlTemplate.Triggers>
+      <Trigger Property="SelectedValue" Value="{x:Null}">
+        <Setter TargetName="WatermarkText" Property="Visibility" Value="Visible"/>
+      </Trigger>
+      <Trigger Property="HasItems" Value="False">
+        <Setter Property="IsEnabled" Value="False" />
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="9,0,9,1"/>
+    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="{StaticResource XBrush.Control.Background.Disabled}"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+</ResourceDictionary>
