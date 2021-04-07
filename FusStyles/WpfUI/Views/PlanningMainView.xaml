@@ -291,7 +291,12 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Style="{StaticResource StripMenuColumnStyle}" />
       </Grid.ColumnDefinitions>
-      <Button Grid.Column="3" Width="25" Height="25" Content="+" HorizontalAlignment="Center" VerticalAlignment="Center" Click="OnLoadSeriesClick" />
+      <Button
+        Grid.Column="3"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Click="OnLoadSeriesClick"
+        Style="{StaticResource XStyle.Button.Plus}"/>
     </Grid>
     <Popup x:Name="SeriesSelector" IsOpen ="{Binding SeriesSelectorOpen, Mode=TwoWay}" StaysOpen="True"
         Placement="Center"

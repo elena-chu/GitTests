@@ -83,58 +83,66 @@
       </ComboBox>
     </UniformGrid>
 
-    <TextBlock
-      Grid.ColumnSpan="2"
-      extensions:IndependentSize.Margin="0,7,0,0"
-      FontSize="18"
-      Text="Three State Progress Button example:"
-      Foreground="YellowGreen" FontWeight="Bold"/>
-    <TextBlock
-      Grid.ColumnSpan="2"
-      extensions:IndependentSize.Margin="0,0,0,5"
-      FontSize="15"
-      Text="*Can be cancelled while in Active state"
-      Foreground="YellowGreen"/>
 
     <UniformGrid Columns="2">
-      <ToggleButton
-        extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}"
-        Command="{Binding ProgressCommand}"
-        extensions:ProgressStatusDisplayer.ProgressState="{Binding ProgressState}">
-        <ToggleButton.Style>
-          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.StatusIndicator}">
-            <Style.Triggers>
-              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
-                <Setter Property="Content" Value="Auto Calibrate"/>
-              </Trigger>
-              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active">
-                <Setter Property="Content" Value="Calibrating..."/>
-              </Trigger>
-              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
-                <Setter Property="Content" Value="Calibrated"/>
-              </Trigger>
-            </Style.Triggers>
-          </Style>
-        </ToggleButton.Style>
-      </ToggleButton>
+      <StackPanel>
+        <TextBlock
+          extensions:IndependentSize.Margin="0,7,0,0"
+          FontSize="18"
+          Text="Three State Progress Button:"
+          Foreground="YellowGreen" FontWeight="Bold"/>
+        <TextBlock
+          extensions:IndependentSize.Margin="0,0,0,5"
+          FontSize="15"
+          Text="*Can be cancelled while in Active state"
+          Foreground="YellowGreen"/>
 
-      <Button
-        extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}"
-        Command="{Binding ApprovalCommand}"
-        extensions:ProgressStatusDisplayer.ProgressState="{Binding ApprovalState}">
-        <Button.Style>
-          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
-            <Style.Triggers>
-              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
-                <Setter Property="Content" Value="Approve Set"/>
-              </Trigger>
-              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
-                <Setter Property="Content" Value="Set Approved"/>
-              </Trigger>
-            </Style.Triggers>
-          </Style>
-        </Button.Style>
-      </Button>
+        <ToggleButton
+          extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}"
+          Command="{Binding ProgressCommand}"
+          extensions:ProgressStatusDisplayer.ProgressState="{Binding ProgressState}">
+          <ToggleButton.Style>
+            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.StatusIndicator}">
+              <Style.Triggers>
+                <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                  <Setter Property="Content" Value="Auto Calibrate"/>
+                </Trigger>
+                <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active">
+                  <Setter Property="Content" Value="Calibrating..."/>
+                </Trigger>
+                <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                  <Setter Property="Content" Value="Calibrated"/>
+                </Trigger>
+              </Style.Triggers>
+            </Style>
+          </ToggleButton.Style>
+      </ToggleButton>
+      </StackPanel>
+
+      <StackPanel VerticalAlignment="Bottom">
+        <TextBlock
+          extensions:IndependentSize.Margin="0,7,0,0"
+          FontSize="18"
+          Text="Two State Approve Button:"
+          Foreground="YellowGreen" FontWeight="Bold"/>
+        <Button
+          extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}"
+          Command="{Binding ApprovalCommand}"
+          extensions:ProgressStatusDisplayer.ProgressState="{Binding ApprovalState}">
+          <Button.Style>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
+              <Style.Triggers>
+                <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                  <Setter Property="Content" Value="Approve Set"/>
+                </Trigger>
+                <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                  <Setter Property="Content" Value="Set Approved"/>
+                </Trigger>
+              </Style.Triggers>
+            </Style>
+          </Button.Style>
+        </Button>
+      </StackPanel>
 
       <Button
         extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}"
@@ -157,13 +165,17 @@
         extensions:IndependentSize.MaxWidth="150"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"/>
 
-      <Border Height="30" Width="100">
-        <TextBlock Text="This is very very very very very long text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-      </Border>
+      <StackPanel>
+        <Border Height="30" Width="100">
+          <TextBlock Text="This is very very very very very long text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+        </Border>
+        <Border Height="30" Width="100">
+          <TextBlock Text="Short text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+        </Border>
+      </StackPanel>
 
-      <Border Height="30" Width="100">
-        <TextBlock Text="Short text" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-      </Border>
+      <Button Style="{StaticResource XStyle.Button.Plus}"/>
+      <Button Style="{StaticResource XStyle.Button.Exit}"/>
     </UniformGrid>
   </StackPanel>
 </UserControl>

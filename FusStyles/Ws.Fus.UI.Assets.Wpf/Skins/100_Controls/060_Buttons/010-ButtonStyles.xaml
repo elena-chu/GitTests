@@ -35,7 +35,7 @@
   <Style x:Key="XStyle.ToggleButton.IconWithTextUnderneath" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconWithTextUnderneath}">
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundPressedConverter}}"/>
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -109,5 +109,66 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+  
+  <!--Plus / Exit-->
+  <ControlTemplate x:Key="XControlTemplate.Button.SingleLetter" TargetType="{x:Type Button}">
+    <Border
+      Height="{TemplateBinding Height}"
+      Width="{TemplateBinding Height}"
+      CornerRadius="{StaticResource XCornerRadius.Frame}"
+      BorderThickness="{StaticResource XThickness.Frame}"
+      BorderBrush="{StaticResource XBrush.Application.Active}"
+      Background="{StaticResource XBrush.Button.Secondary.Background}">
+      <Border
+        x:Name="HoverBorder"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        extensions:ControlExtensions.RunningPercentage="{TemplateBinding extensions:ControlExtensions.RunningPercentage}"
+        Style="{StaticResource XStyle.Border.Hover}">
+        <Grid>
+          <Border
+            x:Name="PressedBorder"
+            Style="{StaticResource XStyle.Border.Pressed}"
+            extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+            Opacity="0"/>
+          <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+      </Border>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
 
+  <Style x:Key="XStyle.Button.Plus" TargetType="{x:Type Button}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.SingleLetter}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
+    <Setter Property="Content" Value="+"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="20"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+  </Style>
+
+  <Style x:Key="XStyle.Button.Exit" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Plus}">
+    <Setter Property="extensions:IndependentSize.Height" Value="24"/>
+    <Setter Property="Content" Value="&#x00D7;"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
+  </Style>
 </ResourceDictionary>

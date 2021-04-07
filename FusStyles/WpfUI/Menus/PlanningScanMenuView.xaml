@@ -239,20 +239,26 @@
           <!--<TextBlock Grid.Row="2" Text="Scan Type" Style="{StaticResource LStyle.TextBlock.Title}"  />
           <ComboBox Grid.Row="3" ItemsSource="{Binding Protocols}" SelectedItem="{Binding SelectedProtocol, Mode=TwoWay}"  Margin="0,5"/>-->
 
-          <Button Grid.Row="5" 
-              Content="Reset Slab Alignments" 
-              Command="{Binding ResetAxesCommand}" 
-              FontSize="9"  MinWidth="80"  Margin="0,5"
-              Visibility="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+          <Button
+            Grid.Row="5" 
+            Content="Reset Slab Alignments" 
+            Command="{Binding ResetAxesCommand}" 
+            Visibility="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource BooleanToVisibilityConverter}}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Undo}"
+            extensions:IconedButton.IconSize="24"
+            Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"/>
 
           <TextBlock Grid.Row="6" 
               Text="Manual scan options:" 
               Style="{StaticResource LStyle.TextBlock.Title}"  />
           
-          <Button Grid.Row="7" 
-              Content="Scan from MR" 
-              Command="{Binding ScanFromMRCommand}" 
-              FontSize="9"  Width="80"/>
+          <Button
+            Grid.Row="7" 
+            Content="Scan from MR" 
+            Command="{Binding ScanFromMRCommand}"
+            Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Scan.SeriesFromMri}"
+            extensions:IconedButton.IconSize="22"/>
 
           <!--<Button Grid.Row="9" Content="Align to AC-PC" Command="{Binding ViewModel.AlignToAcPcCommand}"  FontSize="9"  Width="80"/>-->
         </Grid>
