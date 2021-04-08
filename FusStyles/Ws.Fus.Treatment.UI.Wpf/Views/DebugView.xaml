@@ -19,6 +19,14 @@
       <Setter Property="extensions:IndependentSize.Margin" Value="0,25,0,2"/>
       <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
     </Style>
+    
+    <Style TargetType="{x:Type Viewbox}">
+      <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+      <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+      <Setter Property="extensions:IndependentSize.Margin" Value="10,0"/>
+      <Setter Property="Stretch" Value="Uniform"/>
+    </Style>
+    
   </UserControl.Resources>
 
   <StackPanel>
@@ -176,6 +184,30 @@
 
       <Button Style="{StaticResource XStyle.Button.Plus}"/>
       <Button Style="{StaticResource XStyle.Button.Exit}"/>
+
+      <Viewbox>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Line}"/>
+      </Viewbox>
+
+      <Viewbox>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Area}"/>
+      </Viewbox>
+
+      <Viewbox>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Angle}"/>
+      </Viewbox>
+
+      <Viewbox>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Angle90}"/>
+      </Viewbox>
+
+      <Viewbox>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.AngleAcPc}"/>
+      </Viewbox>
+
+      <Viewbox>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Fiducial}"/>
+      </Viewbox>
     </UniformGrid>
   </StackPanel>
 </UserControl>
