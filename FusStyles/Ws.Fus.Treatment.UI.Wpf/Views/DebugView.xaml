@@ -186,27 +186,27 @@
       <Button Style="{StaticResource XStyle.Button.Exit}"/>
 
       <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Line}"/>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.Dose}"/>
       </Viewbox>
 
       <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Area}"/>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.ScanPlane}"/>
       </Viewbox>
 
       <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Angle}"/>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.Grid}"/>
       </Viewbox>
 
       <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Angle90}"/>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.ActiveElements}"/>
       </Viewbox>
 
       <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.AngleAcPc}"/>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.DisabledElements}"/>
       </Viewbox>
 
       <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Measurements.Fiducial}"/>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.Tract}"/>
       </Viewbox>
     </UniformGrid>
   </StackPanel>
