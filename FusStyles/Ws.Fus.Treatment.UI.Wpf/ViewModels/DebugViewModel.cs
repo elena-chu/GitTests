@@ -1,8 +1,8 @@
-﻿using Prism.Commands;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Ws.Extensions.Mvvm.Commands;
 using Ws.Extensions.Mvvm.ViewModels;
 using Ws.Extensions.UI.Wpf.Behaviors;
 
@@ -12,8 +12,9 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
     {
         public DebugViewModel()
         {
-            ProgressCommand = new DelegateCommand(ToggleProgress);
-            ApprovalCommand = new DelegateCommand(ToggleApproval);
+            ProgressCommand = new RelayCommand(ToggleProgress);
+            ApprovalCommand = new RelayCommand(ToggleApproval);
+            MenuItemClickedCommand = new RelayCommand<MenuItemCallbackData>(MenuItemClicked);
         }
 
 
@@ -117,6 +118,23 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                 case ProgressState.Active:
                 default:
                     break;
+            }
+        }
+
+        #endregion
+
+
+        #region Menu
+
+        public IMenuViewModel MenuViewModel { get; set; }
+
+        public ICommand MenuItemClickedCommand { get; set; }
+        private void MenuItemClicked(MenuItemCallbackData callbackData)
+        {
+            if (callbackData != null)
+            {
+                string checkRequestedStatus = callbackData.RequestedCheckStatus ? "Checked" : "Unchecked";
+                Console.WriteLine(callbackData.MenuItemType.Caption(false) + " is calling. Requesting to be " + checkRequestedStatus);
             }
         }
 

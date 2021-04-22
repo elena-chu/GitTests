@@ -31,7 +31,7 @@
 
   <StackPanel>
 
-    <UniformGrid Columns="2">
+    <!--<UniformGrid Columns="2">
       <Button extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}" Content="Primary with very very very very very very long text" Style="{StaticResource XStyle.Button.Primary}"/>
       <Button extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}" Content="Primary Disabled" Style="{StaticResource XStyle.Button.Primary}" IsEnabled="False"/>
       <Button extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}" Content="Secondary" Style="{StaticResource XStyle.Button.Secondary}"/>
@@ -89,10 +89,9 @@
         <ComboBoxItem Content="Item very very long 3"/>
         <ComboBoxItem Content="Item long 4"/>
       </ComboBox>
-    </UniformGrid>
+    </UniformGrid>-->
 
-
-    <UniformGrid Columns="2">
+  <UniformGrid Columns="2">
       <StackPanel>
         <TextBlock
           extensions:IndependentSize.Margin="0,7,0,0"
@@ -198,7 +197,7 @@
       </Viewbox>
 
       <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.ActiveElements}"/>
+        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.GhostCursor}"/>
       </Viewbox>
 
       <Viewbox>
@@ -210,4 +209,5 @@
       </Viewbox>
     </UniformGrid>
   </StackPanel>
+
 </UserControl>
