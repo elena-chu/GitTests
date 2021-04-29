@@ -14,7 +14,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         {
             ProgressCommand = new RelayCommand(ToggleProgress);
             ApprovalCommand = new RelayCommand(ToggleApproval);
-            MenuItemClickedCommand = new RelayCommand<MenuItemCallbackData>(MenuItemClicked);
+            InitMenu();
         }
 
 
@@ -126,10 +126,16 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
         #region Menu
 
-        public IMenuViewModel MenuViewModel { get; set; }
+        private void InitMenu()
+        {
+            MenuItemClickedCommand = new RelayCommand<ToolbarMenuItemCallbackData>(MenuItemClicked);
+            ToolbarMenuViewModel = new ToolbarMenuViewModel(MenuItemClickedCommand);
+        }
+
+        public IToolbarMenuViewModel ToolbarMenuViewModel { get; set; }
 
         public ICommand MenuItemClickedCommand { get; set; }
-        private void MenuItemClicked(MenuItemCallbackData callbackData)
+        private void MenuItemClicked(ToolbarMenuItemCallbackData callbackData)
         {
             if (callbackData != null)
             {

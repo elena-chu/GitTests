@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl xmlns:ToolbarMenu="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf" 
   x:Class="Ws.Fus.Treatment.UI.Wpf.Views.DebugView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:prism="http://prismlibrary.com/"
@@ -7,12 +7,14 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   prism:ViewModelLocator.AutoWireViewModel="True"
+  xmlns:vm="clr-namespace:Ws.Fus.Treatment.UI.Wpf.ViewModels"
+  xmlns:uc="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Views"
   Background="{StaticResource XBrush.Application.Background}"
   mc:Ignorable="d">
 
   <UserControl.Resources>
 
-    <Thickness x:Key="LThickness.Margin">7</Thickness>
+    <!--<Thickness x:Key="LThickness.Margin">7</Thickness>
     <Thickness x:Key="LThickness.Margin.Side">7,0</Thickness>
     
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
@@ -25,13 +27,26 @@
       <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
       <Setter Property="extensions:IndependentSize.Margin" Value="10,0"/>
       <Setter Property="Stretch" Value="Uniform"/>
-    </Style>
-    
+    </Style>-->
+
+    <ResourceDictionary Source="/Ws.Fus.Treatment.UI.Wpf;component/Assets/ToolbarMenu/ToolbarMenuResourceDictionary.xaml"/>
+
   </UserControl.Resources>
 
-  <StackPanel>
+  <!--<Menu
+    DataContext="{Binding MenuViewModel}"
+    DockPanel.Dock="Top"
+    ItemsSource="{Binding MenuHeaders}">
+    <Menu.ItemTemplate>
+      <HierarchicalDataTemplate DataType="{x:Type vm:MenuHeaderViewModel}" ItemsSource="{Binding Path=MenuItems}">
+        <TextBlock Text="{Binding Header}"/>
+      </HierarchicalDataTemplate>
+    </Menu.ItemTemplate>
+  </Menu>-->
 
-    <!--<UniformGrid Columns="2">
+  <!--<StackPanel>
+
+    <UniformGrid Columns="2">
       <Button extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}" Content="Primary with very very very very very very long text" Style="{StaticResource XStyle.Button.Primary}"/>
       <Button extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}" Content="Primary Disabled" Style="{StaticResource XStyle.Button.Primary}" IsEnabled="False"/>
       <Button extensions:IndependentSize.Margin="{StaticResource LThickness.Margin}" Content="Secondary" Style="{StaticResource XStyle.Button.Secondary}"/>
@@ -89,7 +104,7 @@
         <ComboBoxItem Content="Item very very long 3"/>
         <ComboBoxItem Content="Item long 4"/>
       </ComboBox>
-    </UniformGrid>-->
+    </UniformGrid>
 
   <UniformGrid Columns="2">
       <StackPanel>
@@ -208,6 +223,17 @@
         <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.Tract}"/>
       </Viewbox>
     </UniformGrid>
-  </StackPanel>
+  </StackPanel>-->
 
+  <ContentControl DataContext="{Binding ToolbarMenuViewModel}" extensions:IndependentSize.Margin="20,10">
+    <ItemsControl ItemsSource="{Binding MenuHeaders}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
+  </ContentControl>
+
+  <!--<uc:ToolbarMenu DataContext="{Binding ToolbarMenuViewModel}"/>-->
 </UserControl>

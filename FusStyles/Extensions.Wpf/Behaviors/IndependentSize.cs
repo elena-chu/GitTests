@@ -127,6 +127,43 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         }
 
         /// <summary>
+        /// Independent HorizontalOffset property of ContextMenu. Updates the original HorizontalOffset property
+        /// </summary>
+        public static DependencyProperty HorizontalOffsetProperty = DependencyProperty.RegisterAttached("HorizontalOffset",
+            typeof(double), typeof(IndependentSize), new UIPropertyMetadata(double.NaN, OnHorizontalOffsetPropertyChanged));
+
+        public static void SetHorizontalOffset(FrameworkElement obj, double value) { obj.SetValue(HorizontalOffsetProperty, value); }
+        public static double GetHorizontalOffset(FrameworkElement obj) { return (double)obj.GetValue(HorizontalOffsetProperty); }
+
+        public static void OnHorizontalOffsetPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ContextMenu cm = d as ContextMenu;
+            if (cm == null || e.NewValue == null)
+                return;
+            cm.HorizontalOffset = GetProportionalDoublePropertyFromArgs(e);
+        }
+
+        /// <summary>
+        /// Independent VerticalOffset property of ContextMenu. Updates the original VerticalOffset property
+        /// </summary>
+        public static DependencyProperty VerticalOffsetProperty = DependencyProperty.RegisterAttached("VerticalOffset",
+            typeof(double), typeof(IndependentSize), new UIPropertyMetadata(double.NaN, OnVerticalOffsetPropertyChanged));
+
+        public static void SetVerticalOffset(FrameworkElement obj, double value) { obj.SetValue(VerticalOffsetProperty, value); }
+        public static double GetVerticalOffset(FrameworkElement obj) { return (double)obj.GetValue(VerticalOffsetProperty); }
+
+        public static void OnVerticalOffsetPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ContextMenu cm = d as ContextMenu;
+            if (cm == null || e.NewValue == null)
+                return;
+            cm.VerticalOffset = GetProportionalDoublePropertyFromArgs(e);
+        }
+
+
+        // FontSize *********************************************
+
+        /// <summary>
         /// Independent FontSize property of Control. Updates the original FontSize property
         /// </summary>
         public static DependencyProperty FontSizeProperty = DependencyProperty.RegisterAttached("FontSize",

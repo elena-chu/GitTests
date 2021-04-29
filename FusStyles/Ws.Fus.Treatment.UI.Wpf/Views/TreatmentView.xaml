@@ -24,8 +24,8 @@
       <ColumnDefinition Width="0.2*" />
       <ColumnDefinition Width="0.66*" />
     </Grid.ColumnDefinitions>
-    <Rectangle Stretch="Fill" Fill="{StaticResource XBrush.Application.Background}" />
-    <Grid Style="{StaticResource MenuContainerStyle}">
+    <Rectangle Grid.Column="0" Stretch="Fill" Fill="{StaticResource XBrush.Application.Background}" />
+    <Grid Grid.Column="0" Style="{StaticResource MenuContainerStyle}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
@@ -78,7 +78,7 @@
         Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>
 
-    <views:DebugView Grid.Column="1"/>
+    <views:DebugView Grid.Column="1" Grid.ColumnSpan="2"/>
     
   </Grid>
 </UserControl>

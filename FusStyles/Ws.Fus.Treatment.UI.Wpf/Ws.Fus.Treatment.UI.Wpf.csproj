@@ -86,6 +86,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\ToolbarMenu\ToolbarMenu.xaml.cs">
+      <DependentUpon>ToolbarMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\MainScreenActionEnum.cs" />
     <Compile Include="Interfaces\IMainScreenAction.cs" />
     <Compile Include="Entities\PreferncesMode.cs" />
@@ -104,11 +107,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\MenuItemViewModel.cs" />
-    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\MainScreenBaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenMainViewModel.cs" />
     <Compile Include="ViewModels\DebugViewModel.cs" />
+    <Compile Include="ViewModels\ToolbarMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\ToolbarMenuViewModel.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
     <Compile Include="Views\DataBaseView.xaml.cs">
       <DependentUpon>DataBaseView.xaml</DependentUpon>
@@ -161,6 +164,14 @@
       <DependentUpon>Skin.tt</DependentUpon>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ToolbarMenu\ToolbarMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\ToolbarMenu\ToolbarMenuResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DataBaseView.xaml">
       <SubType>Designer</SubType>

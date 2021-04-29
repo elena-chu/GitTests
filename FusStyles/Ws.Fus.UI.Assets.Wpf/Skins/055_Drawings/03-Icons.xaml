@@ -620,17 +620,27 @@
     <Path Canvas.Left="1" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
   </Canvas>
 
+  <Canvas x:Key="XCanvas.Menu.Compare.FastForward" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Canvas.Left="-7" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
+    <Path Canvas.Left="7" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Menu.Compare.VeryFastForward" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Canvas.Left="-9" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
+    <Path Canvas.Left="9" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
+  </Canvas>
+
   <Canvas x:Key="XCanvas.Menu.Compare.Link" Style="{StaticResource XStyle.Canvas.Icon}">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.Link}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Exit" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Exit}"/>
+  <Canvas x:Key="XCanvas.Menu.Compare.Shown" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.EyeOpen}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.FastForward" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Canvas.Left="-7" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
-    <Path Canvas.Left="7" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
+  <Canvas x:Key="XCanvas.Menu.Compare.Hidden" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.EyeClosed}"/>
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.Compare.Color" Style="{StaticResource XStyle.Canvas.Icon}">
@@ -639,7 +649,7 @@
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.Compare.ClearImages" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ClearAll}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.ClearAll}"/>
   </Canvas>
 
 </ResourceDictionary>

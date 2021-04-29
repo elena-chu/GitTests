@@ -109,6 +109,7 @@
       <DependentUpon>BusySpinner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ComboBoxBinary.cs" />
+    <Compile Include="Controls\DropDownButton.cs" />
     <Compile Include="Controls\MouseWheelDecorator.cs" />
     <Compile Include="Controls\SizeToAspectRatio.cs" />
     <Compile Include="Behaviors\LeftClickContextMenu.cs" />
