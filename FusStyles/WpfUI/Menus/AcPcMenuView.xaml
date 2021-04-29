@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
              xmlns:ivConverters="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Converters;assembly=Ws.Fus.ImageViewer.UI.Wpf"
              xmlns:ivBeh="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Behaviors;assembly=Ws.Fus.ImageViewer.UI.Wpf"
              mc:Ignorable="d" 
@@ -72,11 +73,20 @@
 
       <Button Grid.Row="2" Grid.Column="1"
           Content="Clear Images"
-          Command="{Binding ClearAllCommand}"
+          Command="{Binding ClearStripsCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
           extensions:IconedButton.IconSize="24"/>
 
-      <Grid Grid.Row="4" Grid.ColumnSpan="2" Height="Auto" Margin="0,10">
+      <core:StepProgress Grid.Row="4" Grid.ColumnSpan="2"
+            ValuePosition="OneLine"
+            Title="AC-PC length:"
+            Value="{Binding AcPcLengthText}"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding IsAcPcValid, Converter={StaticResource TrueFalseConverter}}"
+            IsEnabled="{Binding IsAcPcValid}"
+            />
+      
+      <!--Value="{Binding AcPcLength, StringFormat={}{0:#.0}mm}"-->
+      <!--<Grid Grid.Row="4" Grid.ColumnSpan="2" Height="Auto" Margin="0,10">
         <Grid.ColumnDefinitions>
           <ColumnDefinition />
           <ColumnDefinition Width="Auto" />
@@ -91,26 +101,12 @@
             Grid.Column="1"
             Margin="0"
             Visibility="{Binding IsAcPcValid, Converter={StaticResource BooleanToVisibilityConverter}}" />
-      </Grid>
-
-      <Button
-        Grid.Row="5"
-        Grid.ColumnSpan="2"
-        Command="{Binding ApproveAcPcCommand}"
-        extensions:ProgressStatusDisplayer.ProgressState="{Binding AcPcState}">
-        <Button.Style>
-          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
-            <Style.Triggers>
-              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
-                <Setter Property="Content" Value="Approve AC-PC"/>
-              </Trigger>
-              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
-                <Setter Property="Content" Value="AC-PC Approved"/>
-              </Trigger>
-            </Style.Triggers>
-          </Style>
-        </Button.Style>
-      </Button>
+      </Grid>-->
+      
+      <Button Grid.Row="5" Grid.ColumnSpan="2"
+          Content="Approve AC-PC"
+          Command="{Binding ApproveAcPcCommand}"
+          Style="{StaticResource XStyle.Button.Primary}" />
 
       <!-- Temp closed till Milestone 2-->
 
@@ -128,107 +124,7 @@
           Command="{Binding RedoCommand}"
           FontFamily="Wingdings 3"
           Style="{StaticResource styleToolButton}" />-->
-
+      
     </Grid>
   </Grid>
-
-
-  <!--<Grid Background="{StaticResource XBrush.Application.Background}">
-    <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
-
-      <UniformGrid Grid.Row="0" Columns="2">
-        <UniformGrid.Resources>
-          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}"/>
-          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"/>
-        </UniformGrid.Resources>
-        
-        <ToggleButton
-          ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="ACOverlay"
-          Content="Mark AC"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Ac}"/>
-
-        <ToggleButton
-          ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="ACOverlay"
-          Content="Mark PC"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Pc}"/>
-
-        <ToggleButton
-          ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="ACOverlay"
-          Content="AC-PC Overlay"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"/>
-
-        <ToggleButton
-          ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="ACOverlay"
-          Content="Recalculate"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Recalculate}"/>
-
-        <Button
-          ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="ACOverlay"
-          Content="Clear Windows"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
-          extensions:IconedButton.IconSize="24"/>
-
-        <Button
-          Content="Center on AC-PC"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Center}"/>
-      </UniformGrid>
-
-      <Grid Grid.Row="1" Height="Auto" Margin="0,10">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        
-        <ContentControl Style="{StaticResource XStyle.ContentControl.StatusIndicator.WithText}" 
-            Content="AC-PC length:"
-            extensions:ProgressStatusDisplayer.ProgressState="{Binding IsAcPcValid, Converter={StaticResource TrueFalseConverter}}"
-            IsEnabled="{Binding IsAcPcValid}" />
-        <TextBlock 
-            Text="{Binding AcPcLength, StringFormat={}{0:#.0}mm}" 
-            Grid.Column="1"
-            Margin="0"
-            Visibility="{Binding IsAcPcValid, Converter={StaticResource BooleanToVisibilityConverter}}" />
-      </Grid>
-      
-      <Button Grid.Row="2"
-        Content="Approve AC-PC"
-        Command="{Binding ApproveAcPcCommand}"
-        Style="{StaticResource XStyle.Button.Primary}"/>
-
-      --><!-- Temp closed till Milestone 2-->
-     
-      <!--<Button Grid.Column="0"
-          Grid.Row="2"
-          Content="P"
-          Command="{Binding UndoCommand}"
-          DataContext="{Binding Undo}"
-          FontFamily="Wingdings 3"
-          Style="{StaticResource styleToolButton}" />
-
-      <Button Grid.Column="1"
-          Grid.Row="2"
-          Content="Q"
-          Command="{Binding RedoCommand}"
-          FontFamily="Wingdings 3"
-          Style="{StaticResource styleToolButton}" />--><!--
-      
-    </Grid>
-  </Grid>-->
 </UserControl>

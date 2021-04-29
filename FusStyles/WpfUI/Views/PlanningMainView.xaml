@@ -34,7 +34,7 @@
         <RowDefinition Height="0.125*" />
       </Grid.RowDefinitions>
 
-      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource XBrush.Line}" Grid.RowSpan="4" />
+      <Rectangle Style="{StaticResource VerticalMenuSeparator}" Grid.RowSpan="4" />
 
       <RadioButton
         GroupName="ModulesRadioButtonGroup"
@@ -56,7 +56,7 @@
             <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
             <Setter Property="extensions:IndependentSize.Height" Value="80" />
             <Setter Property="IsActive" Value="{Binding IsActive}" />
-            <Setter Property="ProgressNavigationState" Value="{Binding ScreenState}" />
+            <Setter Property="ProgressNavigationState" Value="{Binding StageState}" />
             <Setter Property="DataContext" Value="{Binding ElementName=Control}"/>
             <!--<Setter Property="Command" Value="{Binding SwitchScreenCommand}" />-->
             <Setter Property="Command" Value="{Binding OpenStageCommand}" />
@@ -91,6 +91,14 @@
                       <VisualStateGroup x:Name="StatusStates">
                         <VisualState x:Name="Available" />
                         <VisualState x:Name="Unavailable" />
+                        <VisualState x:Name="ActiveStatus" >
+                          <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(extensions:ProgressStatusDisplayer.ProgressState)" Storyboard.TargetName="StatusIndicator">
+                              <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static extensions:ProgressState.Active}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="StatusIndicator" To="1" Duration="0:0:0.1" />
+                          </Storyboard>
+                        </VisualState>
                         <VisualState x:Name="Completed" >
                           <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(extensions:ProgressStatusDisplayer.ProgressState)" Storyboard.TargetName="StatusIndicator">
@@ -111,13 +119,13 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ActiveBkg">
                               <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(extensions:ProgressStatusDisplayer.ProgressState)" Storyboard.TargetName="StatusIndicator">
+                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(extensions:ProgressStatusDisplayer.ProgressState)" Storyboard.TargetName="StatusIndicator">
                               <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static extensions:ProgressState.Active}" />
-                            </ObjectAnimationUsingKeyFrames>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="StatusIndicator" To="1" Duration="0:0:0.1" />
+                            </ObjectAnimationUsingKeyFrames>-->
+                            <!--<DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="StatusIndicator" To="1" Duration="0:0:0.1" />-->
                           </Storyboard>
                         </VisualState>
-                        <VisualState x:Name="ActiveCompleted">
+                        <!--<VisualState x:Name="ActiveCompleted">
                           <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentPresenter" To="1" Duration="0:0:0.1" />
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ActiveBkg">
@@ -129,7 +137,7 @@
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="StatusIndicator" To="1" Duration="0:0:0.1" />
                           </Storyboard>
-                        </VisualState>
+                        </VisualState>-->
                         <VisualState x:Name="Inactive" />
                       </VisualStateGroup>
                       <VisualStateGroup x:Name="CallToActionStates">
@@ -165,8 +173,7 @@
                           x:Name="StatusIndicator"
                           Margin="2"
                           Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
-                          Foreground="{StaticResource XBrush.Application.Foreground}"
-                          Background="{StaticResource XBrush.Application.Background.Complementary}"
+                          extensions:ProgressStatusDisplayer.ActiveAsForeground="False"
                           VerticalAlignment="Bottom"
                           HorizontalAlignment="Left"
                           IsEnabled="{TemplateBinding IsEnabled}"

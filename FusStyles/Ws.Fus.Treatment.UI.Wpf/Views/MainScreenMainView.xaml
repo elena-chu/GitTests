@@ -19,7 +19,7 @@
     </Grid.ColumnDefinitions>
 
     <Grid x:Name="MenuGrid" Background="{StaticResource XBrush.Application.Background.Complementary}" ClipToBounds="True">
-      <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource XBrush.Line}"/>
+      <Rectangle Style="{StaticResource VerticalMenuSeparator}" />
       <Grid>
         <Grid.Resources>
           <Style TargetType="RadioButton" BasedOn="{StaticResource XStyle.RadioButton.MainMenu}"/>

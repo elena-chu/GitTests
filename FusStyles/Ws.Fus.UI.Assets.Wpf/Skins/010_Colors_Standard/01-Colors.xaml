@@ -7,6 +7,9 @@
   <Color x:Key="XColor.Application.Background">#FF000000</Color>
   <Color x:Key="XColor.Application.Background.Complementary">#FF191919</Color>
 
+  <Color x:Key="XColor.Application.Active.30">#4D00E0FF</Color><!--Blue Opacity 30% -->
+  <Color x:Key="XColor.Application.Active.10">#1A00E0FF</Color><!--Blue OPacity 10%-->
+
   <!--Gradients-->
   <Color x:Key="XColor.Application.Active.Transparent">#0020CAF9</Color>
   <Color x:Key="XColor.Application.Active.AlmostTransparent">#1A00E0FF</Color>

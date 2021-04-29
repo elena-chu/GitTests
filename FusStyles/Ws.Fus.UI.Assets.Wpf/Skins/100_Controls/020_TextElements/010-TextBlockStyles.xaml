@@ -31,8 +31,12 @@
   </Style>
 
   <Style x:Key="XStyle.TextBlock.Menu.Label" TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Base}">
-    <Setter Property="extensions:IndependentSize.Margin" Value="0,25,0,2" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0,25,0,5" />
     <Setter Property="extensions:IndependentSize.FontSize" Value="14" />
+  </Style>
+
+  <Style x:Key="XStyle.TextBlock.Menu.Label.First" TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Menu.Label}">
+    <Setter Property="extensions:IndependentSize.Margin" Value="0,5,0,5" />
   </Style>
 
 </ResourceDictionary>

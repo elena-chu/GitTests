@@ -33,6 +33,7 @@
         Margin="0,0,7,0"
         VerticalAlignment="Center"
         HorizontalAlignment="Left"
+        extensions:ProgressStatusDisplayer.AnimateActive="{Binding Path=(extensions:ProgressStatusDisplayer.AnimateActive), ElementName=Control, Mode=OneWay}"            
         extensions:ProgressStatusDisplayer.ProgressState ="{Binding Path=(extensions:ProgressStatusDisplayer.ProgressState), ElementName=Control, Mode=OneWay}"
         IsEnabled="{Binding IsEnabled, ElementName=Control, Mode=OneWay}"
         />

@@ -69,8 +69,10 @@
         <core:StepProgress 
             Title="Transducer Focal Location"
             Value="{Binding XdFocalPointValue}"
-            extensions:ProgressStatusDisplayer.ProgressState="{Binding TrackerScanState, Mode=OneWay}"
+            extensions:ProgressStatusDisplayer.AnimateActive="True"
+            extensions:ProgressStatusDisplayer.ProgressState="Active"
             />
+        <!--extensions:ProgressStatusDisplayer.ProgressState="{Binding TrackerScanState, Mode=OneWay}"-->
         <core:StepProgress Grid.Row="2"
             Title="Central Frequency"
             Value="{Binding B0Frequency}"

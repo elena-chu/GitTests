@@ -5,11 +5,12 @@
   <sys:Double x:Key="XDouble.Size.MainMenuIcon">44</sys:Double>
 
   <sys:Double x:Key="XDouble.Height.ControlDefault">36</sys:Double>
+  <sys:Double x:Key="XDouble.Height.ControlDefault2">30</sys:Double>
 
   <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
-  
+
   <Duration x:Key="XDuration.Animation.Short">0:0:0.3</Duration>
-  
+
   <CornerRadius x:Key="XCornerRadius.Frame">4</CornerRadius>
   <CornerRadius x:Key="XCornerRadius.Frame.Left">4,0,0,4</CornerRadius>
   <CornerRadius x:Key="XCornerRadius.Frame.Right">0,4,4,0</CornerRadius>

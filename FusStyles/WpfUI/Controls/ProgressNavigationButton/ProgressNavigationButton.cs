@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Ws.Fus.ImageViewer.UI.Wpf;
@@ -15,9 +16,10 @@ namespace WpfUI.Controls
     [TemplateVisualState(Name = "Available", GroupName = "StatusStates")]
     [TemplateVisualState(Name = "Unavailable", GroupName = "StatusStates")]
     [TemplateVisualState(Name = "Completed", GroupName = "StatusStates")]
+    [TemplateVisualState(Name = "ActiveStatus", GroupName = "StatusStates")]
     [TemplateVisualState(Name = "Active", GroupName = "ActiveStates")]
-    [TemplateVisualState(Name = "ActiveCompleted", GroupName = "ActiveStates")]
     [TemplateVisualState(Name = "Inactive", GroupName = "ActiveStates")]
+    //[TemplateVisualState(Name = "ActiveCompleted", GroupName = "ActiveStates")]
     [TemplateVisualState(Name = "CallToActionActive", GroupName = "CallToActionStates")]
     [TemplateVisualState(Name = "CallToActionInactive", GroupName = "CallToActionStates")]
     public class ProgressNavigationButton : Button
@@ -135,15 +137,25 @@ namespace WpfUI.Controls
 
         private void SetProgressNavigationState()
         {
-            string stateName = GetProgressNavigationState(this).ToString();
+            var state = GetProgressNavigationState(this);
+            string stateName = state.ToString();
+            if (GetIsActive(this) && state != ProgressNavigationState.Completed)
+            {
+                stateName = "ActiveStatus";
+            }
+
             GoToState(stateName, true);
         }
 
         private void SetActiveState()
         {
             bool active = GetIsActive(this);
-            string stateName = active ? GetProgressNavigationState(this) == ProgressNavigationState.Completed ? "ActiveCompleted" : "Active" : "Inactive";
+            string stateName = active ? "Active" : "Inactive";
             GoToState(stateName, true);
+            //string stateName = active ? GetProgressNavigationState(this) == ProgressNavigationState.Completed ? "ActiveCompleted" : "Active" : "Inactive";
+
+            SetProgressNavigationState();
+
         }
 
         private void SetCallToActionState()
@@ -155,7 +167,7 @@ namespace WpfUI.Controls
 
         private void GoToState(string stateName, bool useTransition)
         {
-            VisualStateManager.GoToState(this, stateName, true);
+            var ok = VisualStateManager.GoToState(this, stateName, true);
         }
 
     }

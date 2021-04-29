@@ -70,6 +70,9 @@
         <Setter TargetName="Circle" Property="Width" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.95}"/>
         <Setter TargetName="Circle" Property="Height" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.95}"/>
       </Trigger>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter TargetName="OuterGrid" Property="Opacity" Value=".5" />
+      </Trigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
@@ -77,6 +80,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}"/>
     <Setter Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="False"/>
+    <Setter Property="extensions:ProgressStatusDisplayer.ActiveAsForeground" Value="True" />
     <Setter Property="extensions:IndependentSize.Width" Value="18"/>
     <Setter Property="extensions:IndependentSize.Height" Value="18"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
@@ -162,9 +166,9 @@
             x:Name="StatusIndicator"
             Grid.Column="2"
             Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
-            extensions:IndependentSize.Width="24"
-            extensions:IndependentSize.Height="24"
-            extensions:IndependentSize.Margin="7,0,7,0"
+            extensions:IndependentSize.Width="18"
+            extensions:IndependentSize.Height="18"
+            extensions:IndependentSize.Margin="10,0,10,0"
             IsHitTestVisible="False"
             VerticalAlignment="Center"
             Foreground="{TemplateBinding Foreground}"

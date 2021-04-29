@@ -17,6 +17,6 @@
     <Grid>
       <TextBlock Text="Pre-Planning" Foreground="Yellow" />
     </Grid>
-    <Rectangle Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource XBrush.Line}" />
+    <Rectangle Style="{StaticResource VerticalMenuSeparator}" />
   </Grid>
 </UserControl>

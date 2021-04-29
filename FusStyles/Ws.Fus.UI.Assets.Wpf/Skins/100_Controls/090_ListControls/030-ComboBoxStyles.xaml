@@ -141,7 +141,7 @@
   <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault2}"/>
     <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
