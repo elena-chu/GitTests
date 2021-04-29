@@ -104,6 +104,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\MainScreenBaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenMainViewModel.cs" />
     <Compile Include="ViewModels\DebugViewModel.cs" />
