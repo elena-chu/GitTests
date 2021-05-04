@@ -40,7 +40,7 @@
     </Style.Triggers>
   </Style>
 
-  
+
   <!--Switch ToggleButton-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconWithTextUnderneathAndSwitch" TargetType="{x:Type ToggleButton}">
     <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}" MaxWidth="{TemplateBinding MaxWidth}">
@@ -109,7 +109,7 @@
       </Trigger>
     </Style.Triggers>
   </Style>
-  
+
   <!--Plus / Exit-->
   <ControlTemplate x:Key="XControlTemplate.Button.SingleLetter" TargetType="{x:Type Button}">
     <Border
@@ -156,7 +156,7 @@
 
   <Style x:Key="XStyle.Button.Plus" TargetType="{x:Type Button}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.SingleLetter}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault2}"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
     <Setter Property="Content" Value="+"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>

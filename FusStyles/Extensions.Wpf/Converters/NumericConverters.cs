@@ -57,7 +57,8 @@ namespace Ws.Extensions.UI.Wpf.Converters
             if (!ConverterAssists.CheckValueValidity(value) || !ConverterAssists.CheckValueValidity(parameter))
                 return Binding.DoNothing;
 
-            if (double.TryParse(value.ToString(), out double valueNum) && double.TryParse(parameter.ToString(), out double paramNum))
+            double valueNum, paramNum;
+            if (double.TryParse(value.ToString(), out valueNum) && double.TryParse(parameter.ToString(), out paramNum))
                 return (valueNum > paramNum) ? Visibility.Visible : Visibility.Collapsed;
 
             return Binding.DoNothing;

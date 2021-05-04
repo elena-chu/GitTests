@@ -232,6 +232,12 @@
     <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular"/>
     <Setter Property="extensions:ProgressStatusDisplayer.AnimateActive" Value="False"/>
     <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <!-- Check for Primary/Secondary-->
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
 </ResourceDictionary>

@@ -36,6 +36,10 @@
     <Setter Property="extensions:IndependentSize.Margin" Value="23, 25, 20, 15" />
   </Style>
 
+  <Style x:Key="ExpanderMenuContainerStyle" TargetType="Panel">
+    <Setter Property="extensions:IndependentSize.Margin" Value="0, 15" />
+  </Style>
+
   <Style x:Key="SelectedBackgroundContentStyle" TargetType="ContentPresenter">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
