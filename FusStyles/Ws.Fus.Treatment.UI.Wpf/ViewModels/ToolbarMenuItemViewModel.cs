@@ -253,8 +253,11 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                     break;
 
                 case ToolbarMenuItemType.Delete:
-                case ToolbarMenuItemType.DeleteAll:
                     resourceName = "XCanvas.Menu.Delete";
+                    break;
+
+                case ToolbarMenuItemType.DeleteAll:
+                    resourceName = "XCanvas.Menu.DeleteAll";
                     break;
 
                 case ToolbarMenuItemType.CompareSwipeOpacity:
