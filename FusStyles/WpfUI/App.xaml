@@ -9,6 +9,7 @@
       <ResourceDictionary.MergedDictionaries>
         
         <!--Basics-->
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/005-SystemTypes.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/010-Sizes.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/020-MiscDefinitions.xaml"/>
 

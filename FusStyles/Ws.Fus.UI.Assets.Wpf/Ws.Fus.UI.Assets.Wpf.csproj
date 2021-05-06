@@ -106,6 +106,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Page Include="Skins\005_Basics\005-SystemTypes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Skins\005_Basics\020-MiscDefinitions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

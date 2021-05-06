@@ -128,19 +128,23 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
         private void InitMenu()
         {
-            MenuItemClickedCommand = new RelayCommand<ToolbarMenuItemCallbackData>(MenuItemClicked);
+            MenuItemClickedCommand = new RelayCommand<ToolbarCallbackData>(MenuItemClicked);
             ToolbarMenuViewModel = new ToolbarMenuViewModel(MenuItemClickedCommand);
+
+            //ToolbarMenuViewModel.SetMenuHeaderEnableStatus(ToolbarMenuItemType.DrawLine, false);
+            //ToolbarMenuViewModel.SetMenuItemCheckedStatus(ToolbarMenuItemType.OverlaysAcPcMarkers, true);
         }
 
         public IToolbarMenuViewModel ToolbarMenuViewModel { get; set; }
 
         public ICommand MenuItemClickedCommand { get; set; }
-        private void MenuItemClicked(ToolbarMenuItemCallbackData callbackData)
+        private void MenuItemClicked(ToolbarCallbackData callbackData)
         {
             if (callbackData != null)
             {
-                string checkRequestedStatus = callbackData.RequestedCheckStatus ? "Checked" : "Unchecked";
-                Console.WriteLine(callbackData.MenuItemType.Caption(false) + " is calling. Requesting to be " + checkRequestedStatus);
+                string checkRequestedStatus = callbackData.IsChecked ? "Checked" : "Unchecked";
+                string headerStatus = callbackData.IsHeader ? "HEADER " : string.Empty;
+                Console.WriteLine("LA >>> " + headerStatus + callbackData.MenuItemType.Caption(false) + " is calling. I am " + checkRequestedStatus);
             }
         }
 

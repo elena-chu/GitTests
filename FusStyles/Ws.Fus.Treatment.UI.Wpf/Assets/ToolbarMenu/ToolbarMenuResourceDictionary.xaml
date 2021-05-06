@@ -31,6 +31,10 @@
       <Trigger Property="IsChecked" Value="False">
         <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
       </Trigger>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
     </Style.Triggers>
   </Style>
 
@@ -40,6 +44,9 @@
     <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="3,3,6,3"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="24"/>
+    <Setter Property="Command" Value="{Binding MenuItemClickedCommand}"/>
+    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -75,9 +82,11 @@
                 extensions:IndependentSize.Margin="5,0"
                 Text="{Binding Caption}"
                 Style="{StaticResource XStyle.TextBlock.Base}"
-                FontSize="{StaticResource XDouble.FontSize.ToolTip}"/>
+                FontSize="{StaticResource XDouble.FontSize.ToolTip}"
+                Foreground="{TemplateBinding Foreground}"/>
               <ToggleButton
                 Grid.Column="2"
+                IsChecked="{Binding IsChecked}"
                 Style="{StaticResource XStyle.ToggleButton.Switch}"
                 Visibility="{Binding IsToggle, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </Grid>
@@ -85,6 +94,12 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <!--Menu Headers-->
@@ -238,6 +253,7 @@
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="Transparent"/>
@@ -258,88 +274,137 @@
 
   <DataTemplate DataType="{x:Type vm:ToolbarMenuHeaderViewModel}">
     <Grid extensions:IndependentSize.Margin="0,0,20,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-        <Button
-          Style="{StaticResource XStyle.Button.MenuHeader}"
-          Visibility="{Binding IsToggle, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
-        <ToggleButton
-          Style="{StaticResource XStyle.ToggleButton.MenuHeader}"
-          IsChecked="{Binding IsChecked}"
-          Visibility="{Binding IsToggle, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
-        <extensions:DropDownButton
-          x:Name="MenuOpenerButton"
-          extensions:IndependentSize.Margin="6,0,0,0"
-          DropDownPlacement="Left"
-          Style="{StaticResource XStyle.ToggleButton.MenuOpener}"
-          Visibility="{Binding MenuItems, Converter={StaticResource XConverter.NullToVisibility}}">
-          <extensions:DropDownButton.DropDown>
-            <ContextMenu
-              ItemsSource="{Binding MenuItems}"
-              extensions:IndependentSize.HorizontalOffset="-43"
-              extensions:IndependentSize.VerticalOffset="25"
-              ItemContainerStyle="{StaticResource XStyle.MenuItem.Toolbar}">
-              <ContextMenu.Template>
-                <ControlTemplate>
-                  <Grid>
-                    <Grid.RowDefinitions>
-                      <RowDefinition Height="Auto"/>
-                      <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Border
-                      x:Name="ArrowBorder"
-                      extensions:IndependentSize.Margin="20,0,0,0"
-                      extensions:IndependentSize.Width="25"
-                      extensions:IndependentSize.Height="45"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Bottom"
-                      Panel.ZIndex="5">
-                      <Grid>
-                        <Border Height="1" VerticalAlignment="Bottom" Background="{StaticResource XBrush.Application.Background}" Margin="1,0,1,-1"/>
-                        <Path
-                          Margin="0,0,0,-1"
-                          IsHitTestVisible="False"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Bottom"
-                          Stretch="Uniform"
-                          Data="{StaticResource XGeometry.Arrow.Down}"
-                          Stroke="{StaticResource XBrush.Frame}"
-                          StrokeThickness="1"
-                          Fill="{StaticResource XBrush.Application.Background}"
-                          RenderTransformOrigin="0.5,0.5">
-                          <Path.RenderTransform>
-                            <TransformGroup>
-                              <RotateTransform Angle="180"/>
-                            </TransformGroup>
-                          </Path.RenderTransform>
-                        </Path>
-                      </Grid>
-                    </Border>
-                    <Border
-                      Grid.Row="1"
-                      Background="{StaticResource XBrush.Application.Background}"
-                      BorderBrush="{StaticResource XBrush.Frame}"
-                      CornerRadius="{StaticResource XCornerRadius.Frame}"
-                      BorderThickness="{StaticResource XThickness.Frame}">
-                      <StackPanel IsItemsHost="True"/>
-                    </Border>
-                  </Grid>
-                </ControlTemplate>
-              </ContextMenu.Template>
-            </ContextMenu>
-          </extensions:DropDownButton.DropDown>
-        </extensions:DropDownButton>
-      </StackPanel>
+      <Button
+        Grid.Row="0"
+        Grid.Column="0"
+        IsEnabled="{Binding IsEnabled}"
+        Style="{StaticResource XStyle.Button.MenuHeader}"
+        Command="{Binding MenuItemClickedCommand}"
+        Visibility="{Binding IsToggle, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
+      <ToggleButton
+        Grid.Row="0"
+        Grid.Column="0"
+        IsEnabled="{Binding IsEnabled}"
+        Style="{StaticResource XStyle.ToggleButton.MenuHeader}"
+        Command="{Binding MenuItemClickedCommand}"
+        IsChecked="{Binding IsChecked}"
+        Visibility="{Binding IsToggle, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
+      <extensions:DropDownButton
+        x:Name="MenuOpenerButton"
+        Grid.Row="0"
+        Grid.Column="1"
+        extensions:IndependentSize.Margin="6,0,0,0"
+        IsEnabled="{Binding IsEnabled}"
+        DropDownPlacement="Left"
+        Style="{StaticResource XStyle.ToggleButton.MenuOpener}"
+        Visibility="{Binding MenuItems, Converter={StaticResource XConverter.NullToVisibility}}">
+        <extensions:DropDownButton.DropDown>
+          <ContextMenu
+            ItemsSource="{Binding MenuItems}"
+            extensions:IndependentSize.HorizontalOffset="-43"
+            extensions:IndependentSize.VerticalOffset="25"
+            ItemContainerStyle="{StaticResource XStyle.MenuItem.Toolbar}">
+            <ContextMenu.Template>
+              <ControlTemplate>
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Border
+                    x:Name="ArrowBorder"
+                    extensions:IndependentSize.Margin="20,0,0,0"
+                    extensions:IndependentSize.Width="25"
+                    extensions:IndependentSize.Height="45"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Panel.ZIndex="5">
+                    <Grid>
+                      <Border Height="1" VerticalAlignment="Bottom" Background="{StaticResource XBrush.Application.Background}" Margin="1,0,1,-1"/>
+                      <Path
+                        Margin="0,0,0,-1"
+                        IsHitTestVisible="False"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Stretch="Uniform"
+                        Data="{StaticResource XGeometry.Arrow.Down}"
+                        Stroke="{StaticResource XBrush.Frame}"
+                        StrokeThickness="1"
+                        Fill="{StaticResource XBrush.Application.Background}"
+                        RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                          <TransformGroup>
+                            <RotateTransform Angle="180"/>
+                          </TransformGroup>
+                        </Path.RenderTransform>
+                      </Path>
+                    </Grid>
+                  </Border>
+                  <Border
+                    Grid.Row="1"
+                    Background="{StaticResource XBrush.Application.Background}"
+                    BorderBrush="{StaticResource XBrush.Frame}"
+                    CornerRadius="{StaticResource XCornerRadius.Frame}"
+                    BorderThickness="{StaticResource XThickness.Frame}">
+                    <StackPanel IsItemsHost="True"/>
+                  </Border>
+                </Grid>
+              </ControlTemplate>
+            </ContextMenu.Template>
+          </ContextMenu>
+        </extensions:DropDownButton.DropDown>
+      </extensions:DropDownButton>
+      <!--HitMeInsteadBorder is to create the illusion of optionally closing dropdown from MenuOpenerButton-->
+      <!--Animation below is important for it to work-->
+      <Border
+        x:Name="HitMeInsteadBorder"
+        Grid.Row="0"
+        Grid.Column="1"
+        IsHitTestVisible="False"
+        Background="{StaticResource XBrush.AlmostTransparent}"/>
       <TextBlock
+        x:Name="CaptionTextBlock"
         Grid.Row="1"
+        Grid.ColumnSpan="2"
         Text="{Binding Caption}"
         HorizontalAlignment="Center"
         FontSize="{StaticResource XDouble.FontSize.ToolTip}"
+        IsEnabled="{Binding IsEnabled}"
         Style="{StaticResource XStyle.TextBlock.Base}"
         Foreground="{StaticResource XBrush.Button.IconButton.Caption}"/>
     </Grid>
+    <DataTemplate.Triggers>
+      <DataTrigger Binding="{Binding IsEnabled}" Value="False">
+        <Setter TargetName="CaptionTextBlock" Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding IsChecked, ElementName=MenuOpenerButton}" Value="True">
+        <DataTrigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HitMeInsteadBorder" Storyboard.TargetProperty="IsHitTestVisible" Duration="0" BeginTime="0:0:0">
+                <DiscreteObjectKeyFrame Value="{StaticResource XBoolean.True}"/>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </DataTrigger.EnterActions>
+        <DataTrigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HitMeInsteadBorder" Storyboard.TargetProperty="IsHitTestVisible" Duration="0" BeginTime="0:0:0.5">
+                <DiscreteObjectKeyFrame Value="{StaticResource XBoolean.False}"/>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </DataTrigger.ExitActions>
+      </DataTrigger>
+    </DataTemplate.Triggers>
   </DataTemplate>
 </ResourceDictionary>

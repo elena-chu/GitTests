@@ -310,51 +310,66 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         }
     }
 
-    public class ToolbarMenuItemCallbackData
+    public class ToolbarCallbackData
     {
-        public ToolbarMenuItemCallbackData(ToolbarMenuItemType menuItemType, bool requestedCheckStatus)
+        public ToolbarCallbackData(ToolbarMenuItemType menuItemType)
         {
             MenuItemType = menuItemType;
-            RequestedCheckStatus = requestedCheckStatus;
         }
 
         public ToolbarMenuItemType MenuItemType { get; set; }
-        public bool RequestedCheckStatus { get; set; }
+        public bool IsChecked { get; set; } = true;
+        public bool IsHeader { get; set; } = false;
     }
 
     public class ToolbarMenuItemViewModel : ViewModelBase
     {
         public ToolbarMenuItemViewModel(ToolbarMenuItemType menuItemType, ICommand callbackCommand)
         {
-            SetMenuItemType(menuItemType);
+            _callbackData = new ToolbarCallbackData(menuItemType);
             CallbackCommand = callbackCommand;
             MenuItemClickedCommand = new RelayCommand(MenuItemClicked);
+            NotifyAll();
         }
 
-        public ToolbarMenuItemType MenuItemType { get; protected set; } = ToolbarMenuItemType.None;
+        public ToolbarMenuItemType MenuItemType { get { return _callbackData.MenuItemType; } }
+
         protected void SetMenuItemType(ToolbarMenuItemType menuItemType)
         {
-            MenuItemType = menuItemType;
+            _callbackData.MenuItemType = menuItemType;
             NotifyAll();
         }
 
         public virtual string Caption { get { return MenuItemType.Caption(false); } }
         public virtual UIElement Icon { get { return MenuItemType.Icon(IsChecked); } }
 
-        private bool _isChecked = false;
         public bool IsChecked
         {
-            get { return _isChecked; }
+            get { return _callbackData.IsChecked; }
             set
             {
-                _isChecked = value;
+                _callbackData.IsChecked = value;
+                MenuItemClicked();
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(Icon));
             }
         }
 
+        private bool _isEnabled = true;
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set
+            {
+                _isEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool IsToggle { get; set; } = false;
         public bool IsSelectable { get; set; } = false;
+
+        protected ToolbarCallbackData _callbackData;
 
         public EventHandler Selected;
 
@@ -362,11 +377,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         public ICommand MenuItemClickedCommand { get; set; }
         private void MenuItemClicked()
         {
-            if (IsToggle)
-                CallbackCommand?.Execute(new ToolbarMenuItemCallbackData(MenuItemType, !IsChecked));
-            else
-                CallbackCommand?.Execute(new ToolbarMenuItemCallbackData(MenuItemType, true));
-
+            CallbackCommand?.Execute(_callbackData);
             if (IsSelectable)
                 Selected?.Invoke(this, new EventArgs());
         }
@@ -394,6 +405,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         public ToolbarMenuHeaderViewModel(ToolbarMenuItemType menuItemType, ICommand command, ObservableCollection<ToolbarMenuItemViewModel> menuItems)
             : base(menuItemType, command)
         {
+            _callbackData.IsHeader = true;
             if (menuItems != null && menuItems.Count > 0)
             {
                 MenuItems = menuItems;
@@ -423,6 +435,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             SetMenuItemType(menuItem.MenuItemType);
             CallbackCommand = menuItem.CallbackCommand;
             IsToggle = menuItem.IsToggle;
+            IsChecked = true;
         }
 
         public void SetMenuItemCheckedStatus(ToolbarMenuItemType menuItemType, bool isChecked)

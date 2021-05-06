@@ -3,6 +3,7 @@
   <ResourceDictionary.MergedDictionaries>
 
     <!--Basics-->
+    <ResourceDictionary Source="005_Basics/005-SystemTypes.xaml"/>
     <ResourceDictionary Source="005_Basics/010-Sizes.xaml"/>
     <ResourceDictionary Source="005_Basics/020-MiscDefinitions.xaml"/>
 
