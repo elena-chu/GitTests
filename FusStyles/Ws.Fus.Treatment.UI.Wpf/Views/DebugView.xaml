@@ -29,8 +29,6 @@
       <Setter Property="Stretch" Value="Uniform"/>
     </Style>-->
 
-    <ResourceDictionary Source="/Ws.Fus.Treatment.UI.Wpf;component/Assets/ToolbarMenu/ToolbarMenuResourceDictionary.xaml"/>
-
   </UserControl.Resources>
 
   <!--<Menu
@@ -199,41 +197,8 @@
       <Button Style="{StaticResource XStyle.Button.Plus}"/>
       <Button Style="{StaticResource XStyle.Button.Exit}"/>
 
-      <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.Dose}"/>
-      </Viewbox>
-
-      <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.ScanPlane}"/>
-      </Viewbox>
-
-      <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.Grid}"/>
-      </Viewbox>
-
-      <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.GhostCursor}"/>
-      </Viewbox>
-
-      <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.DisabledElements}"/>
-      </Viewbox>
-
-      <Viewbox>
-        <ContentControl Content="{StaticResource XCanvas.Menu.Overlays.Tract}"/>
-      </Viewbox>
     </UniformGrid>
   </StackPanel>-->
 
-  <ContentControl DataContext="{Binding ToolbarMenuViewModel}" extensions:IndependentSize.Margin="20,10">
-    <ItemsControl ItemsSource="{Binding MenuHeaders}">
-      <ItemsControl.ItemsPanel>
-        <ItemsPanelTemplate>
-          <StackPanel Orientation="Horizontal"/>
-        </ItemsPanelTemplate>
-      </ItemsControl.ItemsPanel>
-    </ItemsControl>
-  </ContentControl>
-
-  <!--<uc:ToolbarMenu DataContext="{Binding ToolbarMenuViewModel}"/>-->
+  <uc:ToolbarMenu DataContext="{Binding ToolbarMenuViewModel}" extensions:IndependentSize.Margin="20,10"/>
 </UserControl>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup;
 using Ws.Extensions.Mvvm.Commands;
 using Ws.Extensions.Mvvm.ViewModels;
 
@@ -292,8 +294,19 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                     Debug.Assert(false, "Undefined nameof(menuItemType)");
                     break;
             }
-            
-            return (UIElement)Application.Current.TryFindResource(resourceName);
+
+            var resource = (UIElement)Application.Current.TryFindResource(resourceName);
+            return resource.GetCopy();
+        }
+
+        public static T GetCopy<T>(this T element) where T : UIElement
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                XamlWriter.Save(element, memoryStream);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                return (T)XamlReader.Load(memoryStream);
+            }
         }
     }
 

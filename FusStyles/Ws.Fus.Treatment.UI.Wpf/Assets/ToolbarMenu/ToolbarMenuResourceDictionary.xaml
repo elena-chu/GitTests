@@ -1,8 +1,7 @@
-<ResourceDictionary 
+<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/"
-  xmlns:sys="clr-namespace:System;assembly=mscorlib"
   xmlns:vm="clr-namespace:Ws.Fus.Treatment.UI.Wpf.ViewModels">
 
   <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility"/>
@@ -206,7 +205,7 @@
         Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
         Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
         IsHitTestVisible="False">
-        <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+        <ContentControl Content="{Binding Icon}"/>
       </Viewbox>
     </Grid>
     <ControlTemplate.Triggers>
@@ -265,11 +264,9 @@
       </Grid.RowDefinitions>
       <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
         <Button
-          extensions:IconedButton.Icon="{Binding Icon}"
           Style="{StaticResource XStyle.Button.MenuHeader}"
           Visibility="{Binding IsToggle, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
         <ToggleButton
-          extensions:IconedButton.Icon="{Binding Icon}"
           Style="{StaticResource XStyle.ToggleButton.MenuHeader}"
           IsChecked="{Binding IsChecked}"
           Visibility="{Binding IsToggle, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
@@ -345,33 +342,4 @@
         Foreground="{StaticResource XBrush.Button.IconButton.Caption}"/>
     </Grid>
   </DataTemplate>
-  
-  <!--Toolbar Menu-->
-
-  <!--<DataTemplate x:Key="XDataTemplate.ToolbarMenu" DataType="{x:Type vm:ToolbarMenuViewModel}">
-    <ItemsControl ItemsSource="{Binding MenuHeaders}">
-      <ItemsControl.ItemsPanel>
-        <ItemsPanelTemplate>
-          <StackPanel Orientation="Horizontal"/>
-        </ItemsPanelTemplate>
-      </ItemsControl.ItemsPanel>
-    </ItemsControl>
-  </DataTemplate>-->
-
-  <Style x:Key="XStyle.ContentControl.ToolbarMenu" TargetType="{x:Type ContentControl}">
-    <!--<Setter Property="ContentTemplate" Value="{StaticResource XDataTemplate.ToolbarMenu}"/>-->
-    <Setter Property="ContentTemplate">
-      <Setter.Value>
-        <DataTemplate DataType="{x:Type vm:ToolbarMenuViewModel}">
-          <ItemsControl ItemsSource="{Binding MenuHeaders}">
-            <ItemsControl.ItemsPanel>
-              <ItemsPanelTemplate>
-                <StackPanel Orientation="Horizontal"/>
-              </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-          </ItemsControl>
-        </DataTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
 </ResourceDictionary>
