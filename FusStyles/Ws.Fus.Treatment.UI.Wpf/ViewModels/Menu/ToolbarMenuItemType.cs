@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Markup;
-using Ws.Extensions.Mvvm.Commands;
-using Ws.Extensions.Mvvm.ViewModels;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -63,7 +57,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
     public static class ToolbarMenuItemTypeExtension
     {
-        public static string Caption(this ToolbarMenuItemType menuItemType, bool isGroupHeader)
+        public static string Caption(this ToolbarMenuItemType menuItemType, bool isHeader)
         {
             switch (menuItemType)
             {
@@ -74,30 +68,30 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                     return "Cycle";
 
                 case ToolbarMenuItemType.ViewZoom:
-                    return isGroupHeader ? "View" : "Zoom";
+                    return isHeader ? "View" : "Zoom";
                 case ToolbarMenuItemType.ViewPan:
-                    return isGroupHeader ? "View" : "Pan";
+                    return isHeader ? "View" : "Pan";
                 case ToolbarMenuItemType.ViewWindow:
-                    return isGroupHeader ? "View" : "Window";
+                    return isHeader ? "View" : "Window";
                 case ToolbarMenuItemType.ViewResetView:
                     return "Reset View";
                 case ToolbarMenuItemType.ViewCenterOnClick:
-                    return isGroupHeader ? "View" : "Center on Click";
+                    return isHeader ? "View" : "Center on Click";
                 case ToolbarMenuItemType.ViewCenterOnTarget:
                     return "Center on Target";
                 case ToolbarMenuItemType.ViewScreenshot:
                     return "Screenshot";
 
                 case ToolbarMenuItemType.DrawLine:
-                    return isGroupHeader ? "Draw" : "Line";
+                    return isHeader ? "Draw" : "Line";
                 case ToolbarMenuItemType.DrawArea:
-                    return isGroupHeader ? "Draw" : "Area";
+                    return isHeader ? "Draw" : "Area";
                 case ToolbarMenuItemType.DrawAngle:
-                    return isGroupHeader ? "Draw" : "Angle";
+                    return isHeader ? "Draw" : "Angle";
                 case ToolbarMenuItemType.DrawAngle90:
-                    return isGroupHeader ? "Draw" : "90\u00B0 Angle";
+                    return isHeader ? "Draw" : "90\u00B0 Angle";
                 case ToolbarMenuItemType.DrawFiducial:
-                    return isGroupHeader ? "Draw" : "Fiducial";
+                    return isHeader ? "Draw" : "Fiducial";
 
                 case ToolbarMenuItemType.OverlaysShowHide:
                     return "Overlays";
@@ -136,9 +130,9 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                     return "Delete All";
 
                 case ToolbarMenuItemType.CompareSwipeOpacity:
-                    return isGroupHeader ? "Compare" : "Swipe/Opacity";
+                    return isHeader ? "Compare" : "Swipe/Opacity";
                 case ToolbarMenuItemType.CompareFlicker:
-                    return isGroupHeader ? "Compare" : "Flicker";
+                    return isHeader ? "Compare" : "Flicker";
                 case ToolbarMenuItemType.ComparePlay:
                 case ToolbarMenuItemType.CompareFastForward:
                 case ToolbarMenuItemType.CompareVeryFastForward:
@@ -155,6 +149,69 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                 default:
                     Debug.Assert(false, "Undefined nameof(menuItemType)");
                     return string.Empty;
+            }
+        }
+
+        public static bool IsToggle(this ToolbarMenuItemType menuItemType, bool isHeader)
+        {
+            switch (menuItemType)
+            {
+                case ToolbarMenuItemType.None:
+
+                case ToolbarMenuItemType.Cycle:
+
+                case ToolbarMenuItemType.ViewResetView:
+                case ToolbarMenuItemType.ViewCenterOnTarget:
+                case ToolbarMenuItemType.ViewScreenshot:
+
+                case ToolbarMenuItemType.Delete:
+                case ToolbarMenuItemType.DeleteAll:
+
+                case ToolbarMenuItemType.CompareClearImages:
+                    return false;
+
+                case ToolbarMenuItemType.OverlaysShowHide:
+                case ToolbarMenuItemType.OverlaysCrossReferenceLines:
+                case ToolbarMenuItemType.OverlaysImageInfo:
+                case ToolbarMenuItemType.OverlaysLinesAndAreas:
+                case ToolbarMenuItemType.OverlaysFiducials:
+                case ToolbarMenuItemType.OverlaysTransducer:
+                case ToolbarMenuItemType.OverlaysEnvelope:
+                case ToolbarMenuItemType.OverlaysGhostCursor:
+                case ToolbarMenuItemType.OverlaysNonPassRegions:
+                case ToolbarMenuItemType.OverlaysSkull:
+                case ToolbarMenuItemType.OverlaysAcPcMarkers:
+                case ToolbarMenuItemType.OverlaysActiveElements:
+                case ToolbarMenuItemType.OverlaysDisabledElements:
+                case ToolbarMenuItemType.OverlaysTracts:
+                case ToolbarMenuItemType.OverlaysGrid:
+
+                case ToolbarMenuItemType.CompareFastForward:
+                case ToolbarMenuItemType.CompareVeryFastForward:
+                case ToolbarMenuItemType.CompareLink:
+                case ToolbarMenuItemType.CompareShowHide:
+                case ToolbarMenuItemType.CompareColor:
+                    return true;
+
+                case ToolbarMenuItemType.ViewZoom:
+                case ToolbarMenuItemType.ViewPan:
+                case ToolbarMenuItemType.ViewWindow:
+                case ToolbarMenuItemType.ViewCenterOnClick:
+
+                case ToolbarMenuItemType.DrawLine:
+                case ToolbarMenuItemType.DrawArea:
+                case ToolbarMenuItemType.DrawAngle:
+                case ToolbarMenuItemType.DrawAngle90:
+                case ToolbarMenuItemType.DrawFiducial:
+
+                case ToolbarMenuItemType.CompareSwipeOpacity:
+                case ToolbarMenuItemType.CompareFlicker:
+                case ToolbarMenuItemType.ComparePlay:
+                    return isHeader;
+
+                default:
+                    Debug.Assert(false, "Undefined nameof(menuItemType)");
+                    return false;
             }
         }
 
@@ -306,155 +363,6 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                 XamlWriter.Save(element, memoryStream);
                 memoryStream.Seek(0, SeekOrigin.Begin);
                 return (T)XamlReader.Load(memoryStream);
-            }
-        }
-    }
-
-    public class ToolbarCallbackData
-    {
-        public ToolbarCallbackData(ToolbarMenuItemType menuItemType)
-        {
-            MenuItemType = menuItemType;
-        }
-
-        public ToolbarMenuItemType MenuItemType { get; set; }
-        public bool IsChecked { get; set; } = true;
-        public bool IsHeader { get; set; } = false;
-    }
-
-    public class ToolbarMenuItemViewModel : ViewModelBase
-    {
-        public ToolbarMenuItemViewModel(ToolbarMenuItemType menuItemType, ICommand callbackCommand)
-        {
-            _callbackData = new ToolbarCallbackData(menuItemType);
-            CallbackCommand = callbackCommand;
-            MenuItemClickedCommand = new RelayCommand(MenuItemClicked);
-            NotifyAll();
-        }
-
-        public ToolbarMenuItemType MenuItemType { get { return _callbackData.MenuItemType; } }
-
-        protected void SetMenuItemType(ToolbarMenuItemType menuItemType)
-        {
-            _callbackData.MenuItemType = menuItemType;
-            NotifyAll();
-        }
-
-        public virtual string Caption { get { return MenuItemType.Caption(false); } }
-        public virtual UIElement Icon { get { return MenuItemType.Icon(IsChecked); } }
-
-        public bool IsChecked
-        {
-            get { return _callbackData.IsChecked; }
-            set
-            {
-                _callbackData.IsChecked = value;
-                MenuItemClicked();
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(Icon));
-            }
-        }
-
-        private bool _isEnabled = true;
-        public bool IsEnabled
-        {
-            get { return _isEnabled; }
-            set
-            {
-                _isEnabled = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public bool IsToggle { get; set; } = false;
-        public bool IsSelectable { get; set; } = false;
-
-        protected ToolbarCallbackData _callbackData;
-
-        public EventHandler Selected;
-
-        public ICommand CallbackCommand { get; set; }
-        public ICommand MenuItemClickedCommand { get; set; }
-        private void MenuItemClicked()
-        {
-            CallbackCommand?.Execute(_callbackData);
-            if (IsSelectable)
-                Selected?.Invoke(this, new EventArgs());
-        }
-
-        private bool _isVisible = true;
-        public bool IsVisible
-        {
-            get { return _isVisible; }
-            set
-            {
-                _isVisible = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public virtual void NotifyAll()
-        {
-            RaisePropertyChanged(nameof(Caption));
-            RaisePropertyChanged(nameof(Icon));
-        }
-    }
-
-    public class ToolbarMenuHeaderViewModel : ToolbarMenuItemViewModel
-    {
-        public ToolbarMenuHeaderViewModel(ToolbarMenuItemType menuItemType, ICommand command, ObservableCollection<ToolbarMenuItemViewModel> menuItems)
-            : base(menuItemType, command)
-        {
-            _callbackData.IsHeader = true;
-            if (menuItems != null && menuItems.Count > 0)
-            {
-                MenuItems = menuItems;
-                foreach (var menuItem in MenuItems)
-                {
-                    if (menuItem.IsSelectable)
-                        menuItem.Selected += (sender, args) => OnMenuItemSelected(sender as ToolbarMenuItemViewModel);
-                }
-            }
-        }
-
-        public override string Caption { get { return MenuItemType.Caption(true); } }
-
-        private ObservableCollection<ToolbarMenuItemViewModel> _menuItems;
-        public ObservableCollection<ToolbarMenuItemViewModel> MenuItems
-        {
-            get { return _menuItems; }
-            set
-            {
-                _menuItems = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        private void OnMenuItemSelected(ToolbarMenuItemViewModel menuItem)
-        {
-            SetMenuItemType(menuItem.MenuItemType);
-            CallbackCommand = menuItem.CallbackCommand;
-            IsToggle = menuItem.IsToggle;
-            IsChecked = true;
-        }
-
-        public void SetMenuItemCheckedStatus(ToolbarMenuItemType menuItemType, bool isChecked)
-        {
-            if (MenuItems != null)
-            {
-                var menuItem = MenuItems.FirstOrDefault(x => x.MenuItemType == menuItemType);
-                if (menuItem != null)
-                    menuItem.IsChecked = isChecked;
-            }
-        }
-
-        public override void NotifyAll()
-        {
-            base.NotifyAll();
-            if (MenuItems != null)
-            {
-                foreach (var menuItem in MenuItems)
-                    menuItem.NotifyAll();
             }
         }
     }

@@ -53,7 +53,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.ViewCenterOnClick, MenuItemClickedCommand) { IsSelectable = true },
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.ViewCenterOnTarget, MenuItemClickedCommand),
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.ViewScreenshot, MenuItemClickedCommand)
-                }) { IsSelectable = true },
+                }) { IsSelectable = true, IsChecked = false },
                 new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.DrawLine, MenuItemClickedCommand, new ObservableCollection<ToolbarMenuItemViewModel>()
                 {
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.DrawLine, MenuItemClickedCommand) { IsSelectable = true },
@@ -61,23 +61,23 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.DrawAngle, MenuItemClickedCommand) { IsSelectable = true },
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.DrawAngle90, MenuItemClickedCommand) { IsSelectable = true },
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.DrawFiducial, MenuItemClickedCommand) { IsSelectable = true },
-                }) { IsSelectable = true },
+                }) { IsSelectable = true, IsChecked = false },
                 new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.OverlaysShowHide, MenuItemClickedCommand, new ObservableCollection<ToolbarMenuItemViewModel>(){
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysCrossReferenceLines, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysImageInfo, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysLinesAndAreas, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysFiducials, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysTransducer, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysEnvelope, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysGhostCursor, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysNonPassRegions, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysSkull, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysAcPcMarkers, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysActiveElements, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysDisabledElements, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysTracts, MenuItemClickedCommand) { IsToggle = true, IsChecked = false },
-                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysGrid, MenuItemClickedCommand) { IsToggle = true, IsChecked = false }
-                }) { IsToggle = true },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysCrossReferenceLines, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysImageInfo, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysLinesAndAreas, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysFiducials, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysTransducer, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysEnvelope, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysGhostCursor, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysNonPassRegions, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysSkull, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysAcPcMarkers, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysActiveElements, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysDisabledElements, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysTracts, MenuItemClickedCommand) { IsChecked = false },
+                    new ToolbarMenuItemViewModel(ToolbarMenuItemType.OverlaysGrid, MenuItemClickedCommand) { IsChecked = false }
+                }) { IsChecked = true },
                 new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.Delete, MenuItemClickedCommand, new ObservableCollection<ToolbarMenuItemViewModel>(){
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.Delete, MenuItemClickedCommand),
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.DeleteAll, MenuItemClickedCommand)
@@ -89,8 +89,8 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
                     new ToolbarMenuItemViewModel(ToolbarMenuItemType.CompareFlicker, MenuItemClickedCommand) { IsSelectable = true }
                 }) { IsSelectable = true },
                 new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.CompareLink, MenuItemClickedCommand, null) { IsVisible = false },
-                new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.CompareShowHide, MenuItemClickedCommand, null) { IsVisible = false, IsToggle = true },
-                new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.CompareColor, MenuItemClickedCommand, null) { IsVisible = false, IsToggle = true },
+                new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.CompareShowHide, MenuItemClickedCommand, null) { IsVisible = false },
+                new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.CompareColor, MenuItemClickedCommand, null) { IsVisible = false },
                 new ToolbarMenuHeaderViewModel(ToolbarMenuItemType.CompareClearImages, MenuItemClickedCommand, null) { IsVisible = false }
             };
 
