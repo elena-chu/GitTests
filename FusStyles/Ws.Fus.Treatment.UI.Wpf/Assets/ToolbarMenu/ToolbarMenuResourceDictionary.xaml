@@ -303,7 +303,7 @@
         Grid.Column="1"
         extensions:IndependentSize.Margin="6,0,0,0"
         IsEnabled="{Binding IsEnabled}"
-        DropDownPlacement="Left"
+        DropDownPlacement="Right"
         Style="{StaticResource XStyle.ToggleButton.MenuOpener}"
         Visibility="{Binding MenuItems, Converter={StaticResource XConverter.NullToVisibility}}">
         <extensions:DropDownButton.DropDown>
