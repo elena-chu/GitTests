@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
@@ -8,7 +8,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
     /// <summary>
     ///  IconedButton class enabling to add to any button properties describing button's icon
     /// </summary>
-    public class IconedButton
+    public static class IconedButton
     {
         /// <summary>
         /// Icon property is describing brush used to draw the button's active icon, if it is different from regular
@@ -28,9 +28,31 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         /// <summary>
         /// Icon
         /// </summary>
-        public static DependencyProperty IconProperty = DependencyProperty.RegisterAttached("Icon", typeof(UIElement), typeof(IconedButton));
+        public static DependencyProperty IconProperty = DependencyProperty.RegisterAttached("Icon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
         public static void SetIcon(FrameworkElement obj, UIElement value) { obj.SetValue(IconProperty, value); }
         public static UIElement GetIcon(FrameworkElement obj) { return (UIElement)obj.GetValue(IconProperty); }
+
+        private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { }
+
+        private static object CoerceIconValue(DependencyObject d, object baseValue)
+        {
+            var element = baseValue as UIElement;
+            return element != null ? element.GetCopy() : null;
+        }
+
+        /// <summary>
+        /// Icon for Checked status
+        /// </summary>
+        public static DependencyProperty CheckedIconProperty = DependencyProperty.RegisterAttached("CheckedIcon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
+        public static void SetCheckedIcon(FrameworkElement obj, UIElement value) { obj.SetValue(CheckedIconProperty, value); }
+        public static UIElement GetCheckedIcon(FrameworkElement obj) { return (UIElement)obj.GetValue(CheckedIconProperty); }
+
+        /// <summary>
+        /// Icon for Unchecked status
+        /// </summary>
+        public static DependencyProperty UncheckedIconProperty = DependencyProperty.RegisterAttached("UncheckedIcon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
+        public static void SetUncheckedIcon(FrameworkElement obj, UIElement value) { obj.SetValue(UncheckedIconProperty, value); }
+        public static UIElement GetUncheckedIcon(FrameworkElement obj) { return (UIElement)obj.GetValue(UncheckedIconProperty); }
 
         /// <summary>
         /// Alpha Geometry: geometry that will be colored with Alpha active color
@@ -65,6 +87,19 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         private static object CoerceIconSizeValue(DependencyObject d, object baseValue)
         {
             return IndependentSize.CalculateProportionalDouble((double)baseValue);
+        }
+
+
+        // ********************* Helpers ********************
+
+        public static T GetCopy<T>(this T element) where T : UIElement
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                XamlWriter.Save(element, memoryStream);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                return (T)XamlReader.Load(memoryStream);
+            }
         }
     }
 }

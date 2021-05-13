@@ -86,9 +86,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Assets\ToolbarMenu\ToolbarMenu.xaml.cs">
-      <DependentUpon>ToolbarMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Entities\MainScreenActionEnum.cs" />
     <Compile Include="Interfaces\IMainScreenAction.cs" />
     <Compile Include="Entities\PreferncesMode.cs" />
@@ -165,14 +162,6 @@
       <DependentUpon>Skin.tt</DependentUpon>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\ToolbarMenu\ToolbarMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\ToolbarMenu\ToolbarMenuResourceDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DataBaseView.xaml">
       <SubType>Designer</SubType>

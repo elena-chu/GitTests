@@ -110,6 +110,7 @@
     </Style.Triggers>
   </Style>
 
+  
   <!--Plus / Exit-->
   <ControlTemplate x:Key="XControlTemplate.Button.SingleLetter" TargetType="{x:Type Button}">
     <Border
@@ -171,4 +172,221 @@
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
   </Style>
+  
+  
+  <!--Menu Buttons-->
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.Switch" TargetType="{x:Type ToggleButton}">
+    <Border Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{StaticResource XBrush.AlmostTransparent}">
+      <ContentControl
+        x:Name="Switch"
+        Grid.Row="0"
+        Grid.Column="1"
+        extensions:IndependentSize.Margin="3,0,0,0"
+        extensions:IndependentSize.Height="20"
+        Style="{StaticResource XStyle.ContentControl.Switch}"
+        extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
+    </Border>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.Switch" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Switch}"/>
+    <Style.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="False">
+        <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
+      </Trigger>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.MenuOpener" TargetType="{x:Type ToggleButton}">
+    <Grid
+      x:Name="MainGrid"
+      Background="{StaticResource XBrush.AlmostTransparent}"
+      Width="{TemplateBinding Width}"
+      Height="{TemplateBinding Height}">
+      <Border x:Name="BackgroundBorder" Style="{StaticResource XStyle.Border}" Background="{TemplateBinding Background}"/>
+      <Border
+        x:Name="HoverBorder"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        Style="{StaticResource XStyle.Border.Hover}">
+        <Border
+          x:Name="PressedBorder"
+          Style="{StaticResource XStyle.Border.Pressed}"
+          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+          Opacity="0"/>
+      </Border>
+      <Border extensions:IndependentSize.Width="16" HorizontalAlignment="Center">
+        <Path
+          IsHitTestVisible="False"
+          HorizontalAlignment="Center"
+          Stretch="Uniform"
+          Data="{StaticResource XGeometry.Arrow.Down}"
+          Stroke="{TemplateBinding Foreground}"
+          StrokeThickness="1.3"
+          RenderTransformOrigin="0.5,0.3">
+          <Path.RenderTransform>
+            <RotateTransform x:Name="ArrowRotateTransform"/>
+          </Path.RenderTransform>
+        </Path>
+      </Border>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ArrowRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ArrowRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.MenuOpener" TargetType="{x:Type ToggleButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.MenuOpener}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="20"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <ControlTemplate x:Key="XControlTemplate.ButtonBase.SquareIcon" TargetType="{x:Type ButtonBase}">
+    <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+      <Border
+        x:Name="BackgroundBorder"
+        Grid.Row="0"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
+        HorizontalAlignment="Center"
+        Style="{StaticResource XStyle.Border}"
+        Background="{TemplateBinding Background}"/>
+      <Border
+        x:Name="HoverBorder"
+        Grid.Row="0"
+        Height="{Binding ActualHeight, ElementName=BackgroundBorder}"
+        Width="{Binding ActualWidth, ElementName=BackgroundBorder}"
+        HorizontalAlignment="{Binding HorizontalAlignment, ElementName=BackgroundBorder}"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        Style="{StaticResource XStyle.Border.Hover}">
+        <Border
+          x:Name="PressedBorder"
+          Height="{Binding ActualHeight, ElementName=BackgroundBorder}"
+          Width="{Binding ActualWidth, ElementName=BackgroundBorder}"
+          HorizontalAlignment="{Binding HorizontalAlignment, ElementName=BackgroundBorder}"
+          Style="{StaticResource XStyle.Border.Pressed}"
+          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+          Opacity="0"/>
+      </Border>
+      <Viewbox
+        Stretch="Uniform"
+        Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+        Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+        IsHitTestVisible="False">
+        <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+      </Viewbox>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ButtonBase.SquareIcon" TargetType="{x:Type ButtonBase}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.SquareIcon}"/>
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Button.SquareIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.SquareIcon}"/>
+
+  <Style x:Key="XStyle.ToggleButton.SquareIcon" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.SquareIcon}">
+    <Setter Property="extensions:IconedButton.CheckedIcon" Value="{x:Null}"/>
+    <Setter Property="extensions:IconedButton.UncheckedIcon" Value="{x:Null}"/>
+    <Style.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
+      </Trigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True"/>
+          <Condition Binding="{Binding (extensions:IconedButton.CheckedIcon), RelativeSource={RelativeSource Self}, Converter={extensions:ObjectNotNullToBooleanConverter}}" Value="True"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="extensions:IconedButton.Icon" Value="{Binding (extensions:IconedButton.CheckedIcon), RelativeSource={RelativeSource Self}}"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="False"/>
+          <Condition Binding="{Binding (extensions:IconedButton.UncheckedIcon), RelativeSource={RelativeSource Self}, Converter={extensions:ObjectNotNullToBooleanConverter}}" Value="True"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="extensions:IconedButton.Icon" Value="{Binding (extensions:IconedButton.UncheckedIcon), RelativeSource={RelativeSource Self}}"/>
+      </MultiDataTrigger>
+    </Style.Triggers>
+  </Style>
+  
 </ResourceDictionary>

@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
 {
@@ -137,10 +138,17 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
 
         public static void OnHorizontalOffsetPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ContextMenu cm = d as ContextMenu;
-            if (cm == null || e.NewValue == null)
+            if (e.NewValue == null)
                 return;
-            cm.HorizontalOffset = GetProportionalDoublePropertyFromArgs(e);
+
+            ContextMenu contextMenu = d as ContextMenu;
+            Popup popup = d as Popup;
+
+            if (contextMenu != null)
+                contextMenu.HorizontalOffset = GetProportionalDoublePropertyFromArgs(e);
+
+            if (popup != null)
+                popup.HorizontalOffset = GetProportionalDoublePropertyFromArgs(e);
         }
 
         /// <summary>
@@ -154,10 +162,17 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
 
         public static void OnVerticalOffsetPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ContextMenu cm = d as ContextMenu;
-            if (cm == null || e.NewValue == null)
+            if (e.NewValue == null)
                 return;
-            cm.VerticalOffset = GetProportionalDoublePropertyFromArgs(e);
+
+            ContextMenu contextMenu = d as ContextMenu;
+            Popup popup = d as Popup;
+
+            if (contextMenu != null)
+                contextMenu.VerticalOffset = GetProportionalDoublePropertyFromArgs(e);
+
+            if (popup != null)
+                popup.VerticalOffset = GetProportionalDoublePropertyFromArgs(e);
         }
 
 
