@@ -7,6 +7,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:dg="clr-namespace:Ws.Extensions.UI.Wpf.Patterns.DynamicGrid;assembly=Ws.Extensions.UI.Wpf"
   xmlns:local="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Views"
+  xmlns:sliderViews="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.ImageModes.Slider.Views"
   mc:Ignorable="d" 
   d:DesignHeight="300"
   d:DesignWidth="300">
@@ -63,6 +64,7 @@
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
       <local:StripViewer Grid.ColumnSpan="2" Grid.RowSpan="2" IsEnabled="False"/>
+      <sliderViews:SliderModeInViewerControlView Grid.ColumnSpan="2" Grid.RowSpan="2" />
       <local:StripViewer Grid.Column="2" Grid.Row="0" IsEnabled="False" />
       <local:StripViewer Grid.Column="2" Grid.Row="1"/>
     </Grid>

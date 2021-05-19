@@ -97,6 +97,33 @@
     <Compile Include="Converters\MultiMeasureVmConverter.cs" />
     <Compile Include="Converters\SliderValueToWidthConverter.cs" />
     <Compile Include="Converters\ToGraphicEngineWindowSizeConverter.cs" />
+    <Compile Include="ImageModes\Flicker\Views\FlickerModeControlView.xaml.cs">
+      <DependentUpon>FlickerModeControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Flicker\Views\FlickerModeInViewerControlView.xaml.cs">
+      <DependentUpon>FlickerModeInViewerControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Flicker\Views\FlickerModeViewer.xaml.cs">
+      <DependentUpon>FlickerModeViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Fusion\Views\FusionModeControlView.xaml.cs">
+      <DependentUpon>FusionModeControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Fusion\Views\FusionModeInViewerControlView.xaml.cs">
+      <DependentUpon>FusionModeInViewerControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Fusion\Views\FusionModeViewer.xaml.cs">
+      <DependentUpon>FusionModeViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Slider\Views\SliderModeControlView.xaml.cs">
+      <DependentUpon>SliderModeControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Slider\Views\SliderModeInViewerControlView.xaml.cs">
+      <DependentUpon>SliderModeInViewerControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageModes\Slider\Views\SliderModeViewer.xaml.cs">
+      <DependentUpon>SliderModeViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\ImageViewerModule.cs" />
     <Compile Include="Navigation\Consts.cs" />
     <Compile Include="Navigation\Controllers\NavigationController.cs" />
@@ -138,6 +165,10 @@
     <ProjectReference Include="..\Extensions.Wpf\Ws.Extensions.UI.Wpf.csproj">
       <Project>{31b8a50f-7c39-4903-8d27-4f07ed22726a}</Project>
       <Name>Ws.Extensions.UI.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj">
+      <Project>{490ab4aa-3706-4137-afc6-0877b435d6b1}</Project>
+      <Name>Ws.Fus.ImageViewer.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ws.Fus.UI.Assets.Wpf\Ws.Fus.UI.Assets.Wpf.csproj">
       <Project>{5f4a6c6f-9c99-4588-bafe-f26b9fa43a6c}</Project>
@@ -188,6 +219,42 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\ToolbarMenu\ToolbarMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Flicker\Views\FlickerModeControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Flicker\Views\FlickerModeInViewerControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Flicker\Views\FlickerModeViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Fusion\Views\FusionModeControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Fusion\Views\FusionModeInViewerControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Fusion\Views\FusionModeViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Slider\Views\SliderModeControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Slider\Views\SliderModeInViewerControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageModes\Slider\Views\SliderModeViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

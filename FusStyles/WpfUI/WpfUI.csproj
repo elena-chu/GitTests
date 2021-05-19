@@ -217,6 +217,10 @@
       <Project>{8e4a847e-2e40-4f5f-ad62-77220f10fb6f}</Project>
       <Name>Ws.Fus.UI.Wpf</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj">
+      <Project>{490ab4aa-3706-4137-afc6-0877b435d6b1}</Project>
+      <Name>Ws.Fus.ImageViewer.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ws.Fus.ImageViewer.UI.Wpf\Ws.Fus.ImageViewer.UI.Wpf.csproj">
       <Project>{ba3a5528-aa5a-49ec-b5f5-3af32f79eedf}</Project>
       <Name>Ws.Fus.ImageViewer.UI.Wpf</Name>

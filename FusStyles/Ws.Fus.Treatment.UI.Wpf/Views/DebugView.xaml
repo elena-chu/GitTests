@@ -16,6 +16,6 @@
   <UserControl.Resources>
   </UserControl.Resources>
 
-  <tm:ToolbarMenu Grid.Column="1"/>
+  <tm:ToolbarMenu Grid.Column="1" VerticalAlignment="Top" Height="Auto"/>
   
 </UserControl>

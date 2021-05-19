@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Ws.Fus.ImageViewer.UI.Wpf.ImageModes.Slider.Views.SliderModeViewer"
+    x:Name="parent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:extensions="http://schemas.insightec.com/wpf/"
+    xmlns:converters="clr-namespace:Ws.Extensions.UI.Wpf.Converters;assembly=Ws.Extensions.UI.Wpf"
+    xmlns:localConverters="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Converters"
+    xmlns:local="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.ImageModes.Slider.Views"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+    <localConverters:FgeBufferConverter x:Key="primaryImageConverter" Parameter="{Binding Source={x:Reference parent}}"/>
+    <localConverters:FgeBufferConverter x:Key="secondaryImageConverter" Parameter="{Binding Source={x:Reference parent}}"/>
+    <converters:RatioConverter x:Key="ratioConverter"/>
+  </UserControl.Resources>
+  <Canvas>
+    <Image Source="{Binding PrimaryImageBuffer, Converter={StaticResource primaryImageConverter}}" 
+                 RenderTransformOrigin="0.5 0.5"  
+                 Stretch="None" ClipToBounds="True" UseLayoutRounding="True">
+      <Image.RenderTransform>
+        <ScaleTransform ScaleY="-1"/>
+      </Image.RenderTransform>
+    </Image>
+    <Grid ClipToBounds="True" 
+          Visibility="{Binding Control.IsSecondaryVisible, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
+          Opacity="{Binding Control.OpacitySlidedValue, FallbackValue=1, Mode=OneWay}">
+      <Grid.Width>
+        <MultiBinding Converter="{StaticResource ratioConverter}">
+          <!--<Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />-->
+          <Binding Path="ActualWidth" ElementName="parent" />
+          <Binding Path="Control.SlidedValue" />
+        </MultiBinding>
+      </Grid.Width>
+      <Rectangle Stretch="Fill" >
+        <Rectangle.Style>
+          <Style TargetType="Rectangle">
+            <Setter Property="Fill">
+              <Setter.Value>
+                <SolidColorBrush Color="{Binding Control.TintColor}"/>
+              </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding Control.IsColored}" Value="False">
+                <Setter Property="Fill" Value="White" />
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </Rectangle.Style>
+      </Rectangle>
+      <Image Source="{Binding SecondaryImageBuffer, Converter={StaticResource secondaryImageConverter}}" RenderTransformOrigin="0.5 0.5" Stretch="None" ClipToBounds="True" UseLayoutRounding="True">
+        <Image.RenderTransform>
+          <ScaleTransform ScaleY="-1"/>
+        </Image.RenderTransform>
+      </Image>
+    </Grid>
+    <!--<Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width=".15*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width=".15*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height=".1*" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+
+      <Slider Grid.Column="1"
+        Minimum="0" Maximum="1" 
+        Height="20" 
+        HorizontalAlignment="Stretch" 
+        Value="{Binding Control.SlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
+        SnapsToDevicePixels="False" 
+            />
+
+      <Slider 
+        Grid.Row="1"
+        Grid.Column="0"
+        Minimum="0" Maximum="1" 
+        Width="120" Height="25" 
+        HorizontalAlignment="Left" 
+        Value="{Binding Control.OpacitySlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
+        SnapsToDevicePixels="False">
+        <Slider.RenderTransform>
+          <RotateTransform Angle="90" />
+        </Slider.RenderTransform>
+      </Slider>
+    </Grid>-->
+  </Canvas>
+</UserControl>
