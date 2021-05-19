@@ -50,5 +50,13 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty AlternativeTextProperty = DependencyProperty.RegisterAttached("AlternativeText", typeof(string), typeof(ControlExtensions), new PropertyMetadata(string.Empty));
         public static string GetAlternativeText(DependencyObject obj) { return (string)obj.GetValue(AlternativeTextProperty); }
         public static void SetAlternativeText(DependencyObject obj, string value) { obj.SetValue(AlternativeTextProperty, value); }
+
+        /// <summary>
+        /// Used for setting a param for handler
+        /// e.g. param for Click event handler
+        /// </summary>
+        public static readonly DependencyProperty HandlerParameterProperty = DependencyProperty.RegisterAttached("HandlerParameter", typeof(object), typeof(ControlExtensions));
+        public static object GetHandlerParameter(DependencyObject obj) { return obj.GetValue(HandlerParameterProperty); }
+        public static void SetHandlerParameter(DependencyObject obj, object value) { obj.SetValue(HandlerParameterProperty, value); }
     }
 }

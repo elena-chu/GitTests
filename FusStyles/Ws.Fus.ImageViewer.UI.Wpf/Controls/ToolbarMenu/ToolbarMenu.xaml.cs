@@ -1,18 +1,8 @@
 ﻿//using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Ws.Extensions.UI.Wpf.Behaviors;
 using Ws.Fus.ImageViewer.Interfaces.Entities;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
@@ -37,11 +27,44 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             }
         }
 
+
+        #region Handlers
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            if (menuItem == null)
+                return;
+
+            MenuItem menuHeader = null;
+            string param = (string)menuItem.GetValue(ControlExtensions.HandlerParameterProperty);
+            switch (param)
+            {
+                case "View":
+                    menuHeader = ViewMenuHeader;
+                    break;
+                case "Draw":
+                    menuHeader = DrawMenuHeader;
+                    break;
+                case "Compare":
+                    menuHeader = CompareMenuHeader;
+                    break;
+                default:
+                    break;
+            }
+
+            menuHeader.SetValue(IconedButton.IconProperty, menuItem.GetValue(IconedButton.IconProperty));
+            menuHeader.Command = menuItem.Command;
+        }
+
+
+        private void CompareMenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem mi = sender as MenuItem;
             if (mi == null)
                 return;
+
+            MenuItem_Click(sender, e);
 
             CompareMode mode = CompareMode.Simple;
             if(mi.CommandParameter != null)
@@ -69,5 +92,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
             CompareModeControl.ContentTemplate = contentRes;
         }
+
+        #endregion
+
     }
 }
