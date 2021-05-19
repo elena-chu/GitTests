@@ -143,6 +143,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\Switch\CompositeSwitch.cs" />
+    <Compile Include="ViewModels\Switch\IMultiSwitch{T}.cs" />
+    <Compile Include="ViewModels\Switch\ISwitch.cs" />
+    <Compile Include="ViewModels\Switch\MultiSwitch.cs" />
+    <Compile Include="ViewModels\Switch\SubSwitchInfo.cs" />
+    <Compile Include="ViewModels\Switch\Switch.cs" />
+    <Compile Include="ViewModels\Switch\SwitchBase.cs" />
     <Compile Include="Views\StripsViewer.xaml.cs">
       <DependentUpon>StripsViewer.xaml</DependentUpon>
     </Compile>

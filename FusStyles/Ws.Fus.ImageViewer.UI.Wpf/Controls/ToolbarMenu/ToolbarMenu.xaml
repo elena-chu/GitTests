@@ -331,33 +331,42 @@
             <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item.Checkable}"/>
           </MenuItem.Resources>
           <MenuItem
+            localBeh:UiModeShow.Mode="IntersectingSlicesOverlay"
             Header="CrossReferenceLines"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.ReferenceLines}"/>
           <MenuItem
+            localBeh:UiModeShow.Mode="TextOverlay"
             Header="Image Info"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Info}"/>
           <MenuItem
+            localBeh:UiModeShow.Modes="MeasurementDistanceOverlay,MeasurementAreaOverlay"
             Header="Lines &amp; Areas"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.LineArea}"/>
           <MenuItem
+            localBeh:UiModeShow.Mode="FiducialsOverlay"
             Header="Fiducials"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Fiducials}"/>
           <MenuItem
+            localBeh:UiModeShow.Mode="CalibrationDataOverlay"
             Header="Transducer"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Transducer}"/>
           <MenuItem
+            localBeh:UiModeShow.Mode="BathLimitsOverlay"
             Header="Envelope"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Envelope}"/>
           <MenuItem
             Header="Ghost Cursor"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.GhostCursor}"/>
           <MenuItem
+            localBeh:UiModeShow.Modes="MeshNPRAirOverlay,MeshNPROverlay,NPRPolygonsOverlay,RigidNPROverlay,MeshNPRMembraneFolds"
             Header="Non-Pass Regions"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.NonPassRegions}"/>
           <MenuItem
+            localBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
             Header="Skull"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Skull}"/>
           <MenuItem
+            localBeh:UiModeShow.Mode="ACPCOverlay"
             Header="AC-PC Markers"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.AcPc}"/>
           <MenuItem
@@ -367,6 +376,7 @@
             Header="Disabled Elements"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.DisabledElements}"/>
           <MenuItem
+            localBeh:UiModeShow.Mode="Tractography"
             Header="Tracts"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Tracts}"/>
           <MenuItem
@@ -410,7 +420,7 @@
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Flicker}"/>
           <MenuItem
             Click="MenuItem_Click"
-            Command="{Binding SwitchCompareModeCommand}"
+            CommandParameter="{x:Static entities:CompareMode.Fusion}"
             Header="Fusion"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
         </MenuItem>
