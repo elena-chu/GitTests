@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Ws.Extensions.Mvvm.Commands;
 using Ws.Extensions.Mvvm.ViewModels;
 using Ws.Extensions.UI.Wpf.Behaviors;
+using Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -12,8 +13,8 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
     {
         public DebugViewModel()
         {
-            ProgressCommand = new RelayCommand(ToggleProgress);
-            ApprovalCommand = new RelayCommand(ToggleApproval);
+            ProgressCommand = new DelegateCommand(ToggleProgress);
+            ApprovalCommand = new DelegateCommand(ToggleApproval);
             InitMenu();
         }
 
@@ -128,24 +129,25 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
         private void InitMenu()
         {
-            MenuItemClickedCommand = new RelayCommand<ToolbarCallbackData>(MenuItemClicked);
-            ToolbarMenuViewModel = new ToolbarMenuViewModel(MenuItemClickedCommand);
+            ViewCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("View", x); } );
+            PanCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Pan", x); } );
+            DrawCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Draw", x); } );
+            AreaCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Area", x); } );
+            OverlaysCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Overlays", x); } );
+            ImageInfoCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Image Info", x); } );
+    }
 
-            //ToolbarMenuViewModel.SetMenuHeaderEnableStatus(ToolbarMenuItemType.DrawLine, false);
-            //ToolbarMenuViewModel.SetMenuItemCheckedStatus(ToolbarMenuItemType.OverlaysAcPcMarkers, true);
-        }
+        public ICommand ViewCommand { get; set; }
+        public ICommand PanCommand { get; set; }
+        public ICommand DrawCommand { get; set; }
+        public ICommand AreaCommand { get; set; }
+        public ICommand OverlaysCommand { get; set; }
+        public ICommand ImageInfoCommand { get; set; }
 
-        public IToolbarMenuViewModel ToolbarMenuViewModel { get; set; }
-
-        public ICommand MenuItemClickedCommand { get; set; }
-        private void MenuItemClicked(ToolbarCallbackData callbackData)
+        private void MenuItemClicked(string name, bool? param)
         {
-            if (callbackData != null)
-            {
-                string checkRequestedStatus = callbackData.IsChecked ? "Checked" : "Unchecked";
-                string headerStatus = callbackData.IsHeader ? "HEADER " : string.Empty;
-                Console.WriteLine("LA >>> " + headerStatus + callbackData.MenuItemType.Caption(false) + " is calling. I am " + checkRequestedStatus);
-            }
+            string status = param.HasValue ? param.Value.ToString() : "null";
+            Console.WriteLine("LA >>> " + name + " is calling. I am " + status);
         }
 
         #endregion

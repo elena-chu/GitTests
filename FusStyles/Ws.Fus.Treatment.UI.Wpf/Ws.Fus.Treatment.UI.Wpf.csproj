@@ -107,9 +107,6 @@
     <Compile Include="ViewModels\MainScreenBaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenMainViewModel.cs" />
     <Compile Include="ViewModels\DebugViewModel.cs" />
-    <Compile Include="ViewModels\Menu\ToolbarMenuItemType.cs" />
-    <Compile Include="ViewModels\Menu\ToolbarMenuItemViewModel.cs" />
-    <Compile Include="ViewModels\Menu\ToolbarMenuViewModel.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
     <Compile Include="Views\DataBaseView.xaml.cs">
       <DependentUpon>DataBaseView.xaml</DependentUpon>
