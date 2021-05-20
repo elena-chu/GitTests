@@ -218,9 +218,13 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         {
             if (!_screenProportionCalculated)
             {
+                //Lena: Check Validity!!!
                 _screenProportion = SystemParameters.PrimaryScreenHeight / 1080;
                 _screenProportionCalculated = true;
             }
+
+            //var d = DpiUtils.GetToDeviceMatrix(null);
+            //return height / DpiUtils.GetToDeviceMatrix(null).M22;
 
             return value * _screenProportion;
         }
