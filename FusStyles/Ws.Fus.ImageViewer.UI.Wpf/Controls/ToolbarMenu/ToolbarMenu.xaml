@@ -4,14 +4,15 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:sys="clr-namespace:System;assembly=mscorlib"           
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:local="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu"
   xmlns:localBeh="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Behaviors"
   xmlns:entities="clr-namespace:Ws.Fus.ImageViewer.Interfaces.Entities;assembly=Ws.Fus.ImageViewer.Interfaces"
   xmlns:sliderViews="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.ImageModes.Slider.Views"
   xmlns:flickerViews="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.ImageModes.Flicker.Views"
   xmlns:fusionViews="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.ImageModes.Fusion.Views"
-  mc:Ignorable="d">
+  mc:Ignorable="d"
+  x:Name="_thisToolbarMenu">
   
   <UserControl.Resources>
     <extensions:NullToVisibilityConverter x:Key="null2Vis"/>
@@ -19,7 +20,7 @@
     <extensions:InvertedBooleanToVisibilityConverter x:Key="XConverter.InverseBooleanToVisibility"/>
     <extensions:NullToVisibilityConverter x:Key="XConverter.NullToVisibility"/>
 
-    <ControlTemplate x:Key="XControlTemplate.MenuItem.Toolbar.Item" TargetType="{x:Type MenuItem}">
+    <ControlTemplate x:Key="XControlTemplate.ToolbarMenuItem" TargetType="{x:Type local:ToolbarMenuItem}">
       <Border
         x:Name="HoverBorder"
         Grid.ColumnSpan="3"
@@ -43,7 +44,7 @@
             Grid.Column="0"
             extensions:IndependentSize.Margin="8,0,7,0"
             Stretch="Uniform"
-            Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+            Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type local:ToolbarMenuItem}}}"
             IsHitTestVisible="False">
             <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"/>
           </Viewbox>
@@ -63,15 +64,13 @@
       </Border>
     </ControlTemplate>
 
-    <Style x:Key="XStyle.MenuItem.Toolbar.Item" TargetType="{x:Type MenuItem}">
-      <Setter Property="Template" Value="{StaticResource XControlTemplate.MenuItem.Toolbar.Item}"/>
+    <Style x:Key="XStyle.ToolbarMenuItem" TargetType="{x:Type local:ToolbarMenuItem}">
+      <Setter Property="Template" Value="{StaticResource XControlTemplate.ToolbarMenuItem}"/>
       <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
       <Setter Property="extensions:IndependentSize.MinHeight" Value="40"/>
       <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
       <Setter Property="extensions:IndependentSize.Padding" Value="3,3,6,3"/>
       <Setter Property="extensions:IconedButton.IconSize" Value="24"/>
-      <Setter Property="Command" Value="{Binding MenuItemClickedCommand}"/>
-      <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
       <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
       <Style.Triggers>
         <Trigger Property="IsEnabled" Value="False">
@@ -81,20 +80,7 @@
       </Style.Triggers>
     </Style>
 
-    <Style x:Key="XStyle.MenuItem.Toolbar.Item.Checkable" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item}">
-      <Setter Property="IsCheckable" Value="True"/>
-      <Setter Property="StaysOpenOnClick" Value="True"/>
-    </Style>
-
-    <Style x:Key="XStyle.MenuItem.Toolbar.Item.TrueCommandParam" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item}">
-      <Setter Property="CommandParameter">
-        <Setter.Value>
-          <sys:Boolean>True</sys:Boolean>
-        </Setter.Value>
-      </Setter>
-    </Style>
-
-    <ControlTemplate x:Key="XControlTemplate.MenuItem.Toolbar.Header" TargetType="{x:Type MenuItem}">
+    <ControlTemplate x:Key="XControlTemplate.ToolbarMenuHeader" TargetType="{x:Type local:ToolbarMenuHeader}">
       <Grid extensions:IndependentSize.Margin="0,0,20,0">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
@@ -177,29 +163,26 @@
           Text="{TemplateBinding Header}"
           HorizontalAlignment="Center"
           FontSize="{StaticResource XDouble.FontSize.ToolTip}"
-          IsEnabled="{Binding IsEnabled}"
           Style="{StaticResource XStyle.TextBlock.Base}"
           Foreground="{StaticResource XBrush.Button.IconButton.Caption}"/>
         <Button
           Grid.Row="0"
           Grid.Column="0"
-          IsEnabled="{Binding IsEnabled}"
           Style="{StaticResource XStyle.Button.SquareIcon}"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
           extensions:IconedButton.Icon="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-          Visibility="{Binding IsCheckable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
+          Visibility="{Binding IsToggle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
         <ToggleButton
           Grid.Row="0"
           Grid.Column="0"
-          IsEnabled="{Binding IsEnabled}"
           Style="{StaticResource XStyle.ToggleButton.SquareIcon}"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
           extensions:IconedButton.Icon="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"
           extensions:IconedButton.CheckedIcon="{Binding (extensions:IconedButton.CheckedIcon), RelativeSource={RelativeSource TemplatedParent}}"
           extensions:IconedButton.UncheckedIcon="{Binding (extensions:IconedButton.UncheckedIcon), RelativeSource={RelativeSource TemplatedParent}}"
-          Visibility="{Binding IsCheckable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
+          Visibility="{Binding IsToggle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
       </Grid>
       <ControlTemplate.Triggers>
         <DataTrigger Binding="{Binding IsEnabled}" Value="False">
@@ -208,12 +191,17 @@
       </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="XStyle.MenuItem.Toolbar.Header" TargetType="{x:Type MenuItem}">
-      <Setter Property="Template" Value="{StaticResource XControlTemplate.MenuItem.Toolbar.Header}"/>
+    <Style x:Key="{x:Type local:ToolbarMenuHeader}" TargetType="{x:Type local:ToolbarMenuHeader}">
+      <Setter Property="Template" Value="{StaticResource XControlTemplate.ToolbarMenuHeader}"/>
       <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
       <Setter Property="extensions:IconedButton.CheckedIcon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.UncheckedIcon" Value="{x:Null}"/>
     </Style>
+
+    <Style
+      x:Key="{x:Type local:ToolbarMenuHeaderCompare}"
+      TargetType="{x:Type local:ToolbarMenuHeaderCompare}"
+      BasedOn="{StaticResource {x:Type local:ToolbarMenuHeader}}"/>
 
     <Style x:Key="{x:Type Menu}" TargetType="{x:Type Menu}">
       <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -228,7 +216,6 @@
     </Style>
 
   </UserControl.Resources>
-  
   
   <Grid>
     <Grid.ColumnDefinitions>
@@ -248,204 +235,198 @@
       />
 
     <Menu Grid.Column="0">
-      <MenuItem
+      <local:ToolbarMenuHeader
         x:Name="CycleMenuHeader"
         Header="Cycle"
         Command="{Binding CycleCommand}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Cycle}"
-        Style="{StaticResource XStyle.MenuItem.Toolbar.Header}"/>
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Cycle}"/>
 
-      <MenuItem
-        x:Name="ViewMenuHeader"
+      <local:ToolbarMenuHeader
         Header="View"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Zoom}"
-        Style="{StaticResource XStyle.MenuItem.Toolbar.Header}">
-        <MenuItem.Resources>
-          <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item}">
+        IsToggle="True">
+        <local:ToolbarMenuHeader.Resources>
+          <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
-            <Setter Property="extensions:ControlExtensions.HandlerParameter" Value="View"/>
           </Style>
-        </MenuItem.Resources>
-        <MenuItem
+        </local:ToolbarMenuHeader.Resources>
+        <local:ToolbarMenuItem
           Header="Zoom"
           localBeh:UiModeEnter.Mode="Zoom"
-          Click="MenuItem_Click"
+          IsSelectable="True"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Zoom}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Pan"
           localBeh:UiModeEnter.Mode="Pan"
-          Click="MenuItem_Click"
+          IsSelectable="True"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Pan}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Window"
           localBeh:UiModeEnter.Mode="Windowing"
-          Click="MenuItem_Click"
+          IsSelectable="True"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Window}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Reset View"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.ResetView}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Center on Click"
+          IsSelectable="True"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.CenterOnClick}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Center on Target"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.CenterOnTarget}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Screenshot"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Screenshot}"/>
-      </MenuItem>
+      </local:ToolbarMenuHeader>
 
-      <MenuItem
-        x:Name="DrawMenuHeader"
+      <local:ToolbarMenuHeader
         Header="Draw"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Line}"
-        Style="{StaticResource XStyle.MenuItem.Toolbar.Header}">
-        <MenuItem.Resources>
-          <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item}">
+        IsToggle="True">
+        <local:ToolbarMenuHeader.Resources>
+          <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
+            <Setter Property="IsSelectable" Value="True"/>
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
-            <EventSetter Event="Click" Handler="MenuItem_Click"/>
-            <Setter Property="extensions:ControlExtensions.HandlerParameter" Value="Draw"/>
           </Style>
-        </MenuItem.Resources>
-        <MenuItem
+        </local:ToolbarMenuHeader.Resources>
+        <local:ToolbarMenuItem
           Header="Line"
           localBeh:UiModeEnter.Mode="MeasurementDistanceOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Line}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Area"
           localBeh:UiModeEnter.Mode="MeasurementAreaOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Area}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Angle"
           localBeh:UiModeEnter.Mode="MeasurementAngleOverlay"
           localBeh:UiModeEnter.SubMode="0"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Angle}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="90 Angle"
           localBeh:UiModeEnter.Mode="MeasurementAngleOverlay"
           localBeh:UiModeEnter.SubMode="90"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Angle90}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Fiducial"
           localBeh:UiModeEnter.Mode="FiducialsOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Fiducial}"/>
-      </MenuItem>
+      </local:ToolbarMenuHeader>
 
-      <MenuItem
-        x:Name="OverlaysMenuHeader"
+      <local:ToolbarMenuHeader
         Header="Overlays"
+        IsToggle="True"
+        IsChecked="True"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Shown}"
-        extensions:IconedButton.UncheckedIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}"
-        Style="{StaticResource XStyle.MenuItem.Toolbar.Header}">
-        <MenuItem.Resources>
-          <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item.Checkable}"/>
-        </MenuItem.Resources>
-        <MenuItem
+        extensions:IconedButton.UncheckedIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
+        <local:ToolbarMenuHeader.Resources>
+          <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
+            <Setter Property="IsCheckable" Value="True"/>
+            <Setter Property="StaysOpenOnClick" Value="True"/>
+          </Style>
+        </local:ToolbarMenuHeader.Resources>
+        <local:ToolbarMenuItem
           Header="CrossReferenceLines"
           localBeh:UiModeShow.Mode="IntersectingSlicesOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.ReferenceLines}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Image Info"
           localBeh:UiModeShow.Mode="TextOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Info}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Lines &amp; Areas"
           localBeh:UiModeShow.Modes="MeasurementDistanceOverlay,MeasurementAreaOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.LineArea}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Fiducials"
           localBeh:UiModeShow.Mode="FiducialsOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Fiducials}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Transducer"
           localBeh:UiModeShow.Mode="CalibrationDataOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Transducer}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Envelope"
           localBeh:UiModeShow.Mode="BathLimitsOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Envelope}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Ghost Cursor"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.GhostCursor}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Non-Pass Regions"
           localBeh:UiModeShow.Modes="MeshNPRAirOverlay,MeshNPROverlay,NPRPolygonsOverlay,RigidNPROverlay,MeshNPRMembraneFolds"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.NonPassRegions}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Skull"
           localBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Skull}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="AC-PC Markers"
           localBeh:UiModeShow.Mode="ACPCOverlay"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.AcPc}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Active Elements"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.ActiveElements}"/>
-        <MenuItem
-          x:Name="OverlaysDisabledElementsMenuItem"
+        <local:ToolbarMenuItem
           Header="Disabled Elements"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.DisabledElements}"/>
-        <MenuItem
-          localBeh:UiModeShow.Mode="Tractography"
+        <local:ToolbarMenuItem
           Header="Tracts"
+          localBeh:UiModeShow.Mode="Tractography"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Tracts}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Grid"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Grid}"/>
-      </MenuItem>
+      </local:ToolbarMenuHeader>
 
-      <MenuItem
-        x:Name="DeleteMenuHeader"
+      <local:ToolbarMenuHeader
         Header="Delete"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"
-        Style="{StaticResource XStyle.MenuItem.Toolbar.Header}">
-        <MenuItem.Resources>
-          <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item}"/>
-        </MenuItem.Resources>
-        <MenuItem
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}">
+        <local:ToolbarMenuHeader.Resources>
+          <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
+            <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
+          </Style>
+        </local:ToolbarMenuHeader.Resources>
+        <local:ToolbarMenuItem
           Header="Delete"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Delete All"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"/>
-      </MenuItem>
+      </local:ToolbarMenuHeader>
 
-      <MenuItem
+      <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
         Header="Compare"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"
-        Style="{StaticResource XStyle.MenuItem.Toolbar.Header}">
-        <MenuItem.Resources>
-          <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.Toolbar.Item}">
-            <Setter Property="Command" Value="{Binding SwitchCompareModeCommand}"/>
-            <EventSetter Event="Click" Handler="CompareMenuItem_Click"/>
-            <Setter Property="extensions:ControlExtensions.HandlerParameter" Value="Compare"/>
+        IsToggle="True"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}">
+        <local:ToolbarMenuHeaderCompare.Resources>
+          <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
+            <Setter Property="IsSelectable" Value="True"/>
           </Style>
-        </MenuItem.Resources>
-        <MenuItem
+        </local:ToolbarMenuHeaderCompare.Resources>
+        <local:ToolbarMenuItem
           Header="Swipe/Opacity"
           CommandParameter="{x:Static entities:CompareMode.Slider}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Flicker"
           CommandParameter="{x:Static entities:CompareMode.Flicker}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Flicker}"/>
-        <MenuItem
+        <local:ToolbarMenuItem
           Header="Fusion"
           CommandParameter="{x:Static entities:CompareMode.Fusion}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
-      </MenuItem>
+      </local:ToolbarMenuHeaderCompare>
 
     </Menu>
 
-    <Grid x:Name="CompareMenu" 
-          Grid.Column="1" 
-          Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
-          Width="Auto"
-          Height="Auto"
-          VerticalAlignment="Center"
-          >
+    <Grid
+      x:Name="CompareMenu" 
+      Grid.Column="1" 
+      Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
+      VerticalAlignment="Center">
       <Grid.Resources>
         <DataTemplate x:Key ="SliderModeControl">
           <sliderViews:SliderModeControlView/>
@@ -456,12 +437,11 @@
         <DataTemplate x:Key ="FusionModeControl">
           <fusionViews:FusionModeControlView/>
         </DataTemplate>
-
       </Grid.Resources>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
       <ToggleButton 
@@ -474,9 +454,26 @@
         Content="Linked"
         />
 
-      <ContentControl x:Name="CompareModeControl" Grid.Column="1"  HorizontalAlignment="Left" Margin="0"
-                      ContentTemplate="{StaticResource SliderModeControl}"/>
-      <!--Content="{Binding ImageModeControlPanel}"-->
+      <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left">
+        <ContentControl.Style>
+          <Style TargetType="{x:Type ContentControl}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding CompareMode, ElementName=CompareMenuHeader}" Value="{x:Static entities:CompareMode.Simple}">
+                <Setter Property="ContentTemplate" Value="{StaticResource SliderModeControl}"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding CompareMode, ElementName=CompareMenuHeader}" Value="{x:Static entities:CompareMode.Flicker}">
+                <Setter Property="ContentTemplate" Value="{StaticResource FlickerModeControl}"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding CompareMode, ElementName=CompareMenuHeader}" Value="{x:Static entities:CompareMode.Slider}">
+                <Setter Property="ContentTemplate" Value="{StaticResource SliderModeControl}"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding CompareMode, ElementName=CompareMenuHeader}" Value="{x:Static entities:CompareMode.Fusion}">
+                <Setter Property="ContentTemplate" Value="{StaticResource FusionModeControl}"/>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ContentControl.Style>
+      </ContentControl>
 
       <Button 
         Grid.Column="2"
@@ -490,17 +487,5 @@
         VerticalAlignment="Center"
         />
     </Grid>
-
-    <Grid Grid.Column="1" VerticalAlignment="Center" Margin="1">
-      <Grid.Resources>
-        <Style TargetType="TextBlock">
-          <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}" />
-          <Setter Property="FontSize" Value="14" />
-        </Style>
-      </Grid.Resources>
-      <TextBlock Text="DQA MODE" Visibility="Collapsed" />
-      <TextBlock Text="Planning SESSION" Visibility="Collapsed" />
-    </Grid>
-
   </Grid>
 </UserControl>
