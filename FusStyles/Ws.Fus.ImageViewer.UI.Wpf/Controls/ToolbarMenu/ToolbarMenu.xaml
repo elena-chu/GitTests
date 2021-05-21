@@ -243,7 +243,6 @@
 
       <local:ToolbarMenuHeader
         Header="View"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Zoom}"
         IsToggle="True">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
@@ -282,7 +281,6 @@
 
       <local:ToolbarMenuHeader
         Header="Draw"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Line}"
         IsToggle="True">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
@@ -315,9 +313,9 @@
       </local:ToolbarMenuHeader>
 
       <local:ToolbarMenuHeader
+        x:Name="OverlaysMenuHeader"
         Header="Overlays"
         IsToggle="True"
-        IsChecked="True"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Shown}"
         extensions:IconedButton.UncheckedIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
         <local:ToolbarMenuHeader.Resources>
@@ -380,9 +378,7 @@
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Grid}"/>
       </local:ToolbarMenuHeader>
 
-      <local:ToolbarMenuHeader
-        Header="Delete"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}">
+      <local:ToolbarMenuHeader Header="Delete">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
@@ -390,6 +386,7 @@
         </local:ToolbarMenuHeader.Resources>
         <local:ToolbarMenuItem
           Header="Delete"
+          IsSelectable="True"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"/>
         <local:ToolbarMenuItem
           Header="Delete All"
@@ -399,8 +396,7 @@
       <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
         Header="Compare"
-        IsToggle="True"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}">
+        IsToggle="True">
         <local:ToolbarMenuHeaderCompare.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsSelectable" Value="True"/>

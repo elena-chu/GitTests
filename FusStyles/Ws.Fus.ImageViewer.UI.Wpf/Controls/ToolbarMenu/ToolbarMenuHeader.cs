@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Behaviors;
-using Ws.Fus.ImageViewer.Interfaces.Entities;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 {
-    public class ToolbarMenuHeader : MenuItem, IDisposable
+    public class ToolbarMenuHeader : MenuItem
     {
         #region Start, End
 
@@ -19,14 +17,16 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
+            Unloaded += OnUnload;
             UpdateCheckedItems();
             InitSelectedItem();
             RegisterItemsClick();
         }
 
-        public void Dispose()
+        public void OnUnload(object sender, RoutedEventArgs e)
         {
             UnregisterItemsClick();
+            Unloaded -= OnUnload;
         }
 
         private void RegisterItemsClick()
@@ -82,7 +82,11 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         private void InitSelectedItem()
         {
             if (Items != null && !Items.IsEmpty)
-                _selectedItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.IsSelectable);
+            {
+                var selectableItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.IsSelectable);
+                if (selectableItem != null)
+                    SetSelectedItem(selectableItem);
+            }
         }
 
         private void SetSelectedItem(ToolbarMenuItem item)
@@ -96,6 +100,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         #endregion
 
 
+        #region Buttons
+
         // Cannot use MenuItem's IsCheckable because then it wouldn't be allowed to present sub-Items
         public bool IsToggle
         {
@@ -104,6 +110,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         }
         public static readonly DependencyProperty IsToggleProperty = DependencyProperty.Register("IsToggle", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false));
 
-
+        #endregion
     }
 }
