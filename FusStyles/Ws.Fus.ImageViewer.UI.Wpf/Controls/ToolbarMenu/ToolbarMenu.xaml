@@ -177,6 +177,7 @@
           Grid.Row="0"
           Grid.Column="0"
           Style="{StaticResource XStyle.ToggleButton.SquareIcon}"
+          IsChecked="{TemplateBinding IsActive}"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
           extensions:IconedButton.Icon="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"
@@ -234,7 +235,7 @@
       extensions:IndependentSize.Margin="-80,0,0,0"
       />
 
-    <Menu Grid.Column="0">
+    <Menu x:Name="Menu" Grid.Column="0">
       <local:ToolbarMenuHeader
         x:Name="CycleMenuHeader"
         Header="Cycle"
@@ -243,7 +244,10 @@
 
       <local:ToolbarMenuHeader
         Header="View"
-        IsToggle="True">
+        IsToggle="True"
+        IsActive="False"
+        MemberOfMutuallyExclusiveGroup="True"
+        ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
@@ -281,7 +285,10 @@
 
       <local:ToolbarMenuHeader
         Header="Draw"
-        IsToggle="True">
+        IsToggle="True"
+        IsActive="False"
+        MemberOfMutuallyExclusiveGroup="True"
+        ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsSelectable" Value="True"/>
@@ -316,6 +323,7 @@
         x:Name="OverlaysMenuHeader"
         Header="Overlays"
         IsToggle="True"
+        IsActive="True"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Shown}"
         extensions:IconedButton.UncheckedIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
         <local:ToolbarMenuHeader.Resources>
@@ -396,7 +404,10 @@
       <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
         Header="Compare"
-        IsToggle="True">
+        IsToggle="True"
+        IsActive="False"
+        MemberOfMutuallyExclusiveGroup="True"
+        ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeaderCompare.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsSelectable" Value="True"/>

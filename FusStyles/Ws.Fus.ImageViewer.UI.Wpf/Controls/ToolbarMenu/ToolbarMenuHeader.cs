@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,22 +21,24 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             Unloaded += OnUnload;
             UpdateCheckedItems();
             InitSelectedItem();
-            RegisterItemsClick();
+            RegisterClicks();
         }
 
         public void OnUnload(object sender, RoutedEventArgs e)
         {
-            UnregisterItemsClick();
+            UnregisterClicks();
             Unloaded -= OnUnload;
         }
 
-        private void RegisterItemsClick()
+        private void RegisterClicks()
         {
+            PreviewMouseDown += OnPreviewMouseDown;
             Items.Cast<ToolbarMenuItem>().ToList().ForEach(x => x.Click += MenuItemClicked);
         }
 
-        private void UnregisterItemsClick()
+        private void UnregisterClicks()
         {
+            PreviewMouseDown -= OnPreviewMouseDown;
             Items.Cast<ToolbarMenuItem>().ToList().ForEach(x => x.Click -= MenuItemClicked);
         }
 
@@ -56,8 +59,18 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         #endregion
 
 
-        #region Click
+        #region Clicks
 
+        private void OnPreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            IsActive = !IsActive;
+            if (IsActive)
+                ActivatedEvent?.Invoke(this);
+            e.Handled = false;
+        }
+
+        public delegate void Activated(ToolbarMenuHeader menuHeader);
+        public event Activated ActivatedEvent;
 
         protected virtual void MenuItemClicked(object sender, RoutedEventArgs e)
         {
@@ -100,7 +113,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         #endregion
 
 
-        #region Buttons
+        #region States
 
         // Cannot use MenuItem's IsCheckable because then it wouldn't be allowed to present sub-Items
         public bool IsToggle
@@ -109,6 +122,36 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             set { SetValue(IsToggleProperty, value); }
         }
         public static readonly DependencyProperty IsToggleProperty = DependencyProperty.Register("IsToggle", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false));
+
+        // Cannot use MenuItem's IsChecked because it doesn't fire when not IsCheckable (see above)
+        public bool IsActive
+        {
+            get { return (bool)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
+        }
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false, OnActivationStateChanged));
+
+        private static void OnActivationStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        #endregion
+
+
+        #region Exclusive Group
+
+        public bool MemberOfMutuallyExclusiveGroup
+        {
+            get { return (bool)GetValue(MemberOfMutuallyExclusiveGroupProperty); }
+            set { SetValue(MemberOfMutuallyExclusiveGroupProperty, value); }
+        }
+        public static readonly DependencyProperty MemberOfMutuallyExclusiveGroupProperty = DependencyProperty.Register("MemberOfMutuallyExclusiveGroup", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false));
+
+        public void InactivateExclusiveGroupMember()
+        {
+            if (MemberOfMutuallyExclusiveGroup && IsActive)
+                IsActive = false;
+        }
 
         #endregion
     }
