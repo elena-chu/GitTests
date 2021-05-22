@@ -11,21 +11,6 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
     public static class IconedButton
     {
         /// <summary>
-        /// Icon property is describing brush used to draw the button's active icon, if it is different from regular
-        /// </summary>
-        public static DependencyProperty ActiveIconProperty = DependencyProperty.RegisterAttached("ActiveIcon",
-            typeof(TileBrush), typeof(IconedButton));
-
-        public static void SetActiveIcon(FrameworkElement obj, TileBrush value)
-        {
-            obj.SetValue(ActiveIconProperty, value);
-        }
-        public static TileBrush GetActiveIcon(FrameworkElement obj)
-        {
-            return (TileBrush)obj.GetValue(ActiveIconProperty);
-        }
-
-        /// <summary>
         /// Icon
         /// </summary>
         public static DependencyProperty IconProperty = DependencyProperty.RegisterAttached("Icon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
@@ -41,18 +26,18 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         }
 
         /// <summary>
-        /// Icon for Checked status
+        /// Icon for Active status
         /// </summary>
-        public static DependencyProperty CheckedIconProperty = DependencyProperty.RegisterAttached("CheckedIcon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
-        public static void SetCheckedIcon(FrameworkElement obj, UIElement value) { obj.SetValue(CheckedIconProperty, value); }
-        public static UIElement GetCheckedIcon(FrameworkElement obj) { return (UIElement)obj.GetValue(CheckedIconProperty); }
+        public static DependencyProperty ActiveIconProperty = DependencyProperty.RegisterAttached("ActiveIcon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
+        public static void SetActiveIcon(FrameworkElement obj, UIElement value) { obj.SetValue(ActiveIconProperty, value); }
+        public static UIElement GetActiveIcon(FrameworkElement obj) { return (UIElement)obj.GetValue(ActiveIconProperty); }
 
         /// <summary>
-        /// Icon for Unchecked status
+        /// Icon for Inactive status
         /// </summary>
-        public static DependencyProperty UncheckedIconProperty = DependencyProperty.RegisterAttached("UncheckedIcon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
-        public static void SetUncheckedIcon(FrameworkElement obj, UIElement value) { obj.SetValue(UncheckedIconProperty, value); }
-        public static UIElement GetUncheckedIcon(FrameworkElement obj) { return (UIElement)obj.GetValue(UncheckedIconProperty); }
+        public static DependencyProperty InactiveIconProperty = DependencyProperty.RegisterAttached("InactiveIcon", typeof(UIElement), typeof(IconedButton), new PropertyMetadata(null, OnIconChanged, CoerceIconValue));
+        public static void SetInactiveIcon(FrameworkElement obj, UIElement value) { obj.SetValue(InactiveIconProperty, value); }
+        public static UIElement GetInactiveIcon(FrameworkElement obj) { return (UIElement)obj.GetValue(InactiveIconProperty); }
 
         /// <summary>
         /// Alpha Geometry: geometry that will be colored with Alpha active color

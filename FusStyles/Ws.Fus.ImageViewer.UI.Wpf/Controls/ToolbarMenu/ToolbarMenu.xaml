@@ -168,7 +168,7 @@
         <Button
           Grid.Row="0"
           Grid.Column="0"
-          Style="{StaticResource XStyle.Button.SquareIcon}"
+          Style="{StaticResource XStyle.Button.Icon}"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
           extensions:IconedButton.Icon="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"
@@ -176,13 +176,13 @@
         <ToggleButton
           Grid.Row="0"
           Grid.Column="0"
-          Style="{StaticResource XStyle.ToggleButton.SquareIcon}"
+          Style="{StaticResource XStyle.ToggleButton.Icon}"
           IsChecked="{TemplateBinding IsActive}"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
           extensions:IconedButton.Icon="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-          extensions:IconedButton.CheckedIcon="{Binding (extensions:IconedButton.CheckedIcon), RelativeSource={RelativeSource TemplatedParent}}"
-          extensions:IconedButton.UncheckedIcon="{Binding (extensions:IconedButton.UncheckedIcon), RelativeSource={RelativeSource TemplatedParent}}"
+          extensions:IconedButton.ActiveIcon="{Binding (extensions:IconedButton.ActiveIcon), RelativeSource={RelativeSource TemplatedParent}}"
+          extensions:IconedButton.InactiveIcon="{Binding (extensions:IconedButton.InactiveIcon), RelativeSource={RelativeSource TemplatedParent}}"
           Visibility="{Binding IsToggle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
       </Grid>
       <ControlTemplate.Triggers>
@@ -195,8 +195,8 @@
     <Style x:Key="{x:Type local:ToolbarMenuHeader}" TargetType="{x:Type local:ToolbarMenuHeader}">
       <Setter Property="Template" Value="{StaticResource XControlTemplate.ToolbarMenuHeader}"/>
       <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
-      <Setter Property="extensions:IconedButton.CheckedIcon" Value="{x:Null}"/>
-      <Setter Property="extensions:IconedButton.UncheckedIcon" Value="{x:Null}"/>
+      <Setter Property="extensions:IconedButton.ActiveIcon" Value="{x:Null}"/>
+      <Setter Property="extensions:IconedButton.InactiveIcon" Value="{x:Null}"/>
     </Style>
 
     <Style
@@ -325,7 +325,7 @@
         IsToggle="True"
         IsActive="True"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Shown}"
-        extensions:IconedButton.UncheckedIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsCheckable" Value="True"/>
