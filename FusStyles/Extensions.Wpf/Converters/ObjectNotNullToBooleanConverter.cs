@@ -4,7 +4,7 @@ using System.Globalization;
 namespace Ws.Extensions.UI.Wpf.Converters
 {
     /// <summary>
-    /// Returns scalar (param) * value
+    /// Returns object != null
     /// </summary>
     public class ObjectNotNullToBooleanConverter : ConverterMarkupExtension<ObjectNotNullToBooleanConverter>
     {

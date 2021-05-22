@@ -210,17 +210,26 @@
       Background="{StaticResource XBrush.AlmostTransparent}"
       Width="{TemplateBinding Width}"
       Height="{TemplateBinding Height}">
-      <Border x:Name="BackgroundBorder" Style="{StaticResource XStyle.Border}" Background="{TemplateBinding Background}"/>
-      <Border
-        x:Name="HoverBorder"
-        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-        Style="{StaticResource XStyle.Border.Hover}">
-        <Border
-          x:Name="PressedBorder"
-          Style="{StaticResource XStyle.Border.Pressed}"
-          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-          Opacity="0"/>
-      </Border>
+      <ContentControl
+        x:Name="HoverAndPressBorders"
+        Background="{TemplateBinding Background}"
+        extensions:ControlExtensions.PressedPercentage="{TemplateBinding extensions:ControlExtensions.PressedPercentage}"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}">
+        <ContentControl.Style>
+          <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.HoverAndPress}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                <DataTrigger.EnterActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
+                </DataTrigger.ExitActions>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ContentControl.Style>
+      </ContentControl>
       <Border extensions:IndependentSize.Width="16" HorizontalAlignment="Center">
         <Path
           IsHitTestVisible="False"
@@ -237,22 +246,6 @@
       </Border>
     </Grid>
     <ControlTemplate.Triggers>
-      <Trigger Property="IsPressed" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
-              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
-              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.ExitActions>
-      </Trigger>
       <Trigger Property="IsChecked" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard>
