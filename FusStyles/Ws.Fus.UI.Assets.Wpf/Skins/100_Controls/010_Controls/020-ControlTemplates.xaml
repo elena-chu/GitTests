@@ -3,6 +3,133 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
+  <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility" Invisible="Hidden"/>
+  <extensions:BooleanToVisibilityConverter x:Key="XConverter.InverseBooleanToVisibility" Invisible="Hidden" TriggerValue="False"/>
+
+  <Style x:Key="XStyle.ContentControl.HoverAndPress" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid>
+            <Border
+              x:Name="BackgroundBorder"
+              Style="{StaticResource XStyle.Border}"
+              Background="{TemplateBinding Background}"/>
+            <Border
+              x:Name="HoverBorder"
+              extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+              Style="{StaticResource XStyle.Border.Hover}">
+              <Border
+                x:Name="PressedBorder"
+                extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+                extensions:ControlExtensions.PressedPercentage="{TemplateBinding extensions:ControlExtensions.PressedPercentage}"
+                Style="{StaticResource XStyle.Border.Pressed1}"/>
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentControl.Icon" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Viewbox
+            Stretch="Uniform"
+            Height="{TemplateBinding extensions:IconedButton.IconSize}"
+            Width="{TemplateBinding extensions:IconedButton.IconSize}"
+            IsHitTestVisible="False">
+            <ContentControl Content="{TemplateBinding extensions:IconedButton.Icon}"/>
+          </Viewbox>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentControl.ToggleIcon" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Viewbox
+            Stretch="Uniform"
+            Height="{TemplateBinding extensions:IconedButton.IconSize}"
+            Width="{TemplateBinding extensions:IconedButton.IconSize}">
+            <Grid>
+              <ContentControl
+                x:Name="ActiveIconContentControl"
+                Content="{TemplateBinding extensions:IconedButton.ActiveIcon}"
+                extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
+                Visibility="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource Self}, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
+              <ContentControl
+                x:Name="InactiveIconContentControl"
+                Content="{TemplateBinding extensions:IconedButton.InactiveIcon}"
+                extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
+                Visibility="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource Self}, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
+            </Grid>
+          </Viewbox>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentControl.IconOnHoverPressedBorder" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid>
+            <ContentControl
+              x:Name="HoverAndPressBorders"
+              Style="{StaticResource XStyle.ContentControl.HoverAndPress}"
+              Background="{TemplateBinding Background}"
+              extensions:ControlExtensions.PressedPercentage="{TemplateBinding extensions:ControlExtensions.PressedPercentage}"
+              extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"/>
+            <ContentControl
+              x:Name="Icon"
+              IsHitTestVisible="False"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Style="{StaticResource XStyle.ContentControl.Icon}"
+              extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+              extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentControl.ToggleIconOnHoverPressedBorder" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid>
+            <ContentControl
+              x:Name="HoverAndPressedBorders"
+              Style="{StaticResource XStyle.ContentControl.HoverAndPress}"
+              Background="{TemplateBinding Background}"
+              extensions:ControlExtensions.PressedPercentage="{TemplateBinding extensions:ControlExtensions.PressedPercentage}"
+              extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"/>
+            <ContentControl
+              x:Name="Icons"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Style="{StaticResource XStyle.ContentControl.ToggleIcon}"
+              extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
+              extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+              extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
+              extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Style x:Key="XStyle.ContentControl.Switch" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>

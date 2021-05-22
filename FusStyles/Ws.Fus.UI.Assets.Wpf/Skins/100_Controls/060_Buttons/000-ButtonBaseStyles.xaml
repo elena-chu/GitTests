@@ -15,7 +15,7 @@
       <Border
         x:Name="HoverBorder"
         extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-        extensions:ControlExtensions.RunningPercentage="{TemplateBinding extensions:ControlExtensions.RunningPercentage}"
+        extensions:ControlExtensions.HoverPercentage="{TemplateBinding extensions:ControlExtensions.HoverPercentage}"
         Style="{StaticResource XStyle.Border.Hover}">
         <Grid>
           <Border

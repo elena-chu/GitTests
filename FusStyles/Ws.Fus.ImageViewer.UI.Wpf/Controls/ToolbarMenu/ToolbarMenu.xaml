@@ -97,6 +97,7 @@
           extensions:IndependentSize.Margin="6,0,0,0"
           IsChecked="{TemplateBinding IsSubmenuOpen}"
           Style="{StaticResource XStyle.ToggleButton.MenuOpener}"
+          Click="MenuOpenerButton_Click"
           Visibility="{TemplateBinding HasItems, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
         <Popup
           x:Name="Popup"
@@ -151,11 +152,6 @@
             </Border>
           </Grid>
         </Popup>
-        <Border
-          x:Name="HitMeInsteadBorder"
-          Grid.RowSpan="2"
-          Grid.ColumnSpan="2"
-          Background="{StaticResource XBrush.AlmostTransparent}"/>
         <TextBlock
           x:Name="HeaderTextBlock"
           Grid.Row="1"
@@ -168,21 +164,60 @@
         <Button
           Grid.Row="0"
           Grid.Column="0"
-          Style="{StaticResource XStyle.Button.SquareIcon}"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
-          extensions:IconedButton.Icon="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-          Visibility="{Binding IsToggle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
+          extensions:IconedButton.IconSize="30"
+          extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
+          <Button.Style>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
+              <Setter Property="Visibility" Value="Collapsed"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Fire">
+                  <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </Button.Style>
+        </Button>
         <ToggleButton
           Grid.Row="0"
           Grid.Column="0"
-          Style="{StaticResource XStyle.ToggleButton.SquareIcon}"
+          IsChecked="{TemplateBinding IsActive}"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
-          extensions:IconedButton.Icon="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-          extensions:IconedButton.CheckedIcon="{Binding (extensions:IconedButton.CheckedIcon), RelativeSource={RelativeSource TemplatedParent}}"
-          extensions:IconedButton.UncheckedIcon="{Binding (extensions:IconedButton.UncheckedIcon), RelativeSource={RelativeSource TemplatedParent}}"
-          Visibility="{Binding IsToggle, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
+          extensions:IconedButton.IconSize="30"
+          extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
+          <ToggleButton.Style>
+            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
+              <Setter Property="Visibility" Value="Collapsed"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Select">
+                  <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </ToggleButton.Style>
+        </ToggleButton>
+        <ToggleButton
+          Grid.Row="0"
+          Grid.Column="0"
+          IsChecked="{TemplateBinding IsActive}"
+          Command="{TemplateBinding Command}"
+          CommandParameter="{TemplateBinding CommandParameter}"
+          extensions:IconedButton.IconSize="30"
+          extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
+          extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}">
+          <ToggleButton.Style>
+            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.ToggleIcon}">
+              <Setter Property="Visibility" Value="Collapsed"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Toggle">
+                  <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </ToggleButton.Style>
+        </ToggleButton>
       </Grid>
       <ControlTemplate.Triggers>
         <DataTrigger Binding="{Binding IsEnabled}" Value="False">
@@ -193,9 +228,9 @@
 
     <Style x:Key="{x:Type local:ToolbarMenuHeader}" TargetType="{x:Type local:ToolbarMenuHeader}">
       <Setter Property="Template" Value="{StaticResource XControlTemplate.ToolbarMenuHeader}"/>
-      <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
-      <Setter Property="extensions:IconedButton.CheckedIcon" Value="{x:Null}"/>
-      <Setter Property="extensions:IconedButton.UncheckedIcon" Value="{x:Null}"/>
+      <Setter Property="extensions:IconedButton.Icon" Value="{x:Null}"/>
+      <Setter Property="extensions:IconedButton.ActiveIcon" Value="{x:Null}"/>
+      <Setter Property="extensions:IconedButton.InactiveIcon" Value="{x:Null}"/>
     </Style>
 
     <Style
@@ -234,17 +269,20 @@
       extensions:IndependentSize.Margin="-80,0,0,0"
       />
 
-    <Menu Grid.Column="0">
+    <Menu x:Name="Menu" Grid.Column="0">
       <local:ToolbarMenuHeader
         x:Name="CycleMenuHeader"
         Header="Cycle"
+        ToolbarHeaderType="Fire"
         Command="{Binding CycleCommand}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Cycle}"/>
 
       <local:ToolbarMenuHeader
         Header="View"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Zoom}"
-        IsToggle="True">
+        ToolbarHeaderType="Select"
+        IsActive="False"
+        MemberOfMutuallyExclusiveGroup="True"
+        ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
@@ -254,19 +292,16 @@
           Header="Zoom"
           localBeh:UiModeEnter.Mode="Zoom"
           IsSelectable="True"
-          Command="{Binding ViewCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Zoom}"/>
         <local:ToolbarMenuItem
           Header="Pan"
           localBeh:UiModeEnter.Mode="Pan"
           IsSelectable="True"
-          Command="{Binding PanCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Pan}"/>
         <local:ToolbarMenuItem
           Header="Window"
           localBeh:UiModeEnter.Mode="Windowing"
           IsSelectable="True"
-          Command="{Binding DrawCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Window}"/>
         <local:ToolbarMenuItem
           Header="Reset View"
@@ -285,8 +320,10 @@
 
       <local:ToolbarMenuHeader
         Header="Draw"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Line}"
-        IsToggle="True">
+        ToolbarHeaderType="Select"
+        IsActive="False"
+        MemberOfMutuallyExclusiveGroup="True"
+        ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsSelectable" Value="True"/>
@@ -296,12 +333,10 @@
         <local:ToolbarMenuItem
           Header="Line"
           localBeh:UiModeEnter.Mode="MeasurementDistanceOverlay"
-          Command="{Binding DrawCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Line}"/>
         <local:ToolbarMenuItem
           Header="Area"
           localBeh:UiModeEnter.Mode="MeasurementAreaOverlay"
-          Command="{Binding AreaCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Area}"/>
         <local:ToolbarMenuItem
           Header="Angle"
@@ -320,15 +355,15 @@
       </local:ToolbarMenuHeader>
 
       <local:ToolbarMenuHeader
+        x:Name="OverlaysMenuHeader"
         Header="Overlays"
-        IsToggle="True"
-        IsChecked="True"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Shown}"
-        extensions:IconedButton.UncheckedIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
+        ToolbarHeaderType="Toggle"
+        IsActive="True"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Overlays.Shown}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsCheckable" Value="True"/>
-            <Setter Property="Command" Value="{Binding OverlaysCommand}"/>
             <Setter Property="StaysOpenOnClick" Value="True"/>
           </Style>
         </local:ToolbarMenuHeader.Resources>
@@ -386,9 +421,7 @@
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Grid}"/>
       </local:ToolbarMenuHeader>
 
-      <local:ToolbarMenuHeader
-        Header="Delete"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}">
+      <local:ToolbarMenuHeader Header="Delete" ToolbarHeaderType="Fire">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
@@ -396,6 +429,7 @@
         </local:ToolbarMenuHeader.Resources>
         <local:ToolbarMenuItem
           Header="Delete"
+          IsSelectable="True"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"/>
         <local:ToolbarMenuItem
           Header="Delete All"
@@ -405,8 +439,10 @@
       <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
         Header="Compare"
-        IsToggle="True"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}">
+        ToolbarHeaderType="Select"
+        IsActive="False"
+        MemberOfMutuallyExclusiveGroup="True"
+        ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeaderCompare.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsSelectable" Value="True"/>

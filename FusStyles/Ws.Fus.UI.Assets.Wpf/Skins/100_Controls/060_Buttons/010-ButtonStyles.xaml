@@ -123,7 +123,7 @@
       <Border
         x:Name="HoverBorder"
         extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-        extensions:ControlExtensions.RunningPercentage="{TemplateBinding extensions:ControlExtensions.RunningPercentage}"
+        extensions:ControlExtensions.HoverPercentage="{TemplateBinding extensions:ControlExtensions.HoverPercentage}"
         Style="{StaticResource XStyle.Border.Hover}">
         <Grid>
           <Border
@@ -210,17 +210,26 @@
       Background="{StaticResource XBrush.AlmostTransparent}"
       Width="{TemplateBinding Width}"
       Height="{TemplateBinding Height}">
-      <Border x:Name="BackgroundBorder" Style="{StaticResource XStyle.Border}" Background="{TemplateBinding Background}"/>
-      <Border
-        x:Name="HoverBorder"
-        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-        Style="{StaticResource XStyle.Border.Hover}">
-        <Border
-          x:Name="PressedBorder"
-          Style="{StaticResource XStyle.Border.Pressed}"
-          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-          Opacity="0"/>
-      </Border>
+      <ContentControl
+        x:Name="HoverAndPressBorders"
+        Background="{TemplateBinding Background}"
+        extensions:ControlExtensions.PressedPercentage="{TemplateBinding extensions:ControlExtensions.PressedPercentage}"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}">
+        <ContentControl.Style>
+          <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.HoverAndPress}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                <DataTrigger.EnterActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
+                </DataTrigger.ExitActions>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ContentControl.Style>
+      </ContentControl>
       <Border extensions:IndependentSize.Width="16" HorizontalAlignment="Center">
         <Path
           IsHitTestVisible="False"
@@ -237,22 +246,6 @@
       </Border>
     </Grid>
     <ControlTemplate.Triggers>
-      <Trigger Property="IsPressed" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
-              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
-              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.ExitActions>
-      </Trigger>
       <Trigger Property="IsChecked" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard>
@@ -289,72 +282,43 @@
     </Style.Triggers>
   </Style>
 
-  <ControlTemplate x:Key="XControlTemplate.ButtonBase.SquareIcon" TargetType="{x:Type ButtonBase}">
-    <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
-      <Border
-        x:Name="BackgroundBorder"
-        Grid.Row="0"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
-        HorizontalAlignment="Center"
-        Style="{StaticResource XStyle.Border}"
-        Background="{TemplateBinding Background}"/>
-      <Border
-        x:Name="HoverBorder"
-        Grid.Row="0"
-        Height="{Binding ActualHeight, ElementName=BackgroundBorder}"
-        Width="{Binding ActualWidth, ElementName=BackgroundBorder}"
-        HorizontalAlignment="{Binding HorizontalAlignment, ElementName=BackgroundBorder}"
-        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-        Style="{StaticResource XStyle.Border.Hover}">
-        <Border
-          x:Name="PressedBorder"
-          Height="{Binding ActualHeight, ElementName=BackgroundBorder}"
-          Width="{Binding ActualWidth, ElementName=BackgroundBorder}"
-          HorizontalAlignment="{Binding HorizontalAlignment, ElementName=BackgroundBorder}"
-          Style="{StaticResource XStyle.Border.Pressed}"
-          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-          Opacity="0"/>
-      </Border>
-      <Viewbox
-        Stretch="Uniform"
-        Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        IsHitTestVisible="False">
-        <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
-      </Viewbox>
-    </Grid>
-    <ControlTemplate.Triggers>
-      <Trigger Property="IsPressed" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
-              <DoubleAnimation From="0" To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetName="PressedBorder" Storyboard.TargetProperty="Opacity">
-              <DoubleAnimation From="1" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.ExitActions>
-      </Trigger>
-    </ControlTemplate.Triggers>
+  <ControlTemplate x:Key="XControlTemplate.ButtonBase.Icon" TargetType="{x:Type ButtonBase}">
+    <ContentControl
+      Width="{TemplateBinding Width}"
+      Height="{TemplateBinding Height}"
+      Background="{TemplateBinding Background}"
+      extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+      extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+      extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}"
+      extensions:ControlExtensions.PressedPercentage="0">
+      <ContentControl.Style>
+        <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.IconOnHoverPressedBorder}">
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+              <DataTrigger.EnterActions>
+                <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
+              </DataTrigger.EnterActions>
+              <DataTrigger.ExitActions>
+                <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
+              </DataTrigger.ExitActions>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </ContentControl.Style>
+    </ContentControl>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.ButtonBase.SquareIcon" TargetType="{x:Type ButtonBase}">
+  <Style x:Key="XStyle.ButtonBase.Icon" TargetType="{x:Type ButtonBase}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.SquareIcon}"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.Icon}"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
-    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource JustABorder}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.ControlDefault}"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
-    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="Transparent"/>
@@ -363,30 +327,44 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.Button.SquareIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.SquareIcon}"/>
+  <Style x:Key="XStyle.Button.Icon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Icon}"/>
 
-  <Style x:Key="XStyle.ToggleButton.SquareIcon" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.SquareIcon}">
-    <Setter Property="extensions:IconedButton.CheckedIcon" Value="{x:Null}"/>
-    <Setter Property="extensions:IconedButton.UncheckedIcon" Value="{x:Null}"/>
+  <Style x:Key="XStyle.ToggleButton.Icon" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.Icon}">
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
         <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
       </Trigger>
-      <MultiDataTrigger>
-        <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True"/>
-          <Condition Binding="{Binding (extensions:IconedButton.CheckedIcon), RelativeSource={RelativeSource Self}, Converter={extensions:ObjectNotNullToBooleanConverter}}" Value="True"/>
-        </MultiDataTrigger.Conditions>
-        <Setter Property="extensions:IconedButton.Icon" Value="{Binding (extensions:IconedButton.CheckedIcon), RelativeSource={RelativeSource Self}}"/>
-      </MultiDataTrigger>
-      <MultiDataTrigger>
-        <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="False"/>
-          <Condition Binding="{Binding (extensions:IconedButton.UncheckedIcon), RelativeSource={RelativeSource Self}, Converter={extensions:ObjectNotNullToBooleanConverter}}" Value="True"/>
-        </MultiDataTrigger.Conditions>
-        <Setter Property="extensions:IconedButton.Icon" Value="{Binding (extensions:IconedButton.UncheckedIcon), RelativeSource={RelativeSource Self}}"/>
-      </MultiDataTrigger>
     </Style.Triggers>
   </Style>
-  
+
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.ToggleIcon" TargetType="{x:Type ToggleButton}">
+    <ContentControl
+      Width="{TemplateBinding Height}"
+      Background="{TemplateBinding Background}"
+      extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+      extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
+      extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+      extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
+      extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}">
+      <ContentControl.Style>
+        <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.ToggleIconOnHoverPressedBorder}">
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+              <DataTrigger.EnterActions>
+                <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
+              </DataTrigger.EnterActions>
+              <DataTrigger.ExitActions>
+                <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
+              </DataTrigger.ExitActions>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </ContentControl.Style>
+    </ContentControl>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.ToggleIcon" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.ToggleIcon}"/>
+    <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+  </Style>
 </ResourceDictionary>

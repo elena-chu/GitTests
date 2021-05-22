@@ -129,17 +129,17 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
         private void InitMenu()
         {
-            ViewCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("View", x); } );
+            ZoomCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Zoom", x); } );
             PanCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Pan", x); } );
-            DrawCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Draw", x); } );
+            LineCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Line", x); } );
             AreaCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Area", x); } );
             OverlaysCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Overlays", x); } );
             ImageInfoCommand = new DelegateCommand<bool?>(x => { MenuItemClicked("Image Info", x); } );
     }
 
-        public ICommand ViewCommand { get; set; }
+        public ICommand ZoomCommand { get; set; }
         public ICommand PanCommand { get; set; }
-        public ICommand DrawCommand { get; set; }
+        public ICommand LineCommand { get; set; }
         public ICommand AreaCommand { get; set; }
         public ICommand OverlaysCommand { get; set; }
         public ICommand ImageInfoCommand { get; set; }

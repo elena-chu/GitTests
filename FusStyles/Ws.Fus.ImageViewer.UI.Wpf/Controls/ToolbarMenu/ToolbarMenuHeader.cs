@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Behaviors;
-using Ws.Fus.ImageViewer.Interfaces.Entities;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 {
-    public class ToolbarMenuHeader : MenuItem, IDisposable
+    public enum ToolbarHeaderType
+    {
+        Fire,
+        Select,
+        Toggle
+    }
+
+    public class ToolbarMenuHeader : MenuItem
     {
         #region Start, End
 
@@ -19,22 +24,24 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
+            Unloaded += OnUnload;
             UpdateCheckedItems();
             InitSelectedItem();
-            RegisterItemsClick();
+            RegisterClicks();
         }
 
-        public void Dispose()
+        public void OnUnload(object sender, RoutedEventArgs e)
         {
-            UnregisterItemsClick();
+            UnregisterClicks();
+            Unloaded -= OnUnload;
         }
 
-        private void RegisterItemsClick()
+        private void RegisterClicks()
         {
             Items.Cast<ToolbarMenuItem>().ToList().ForEach(x => x.Click += MenuItemClicked);
         }
 
-        private void UnregisterItemsClick()
+        private void UnregisterClicks()
         {
             Items.Cast<ToolbarMenuItem>().ToList().ForEach(x => x.Click -= MenuItemClicked);
         }
@@ -56,8 +63,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         #endregion
 
 
-        #region Click
-
+        #region Clicks
 
         protected virtual void MenuItemClicked(object sender, RoutedEventArgs e)
         {
@@ -82,7 +88,11 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         private void InitSelectedItem()
         {
             if (Items != null && !Items.IsEmpty)
-                _selectedItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.IsSelectable);
+            {
+                var selectableItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.IsSelectable);
+                if (selectableItem != null)
+                    SetSelectedItem(selectableItem);
+            }
         }
 
         private void SetSelectedItem(ToolbarMenuItem item)
@@ -96,14 +106,57 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         #endregion
 
 
-        // Cannot use MenuItem's IsCheckable because then it wouldn't be allowed to present sub-Items
-        public bool IsToggle
+        #region States
+
+        public ToolbarHeaderType ToolbarHeaderType
         {
-            get { return (bool)GetValue(IsToggleProperty); }
-            set { SetValue(IsToggleProperty, value); }
+            get { return (ToolbarHeaderType)GetValue(ToolbarHeaderTypeProperty); }
+            set { SetValue(ToolbarHeaderTypeProperty, value); }
         }
-        public static readonly DependencyProperty IsToggleProperty = DependencyProperty.Register("IsToggle", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false));
+        public static readonly DependencyProperty ToolbarHeaderTypeProperty = DependencyProperty.Register("ToolbarHeaderType", typeof(ToolbarHeaderType), typeof(ToolbarMenuHeader), new PropertyMetadata(ToolbarHeaderType.Fire));
+
+        // Cannot use MenuItem's IsChecked because it doesn't fire when not IsCheckable (see above)
+        public bool IsActive
+        {
+            get { return (bool)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
+        }
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false, OnActivationStateChanged));
+
+        private static void OnActivationStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var menuHeader = d as ToolbarMenuHeader;
+            if (menuHeader != null)
+                menuHeader.NotifyActivationState();
+        }
+
+        public delegate void Activated(ToolbarMenuHeader menuHeader);
+        public event Activated ActivatedEvent;
+
+        private void NotifyActivationState()
+        {
+            if (IsActive)
+                ActivatedEvent?.Invoke(this);
+        }
+
+        #endregion
 
 
+        #region Exclusive Group
+
+        public bool MemberOfMutuallyExclusiveGroup
+        {
+            get { return (bool)GetValue(MemberOfMutuallyExclusiveGroupProperty); }
+            set { SetValue(MemberOfMutuallyExclusiveGroupProperty, value); }
+        }
+        public static readonly DependencyProperty MemberOfMutuallyExclusiveGroupProperty = DependencyProperty.Register("MemberOfMutuallyExclusiveGroup", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false));
+
+        public void InactivateExclusiveGroupMember()
+        {
+            if (MemberOfMutuallyExclusiveGroup && IsActive)
+                IsActive = false;
+        }
+
+        #endregion
     }
 }
