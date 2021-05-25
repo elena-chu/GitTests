@@ -112,11 +112,14 @@
             <ContentControl
               Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
               extensions:IndependentSize.Margin="0,0,7,0"
+              extensions:IndependentSize.Height = "16"
+              extensions:IndependentSize.Width = "16"
               VerticalAlignment="Center"
               extensions:ProgressStatusDisplayer.ProgressState="{TemplateBinding extensions:ProgressStatusDisplayer.ProgressState}"
               extensions:ProgressStatusDisplayer.AnimateActive="{TemplateBinding extensions:ProgressStatusDisplayer.AnimateActive}"
               IsEnabled="{TemplateBinding IsEnabled}"/>
-            <ContentPresenter VerticalAlignment="Center"/>
+            <TextBlock Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" Text="{TemplateBinding Content}" />
+            <!--<ContentPresenter VerticalAlignment="Center"/>-->
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>

@@ -3,8 +3,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility" Invisible="Hidden"/>
-  <extensions:BooleanToVisibilityConverter x:Key="XConverter.InverseBooleanToVisibility" Invisible="Hidden" TriggerValue="False"/>
+  <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility.Hidden" Invisible="Hidden"/>
+  <extensions:BooleanToVisibilityConverter x:Key="XConverter.InverseBooleanToVisibility.Hidden" Invisible="Hidden" TriggerValue="False"/>
 
   <Style x:Key="XStyle.ContentControl.HoverAndPress" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -64,12 +64,12 @@
                 x:Name="ActiveIconContentControl"
                 Content="{TemplateBinding extensions:IconedButton.ActiveIcon}"
                 extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
-                Visibility="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource Self}, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
+                Visibility="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource Self}, Converter={StaticResource XConverter.BooleanToVisibility.Hidden}}"/>
               <ContentControl
                 x:Name="InactiveIconContentControl"
                 Content="{TemplateBinding extensions:IconedButton.InactiveIcon}"
                 extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
-                Visibility="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource Self}, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"/>
+                Visibility="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource Self}, Converter={StaticResource XConverter.InverseBooleanToVisibility.Hidden}}"/>
             </Grid>
           </Viewbox>
         </ControlTemplate>

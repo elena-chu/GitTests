@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Prism.Commands;
 using Ws.Extensions.UI.Wpf.Behaviors;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
@@ -15,55 +17,150 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
     public class ToolbarMenuHeader : MenuItem
     {
-        #region Start, End
+        bool _isBulkUpdating = false;
+        private List<ToolbarMenuItem> _activeSet = new List<ToolbarMenuItem>();
+        private ToolbarMenuItem _selectedItem;
+
+        #region Dependency Properties
+
+        public static readonly DependencyProperty UncheckedCommandParameterProperty = DependencyProperty.Register("UncheckedCommandParameter", typeof(object), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
+        public object UncheckedCommandParameter
+        {
+            get { return GetValue(UncheckedCommandParameterProperty); }
+            set { SetValue(UncheckedCommandParameterProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckedCommandParameterProperty = DependencyProperty.Register("CheckedCommandParameter", typeof(object), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
+        public object CheckedCommandParameter
+        {
+            get { return GetValue(CheckedCommandParameterProperty); }
+            set { SetValue(CheckedCommandParameterProperty, value); }
+        }
+
+
+        public static readonly DependencyProperty ToolbarHeaderTypeProperty = DependencyProperty.Register("ToolbarHeaderType", typeof(ToolbarHeaderType), typeof(ToolbarMenuHeader), new PropertyMetadata(ToolbarHeaderType.Fire, OnHeaderTypeChanged));
+        public ToolbarHeaderType ToolbarHeaderType
+        {
+            get { return (ToolbarHeaderType)GetValue(ToolbarHeaderTypeProperty); }
+            set { SetValue(ToolbarHeaderTypeProperty, value); }
+        }
+        private static void OnHeaderTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var menuHeader = d as ToolbarMenuHeader;
+
+            if (menuHeader.ToolbarHeaderType != ToolbarHeaderType.Fire)
+            {
+                //TODO: if was command binding - may be save it for further use when returning to Fire back 
+                menuHeader.Command = menuHeader.HeaderClickCommand;
+            }
+        }
+
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false, OnActivationStateChanged));
+        // Cannot use MenuItem's IsChecked because it doesn't fire when not IsCheckable (see above)
+        public bool IsActive
+        {
+            get { return (bool)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, value); }
+        }
+        private static void OnActivationStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var menuHeader = d as ToolbarMenuHeader;
+            if (menuHeader != null)
+                menuHeader.NotifyActivationState();
+        } 
+        #endregion
 
         public ToolbarMenuHeader()
         {
+            HeaderClickCommand = new DelegateCommand(HeaderClickExecute);
             Loaded += OnLoad;
         }
+
+
+        private DelegateCommand HeaderClickCommand;
+        private void HeaderClickExecute()
+        {
+            bool requestedCheck = !this.IsActive;
+
+            if (ToolbarHeaderType == ToolbarHeaderType.Select)
+            {
+                ExecuteItemCommandByHeaderStatus(_selectedItem, requestedCheck);
+            }
+            else if (ToolbarHeaderType == ToolbarHeaderType.Toggle)
+            {
+                IEnumerable<ToolbarMenuItem> items = requestedCheck ? _activeSet : Items.Cast<ToolbarMenuItem>();
+
+                _isBulkUpdating = true;
+                foreach (var item in items)
+                    ExecuteItemCommandByHeaderStatus(item, requestedCheck);
+
+                _isBulkUpdating = false;
+                UpdateActiveStatus();
+            }
+        }
+        
+        #region Start, End
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             Unloaded += OnUnload;
-            UpdateCheckedItems();
+            UpdateActiveSet();
             InitSelectedItem();
-            RegisterClicks();
+            UpdateActiveStatus();
+            RegisterItemEvents();
         }
 
         public void OnUnload(object sender, RoutedEventArgs e)
         {
-            UnregisterClicks();
+            UnregisterEvents();
             Unloaded -= OnUnload;
         }
 
-        private void RegisterClicks()
+        private void RegisterItemEvents()
         {
-            Items.Cast<ToolbarMenuItem>().ToList().ForEach(x => x.Click += MenuItemClicked);
+            UnregisterEvents();
+            Items.Cast<ToolbarMenuItem>().ToList().ForEach(x =>
+            {
+                x.Click += MenuItemClicked;
+                x.Checked += OnCheckedChanged;
+                x.Unchecked += OnCheckedChanged;
+            });
         }
 
-        private void UnregisterClicks()
+        private void UnregisterEvents()
         {
-            Items.Cast<ToolbarMenuItem>().ToList().ForEach(x => x.Click -= MenuItemClicked);
-        }
-
-        #endregion
-
-
-        #region Checked Items
-
-        private Dictionary<ToolbarMenuItem, bool> _itemsPreviousCheckStatus = null;
-        private void UpdateCheckedItems()
-        {
-            if (Items != null && !Items.IsEmpty && _itemsPreviousCheckStatus == null)
-                _itemsPreviousCheckStatus = new Dictionary<ToolbarMenuItem, bool>();
-
-            _itemsPreviousCheckStatus = Items.Cast<ToolbarMenuItem>().Where(x => x.IsCheckable).ToDictionary(x => x, x => x.IsChecked);
+            Items.Cast<ToolbarMenuItem>().ToList().ForEach(x =>
+            {
+                x.Click -= MenuItemClicked;
+                x.Checked -= OnCheckedChanged;
+                x.Unchecked -= OnCheckedChanged;
+            });
         }
 
         #endregion
 
 
-        #region Clicks
+        #region Events handling
+
+        private void OnCheckedChanged(object sender, RoutedEventArgs e)
+        {
+            if (_isBulkUpdating)
+                return;
+
+            ToolbarMenuItem item = sender as ToolbarMenuItem;
+            if (item!= null && !IsSubmenuOpen)
+            {
+                if (!this.IsActive)
+                {
+                    if (item.IsChecked)
+                        _activeSet = new List<ToolbarMenuItem>() { item };
+                }
+                else
+                    UpdateActiveSet();
+            }
+            UpdateActiveStatus();
+        }
+
 
         protected virtual void MenuItemClicked(object sender, RoutedEventArgs e)
         {
@@ -72,18 +169,53 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                 return;
 
             if (menuItem.IsCheckable)
-                UpdateCheckedItems();
+                UpdateActiveSet();
 
             if (menuItem.IsSelectable)
                 SetSelectedItem(menuItem);
+
+            UpdateActiveStatus();
+        }
+
+        public delegate void Activated(ToolbarMenuHeader menuHeader);
+        public event Activated ActivatedEvent;
+
+        private void NotifyActivationState()
+        {
+            if (IsActive)
+                ActivatedEvent?.Invoke(this);
+        }
+
+        private void ExecuteItemCommandByHeaderStatus(ToolbarMenuItem item, bool requestedCheck)
+        {
+            object commandParam = null;
+            if(requestedCheck)
+            {
+                commandParam = CheckedCommandParameter != null ? CheckedCommandParameter : _selectedItem.CommandParameter;
+            }
+            else
+                commandParam = UncheckedCommandParameter != null ? UncheckedCommandParameter : null;
+
+            item.Command?.Execute(commandParam);
+            
+            //Lena: temp
+            item.IsChecked = requestedCheck;
+        }
+
+        private void UpdateActiveStatus()
+        {
+            bool hasCheckedItems = Items.Cast<ToolbarMenuItem>().Any(x => x.IsChecked);
+            this.IsActive = hasCheckedItems;
+        }
+
+        private void UpdateActiveSet() 
+        {
+            _activeSet = Items?.Cast<ToolbarMenuItem>().Where(x => x.IsChecked).ToList();/*.ToDictionary(x => x, x => x.IsChecked)*/;
         }
 
         #endregion
-
-
+        
         #region Selected Item
-
-        private ToolbarMenuItem _selectedItem;
 
         private void InitSelectedItem()
         {
@@ -99,48 +231,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         {
             _selectedItem = item;
             SetValue(IconedButton.IconProperty, _selectedItem.GetValue(IconedButton.IconProperty));
-            Command = _selectedItem.Command;
-        }
-
-
-        #endregion
-
-
-        #region States
-
-        public ToolbarHeaderType ToolbarHeaderType
-        {
-            get { return (ToolbarHeaderType)GetValue(ToolbarHeaderTypeProperty); }
-            set { SetValue(ToolbarHeaderTypeProperty, value); }
-        }
-        public static readonly DependencyProperty ToolbarHeaderTypeProperty = DependencyProperty.Register("ToolbarHeaderType", typeof(ToolbarHeaderType), typeof(ToolbarMenuHeader), new PropertyMetadata(ToolbarHeaderType.Fire));
-
-        // Cannot use MenuItem's IsChecked because it doesn't fire when not IsCheckable (see above)
-        public bool IsActive
-        {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
-        }
-        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false, OnActivationStateChanged));
-
-        private static void OnActivationStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var menuHeader = d as ToolbarMenuHeader;
-            if (menuHeader != null)
-                menuHeader.NotifyActivationState();
-        }
-
-        public delegate void Activated(ToolbarMenuHeader menuHeader);
-        public event Activated ActivatedEvent;
-
-        private void NotifyActivationState()
-        {
-            if (IsActive)
-                ActivatedEvent?.Invoke(this);
+            //Command = _selectedItem.Command;
         }
 
         #endregion
-
 
         #region Exclusive Group
 

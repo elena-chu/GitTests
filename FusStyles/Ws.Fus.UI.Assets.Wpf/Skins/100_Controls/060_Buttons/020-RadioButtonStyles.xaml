@@ -4,7 +4,7 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <!--Main Menu RadioButtons-->
-  <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility" Invisible="Hidden"/>
+  <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility.Radio.Hidden" Invisible="Hidden"/>
 
   <ControlTemplate x:Key="XControlTemplate.RadioButton.MainMenu" TargetType="{x:Type RadioButton}">
     <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}">
@@ -22,7 +22,7 @@
           HorizontalAlignment="Center"
           VerticalAlignment="Center"
           IsHitTestVisible="False"
-          Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility}}">
+          Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource XConverter.BooleanToVisibility.Radio.Hidden}}">
           <Path x:Name="HaloPath" Fill="{StaticResource XBrush.Application.Active}" Opacity="0.5" Data="{StaticResource XGeometry.Doughnut}">
             <Path.Effect>
               <BlurEffect Radius="12" KernelType="Gaussian"/>

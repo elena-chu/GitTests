@@ -19,6 +19,7 @@
     <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility"/>
     <extensions:InvertedBooleanToVisibilityConverter x:Key="XConverter.InverseBooleanToVisibility"/>
     <extensions:NullToVisibilityConverter x:Key="XConverter.NullToVisibility"/>
+    <extensions:ComparisonConverter x:Key="CompareModeCompariosionConverter" />
 
     <ControlTemplate x:Key="XControlTemplate.ToolbarMenuItem" TargetType="{x:Type local:ToolbarMenuItem}">
       <Border
@@ -81,105 +82,98 @@
     </Style>
 
     <ControlTemplate x:Key="XControlTemplate.ToolbarMenuHeader" TargetType="{x:Type local:ToolbarMenuHeader}">
-      <Grid extensions:IndependentSize.Margin="0,0,20,0">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+      <Grid Width="Auto" HorizontalAlignment="Center">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ToggleButton
-          x:Name="MenuOpenerButton"
-          Grid.Row="0"
-          Grid.Column="1"
-          extensions:IndependentSize.Margin="6,0,0,0"
-          IsChecked="{TemplateBinding IsSubmenuOpen}"
-          Style="{StaticResource XStyle.ToggleButton.MenuOpener}"
-          Click="MenuOpenerButton_Click"
-          Visibility="{TemplateBinding HasItems, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
-        <Popup
-          x:Name="Popup"
-          Placement="Right"
-          extensions:IndependentSize.VerticalOffset="28"
-          extensions:IndependentSize.HorizontalOffset="-45"
-          IsOpen="{TemplateBinding IsSubmenuOpen}"
-          AllowsTransparency="True"
-          Focusable="False"
-          PopupAnimation="Fade">
-          <Grid>
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Border
-              x:Name="ArrowBorder"
-              extensions:IndependentSize.Margin="20,0,0,0"
-              extensions:IndependentSize.Width="25"
-              extensions:IndependentSize.Height="45"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Bottom"
-              Panel.ZIndex="5">
-              <Grid>
-                <Border Height="1" VerticalAlignment="Bottom" Background="{StaticResource XBrush.Application.Background}" Margin="1,0,1,-1"/>
-                <Path
-                  Margin="0,0,0,-1"
-                  IsHitTestVisible="False"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Bottom"
-                  Stretch="Uniform"
-                  Data="{StaticResource XGeometry.Arrow.Down}"
-                  Stroke="{StaticResource XBrush.Frame}"
-                  StrokeThickness="1"
-                  Fill="{StaticResource XBrush.Application.Background}"
-                  RenderTransformOrigin="0.5,0.5">
-                  <Path.RenderTransform>
-                    <TransformGroup>
-                      <RotateTransform Angle="180"/>
-                    </TransformGroup>
-                  </Path.RenderTransform>
-                </Path>
-              </Grid>
-            </Border>
-            <Border
-              Grid.Row="1"
-              Background="{StaticResource XBrush.Application.Background}"
-              BorderBrush="{StaticResource XBrush.Frame}"
-              CornerRadius="{StaticResource XCornerRadius.Frame}"
-              BorderThickness="{StaticResource XThickness.Frame}">
-              <StackPanel IsItemsHost="True"/>
-            </Border>
-          </Grid>
-        </Popup>
-        <TextBlock
-          x:Name="HeaderTextBlock"
-          Grid.Row="1"
-          Grid.ColumnSpan="2"
-          Text="{TemplateBinding Header}"
-          HorizontalAlignment="Center"
-          FontSize="{StaticResource XDouble.FontSize.ToolTip}"
-          Style="{StaticResource XStyle.TextBlock.Base}"
-          Foreground="{StaticResource XBrush.Button.IconButton.Caption}"/>
-        <Button
+        <Grid Width="Auto" HorizontalAlignment="Center">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <ToggleButton
+            x:Name="MenuOpenerButton"
+            Grid.Row="0"
+            Grid.Column="1"
+            extensions:IndependentSize.Margin="3,0,0,0"
+            IsChecked="{TemplateBinding IsSubmenuOpen}"
+            Style="{StaticResource XStyle.ToggleButton.MenuOpener}"
+            Click="MenuOpenerButton_Click"
+            HorizontalAlignment="Left"
+            Visibility="{TemplateBinding HasItems, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+          <Popup
+            x:Name="Popup"
+            Placement="Right"
+            extensions:IndependentSize.VerticalOffset="28"
+            extensions:IndependentSize.HorizontalOffset="-45"
+            IsOpen="{TemplateBinding IsSubmenuOpen}"
+            AllowsTransparency="True"
+            Focusable="False"
+            PopupAnimation="Fade">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <Border
+                x:Name="ArrowBorder"
+                extensions:IndependentSize.Margin="20,0,0,0"
+                extensions:IndependentSize.Width="25"
+                extensions:IndependentSize.Height="45"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Panel.ZIndex="5">
+                <Grid>
+                  <Border Height="1" VerticalAlignment="Bottom" Background="{StaticResource XBrush.Application.Background}" Margin="1,0,1,-1"/>
+                  <Path
+                    Margin="0,0,0,-1"
+                    IsHitTestVisible="False"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Stretch="Uniform"
+                    Data="{StaticResource XGeometry.Arrow.Down}"
+                    Stroke="{StaticResource XBrush.Frame}"
+                    StrokeThickness="1"
+                    Fill="{StaticResource XBrush.Application.Background}"
+                    RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                      <TransformGroup>
+                        <RotateTransform Angle="180"/>
+                      </TransformGroup>
+                    </Path.RenderTransform>
+                  </Path>
+                </Grid>
+              </Border>
+              <Border
+                Grid.Row="1"
+                Background="{StaticResource XBrush.Application.Background}"
+                BorderBrush="{StaticResource XBrush.Frame}"
+                CornerRadius="{StaticResource XCornerRadius.Frame}"
+                BorderThickness="{StaticResource XThickness.Frame}">
+                <StackPanel IsItemsHost="True"/>
+              </Border>
+            </Grid>
+          </Popup>
+          <Button
           Grid.Row="0"
           Grid.Column="0"
           Command="{TemplateBinding Command}"
           CommandParameter="{TemplateBinding CommandParameter}"
           extensions:IconedButton.IconSize="30"
           extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
-          <Button.Style>
-            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
-              <Setter Property="Visibility" Value="Collapsed"/>
-              <Style.Triggers>
-                <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Fire">
-                  <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-              </Style.Triggers>
-            </Style>
-          </Button.Style>
-        </Button>
-        <ToggleButton
+            <Button.Style>
+              <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Fire">
+                    <Setter Property="Visibility" Value="Visible"/>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </Button.Style>
+          </Button>
+          <ToggleButton
           Grid.Row="0"
           Grid.Column="0"
           IsChecked="{TemplateBinding IsActive}"
@@ -187,18 +181,18 @@
           CommandParameter="{TemplateBinding CommandParameter}"
           extensions:IconedButton.IconSize="30"
           extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
-          <ToggleButton.Style>
-            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
-              <Setter Property="Visibility" Value="Collapsed"/>
-              <Style.Triggers>
-                <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Select">
-                  <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-              </Style.Triggers>
-            </Style>
-          </ToggleButton.Style>
-        </ToggleButton>
-        <ToggleButton
+            <ToggleButton.Style>
+              <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Select">
+                    <Setter Property="Visibility" Value="Visible"/>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </ToggleButton.Style>
+          </ToggleButton>
+          <ToggleButton
           Grid.Row="0"
           Grid.Column="0"
           IsChecked="{TemplateBinding IsActive}"
@@ -207,17 +201,28 @@
           extensions:IconedButton.IconSize="30"
           extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
           extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}">
-          <ToggleButton.Style>
-            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.ToggleIcon}">
-              <Setter Property="Visibility" Value="Collapsed"/>
-              <Style.Triggers>
-                <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Toggle">
-                  <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-              </Style.Triggers>
-            </Style>
-          </ToggleButton.Style>
-        </ToggleButton>
+            <ToggleButton.Style>
+              <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.ToggleIcon}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding ToolbarHeaderType, RelativeSource={RelativeSource TemplatedParent}}" Value="Toggle">
+                    <Setter Property="Visibility" Value="Visible"/>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </ToggleButton.Style>
+          </ToggleButton>
+        </Grid>
+        <TextBlock
+          x:Name="HeaderTextBlock"
+          Grid.Row="1"
+          Text="{TemplateBinding Header}"
+          HorizontalAlignment="Center"
+          extensions:IndependentSize.MinWidth="70"
+          TextAlignment="Center"
+          FontSize="{StaticResource XDouble.FontSize.ToolTip}"
+          Style="{StaticResource XStyle.TextBlock.Base}"
+          Foreground="{StaticResource XBrush.Button.IconButton.Caption}"/>
       </Grid>
       <ControlTemplate.Triggers>
         <DataTrigger Binding="{Binding IsEnabled}" Value="False">
@@ -231,6 +236,7 @@
       <Setter Property="extensions:IconedButton.Icon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.ActiveIcon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.InactiveIcon" Value="{x:Null}"/>
+      <Setter Property="extensions:IndependentSize.Margin" Value="0,0,20,0" />
     </Style>
 
     <Style
@@ -266,7 +272,7 @@
       Stretch="Fill" 
       Opacity=".6"
       Visibility="{Binding Visibility, ElementName=CompareMenu}"
-      extensions:IndependentSize.Margin="-80,0,0,0"
+      extensions:IndependentSize.Margin="-90,0,0,0"
       />
 
     <Menu x:Name="Menu" Grid.Column="0">
@@ -281,6 +287,8 @@
         Header="View"
         ToolbarHeaderType="Select"
         IsActive="False"
+        CheckedCommandParameter ="{StaticResource XBoolean.True}"
+        UncheckedCommandParameter ="{StaticResource XBoolean.False}"
         MemberOfMutuallyExclusiveGroup="True"
         ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeader.Resources>
@@ -322,6 +330,8 @@
         Header="Draw"
         ToolbarHeaderType="Select"
         IsActive="False"
+        CheckedCommandParameter ="{StaticResource XBoolean.True}"
+        UncheckedCommandParameter ="{StaticResource XBoolean.False}"
         MemberOfMutuallyExclusiveGroup="True"
         ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeader.Resources>
@@ -333,10 +343,12 @@
         <local:ToolbarMenuItem
           Header="Line"
           localBeh:UiModeEnter.Mode="MeasurementDistanceOverlay"
+          Command="{Binding LineCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Line}"/>
         <local:ToolbarMenuItem
           Header="Area"
           localBeh:UiModeEnter.Mode="MeasurementAreaOverlay"
+          Command="{Binding AreaCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Draw.Area}"/>
         <local:ToolbarMenuItem
           Header="Angle"
@@ -359,6 +371,8 @@
         Header="Overlays"
         ToolbarHeaderType="Toggle"
         IsActive="True"
+        CheckedCommandParameter ="{StaticResource XBoolean.True}"
+        UncheckedCommandParameter ="{StaticResource XBoolean.False}"
         extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Overlays.Shown}"
         extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
         <local:ToolbarMenuHeader.Resources>
@@ -370,18 +384,22 @@
         <local:ToolbarMenuItem
           Header="CrossReferenceLines"
           localBeh:UiModeShow.Mode="IntersectingSlicesOverlay"
+          Command="{Binding OverlaysCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.ReferenceLines}"/>
         <local:ToolbarMenuItem
           Header="Image Info"
           localBeh:UiModeShow.Mode="TextOverlay"
+          Command="{Binding ImageInfoCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Info}"/>
         <local:ToolbarMenuItem
           Header="Lines &amp; Areas"
           localBeh:UiModeShow.Modes="MeasurementDistanceOverlay,MeasurementAreaOverlay"
+          Command="{Binding OverlaysCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.LineArea}"/>
         <local:ToolbarMenuItem
           Header="Fiducials"
           localBeh:UiModeShow.Mode="FiducialsOverlay"
+          Command="{Binding OverlaysCommand}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Fiducials}"/>
         <local:ToolbarMenuItem
           Header="Transducer"
@@ -441,8 +459,11 @@
         Header="Compare"
         ToolbarHeaderType="Select"
         IsActive="False"
+        UncheckedCommandParameter ="{x:Static entities:CompareMode.Simple}"
         MemberOfMutuallyExclusiveGroup="True"
-        ActivatedEvent="OnToolbarMenuHeaderActivated">
+        ActivatedEvent="OnToolbarMenuHeaderActivated"
+        extensions:IndependentSize.Margin="0,0,5,0"
+        >
         <local:ToolbarMenuHeaderCompare.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsSelectable" Value="True"/>
@@ -451,14 +472,17 @@
         <local:ToolbarMenuItem
           Header="Swipe/Opacity"
           CommandParameter="{x:Static entities:CompareMode.Slider}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
+          IsChecked="{Binding ImageModeController.Mode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static entities:CompareMode.Slider}, Mode=OneWay}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
         <local:ToolbarMenuItem
           Header="Flicker"
           CommandParameter="{x:Static entities:CompareMode.Flicker}"
+          IsChecked="{Binding ImageModeController.Mode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static entities:CompareMode.Flicker}, Mode=OneWay}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Flicker}"/>
         <local:ToolbarMenuItem
           Header="Fusion"
           CommandParameter="{x:Static entities:CompareMode.Fusion}"
+          IsChecked="{Binding ImageModeController.Mode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static entities:CompareMode.Fusion}, Mode=OneWay}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
       </local:ToolbarMenuHeaderCompare>
 
@@ -468,7 +492,9 @@
       x:Name="CompareMenu" 
       Grid.Column="1" 
       Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
-      VerticalAlignment="Center">
+      VerticalAlignment="Center"
+      extensions:IndependentSize.Margin="0,12,0,0"
+      >
       <Grid.Resources>
         <DataTemplate x:Key ="SliderModeControl">
           <sliderViews:SliderModeControlView/>
