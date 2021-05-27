@@ -265,14 +265,13 @@
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
-    <Rectangle 
+    <Border 
       Grid.Column="1" 
-      Fill="{StaticResource XBrush.Button.Primary.Background.Disabled}" 
-      Stretch="Fill" 
-      Opacity=".6"
+      Background="{StaticResource XBrush.Button.Secondary.Background.Hover}" 
+      Style="{StaticResource XStyle.Border}"
+      Opacity="0.4"
       Visibility="{Binding Visibility, ElementName=CompareMenu}"
-      extensions:IndependentSize.Margin="-90,0,0,0"
-      />
+      extensions:IndependentSize.Margin="-85,0,0,-3"/>
 
     <Menu x:Name="Menu" Grid.Column="0">
       <local:ToolbarMenuHeader
@@ -537,7 +536,7 @@
 
       <Button 
         Grid.Column="2"
-        extensions:IndependentSize.Margin="0,0,15,0"
+        extensions:IndependentSize.Margin="0,0,7,0"
         Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"
         Content="Clear Images"
