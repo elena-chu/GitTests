@@ -19,19 +19,9 @@
 
   <Grid Background="{StaticResource XBrush.Application.Background}">
     <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
-      <Grid.Resources>
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
-          <Setter Property="extensions:IndependentSize.Margin" Value="0,10"/>
-        </Style>
-        <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}">
-          <Setter Property="extensions:IndependentSize.Margin" Value="0,10"/>
-        </Style>
-      </Grid.Resources>
-
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
         <ColumnDefinition />
-        <!--<ColumnDefinition />-->
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
@@ -48,25 +38,32 @@
       <ToggleButton
         Grid.Row="0"
         Grid.Column="0"
-        extensions:IndependentSize.Margin="0,10"
+        extensions:IndependentSize.Margin="0,6"
         ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.CtOverlay}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
         Content="CT Overlay"
         DataContext="{Binding Commands.Overlays}"
-        Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneathAndSwitch}"/>
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
 
-      <Button Grid.Row="0" Grid.Column="1"
-          Command="{Binding AutoRegisterCommand}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
-          Content="Auto Register"
-          />
+      <Button
+        Grid.Row="0"
+        Grid.Column="1"
+        Margin="0,6"
+        Style="{StaticResource XStyle.Button.IconOverText}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        Command="{Binding AutoRegisterCommand}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
+        Content="Auto Register"/>
 
-      <Button Grid.Row="1" Grid.Column="0"
-          Command="{Binding ClearStripsCommand}"     
-          extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
-          extensions:IconedButton.IconSize="24"
-          Content="Clear Images"
-          />
+      <Button
+        Grid.Row="1"
+        Grid.Column="0"
+        Margin="0,6"
+        Style="{StaticResource XStyle.Button.IconOverText}"
+        Command="{Binding ClearStripsCommand}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
+        Content="Clear Images"/>
 
       <core:StepProgress Grid.Row="3" Grid.ColumnSpan="2"
             Title="Reference set:"
@@ -113,52 +110,4 @@
     </Grid>
 
   </Grid>
-
-  <!--<StackPanel Margin="10" Background="{StaticResource XBrush.Application.Background}">
-    <StackPanel.Resources>
-      <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}">
-        <Setter Property="Margin" Value="0,10"/>
-      </Style>
-      <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}">
-        <Setter Property="Margin" Value="0,10"/>
-      </Style>
-    </StackPanel.Resources>
-
-    <ToggleButton
-      ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
-      DataContext="{Binding Commands.Overlays}"
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.CtOverlay}"
-      Content="CT Overlay"/>
-
-    <Button
-      Command="{Binding AutoRegisterCommand}"
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
-      Content="Auto Register"/>
-    
-    <Button
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.Copy}"
-      Content="Copy Registration"/>
-
-    <Button
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.Clear}"
-      Content="Clear Registration"/>
-
-    <Button
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.ReferenceSeries}"
-      Content="Reference Series"/>
-
-    <Button
-      Command="{Binding ClearStripsCommand}" 
-      extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
-      extensions:IconedButton.IconSize="24"
-      Content="Clear All"/>
-
-    <Button
-      Margin="0,10"
-      Command="{Binding ApproveRegistrationCommand}"
-      Content="Approve Registration"
-      ToolTip="Approve Registration"
-      Style="{StaticResource XStyle.Button.Primary}"/>
-
-  </StackPanel>-->
 </UserControl>

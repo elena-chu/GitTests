@@ -7,6 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
+  <UserControl.Resources>
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconOverText}">
+      <Setter Property="extensions:IndependentSize.Margin" Value="0,6"/>
+      <Setter Property="extensions:IconedButton.IconSize" Value="{StaticResource XDouble.IconSize.SquareTemplate.Large}"/>
+    </Style>
+  </UserControl.Resources>
+
   <Border Background="{Binding XBrush.Application.Background}">
     <Grid Style="{StaticResource MenuContainerStyle}">
       <Grid.RowDefinitions>
@@ -25,14 +32,14 @@
       <Button
         Grid.Row="0"
         Grid.Column="0"
-        Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
+        Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"
         Content="Manual NPR"/>
       
       <Button
         Grid.Row="0"
         Grid.Column="1"
-        Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
+        Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Spherical}"
         Content="Spherical NPR"/>
 
@@ -99,9 +106,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
-          <Grid.Resources>
-            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}"/>
-          </Grid.Resources>
           <Button
             Grid.Column="0"
             Grid.Row="0"

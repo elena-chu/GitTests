@@ -89,9 +89,6 @@
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuHeaderCompare.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuItem.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuHeader.cs" />
-    <Compile Include="Controls\ToolbarMenu\ToolbarMenuOrig.xaml.cs">
-      <DependentUpon>ToolbarMenuOrig.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ToolbarMenu\ToolbarMenu.xaml.cs">
       <DependentUpon>ToolbarMenu.xaml</DependentUpon>
     </Compile>
@@ -221,10 +218,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\StripsMenu\StripsMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ToolbarMenu\ToolbarMenuOrig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

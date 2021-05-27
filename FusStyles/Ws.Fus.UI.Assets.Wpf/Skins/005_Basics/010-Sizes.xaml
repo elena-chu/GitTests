@@ -6,6 +6,12 @@
 
   <sys:Double x:Key="XDouble.Height.ControlDefault">36</sys:Double>
   <sys:Double x:Key="XDouble.Height.ControlDefault2">30</sys:Double>
+  
+  <sys:Double x:Key="XDouble.IconSize.SquareTemplate.Default">37</sys:Double>
+  <sys:Double x:Key="XDouble.IconSize.SquareTemplate.Large">43</sys:Double>
+
+  <sys:Double x:Key="XDouble.Height.IconOverText.OneLine">60</sys:Double>
+  <sys:Double x:Key="XDouble.Height.IconOverText.TwoLines">80</sys:Double>
 
   <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
 
@@ -21,8 +27,9 @@
   <Thickness x:Key="XThickness.Frame.Left">1,1,0,1</Thickness>
   <Thickness x:Key="XThickness.Frame.Right">0,1,1,1</Thickness>
 
-  <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Header3">22</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Caption">15</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.ToolTip">14</sys:Double>
 
 </ResourceDictionary>

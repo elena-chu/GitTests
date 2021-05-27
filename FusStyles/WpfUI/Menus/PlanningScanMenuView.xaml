@@ -261,12 +261,15 @@
           <!--<TextBlock Grid.Row="2" Text="Scan Type" Style="{StaticResource LabelStyle}"  />
           <ComboBox Grid.Row="3" ItemsSource="{Binding Protocols}" SelectedItem="{Binding SelectedProtocol, Mode=TwoWay}"  Margin="0,5"/>-->
 
-          <Button Grid.Row="0" 
-              Content="Reset Slab Alignments" 
-              Command="{Binding ResetAxesCommand}"
-              Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Undo}"
-              Visibility="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+          <Button
+            Grid.Row="0"
+            extensions:IndependentSize.Margin="0,0,0,10"
+            Content="Reset Slab Alignments"
+            Command="{Binding ResetAxesCommand}"
+            Style="{StaticResource XStyle.Button.IconOverText}"
+            extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Undo}"
+            Visibility="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
           <Button Grid.Row="1" 
               Content="Scan from MR" 

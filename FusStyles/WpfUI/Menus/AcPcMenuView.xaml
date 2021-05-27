@@ -12,19 +12,21 @@
   <UserControl.Resources>
     <ivConverters:MultiMeasureVmConverter x:Key="multiMsr" />
     <extensions:BooleanToTrueFalseValueConverter x:Key="TrueFalseConverter" TrueValue="{x:Static extensions:ProgressState.Completed}" FalseValue="{x:Static  extensions:ProgressState.Regular}" />
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconOverText}">
+      <Setter Property="extensions:IndependentSize.Margin" Value="0,6"/>
+    </Style>
+    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconOverText}">
+      <Setter Property="extensions:IndependentSize.Margin" Value="0,6"/>
+    </Style>
   </UserControl.Resources>
   
   <Grid Background="{StaticResource XBrush.Application.Background}">
 
     <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
-      <Grid.Resources>
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconWithTextUnderneath}"/>
-        <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"/>
-      </Grid.Resources>
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
         <ColumnDefinition />
-        <!--<ColumnDefinition />-->
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
@@ -37,45 +39,57 @@
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
 
-      <ToggleButton Grid.Row="0" Grid.Column="0"
-          ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="ACOverlay"
-          Content="Mark AC"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Ac}" />
+      <ToggleButton
+        Grid.Row="0"
+        Grid.Column="0"
+        ivBeh:UiModeEnter.Mode="ACPCOverlay"
+        ivBeh:UiModeEnter.SubMode="ACOverlay"
+        Content="Mark AC"
+        DataContext="{Binding Commands.Measure}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Ac}"/>
 
-      <ToggleButton Grid.Row="0" Grid.Column="1"
-          ivBeh:UiModeEnter.Mode="ACPCOverlay"
-          ivBeh:UiModeEnter.SubMode="PCOverlay"
-          Content="Mark PC"
-          DataContext="{Binding Commands.Measure}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Pc}"/>
+      <ToggleButton
+        Grid.Row="0"
+        Grid.Column="1"
+        ivBeh:UiModeEnter.Mode="ACPCOverlay"
+        ivBeh:UiModeEnter.SubMode="PCOverlay"
+        Content="Mark PC"
+        DataContext="{Binding Commands.Measure}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Pc}"/>
 
       <ToggleButton
         Grid.Row="1"
         Grid.Column="0"
+        extensions:IndependentSize.Margin="0,6"
         ivBeh:UiModeShow.Mode="ACPCOverlay"
         Content="AC-PC Overlay"
         DataContext="{Binding Commands.Overlays}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"
-        Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneathAndSwitch}"/>
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
 
-      <Button  Grid.Row="1" Grid.Column="1"
-          Content="Recalculate"
-          Command="{Binding FindAcPcCommand}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Recalculate}" />
+      <Button
+        Grid.Row="1"
+        Grid.Column="1"
+        Content="Recalculate"
+        Command="{Binding FindAcPcCommand}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Recalculate}"/>
 
-      <Button Grid.Row="2" Grid.Column="0"
-          Content="Go to AC-PC"
-          Command="{Binding ShowAcPcCommand}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Center}"
-           />
+      <Button
+        Grid.Row="2"
+        Grid.Column="0"
+        Content="Go to AC-PC"
+        Command="{Binding ShowAcPcCommand}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Center}"/>
 
-      <Button Grid.Row="2" Grid.Column="1"
-          Content="Clear Images"
-          Command="{Binding ClearStripsCommand}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
-          extensions:IconedButton.IconSize="24"/>
+      <Button
+        Grid.Row="2"
+        Grid.Column="1"
+        Content="Clear Images"
+        Command="{Binding ClearStripsCommand}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"/>
 
       <core:StepProgress Grid.Row="4" Grid.ColumnSpan="2"
             ValuePosition="OneLine"

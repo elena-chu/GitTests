@@ -25,141 +25,52 @@
 
     <UniformGrid Grid.Row="1" Columns="5">
       <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Hover and Press</TextBlock>
-        <ContentControl
-          Width="50"
-          Height="50"
-          extensions:ControlExtensions.AttachIsPressed="True"
-          extensions:ControlExtensions.ControlTheme="Primary">
-          <ContentControl.Style>
-            <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.HoverAndPress}">
-              <Style.Triggers>
-                <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
-                  <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
-                  </Trigger.EnterActions>
-                  <Trigger.ExitActions>
-                    <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
-                  </Trigger.ExitActions>
-                </Trigger>
-              </Style.Triggers>
-            </Style>
-          </ContentControl.Style>
-        </ContentControl>
-      </StackPanel>
-
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Icon</TextBlock>
-        <ContentControl
-          Width="50"
-          Height="50"
-          Style="{StaticResource XStyle.ContentControl.Icon}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Link}"
-          extensions:IconedButton.IconSize="30"/>
-      </StackPanel>
-
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Toggle Icon</TextBlock>
-        <ContentControl
-          Background="{StaticResource XBrush.AlmostTransparent}"
-          Width="50"
-          Height="50"
-          IsHitTestVisible="True"
-          Style="{StaticResource XStyle.ContentControl.ToggleIcon}"
-          extensions:ControlExtensions.AttachIsPressed="True"
-          extensions:ControlExtensions.IsActive="{Binding (extensions:ControlExtensions.IsPressed), RelativeSource={RelativeSource Self}}"
-          extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Overlays.Shown}"
-          extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}"
-          extensions:IconedButton.IconSize="30"/>
-      </StackPanel>
-
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Icon on Hover and Pressed</TextBlock>
-        <ContentControl
-          Width="50"
-          Height="50"
-          extensions:ControlExtensions.AttachIsPressed="True"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"
-          extensions:IconedButton.IconSize="30"
-          extensions:ControlExtensions.ControlTheme="Secondary">
-          <ContentControl.Style>
-            <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.IconOnHoverPressedBorder}">
-              <Setter Property="extensions:ControlExtensions.PressedPercentage" Value="0"/>
-              <Style.Triggers>
-                <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
-                  <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
-                  </Trigger.EnterActions>
-                  <Trigger.ExitActions>
-                    <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
-                  </Trigger.ExitActions>
-                </Trigger>
-              </Style.Triggers>
-            </Style>
-          </ContentControl.Style>
-        </ContentControl>
-      </StackPanel>
-
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Toggle Icon on Hover and Pressed</TextBlock>
-        <ContentControl
-          Width="150"
-          Height="50"
-          extensions:ControlExtensions.AttachIsPressed="True"
-          extensions:ControlExtensions.IsActive="{Binding (extensions:ControlExtensions.IsPressed), RelativeSource={RelativeSource Self}}"
-          extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Overlays.Shown}"
-          extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}"
-          extensions:IconedButton.IconSize="30">
-          <ContentControl.Style>
-            <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.ToggleIconOnHoverPressedBorder}">
-              <Style.Triggers>
-                <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
-                  <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
-                  </Trigger.EnterActions>
-                  <Trigger.ExitActions>
-                    <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
-                  </Trigger.ExitActions>
-                </Trigger>
-              </Style.Triggers>
-            </Style>
-          </ContentControl.Style>
-        </ContentControl>
-      </StackPanel>
-
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Button Square Icon</TextBlock>
+        <TextBlock Foreground="LightBlue" FontSize="12">Icon Over Text Button</TextBlock>
         <Button
-          Width="50"
-          Height="50"
-          Style="{StaticResource XStyle.Button.Icon}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"
-          extensions:IconedButton.IconSize="30"/>
+          HorizontalAlignment="Left"
+          Style="{StaticResource XStyle.Button.IconOverText}"
+          Content="Icon Over Text"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Recalculate}"/>
       </StackPanel>
 
       <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">ToggleButton Square Icon</TextBlock>
-        <ToggleButton
-          Width="50"
-          Height="50"
-          Style="{StaticResource XStyle.ToggleButton.Icon}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Hidden}"
-          extensions:IconedButton.IconSize="30"
-          extensions:ControlExtensions.ControlTheme="Secondary"/>
+        <TextBlock Foreground="LightBlue" FontSize="12">Icon Over Wrapped Text Button</TextBlock>
+        <Button
+          extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+          HorizontalAlignment="Left"
+          Style="{StaticResource XStyle.Button.IconOverText}"
+          Content="Icon Over Wrapped"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"/>
       </StackPanel>
 
       <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">ToggleButton Square Toggle Icon</TextBlock>
+        <TextBlock Foreground="LightBlue" FontSize="12">Icon Over Text ToggleButton</TextBlock>
         <ToggleButton
-          Width="50"
-          Height="50"
-          Style="{StaticResource XStyle.ToggleButton.ToggleIcon}"
+          HorizontalAlignment="Left"
+          Style="{StaticResource XStyle.ToggleButton.IconOverText}"
+          Content="Toggle"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}"/>
+      </StackPanel>
+
+      <StackPanel>
+        <TextBlock Foreground="LightBlue" FontSize="12">ToggleIcon Over Text ToggleButton</TextBlock>
+        <ToggleButton
+          HorizontalAlignment="Left"
+          Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
+          Content="ToggleIcon"
           extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Overlays.Shown}"
-          extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}"
-          extensions:IconedButton.IconSize="30"
-          extensions:ControlExtensions.ControlTheme="Secondary"/>
+          extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}"/>
       </StackPanel>
-      
+
+
+      <StackPanel>
+        <TextBlock Foreground="LightBlue" FontSize="12">Icon Button</TextBlock>
+        <Button
+          HorizontalAlignment="Left"
+          Style="{StaticResource XStyle.Button.Icon}"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"/>
+      </StackPanel>
+
     </UniformGrid>
   </Grid>
   

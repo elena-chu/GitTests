@@ -36,15 +36,13 @@
              />-->
 
     <ToggleButton 
-        Grid.Column="1"
-        Grid.RowSpan="2"
-        Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Shown}"
-        extensions:IconedButton.IconSize="20"
-        Content="Show/Hide"
-        IsChecked="{Binding IsSecondaryVisible}"
-        extensions:IndependentSize.MinWidth="75"
-        />
+      Grid.Column="1"
+      Grid.RowSpan="2"
+      Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
+      extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.Shown}"
+      extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.Hidden}"
+      Content="Show/Hide"
+      IsChecked="{Binding IsSecondaryVisible}"/>
 
   <!--<Slider Grid.Column="2"
         Minimum="0" Maximum="1" 
@@ -61,16 +59,12 @@
              />-->
 
     <ToggleButton 
-        Grid.Column="3"
-        Grid.RowSpan="2"
-        Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Color}"
-        extensions:IconedButton.IconSize="20"
-        Content="Color"
-        IsChecked="{Binding IsColored}"
-        extensions:IndependentSize.MinWidth="75"
-        />
-
+      Grid.Column="3"
+      Grid.RowSpan="2"
+      Style="{StaticResource XStyle.ToggleButton.IconOverText}"
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Color}"
+      Content="Color"
+      IsChecked="{Binding IsColored}"/>
 
   </Grid>
 </UserControl>

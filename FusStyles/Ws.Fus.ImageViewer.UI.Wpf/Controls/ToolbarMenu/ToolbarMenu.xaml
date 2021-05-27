@@ -19,7 +19,6 @@
     <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility"/>
     <extensions:InvertedBooleanToVisibilityConverter x:Key="XConverter.InverseBooleanToVisibility"/>
     <extensions:NullToVisibilityConverter x:Key="XConverter.NullToVisibility"/>
-    <extensions:ComparisonConverter x:Key="CompareModeCompariosionConverter" />
 
     <ControlTemplate x:Key="XControlTemplate.ToolbarMenuItem" TargetType="{x:Type local:ToolbarMenuItem}">
       <Border
@@ -156,12 +155,12 @@
             </Grid>
           </Popup>
           <Button
-          Grid.Row="0"
-          Grid.Column="0"
-          Command="{TemplateBinding Command}"
-          CommandParameter="{TemplateBinding CommandParameter}"
-          extensions:IconedButton.IconSize="30"
-          extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
+            Grid.Row="0"
+            Grid.Column="0"
+            Command="{TemplateBinding Command}"
+            CommandParameter="{TemplateBinding CommandParameter}"
+            extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+            extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
             <Button.Style>
               <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -174,13 +173,13 @@
             </Button.Style>
           </Button>
           <ToggleButton
-          Grid.Row="0"
-          Grid.Column="0"
-          IsChecked="{TemplateBinding IsActive}"
-          Command="{TemplateBinding Command}"
-          CommandParameter="{TemplateBinding CommandParameter}"
-          extensions:IconedButton.IconSize="30"
-          extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
+            Grid.Row="0"
+            Grid.Column="0"
+            IsChecked="{TemplateBinding IsActive}"
+            Command="{TemplateBinding Command}"
+            CommandParameter="{TemplateBinding CommandParameter}"
+            extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+            extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
             <ToggleButton.Style>
               <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -193,14 +192,14 @@
             </ToggleButton.Style>
           </ToggleButton>
           <ToggleButton
-          Grid.Row="0"
-          Grid.Column="0"
-          IsChecked="{TemplateBinding IsActive}"
-          Command="{TemplateBinding Command}"
-          CommandParameter="{TemplateBinding CommandParameter}"
-          extensions:IconedButton.IconSize="30"
-          extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
-          extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}">
+            Grid.Row="0"
+            Grid.Column="0"
+            IsChecked="{TemplateBinding IsActive}"
+            Command="{TemplateBinding Command}"
+            CommandParameter="{TemplateBinding CommandParameter}"
+            extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+            extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
+            extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}">
             <ToggleButton.Style>
               <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.ToggleIcon}">
                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -220,8 +219,7 @@
           HorizontalAlignment="Center"
           extensions:IndependentSize.MinWidth="70"
           TextAlignment="Center"
-          FontSize="{StaticResource XDouble.FontSize.ToolTip}"
-          Style="{StaticResource XStyle.TextBlock.Base}"
+          Style="{StaticResource XStyle.TextBlock.Caption}"
           Foreground="{StaticResource XBrush.Button.IconButton.Caption}"/>
       </Grid>
       <ControlTemplate.Triggers>
@@ -236,7 +234,8 @@
       <Setter Property="extensions:IconedButton.Icon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.ActiveIcon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.InactiveIcon" Value="{x:Null}"/>
-      <Setter Property="extensions:IndependentSize.Margin" Value="0,0,20,0" />
+      <Setter Property="extensions:IconedButton.IconSize" Value="46"/>
+      <Setter Property="extensions:IndependentSize.Margin" Value="0,0,20,0"/>
     </Style>
 
     <Style
@@ -281,6 +280,7 @@
         Header="Cycle"
         ToolbarHeaderType="Fire"
         Command="{Binding CycleCommand}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Cycle}"/>
 
       <local:ToolbarMenuHeader
@@ -485,16 +485,12 @@
           IsChecked="{Binding ImageModeController.Mode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static entities:CompareMode.Fusion}, Mode=OneWay}"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
       </local:ToolbarMenuHeaderCompare>
-
     </Menu>
 
     <Grid
       x:Name="CompareMenu" 
       Grid.Column="1" 
-      Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
-      VerticalAlignment="Center"
-      extensions:IndependentSize.Margin="0,12,0,0"
-      >
+      Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}">
       <Grid.Resources>
         <DataTemplate x:Key ="SliderModeControl">
           <sliderViews:SliderModeControlView/>
@@ -512,15 +508,12 @@
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
+      <!--LA TODO: make unlink icon-->
       <ToggleButton 
         IsChecked="{Binding IsLinked}"
-        Style="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}"
+        Style="{StaticResource XStyle.ToggleButton.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Link}"
-        extensions:IconedButton.IconSize="20"
-        extensions:IndependentSize.MinWidth="75"
-        VerticalAlignment="Center"
-        Content="Linked"
-        />
+        Content="Linked"/>
 
       <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left">
         <ContentControl.Style>
@@ -545,15 +538,11 @@
 
       <Button 
         Grid.Column="2"
-        Style="{StaticResource XStyle.Button.IconWithTextUnderneath}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"
-        extensions:IconedButton.IconSize="20"
-        Content="Clear Images"
-        Command="{Binding ClearCompareStripsCommand}"
-        extensions:IndependentSize.MinWidth="75"
         extensions:IndependentSize.Margin="0,0,15,0"
-        VerticalAlignment="Center"
-        />
+        Style="{StaticResource XStyle.Button.IconOverText}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"
+        Content="Clear Images"
+        Command="{Binding ClearCompareStripsCommand}"/>
     </Grid>
   </Grid>
 </UserControl>

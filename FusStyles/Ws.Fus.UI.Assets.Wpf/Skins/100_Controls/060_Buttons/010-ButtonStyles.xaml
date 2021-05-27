@@ -30,86 +30,6 @@
     <Setter Property="extensions:IconedButton.IconSize" Value="18"/>
   </Style>
 
-  <Style x:Key="XStyle.Button.IconWithTextUnderneath" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.IconWithTextUnderneath}"/>
-
-  <Style x:Key="XStyle.ToggleButton.IconWithTextUnderneath" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconWithTextUnderneath}">
-    <Style.Triggers>
-      <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
-      </Trigger>
-    </Style.Triggers>
-  </Style>
-
-
-  <!--Switch ToggleButton-->
-  <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconWithTextUnderneathAndSwitch" TargetType="{x:Type ToggleButton}">
-    <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}" MaxWidth="{TemplateBinding MaxWidth}">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
-      </Grid.ColumnDefinitions>
-      <Border
-        x:Name="BackgroundBorder"
-        Grid.Row="0"
-        Grid.ColumnSpan="2"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
-        HorizontalAlignment="Stretch"
-        Style="{StaticResource XStyle.Border}"/>
-      <Viewbox
-        Grid.Row="0"
-        Grid.Column="0"
-        extensions:IndependentSize.Margin="0,0,3,0"
-        Stretch="Uniform"
-        Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        Width="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
-        IsHitTestVisible="False">
-        <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
-      </Viewbox>
-      <ContentControl
-        x:Name="Switch"
-        Grid.Row="0"
-        Grid.Column="1"
-        extensions:IndependentSize.Margin="3,0,0,0"
-        extensions:IndependentSize.Height="20"
-        Style="{StaticResource XStyle.ContentControl.Switch}"
-        extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
-      <ContentPresenter
-        x:Name="ContentPresenter"
-        Grid.Row="1"
-        Grid.ColumnSpan="2"
-        extensions:IndependentSize.Margin="0,0,0,2"
-        IsHitTestVisible="False"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top">
-        <ContentPresenter.Resources>
-          <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
-            <Setter Property="MaxWidth" Value="{Binding ActualWidth, ElementName=MainGrid}"/>
-            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-          </Style>
-        </ContentPresenter.Resources>
-      </ContentPresenter>
-    </Grid>
-  </ControlTemplate>
-
-  <Style x:Key="XStyle.ToggleButton.IconWithTextUnderneathAndSwitch" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconWithTextUnderneath}">
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.IconWithTextUnderneathAndSwitch}"/>
-    <Setter Property="extensions:IconedButton.IconSize" Value="30"/>
-    <Style.Triggers>
-      <Trigger Property="IsChecked" Value="True">
-        <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
-      </Trigger>
-      <Trigger Property="IsChecked" Value="False">
-        <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
-      </Trigger>
-    </Style.Triggers>
-  </Style>
-
   
   <!--Plus / Exit-->
   <ControlTemplate x:Key="XControlTemplate.Button.SingleLetter" TargetType="{x:Type Button}">
@@ -174,7 +94,7 @@
   </Style>
   
   
-  <!--Menu Buttons-->
+  <!--Switch Button-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Switch" TargetType="{x:Type ToggleButton}">
     <Border Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{StaticResource XBrush.AlmostTransparent}">
       <ContentControl
@@ -204,6 +124,7 @@
     </Style.Triggers>
   </Style>
 
+  <!--Menu Opener-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.MenuOpener" TargetType="{x:Type ToggleButton}">
     <Grid
       x:Name="MainGrid"
@@ -282,6 +203,7 @@
     </Style.Triggers>
   </Style>
 
+  <!--Icon Button-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.Icon" TargetType="{x:Type ButtonBase}">
     <ContentControl
       Width="{TemplateBinding Width}"
@@ -309,12 +231,12 @@
   </ControlTemplate>
 
   <Style x:Key="XStyle.ButtonBase.Icon" TargetType="{x:Type ButtonBase}">
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.Icon}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="{StaticResource XDouble.IconSize.SquareTemplate.Default}"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
     <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.ControlDefault}"/>
-    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="Background" Value="Transparent"/>
@@ -339,7 +261,8 @@
 
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.ToggleIcon" TargetType="{x:Type ToggleButton}">
     <ContentControl
-      Width="{TemplateBinding Height}"
+      Width="{TemplateBinding Width}"
+      Height="{TemplateBinding Height}"
       Background="{TemplateBinding Background}"
       extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
       extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
@@ -367,4 +290,202 @@
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.ToggleIcon}"/>
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
   </Style>
+  
+  <!--Icon over Text-->
+  <ControlTemplate x:Key="XControlTemplate.ButtonBase.IconOverText" TargetType="{x:Type ButtonBase}">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <ContentControl
+        Grid.Row="0"
+        extensions:IndependentSize.Margin="0,0,0,2"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+        Background="{TemplateBinding Background}"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+        extensions:ControlExtensions.PressedPercentage="0"
+        extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
+        <ContentControl.Style>
+          <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.IconOnHoverPressedBorder}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                <DataTrigger.EnterActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
+                </DataTrigger.ExitActions>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ContentControl.Style>
+      </ContentControl>
+      <ContentPresenter Grid.Row="1">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+            <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="{Binding (extensions:ToolTipExtension.AutoToolTip), RelativeSource={RelativeSource TemplatedParent}}"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ButtonBase.IconOverText" TargetType="{x:Type ButtonBase}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.IconOverText}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="{StaticResource XDouble.IconSize.SquareTemplate.Default}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="100"/>
+    <!--To show two text lines below button, set IndependentSize.Height to XDouble.Height.IconOverText.TwoLines on individual button-->
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.OneLine}"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="16"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Button.IconOverText" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.IconOverText}"/>
+
+  <Style x:Key="XStyle.ToggleButton.IconOverText" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconOverText}">
+    <Style.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.ToggleIconOverText" TargetType="{x:Type ToggleButton}">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <ContentControl
+        Grid.Row="0"
+        extensions:IndependentSize.Margin="0,0,0,2"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+        Background="{TemplateBinding Background}"
+        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+        extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+        extensions:ControlExtensions.PressedPercentage="0"
+        extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
+        extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
+        extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}">
+        <ContentControl.Style>
+          <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.ToggleIconOnHoverPressedBorder}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                <DataTrigger.EnterActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                  <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
+                </DataTrigger.ExitActions>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ContentControl.Style>
+      </ContentControl>
+      <ContentPresenter Grid.Row="1">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+            <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="{Binding (extensions:ToolTipExtension.AutoToolTip), RelativeSource={RelativeSource TemplatedParent}}"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.ToggleIconOverText" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.IconOverText}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.ToggleIconOverText}"/>
+    <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+  </Style>
+
+  
+  <!--Icon and Switch over Text-->
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconAndSwitchOverText" TargetType="{x:Type ToggleButton}">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ContentControl
+          Grid.Column="0"
+          extensions:IndependentSize.Margin="0,0,2,2"
+          extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
+          extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+          Background="{TemplateBinding Background}"
+          extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
+          extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+          extensions:ControlExtensions.PressedPercentage="0"
+          extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
+          <ContentControl.Style>
+            <Style TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.IconOnHoverPressedBorder}">
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                  <DataTrigger.EnterActions>
+                    <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunUp}"/>
+                  </DataTrigger.EnterActions>
+                  <DataTrigger.ExitActions>
+                    <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.PressedPercentage.RunDown}"/>
+                  </DataTrigger.ExitActions>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </ContentControl.Style>
+        </ContentControl>
+        <ContentControl
+          x:Name="Switch"
+          Grid.Row="0"
+          Grid.Column="1"
+          extensions:IndependentSize.Margin="2,0,0,2"
+          extensions:IndependentSize.Height="20"
+          Style="{StaticResource XStyle.ContentControl.Switch}"
+          extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
+      </Grid>
+      <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+            <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="{Binding (extensions:ToolTipExtension.AutoToolTip), RelativeSource={RelativeSource TemplatedParent}}"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.IconAndSwitchOverText" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconOverText}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.IconAndSwitchOverText}"/>
+    <Style.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="False">
+        <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
 </ResourceDictionary>
