@@ -259,10 +259,10 @@
   
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
     <Rectangle 
@@ -462,8 +462,7 @@
         UncheckedCommandParameter ="{x:Static entities:CompareMode.Simple}"
         MemberOfMutuallyExclusiveGroup="True"
         ActivatedEvent="OnToolbarMenuHeaderActivated"
-        extensions:IndependentSize.Margin="0,0,5,0"
-        >
+        extensions:IndependentSize.Margin="0,0,5,0">
         <local:ToolbarMenuHeaderCompare.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="IsSelectable" Value="True"/>
@@ -483,7 +482,7 @@
           Header="Fusion"
           CommandParameter="{x:Static entities:CompareMode.Fusion}"
           IsChecked="{Binding ImageModeController.Mode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static entities:CompareMode.Fusion}, Mode=OneWay}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Fusion}"/>
       </local:ToolbarMenuHeaderCompare>
     </Menu>
 
@@ -508,11 +507,11 @@
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
-      <!--LA TODO: make unlink icon-->
       <ToggleButton 
         IsChecked="{Binding IsLinked}"
-        Style="{StaticResource XStyle.ToggleButton.IconOverText}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Link}"
+        Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOn}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOff}"
         Content="Linked"/>
 
       <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left">

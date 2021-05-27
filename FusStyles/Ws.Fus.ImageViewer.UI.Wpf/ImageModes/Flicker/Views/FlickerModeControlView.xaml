@@ -53,8 +53,9 @@
 
     <ToggleButton 
       Grid.Column="3"
-      Style="{StaticResource XStyle.ToggleButton.IconOverText}"
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Color}"
+      Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
+      extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOn}"
+      extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOff}"
       Content="Color"
       IsChecked="{Binding IsColored}"/>
   </Grid>
