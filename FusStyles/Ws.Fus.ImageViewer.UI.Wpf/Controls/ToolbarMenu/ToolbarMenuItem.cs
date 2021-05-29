@@ -1,16 +1,15 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 {
     public class ToolbarMenuItem : MenuItem
     {
-        public bool IsSelectable
+        public static readonly DependencyProperty ToolbarItemTypeProperty = DependencyProperty.Register("ToolbarItemType", typeof(ToolbarItemType), typeof(ToolbarMenuItem), new PropertyMetadata(ToolbarItemType.Fire));
+        public ToolbarItemType ToolbarItemType
         {
-            get { return (bool)GetValue(IsSelectableProperty); }
-            set { SetValue(IsSelectableProperty, value); }
+            get { return (ToolbarItemType)GetValue(ToolbarItemTypeProperty); }
+            set { SetValue(ToolbarItemTypeProperty, value); }
         }
-        public static readonly DependencyProperty IsSelectableProperty = DependencyProperty.Register("IsSelectable", typeof(bool), typeof(ToolbarMenuItem), new PropertyMetadata(false));
     }
 }

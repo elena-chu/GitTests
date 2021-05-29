@@ -86,6 +86,7 @@
       <DependentUpon>StripsMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StripsMenu\StripsMenuConstants.cs" />
+    <Compile Include="Controls\ToolbarMenu\ToolbarMenuCommon.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuHeaderCompare.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuItem.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuHeader.cs" />

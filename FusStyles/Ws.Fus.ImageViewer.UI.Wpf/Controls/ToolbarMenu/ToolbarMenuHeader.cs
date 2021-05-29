@@ -1,20 +1,12 @@
-﻿using System;
+﻿using Prism.Commands;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Prism.Commands;
 using Ws.Extensions.UI.Wpf.Behaviors;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 {
-    public enum ToolbarHeaderType
-    {
-        Fire,
-        Select,
-        Toggle
-    }
-
     public class ToolbarMenuHeader : MenuItem
     {
         bool _isBulkUpdating = false;
@@ -38,17 +30,17 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         }
 
 
-        public static readonly DependencyProperty ToolbarHeaderTypeProperty = DependencyProperty.Register("ToolbarHeaderType", typeof(ToolbarHeaderType), typeof(ToolbarMenuHeader), new PropertyMetadata(ToolbarHeaderType.Fire, OnHeaderTypeChanged));
-        public ToolbarHeaderType ToolbarHeaderType
+        public static readonly DependencyProperty ToolbarItemTypeProperty = DependencyProperty.Register("ToolbarItemType", typeof(ToolbarItemType), typeof(ToolbarMenuHeader), new PropertyMetadata(ToolbarItemType.Fire, OnHeaderTypeChanged));
+        public ToolbarItemType ToolbarItemType
         {
-            get { return (ToolbarHeaderType)GetValue(ToolbarHeaderTypeProperty); }
-            set { SetValue(ToolbarHeaderTypeProperty, value); }
+            get { return (ToolbarItemType)GetValue(ToolbarItemTypeProperty); }
+            set { SetValue(ToolbarItemTypeProperty, value); }
         }
         private static void OnHeaderTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var menuHeader = d as ToolbarMenuHeader;
 
-            if (menuHeader.ToolbarHeaderType != ToolbarHeaderType.Fire)
+            if (menuHeader.ToolbarItemType != ToolbarItemType.Fire)
             {
                 //TODO: if was command binding - may be save it for further use when returning to Fire back 
                 menuHeader.Command = menuHeader.HeaderClickCommand;
@@ -82,11 +74,11 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         {
             bool requestedCheck = !this.IsActive;
 
-            if (ToolbarHeaderType == ToolbarHeaderType.Select)
+            if (ToolbarItemType == ToolbarItemType.Select || ToolbarItemType == ToolbarItemType.SelectAndToggle)
             {
                 ExecuteItemCommandByHeaderStatus(_selectedItem, requestedCheck);
             }
-            else if (ToolbarHeaderType == ToolbarHeaderType.Toggle)
+            else if (ToolbarItemType == ToolbarItemType.Toggle)
             {
                 IEnumerable<ToolbarMenuItem> items = requestedCheck ? _activeSet : Items.Cast<ToolbarMenuItem>();
 
@@ -171,7 +163,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             if (menuItem.IsCheckable)
                 UpdateActiveSet();
 
-            if (menuItem.IsSelectable)
+            if (menuItem.ToolbarItemType == ToolbarItemType.Select || menuItem.ToolbarItemType == ToolbarItemType.SelectAndToggle)
                 SetSelectedItem(menuItem);
 
             UpdateActiveStatus();
@@ -221,7 +213,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         {
             if (Items != null && !Items.IsEmpty)
             {
-                var selectableItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.IsSelectable);
+                var selectableItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.ToolbarItemType == ToolbarItemType.Select || x.ToolbarItemType == ToolbarItemType.SelectAndToggle);
                 if (selectableItem != null)
                     SetSelectedItem(selectableItem);
             }
@@ -230,7 +222,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         private void SetSelectedItem(ToolbarMenuItem item)
         {
             _selectedItem = item;
+            ToolbarItemType = _selectedItem.ToolbarItemType;
             SetValue(IconedButton.IconProperty, _selectedItem.GetValue(IconedButton.IconProperty));
+            SetValue(IconedButton.ActiveIconProperty, _selectedItem.GetValue(IconedButton.ActiveIconProperty));
+            SetValue(IconedButton.InactiveIconProperty, _selectedItem.GetValue(IconedButton.InactiveIconProperty));
             //Command = _selectedItem.Command;
         }
 
