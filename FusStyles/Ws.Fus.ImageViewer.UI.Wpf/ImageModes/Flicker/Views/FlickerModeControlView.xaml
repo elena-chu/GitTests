@@ -27,8 +27,9 @@
 
     <ToggleButton 
       Grid.Column="1"
-      Style="{StaticResource XStyle.ToggleButton.IconOverText}"
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Play}"
+      Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
+      extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.PlayOn}"
+      extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.PlayOff}"
       Content="Flicker"
       IsChecked="{Binding IsAutomated}"/>
 

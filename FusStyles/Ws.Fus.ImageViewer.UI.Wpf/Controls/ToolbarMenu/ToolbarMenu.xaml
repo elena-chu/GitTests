@@ -476,12 +476,10 @@
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.SwipeOpacity}"/>
         <local:ToolbarMenuItem
           Header="Flicker"
-          ToolbarItemType="SelectAndToggle"
+          ToolbarItemType="Select"
           CommandParameter="{x:Static entities:CompareMode.Flicker}"
           IsChecked="{Binding ImageModeController.Mode, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static entities:CompareMode.Flicker}, Mode=OneWay}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.FlickerOn}"
-          extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.FlickerOn}"
-          extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.FlickerOff}"/>
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.Flicker}"/>
         <local:ToolbarMenuItem
           Header="Fusion"
           ToolbarItemType="Select"
