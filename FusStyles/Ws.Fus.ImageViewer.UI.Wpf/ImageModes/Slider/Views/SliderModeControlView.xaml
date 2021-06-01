@@ -17,23 +17,6 @@
       <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
-    <!--<Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>-->
-    
-    <!--<Slider Minimum="0" Maximum="1" 
-        Width="250" Height="25" 
-        HorizontalAlignment="Left" 
-        Value="{Binding SlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
-        SnapsToDevicePixels="False" 
-            />-->
-    <!--<TextBlock 
-        Grid.Row="1"
-        Text="Slider"
-        HorizontalAlignment="Center"
-        Style="{StaticResource XStyle.TextBlock.Menu.Label.First}"      
-             />-->
 
     <ToggleButton 
       Grid.Column="1"
@@ -42,21 +25,8 @@
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.Shown}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.Hidden}"
       Content="Show/Hide"
+      extensions:IconedButton.IconSize="32"
       IsChecked="{Binding IsSecondaryVisible}"/>
-
-  <!--<Slider Grid.Column="2"
-        Minimum="0" Maximum="1" 
-        Width="120" Height="25" 
-        HorizontalAlignment="Left" 
-        Value="{Binding OpacitySlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
-        SnapsToDevicePixels="False" 
-            />-->
-    <!--<TextBlock  Grid.Column="2"
-        Grid.Row="1"
-        Text="Opacity"
-        HorizontalAlignment="Center"
-        Style="{StaticResource XStyle.TextBlock.Menu.Label.First}"      
-             />-->
 
     <ToggleButton 
       Grid.Column="3"
@@ -64,6 +34,7 @@
       Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOn}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOff}"
+      extensions:IconedButton.IconSize="32"
       Content="Color"
       IsChecked="{Binding IsColored}"/>
 

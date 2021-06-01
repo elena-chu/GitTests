@@ -21,14 +21,24 @@
     <!--<Rectangle Stretch="Fill" Grid.Column="1" Fill="Yellow" />-->
 
     <Slider Grid.Column="1"
-        Minimum="0" Maximum="1" 
+        Style="{StaticResource XStyle.Slider.Horizontal.Large}"
         HorizontalAlignment="Stretch" 
         VerticalAlignment="Top"
         Value="{Binding SlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
-        SnapsToDevicePixels="False" 
-        LargeChange="0.01"
             />
-    <Canvas
+
+    <Slider 
+        Grid.Row="1"
+        Grid.Column="0"
+        Style="{StaticResource XStyle.Slider.Vertical.Opacity}"
+        Orientation="Vertical"
+        VerticalAlignment="Top"
+        HorizontalAlignment="Left"
+        extensions:IndependentSize.Margin="4"
+        extensions:IndependentSize.Height="150"
+        Value="{Binding OpacitySlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
+            />
+    <!--<Canvas
         Grid.Row="1"
         Grid.Column="0"
         Grid.ColumnSpan="2"
@@ -50,12 +60,12 @@
         <Slider.RenderTransform>
           <TransformGroup>
             <TransformGroup.Children>
-              <!--<RotateTransform Angle="90" />-->
+              --><!--<RotateTransform Angle="90" />--><!--
               <ScaleTransform ScaleX="-1"  />
             </TransformGroup.Children>
           </TransformGroup>
         </Slider.RenderTransform>
       </Slider>
-    </Canvas>
+    </Canvas>-->
   </Grid>
 </UserControl>

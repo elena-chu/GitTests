@@ -22,6 +22,7 @@
       Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.Shown}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.Hidden}"
+      extensions:IconedButton.IconSize="32"
       Content="Show/Hide"
       IsChecked="{Binding IsSecondaryVisible}"/>
 
@@ -30,11 +31,13 @@
       Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.PlayOn}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.PlayOff}"
+      extensions:IconedButton.IconSize="32"
       Content="Flicker"
       IsChecked="{Binding IsAutomated}"/>
 
     <Button
       Grid.Column="2"
+      extensions:IconedButton.IconSize="45"
       Content="Speed"
       Command="{Binding ChangeStepCommand}">
       <Button.Style>
@@ -57,6 +60,7 @@
       Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOn}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOff}"
+      extensions:IconedButton.IconSize="32"
       Content="Color"
       IsChecked="{Binding IsColored}"/>
   </Grid>

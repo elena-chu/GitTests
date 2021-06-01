@@ -237,7 +237,7 @@
       <Setter Property="extensions:IconedButton.Icon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.ActiveIcon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.InactiveIcon" Value="{x:Null}"/>
-      <Setter Property="extensions:IconedButton.IconSize" Value="46"/>
+      <Setter Property="extensions:IconedButton.IconSize" Value="40"/>
       <Setter Property="extensions:IndependentSize.Margin" Value="0,0,20,0"/>
     </Style>
 
@@ -276,7 +276,8 @@
       Visibility="{Binding Visibility, ElementName=CompareMenu}"
       extensions:IndependentSize.Margin="-85,0,0,-3"/>
 
-    <Menu x:Name="Menu" Grid.Column="0">
+    <Menu x:Name="Menu" Grid.Column="0"
+        VerticalAlignment="Center">
       <local:ToolbarMenuHeader
         x:Name="CycleMenuHeader"
         Header="Cycle"
@@ -492,7 +493,10 @@
     <Grid
       x:Name="CompareMenu" 
       Grid.Column="1" 
-      Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}">
+      Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
+      VerticalAlignment="Center"
+      extensions:IndependentSize.Margin="0,2,0,0"
+      >
       <Grid.Resources>
         <DataTemplate x:Key ="SliderModeControl">
           <sliderViews:SliderModeControlView/>
@@ -515,6 +519,8 @@
         Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
         extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOn}"
         extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOff}"
+        extensions:IconedButton.IconSize="32"
+        VerticalAlignment="Center"
         Content="Linked"/>
 
       <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left">
@@ -540,11 +546,14 @@
 
       <Button 
         Grid.Column="2"
-        extensions:IndependentSize.Margin="0,0,7,0"
         Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"
         Content="Clear Images"
-        Command="{Binding ClearCompareStripsCommand}"/>
+        Command="{Binding ClearCompareStripsCommand}"
+        extensions:IconedButton.IconSize="32"
+        extensions:IndependentSize.Margin="0,0,7,0"
+        VerticalAlignment="Center"
+        />
     </Grid>
   </Grid>
 </UserControl>

@@ -46,7 +46,7 @@
         extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Header3}"
         extensions:IconedButton.IconSize="62"/>
 
-      <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>
+      <!--<Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>-->
       
       <Grid Height="Auto" Grid.Row="1">
         <Grid.Resources>
@@ -54,7 +54,7 @@
             <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
             <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
             <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
-            <Setter Property="extensions:IndependentSize.Height" Value="80" />
+            <Setter Property="extensions:IndependentSize.Height" Value="75" />
             <Setter Property="IsActive" Value="{Binding IsActive}" />
             <Setter Property="ProgressNavigationState" Value="{Binding StageState}" />
             <Setter Property="DataContext" Value="{Binding ElementName=Control}"/>
@@ -154,13 +154,21 @@
                         <VisualState x:Name="CallToActionInactive" />
                       </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
-                    <ContentPresenter x:Name="ActiveBkg" Style="{StaticResource SelectedBackgroundContentStyle}" Content="" Visibility="Hidden" />
-                    <Grid x:Name="Root" Margin="10,3" Background="Transparent">
+                    <ContentPresenter x:Name="ActiveBkg" 
+                        Style="{StaticResource SelectedBackgroundContentStyle}" 
+                        Content="" 
+                        Visibility="Hidden" 
+                        extensions:IndependentSize.Margin="0,4"              
+                        />
+                    <Grid x:Name="Root" 
+                          extensions:IndependentSize.Margin="10,3,10,8" 
+                          Background="Transparent">
                       <Grid.RowDefinitions>
                         <RowDefinition  />
                         <RowDefinition Height="Auto" />
                       </Grid.RowDefinitions>
-                      <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                      <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                            extensions:IndependentSize.Margin="0,0,0,2">
                         <Ellipse x:Name="CTA_El" extensions:IndependentSize.Width="18" extensions:IndependentSize.Height="18" Visibility="Hidden" Opacity=".6" Stroke="White" StrokeThickness="4" Fill="Transparent" >
                           <Ellipse.RenderTransformOrigin>
                             <Point X=".5" Y=".5"/>
@@ -171,7 +179,7 @@
                         </Ellipse>
                         <ContentControl
                           x:Name="StatusIndicator"
-                          Margin="2"
+                          extensions:IndependentSize.Margin="3"
                           Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
                           extensions:ProgressStatusDisplayer.ActiveAsForeground="False"
                           VerticalAlignment="Bottom"
@@ -180,8 +188,11 @@
                           ToolTip="{TemplateBinding ToolTip}"
                           ToolTipService.ShowOnDisabled="True"/>
                       </Grid>
-                      <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" Margin="0" Opacity=".75" HorizontalAlignment="Left"
-                                TextBlock.FontFamily="{StaticResource XFontFamily.Base}"/>
+                      <ContentPresenter x:Name="ContentPresenter" 
+                          Grid.Row="1"
+                          extensions:IndependentSize.Margin="0,0,0,3"
+                          Margin="0" Opacity=".75" HorizontalAlignment="Left"
+                          TextBlock.FontFamily="{StaticResource XFontFamily.Base}"/>
                     </Grid>
                   </Grid>
                 </ControlTemplate>
@@ -201,24 +212,25 @@
         </Grid.RowDefinitions>
 
         <locControls:ProgressNavigationButton x:Name="CalibBtn" Grid.Row="0" Content="{lex:LocTextUpper IDS_LBL_MENU_CALIBRATION}" Command="{Binding OpenStageCommand}" CommandParameter="Calibration" />
-        <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"  />
+        <!--<Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
         <locControls:ProgressNavigationButton x:Name="PlanBtn" Grid.Row="1" Content="{lex:LocTextUpper IDS_LBL_MENU_PLANNING_SCAN}" Command="{Binding OpenStageCommand}" CommandParameter="PlanningScan" />
-        <Rectangle Grid.Row="1" Style="{StaticResource HorizontalMenuSeparator}"  />
+        <!--<Rectangle Grid.Row="1" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
         <locControls:ProgressNavigationButton x:Name="RegBtn" Grid.Row="2"  Content="{lex:LocTextUpper IDS_LBL_MENU_REGISTRATION}" Command="{Binding OpenStageCommand}" CommandParameter="Registration" />
-        <Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"  />
+        <!--<Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
         <locControls:ProgressNavigationButton x:Name="AcPcBtn" Grid.Row="3"  Content="{lex:LocTextUpper IDS_LBL_MENU_AC_PC}" Command="{Binding OpenStageCommand}" CommandParameter="AcPc" />
-        <Rectangle Grid.Row="3" Style="{StaticResource HorizontalMenuSeparator}"  />
+        <!--<Rectangle Grid.Row="3" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
         <locControls:ProgressNavigationButton x:Name="NprBtn" Grid.Row="4"  Content="{lex:LocTextUpper IDS_LBL_MENU_NPR}" Command="{Binding OpenStageCommand}" CommandParameter="Npr" />
-        <Rectangle Grid.Row="4" Style="{StaticResource HorizontalMenuSeparator}"  />
+        <!--<Rectangle Grid.Row="4" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
         <locControls:ProgressNavigationButton x:Name="TargBtn" Grid.Row="5"  Content="{lex:LocTextUpper IDS_LBL_MENU_TARGETING}" Command="{Binding OpenStageCommand}" CommandParameter="Targeting" />
-        <Rectangle Grid.Row="5" Style="{StaticResource HorizontalMenuSeparator}"  />
+        <!--<Rectangle Grid.Row="5" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
       </Grid>
+      <Rectangle Grid.Row="1" Style="{StaticResource HorizontalMenuSeparator}"/>
 
       <RadioButton
         GroupName="ModulesRadioButtonGroup"
