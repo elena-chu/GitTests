@@ -10,6 +10,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf
     {
         MainScreen,
         Planning,
-        Surgery
+        Surgery,
+        Reports,
     }
 }

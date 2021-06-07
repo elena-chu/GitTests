@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Ws.Extensions.UI.Wpf.Utils;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
 {
@@ -219,12 +220,14 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             if (!_screenProportionCalculated)
             {
                 //Lena: Check Validity!!!
-                _screenProportion = SystemParameters.PrimaryScreenHeight / 1080;
+                _screenProportion = Math.Min(SystemParameters.PrimaryScreenHeight / 1080, SystemParameters.PrimaryScreenWidth /1920);
                 _screenProportionCalculated = true;
+
+                //var d = DpiUtils.GetToDeviceMatrix(null);
+                //return height / DpiUtils.GetToDeviceMatrix(null).M22;
+
             }
 
-            //var d = DpiUtils.GetToDeviceMatrix(null);
-            //return height / DpiUtils.GetToDeviceMatrix(null).M22;
 
             return value * _screenProportion;
         }

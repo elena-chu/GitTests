@@ -594,9 +594,15 @@
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.DeleteAll" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteLine}"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteArea}"/>
+    <Canvas.RenderTransform>
+      <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+    </Canvas.RenderTransform>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteLine}" Opacity=".5" />
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteArea}" Opacity=".5"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteLine}" Canvas.Top="6" Canvas.Left="6"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteArea}" Canvas.Top="6" Canvas.Left="6"/>
   </Canvas>
+
 
   <!--Menu: Compare-->
   <Geometry x:Key="XGeometry.Menu.SwipeOpacity">m 17.46591 29.545454 -5.022728 -4.545455 5.022728 -4.545454 m 15.06818 9.090909 5.022727 -4.545455 -5.022727 -4.545454 M 25 -4e-7 V 50 M 30.022728 6.8181814 h 12.556818 c 1.387026 0 2.511363 1.017546 2.511363 2.272727 V 40.909091 c 0 1.255227 -1.124337 2.272727 -2.511363 2.272727 H 30.022728 M 19.977272 6.8181814 H 7.4204545 c -1.386976 0 -2.511363 1.017546 -2.511363 2.272727 V 40.909091 c 0 1.255227 1.124387 2.272727 2.511363 2.272727 H 19.977272</Geometry>

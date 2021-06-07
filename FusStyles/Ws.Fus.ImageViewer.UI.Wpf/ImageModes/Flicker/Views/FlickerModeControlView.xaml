@@ -64,4 +64,66 @@
       Content="Color"
       IsChecked="{Binding IsColored}"/>
   </Grid>
+
+  <!-- Quick working-->
+  <!--<Grid Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid.Resources>
+      <Style x:Key="ButtonBaseStyle" TargetType="{x:Type ButtonBase}">
+        <Setter Property="extensions:IndependentSize.Width" Value="30" />
+        <Setter Property="extensions:IndependentSize.Height" Value="30" />
+        <Setter Property="extensions:IndependentSize.Margin" Value="10,5" />
+      </Style>
+      <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ButtonBaseStyle}" />
+      <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}" />
+    
+    </Grid.Resources>
+    
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+
+    <ToggleButton 
+        Grid.Column="0"
+        IsChecked="{Binding IsSecondaryVisible}"
+        >
+      <Path Data="{StaticResource XGeometry.Menu.EyeOpen}" Stretch="Uniform" Stroke="{StaticResource XBrush.Application.Background}" />
+    </ToggleButton>
+
+    <ToggleButton 
+        Grid.Column="1"
+        Content="Flk"
+        IsChecked="{Binding IsAutomated}"
+        />
+    
+    <Button 
+        Grid.Column="2"
+        extensions:IndependentSize.Width ="30"
+        extensions:IndependentSize.Height ="30"
+        Command="{Binding ChangeStepCommand}"
+        >
+      <Button.Style>
+        <Style TargetType="Button">
+          <Setter Property="Content" Value="1 S" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding CurrentStep}" Value="1">
+              <Setter Property="Content" Value="2 S" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding CurrentStep}" Value="2">
+              <Setter Property="Content" Value="3 S" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Button.Style>
+    </Button>
+
+    <ToggleButton 
+        Grid.Column="3"
+        Content="Col"
+        IsChecked="{Binding IsColored}"
+        />
+  </Grid>-->
+
 </UserControl>

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Behaviors;
+using System.Windows.Input;
+using System;
+using System.Diagnostics;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 {
@@ -42,8 +45,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
             if (menuHeader.ToolbarItemType != ToolbarItemType.Fire)
             {
-                //TODO: if was command binding - may be save it for further use when returning to Fire back 
-                menuHeader.Command = menuHeader.HeaderClickCommand;
+                //menuHeader.Command = menuHeader.HeaderClickCommand;
             }
         }
 
@@ -59,17 +61,15 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             var menuHeader = d as ToolbarMenuHeader;
             if (menuHeader != null)
                 menuHeader.NotifyActivationState();
-        } 
-        #endregion
-
-        public ToolbarMenuHeader()
-        {
-            HeaderClickCommand = new DelegateCommand(HeaderClickExecute);
-            Loaded += OnLoad;
         }
 
 
-        private DelegateCommand HeaderClickCommand;
+        public static readonly DependencyProperty HeaderClickCommandProperty = DependencyProperty.Register("HeaderClickCommand", typeof(DelegateCommand), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
+        public DelegateCommand HeaderClickCommand
+        {
+            get { return (DelegateCommand)GetValue(HeaderClickCommandProperty); }
+            set { SetValue(HeaderClickCommandProperty, value); }
+        }
         private void HeaderClickExecute()
         {
             bool requestedCheck = !this.IsActive;
@@ -90,7 +90,23 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                 UpdateActiveStatus();
             }
         }
-        
+        private bool HeaderClickCanExecute()
+        {
+            if (ToolbarItemType == ToolbarItemType.Select || ToolbarItemType == ToolbarItemType.SelectAndToggle)
+                return _selectedItem == null || _selectedItem.Command == null || _selectedItem.Command.CanExecute(_selectedItem.CommandParameter);
+
+            return true;
+        }
+
+        #endregion
+
+        public ToolbarMenuHeader()
+        {
+            HeaderClickCommand = new DelegateCommand(HeaderClickExecute, HeaderClickCanExecute);
+            Loaded += OnLoad;
+        }
+
+
         #region Start, End
 
         private void OnLoad(object sender, RoutedEventArgs e)
@@ -140,7 +156,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                 return;
 
             ToolbarMenuItem item = sender as ToolbarMenuItem;
-            if (item!= null && !IsSubmenuOpen)
+            if (item != null && !IsSubmenuOpen)
             {
                 if (!this.IsActive)
                 {
@@ -181,15 +197,22 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         private void ExecuteItemCommandByHeaderStatus(ToolbarMenuItem item, bool requestedCheck)
         {
             object commandParam = null;
-            if(requestedCheck)
+            if (requestedCheck)
             {
                 commandParam = CheckedCommandParameter != null ? CheckedCommandParameter : _selectedItem.CommandParameter;
             }
             else
                 commandParam = UncheckedCommandParameter != null ? UncheckedCommandParameter : null;
 
-            item.Command?.Execute(commandParam);
-            
+            try
+            {
+                item.Command?.Execute(commandParam);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"ToolbarMenuHeader {item.Header?.ToString()} item.Command?.Execute(commandParam) Exception: {ex.Message}");
+            }
+
             //Lena: temp
             item.IsChecked = requestedCheck;
         }
@@ -200,13 +223,13 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             this.IsActive = hasCheckedItems;
         }
 
-        private void UpdateActiveSet() 
+        private void UpdateActiveSet()
         {
             _activeSet = Items?.Cast<ToolbarMenuItem>().Where(x => x.IsChecked).ToList();/*.ToDictionary(x => x, x => x.IsChecked)*/;
         }
 
         #endregion
-        
+
         #region Selected Item
 
         private void InitSelectedItem()
@@ -221,12 +244,25 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         private void SetSelectedItem(ToolbarMenuItem item)
         {
+            if (_selectedItem != null && _selectedItem.Command != null)
+                _selectedItem.Command.CanExecuteChanged -= OnSelectedItemCommandCanExecuteChanged; ;
             _selectedItem = item;
+            if (_selectedItem != null && _selectedItem.Command != null)
+                _selectedItem.Command.CanExecuteChanged += OnSelectedItemCommandCanExecuteChanged; ;
+
             ToolbarItemType = _selectedItem.ToolbarItemType;
             SetValue(IconedButton.IconProperty, _selectedItem.GetValue(IconedButton.IconProperty));
             SetValue(IconedButton.ActiveIconProperty, _selectedItem.GetValue(IconedButton.ActiveIconProperty));
             SetValue(IconedButton.InactiveIconProperty, _selectedItem.GetValue(IconedButton.InactiveIconProperty));
             //Command = _selectedItem.Command;
+
+            HeaderClickCommand.RaiseCanExecuteChanged();
+
+        }
+
+        private void OnSelectedItemCommandCanExecuteChanged(object sender, System.EventArgs e)
+        {
+            HeaderClickCommand.RaiseCanExecuteChanged();
         }
 
         #endregion

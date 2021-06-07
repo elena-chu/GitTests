@@ -28,6 +28,7 @@
   <Thickness x:Key="XThickness.Frame.Right">0,1,1,1</Thickness>
 
   <sys:Double x:Key="XDouble.FontSize.Header3">22</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Header4">18</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Caption">15</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.ToolTip">14</sys:Double>
