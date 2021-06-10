@@ -10,12 +10,16 @@
     <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.PressedPercentage)" To="0.0" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.HoverPercentage.RunUp">
-    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.HoverPercentage)" To="1.0" Duration="{StaticResource XDuration.Animation.Short}"/>
+  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverPrimaryUp">
+    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.HoverPercentage.RunDown">
-    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.HoverPercentage)" To="0.0" Duration="{StaticResource XDuration.Animation.Short}"/>
+  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverSecondaryUp">
+    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverDown">
+    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
 </ResourceDictionary>
