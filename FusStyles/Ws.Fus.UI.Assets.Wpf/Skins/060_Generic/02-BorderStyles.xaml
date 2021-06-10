@@ -36,23 +36,48 @@
   <Style x:Key="XStyle.Border.Hover" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:ControlExtensions.HoverPercentage" Value="0.0"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
-    <Setter Property="Background">
-      <Setter.Value>
-        <MultiBinding Converter="{extensions:PercentageToHoverBrushConverter}">
-          <Binding Path="(extensions:ControlExtensions.HoverPercentage)" RelativeSource="{RelativeSource Self}"/>
-          <Binding Path="(extensions:ControlExtensions.ControlTheme)" RelativeSource="{RelativeSource Self}"/>
-        </MultiBinding>
-      </Setter.Value>
-    </Setter>
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
     <Style.Triggers>
-      <Trigger Property="IsMouseOver" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.HoverPercentage.RunUp}"/>
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.HoverPercentage.RunDown}"/>
-        </Trigger.ExitActions>
-      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsMouseOver" Value="True"/>
+          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+        </MultiTrigger.Conditions>
+        <MultiTrigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiTrigger.EnterActions>
+        <MultiTrigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiTrigger.ExitActions>
+      </MultiTrigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsMouseOver" Value="True"/>
+          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
+        </MultiTrigger.Conditions>
+        <MultiTrigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiTrigger.EnterActions>
+        <MultiTrigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiTrigger.ExitActions>
+      </MultiTrigger>
     </Style.Triggers>
   </Style>
 

@@ -25,7 +25,6 @@
 
   <Style x:Key="XStyle.TextBlock.Caption" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
-    <Setter Property="MaxWidth" Value="{Binding ActualWidth, ElementName=MainGrid}"/>
     <Setter Property="TextAlignment" Value="Center"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Caption}"/>
