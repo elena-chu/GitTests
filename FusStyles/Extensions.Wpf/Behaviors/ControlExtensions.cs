@@ -66,6 +66,12 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static bool GetIsActive(DependencyObject obj) { return (bool)obj.GetValue(IsActiveProperty); }
         public static void SetIsActive(DependencyObject obj, bool value) { obj.SetValue(IsActiveProperty, value); }
 
+        /// <summary>
+        /// Hover over control
+        /// </summary>
+        public static readonly DependencyProperty HoverProperty = DependencyProperty.RegisterAttached("Hover", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
+        public static bool GetHover(DependencyObject obj) { return (bool)obj.GetValue(HoverProperty); }
+        public static void SetHover(DependencyObject obj, bool value) { obj.SetValue(HoverProperty, value); }
 
         #region IsPressed
 

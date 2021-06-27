@@ -349,11 +349,9 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         /// <summary>
         /// Independent CornerRadius property of FrameworkElement. Updates the original CornerRadius property
         /// </summary>
-        public static DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached("CornerRadius",
-            typeof(Thickness), typeof(IndependentSize), new UIPropertyMetadata(OnCornerRadiusPropertyChanged));
-
-        public static void SetCornerRadius(FrameworkElement obj, Thickness value) { obj.SetValue(CornerRadiusProperty, value); }
-        public static Thickness GetCornerRadius(FrameworkElement obj) { return (Thickness)obj.GetValue(CornerRadiusProperty); }
+        public static DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(IndependentSize), new UIPropertyMetadata(OnCornerRadiusPropertyChanged));
+        public static void SetCornerRadius(FrameworkElement obj, CornerRadius value) { obj.SetValue(CornerRadiusProperty, value); }
+        public static CornerRadius GetCornerRadius(FrameworkElement obj) { return (CornerRadius)obj.GetValue(CornerRadiusProperty); }
 
         public static void OnCornerRadiusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

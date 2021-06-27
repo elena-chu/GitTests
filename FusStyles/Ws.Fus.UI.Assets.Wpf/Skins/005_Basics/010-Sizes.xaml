@@ -15,7 +15,7 @@
 
   <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
 
-  <Duration x:Key="XDuration.Animation.Short">0:0:0.15</Duration>
+  <Duration x:Key="XDuration.Animation.Short">0:0:0.3</Duration>
 
   <CornerRadius x:Key="XCornerRadius.Frame">4</CornerRadius>
   <CornerRadius x:Key="XCornerRadius.Frame.Left">4,0,0,4</CornerRadius>
