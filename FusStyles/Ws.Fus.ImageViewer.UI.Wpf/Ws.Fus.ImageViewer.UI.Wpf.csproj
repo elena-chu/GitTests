@@ -144,6 +144,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\Strips\IStrip.cs" />
+    <Compile Include="ViewModels\Strips\RegistrationStripVm.cs" />
+    <Compile Include="ViewModels\Strips\StripVM.cs" />
     <Compile Include="ViewModels\Switch\CompositeSwitch.cs" />
     <Compile Include="ViewModels\Switch\IMultiSwitch{T}.cs" />
     <Compile Include="ViewModels\Switch\ISwitch.cs" />

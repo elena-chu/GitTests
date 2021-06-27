@@ -529,11 +529,11 @@
         VerticalAlignment="Center"
         Content="Linked"/>
 
-      <sliderViews:SliderModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Simple|Slider'}"/>
+      <!--<sliderViews:SliderModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Simple|Slider'}"/>
       <flickerViews:FlickerModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Flicker'}"/>
-      <fusionViews:FusionModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Fusion'}"/>
+      <fusionViews:FusionModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Fusion'}"/>-->
 
-      <!--<ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left">
+      <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left">
         <ContentControl.Style>
           <Style TargetType="{x:Type ContentControl}">
             <Style.Triggers>
@@ -552,7 +552,7 @@
             </Style.Triggers>
           </Style>
         </ContentControl.Style>
-      </ContentControl>-->
+      </ContentControl>
 
       <Button 
         Grid.Column="2"
