@@ -26,6 +26,7 @@
   <Thickness x:Key="XThickness.Frame.Left">1,1,0,1</Thickness>
   <Thickness x:Key="XThickness.Frame.Right">0,1,1,1</Thickness>
   <sys:Double x:Key="XDouble.FontSize.Header3">22</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Header4">18</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Caption">15</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.ToolTip">14</sys:Double>
@@ -888,11 +889,14 @@
   <Storyboard x:Key="XStoryboard.DoubleAnimation.PressedPercentage.RunDown">
     <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.PressedPercentage)" To="0.0" Duration="{StaticResource XDuration.Animation.Short}" />
   </Storyboard>
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.HoverPercentage.RunUp">
-    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.HoverPercentage)" To="1.0" Duration="{StaticResource XDuration.Animation.Short}" />
+  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverPrimaryUp">
+    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" />
   </Storyboard>
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.HoverPercentage.RunDown">
-    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.HoverPercentage)" To="0.0" Duration="{StaticResource XDuration.Animation.Short}" />
+  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverSecondaryUp">
+    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" />
+  </Storyboard>
+  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverDown">
+    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" />
   </Storyboard>
   <!---->
   <!--Merged from file Skins\060_Generic\01_GenericStyles.xaml-->
@@ -1040,23 +1044,32 @@
   <Style x:Key="XStyle.Border.Hover" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:ControlExtensions.HoverPercentage" Value="0.0" />
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None" />
-    <Setter Property="Background">
-      <Setter.Value>
-        <MultiBinding Converter="{extensions:PercentageToHoverBrushConverter}">
-          <Binding Path="(extensions:ControlExtensions.HoverPercentage)" RelativeSource="{RelativeSource Self}" />
-          <Binding Path="(extensions:ControlExtensions.ControlTheme)" RelativeSource="{RelativeSource Self}" />
-        </MultiBinding>
-      </Setter.Value>
-    </Setter>
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
     <Style.Triggers>
-      <Trigger Property="IsMouseOver" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.HoverPercentage.RunUp}" />
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard x:Name="StoryBoardMouseLeave" Storyboard="{StaticResource XStoryboard.DoubleAnimation.HoverPercentage.RunDown}" />
-        </Trigger.ExitActions>
-      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsMouseOver" Value="True" />
+          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Primary" />
+        </MultiTrigger.Conditions>
+        <MultiTrigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverPrimaryUp}" />
+        </MultiTrigger.EnterActions>
+        <MultiTrigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverDown}" />
+        </MultiTrigger.ExitActions>
+      </MultiTrigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsMouseOver" Value="True" />
+          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Secondary" />
+        </MultiTrigger.Conditions>
+        <MultiTrigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverSecondaryUp}" />
+        </MultiTrigger.EnterActions>
+        <MultiTrigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverDown}" />
+        </MultiTrigger.ExitActions>
+      </MultiTrigger>
     </Style.Triggers>
   </Style>
   <Style x:Key="XStyle.Border.Background.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Background}">
@@ -1241,7 +1254,6 @@
   </Style>
   <Style x:Key="XStyle.TextBlock.Caption" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True" />
-    <Setter Property="MaxWidth" Value="{Binding ActualWidth, ElementName=MainGrid}" />
     <Setter Property="TextAlignment" Value="Center" />
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}" />
     <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Caption}" />
@@ -1258,6 +1270,13 @@
   </Style>
   <Style x:Key="XStyle.TextBlock.Menu.Label.First" TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Menu.Label}">
     <Setter Property="extensions:IndependentSize.Margin" Value="0,5,0,5" />
+  </Style>
+  <Style x:Key="XStyle.TextBlock.Title" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}" />
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Header4}" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0,20,15,15" />
   </Style>
   <!---->
   <!--Merged from file Skins\100_Controls\020_TextElements\030-ToolTipStyles.xaml-->

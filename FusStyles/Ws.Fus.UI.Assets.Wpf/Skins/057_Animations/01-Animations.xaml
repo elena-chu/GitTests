@@ -22,4 +22,12 @@
     <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
+  <Storyboard x:Key="XStoryboard.DoubleAnimation.Opacity.Up">
+    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" Duration="{StaticResource XDuration.Animation.Short}" Storyboard.TargetName="HoverBkg_PART" />
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.DoubleAnimation.Opacity.Down" >
+    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" Storyboard.TargetName="HoverBkg_PART"/>
+  </Storyboard>
+
 </ResourceDictionary>
