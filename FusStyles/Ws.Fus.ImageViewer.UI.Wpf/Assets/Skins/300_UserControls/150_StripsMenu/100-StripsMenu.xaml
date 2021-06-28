@@ -2,11 +2,13 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:sm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu">
-  
+
   <Style x:Key="PlannindStripsMenuStyle" TargetType="{x:Type sm:StripsMenu}">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="Grid.Column" Value="2" />
     <Setter Property="Grid.Row" Value="1" />
+    <!--<Setter Property="ImageSize" Value="80" />-->
+    <Setter Property="Strips" Value="{Binding Strips}" />
   </Style>
 </ResourceDictionary>
