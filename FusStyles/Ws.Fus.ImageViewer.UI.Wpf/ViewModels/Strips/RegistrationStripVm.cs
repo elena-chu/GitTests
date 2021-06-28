@@ -7,7 +7,7 @@ using Prism.Commands;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 {
-    public class RegistrationStripVm: StripVM
+    public class RegistrationStripVm: StripVm
     {
         public DelegateCommand SetAsReferenceCommand { get; }
         public DelegateCommand CopyRegistrationsCommand { get; }

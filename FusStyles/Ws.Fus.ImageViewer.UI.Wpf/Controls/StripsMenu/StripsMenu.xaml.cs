@@ -18,6 +18,9 @@ using System.Windows.Shapes;
 //using Ws.Fus.ImageViewer.UI.Wpf.ViewModels;
 //using Serilog;
 using Ws.Extensions.UI.Wpf.Utils;
+using System.Collections;
+using Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips;
+
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 {
     /// <summary>
@@ -33,8 +36,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         /// </summary>
         private bool _groupsInitialized;
 
-        //public static readonly DependencyProperty StripTemplateSelectorProperty =
-        //    DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
+        public static readonly DependencyProperty StripTemplateSelectorProperty =
+            DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
 
         /// <summary>
         /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToCategoryConverter"/>
@@ -60,8 +63,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         //public static readonly DependencyProperty ImageConverterProperty =
         //    DependencyProperty.Register(nameof(ImageConverter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToImageConverter()));
 
-        //public static readonly DependencyProperty StripsProperty =
-        //    DependencyProperty.Register(nameof(Strips), typeof(IEnumerable<IStripVm<IStrip>>), typeof(StripsMenu), new PropertyMetadata(null));
+        public static readonly DependencyProperty StripsProperty =
+            DependencyProperty.Register(nameof(Strips), typeof(IEnumerable<StripVm>), typeof(StripsMenu), new PropertyMetadata(null));
 
         //public static readonly DependencyProperty StripActionsHolderProperty =
         //    DependencyProperty.RegisterAttached(nameof(StripActionsHolder), typeof(IStripActionsHolder), typeof(StripsMenu), new PropertyMetadata(null));
@@ -80,11 +83,11 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         //    get { return (DataTemplate)GetValue(StripTemplateProperty); }
         //    set { SetValue(StripTemplateProperty, value); }
         //}
-        //public DataTemplateSelector StripTemplateSelector
-        //{
-        //    get { return (DataTemplateSelector)GetValue(StripTemplateSelectorProperty); }
-        //    set { SetValue(StripTemplateSelectorProperty, value); }
-        //}
+        public DataTemplateSelector StripTemplateSelector
+        {
+            get { return (DataTemplateSelector)GetValue(StripTemplateSelectorProperty); }
+            set { SetValue(StripTemplateSelectorProperty, value); }
+        }
 
         public string Group1
         {
@@ -122,11 +125,11 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         //    set { SetValue(ImageConverterProperty, value); }
         //}
 
-        //public IEnumerable<IStrip> Strips
-        //{
-        //    get { return (IEnumerable<IStrip>)GetValue(StripsProperty); }
-        //    set { SetValue(StripsProperty, value); }
-        //}
+        public IEnumerable<IStrip> Strips
+        {
+            get { return (IEnumerable<IStrip>)GetValue(StripsProperty); }
+            set { SetValue(StripsProperty, value); }
+        }
 
         //public IStripActionsHolder StripActionsHolder
         //{

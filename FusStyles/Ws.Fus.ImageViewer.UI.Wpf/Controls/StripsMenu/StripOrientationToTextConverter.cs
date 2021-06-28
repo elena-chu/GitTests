@@ -6,12 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using Ws.Fus.Strips.Interfaces.Entities;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 {
     public class StripOrientationToTextConverter : IValueConverter
     {
+        public enum StripOrientation
+        {
+            eTOR_MRI_NO_ORIENTATION,
+            eTOR_MRI_CORONAL_SLICE,
+            eTOR_MRI_AXIAL_SLICE,
+            eTOR_MRI_SAGITTAL_SLICE,
+            eTOR_MRI_OBLIQUE_CORONAL_SLICE,
+            eTOR_MRI_OBLIQUE_AXIAL_SLICE,
+            eTOR_MRI_OBLIQUE_SAGITTAL_SLICE
+
+        }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try

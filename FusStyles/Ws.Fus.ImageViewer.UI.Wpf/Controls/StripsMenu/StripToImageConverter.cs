@@ -1,5 +1,4 @@
-﻿using Ws.Fus.Strips.Interfaces.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Ws.Fus.ImageViewer.UI.Wpf.ViewModels;
+using Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 {
@@ -19,7 +19,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         {
             try
             {
-                var stripVm = value as IStripVm<IStrip>;
+                var stripVm = value as StripVm;
                 var strip = stripVm.Strip;
                 return new WriteableBitmap(strip.Image);
             }

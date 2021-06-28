@@ -82,10 +82,16 @@
     <Compile Include="Controls\StepProgress\StepProgress.xaml.cs">
       <DependentUpon>StepProgress.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StripsMenu\IStripActionsHolder.cs" />
+    <Compile Include="Controls\StripsMenu\StripOrientationToTextConverter.cs" />
     <Compile Include="Controls\StripsMenu\StripsMenu.xaml.cs">
       <DependentUpon>StripsMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StripsMenu\StripsMenuConstants.cs" />
+    <Compile Include="Controls\StripsMenu\StripsMenuDefaultDtSelector.cs" />
+    <Compile Include="Controls\StripsMenu\StripToCategoryConverter.cs" />
+    <Compile Include="Controls\StripsMenu\StripToImageConverter.cs" />
+    <Compile Include="Controls\StripsMenu\StripToStudyNumberConverter.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuCommon.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuHeaderCompare.cs" />
     <Compile Include="Controls\ToolbarMenu\ToolbarMenuItem.cs" />
@@ -146,6 +152,7 @@
     </Compile>
     <Compile Include="ViewModels\Strips\IStrip.cs" />
     <Compile Include="ViewModels\Strips\RegistrationStripVm.cs" />
+    <Compile Include="ViewModels\Strips\Striplet.cs" />
     <Compile Include="ViewModels\Strips\StripVM.cs" />
     <Compile Include="ViewModels\Switch\CompositeSwitch.cs" />
     <Compile Include="ViewModels\Switch\IMultiSwitch{T}.cs" />

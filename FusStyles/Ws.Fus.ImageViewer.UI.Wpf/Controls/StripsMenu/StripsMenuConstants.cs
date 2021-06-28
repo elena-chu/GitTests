@@ -16,5 +16,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         // Dt - prefix for data template name
         public const string DtDefaultStrip = "http://insightec.com/fus/image-viewer/wpf/strips-menu/dt/default-strip-item";
         public const string DtDefault3d = "http://insightec.com/fus/image-viewer/wpf/strips-menu/dt/default-3d-item";
+        public const string DtLocalizerStrip = "http://insightec.com/fus/image-viewer/wpf/strips-menu/dt/localizer-strip-item";
     }
 }

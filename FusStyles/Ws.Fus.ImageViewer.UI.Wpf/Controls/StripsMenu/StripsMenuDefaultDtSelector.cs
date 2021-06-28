@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Ws.Fus.ImageViewer.UI.Wpf.Entities;
 using Ws.Fus.ImageViewer.UI.Wpf.ViewModels;
-using Ws.Fus.Strips.Interfaces.Entities;
+using Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 {
@@ -20,22 +19,30 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         {
             FrameworkElement element = container as FrameworkElement;
 
-            if (element != null && item != null && item is IStripVm<IStrip>)
+            if (element != null && item != null && item is StripVm)
             {
-                return SelectTemplateImp(item as IStripVm<IStrip>, element);
+                return SelectTemplateImp(item as StripVm, element);
             }
 
             return null;
         }
 
-        protected virtual DataTemplate SelectTemplateImp(IStripVm<IStrip> stripVm, FrameworkElement element)
+        protected virtual DataTemplate SelectTemplateImp(StripVm stripVm, FrameworkElement element)
         {
-            var strip = stripVm.Strip;
+            IStrip strip = stripVm.Strip;
             // The default strip templates must be defined in this project resource dictionary under the requested keys
-            if (strip is Strip3dStub)
-                return element.FindResource(StripsMenuConstants.DtDefault3d) as DataTemplate;
-            else
-                return element.FindResource(StripsMenuConstants.DtDefaultStrip) as DataTemplate;
+            //if (strip is Strip3dStub)
+            //    return element.FindResource(StripsMenuConstants.DtDefault3d) as DataTemplate;
+
+
+            var striplet = strip as Striplet;
+            if (striplet != null)
+            {
+                //if (striplet.Strips.All(s => s.HasMission<IStripMissionLocalizer>()))
+                    return element.FindResource(StripsMenuConstants.DtLocalizerStrip) as DataTemplate;
+            }
+            
+            return element.FindResource(StripsMenuConstants.DtDefaultStrip) as DataTemplate;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using Prism.Mvvm;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 {
@@ -43,4 +44,56 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         /// </summary>
         BitmapSource Image { get; }
     }
+
+    public class Strip: BindableBase, IStrip
+    {
+        //StripId Id { get; }
+
+        //StripId ParentId { get; }
+
+        private string _stripName;
+        public string StripName
+        {
+            get { return _stripName; }
+            set { SetProperty(ref _stripName, value); }
+        }
+
+        private StripOrientation _orientation;
+        public StripOrientation Orientation
+        {
+            get { return _orientation; }
+            set { SetProperty(ref _orientation, value); }
+        }
+
+        private bool _isLive;
+        public bool IsLive
+        {
+            get { return _isLive; }
+            set { SetProperty(ref _isLive, value); }
+        }
+
+        private bool _isReformatted;
+        public bool IsReformatted
+        {
+            get { return _isReformatted; }
+            set { SetProperty(ref _isReformatted, value); }
+        }
+
+        private int _imageCount;
+        public int ImageCount
+        {
+            get { return _imageCount; }
+            set { SetProperty(ref _imageCount, value); }
+        }
+
+        private BitmapSource _image;
+        public BitmapSource Image
+        {
+            get { return _image; }
+            set { SetProperty(ref _image, value); }
+        }
+    }
+
+
+
 }

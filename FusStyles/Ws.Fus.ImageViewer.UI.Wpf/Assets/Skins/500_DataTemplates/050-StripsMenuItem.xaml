@@ -12,13 +12,62 @@
     <MenuItem Header="_Delete"
               Command="{Binding DeleteCommand}" />
   </ContextMenu>
-  <!--<DataTemplate x:Key="{x:Static local:StripsMenuConstants.DtDefaultStrip}">
+  <DataTemplate x:Key="{x:Static local:StripsMenuConstants.DtDefaultStrip}">
     <DataTemplate.Resources>
       <local:StripOrientationToTextConverter x:Key="orientationConverter" />
       <converters:ConverterProxy x:Key="converterProxy" />
     </DataTemplate.Resources>
     <Grid ContextMenu="{StaticResource ContextMenuStripsMenuItem}"
-          IsEnabled="{Binding IsEnabled}"
+          Margin="0,0,5,5">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="{Binding Path=ImageSize, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+      </Grid.ColumnDefinitions>
+      <Image Grid.RowSpan="3"
+             Height="{Binding Path=ImageSize, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+             Width="{Binding Path=ImageSize, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+             Margin="3,3,3,3"
+             Source="{Binding Strip.Image}">
+        <!--<Image.Source>
+          <MultiBinding Converter="{StaticResource converterProxy}">
+            <Binding Path="ImageConverter" RelativeSource="{RelativeSource AncestorType={x:Type UserControl}}"/>
+            <Binding />
+          </MultiBinding>
+        </Image.Source>-->
+      </Image>
+      <TextBlock Grid.Row="0"
+        Foreground="White"
+        Text="{Binding Strip.StripName}"
+        TextAlignment="Center"
+        VerticalAlignment="Top"/>
+      <TextBlock Grid.Row="2"
+                 Foreground="White"
+                 Margin="0,0,0,2"
+                 TextAlignment="Center"
+                 VerticalAlignment="Bottom">
+          <Run Text="{Binding Strip.Orientation, Converter={StaticResource orientationConverter}, Mode=OneWay}" />
+          <Run Text=" (" />
+          <Run Text="{Binding Strip.ImageCount, Mode=OneWay}"/>
+          <Run Text=")" />
+      </TextBlock>
+      <Rectangle Fill="Black" 
+                 Stretch="Fill" 
+                 Grid.RowSpan="3" 
+                 Opacity=".6"
+                 Visibility="{Binding IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+    </Grid>
+  </DataTemplate>
+  
+  <DataTemplate x:Key="{x:Static local:StripsMenuConstants.DtLocalizerStrip}">
+    <DataTemplate.Resources>
+      <local:StripOrientationToTextConverter x:Key="orientationConverter" />
+      <converters:ConverterProxy x:Key="converterProxy" />
+    </DataTemplate.Resources>
+    <Grid ContextMenu="{StaticResource ContextMenuStripsMenuItem}"
           Margin="0,0,5,5">
       <Grid.RowDefinitions>
         <RowDefinition/>
@@ -41,7 +90,7 @@
       </Image>
       <TextBlock Grid.Row="0"
         Foreground="White"
-        Text="{Binding Strip.StripName}"
+        Text="3D Localizer"
         TextAlignment="Center"
         VerticalAlignment="Top"/>
       <TextBlock Grid.Row="2"
@@ -49,11 +98,16 @@
                  Margin="0,0,0,2"
                  TextAlignment="Center"
                  VerticalAlignment="Bottom">
-          <Run Text="{Binding Strip.Orientation, Converter={StaticResource orientationConverter}, Mode=OneWay}" />
+          <Run Text="MULTI" />
           <Run Text=" (" />
           <Run Text="{Binding Strip.ImageCount, Mode=OneWay}"/>
           <Run Text=")" />
       </TextBlock>
+      <Rectangle Fill="Black" 
+                 Stretch="Fill" 
+                 Grid.RowSpan="3" 
+                 Opacity=".6"
+                 Visibility="{Binding IsEnabled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
     </Grid>
   </DataTemplate>
   <DataTemplate x:Key="{x:Static local:StripsMenuConstants.DtDefault3d}">
@@ -68,5 +122,5 @@
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="3D" />
     </Grid>
-  </DataTemplate>-->
+  </DataTemplate>
 </ResourceDictionary>

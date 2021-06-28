@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using Ws.Fus.ImageViewer.UI.Wpf.ViewModels;
-using Ws.Fus.Strips.Interfaces.Entities;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 {
@@ -17,10 +16,11 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         {
             try
             {
-                var stripVm = value as IStripVm<IStrip>;
-                var strip = stripVm.Strip;
-                var studyId = strip.Series?.Study?.StudyId;
-                return string.IsNullOrWhiteSpace(studyId) ? string.Empty : "EXAM " + studyId;
+                //var stripVm = value as StripVm;
+                //var strip = stripVm.Strip;
+                //var studyId = strip.Series?.Study?.StudyId;
+                //return string.IsNullOrWhiteSpace(studyId) ? string.Empty : "EXAM " + studyId;
+                return "EXAM 25";
             }
             catch (Exception ex)
             {

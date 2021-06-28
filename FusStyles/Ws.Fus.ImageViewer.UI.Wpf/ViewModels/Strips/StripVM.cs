@@ -8,7 +8,7 @@ using Prism.Mvvm;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 {
-    public class StripVM : BindableBase
+    public class StripVm : BindableBase
     {
         protected readonly IStrip _strip;
 
