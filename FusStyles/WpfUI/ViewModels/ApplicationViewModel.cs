@@ -106,11 +106,14 @@ namespace WpfUI.ViewModels
 
             foreach (var item in pngFiles.Select((pngFile, i) => new { i, pngFile }))
             {
+                int randomNum = random.Next(500);
                 strips.Add(new Strip()
                 {
                     StripName = stripNameBase + item.i,
                     Image = new BitmapImage(new Uri(item.pngFile)),
-                    ImageCount = random.Next(500)
+                    ImageCount = randomNum,
+                    IsAvailable = randomNum % 2 != 0,
+                    IsLoaded = randomNum % 3 == 0
             });
             }
 

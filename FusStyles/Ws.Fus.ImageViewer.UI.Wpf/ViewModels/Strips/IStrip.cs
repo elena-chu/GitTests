@@ -30,6 +30,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
         StripOrientation Orientation { get; }
 
+        bool IsAvailable { get; }
+
+        bool IsLoaded { get; }
+
         bool IsLive { get; }
 
         bool IsReformatted { get; }
@@ -63,6 +67,30 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         {
             get { return _orientation; }
             set { SetProperty(ref _orientation, value); }
+        }
+
+        private bool _isAvailable = false;
+        public bool IsAvailable
+        {
+            get { return _isAvailable; }
+            set
+            {
+                SetProperty(ref _isAvailable, value);
+                if (!_isAvailable)
+                    IsLoaded = false;
+            }
+        }
+
+        private bool _isLoaded = false;
+        public bool IsLoaded
+        {
+            get { return _isLoaded; }
+            set
+            {
+                SetProperty(ref _isLoaded, value);
+                if (_isLoaded)
+                    IsAvailable = true;
+            }
         }
 
         private bool _isLive;
