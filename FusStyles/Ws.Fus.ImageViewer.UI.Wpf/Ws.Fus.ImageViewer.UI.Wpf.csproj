@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="ViewModels\Strips\IStrip.cs" />
     <Compile Include="ViewModels\Strips\RegistrationStripVm.cs" />
+    <Compile Include="ViewModels\Strips\Series.cs" />
     <Compile Include="ViewModels\Strips\Striplet.cs" />
     <Compile Include="ViewModels\Strips\StripVM.cs" />
     <Compile Include="ViewModels\Switch\CompositeSwitch.cs" />

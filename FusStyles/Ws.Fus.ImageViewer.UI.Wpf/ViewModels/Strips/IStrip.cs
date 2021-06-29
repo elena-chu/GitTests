@@ -43,6 +43,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         /// The representative image of the strip.
         /// </summary>
         BitmapSource Image { get; }
+
+        Series Series { get; }
     }
 
     public class Strip: BindableBase, IStrip
@@ -92,6 +94,14 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
             get { return _image; }
             set { SetProperty(ref _image, value); }
         }
+
+        private Series _series;
+        public Series Series
+        {
+            get { return _series; }
+            set { SetProperty(ref _series, value); }
+        }
+
     }
 
 

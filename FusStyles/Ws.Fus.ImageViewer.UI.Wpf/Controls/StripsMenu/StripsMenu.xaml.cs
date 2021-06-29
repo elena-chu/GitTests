@@ -45,8 +45,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         public static readonly DependencyProperty Group1Property =
             DependencyProperty.Register(nameof(Group1), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
 
-        //public static readonly DependencyProperty Group1ConverterProperty =
-        //    DependencyProperty.Register(nameof(Group1Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToCategoryConverter()));
+        public static readonly DependencyProperty Group1ConverterProperty =
+            DependencyProperty.Register(nameof(Group1Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToCategoryConverter()));
 
         /// <summary>
         /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToStudyNumberConverter"/>
@@ -54,8 +54,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         public static readonly DependencyProperty Group2Property =
             DependencyProperty.Register(nameof(Group2), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
 
-        //public static readonly DependencyProperty Group2ConverterProperty =
-        //    DependencyProperty.Register(nameof(Group2Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToStudyNumberConverter()));
+        public static readonly DependencyProperty Group2ConverterProperty =
+            DependencyProperty.Register(nameof(Group2Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToStudyNumberConverter()));
 
         public static readonly DependencyProperty ImageSizeProperty =
             DependencyProperty.Register(nameof(ImageSize), typeof(double), typeof(StripsMenu), new PropertyMetadata(100.0));
@@ -101,17 +101,17 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
             set { SetValue(Group2Property, value); }
         }
 
-        //public IValueConverter Group1Converter
-        //{
-        //    get { return (IValueConverter)GetValue(Group1ConverterProperty); }
-        //    set { SetValue(Group1ConverterProperty, value); }
-        //}
+        public IValueConverter Group1Converter
+        {
+            get { return (IValueConverter)GetValue(Group1ConverterProperty); }
+            set { SetValue(Group1ConverterProperty, value); }
+        }
 
-        //public IValueConverter Group2Converter
-        //{
-        //    get { return (IValueConverter)GetValue(Group2ConverterProperty); }
-        //    set { SetValue(Group2ConverterProperty, value); }
-        //}
+        public IValueConverter Group2Converter
+        {
+            get { return (IValueConverter)GetValue(Group2ConverterProperty); }
+            set { SetValue(Group2ConverterProperty, value); }
+        }
 
         public double ImageSize
         {
@@ -146,27 +146,27 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 
         private void InitializeStripGroups()
         {
-            //if (_groupsInitialized)
-            //    return;
+            if (_groupsInitialized)
+                return;
 
-            //if (lvStrips == null || lvStrips.ItemsSource == null)
-            //    return;
+            if (lvStrips == null || lvStrips.ItemsSource == null)
+                return;
 
-            //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvStrips.ItemsSource);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvStrips.ItemsSource);
 
-            //if (!string.IsNullOrWhiteSpace(Group1))
-            //{
-            //    var gd = Group1Converter == null ? new PropertyGroupDescription(Group1) : new PropertyGroupDescription(Group1, Group1Converter);
-            //    view.GroupDescriptions.Add(gd);
-            //}
+            if (!string.IsNullOrWhiteSpace(Group1))
+            {
+                var gd = Group1Converter == null ? new PropertyGroupDescription(Group1) : new PropertyGroupDescription(Group1, Group1Converter);
+                view.GroupDescriptions.Add(gd);
+            }
 
-            //if (!string.IsNullOrWhiteSpace(Group2))
-            //{
-            //    var gd = Group2Converter == null ? new PropertyGroupDescription(Group2) : new PropertyGroupDescription(Group2, Group2Converter);
-            //    view.GroupDescriptions.Add(gd);
-            //}
+            if (!string.IsNullOrWhiteSpace(Group2))
+            {
+                var gd = Group2Converter == null ? new PropertyGroupDescription(Group2) : new PropertyGroupDescription(Group2, Group2Converter);
+                view.GroupDescriptions.Add(gd);
+            }
 
-            //_groupsInitialized = true;
+            _groupsInitialized = true;
         }
 
         private void Strips_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
