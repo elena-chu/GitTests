@@ -49,12 +49,12 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         //}
         //public static readonly DependencyProperty StripTemplateProperty = DependencyProperty.Register("StripTemplate", typeof(DataTemplate), typeof(StripsMenu));
 
-        public DataTemplateSelector StripTemplateSelector
-        {
-            get { return (DataTemplateSelector)GetValue(StripTemplateSelectorProperty); }
-            set { SetValue(StripTemplateSelectorProperty, value); }
-        }
-        public static readonly DependencyProperty StripTemplateSelectorProperty = DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
+        //public DataTemplateSelector StripTemplateSelector
+        //{
+        //    get { return (DataTemplateSelector)GetValue(StripTemplateSelectorProperty); }
+        //    set { SetValue(StripTemplateSelectorProperty, value); }
+        //}
+        //public static readonly DependencyProperty StripTemplateSelectorProperty = DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
 
         #endregion
 
