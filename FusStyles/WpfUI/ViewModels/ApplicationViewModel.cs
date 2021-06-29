@@ -3,6 +3,11 @@ using Prism.Commands;
 using Ws.Extensions.UI.Wpf.Controls;
 using Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers;
 using Ws.Fus.ImageViewer.UI.Wpf;
+using System.Collections.ObjectModel;
+using Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips;
+using System.Windows.Media.Imaging;
+using System.IO;
+using System.Linq;
 
 namespace WpfUI.ViewModels
 {
@@ -35,6 +40,8 @@ namespace WpfUI.ViewModels
             _timer.IntervalMilliSeconds = 1000;
             _timer.ExecuteActionOnStart = true;
             _timer.StartTimer();
+
+            InitStrips();
         }
 
         #region Commands
@@ -72,5 +79,44 @@ namespace WpfUI.ViewModels
             set { SetProperty(ref _timeNow, value); }
         }
 
+
+        #region Strips
+
+        private ObservableCollection<IStrip> _strips;
+        public ObservableCollection<IStrip> Strips
+        {
+            get { return _strips; }
+            set
+            {
+                _strips = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private void InitStrips()
+        {
+            var imageFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\ImageLoad\ImageLoad\Images\");
+            var fullPath = Path.GetFullPath(new Uri(imageFolder).LocalPath);
+            string filter = "*.png";
+            string[] pngFiles = Directory.GetFiles(fullPath, filter);
+            var random = new Random();
+            
+            string stripNameBase = "Image 0";
+            ObservableCollection<IStrip> strips = new ObservableCollection<IStrip>();
+
+            foreach (var item in pngFiles.Select((pngFile, i) => new { i, pngFile }))
+            {
+                strips.Add(new Strip()
+                {
+                    StripName = stripNameBase + item.i,
+                    Image = new BitmapImage(new Uri(item.pngFile)),
+                    ImageCount = random.Next(500)
+            });
+            }
+
+            Strips = strips;
+        }
+
+        #endregion
     }
 }

@@ -6,6 +6,26 @@
 
   <sys:Double x:Key="XDouble.ColumnWidth.Arrow">25</sys:Double>
 
+  <Style x:Key="XStyle.ListBoxItem.Transparent" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="0"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <ContentPresenter
+            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+            TextBlock.FontFamily="{TemplateBinding FontFamily}"
+            TextBlock.FontSize="{TemplateBinding FontSize}"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <ControlTemplate x:Key="XControlTemplate.ListBoxItem.Base" TargetType="{x:Type ListBoxItem}">
     <Border
       x:Name="BackgroundBorder"

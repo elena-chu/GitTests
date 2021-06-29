@@ -1,24 +1,8 @@
-//using Ws.Extensions.UI.Wpf.Patterns;
-//using Ws.Fus.Strips.Interfaces.Entities;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-//using Ws.Fus.ImageViewer.UI.Wpf.ViewModels;
-//using Serilog;
-using Ws.Extensions.UI.Wpf.Utils;
-using System.Collections;
 using Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
@@ -28,114 +12,121 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
     /// </summary>
     public partial class StripsMenu : UserControl
     {
-        //private static readonly ILogger _logger = Log.ForContext<StripsMenu>();
-
-        //private DragNDropHelper<IStripVm<IStrip>> _stripsDragNDrop;
-        /// <summary>
-        /// To prevent multiple groups initialization evenry time when <see cref="FrameworkElement.Loaded"/> fires
-        /// </summary>
-        private bool _groupsInitialized;
-
-        public static readonly DependencyProperty StripTemplateSelectorProperty =
-            DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
-
-        /// <summary>
-        /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToCategoryConverter"/>
-        /// </summary>
-        public static readonly DependencyProperty Group1Property =
-            DependencyProperty.Register(nameof(Group1), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
-
-        //public static readonly DependencyProperty Group1ConverterProperty =
-        //    DependencyProperty.Register(nameof(Group1Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToCategoryConverter()));
-
-        /// <summary>
-        /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToStudyNumberConverter"/>
-        /// </summary>
-        public static readonly DependencyProperty Group2Property =
-            DependencyProperty.Register(nameof(Group2), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
-
-        //public static readonly DependencyProperty Group2ConverterProperty =
-        //    DependencyProperty.Register(nameof(Group2Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToStudyNumberConverter()));
-
-        public static readonly DependencyProperty ImageSizeProperty =
-            DependencyProperty.Register(nameof(ImageSize), typeof(double), typeof(StripsMenu), new PropertyMetadata(100.0));
-
-        //public static readonly DependencyProperty ImageConverterProperty =
-        //    DependencyProperty.Register(nameof(ImageConverter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToImageConverter()));
-
-        public static readonly DependencyProperty StripsProperty =
-            DependencyProperty.Register(nameof(Strips), typeof(IEnumerable<StripVm>), typeof(StripsMenu), new PropertyMetadata(null));
-
-        //public static readonly DependencyProperty StripActionsHolderProperty =
-        //    DependencyProperty.RegisterAttached(nameof(StripActionsHolder), typeof(IStripActionsHolder), typeof(StripsMenu), new PropertyMetadata(null));
-
-
-        public string DragNDrop { get; set; } = "StripDnD";
-
         public StripsMenu()
         {
             InitializeComponent();
-            Loaded += StripsMenu_Loaded;
         }
+
+        //private static readonly ILogger _logger = Log.ForContext<StripsMenu>();
+
+
+        #region Drag and Drop
+
+        //private DragNDropHelper<IStripVm<IStrip>> _stripsDragNDrop;
+
+        public string DragNDrop { get; set; } = "StripDnD";
+
+        #endregion
+
+
+        #region Template
 
         //public DataTemplate StripTemplate
         //{
         //    get { return (DataTemplate)GetValue(StripTemplateProperty); }
         //    set { SetValue(StripTemplateProperty, value); }
         //}
+        //public static readonly DependencyProperty StripTemplateProperty = DependencyProperty.Register("StripTemplate", typeof(DataTemplate), typeof(StripsMenu));
+
         public DataTemplateSelector StripTemplateSelector
         {
             get { return (DataTemplateSelector)GetValue(StripTemplateSelectorProperty); }
             set { SetValue(StripTemplateSelectorProperty, value); }
         }
+        public static readonly DependencyProperty StripTemplateSelectorProperty = DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
 
+        #endregion
+
+
+        #region Groups
+
+        /// <summary>
+        /// To prevent multiple groups initialization evenry time when <see cref="FrameworkElement.Loaded"/> fires
+        /// </summary>
+        private bool _groupsInitialized;
+
+        /// <summary>
+        /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToCategoryConverter"/>
+        /// </summary>
         public string Group1
         {
             get { return (string)GetValue(Group1Property); }
             set { SetValue(Group1Property, value); }
         }
-
-        public string Group2
-        {
-            get { return (string)GetValue(Group2Property); }
-            set { SetValue(Group2Property, value); }
-        }
+        public static readonly DependencyProperty Group1Property = DependencyProperty.Register(nameof(Group1), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
 
         //public IValueConverter Group1Converter
         //{
         //    get { return (IValueConverter)GetValue(Group1ConverterProperty); }
         //    set { SetValue(Group1ConverterProperty, value); }
         //}
+        //public static readonly DependencyProperty Group1ConverterProperty = DependencyProperty.Register(nameof(Group1Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToCategoryConverter()));
+
+        /// <summary>
+        /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToStudyNumberConverter"/>
+        /// </summary>
+        public string Group2
+        {
+            get { return (string)GetValue(Group2Property); }
+            set { SetValue(Group2Property, value); }
+        }
+        public static readonly DependencyProperty Group2Property = DependencyProperty.Register(nameof(Group2), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
 
         //public IValueConverter Group2Converter
         //{
         //    get { return (IValueConverter)GetValue(Group2ConverterProperty); }
         //    set { SetValue(Group2ConverterProperty, value); }
         //}
+        //public static readonly DependencyProperty Group2ConverterProperty = DependencyProperty.Register(nameof(Group2Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToStudyNumberConverter()));
+
+        #endregion
+
+
+        #region Image
 
         public double ImageSize
         {
             get { return (double)GetValue(ImageSizeProperty); }
             set { SetValue(ImageSizeProperty, value); }
         }
+        public static readonly DependencyProperty ImageSizeProperty = DependencyProperty.Register(nameof(ImageSize), typeof(double), typeof(StripsMenu), new PropertyMetadata(100.0));
 
         //public IValueConverter ImageConverter
         //{
         //    get { return (IValueConverter)GetValue(ImageConverterProperty); }
         //    set { SetValue(ImageConverterProperty, value); }
         //}
+        //public static readonly DependencyProperty ImageConverterProperty = DependencyProperty.Register(nameof(ImageConverter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToImageConverter()));
+
+        #endregion
+
+
+        #region Strips
 
         public IEnumerable<IStrip> Strips
         {
             get { return (IEnumerable<IStrip>)GetValue(StripsProperty); }
             set { SetValue(StripsProperty, value); }
         }
+        public static readonly DependencyProperty StripsProperty = DependencyProperty.Register(nameof(Strips), typeof(IEnumerable<IStrip>), typeof(StripsMenu));
+
 
         //public IStripActionsHolder StripActionsHolder
         //{
         //    get { return (IStripActionsHolder)GetValue(StripActionsHolderProperty); }
         //    set { SetValue(StripActionsHolderProperty, value); }
         //}
+        //public static readonly DependencyProperty StripActionsHolderProperty = DependencyProperty.RegisterAttached(nameof(StripActionsHolder), typeof(IStripActionsHolder), typeof(StripsMenu), new PropertyMetadata(null));
 
         private void StripsMenu_Loaded(object sender, RoutedEventArgs e)
         {
@@ -230,5 +221,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         //        StripActionsHolder.RaiseInvalidateStripCommands();
         //    }
         //}
+
+        #endregion
     }
 }
