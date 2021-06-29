@@ -290,7 +290,11 @@
         Style="{StaticResource styleStripsViewer}"
         Grid.Column="1" Grid.Row="1"/>
 
-      <sm:StripsMenu Style="{StaticResource PlannindStripsMenuStyle}" />
+      <sm:StripsMenu
+        Grid.Column="2"
+        Grid.Row="1"
+        extensions:IndependentSize.Margin="8,-5,0,-3"
+        Strips="{Binding Strips}"/>
 
       <Rectangle Style="{StaticResource BorderBottomRightHorizontalStyle}" Grid.Row="1" />
       <Rectangle Style="{StaticResource BorderBottomLeftHorizontalStyle}" Grid.Row="1" Grid.Column="2" />
