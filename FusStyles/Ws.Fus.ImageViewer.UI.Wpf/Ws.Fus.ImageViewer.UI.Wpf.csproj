@@ -149,6 +149,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\Strips\ImageGeometry.cs" />
     <Compile Include="ViewModels\Strips\IStrip.cs" />
     <Compile Include="ViewModels\Strips\RegistrationStripVm.cs" />
     <Compile Include="ViewModels\Strips\Series.cs" />
@@ -183,6 +184,10 @@
     <ProjectReference Include="..\Extensions.Wpf\Ws.Extensions.UI.Wpf.csproj">
       <Project>{31b8a50f-7c39-4903-8d27-4f07ed22726a}</Project>
       <Name>Ws.Extensions.UI.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions\Ws.Extensions.csproj">
+      <Project>{79B49F0D-DF9C-4C4F-8169-0686352589E1}</Project>
+      <Name>Ws.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj">
       <Project>{490ab4aa-3706-4137-afc6-0877b435d6b1}</Project>

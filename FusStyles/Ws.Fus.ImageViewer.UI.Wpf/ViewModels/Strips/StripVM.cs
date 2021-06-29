@@ -44,6 +44,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
         public IStrip Strip => _strip;
 
+        public ImageGeometry ImageGeometry { get; set; }
+
         public virtual object Clone() => MemberwiseClone();
 
     }
