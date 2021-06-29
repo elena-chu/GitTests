@@ -43,8 +43,8 @@
   <!--Strips-->
   <SolidColorBrush x:Key="XBrush.Strips.Frame.Loaded" Color="{StaticResource XColor.Button.Primary.Background.Pressed}"/>
   <SolidColorBrush x:Key="XBrush.Strips.Frame.Unloaded" Color="{StaticResource XColor.Control.Foreground.Disabled}"/>
-  <SolidColorBrush x:Key="XBrush.Strips.Text.Loaded" Color="{StaticResource XColor.Button.Primary.Background.Pressed}"/>
-  <SolidColorBrush x:Key="XBrush.Strips.Text.Unloaded" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
+  <SolidColorBrush x:Key="XBrush.Strips.Foreground.Loaded" Color="{StaticResource XColor.Button.Primary.Background.Pressed}"/>
+  <SolidColorBrush x:Key="XBrush.Strips.Foreground.Unloaded" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
 
   <!--Frame/Line-->
   <SolidColorBrush x:Key="XBrush.Frame" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>

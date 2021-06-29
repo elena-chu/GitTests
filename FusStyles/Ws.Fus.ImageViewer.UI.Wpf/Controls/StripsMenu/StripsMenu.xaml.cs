@@ -29,25 +29,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         #endregion
 
 
-        #region Template
-
-        //public DataTemplate StripTemplate
-        //{
-        //    get { return (DataTemplate)GetValue(StripTemplateProperty); }
-        //    set { SetValue(StripTemplateProperty, value); }
-        //}
-        //public static readonly DependencyProperty StripTemplateProperty = DependencyProperty.Register("StripTemplate", typeof(DataTemplate), typeof(StripsMenu));
-
-        public DataTemplateSelector StripTemplateSelector
-        {
-            get { return (DataTemplateSelector)GetValue(StripTemplateSelectorProperty); }
-            set { SetValue(StripTemplateSelectorProperty, value); }
-        }
-        public static readonly DependencyProperty StripTemplateSelectorProperty = DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
-
-        #endregion
-
-
         #region Groups
 
         /// <summary>

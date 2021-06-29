@@ -95,14 +95,30 @@
 
     <Style x:Key="LStyle.TextBlock" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
       <Setter Property="HorizontalAlignment" Value="Center"/>
-      <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Text.Unloaded}"/>
+      <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
+    </Style>
+    
+    <Style x:Key="LStyle.Image" TargetType="{x:Type Image}">
+      <Setter Property="Stretch" Value="UniformToFill"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Opacity" Value="1"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+          <Setter Property="Opacity" Value="0.6"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LStyle.ListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource XStyle.ListBoxItem.Transparent}">
+      <Setter Property="IsEnabled" Value="{Binding IsAvailable}"/>
+      <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Foreground.Unloaded}"/>
       <Style.Triggers>
         <DataTrigger Binding="{Binding IsLoaded}" Value="True">
-          <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Text.Loaded}"/>
+          <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Foreground.Loaded}"/>
         </DataTrigger>
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type Border}}}" Value="True"/>
+            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
             <Condition Binding="{Binding IsLoaded}" Value="True"/>
           </MultiDataTrigger.Conditions>
           <MultiDataTrigger.EnterActions>
@@ -122,7 +138,7 @@
         </MultiDataTrigger>
         <MultiDataTrigger>
           <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type Border}}}" Value="True"/>
+            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
             <Condition Binding="{Binding IsLoaded}" Value="False"/>
           </MultiDataTrigger.Conditions>
           <MultiDataTrigger.EnterActions>
@@ -142,21 +158,70 @@
         </MultiDataTrigger>
       </Style.Triggers>
     </Style>
-    
-    <Style x:Key="LStyle.Image" TargetType="{x:Type Image}">
-      <Setter Property="Stretch" Value="UniformToFill"/>
-      <Setter Property="VerticalAlignment" Value="Center"/>
-      <Setter Property="Opacity" Value="1"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
-          <Setter Property="Opacity" Value="0.6"/>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
 
-    <Style x:Key="LStyle.ListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource XStyle.ListBoxItem.Transparent}">
-      <Setter Property="IsEnabled" Value="{Binding IsAvailable}"/>
-    </Style>
+    <DataTemplate DataType="{x:Type vm:RegistrationStrip}">
+      <Border Style="{StaticResource LStyle.Border}">
+        <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <TextBlock
+            Grid.Row="0"
+            extensions:IndependentSize.Margin="0,0,0,3"
+            Text="{Binding StripName}"
+            Style="{StaticResource LStyle.TextBlock}"/>
+          <Image Grid.Row="1" Source="{Binding Image}" Style="{StaticResource LStyle.Image}"/>
+          <Border
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="{StaticResource XBrush.Application.Background}"
+            CornerRadius="{StaticResource XCornerRadius.Circle}"
+            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.25}"
+            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+            <Border.Style>
+              <Style TargetType="{x:Type Border}">
+                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="extensions:IndependentSize.Padding" Value="3.5"/>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding RegistrationStatus}" Value="NotReady">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding RegistrationStatus}" Value="Ready">
+                    <Setter Property="extensions:IndependentSize.Padding" Value="3"/>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </Border.Style>
+            <Path Stretch="UniformToFill" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}">
+              <Path.Style>
+                <Style TargetType="{x:Type Path}">
+                  <Setter Property="Data" Value="{x:Null}"/>
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding RegistrationStatus}" Value="Ready">
+                      <Setter Property="Data" Value="{StaticResource XGeometry.DashedCircleCheckmark}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RegistrationStatus}" Value="Approved">
+                      <Setter Property="Data" Value="{StaticResource XGeometry.FilledCircleCheckmark}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsReference}" Value="True">
+                      <Setter Property="Data" Value="{StaticResource XGeometry.FilledCircleRef}"/>
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </Path.Style>
+            </Path>
+          </Border>
+          <TextBlock
+            Grid.Row="2"
+            extensions:IndependentSize.Margin="0,3,0,0"
+            Text="{Binding ImageCount}"
+            Style="{StaticResource LStyle.TextBlock}"/>
+        </Grid>
+      </Border>
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:Strip}">
       <Border Style="{StaticResource LStyle.Border}">

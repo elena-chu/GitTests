@@ -88,7 +88,6 @@
       <DependentUpon>StripsMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\StripsMenu\StripsMenuConstants.cs" />
-    <Compile Include="Controls\StripsMenu\StripsMenuDefaultDtSelector.cs" />
     <Compile Include="Controls\StripsMenu\StripToCategoryConverter.cs" />
     <Compile Include="Controls\StripsMenu\StripToImageConverter.cs" />
     <Compile Include="Controls\StripsMenu\StripToStudyNumberConverter.cs" />
