@@ -25,51 +25,14 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
     /// </summary>
     public partial class StripsMenu : UserControl
     {
-        public StripsMenu()
-        {
-            InitializeComponent();
-        }
 
         //private static readonly ILogger _logger = Log.ForContext<StripsMenu>();
 
         //private DragNDropHelper<IStripVm<IStrip>> _stripsDragNDrop;
-        /// <summary>
-        /// To prevent multiple groups initialization evenry time when <see cref="FrameworkElement.Loaded"/> fires
-        /// </summary>
-        private bool _groupsInitialized;
 
-        public static readonly DependencyProperty StripTemplateSelectorProperty =
-            DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
-
-        /// <summary>
-        /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToCategoryConverter"/>
-        /// </summary>
-        public static readonly DependencyProperty Group1Property =
-            DependencyProperty.Register(nameof(Group1), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
-
-        public static readonly DependencyProperty Group1ConverterProperty =
-            DependencyProperty.Register(nameof(Group1Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToCategoryConverter()));
-
-        /// <summary>
-        /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToStudyNumberConverter"/>
-        /// </summary>
-        public static readonly DependencyProperty Group2Property =
-            DependencyProperty.Register(nameof(Group2), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
-
-        public static readonly DependencyProperty Group2ConverterProperty =
-            DependencyProperty.Register(nameof(Group2Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToStudyNumberConverter()));
-
-        public static readonly DependencyProperty ImageSizeProperty =
-            DependencyProperty.Register(nameof(ImageSize), typeof(double), typeof(StripsMenu), new PropertyMetadata(100.0));
 
         public string DragNDrop { get; set; } = "StripDnD";
 
-        #endregion
-
-
-        #region Template
-
-        public string DragNDrop { get; set; } = "StripDnD";
 
         public StripsMenu()
         {
@@ -77,6 +40,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
             Loaded += StripsMenu_Loaded;
         }
 
+        #region Template
+        
         //public DataTemplate StripTemplate
         //{
         //    get { return (DataTemplate)GetValue(StripTemplateProperty); }
@@ -92,7 +57,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         public static readonly DependencyProperty StripTemplateSelectorProperty = DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
 
         #endregion
-
 
         #region Groups
 
@@ -111,12 +75,12 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         }
         public static readonly DependencyProperty Group1Property = DependencyProperty.Register(nameof(Group1), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
 
-        //public IValueConverter Group1Converter
-        //{
-        //    get { return (IValueConverter)GetValue(Group1ConverterProperty); }
-        //    set { SetValue(Group1ConverterProperty, value); }
-        //}
-        //public static readonly DependencyProperty Group1ConverterProperty = DependencyProperty.Register(nameof(Group1Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToCategoryConverter()));
+        public IValueConverter Group1Converter
+        {
+            get { return (IValueConverter)GetValue(Group1ConverterProperty); }
+            set { SetValue(Group1ConverterProperty, value); }
+        }
+        public static readonly DependencyProperty Group1ConverterProperty = DependencyProperty.Register(nameof(Group1Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToCategoryConverter()));
 
         /// <summary>
         /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToStudyNumberConverter"/>
@@ -128,17 +92,16 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         }
         public static readonly DependencyProperty Group2Property = DependencyProperty.Register(nameof(Group2), typeof(string), typeof(StripsMenu), new PropertyMetadata("."));
 
-        public IValueConverter Group1Converter
-        {
-            get { return (IValueConverter)GetValue(Group1ConverterProperty); }
-            set { SetValue(Group1ConverterProperty, value); }
-        }
 
         public IValueConverter Group2Converter
         {
             get { return (IValueConverter)GetValue(Group2ConverterProperty); }
             set { SetValue(Group2ConverterProperty, value); }
         }
+        public static readonly DependencyProperty Group2ConverterProperty =
+            DependencyProperty.Register(nameof(Group2Converter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToStudyNumberConverter()));
+
+        #endregion
 
         #region Image
 
@@ -157,7 +120,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         //public static readonly DependencyProperty ImageConverterProperty = DependencyProperty.Register(nameof(ImageConverter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToImageConverter()));
 
         #endregion
-
 
         #region Strips
 
