@@ -22,6 +22,7 @@
   <CornerRadius x:Key="XCornerRadius.Frame.Right">0,4,4,0</CornerRadius>
   <CornerRadius x:Key="XCornerRadius.Frame.Top">4,4,0,0</CornerRadius>
   <CornerRadius x:Key="XCornerRadius.Frame.Bottom">0,0,4,4</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Circle">500</CornerRadius>
 
   <sys:Double x:Key="XRectRadius.X">4</sys:Double>
   <sys:Double x:Key="XRectRadius.Y">4</sys:Double>

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Prism.Mvvm;
 using System.Windows.Media.Imaging;
-using Prism.Mvvm;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 {
@@ -19,6 +14,13 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         eTOR_MRI_OBLIQUE_SAGITTAL_SLICE
 
     }
+
+    public enum RegistrationStatus
+    {
+        NotReady,
+        Ready,
+        Approved
+    };
 
     public interface IStrip
     {
@@ -132,6 +134,26 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
     }
 
+    public class RegistrationStrip : Strip
+    {
+        private RegistrationStatus _registrationStatus = RegistrationStatus.NotReady;
+        public RegistrationStatus RegistrationStatus
+        {
+            get { return _registrationStatus; }
+            set { SetProperty(ref _registrationStatus, value); }
+        }
 
+        private bool _isReference;
+        public bool IsReference
+        {
+            get { return _isReference; }
+            set
+            {
+                SetProperty(ref _isReference, value);
+                if (_isReference)
+                    IsAvailable = false;    // TODO: 1. when Compare, should be Loaded & Available 2. override IsAvailable and do logic
+            }
+        }
+    }
 
 }
