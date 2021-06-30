@@ -1,21 +1,8 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-//using Ws.Fus.ImageViewer.UI.Wpf.ViewModels;
-//using Serilog;
-using Ws.Extensions.UI.Wpf.Utils;
-using System.Collections;
 using Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
@@ -25,36 +12,19 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
     /// </summary>
     public partial class StripsMenu : UserControl
     {
-
-        //private static readonly ILogger _logger = Log.ForContext<StripsMenu>();
-
-        //private DragNDropHelper<IStripVm<IStrip>> _stripsDragNDrop;
-
-
-        public string DragNDrop { get; set; } = "StripDnD";
-
-
         public StripsMenu()
         {
             InitializeComponent();
-            Loaded += StripsMenu_Loaded;
         }
 
-        #region Template
+        //private static readonly ILogger _logger = Log.ForContext<StripsMenu>();
 
-        //public DataTemplate StripTemplate
-        //{
-        //    get { return (DataTemplate)GetValue(StripTemplateProperty); }
-        //    set { SetValue(StripTemplateProperty, value); }
-        //}
-        //public static readonly DependencyProperty StripTemplateProperty = DependencyProperty.Register("StripTemplate", typeof(DataTemplate), typeof(StripsMenu));
 
-        //public DataTemplateSelector StripTemplateSelector
-        //{
-        //    get { return (DataTemplateSelector)GetValue(StripTemplateSelectorProperty); }
-        //    set { SetValue(StripTemplateSelectorProperty, value); }
-        //}
-        //public static readonly DependencyProperty StripTemplateSelectorProperty = DependencyProperty.Register(nameof(StripTemplateSelector), typeof(DataTemplateSelector), typeof(StripsMenu), new PropertyMetadata(new StripsMenuDefaultDtSelector()));
+        #region Drag and Drop
+
+        //private DragNDropHelper<IStripVm<IStrip>> _stripsDragNDrop;
+
+        public string DragNDrop { get; set; } = "StripDnD";
 
         #endregion
 
@@ -65,6 +35,41 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         /// To prevent multiple groups initialization evenry time when <see cref="FrameworkElement.Loaded"/> fires
         /// </summary>
         private bool _groupsInitialized;
+
+        private void InitializeStripGroups()
+        {
+            if (_groupsInitialized)
+                return;
+
+            if (lvStrips == null || lvStrips.ItemsSource == null)
+                return;
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvStrips.ItemsSource);
+
+            if (!string.IsNullOrWhiteSpace(Group1))
+            {
+                var gd = Group1Converter == null ? new PropertyGroupDescription(Group1) : new PropertyGroupDescription(Group1, Group1Converter);
+                view.GroupDescriptions.Add(gd);
+            }
+
+            if (!string.IsNullOrWhiteSpace(Group2))
+            {
+                var gd = Group2Converter == null ? new PropertyGroupDescription(Group2) : new PropertyGroupDescription(Group2, Group2Converter);
+                view.GroupDescriptions.Add(gd);
+            }
+
+            _groupsInitialized = true;
+        }
+
+        private void InitGroupsTemp()
+        {
+            if (_groupsInitialized || lvStrips == null || lvStrips.ItemsSource == null)
+                return;
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvStrips.ItemsSource);
+            view.GroupDescriptions.Add(new PropertyGroupDescription("OrientationString"));
+            _groupsInitialized = true;
+        }
 
         /// <summary>
         /// Default Group1: <see cref="IStripVm{T}"/> with <see cref="StripToCategoryConverter"/>
@@ -104,6 +109,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 
         #endregion
 
+
         #region Image
 
         public double ImageSize
@@ -121,6 +127,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
         //public static readonly DependencyProperty ImageConverterProperty = DependencyProperty.Register(nameof(ImageConverter), typeof(IValueConverter), typeof(StripsMenu), new PropertyMetadata(new StripToImageConverter()));
 
         #endregion
+
 
         #region Strips
 
@@ -140,34 +147,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu
 
         private void StripsMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeStripGroups();
+            //InitializeStripGroups();
+            InitGroupsTemp();
             //if (DataContext is IStripActionsHolder && StripActionsHolder == null)
             //    StripActionsHolder = DataContext as IStripActionsHolder;
-        }
-
-        private void InitializeStripGroups()
-        {
-            if (_groupsInitialized)
-                return;
-
-            if (lvStrips == null || lvStrips.ItemsSource == null)
-                return;
-
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvStrips.ItemsSource);
-
-            if (!string.IsNullOrWhiteSpace(Group1))
-            {
-                var gd = Group1Converter == null ? new PropertyGroupDescription(Group1) : new PropertyGroupDescription(Group1, Group1Converter);
-                view.GroupDescriptions.Add(gd);
-            }
-
-            if (!string.IsNullOrWhiteSpace(Group2))
-            {
-                var gd = Group2Converter == null ? new PropertyGroupDescription(Group2) : new PropertyGroupDescription(Group2, Group2Converter);
-                view.GroupDescriptions.Add(gd);
-            }
-
-            _groupsInitialized = true;
         }
 
         private void Strips_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

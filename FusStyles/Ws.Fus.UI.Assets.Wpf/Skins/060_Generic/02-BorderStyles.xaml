@@ -67,7 +67,7 @@
 
   <Style x:Key="XStyle.Border.Background.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Background}">
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
-    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,0,0,1"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">

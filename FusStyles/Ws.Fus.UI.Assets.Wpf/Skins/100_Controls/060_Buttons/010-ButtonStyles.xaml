@@ -37,7 +37,7 @@
       Height="{TemplateBinding Height}"
       Width="{TemplateBinding Height}"
       CornerRadius="{StaticResource XCornerRadius.Frame}"
-      BorderThickness="{StaticResource XThickness.Frame}"
+      extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
       BorderBrush="{StaticResource XBrush.Application.Active}"
       Background="{StaticResource XBrush.Button.Secondary.Background}">
       <Border

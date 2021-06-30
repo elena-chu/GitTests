@@ -150,6 +150,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\Strips\ImageGeometry.cs" />
+    <Compile Include="ViewModels\Strips\StripServices.cs" />
     <Compile Include="ViewModels\Strips\IStrip.cs" />
     <Compile Include="ViewModels\Strips\RegistrationStripVm.cs" />
     <Compile Include="ViewModels\Strips\Series.cs" />

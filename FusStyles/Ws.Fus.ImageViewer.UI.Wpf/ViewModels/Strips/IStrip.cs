@@ -3,25 +3,6 @@ using System.Windows.Media.Imaging;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 {
-    public enum StripOrientation
-    {
-        eTOR_MRI_NO_ORIENTATION,
-        eTOR_MRI_CORONAL_SLICE,
-        eTOR_MRI_AXIAL_SLICE,
-        eTOR_MRI_SAGITTAL_SLICE,
-        eTOR_MRI_OBLIQUE_CORONAL_SLICE,
-        eTOR_MRI_OBLIQUE_AXIAL_SLICE,
-        eTOR_MRI_OBLIQUE_SAGITTAL_SLICE
-
-    }
-
-    public enum RegistrationStatus
-    {
-        NotReady,
-        Ready,
-        Approved
-    };
-
     public interface IStrip
     {
         //StripId Id { get; }
@@ -70,8 +51,14 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         public StripOrientation Orientation
         {
             get { return _orientation; }
-            set { SetProperty(ref _orientation, value); }
+            set
+            {
+                SetProperty(ref _orientation, value);
+                RaisePropertyChanged(nameof(OrientationString));
+            }
         }
+
+        public string OrientationString { get => Orientation.FriendlyName(); }
 
         private bool _isAvailable = false;
         public bool IsAvailable
@@ -136,7 +123,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
     public class RegistrationStrip : Strip
     {
-        private RegistrationStatus _registrationStatus = RegistrationStatus.NotReady;
+        private RegistrationStatus _registrationStatus = RegistrationStatus.Unregistered;
         public RegistrationStatus RegistrationStatus
         {
             get { return _registrationStatus; }

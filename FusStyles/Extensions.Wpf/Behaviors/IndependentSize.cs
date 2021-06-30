@@ -300,15 +300,8 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             FrameworkElement fe = d as FrameworkElement;
             if (fe == null || e.NewValue == null)
                 return;
-            Thickness source = (Thickness)e.NewValue;
-            Thickness target = new Thickness(
-                CalculateProportionalDouble(source.Left),
-                CalculateProportionalDouble(source.Top),
-                CalculateProportionalDouble(source.Right),
-                CalculateProportionalDouble(source.Bottom));
-            fe.Margin = target;
+            fe.Margin = GetCalculatedThickness((Thickness)e.NewValue);
         }
-
 
         /// <summary>
         /// Independent Padding property of FrameworkElement. Updates the original Padding property
@@ -330,12 +323,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
 
             if (border != null || textBlock != null || control != null)
             {
-                Thickness source = (Thickness)e.NewValue;
-                Thickness target = new Thickness(
-                    CalculateProportionalDouble(source.Left),
-                    CalculateProportionalDouble(source.Top),
-                    CalculateProportionalDouble(source.Right),
-                    CalculateProportionalDouble(source.Bottom));
+                Thickness target = GetCalculatedThickness((Thickness)e.NewValue);
 
                 if (border != null)
                     border.Padding = target;
@@ -345,6 +333,42 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                     control.Padding = target;
             }
         }
+
+        /// <summary>
+        /// Independent BorderThickness property of FrameworkElement. Updates the original BorderThickness property
+        /// </summary>
+        public static DependencyProperty BorderThicknessProperty = DependencyProperty.RegisterAttached("BorderThickness",
+            typeof(Thickness), typeof(IndependentSize), new UIPropertyMetadata(OnBorderThicknessPropertyChanged));
+
+        public static void SetBorderThickness(FrameworkElement obj, Thickness value) { obj.SetValue(BorderThicknessProperty, value); }
+        public static Thickness GetBorderThickness(FrameworkElement obj) { return (Thickness)obj.GetValue(BorderThicknessProperty); }
+
+        public static void OnBorderThicknessPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Border border = d as Border;
+            Control control = d as Control;
+
+            if (border != null || control != null)
+            {
+                Thickness target = GetCalculatedThickness((Thickness)e.NewValue);
+
+                if (border != null)
+                    border.BorderThickness = target;
+                if (control != null)
+                    control.BorderThickness = target;
+            }
+        }
+
+        public static Thickness GetCalculatedThickness(Thickness source)
+        {
+            return new Thickness(
+                CalculateProportionalDouble(source.Left),
+                CalculateProportionalDouble(source.Top),
+                CalculateProportionalDouble(source.Right),
+                CalculateProportionalDouble(source.Bottom));
+        }
+
+        // CornerRadius *****************************************
 
         /// <summary>
         /// Independent CornerRadius property of FrameworkElement. Updates the original CornerRadius property

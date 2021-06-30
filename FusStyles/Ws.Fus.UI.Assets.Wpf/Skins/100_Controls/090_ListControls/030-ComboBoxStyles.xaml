@@ -74,7 +74,7 @@
             Style="{StaticResource XStyle.Border}"
             Background="{StaticResource XBrush.Application.Background}"
             BorderBrush="{StaticResource XBrush.Button.Secondary.Background.Pressed}"
-            BorderThickness="{StaticResource XThickness.Frame}"
+            extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
             Opacity="0.95">
             <ContentControl x:Name="Popupcontent">
               <ScrollViewer>

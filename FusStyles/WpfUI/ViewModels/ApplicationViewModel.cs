@@ -97,14 +97,13 @@ namespace WpfUI.ViewModels
         {
             var imageFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\ImageLoad\ImageLoad\Images\");
             var fullPath = Path.GetFullPath(new Uri(imageFolder).LocalPath);
-            string filter = "*.png";
-            string[] pngFiles = Directory.GetFiles(fullPath, filter);
+            var imageFiles = Directory.GetFiles(fullPath, "*.*").Where(file => file.ToLower().EndsWith("png") || file.ToLower().EndsWith("bmp")).ToList();
             var random = new Random();
             
-            string stripNameBase = "Image 0";
+            string stripNameBase = "IMAGE 0";
             ObservableCollection<IStrip> strips = new ObservableCollection<IStrip>();
 
-            foreach (var item in pngFiles.Select((pngFile, i) => new { i, pngFile }))
+            foreach (var item in imageFiles.Select((pngFile, i) => new { i, pngFile }))
             {
                 int randomNum1 = random.Next(500);
                 int randomNum2 = random.Next(40);
@@ -114,9 +113,10 @@ namespace WpfUI.ViewModels
                     strips.Add(new RegistrationStrip()
                     {
                         StripName = stripNameBase + item.i,
+                        Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,
-                        IsAvailable = randomNum1 % 2 != 0,
+                        IsAvailable = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0,
                         RegistrationStatus = (RegistrationStatus)(randomNum2 % 3),
                         IsReference = randomNum2 % 4 == 0
@@ -127,9 +127,10 @@ namespace WpfUI.ViewModels
                     strips.Add(new Strip()
                     {
                         StripName = stripNameBase + item.i,
+                        Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,
-                        IsAvailable = randomNum1 % 2 != 0,
+                        IsAvailable = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0
                     });
                 }

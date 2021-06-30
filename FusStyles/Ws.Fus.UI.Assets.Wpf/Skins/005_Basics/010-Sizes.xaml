@@ -36,5 +36,6 @@
   <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Caption">15</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.ToolTip">14</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Thumbnail">12</sys:Double>
 
 </ResourceDictionary>

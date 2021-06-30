@@ -149,7 +149,7 @@
                 Background="{StaticResource XBrush.Application.Background}"
                 BorderBrush="{StaticResource XBrush.Frame}"
                 CornerRadius="{StaticResource XCornerRadius.Frame}"
-                BorderThickness="{StaticResource XThickness.Frame}">
+                extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}">
                 <StackPanel IsItemsHost="True"/>
               </Border>
             </Grid>
