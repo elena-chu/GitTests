@@ -25,9 +25,6 @@
       <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>
       <Setter Property="BorderBrush" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
       <Style.Triggers>
-        <!--<DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
-          <Setter Property="Opacity" Value="0.5"/>
-        </DataTrigger>-->
         <Trigger Property="IsMouseOver" Value="True">
           <Trigger.EnterActions>
             <BeginStoryboard>
@@ -148,14 +145,26 @@
           </Image>
           <Border Grid.Row="0" Style="{StaticResource LStyle.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"/>
           <TextBlock Grid.Row="0" extensions:IndependentSize.Margin="2" Text="{Binding StripName}" Style="{StaticResource LStyle.TextBlock}"/>
-          <Ellipse
+          <Border
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Fill="{StaticResource XBrush.Application.Background}"
+            Background="{StaticResource XBrush.Application.Background}"
             Opacity="0.7"
             Height="{Binding ActualHeight, ElementName=IconBorder}"
-            Width="{Binding ActualWidth, ElementName=IconBorder}"/>
+            Width="{Binding ActualWidth, ElementName=IconBorder}">
+            <Border.Style>
+              <Style TargetType="{x:Type Border}">
+                <Setter Property="extensions:IndependentSize.CornerRadius" Value="{StaticResource XCornerRadius.Circle}"/>
+                <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding IsReference}" Value="True">
+                    <Setter Property="extensions:IndependentSize.CornerRadius" Value="{StaticResource XCornerRadius.Frame}"/>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </Border.Style>
+          </Border>
           <Border
             x:Name="IconBorder"
             Grid.Row="1"
@@ -190,11 +199,24 @@
                       <Setter Property="Data" Value="{StaticResource XGeometry.FilledCircleCheckmark}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsReference}" Value="True">
-                      <Setter Property="Data" Value="{StaticResource XGeometry.FilledCircleRef}"/>
+                      <Setter Property="Data" Value="{StaticResource XGeometry.Reference}"/>
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding IsAvailable}" Value="False">
+                    <MultiDataTrigger>
+                      <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsAvailable}" Value="False"/>
+                        <Condition Binding="{Binding RegistrationStatus}" Value="Ready"/>
+                        <Condition Binding="{Binding IsReference}" Value="False"/>
+                      </MultiDataTrigger.Conditions>
                       <Setter Property="Fill" Value="{StaticResource XBrush.Strips.Foreground.Unloaded}"/>
-                    </DataTrigger>
+                    </MultiDataTrigger>
+                    <MultiDataTrigger>
+                      <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsAvailable}" Value="False"/>
+                        <Condition Binding="{Binding RegistrationStatus}" Value="Approved"/>
+                        <Condition Binding="{Binding IsReference}" Value="False"/>
+                      </MultiDataTrigger.Conditions>
+                      <Setter Property="Fill" Value="{StaticResource XBrush.Strips.Foreground.Unloaded}"/>
+                    </MultiDataTrigger>
                     <MultiDataTrigger>
                       <MultiDataTrigger.Conditions>
                         <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True"/>
