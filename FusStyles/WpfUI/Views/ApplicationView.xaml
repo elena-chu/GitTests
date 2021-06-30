@@ -39,7 +39,7 @@
       </Rectangle.Fill>
     </Rectangle>
 
-    <localView:TitleBarToolsView Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"/>
+    <localView:TitleBarToolsView Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"/>
 
     <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource XBrush.Line}" VerticalAlignment="Bottom"/>
 

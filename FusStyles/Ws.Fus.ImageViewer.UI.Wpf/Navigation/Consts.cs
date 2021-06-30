@@ -24,6 +24,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf
         //Utilities regions
         public const string SystemStatusIndicationRegion = "SystemStatusIndicationRegion";
         public const string WaitMessageRegion = "WaitMessageRegion";
+        public const string ScanProgressBar = "ScanProgressBarRegion";
 
     }
 

@@ -225,6 +225,10 @@
       <Project>{ba3a5528-aa5a-49ec-b5f5-3af32f79eedf}</Project>
       <Name>Ws.Fus.ImageViewer.UI.Wpf</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ws.Fus.Mr.UI.Wpf\Ws.Fus.Mr.UI.Wpf.csproj">
+      <Project>{217eb230-d3a1-4f95-a2e5-f427a3257092}</Project>
+      <Name>Ws.Fus.Mr.UI.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ws.Fus.Treatment.UI.Wpf\Ws.Fus.Treatment.UI.Wpf.csproj">
       <Project>{b6464e2d-4e9f-438b-8bda-f747091de660}</Project>
       <Name>Ws.Fus.Treatment.UI.Wpf</Name>

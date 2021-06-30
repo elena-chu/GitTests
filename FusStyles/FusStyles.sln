@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ws.Fus.UI.Wpf", "Fus.Wpf\Ws
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ws.Fus.ImageViewer.Interfaces", "Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj", "{490AB4AA-3706-4137-AFC6-0877B435D6B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ws.Fus.Mr.UI.Wpf", "Ws.Fus.Mr.UI.Wpf\Ws.Fus.Mr.UI.Wpf.csproj", "{217EB230-D3A1-4F95-A2E5-F427A3257092}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,18 @@ Global
 		{490AB4AA-3706-4137-AFC6-0877B435D6B1}.Release|x64.Build.0 = Release|Any CPU
 		{490AB4AA-3706-4137-AFC6-0877B435D6B1}.Release|x86.ActiveCfg = Release|Any CPU
 		{490AB4AA-3706-4137-AFC6-0877B435D6B1}.Release|x86.Build.0 = Release|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Debug|x64.Build.0 = Debug|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Debug|x86.Build.0 = Debug|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Release|x64.ActiveCfg = Release|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Release|x64.Build.0 = Release|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Release|x86.ActiveCfg = Release|Any CPU
+		{217EB230-D3A1-4F95-A2E5-F427A3257092}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

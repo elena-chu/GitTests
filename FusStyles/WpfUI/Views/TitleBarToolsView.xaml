@@ -4,8 +4,10 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:prism="http://prismlibrary.com/"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:lex="http://wpflocalizeextension.codeplex.com"
+  xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
   mc:Ignorable="d" 
   d:DesignHeight="100"
   d:DesignWidth="300">
@@ -22,15 +24,28 @@
     </Style>
 
   </UserControl.Resources>
-  
-  <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-    <Button Content="?" Width="Auto" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding HelpCommand}" />
-    <Button x:Name="SettngsBtn" TextBlock.FontFamily="Wingdings 2" Content="î" Width="Auto" VerticalAlignment="Center" Margin="6, 6,10,6" Background="Black"
+
+  <Grid >
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    
+    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ScanProgressBar}" Width="500"
+                       Grid.Column="0"
+                       HorizontalAlignment="Left"/>
+
+    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button Content="?" Width="Auto" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding HelpCommand}" />
+      <Button x:Name="SettngsBtn" TextBlock.FontFamily="Wingdings 2" Content="î" Width="Auto" VerticalAlignment="Center" Margin="6, 6,10,6" Background="Black"
             Command="{Binding OpenSettingsCommand}"
             Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-    <TextBlock Text="{Binding TimeNow, StringFormat='\{0:MMM dd.yyyy HH:mm\}'}" Foreground="White" VerticalAlignment="Center" />
-    <Button Content="{lex:Loc IDS_LBL_QUIT}" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding QuitCommand}"
+      <TextBlock Text="{Binding TimeNow, StringFormat='\{0:MMM dd.yyyy HH:mm\}'}" Foreground="White" VerticalAlignment="Center" />
+      <Button Content="{lex:Loc IDS_LBL_QUIT}" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding QuitCommand}"
             Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
-  </StackPanel>
+    </StackPanel>
+  </Grid>
+
+
 
 </UserControl>
