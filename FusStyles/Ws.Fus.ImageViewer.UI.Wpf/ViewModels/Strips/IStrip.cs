@@ -90,7 +90,13 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         virtual public bool IsCompareMode
         {
             get { return _isCompareMode; }
-            set { SetProperty(ref _isCompareMode, value); }
+            set
+            {
+                bool previousCompareMode = _isCompareMode;
+                SetProperty(ref _isCompareMode, value);
+                if (IsCompareMode && !previousCompareMode)
+                    Image = Image.ColorizeImage(StripServices.COLORMATRIX_TEAL);
+            }
         }
 
         private bool _isLive;
