@@ -4,6 +4,7 @@
   <!--Theme-->
   <Color x:Key="XColor.Application.Active">#FF20CAF9</Color>
   <Color x:Key="XColor.Application.Foreground">#FFFAFAFA</Color>
+  <Color x:Key="XColor.Application.Foreground.Secondary">#FFD0D0D0</Color>
   <Color x:Key="XColor.Application.Background">#FF000000</Color>
   <Color x:Key="XColor.Application.Background.Complementary">#FF191919</Color>
 
