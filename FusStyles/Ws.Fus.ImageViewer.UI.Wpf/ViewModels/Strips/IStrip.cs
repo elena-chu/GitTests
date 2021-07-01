@@ -17,6 +17,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
         bool IsLoaded { get; }
 
+        bool IsCompareMode { get; }
+
         bool IsLive { get; }
 
         bool IsReformatted { get; }
@@ -60,8 +62,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
         public string OrientationString { get => Orientation.FriendlyName(); }
 
-        private bool _isAvailable = false;
-        public bool IsAvailable
+        protected bool _isAvailable = false;
+        virtual public bool IsAvailable
         {
             get { return _isAvailable; }
             set
@@ -82,6 +84,13 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
                 if (_isLoaded)
                     IsAvailable = true;
             }
+        }
+
+        protected bool _isCompareMode = false;
+        virtual public bool IsCompareMode
+        {
+            get { return _isCompareMode; }
+            set { SetProperty(ref _isCompareMode, value); }
         }
 
         private bool _isLive;
@@ -137,9 +146,40 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
             set
             {
                 SetProperty(ref _isReference, value);
-                if (_isReference)
-                    IsAvailable = false;    // TODO: 1. when Compare, should be Loaded & Available 2. override IsAvailable and do logic
+                UpdateAvailability();
             }
+        }
+
+
+        override public bool IsAvailable
+        {
+            get { return _isAvailable; }
+            set
+            {
+                if (!IsCompareMode && IsReference && value)
+                    return;
+                if (IsCompareMode && IsReference && !value)
+                    return;
+                base.IsAvailable = value;
+            }
+        }
+
+        override public bool IsCompareMode
+        {
+            get { return _isCompareMode; }
+            set
+            {
+                base.IsCompareMode = value;
+                UpdateAvailability();
+            }
+        }
+
+        private void UpdateAvailability()
+        {
+            if (IsCompareMode && IsReference)
+                IsAvailable = true;
+            if (!IsCompareMode && IsReference)
+                IsAvailable = false;
         }
     }
 

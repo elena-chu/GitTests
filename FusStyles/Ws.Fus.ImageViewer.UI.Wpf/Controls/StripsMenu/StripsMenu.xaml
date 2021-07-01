@@ -30,6 +30,9 @@
       <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>
       <Setter Property="BorderBrush" Value="{StaticResource LBrush.Strips.Frame.Unloaded}"/>
       <Style.Triggers>
+        <DataTrigger Binding="{Binding IsCompareMode}" Value="True">
+          <Setter Property="Background" Value="HotPink"/>
+        </DataTrigger>
         <DataTrigger Binding="{Binding IsLoaded}" Value="True">
           <Setter Property="BorderBrush" Value="{StaticResource LBrush.Strips.Frame.Loaded}"/>
         </DataTrigger>
