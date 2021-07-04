@@ -41,7 +41,7 @@ namespace WpfUI.ViewModels
             _timer.ExecuteActionOnStart = true;
             _timer.StartTimer();
 
-            InitStrips(true);
+            InitStrips(true, true);
         }
 
         #region Commands
@@ -93,7 +93,7 @@ namespace WpfUI.ViewModels
             }
         }
 
-        private void InitStrips(bool registration)
+        private void InitStrips(bool registration, bool compareMode)
         {
             var imageFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\ImageLoad\ImageLoad\Images\");
             var fullPath = Path.GetFullPath(new Uri(imageFolder).LocalPath);
@@ -116,6 +116,7 @@ namespace WpfUI.ViewModels
                         Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,
+                        IsCompareMode = compareMode,
                         IsAvailable = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0,
                         RegistrationStatus = (RegistrationStatus)(randomNum2 % 3),
@@ -130,6 +131,7 @@ namespace WpfUI.ViewModels
                         Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,
+                        IsCompareMode = compareMode,
                         IsAvailable = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0
                     });
