@@ -58,7 +58,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
             }
         }
 
-        public string OrientationString { get => Orientation.FriendlyName(); }
+        public string OrientationString { get { return Orientation.FriendlyName(); } }
 
         private bool _isAvailable = false;
         public bool IsAvailable
