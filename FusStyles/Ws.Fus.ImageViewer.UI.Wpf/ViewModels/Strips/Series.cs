@@ -17,6 +17,33 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         //    Study = study;
         //}
 
+        public Series(string patientName,
+                      string patientId,
+                      double? sliceThickness = null,
+                      double? sliceSpacing = null,
+                      string resolution = null,
+                      int? seriesNumber = null,
+                      string seriesDescription = null)
+        {
+            PatientName = patientName;
+            PatientId = patientId;
+            SliceThickness = sliceThickness;
+            SliceSpacing = sliceSpacing;
+            Resolution = resolution;
+            SeriesNumber = seriesNumber;
+            SeriesDescription = seriesDescription;
+        }
+
+        public virtual string PatientName { get; set; }
+
+        public virtual string PatientId { get; set; }
+
+        public virtual double? SliceThickness { get; set; }
+
+        public virtual double? SliceSpacing { get; set; }
+
+        public virtual string Resolution { get; set; }
+
         public virtual string SeriesInstanceUid { get; set; }
 
         public virtual string StudyInstanceUid { get; set; }

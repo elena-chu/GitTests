@@ -190,13 +190,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
     public class RegistrationStrip : Strip
     {
-        //private RegistrationStatus _registrationStatus = RegistrationStatus.Unregistered;
-        //public RegistrationStatus RegistrationStatus
-        //{
-        //    get { return _registrationStatus; }
-        //    set { SetProperty(ref _registrationStatus, value); }
-        //}
-
         private bool _isReference;
         public bool IsReference
         {

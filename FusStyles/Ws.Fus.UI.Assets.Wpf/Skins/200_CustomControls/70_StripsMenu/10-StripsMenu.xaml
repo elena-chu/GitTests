@@ -7,7 +7,35 @@
   <SolidColorBrush x:Key="XBrush.Strips.Foreground.Loaded" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Strips.Foreground.Unloaded" Color="{StaticResource XColor.Application.Foreground.Secondary}"/>
 
+  <Style x:Key="XStyle.Strips.ToolTip" TargetType="{x:Type ToolTip}" BasedOn="{StaticResource {x:Type ToolTip}}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToolTip}">
+          <Border
+              Style="{StaticResource XStyle.Border.Frame}"
+              Background="{StaticResource XBrush.Application.Background}"
+              BorderBrush="{StaticResource XBrush.Application.Active}">
+            <ContentPresenter
+              extensions:IndependentSize.Margin="7,1,7,3"
+              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+              SnapsToDevicePixels="True">
+              <ContentPresenter.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}">
+                  <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+                  <Setter Property="Visibility" Value="{Binding Text, RelativeSource={RelativeSource Self}, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
+                </Style>
+              </ContentPresenter.Resources>
+            </ContentPresenter>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Style x:Key="XStyle.Strips.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="ToolTipService.InitialShowDelay" Value="1200"/>
+    <Setter Property="ToolTipService.ShowDuration" Value="6000"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="12,1"/>
     <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>

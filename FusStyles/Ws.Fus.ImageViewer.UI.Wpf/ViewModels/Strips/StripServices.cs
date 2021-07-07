@@ -17,13 +17,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         eTOR_MRI_OBLIQUE_SAGITTAL_SLICE
     }
 
-    //public enum RegistrationStatus
-    //{
-    //    Unregistered,
-    //    Ready,
-    //    Approved
-    //};
-
     public static class StripServices
     {
         public static string FriendlyName(this StripOrientation orientation)

@@ -119,11 +119,11 @@ namespace WpfUI.ViewModels
                         IsSecondary = compareMode,
                         IsEnabled = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0,
+                        Series = GetSeries(random),
                         IsReference = randomNum2 % 4 == 0,
                         IsRegistered = randomNum1 % 5 == 0,
                         HasAutoRegistration = randomNum2 % 4 != 0
                     });
-                    //RegistrationStatus = (RegistrationStatus)(randomNum2 % 3),
                 }
                 else
                 {
@@ -135,12 +135,50 @@ namespace WpfUI.ViewModels
                         ImageCount = randomNum1,
                         IsSecondary = compareMode,
                         IsEnabled = randomNum1 % 5 != 0,
-                        IsLoaded = randomNum1 % 3 == 0
+                        IsLoaded = randomNum1 % 3 == 0,
+                        Series = GetSeries(random),
                     });
                 }
             }
 
             Strips = strips;
+        }
+
+        private Series GetSeries(Random random)
+        {
+            int randomNumber = random.Next(700);
+
+            string patientName = GetRandomName(random);
+            string patientId = (randomNumber ^ 2).ToString();
+            double sliceThickness = randomNumber % 23 / 10.0;
+            double sliceSpacing = randomNumber % 19 / 10.0;
+            string resolution = (randomNumber % 256) + "x" + (randomNumber % 256);
+            int seriesNumber = randomNumber % 14;
+            string seriesDescription = GetRandomString(random);
+
+            return new Series(patientName, patientId, sliceThickness, sliceSpacing, resolution, seriesNumber, seriesDescription);
+        }
+
+        private string GetRandomString(Random random, int? requestedLength = null)
+        {
+            if (requestedLength == null && random.Next(429) % 5 == 0)
+                return null;
+
+            int length = requestedLength.HasValue ? requestedLength.Value : random.Next(4, 10);
+            string randomString = string.Empty;
+            for (int i = 0; i < length; i++)
+                randomString += ((char)(random.Next(1, 26) + 64)).ToString();
+            return randomString;
+        }
+
+        private string GetRandomName(Random random)
+        {
+            string name = GetRandomString(random, 1).ToUpper() +
+                          GetRandomString(random)?.ToLower() +
+                          " " +
+                          GetRandomString(random, 1).ToUpper() +
+                          GetRandomString(random)?.ToLower();
+            return name;
         }
 
         #endregion

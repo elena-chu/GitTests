@@ -19,9 +19,31 @@
     <!--<local:StripOrientationToTextConverter x:Key="orientationConverter" />-->
     <!--<extensions:BindingProxy x:Key="proxy" Data="{Binding StripActionsHolder, ElementName=parent}" />-->
 
-
     <DataTemplate DataType="{x:Type vm:RegistrationStrip}">
       <Border Style="{StaticResource XStyle.Strips.Border.Frame}">
+        <Border.Resources>
+          <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource XStyle.Strips.ToolTip}"/>
+        </Border.Resources>
+        <Border.ToolTip>
+          <StackPanel>
+            <TextBlock Text="{Binding Series.PatientName}"/>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="I.D. "/>
+              <TextBlock Text="{Binding Series.PatientId}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Series.SeriesDescription}"/>
+            <TextBlock Text="{Binding Series.SeriesNumber}"/>
+            <TextBlock Text="{Binding Series.Resolution}"/>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="{Binding Series.SliceThickness}"/>
+              <TextBlock Text="mm Thickness"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="{Binding Series.SliceSpacing}"/>
+              <TextBlock Text="mm Spacing"/>
+            </StackPanel>
+          </StackPanel>
+        </Border.ToolTip>
         <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -134,6 +156,29 @@
 
     <DataTemplate DataType="{x:Type vm:Strip}">
       <Border Style="{StaticResource XStyle.Strips.Border.Frame}">
+        <Border.Resources>
+          <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource XStyle.Strips.ToolTip}"/>
+        </Border.Resources>
+        <Border.ToolTip>
+          <StackPanel>
+            <TextBlock Text="{Binding Series.PatientName}"/>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="I.D. "/>
+              <TextBlock Text="{Binding Series.PatientId}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Series.SeriesDescription}"/>
+            <TextBlock Text="{Binding Series.SeriesNumber}"/>
+            <TextBlock Text="{Binding Series.Resolution}"/>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="{Binding Series.SliceThickness}"/>
+              <TextBlock Text="mm Thickness"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="{Binding Series.SliceSpacing}"/>
+              <TextBlock Text="mm Spacing"/>
+            </StackPanel>
+          </StackPanel>
+        </Border.ToolTip>
         <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

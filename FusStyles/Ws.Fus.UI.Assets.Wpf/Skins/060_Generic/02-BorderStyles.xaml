@@ -8,6 +8,11 @@
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
   </Style>
 
+  <Style x:Key="XStyle.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Frame}"/>
+    <Setter Property="BorderThickness" Value="{StaticResource XThickness.Frame}"/>
+  </Style>
+
   <Style x:Key="XStyle.Border.Background" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
     <Style.Triggers>
