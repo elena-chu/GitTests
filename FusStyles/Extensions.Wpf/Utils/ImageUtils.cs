@@ -181,6 +181,61 @@ namespace Ws.Extensions.UI.Wpf.Utils
             return ret;
         }
 
+        public static byte[] ColorizeRgb(byte[] array, Color color, bool isWhiteColorized, bool colorizeColored = false, int bytesPerPixel = 4)
+        {
+            if (array == null || array.Length <= bytesPerPixel)
+            {
+                return array;
+            }
 
+            int length = array.Length;
+
+            float col1_r = color.R / 255f;
+            float col1_g = color.G / 255f;
+            float col1_b = color.B / 255f;
+
+            byte[] targ = new byte[length];
+            for (int i = 0; i < length; i += bytesPerPixel)
+            {
+                int b1 = array[i];
+                int g1 = array[i + 1];
+                int r1 = array[i + 2];
+
+                bool isGray = r1 == g1 && g1 == b1;
+                if (!isGray && !colorizeColored)
+                {
+                    targ[i] = array[i];
+                    targ[i + 1] = array[i + 1];
+                    targ[i + 2] = array[i + 2];
+                    if (bytesPerPixel > 3)
+                        targ[i + 3] = array[i + 3];
+                    continue;
+                }
+
+
+                float gr = b1 / 255f;
+
+                //17ms using regular calculation
+                int r = Math.Min((int)((gr * col1_r) * 255f + 0.5), 255);
+                int g = Math.Min((int)((gr * col1_g) * 255f + 0.5), 255);
+                int b = Math.Min((int)((gr * col1_b) * 255f + 0.5), 255);
+
+                targ[i] = (byte)b;
+                targ[i + 1] = (byte)g;
+                targ[i + 2] = (byte)r;
+                if (bytesPerPixel > 3)
+                    targ[i + 3] = array[i + 3];
+
+                //77ms - Using Color.Multiply
+                //Color n = Color.Multiply(color, gr); 
+                //targ[i] = n.B;
+                //targ[i + 1] = n.G;
+                //targ[i + 2] = n.R;
+                //if (bytesPerPixel > 3)
+                //    targ[i + 3] = array[i + 3];
+            }
+
+            return targ;
+        }
     }
 }

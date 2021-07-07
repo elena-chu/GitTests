@@ -14,7 +14,7 @@
   <!--Controls-->
   <SolidColorBrush x:Key="XBrush.Control.Background.Disabled" Color="{StaticResource XColor.Control.Background.Disabled}"/>
   <SolidColorBrush x:Key="XBrush.Control.Foreground.Disabled" Color="{StaticResource XColor.Control.Foreground.Disabled}"/>
-  
+
   <!--Buttons-->
   <SolidColorBrush x:Key="XBrush.Button.Primary.Background" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Button.Primary.Background.Hover" Color="{StaticResource XColor.Button.Primary.Background.Hover}"/>
@@ -31,18 +31,25 @@
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Caption" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Alpha" Color="{StaticResource XColor.Application.Foreground}"/>
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Beta" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
-  
+
   <SolidColorBrush x:Key="XBrush.RadioButton.MainMenu.Inactive" Color="{StaticResource XColor.RadioButton.MainMenu.Inactive}"/>
+
+  <SolidColorBrush x:Key="XBrush.RadioButton.NavigationMenu.Inactive" Color="{StaticResource XColor.Button.Primary.Background.Disabled}"/>
+  <SolidColorBrush x:Key="XBrush.RadioButton.NavigationMenu.Active" Color="{StaticResource XColor.Button.Primary.Background.Hover}"/>
+
 
   <!--Switch-->
   <SolidColorBrush x:Key="XBrush.Switch.Foreground.On" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Background.On" Color="{StaticResource XColor.Switch.Background.On}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
   <SolidColorBrush x:Key="XBrush.Switch.Background.Off" Color="{StaticResource XColor.Control.Background.Disabled}"/>
-  
+
   <!--Frame/Line-->
   <SolidColorBrush x:Key="XBrush.Frame" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>
   <SolidColorBrush x:Key="XBrush.Line" Color="{StaticResource XColor.Line}" />
+
+  <!--Data Grid-->
+  <SolidColorBrush x:Key="XBrush.DataGrid.Row.Selected" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>
 
   <!--Logo-->
   <SolidColorBrush x:Key="XBrush.Logo.Plus" Color="{StaticResource XColor.Application.Active}"/>

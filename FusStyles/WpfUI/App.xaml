@@ -54,9 +54,11 @@
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/100_Slider/010-Slider.xaml"/>
         <!--<ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/090_ListControls/050-MenuStyles.xaml"/>-->
 
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/010-ExpanderStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/PinableExpanderStyle.xaml"/>
 
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/200_CustomControls/60_StatusIndicator/10-StatusIndicator.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/200_CustomControls/70_StripsMenu/10-StripsMenu.xaml"/>
 
         <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Resources.xaml"/>
         <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Themes/Generic.xaml"/>

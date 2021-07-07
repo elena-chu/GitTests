@@ -41,7 +41,7 @@ namespace WpfUI.ViewModels
             _timer.ExecuteActionOnStart = true;
             _timer.StartTimer();
 
-            InitStrips(true, true);
+            InitStrips(true, false);
         }
 
         #region Commands
@@ -116,12 +116,14 @@ namespace WpfUI.ViewModels
                         Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,
-                        IsCompareMode = compareMode,
-                        IsAvailable = randomNum1 % 5 != 0,
+                        IsSecondary = compareMode,
+                        IsEnabled = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0,
-                        RegistrationStatus = (RegistrationStatus)(randomNum2 % 3),
-                        IsReference = randomNum2 % 4 == 0
+                        IsReference = randomNum2 % 4 == 0,
+                        IsRegistered = randomNum1 % 5 == 0,
+                        HasAutoRegistration = randomNum2 % 4 != 0
                     });
+                    //RegistrationStatus = (RegistrationStatus)(randomNum2 % 3),
                 }
                 else
                 {
@@ -131,8 +133,8 @@ namespace WpfUI.ViewModels
                         Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,
-                        IsCompareMode = compareMode,
-                        IsAvailable = randomNum1 % 5 != 0,
+                        IsSecondary = compareMode,
+                        IsEnabled = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0
                     });
                 }

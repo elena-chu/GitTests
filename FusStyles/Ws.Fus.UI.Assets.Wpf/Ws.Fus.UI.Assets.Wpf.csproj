@@ -242,6 +242,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Skins\200_CustomControls\70_StripsMenu\10-StripsMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Skins\Assets.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

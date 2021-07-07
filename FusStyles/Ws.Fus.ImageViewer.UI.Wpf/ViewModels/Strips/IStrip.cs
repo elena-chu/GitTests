@@ -1,5 +1,9 @@
 ﻿using Prism.Mvvm;
 using System.Windows.Media.Imaging;
+using System;
+using System.Diagnostics;
+using Ws.Extensions.UI.Wpf.Utils;
+using System.Windows.Media;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 {
@@ -13,11 +17,11 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
         StripOrientation Orientation { get; }
 
-        bool IsAvailable { get; }
+        bool IsEnabled { get; }
 
         bool IsLoaded { get; }
 
-        bool IsCompareMode { get; }
+        bool IsSecondary { get; }
 
         bool IsLive { get; }
 
@@ -62,14 +66,14 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 
         public string OrientationString { get { return Orientation.FriendlyName(); } }
 
-        protected bool _isAvailable = false;
-        virtual public bool IsAvailable
+        protected bool _isEnabled = false;
+        virtual public bool IsEnabled
         {
-            get { return _isAvailable; }
+            get { return _isEnabled; }
             set
             {
-                SetProperty(ref _isAvailable, value);
-                if (!_isAvailable)
+                SetProperty(ref _isEnabled, value);
+                if (!_isEnabled)
                     IsLoaded = false;
             }
         }
@@ -82,20 +86,46 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
             {
                 SetProperty(ref _isLoaded, value);
                 if (_isLoaded)
-                    IsAvailable = true;
+                    IsEnabled = true;
             }
         }
 
-        protected bool _isCompareMode = false;
-        virtual public bool IsCompareMode
+        protected bool _isSecondary = false;
+        virtual public bool IsSecondary
         {
-            get { return _isCompareMode; }
+            get { return _isSecondary; }
             set
             {
-                bool previousCompareMode = _isCompareMode;
-                SetProperty(ref _isCompareMode, value);
-                if (IsCompareMode && !previousCompareMode)
-                    Image = Image.ColorizeImage(StripServices.COLORMATRIX_TEAL);
+                bool previousCompareMode = _isSecondary;
+                SetProperty(ref _isSecondary, value);
+                if (IsSecondary && !previousCompareMode)
+                {
+                    var start = DateTime.Now;
+                    var matrixCol = Image.ColorizeImage(StripServices.COLORMATRIX_TEAL);
+                    var end1= DateTime.Now;
+                    Debug.WriteLine($"Matrix colorize {end1 - start}");
+
+                    //Temp other example of conversion
+                    FormatConvertedBitmap newFormatedBitmapSource = new FormatConvertedBitmap(Image, PixelFormats.Bgra32, null, 0.0);
+                    byte[] arr1 = GetBytesFromBitmapSource(newFormatedBitmapSource);
+                    var colorized = ImageUtils.ColorizeRgb(arr1, Colors.Teal, false, true);
+                    BitmapSource bitmap = BitmapSource.Create(Image.PixelWidth,
+                        Image.PixelHeight,
+                        Image.DpiX, Image.DpiY,
+                        PixelFormats.Bgra32, null,
+                        colorized,
+                        GetStrideFromBitmapSource(newFormatedBitmapSource));
+                    var end2 = DateTime.Now;
+                    Debug.WriteLine($"Colorize Utile {end2 - end1}");
+
+                    Image = matrixCol;
+
+                    //Matrix colorize 00:00:00.1050105
+                    //Colorize Utile 00:00:00.0100010
+                    //Matrix colorize 00:00:00.1010101
+                    //Colorize Utile 00:00:00.0120012
+
+                }
             }
         }
 
@@ -134,16 +164,38 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
             set { SetProperty(ref _series, value); }
         }
 
+        private byte[] GetBytesFromBitmapSource(BitmapSource bmp)
+        {
+            int width = bmp.PixelWidth;
+            int height = bmp.PixelHeight;
+            int stride = GetStrideFromBitmapSource(bmp);
+
+            byte[] pixels = new byte[height * stride];
+
+            bmp.CopyPixels(pixels, stride, 0);
+
+            return pixels;
+        }
+
+        private int GetStrideFromBitmapSource(BitmapSource bmp)
+        {
+            int width = bmp.PixelWidth;
+            int height = bmp.PixelHeight;
+            int stride = width * ((bmp.Format.BitsPerPixel + 7) / 8);
+
+            return stride;
+        }
+
     }
 
     public class RegistrationStrip : Strip
     {
-        private RegistrationStatus _registrationStatus = RegistrationStatus.Unregistered;
-        public RegistrationStatus RegistrationStatus
-        {
-            get { return _registrationStatus; }
-            set { SetProperty(ref _registrationStatus, value); }
-        }
+        //private RegistrationStatus _registrationStatus = RegistrationStatus.Unregistered;
+        //public RegistrationStatus RegistrationStatus
+        //{
+        //    get { return _registrationStatus; }
+        //    set { SetProperty(ref _registrationStatus, value); }
+        //}
 
         private bool _isReference;
         public bool IsReference
@@ -156,36 +208,49 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
             }
         }
 
-
-        override public bool IsAvailable
+        public bool _isRegistered;
+        public bool IsRegistered
         {
-            get { return _isAvailable; }
+            get { return _isRegistered; }
+            set { SetProperty(ref _isRegistered, value); }
+        }
+
+        private bool _hasAutoRegistration;
+        public bool HasAutoRegistration
+        {
+            get { return _hasAutoRegistration; }
+            set { SetProperty(ref _hasAutoRegistration, value); }
+        }
+
+        override public bool IsEnabled
+        {
+            get { return _isEnabled; }
             set
             {
-                if (!IsCompareMode && IsReference && value)
+                if (!IsSecondary && IsReference && value)
                     return;
-                if (IsCompareMode && IsReference && !value)
+                if (IsSecondary && IsReference && !value)
                     return;
-                base.IsAvailable = value;
+                base.IsEnabled = value;
             }
         }
 
-        override public bool IsCompareMode
+        override public bool IsSecondary
         {
-            get { return _isCompareMode; }
+            get { return _isSecondary; }
             set
             {
-                base.IsCompareMode = value;
+                base.IsSecondary = value;
                 UpdateAvailability();
             }
         }
 
         private void UpdateAvailability()
         {
-            if (IsCompareMode && IsReference)
-                IsAvailable = true;
-            if (!IsCompareMode && IsReference)
-                IsAvailable = false;
+            if (IsSecondary && IsReference)
+                IsEnabled = true;
+            if (!IsSecondary && IsReference)
+                IsEnabled = false;
         }
     }
 

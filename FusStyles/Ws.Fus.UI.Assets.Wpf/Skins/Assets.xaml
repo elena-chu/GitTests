@@ -23,6 +23,7 @@
     <ResourceDictionary Source="060_Generic/01_GenericStyles.xaml"/>
     <ResourceDictionary Source="060_Generic/02-BorderStyles.xaml"/>
 
+    <!--Controls-->
     <ResourceDictionary Source="100_Controls/010_Controls/010-ControlStyles.xaml"/>
     <ResourceDictionary Source="100_Controls/010_Controls/020-ControlTemplates.xaml"/>
     <ResourceDictionary Source="100_Controls/010_Controls/040-ScrollStyles.xaml"/>

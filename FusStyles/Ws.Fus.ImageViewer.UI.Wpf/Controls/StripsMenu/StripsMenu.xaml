@@ -19,143 +19,16 @@
     <!--<local:StripOrientationToTextConverter x:Key="orientationConverter" />-->
     <!--<extensions:BindingProxy x:Key="proxy" Data="{Binding StripActionsHolder, ElementName=parent}" />-->
 
-    <SolidColorBrush x:Key="LBrush.Strips.Frame.Loaded" Color="{StaticResource XColor.Button.Primary.Background.Pressed}"/>
-    <SolidColorBrush x:Key="LBrush.Strips.Frame.Unloaded" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
-    <SolidColorBrush x:Key="LBrush.Strips.Foreground.Loaded" Color="{StaticResource XColor.Application.Active}"/>
-    <SolidColorBrush x:Key="LBrush.Strips.Foreground.Unloaded" Color="{StaticResource XColor.Application.Foreground.Secondary}"/>
-
-    <Style x:Key="LStyle.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
-      <Setter Property="extensions:IndependentSize.Margin" Value="12,1"/>
-      <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
-      <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>
-      <Setter Property="BorderBrush" Value="{StaticResource LBrush.Strips.Frame.Unloaded}"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding IsLoaded}" Value="True">
-          <Setter Property="BorderBrush" Value="{StaticResource LBrush.Strips.Frame.Loaded}"/>
-        </DataTrigger>
-        <Trigger Property="IsMouseOver" Value="True">
-          <Trigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.BorderThickness)" To="2" Duration="{StaticResource XDuration.Animation.Short}"/>
-                <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.Margin)" To="11,0" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </Trigger.EnterActions>
-          <Trigger.ExitActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.BorderThickness)" To="{StaticResource XThickness.Frame}" Duration="{StaticResource XDuration.Animation.Short}"/>
-                <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.Margin)" To="12,1" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </Trigger.ExitActions>
-        </Trigger>
-        <MultiDataTrigger>
-          <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
-            <Condition Binding="{Binding IsLoaded}" Value="True"/>
-          </MultiDataTrigger.Conditions>
-          <MultiDataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
-                <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </MultiDataTrigger.EnterActions>
-          <MultiDataTrigger.ExitActions>
-            <BeginStoryboard>
-              <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
-                <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </MultiDataTrigger.ExitActions>
-        </MultiDataTrigger>
-        <MultiDataTrigger>
-          <MultiDataTrigger.Conditions>
-            <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
-            <Condition Binding="{Binding IsLoaded}" Value="False"/>
-          </MultiDataTrigger.Conditions>
-          <MultiDataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
-                <ColorAnimation To="{StaticResource XColor.Application.Foreground.Secondary}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </MultiDataTrigger.EnterActions>
-          <MultiDataTrigger.ExitActions>
-            <BeginStoryboard>
-              <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
-                <ColorAnimation To="{StaticResource XColor.Button.IconButton.Caption}" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </MultiDataTrigger.ExitActions>
-        </MultiDataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Border.Emphasis" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
-      <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
-      <Setter Property="Opacity" Value="0.6"/>
-    </Style>
-
-    <Style x:Key="LStyle.TextBlock" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
-      <Setter Property="HorizontalAlignment" Value="Center"/>
-      <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
-      <Setter Property="Foreground" Value="{StaticResource LBrush.Strips.Foreground.Unloaded}"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding IsLoaded}" Value="True">
-          <Setter Property="Foreground" Value="{StaticResource LBrush.Strips.Foreground.Loaded}"/>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Image" TargetType="{x:Type Image}">
-      <Setter Property="Stretch" Value="UniformToFill"/>
-      <Setter Property="VerticalAlignment" Value="Center"/>
-      <Setter Property="Opacity" Value="0.88"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
-          <Setter Property="Opacity" Value="0.6"/>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard Storyboard.TargetProperty="Opacity">
-                <DoubleAnimation To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-          <DataTrigger.ExitActions>
-            <BeginStoryboard>
-              <Storyboard Storyboard.TargetProperty="Opacity">
-                <DoubleAnimation To="0.88" Duration="{StaticResource XDuration.Animation.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.ExitActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.ListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource XStyle.ListBoxItem.Transparent}">
-      <Setter Property="IsEnabled" Value="{Binding IsAvailable}"/>
-      <Setter Property="extensions:IndependentSize.Margin" Value="0,4,0,6"/>
-      <Style.Triggers>
-        <Trigger Property="IsEnabled" Value="False">
-          <Setter Property="Opacity" Value="0.5"/>
-        </Trigger>
-      </Style.Triggers>
-    </Style>
 
     <DataTemplate DataType="{x:Type vm:RegistrationStrip}">
-      <Border Style="{StaticResource LStyle.Border.Frame}">
+      <Border Style="{StaticResource XStyle.Strips.Border.Frame}">
         <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
-          <Image Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" Style="{StaticResource LStyle.Image}">
+          <Image Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" Style="{StaticResource XStyle.Strips.Image}">
             <Image.OpacityMask>
               <VisualBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Center">
                 <VisualBrush.Visual>
@@ -168,8 +41,8 @@
               </VisualBrush>
             </Image.OpacityMask>
           </Image>
-          <Border Grid.Row="0" Style="{StaticResource LStyle.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"/>
-          <TextBlock Grid.Row="0" extensions:IndependentSize.Margin="2" Text="{Binding StripName}" Style="{StaticResource LStyle.TextBlock}"/>
+          <Border Grid.Row="0" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"/>
+          <TextBlock Grid.Row="0" extensions:IndependentSize.Margin="2" Text="{Binding StripName}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
           <Border
             Grid.Row="1"
             HorizontalAlignment="Center"
@@ -177,7 +50,8 @@
             Background="{StaticResource XBrush.Application.Background}"
             Opacity="0.7"
             Height="{Binding ActualHeight, ElementName=IconBorder}"
-            Width="{Binding ActualWidth, ElementName=IconBorder}">
+            Width="{Binding ActualWidth, ElementName=IconBorder}"
+            Visibility="{Binding Visibility, ElementName=IconBorder}">
             <Border.Style>
               <Style TargetType="{x:Type Border}">
                 <Setter Property="extensions:IndependentSize.CornerRadius" Value="{StaticResource XCornerRadius.Circle}"/>
@@ -201,11 +75,12 @@
                 <Setter Property="Visibility" Value="Visible"/>
                 <Setter Property="extensions:IndependentSize.Padding" Value="3.5"/>
                 <Style.Triggers>
-                  <DataTrigger Binding="{Binding RegistrationStatus}" Value="Unregistered">
+                  <DataTrigger Binding="{Binding IsRegistered}" Value="False">
                     <Setter Property="Visibility" Value="Collapsed"/>
                   </DataTrigger>
-                  <DataTrigger Binding="{Binding RegistrationStatus}" Value="Ready">
+                  <DataTrigger Binding="{Binding HasAutoRegistration}" Value="True">
                     <Setter Property="extensions:IndependentSize.Padding" Value="3"/>
+                    <Setter Property="Visibility" Value="Visible"/>
                   </DataTrigger>
                 </Style.Triggers>
               </Style>
@@ -214,12 +89,12 @@
               <Path.Style>
                 <Style TargetType="{x:Type Path}">
                   <Setter Property="Data" Value="{x:Null}"/>
-                  <Setter Property="Fill" Value="{StaticResource LBrush.Strips.Foreground.Loaded}"/>
+                  <Setter Property="Fill" Value="{StaticResource XBrush.Strips.Foreground.Loaded}"/>
                   <Style.Triggers>
-                    <DataTrigger Binding="{Binding RegistrationStatus}" Value="Ready">
+                    <DataTrigger Binding="{Binding HasAutoRegistration}" Value="True">
                       <Setter Property="Data" Value="{StaticResource XGeometry.DashedCircleCheckmark}"/>
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding RegistrationStatus}" Value="Approved">
+                    <DataTrigger Binding="{Binding IsRegistered}" Value="True">
                       <Setter Property="Data" Value="{StaticResource XGeometry.FilledCircleCheckmark}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsReference}" Value="True">
@@ -227,45 +102,45 @@
                     </DataTrigger>
                     <MultiDataTrigger>
                       <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding IsAvailable}" Value="False"/>
-                        <Condition Binding="{Binding RegistrationStatus}" Value="Ready"/>
+                        <Condition Binding="{Binding IsEnabled}" Value="False"/>
+                        <Condition Binding="{Binding HasAutoRegistration}" Value="True"/>
                         <Condition Binding="{Binding IsReference}" Value="False"/>
                       </MultiDataTrigger.Conditions>
-                      <Setter Property="Fill" Value="{StaticResource LBrush.Strips.Frame.Unloaded}"/>
+                      <Setter Property="Fill" Value="{StaticResource XBrush.Strips.Frame.Unloaded}"/>
                     </MultiDataTrigger>
                     <MultiDataTrigger>
                       <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding IsAvailable}" Value="False"/>
-                        <Condition Binding="{Binding RegistrationStatus}" Value="Approved"/>
+                        <Condition Binding="{Binding IsEnabled}" Value="False"/>
+                        <Condition Binding="{Binding IsRegistered}" Value="True"/>
                         <Condition Binding="{Binding IsReference}" Value="False"/>
                       </MultiDataTrigger.Conditions>
-                      <Setter Property="Fill" Value="{StaticResource LBrush.Strips.Frame.Unloaded}"/>
+                      <Setter Property="Fill" Value="{StaticResource XBrush.Strips.Frame.Unloaded}"/>
                     </MultiDataTrigger>
                   </Style.Triggers>
                 </Style>
               </Path.Style>
             </Path>
           </Border>
-          <Border Grid.Row="2" Style="{StaticResource LStyle.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Bottom}"/>
+          <Border Grid.Row="2" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Bottom}"/>
           <StackPanel Grid.Row="2" extensions:IndependentSize.Margin="2" HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="{Binding OrientationString}" Style="{StaticResource LStyle.TextBlock}"/>
-            <TextBlock Text=" (" Style="{StaticResource LStyle.TextBlock}"/>
-            <TextBlock Text="{Binding ImageCount}" Style="{StaticResource LStyle.TextBlock}"/>
-            <TextBlock Text=")" Style="{StaticResource LStyle.TextBlock}"/>
+            <TextBlock Text="{Binding OrientationString}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+            <TextBlock Text=" (" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+            <TextBlock Text="{Binding ImageCount}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+            <TextBlock Text=")" Style="{StaticResource XStyle.Strips.TextBlock}"/>
           </StackPanel>
         </Grid>
       </Border>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:Strip}">
-      <Border Style="{StaticResource LStyle.Border.Frame}">
+      <Border Style="{StaticResource XStyle.Strips.Border.Frame}">
         <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
-          <Image Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" Style="{StaticResource LStyle.Image}">
+          <Image Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" Style="{StaticResource XStyle.Strips.Image}">
             <Image.OpacityMask>
               <VisualBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Center">
                 <VisualBrush.Visual>
@@ -278,14 +153,14 @@
               </VisualBrush>
             </Image.OpacityMask>
           </Image>
-          <Border Grid.Row="0" Style="{StaticResource LStyle.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"/>
-          <TextBlock Grid.Row="0" extensions:IndependentSize.Margin="2" Text="{Binding StripName}" Style="{StaticResource LStyle.TextBlock}"/>
-          <Border Grid.Row="2" Style="{StaticResource LStyle.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Bottom}"/>
+          <Border Grid.Row="0" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"/>
+          <TextBlock Grid.Row="0" extensions:IndependentSize.Margin="2" Text="{Binding StripName}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+          <Border Grid.Row="2" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Bottom}"/>
           <StackPanel Grid.Row="2" extensions:IndependentSize.Margin="2" HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="{Binding OrientationString}" Style="{StaticResource LStyle.TextBlock}"/>
-            <TextBlock Text=" (" Style="{StaticResource LStyle.TextBlock}"/>
-            <TextBlock Text="{Binding ImageCount}" Style="{StaticResource LStyle.TextBlock}"/>
-            <TextBlock Text=")" Style="{StaticResource LStyle.TextBlock}"/>
+            <TextBlock Text="{Binding OrientationString}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+            <TextBlock Text=" (" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+            <TextBlock Text="{Binding ImageCount}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+            <TextBlock Text=")" Style="{StaticResource XStyle.Strips.TextBlock}"/>
           </StackPanel>
         </Grid>
       </Border>
@@ -317,7 +192,7 @@
               TextAlignment="Center"
               Text="{Binding Name}"
               Style="{StaticResource XStyle.TextBlock.Caption}"
-              Foreground="{StaticResource LBrush.Strips.Foreground.Unloaded}"/>
+              Foreground="{StaticResource XBrush.Strips.Foreground.Unloaded}"/>
           </DataTemplate>
         </GroupStyle.HeaderTemplate>
         <GroupStyle.ContainerStyle>

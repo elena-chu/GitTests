@@ -17,12 +17,12 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
         eTOR_MRI_OBLIQUE_SAGITTAL_SLICE
     }
 
-    public enum RegistrationStatus
-    {
-        Unregistered,
-        Ready,
-        Approved
-    };
+    //public enum RegistrationStatus
+    //{
+    //    Unregistered,
+    //    Ready,
+    //    Approved
+    //};
 
     public static class StripServices
     {
@@ -61,8 +61,13 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
             using (MemoryStream outStream = new MemoryStream())
             {
                 BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapSource));
-                enc.Save(outStream);
+                try
+                {
+                    enc.Frames.Add(BitmapFrame.Create(bitmapSource));
+                    enc.Save(outStream);
+                }
+                catch (NotSupportedException)
+                { }
                 return new Bitmap(outStream);
             }
         }

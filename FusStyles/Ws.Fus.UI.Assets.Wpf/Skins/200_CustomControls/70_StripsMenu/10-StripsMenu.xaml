@@ -1,0 +1,132 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <SolidColorBrush x:Key="XBrush.Strips.Frame.Loaded" Color="{StaticResource XColor.Button.Primary.Background.Pressed}"/>
+  <SolidColorBrush x:Key="XBrush.Strips.Frame.Unloaded" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
+  <SolidColorBrush x:Key="XBrush.Strips.Foreground.Loaded" Color="{StaticResource XColor.Application.Active}"/>
+  <SolidColorBrush x:Key="XBrush.Strips.Foreground.Unloaded" Color="{StaticResource XColor.Application.Foreground.Secondary}"/>
+
+  <Style x:Key="XStyle.Strips.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="extensions:IndependentSize.Margin" Value="12,1"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Strips.Frame.Unloaded}"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding IsLoaded}" Value="True">
+        <Setter Property="BorderBrush" Value="{StaticResource XBrush.Strips.Frame.Loaded}"/>
+      </DataTrigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.BorderThickness)" To="2" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.Margin)" To="11,0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.BorderThickness)" To="{StaticResource XThickness.Frame}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ThicknessAnimation Storyboard.TargetProperty="(extensions:IndependentSize.Margin)" To="12,1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+          <Condition Binding="{Binding IsLoaded}" Value="True"/>
+        </MultiDataTrigger.Conditions>
+        <MultiDataTrigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiDataTrigger.EnterActions>
+        <MultiDataTrigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
+              <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiDataTrigger.ExitActions>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+          <Condition Binding="{Binding IsLoaded}" Value="False"/>
+        </MultiDataTrigger.Conditions>
+        <MultiDataTrigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Foreground.Secondary}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiDataTrigger.EnterActions>
+        <MultiDataTrigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="BorderBrush.Color">
+              <ColorAnimation To="{StaticResource XColor.Button.IconButton.Caption}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </MultiDataTrigger.ExitActions>
+      </MultiDataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Strips.Border.Emphasis" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
+    <Setter Property="Opacity" Value="0.6"/>
+  </Style>
+
+  <Style x:Key="XStyle.Strips.TextBlock" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Foreground.Unloaded}"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding IsLoaded}" Value="True">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Foreground.Loaded}"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Strips.Image" TargetType="{x:Type Image}">
+    <Setter Property="Stretch" Value="UniformToFill"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Opacity" Value="0.88"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
+        <Setter Property="Opacity" Value="0.6"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+        <DataTrigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </DataTrigger.EnterActions>
+        <DataTrigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Opacity">
+              <DoubleAnimation To="0.88" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </DataTrigger.ExitActions>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="LStyle.ListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource XStyle.ListBoxItem.Transparent}">
+    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="0,4,0,6"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Opacity" Value="0.5"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>
