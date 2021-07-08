@@ -18,6 +18,10 @@
   <!--General-->
   <Color x:Key="XColor.AlmostTransparent">#01000000</Color>
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
+
+  <!--Severity-->
+  <Color x:Key="XColor.Error">#FFF24E1E</Color>
+  <Color x:Key="XColor.Warning">#FFF69412</Color>
   
   <!--Controls-->
   <Color x:Key="XColor.Control.Background.Disabled">#FF191919</Color>

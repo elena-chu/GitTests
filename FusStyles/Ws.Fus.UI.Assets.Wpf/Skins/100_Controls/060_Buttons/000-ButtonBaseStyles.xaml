@@ -17,7 +17,7 @@
         extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
         extensions:ControlExtensions.HoverPercentage="{TemplateBinding extensions:ControlExtensions.HoverPercentage}"
         Style="{StaticResource XStyle.Border.Hover}">
-        <Grid>
+        <Grid Margin="{TemplateBinding Padding}">
           <Border
             x:Name="PressedBorder"
             Style="{StaticResource XStyle.Border.Pressed}"
@@ -62,6 +62,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.MinWidth" Value="150"/>
     <Setter Property="Padding" Value="0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase}"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>

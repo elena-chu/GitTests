@@ -38,6 +38,15 @@
     <Setter Property="Visibility" Value="{Binding Text, RelativeSource={RelativeSource Self}, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
   </Style>
 
+  <Style x:Key="XStyle.TextBlock.Paragraph" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="TextWrapping" Value="Wrap"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+  </Style>
+
   <Style x:Key="XStyle.TextBlock.Menu.Label" TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Base}">
     <Setter Property="extensions:IndependentSize.Margin" Value="0,25,0,5" />
     <Setter Property="extensions:IndependentSize.FontSize" Value="14" />

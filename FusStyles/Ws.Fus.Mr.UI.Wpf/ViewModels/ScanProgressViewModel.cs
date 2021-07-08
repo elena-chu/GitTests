@@ -47,7 +47,8 @@ namespace Ws.Fus.Mr.UI.Wpf.ViewModels
             LingerTime = 1;
             _isPreScan = false;
 
-
+            ScanStatusMessage = "Preparing";
+            TimeLeft = 61;
         }
         
         //public void InitEvents()

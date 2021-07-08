@@ -11,6 +11,11 @@
   <SolidColorBrush x:Key="XBrush.AlmostTransparent" Color="{StaticResource XColor.AlmostTransparent}"/>
   <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}"/>
 
+  <!--Severity-->
+  <SolidColorBrush x:Key="XBrush.Error" Color="{StaticResource XColor.Error}"/>
+  <SolidColorBrush x:Key="XBrush.Warning" Color="{StaticResource XColor.Warning}"/>
+  <SolidColorBrush x:Key="XBrush.Info" Color="{StaticResource XColor.Application.Active}"/>
+
   <!--Controls-->
   <SolidColorBrush x:Key="XBrush.Control.Background.Disabled" Color="{StaticResource XColor.Control.Background.Disabled}"/>
   <SolidColorBrush x:Key="XBrush.Control.Foreground.Disabled" Color="{StaticResource XColor.Control.Foreground.Disabled}"/>

@@ -31,9 +31,13 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     
-    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ScanProgressBar}" Width="500"
-                       Grid.Column="0"
-                       HorizontalAlignment="Left"/>
+    <ContentControl
+      Grid.Column="0"
+      extensions:IndependentSize.Margin="23,0,0,0"
+      prism:RegionManager.RegionName="{x:Static core:RegionNames.ScanProgressBar}"
+      extensions:IndependentSize.Width="500"
+      HorizontalAlignment="Left"
+      VerticalAlignment="Center"/>
 
     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
       <Button Content="?" Width="Auto" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding HelpCommand}" />

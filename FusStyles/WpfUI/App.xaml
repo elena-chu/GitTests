@@ -52,6 +52,7 @@
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/090_ListControls/010-ItemStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/090_ListControls/030-ComboBoxStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/100_Slider/010-Slider.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/110_ProgressBar/010-ProgressBarStyles.xaml"/>
         <!--<ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/090_ListControls/050-MenuStyles.xaml"/>-->
 
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/010-ExpanderStyles.xaml"/>

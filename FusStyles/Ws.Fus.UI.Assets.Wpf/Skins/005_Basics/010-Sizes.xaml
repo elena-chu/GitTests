@@ -31,6 +31,7 @@
   <Thickness x:Key="XThickness.Frame.Left">1,1,0,1</Thickness>
   <Thickness x:Key="XThickness.Frame.Right">0,1,1,1</Thickness>
 
+  <sys:Double x:Key="XDouble.FontSize.Header2">26</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Header3">22</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Header4">18</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>

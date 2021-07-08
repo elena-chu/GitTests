@@ -87,10 +87,10 @@
   </Style>
 
   <Style x:Key="XStyle.Button.Exit" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Plus}">
-    <Setter Property="extensions:IndependentSize.Height" Value="24"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="20"/>
     <Setter Property="Content" Value="&#x00D7;"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="0,-2,0,2"/>
   </Style>
   
   
