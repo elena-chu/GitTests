@@ -35,6 +35,7 @@
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
+    <Setter Property="Visibility" Value="{Binding Text, RelativeSource={RelativeSource Self}, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
   </Style>
 
   <Style x:Key="XStyle.TextBlock.Menu.Label" TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Base}">

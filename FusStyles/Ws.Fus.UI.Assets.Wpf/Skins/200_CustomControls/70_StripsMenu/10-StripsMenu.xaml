@@ -19,14 +19,7 @@
               extensions:IndependentSize.Margin="7,1,7,3"
               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-              SnapsToDevicePixels="True">
-              <ContentPresenter.Resources>
-                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}">
-                  <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
-                  <Setter Property="Visibility" Value="{Binding Text, RelativeSource={RelativeSource Self}, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
-                </Style>
-              </ContentPresenter.Resources>
-            </ContentPresenter>
+              SnapsToDevicePixels="True"/>
           </Border>
         </ControlTemplate>
       </Setter.Value>

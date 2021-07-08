@@ -26,21 +26,24 @@
         </Border.Resources>
         <Border.ToolTip>
           <StackPanel>
+            <StackPanel.Resources>
+              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}"/>
+            </StackPanel.Resources>
             <TextBlock Text="{Binding Series.PatientName}"/>
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="I.D. "/>
-              <TextBlock Text="{Binding Series.PatientId}"/>
+              <TextBlock Text="I.D. " Visibility="{Binding Text, ElementName=PatientId, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
+              <TextBlock x:Name="PatientId" Text="{Binding Series.PatientId}"/>
             </StackPanel>
             <TextBlock Text="{Binding Series.SeriesDescription}"/>
             <TextBlock Text="{Binding Series.SeriesNumber}"/>
             <TextBlock Text="{Binding Series.Resolution}"/>
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="{Binding Series.SliceThickness}"/>
-              <TextBlock Text="mm Thickness"/>
+              <TextBlock x:Name="SliceThicknessValue" Text="{Binding Series.SliceThickness}"/>
+              <TextBlock Text="mm Thickness" Visibility="{Binding Text, ElementName=SliceThicknessValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="{Binding Series.SliceSpacing}"/>
-              <TextBlock Text="mm Spacing"/>
+              <TextBlock x:Name="SliceSpacingValue" Text="{Binding Series.SliceSpacing}"/>
+              <TextBlock Text="mm Spacing" Visibility="{Binding Text, ElementName=SliceSpacingValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
             </StackPanel>
           </StackPanel>
         </Border.ToolTip>
@@ -161,21 +164,24 @@
         </Border.Resources>
         <Border.ToolTip>
           <StackPanel>
+            <StackPanel.Resources>
+              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}"/>
+            </StackPanel.Resources>
             <TextBlock Text="{Binding Series.PatientName}"/>
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="I.D. "/>
-              <TextBlock Text="{Binding Series.PatientId}"/>
+              <TextBlock Text="I.D. " Visibility="{Binding Text, ElementName=PatientId, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
+              <TextBlock x:Name="PatientId" Text="{Binding Series.PatientId}"/>
             </StackPanel>
             <TextBlock Text="{Binding Series.SeriesDescription}"/>
             <TextBlock Text="{Binding Series.SeriesNumber}"/>
             <TextBlock Text="{Binding Series.Resolution}"/>
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="{Binding Series.SliceThickness}"/>
-              <TextBlock Text="mm Thickness"/>
+              <TextBlock x:Name="SliceThicknessValue" Text="{Binding Series.SliceThickness}"/>
+              <TextBlock Text="mm Thickness" Visibility="{Binding Text, ElementName=SliceThicknessValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="{Binding Series.SliceSpacing}"/>
-              <TextBlock Text="mm Spacing"/>
+              <TextBlock x:Name="SliceSpacingValue" Text="{Binding Series.SliceSpacing}"/>
+              <TextBlock Text="mm Spacing" Visibility="{Binding Text, ElementName=SliceSpacingValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
             </StackPanel>
           </StackPanel>
         </Border.ToolTip>
