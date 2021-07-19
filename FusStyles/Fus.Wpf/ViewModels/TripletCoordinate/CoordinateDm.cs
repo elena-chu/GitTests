@@ -1,4 +1,4 @@
-﻿using Prism.Mvvm;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +23,8 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
         string _error;
         DisplayStatus _displayStatus;
         int _numberOfFractionDigits = 1;
+        int _displayLength;
+        bool _hasValue = false;
         public CoordinateDm(TripletDm tripletDm)
         {
             Parent = tripletDm;
@@ -42,6 +44,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             Increment = 1;
             MaxValue = double.MaxValue;
             MinValue = double.MinValue;
+            DisplayLength = 5;
         }
        
         
@@ -51,8 +54,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
         {
             set
             {
-                _parent = value;
-                RaisePropertyChanged();
+                SetProperty(ref _parent, value);
             }
             get
             {
@@ -73,7 +75,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 {
                     _coordinate = Math.Round(value, 2);
                     Error = null;
-                   
+                    HasValue = true;
                 }
 
                 RaisePropertyChanged();
@@ -85,11 +87,16 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                     if (Parent is TripletDm)
                     {
                         TripletDm _par = Parent;
-                        //_par.RaisePropertyChanged(nameof(_par.Point)); // to be resolved if we really need it
+                        _par.Notify();
                     }
                 }
 
             }
+        }
+        public bool HasValue
+        {
+            set { _hasValue = value; }
+            get { return _hasValue; }
         }
         public string CoordinateSignCode
         {
@@ -137,8 +144,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _footer = value;
-                RaisePropertyChanged();
+                SetProperty(ref _footer, value);
             }
         }
         public string PlusCode
@@ -149,8 +155,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _plusCode = value;
-                RaisePropertyChanged();
+                SetProperty(ref _plusCode, value);
             }
         }
         public string PlusEnCoded
@@ -161,8 +166,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _plusEnCoded = value;
-                RaisePropertyChanged();
+                SetProperty(ref _plusEnCoded, value);
             }
         }
         public string MinusCode
@@ -173,8 +177,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _minusCode = value;
-                RaisePropertyChanged();
+               SetProperty(ref _minusCode, value);
             }
         }
         public string MinusEnCoded
@@ -185,8 +188,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _minusEnCoded = value;
-                RaisePropertyChanged();
+                SetProperty(ref _minusEnCoded, value);
             }
         }
         public double MinValue
@@ -197,8 +199,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _minValue = value;
-                RaisePropertyChanged();
+               SetProperty(ref _minValue, value);
             }
         }
         public double MaxValue
@@ -209,8 +210,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _maxValue = value;
-                RaisePropertyChanged();
+                SetProperty(ref _maxValue, value);
             }
         }
         public double Increment
@@ -221,8 +221,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _increment = value;
-                RaisePropertyChanged();
+               SetProperty(ref _increment, value);
             }
         }
         public string Error
@@ -232,9 +231,8 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 return _error;
             }
             set
-            {
-                _error = value;
-                RaisePropertyChanged();
+            { 
+                SetProperty(ref _error, value);
             }
         }
         public DisplayStatus DisplayStatus
@@ -243,7 +241,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             set
             {
                 _displayStatus = value;
-                RaisePropertyChanged();
+                SetProperty(ref _displayStatus, value);
             }
         }
         public int NumberOfFractionDigits
@@ -254,8 +252,18 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
             set
             {
-                _numberOfFractionDigits = value;
-                RaisePropertyChanged();
+                SetProperty(ref _numberOfFractionDigits, value);
+            }
+        }
+        public int DisplayLength
+        {
+            get
+            {
+                return _displayLength;
+            }
+            set
+            {
+                SetProperty(ref _displayLength, value);
             }
         }
         public bool IsValid(string valueDisplay)
@@ -294,10 +302,23 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
             }
 
         }
+        
         protected string GetValueDisplay()
         {
             string format = GetFormat();
-            return $"{CoordinateSignCode} {Math.Abs(Coordinate).ToString(format)}";
+            if (_hasValue || Coordinate != 0.0)
+            {
+                string displayedNumber = Math.Abs(Coordinate).ToString(format);
+                if (displayedNumber.Length < DisplayLength)
+                {
+                    return $"{CoordinateSignCode} {displayedNumber}";
+                }
+                else
+                {
+                    return $"{CoordinateSignCode}{displayedNumber}"; 
+                }
+            }
+            else { return ""; }
         }
         protected void SetValueDisplay(string valueDisplay)
         {
@@ -382,5 +403,18 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 return _error;
             }
         }
+       
+        public void Raise()
+        {
+            RaisePropertyChanged(nameof(CoordinateDisplay));
+        }
+        public void Reset()
+        {
+            _hasValue = false;
+            _coordinate = 0.0;
+            RaisePropertyChanged(nameof(Coordinate));
+            RaisePropertyChanged(nameof(CoordinateDisplay));
+        }
+        
     }
 }

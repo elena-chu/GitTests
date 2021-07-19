@@ -3,10 +3,264 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Ws.Fus.UI.Wpf.Menus.Views"
+             xmlns:coordinate="clr-namespace:Ws.Fus.UI.Wpf.Controls;assembly=Ws.Fus.UI.Wpf"
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:ivBeh="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Behaviors;assembly=Ws.Fus.ImageViewer.UI.Wpf"
+             xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+
+  <UserControl.Resources>
+    <extensions:BooleanToTrueFalseValueConverter x:Key="StripTrueFalseValueConverter" IsThreeState="False" TrueValue="OK" FalseValue="NO}" />
+    <extensions:BooleanToTrueFalseValueConverter x:Key="StateTrueFalseValueConverter" IsThreeState="False" TrueValue="Completed" FalseValue="Active" />
+
+    <Style x:Key="ExpanderStyle" TargetType="Expander" BasedOn="{StaticResource XStyle.Expader.Menu.Bottom}">
+      <Style.Triggers>
+        <Trigger Property="IsExpanded" Value="false">
+          <Setter Property="Header" Value="More"/>
+        </Trigger>
+        <Trigger Property="IsExpanded" Value="true">
+          <Setter Property="Header" Value="Hide Patient Info"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+
+  </UserControl.Resources>
+  
+  <Grid Background="{StaticResource XBrush.Application.Background}" Name="MainGrid" Focusable="True">
+    <Grid Grid.Row="0" Style="{StaticResource MenuContainerStyle}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" x:Name="R0" />
+        <RowDefinition Height="Auto" x:Name="Overlays" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" x:Name="Coordinate" />
+        <RowDefinition Height="Auto"  x:Name="R4" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="Auto" x:Name="R6" />
+        <RowDefinition Height="Auto" x:Name="Distance" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="Auto" x:Name="R10" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
+        <RowDefinition Height="*" x:Name="R14" />
+      </Grid.RowDefinitions>
+
+      <ToggleButton 
+          IsChecked="{Binding IsTargetLocked, Mode=TwoWay}"
+          HorizontalAlignment="Center"
+          extensions:IndependentSize.MinHeight="40" 
+          >
+        <ToggleButton.Style>
+          <Style TargetType="ToggleButton" BasedOn="{StaticResource XStyle.ToggleButton.IconOverText}">
+            <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Lock}" />
+            <Setter Property="ToolTip" Value="Unlock Target" />
+            <Style.Triggers>
+              <Trigger Property="IsChecked" Value="False">
+                <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Unlock}" />
+                <Setter Property="ToolTip" Value="Lock Target" />
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </ToggleButton.Style>
+      </ToggleButton>
+
+      <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ToggleButton Grid.Row="0" Grid.Column="0"
+              Visibility="Collapsed"
+              Content="-"
+              DataContext="{Binding Commands.Overlays}"
+              FontFamily="Wingdings"
+              ToolTip="Grid Overlay"
+              Style="{StaticResource styleToolToggleButton}" 
+              HorizontalAlignment="Left"
+            />
+        <ToggleButton Grid.Row="0" Grid.Column="1"
+              ivBeh:UiModeEnter.Mode="SpotsOverlay"          
+              Style="{StaticResource XStyle.ToggleButton.IconOverText}"
+              extensions:IconedButton.Icon="{StaticResource XCanvas.Target}"
+              DataContext="{Binding Commands.Measure}"            
+              Content="Place Target"
+              HorizontalAlignment="Right"
+              Width="Auto"  
+              extensions:IndependentSize.MinWidth="80"
+              />
+
+      </Grid>
+
+      <Grid Grid.Row="2"
+              extensions:IndependentSize.Margin="0, 10">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" 
+              HorizontalAlignment="Left"
+              Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+              VerticalAlignment="Center"
+              extensions:IndependentSize.Margin="0"
+              Text="Target Coordinates:"/>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+          <RadioButton x:Name="AcPcRadio"  
+              Content="AC-PC" 
+              IsChecked="{Binding Path=IsAcPc, Mode=TwoWay, FallbackValue=True, TargetNullValue=True}"
+              Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}"
+              IsEnabled="{Binding IsAcPcPointEnabled}"/>
+          <RadioButton x:Name="RasRadio" 
+              Content="RAS" 
+              IsChecked="{Binding Path=IsAcPc, Converter={StaticResource InvertedBooleanConverter}}"
+              Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}" />
+        </StackPanel>
+      </Grid>
+
+      <coordinate:CoordinateTripletControl 
+            Grid.Row="3"
+            Name="TargetCoordinateAcPcElement" FontSize="10" Height="50" 
+            Point="{Binding TargetPointAcPc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+            Visibility="{Binding IsChecked, ElementName=AcPcRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"
+            SeverityLevel="Normal"
+            />
+
+      <coordinate:CoordinateTripletControl 
+            Grid.Row="3"
+            Name="TargetCoordinateRasElement" Height="50" 
+            Point="{Binding TargetPointRas,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+            Visibility="{Binding IsChecked, ElementName=RasRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+            SeverityLevel="Normal"
+            />
+
+
+      <ToggleButton Grid.Row="4" 
+              HorizontalAlignment="Center"
+              Visibility="Collapsed"
+              Content="_"
+              DataContext="{Binding Commands.Overlays}"
+              FontFamily="Wingdings"
+              ToolTip="Place Transducer Manually"
+              Style="{StaticResource styleToolToggleButton}"
+              />
+
+      <Rectangle Grid.Row="5" 
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Center"
+              Height="1"
+              Margin="20,0"
+              Fill="{StaticResource XBrush.Button.Secondary.Background}"
+                    />
+
+      <TextBlock Grid.Row="6" 
+              HorizontalAlignment="Left"
+              Text="Distance from Focus to Target:"
+              Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+            />
+
+      <coordinate:CoordinateTripletControl Name="DistanceElement" Grid.Row="7" FontSize="10" Height="50" 
+                Point="{Binding DistanceFromFocalPoint,Mode=TwoWay}"
+                DisplayStatus="ReadOnly"
+                SeverityLevel="{Binding DistanceSeverityLevel}"
+                />
+
+      <Grid Grid.Row="8">
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button 
+        Grid.Row="0"
+        Content="Update Transducer Location" 
+        Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" 
+        extensions:IconedButton.Icon="{StaticResource XCanvas.TransducerLocation}"
+        Command="{Binding TrackersScan}"
+        extensions:IndependentSize.Margin="0, 10"
+        Visibility="{Binding IsManualCalibrationOn,Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+        />
+
+        <Grid Grid.Row="0" 
+              Visibility="{Binding IsManualCalibrationOn, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+          <ToggleButton
+            Style="{StaticResource XStyle.ToggleButton.IconOverText}"
+            ivBeh:UiModeEnter.Mode="CalibrationDataOverlay"
+            Content="Place Transducer Manually"
+            DataContext="{Binding Commands.Measure}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Transducer}"
+           />
+        </Grid>
+
+        <!--<Button Grid.Row="1" HorizontalAlignment="Left"  Command="{Binding OpenTransducerMap}" 
+                        Style="{StaticResource XStyle.Button.Secondary}"
+                    Content="Show Transducer Map"/>-->
+
+        <!--<act:UmbrellaPopup DataContext="{Binding UmbrellaViewModel}"/>-->
+      </Grid>
+
+      <Rectangle Grid.Row="9" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Height="1"
+                Margin="20,0"
+                Fill="{StaticResource XBrush.Button.Secondary.Background}"
+                      />
+
+      <core:StepProgress Grid.Row="10" Grid.ColumnSpan="2"
+                Title="Valid Spot:"
+                extensions:ProgressStatusDisplayer.ProgressState="{Binding IsTargetValid, Mode=OneWay, Converter={StaticResource StateTrueFalseValueConverter}, FallbackValue=Active}"
+                Value="{Binding IsTargetValid, Mode=OneWay, Converter={StaticResource StripTrueFalseValueConverter}}"
+                ValuePosition="OneLine"
+                extensions:IndependentSize.Margin="4,0,4,15"             
+                />
+
+
+      <core:StepProgress Grid.Row="11" Grid.ColumnSpan="2"
+                Title="Stop Sonication Button:"
+                extensions:ProgressStatusDisplayer.ProgressState="{Binding IsStopButtonPressed, Mode=OneWay, Converter={StaticResource StateTrueFalseValueConverter}, FallbackValue=Active}"
+                Value="{Binding IsStopButtonPressed, Mode=OneWay, Converter={StaticResource StripTrueFalseValueConverter}}"
+                ValuePosition="OneLine"
+                extensions:IndependentSize.Margin="4,0,4,15"             
+                />
+
+      <Button Grid.Row="12" 
+              Command="{Binding ApproveTargetCommand}"     
+              Content="Finalize Treatment Plan"  
+              ToolTip="Finalize Treatment Plan">
+        <Button.Style>
+          <Style TargetType="Button" BasedOn="{StaticResource XStyle.Button.Approval}">
+            <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active" />
+            <Style.Triggers>
+              <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                  <Condition Binding="{Binding IsTargetApproved}" Value="True"/>
+                  <Condition Binding="{Binding IsModified}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed" />
+              </MultiDataTrigger>
+            </Style.Triggers>
+          </Style>
+        </Button.Style>
+      </Button>
+
+
+      <Expander Grid.Row="14" x:Name="MoreExp"   Foreground="White"  IsExpanded="{Binding PatientInfoRequired,Mode=TwoWay}" Style="{StaticResource ExpanderStyle}"  >
+        <!--<localuc:PatientInformationUserControl DataContext="{Binding PatientInformation}"  Panel.ZIndex="2"  />-->
+      </Expander>
+
+
+      <!--Button should be redesign as refresh-->
+      <Button Grid.Row="14" VerticalAlignment="Top" HorizontalAlignment="Right" 
+            Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" 
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Redo}"
+            Command="{Binding RefreshPatientInformation}" 
+            />
+
+      <extensions:BusyIndicator   Grid.Row="14"  VerticalAlignment="Center" IsBusy="{Binding IsBusyPatient, FallbackValue=False}" BusyText="Refreshing" />
     </Grid>
+
+
+  </Grid>
 </UserControl>

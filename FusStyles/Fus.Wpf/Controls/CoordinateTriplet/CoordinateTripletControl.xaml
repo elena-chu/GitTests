@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Ws.Fus.UI.Wpf.Controls.CoordinateTripletControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:local="clr-namespace:Ws.Fus.UI.Wpf.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.Resources>
+
+    <Style x:Key="SingleStyle" TargetType="extensions:NumericUpDown" BasedOn="{StaticResource XStyle.NumericUpDown}">
+      <Setter Property="Height" Value="50" />
+      <Setter Property="MinValue" Value="-999" />
+      <Setter Property="MaxValue" Value="999" />
+      <Setter Property="Increment" Value="0.1" />
+      <Setter Property="NumberOfFractionDigits" Value="1" />
+      <Setter Property="DisplayLength" Value="8" />
+      <Setter Property="DisplayStatus" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=DisplayStatus, Mode=OneWay}" />
+      <Setter Property="SeverityLevel" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=SeverityLevel, Mode=OneWay}" />
+
+    </Style>
+
+  </UserControl.Resources>
+   
+  <Grid>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <extensions:NumericUpDown 
+        Style="{StaticResource  
+        ResourceKey=SingleStyle}"  
+        Grid.Column="0"
+        MinusCode="L"
+        PlusCode="R"
+        MinusCodeLiteral="Left"
+        PlusCodeLiteral="Right"
+        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=X, Mode=TwoWay}"
+        />
+      <extensions:NumericUpDown  
+        Style="{StaticResource  
+        ResourceKey=SingleStyle}" 
+        Grid.Column="1"
+        MinusCode="P"
+        PlusCode="A"
+        MinusCodeLiteral="Posterior"
+        PlusCodeLiteral="Anterior"
+        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Y, Mode=TwoWay}"
+        />
+      <extensions:NumericUpDown 
+        Style="{StaticResource  ResourceKey=SingleStyle}"  
+        Grid.Column="2"
+        MinusCode="I"
+        PlusCode="S"
+        MinusCodeLiteral="Inferior"
+        PlusCodeLiteral="Superior"
+        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Z, Mode=TwoWay}"
+        />
+    </Grid>
+  </Grid>
+</UserControl>

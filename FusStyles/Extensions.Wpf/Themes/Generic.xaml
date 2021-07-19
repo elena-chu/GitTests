@@ -4,6 +4,57 @@
 <!-- ****************************************** -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ctrl="clr-namespace:Ws.Extensions.UI.Wpf.Controls" xmlns:sys="clr-namespace:System;assembly=mscorlib">
   <!---->
+  <!--Merged from file Assets\CustomControlsDictionaries\010_NumericUpDown\010-NumericUpDown.xaml-->
+  <Style TargetType="{x:Type ctrl:NumericUpDown}">
+    <Setter Property="Foreground" Value="Black" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ctrl:NumericUpDown">
+          <Grid Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}">
+            <Grid.RowDefinitions>
+              <RowDefinition />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width=".25*" MaxWidth="150" MinWidth="20" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="PART_NumberTB" Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}" FontSize="{TemplateBinding FontSize}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+            <Grid x:Name="ButtonsContainer" Grid.Column="1">
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+              </Grid.RowDefinitions>
+              <RepeatButton Content="^" Margin="0" Name="PART_UpButton" Grid.Row="0" />
+              <RepeatButton Content="^" Margin="0,1,0,0" Name="PART_DownButton" Grid.Row="1" RenderTransformOrigin="0.5, 0.5">
+                <RepeatButton.RenderTransform>
+                  <ScaleTransform ScaleY="-1" />
+                </RepeatButton.RenderTransform>
+              </RepeatButton>
+            </Grid>
+            <TextBlock x:Name="PART_CodeLiteralTB" Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ctrl:NumericUpDown}}, Path=CodeLiteralVisibility}" TextAlignment="Center" Foreground="{TemplateBinding Foreground}" />
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="SeverityLevel" Value="High">
+              <Setter Property="Foreground" TargetName="PART_NumberTB" Value="Red" />
+            </Trigger>
+            <Trigger Property="SeverityLevel" Value="Low">
+              <Setter Property="Foreground" TargetName="PART_NumberTB" Value="#FF238AFA" />
+            </Trigger>
+            <Trigger Property="DisplayStatus" Value="Disabled">
+              <Setter Property="IsEnabled" TargetName="PART_NumberTB" Value="False" />
+              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Hidden" />
+            </Trigger>
+            <Trigger Property="DisplayStatus" Value="ReadOnly">
+              <Setter Property="IsReadOnly" TargetName="PART_NumberTB" Value="True" />
+              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Hidden" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <!---->
   <!--Merged from file Assets\CustomControlsDictionaries\50-Accordion\01-AccordionConstants.txaml-->
   <Duration x:Key="AccordionAnimationDuration">0:0:0.2</Duration>
   <!---->

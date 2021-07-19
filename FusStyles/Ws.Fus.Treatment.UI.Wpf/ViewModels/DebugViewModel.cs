@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Ws.Extensions.Mvvm.ViewModels;
 using Ws.Extensions.UI.Wpf.Behaviors;
 using Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;
+using System.Windows.Media.Media3D;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -149,6 +150,18 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             string status = param.HasValue ? param.Value.ToString() : "null";
             Console.WriteLine("LA >>> " + name + " is calling. I am " + status);
         }
+
+        #endregion
+
+
+        #region Triplet
+
+        private Point3D? _point;
+        public Point3D? Point
+        {
+            get { return _point; }
+            set { SetProperty(ref _point, value); }
+        } 
 
         #endregion
     }

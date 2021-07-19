@@ -8,13 +8,15 @@ namespace Ws.Fus.Interfaces.Overlays
 {
 	public enum UiMode
 	{
-		None = 78,
+        None = 78,
         TextOverlay = 2,
+        SpotsOverlay = 7,
         BathLimitsOverlay = 12,
         RegionsOverlay = 14,
         IntersectingSlicesOverlay = 19,
         FiducialsOverlay = 21,
         CalibrationDataOverlay = 25,
+        RegManEdit = 40,
         NPRPolygonsOverlay = 41,
         ScanGridOverlay = 44,
         PreOpSegmentationOverlay = 47,

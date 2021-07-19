@@ -1,4 +1,4 @@
-﻿using Prism.Mvvm;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,29 +8,96 @@ using System.Windows.Media.Media3D;
 
 namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
 {
-    public class TripletDm: BindableBase// TODO consider adding the CoordinatesDirection in case it affects the nature of the coordinates
+    public class TripletDm : BindableBase
     {
-        Point3D _point = new Point3D();
+        Point3D  _point = new Point3D();
+      
+        bool _hasValue = false;
+       
         public TripletDm()
         {
-            X = new CoordinateSagitalDm  (this);
-            Y = new CoordinateCoronalDm(this);
-            Z = new CoordinateAxialDm(this);
+            SetDimentions();
         }
         public TripletDm(Point3D point)
         {
             _point = point;
-            
-            X = new CoordinateSagitalDm(this);
-            Y = new CoordinateCoronalDm(this);
-            Z = new CoordinateAxialDm(this);
+            SetDimentions();
+        }
+        private void SetDimentions()
+        {
+            X = new CoordinateDm(this) // Sagital
+            {
+                PlusCode = "R",
+                MinusCode = "L",
+                PlusEnCoded = "Right",
+                MinusEnCoded = "Left",
+                Increment = 0.1,
+                MaxValue = 999.9,
+                MinValue = -999.9
+            };
+            X.HasValue = false;
+            Y = new CoordinateDm(this) // Coronal
+            {
+                PlusCode = "A",
+                MinusCode = "P",
+                PlusEnCoded = "Anterior",
+                MinusEnCoded = "Posterior",
+                Increment = 0.1,
+                MaxValue = 999.9,
+                MinValue = -999.9
+            };
+            Y.HasValue = false;
+            Z = new CoordinateDm(this) // Axial
+            {
+                PlusCode = "S",
+                MinusCode = "I",
+                PlusEnCoded = "Superior",
+                MinusEnCoded = "Inferior",
+                Increment = 0.1,
+                MaxValue = 999.9,
+                MinValue = -999.9
+            };
+            Z.HasValue = false;
+
         }
         CoordinateDm _x1;
         CoordinateDm _y2;
         CoordinateDm _z3;
-      
+
         SeverityLevel _severityLevel;
-        DisplayStatus _displayStatus= DisplayStatus.Active;
+        DisplayStatus _displayStatus = DisplayStatus.Active;
+       
+        public bool HasValue
+        {
+            get
+            {
+                if (!_hasValue)
+                {
+                    if (X.HasValue && Y.HasValue && Z.HasValue)
+                    {
+                        _hasValue = true;
+                    }
+                }
+                
+                return _hasValue;
+            }
+            set
+            {
+                _hasValue = value;
+                
+                if (!_hasValue)
+                {
+                    Reset();
+                }
+                RaisePropertyChanged();
+                X.Raise();
+                Y.Raise();
+                Z.Raise();
+
+
+            }
+        }
+        
         public Point3D Point
         {
             get
@@ -41,24 +108,27 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 return _point;
             }
             set
-            {  _point = value;
-                X.Coordinate = _point.X;
-                Y.Coordinate = _point.Y;
-                Z.Coordinate = _point.Z;
+            {  
+                X.Coordinate = value.X;
+                Y.Coordinate = value.Y;
+                Z.Coordinate = value.Z;
+                _point = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(X));
                 RaisePropertyChanged(nameof(Y));
-                RaisePropertyChanged(nameof(Z));
                 RaisePropertyChanged(nameof(Z));
             }
         }
         public DisplayStatus DisplayStatus
         {
             get { return _displayStatus; }
-            set { _displayStatus = value;
+            set
+            {
+                _displayStatus = value;
                 RaisePropertyChanged();
             }
         }
-        
+
         public SeverityLevel SeverityLevel
         {
             get
@@ -71,7 +141,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 RaisePropertyChanged();
             }
         }
-        
+
         public CoordinateDm X
         {
             get
@@ -86,7 +156,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 RaisePropertyChanged();
             }
         }
-        
+
         public CoordinateDm Y
         {
             get
@@ -101,7 +171,7 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 RaisePropertyChanged();
             }
         }
-        
+
         public CoordinateDm Z
         {
             get
@@ -115,6 +185,19 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
                 _z3.Coordinate = _point.Z;
                 RaisePropertyChanged();
             }
+        }
+        public void Notify()
+        {
+            this.RaisePropertyChanged(nameof(HasValue));
+            this.RaisePropertyChanged(nameof(Point));
+        }
+        public void Reset()
+        {
+            _hasValue = false;
+            X.Reset();
+            Y.Reset();
+            Z.Reset();
+            Notify();
         }
     }
 }

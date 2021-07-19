@@ -74,6 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CoordinateTriplet\CoordinateTripletControl.xaml.cs">
+      <DependentUpon>CoordinateTripletControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TripletCoordinate\UpDownCommands.cs" />
     <Compile Include="Controls\TripletCoordinate\UpDownControl.xaml.cs">
       <DependentUpon>UpDownControl.xaml</DependentUpon>
@@ -100,11 +103,7 @@
     </Compile>
     <Compile Include="ViewModels\BindableXyzVM.cs" />
     <Compile Include="Entities\FusPoint3DMode.cs" />
-    <Compile Include="ViewModels\TripletCoordinate\CoordinateAxialDm.cs" />
-    <Compile Include="ViewModels\TripletCoordinate\CoordinateCoronalDm.cs" />
     <Compile Include="ViewModels\TripletCoordinate\CoordinateDm.cs" />
-    <Compile Include="ViewModels\TripletCoordinate\CoordinateSagitalDm.cs" />
-    <Compile Include="ViewModels\TripletCoordinate\CoordinatesDirection.cs" />
     <Compile Include="ViewModels\TripletCoordinate\DisplayStatus.cs" />
     <Compile Include="ViewModels\TripletCoordinate\ICoordinateValidation.cs" />
     <Compile Include="ViewModels\TripletCoordinate\SeverityLevel.cs" />
@@ -130,6 +129,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CoordinateTriplet\CoordinateTripletControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\FusPoint3DControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

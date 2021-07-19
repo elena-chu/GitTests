@@ -233,9 +233,9 @@
       </Border>-->
 
 
-      <Expander x:Name="MoreExp" Grid.Row="9" Header="More" Foreground="White" >
+      <Expander x:Name="MoreExp" Grid.Row="9" Header="More" >
         <Expander.Style>
-          <Style TargetType="{x:Type Expander}">
+          <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expader.Menu.Bottom}">
             <Style.Triggers>
               <!--<EventTrigger RoutedEvent=""-->
               <DataTrigger Binding="{Binding IsChecked, ElementName=VolumetricBtn, Mode=OneWay}" Value="True">

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,9 @@ namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
 {
     public enum SeverityLevel
     {
+        Undefined,
+        High,
         Low,
-        High
+        Normal
     }
 }

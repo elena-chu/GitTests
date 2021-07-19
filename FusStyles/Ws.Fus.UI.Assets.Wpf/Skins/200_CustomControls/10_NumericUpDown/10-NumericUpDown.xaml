@@ -1,0 +1,99 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <Style x:Key="XStyle.NumericUpDown"  TargetType="{x:Type extensions:NumericUpDown}">
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
+    <Setter Property="extensions:IndependentSize.Height" Value="45" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="extensions:NumericUpDown">
+          <Grid
+            Background="{TemplateBinding Background}"
+            Margin="{TemplateBinding Margin}">
+            <Grid.RowDefinitions>
+              <RowDefinition />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width=".25*" MaxWidth="150" MinWidth="20"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox 
+              x:Name="PART_NumberTB"
+              Foreground="{TemplateBinding Foreground}"
+              Background="{StaticResource XBrush.AlmostTransparent}"
+              FontSize="{TemplateBinding FontSize}"
+              HorizontalScrollBarVisibility="Hidden"
+              VerticalScrollBarVisibility="Hidden"
+              />
+
+            <Grid x:Name="ButtonsContainer"
+              Grid.Column="1"
+                  Visibility="Hidden">
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+              </Grid.RowDefinitions>
+              <RepeatButton Content="^" Margin="0"
+                Name="PART_UpButton"
+                Grid.Row="0"/>
+              <RepeatButton Content="^" Margin="0,1,0,0"
+                Name="PART_DownButton"
+                Grid.Row="1"
+                RenderTransformOrigin="0.5, 0.5"
+                >
+                <RepeatButton.RenderTransform>
+                  <ScaleTransform ScaleY="-1" />
+                </RepeatButton.RenderTransform>
+              </RepeatButton>
+            </Grid>
+
+            <TextBlock
+              x:Name="PART_CodeLiteralTB"
+              Grid.Row="1" Grid.ColumnSpan="2" 
+              Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type extensions:NumericUpDown}}, Path=CodeLiteralVisibility}"
+              TextAlignment="Center"
+              Foreground="{TemplateBinding Foreground}"
+              />
+
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="SeverityLevel" Value="High">
+              <Setter Property="Foreground" TargetName="PART_NumberTB" Value="Red" />
+            </Trigger>
+            <Trigger Property="SeverityLevel" Value="Low">
+              <Setter Property="Foreground" TargetName="PART_NumberTB" Value="Yellow" />
+            </Trigger>
+            <Trigger Property="DisplayStatus" Value="Disabled">
+              <Setter Property="IsEnabled" TargetName="PART_NumberTB" Value="False" />
+              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Hidden" />
+            </Trigger>
+            <Trigger Property="DisplayStatus" Value="ReadOnly">
+              <Setter Property="IsReadOnly" TargetName="PART_NumberTB" Value="True" />
+              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Hidden" />
+            </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="DisplayStatus" Value="Active"/>
+                <Condition Property="IsMouseOver" Value="True"/>
+              </MultiTrigger.Conditions>
+              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Visible" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="DisplayStatus" Value="Active"/>
+                <Condition Property="IsChildWithFocus" Value="True"/>
+              </MultiTrigger.Conditions>
+              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Visible" />
+            </MultiTrigger>
+
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>

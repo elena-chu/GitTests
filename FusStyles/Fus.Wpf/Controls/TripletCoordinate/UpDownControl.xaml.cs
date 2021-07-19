@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate;
 
 namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
@@ -168,11 +158,7 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
             ButtonDownControl.LostFocus += ButtonnControl_LostFocus;
             Number.TextChanged += Number_TextChanged;
             Number.GotMouseCapture += Number_GotMouseCapture;
-
         }
-
-
-
         private void Number_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (DataContext is ICoordinateValidation)
@@ -228,9 +214,6 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
             IsChildWithFocus = true;
         }
 
-
-
-
         private void InitCommands()
         {
             CommandBinding down = new CommandBinding(UpDownCommands.Down, DownExecuted, DownCanExecuted);
@@ -241,7 +224,6 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
             this.CommandBindings.Add(up);
             this.PreviewKeyDown += Single_PreviewKeyDown;
         }
-
         private void Single_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (UpDownByKeyboard)
@@ -257,7 +239,7 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
                     e.Handled = true;
                 }
             }
-            if (e.Key == Key.Enter && e.OriginalSource is TextBox) // TODO this feature of enter for echo is not working . Not clear why . maybe this is due to the dp assignment
+            if (e.Key == Key.Enter && e.OriginalSource is TextBox) 
             {
                 ValueDisplay = ((TextBox)e.OriginalSource).Text;
                 ((TextBox)e.OriginalSource).Text = ValueDisplay;
@@ -284,8 +266,6 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
             {
                 e.CanExecute = true;
             }
-
-
         }
         void UpExecuted(object target, ExecutedRoutedEventArgs e)
         {
@@ -302,22 +282,7 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
             {
                 e.CanExecute = true;
             }
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void ButtonUp()
         {
             if (IsReadOnly | Value >= MaxValue)
@@ -325,10 +290,7 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
                 return;
             }
             Value += this.Increment;
-
         }
-
-
         private void ButtonDown()
         {
             if (IsReadOnly | Value <= MinValue)
@@ -337,7 +299,5 @@ namespace Ws.Fus.UI.Wpf.Controls.TripletCoordinate
             }
             Value -= this.Increment;
         }
-
-
     }
 }

@@ -52,8 +52,8 @@
 
     <ResourceDictionary Source="100_Controls/200_Expander/PinableExpanderStyle.xaml"/>
 
+    <ResourceDictionary Source="200_CustomControls/10_NumericUpDown/10-NumericUpDown.xaml"/>
     <ResourceDictionary Source="200_CustomControls/60_StatusIndicator/10-StatusIndicator.xaml"/>
-
 
 
   </ResourceDictionary.MergedDictionaries>

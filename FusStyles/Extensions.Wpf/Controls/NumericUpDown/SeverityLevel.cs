@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ws.Fus.UI.Wpf.ViewModels.TripletCoordinate
+namespace Ws.Extensions.UI.Wpf.Controls
 {
-    public enum CoordinatesDirection
+    public enum SeverityLevel
     {
-        ACPC,
-        RAS
+        Undefined,
+        High,
+        Low,
+        Normal
     }
 }

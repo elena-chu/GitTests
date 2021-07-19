@@ -10,6 +10,7 @@
   xmlns:tm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
   xmlns:vm="clr-namespace:Ws.Fus.Treatment.UI.Wpf.ViewModels"
   xmlns:uc="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Views"
+  xmlns:coordinate="clr-namespace:Ws.Fus.UI.Wpf.Controls;assembly=Ws.Fus.UI.Wpf"
   Background="{StaticResource XBrush.Application.Background}"
   mc:Ignorable="d">
 
@@ -85,6 +86,37 @@
         <ListBoxItem Content="eight"/>
       </ListBox>
     </Border>-->
+
+    <Grid Grid.Row="1" Width="400" Height="Auto" 
+          VerticalAlignment="Center" HorizontalAlignment="Center">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <coordinate:CoordinateTripletControl 
+        Grid.Row="0"
+        Name="TargetCoordinateAcPcElement" FontSize="10" Height="50" 
+        SeverityLevel="Normal"
+        Margin="20"
+        Point="{Binding Point, Mode=TwoWay}"
+            />
+
+
+      <extensions:NumericUpDown
+        Grid.Row="1"
+        CodeLiteralVisibility="Collapsed"
+        PlusCode=""
+        MinValue="10"
+        MaxValue="60"
+        Increment="1"
+        IsNullable="False"
+        NumberOfFractionDigits="0"
+        Foreground="{StaticResource XBrush.Application.Foreground}"
+        Margin="20"
+        />
+    </Grid>
   </Grid>
   
 </UserControl>

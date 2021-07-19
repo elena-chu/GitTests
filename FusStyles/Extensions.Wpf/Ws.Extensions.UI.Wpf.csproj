@@ -111,6 +111,9 @@
     <Compile Include="Controls\ComboBoxBinary.cs" />
     <Compile Include="Controls\DropDownButton.cs" />
     <Compile Include="Controls\MouseWheelDecorator.cs" />
+    <Compile Include="Controls\NumericUpDown\DisplayStatus.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\SeverityLevel.cs" />
     <Compile Include="Controls\SizeToAspectRatio.cs" />
     <Compile Include="Behaviors\LeftClickContextMenu.cs" />
     <Compile Include="Behaviors\PinnableExpander.cs" />

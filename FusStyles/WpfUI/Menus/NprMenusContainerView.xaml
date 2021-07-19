@@ -83,10 +83,9 @@
         </Button.Style>
       </Button>
 
-      <Expander x:Name="MoreExp" Grid.Row="5" Foreground="White" Grid.ColumnSpan="2">
+      <Expander x:Name="MoreExp" Grid.Row="5" Foreground="White" Grid.ColumnSpan="2" >
         <Expander.Style>
-          <Style TargetType="{x:Type Expander}">
-            <Setter Property="VerticalAlignment" Value="Top"/>
+          <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expader.Menu.Bottom}">
             <Setter Property="Header" Value="More"/>
             <Style.Triggers>
               <Trigger Property="IsExpanded" Value="True">
