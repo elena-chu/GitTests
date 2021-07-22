@@ -55,7 +55,6 @@
 
     <Style x:Key="XStyle.ToolbarMenuItem" TargetType="{x:Type local:ToolbarMenuItem}">
       <Setter Property="Template" Value="{StaticResource XControlTemplate.ToolbarMenuItem}"/>
-      <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
       <Setter Property="extensions:IndependentSize.MinHeight" Value="40"/>
       <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
       <Setter Property="extensions:IndependentSize.Padding" Value="3,3,6,3"/>
@@ -259,7 +258,7 @@
     <Border 
       Grid.Column="1" 
       Background="{StaticResource XBrush.Button.Secondary.Background.Hover}" 
-      Style="{StaticResource Q.XStyle.Border}"
+      Style="{StaticResource XStyle.Border}"
       Opacity="0.4"
       Visibility="{Binding Visibility, ElementName=CompareMenu}"
       extensions:IndependentSize.Margin="-85,0,0,-3"/>

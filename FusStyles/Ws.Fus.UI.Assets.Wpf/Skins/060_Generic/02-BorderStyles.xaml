@@ -2,25 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <!--LA: Remove-->
   <Style x:Key="XStyle.Border" TargetType="{x:Type Border}">
     <Setter Property="extensions:IndependentSize.CornerRadius" Value="{StaticResource XCornerRadius.Frame}"/>
     <Setter Property="Padding" Value="0"/>
-    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
   </Style>
 
-  <!--LA: Temporary name, will replace XStyle.Border-->
-  <Style x:Key="Q.XStyle.Border" TargetType="{x:Type Border}">
-    <Setter Property="extensions:IndependentSize.CornerRadius" Value="{StaticResource XCornerRadius.Frame}"/>
-    <Setter Property="Padding" Value="0"/>
-  </Style>
-
-  <Style x:Key="XStyle.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
+  <Style x:Key="XStyle.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Frame}"/>
     <Setter Property="BorderThickness" Value="{StaticResource XThickness.Frame}"/>
   </Style>
 
-  <Style x:Key="XStyle.Border.HoverAndPress.Primary" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
+  <Style x:Key="XStyle.Border.HoverAndPress.Primary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="Background" Value="{StaticResource XBrush.Button.Primary.Background}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
@@ -61,7 +53,7 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.Border.HoverAndPress.Secondary" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
+  <Style x:Key="XStyle.Border.HoverAndPress.Secondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
@@ -102,7 +94,7 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.Border.HoverAndPress.TransparentToSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
+  <Style x:Key="XStyle.Border.HoverAndPress.TransparentToSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Style.Resources>
       <Storyboard x:Key="LStoryboard.ToInactive" Storyboard.TargetProperty="Background.Color">
         <ColorAnimation To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
@@ -146,7 +138,7 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.Border.Active.Secondary" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
+  <Style x:Key="XStyle.Border.Active.Secondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
     <Style.Triggers>
       <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
@@ -155,46 +147,7 @@
     </Style.Triggers>
   </Style>
 
-  <!--LA: remove-->
-  <Style x:Key="XStyle.Border.Pressed" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
-    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
-    <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundPressedConverter}}"/>
-  </Style>
-
-  <!--LA: remove-->
-  <Style x:Key="XStyle.Border.Hover" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
-    <Setter Property="extensions:ControlExtensions.HoverPercentage" Value="0.0"/>
-    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
-    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
-    <Style.Triggers>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsMouseOver" Value="True"/>
-          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Primary"/>
-        </MultiTrigger.Conditions>
-        <MultiTrigger.EnterActions>
-          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverPrimaryUp}"/>
-        </MultiTrigger.EnterActions>
-        <MultiTrigger.ExitActions>
-          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverDown}"/>
-        </MultiTrigger.ExitActions>
-      </MultiTrigger>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsMouseOver" Value="True"/>
-          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
-        </MultiTrigger.Conditions>
-        <MultiTrigger.EnterActions>
-          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverSecondaryUp}"/>
-        </MultiTrigger.EnterActions>
-        <MultiTrigger.ExitActions>
-          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.HoverDown}"/>
-        </MultiTrigger.ExitActions>
-      </MultiTrigger>
-    </Style.Triggers>
-  </Style>
-
-  <Style x:Key="XStyle.Border.Background.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
+  <Style x:Key="XStyle.Border.Background.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,0,0,1"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
     <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>

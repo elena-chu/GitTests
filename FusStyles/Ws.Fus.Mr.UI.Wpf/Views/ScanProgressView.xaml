@@ -71,7 +71,7 @@
         extensions:IndependentSize.Width="450"
         extensions:IndependentSize.Height="250"
         extensions:IndependentSize.Padding="18"
-        Style="{StaticResource Q.XStyle.Border}"
+        Style="{StaticResource XStyle.Border}"
         Background="{StaticResource XBrush.Application.Background}">
         <Grid>
           <Grid.ColumnDefinitions>

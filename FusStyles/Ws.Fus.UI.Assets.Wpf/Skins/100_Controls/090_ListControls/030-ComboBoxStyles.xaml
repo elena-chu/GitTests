@@ -143,7 +143,6 @@
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox}"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault2}"/>
     <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
-    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="0"/>

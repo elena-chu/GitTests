@@ -31,6 +31,8 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
       <RowDefinition/>
     </Grid.RowDefinitions>
     
@@ -126,6 +128,10 @@
         Content="Icon and Switch"
         extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"
         extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"/>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <RadioButton Content="Volumetric" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}"/>
+        <RadioButton Content="3 - Plane" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}"/>
+      </StackPanel>
     </UniformGrid>
 
     <UniformGrid Grid.Row="6" Margin="0,0,0,20" Columns="{Binding Columns, ElementName=ButtonGrid}" Rows="1">
@@ -135,7 +141,7 @@
       <TextBlock Text="ToggleButton.IconAndSwitchOverText"/>
     </UniformGrid>
 
-    <Grid Grid.Row="7" Width="400" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid Grid.Row="9" Width="400" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
