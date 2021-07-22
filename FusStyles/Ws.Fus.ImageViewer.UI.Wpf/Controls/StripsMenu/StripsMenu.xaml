@@ -47,7 +47,8 @@
             </StackPanel>
           </StackPanel>
         </Border.ToolTip>
-        <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
+        <Grid x:Name="MainGrid" 
+              Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
