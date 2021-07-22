@@ -59,10 +59,10 @@
               <VisualBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Center">
                 <VisualBrush.Visual>
                   <Border
-                    Style="{StaticResource XStyle.Border}"
+                    Style="{StaticResource Q.XStyle.Border}"
                     Width="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
                     Height="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
-                    Background="Black"/>
+                    Background="{StaticResource XBrush.Application.Background}"/>
                 </VisualBrush.Visual>
               </VisualBrush>
             </Image.OpacityMask>
@@ -197,10 +197,10 @@
               <VisualBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Center">
                 <VisualBrush.Visual>
                   <Border
-                    Style="{StaticResource XStyle.Border}"
+                    Style="{StaticResource Q.XStyle.Border}"
                     Width="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
                     Height="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
-                    Background="Black"/>
+                    Background="{StaticResource XBrush.Application.Background}"/>
                 </VisualBrush.Visual>
               </VisualBrush>
             </Image.OpacityMask>

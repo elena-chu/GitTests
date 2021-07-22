@@ -610,6 +610,9 @@
   <!--Menu: Delete-->
   <Geometry x:Key="XGeometry.Menu.DeleteLine">M 3.5714285 9.3333337 H 46.428572 m -16.666667 0 V 4.1111115 c 0 -1.4420645 -1.065952 -2.6111111 -2.380952 -2.6111111 h -4.761905 c -1.315 0 -2.380953 1.1690466 -2.380953 2.6111111 v 5.2222222 m -11.9047617 0 V 45.888889 c 0 1.442117 1.066 2.611111 2.3809527 2.611111 h 28.571429 c 1.315 0 2.380952 -1.168994 2.380952 -2.611111 V 9.3333337</Geometry>
   <Geometry x:Key="XGeometry.Menu.DeleteArea">M 19.047619 19.777778 V 38.055556 H 15.476191 V 19.777778 Z m 7.142857 0 V 38.055556 H 22.619048 V 19.777778 Z m 7.142858 18.277778 V 19.777778 h -3.571429 v 18.277778 z</Geometry>
+  <Geometry x:Key="XGeometry.Menu.DeleteAllLineBeta">m 0,8.2783166 h 24.089806 m -3.430926,0 V 3.7594386 C 20.65888,2.5115959 19.736664,1.5 18.598982,1.5 h -4.119796 c -1.137683,0 -2.0599,1.0115959 -2.0599,2.2594386 v 4.518878 m -8.2994899,0 V 39.182304 c 0,1.24789 0.9222582,2.259439 2.0598985,2.259439 h 7.5435824</Geometry>
+  <Geometry x:Key="XGeometry.Menu.DeleteAllLineAlpha">M 12.921832,16.60842 H 50 m -14.419287,0 v -4.518878 c 0,-1.247843 -0.922216,-2.2594387 -2.059899,-2.2594387 h -4.119796 c -1.137682,0 -2.059899,1.0115957 -2.059899,2.2594387 v 4.518878 m -10.299491,0 v 29.632143 c 0,1.247889 0.922258,2.259439 2.059899,2.259439 h 24.718779 c 1.137681,0 2.059897,-1.01155 2.059897,-2.259439 V 16.60842</Geometry>
+  <Geometry x:Key="XGeometry.Menu.DeleteAllLineArea">M 26.31117,24.638735 V 40.454807 H 23.221324 V 24.638735 Z m 6.179694,0 V 40.454807 H 29.401018 V 24.638735 Z M 38.67056,40.454807 V 24.638735 h -3.089847 v 15.816072 z</Geometry>
 
   <Canvas x:Key="XCanvas.Menu.Delete" Style="{StaticResource XStyle.Canvas.Icon}">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteLine}"/>
@@ -617,13 +620,9 @@
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.DeleteAll" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Canvas.RenderTransform>
-      <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
-    </Canvas.RenderTransform>
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteLine}" Opacity=".5" />
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteArea}" Opacity=".5"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteLine}" Canvas.Top="6" Canvas.Left="6"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteArea}" Canvas.Top="6" Canvas.Left="6"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.DeleteAllLineBeta}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteAllLineAlpha}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteAllLineArea}"/>
   </Canvas>
 
 

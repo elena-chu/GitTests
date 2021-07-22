@@ -5,168 +5,15 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:extensions="http://schemas.insightec.com/wpf/"
-  mc:Ignorable="d" 
-  d:DesignHeight="300"
-  d:DesignWidth="300">
+  mc:Ignorable="d">
   
   <Grid>
     <Grid.Resources>
-      <ControlTemplate x:Key="XControlTemplate.ToggleButton.ToggleIconOverText1" TargetType="{x:Type ToggleButton}">
-        <Grid Background="Transparent">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-          </Grid.RowDefinitions>
-          <Grid
-            Grid.Row="0"
-            extensions:IndependentSize.Margin="0,0,0,2"
-            extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
-            extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
-            >
-            <Rectangle 
-              x:Name="CheckedBkg"
-              Stretch="Fill"
-              Fill="{StaticResource XBrush.Button.Secondary.Background.Hover}"
-              Visibility="Collapsed"
-              RadiusX="{StaticResource XRectRadius.X}"
-              RadiusY="{StaticResource XRectRadius.Y}"
-              />
-
-            <Rectangle 
-              x:Name="HoverBkg_PART"
-              Stretch="Fill"
-              Fill="{StaticResource XBrush.Button.Secondary.Background.Hover}"
-              Opacity="0"
-              Visibility="Visible"
-              RadiusX="{StaticResource XRectRadius.X}"
-              RadiusY="{StaticResource XRectRadius.Y}"
-              />
-              <Viewbox
-                Stretch="Uniform"
-                Height="{TemplateBinding extensions:IconedButton.IconSize}"
-                Width="{TemplateBinding extensions:IconedButton.IconSize}">
-                <Grid>
-                  <ContentControl
-                    x:Name="ActiveIconContentControl"
-                    Content="{TemplateBinding extensions:IconedButton.ActiveIcon}"
-                    Visibility="Hidden"/>
-                  <ContentControl
-                    x:Name="InactiveIconContentControl"
-                    Content="{TemplateBinding extensions:IconedButton.InactiveIcon}"
-                    Visibility="Visible"/>
-                </Grid>
-              </Viewbox>
-              <!--extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
-        extensions:IconedButton.ActiveIcon="{TemplateBinding extensions:IconedButton.ActiveIcon}"
-        extensions:IconedButton.InactiveIcon="{TemplateBinding extensions:IconedButton.InactiveIcon}">-->
-          </Grid>
-          <ContentPresenter Grid.Row="1">
-            <ContentPresenter.Resources>
-              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
-                <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="{Binding (extensions:ToolTipExtension.AutoToolTip), RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter Property="extensions:IndependentSize.MinWidth" Value="70" />
-              </Style>
-            </ContentPresenter.Resources>
-          </ContentPresenter>
-        </Grid>
-        <ControlTemplate.Triggers>
-          <Trigger Property="IsChecked" Value="True">
-            <Setter TargetName="CheckedBkg" Property="Visibility" Value="Visible" />
-            <Setter TargetName="ActiveIconContentControl" Property="Visibility" Value="Visible" />
-            <Setter TargetName="InactiveIconContentControl" Property="Visibility" Value="Hidden" />
-          </Trigger>
-          <Trigger Property="IsMouseOver" Value="true">
-            <Setter TargetName="HoverBkg_PART" Property="Opacity" Value="0.8" />
-            <!--<Trigger.EnterActions>
-              <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.Opacity.Up}" />
-            </Trigger.EnterActions>
-            <Trigger.ExitActions>
-              <BeginStoryboard x:Name="StoryBoardMouseExit" Storyboard="{StaticResource XStoryboard.DoubleAnimation.Opacity.Down}" />
-            </Trigger.ExitActions>-->
-          </Trigger>
-          <Trigger Property="IsPressed" Value="True">
-            <Setter TargetName="HoverBkg_PART" Property="Opacity" Value="1" />
-            <Setter TargetName="HoverBkg_PART" Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}" />
-          </Trigger>
-        </ControlTemplate.Triggers>
-      </ControlTemplate>
-
-      <Style x:Key="XStyle.ToggleButton.ToggleIconOverText1" TargetType="{x:Type ToggleButton}" >
-        <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.ToggleIconOverText1}"/>
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="extensions:IconedButton.IconSize" Value="21"/>
+      <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.ToggleIconOverText}">
+        <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"/>
       </Style>
-
-      <ControlTemplate x:Key="XControlTemplate.Button.IconOverText1" TargetType="{x:Type Button}" >
-        <Grid Background="Transparent">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-          </Grid.RowDefinitions>
-          <Grid
-            Grid.Row="0"
-            extensions:IndependentSize.Margin="0,0,0,2"
-            extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
-            extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
-            >
-            <Rectangle 
-              x:Name="HoverBkg_PART"
-              Stretch="Fill"
-              Fill="{StaticResource XBrush.Button.Secondary.Background.Hover}"
-              Opacity="0"
-              Visibility="Visible"
-              RadiusX="{StaticResource XRectRadius.X}"
-              RadiusY="{StaticResource XRectRadius.Y}"
-              />
-            <Viewbox
-                Stretch="Uniform"
-                Height="{TemplateBinding extensions:IconedButton.IconSize}"
-                Width="{TemplateBinding extensions:IconedButton.IconSize}">
-              <Grid>
-                <ContentControl
-                    x:Name="IconContentControl"
-                    Content="{TemplateBinding extensions:IconedButton.Icon}"
-                    Visibility="Visible"/>
-              </Grid>
-            </Viewbox>
-          </Grid>
-          <ContentPresenter Grid.Row="1">
-            <ContentPresenter.Resources>
-              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
-                <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="{Binding (extensions:ToolTipExtension.AutoToolTip), RelativeSource={RelativeSource TemplatedParent}}"/>
-                <Setter Property="extensions:IndependentSize.MinWidth" Value="70" />
-              </Style>
-            </ContentPresenter.Resources>
-          </ContentPresenter>
-        </Grid>
-        <ControlTemplate.Triggers>
-          <Trigger Property="IsMouseOver" Value="true">
-            <Setter TargetName="HoverBkg_PART" Property="Opacity" Value="0.8" />
-            <!--<Trigger.EnterActions>
-              <BeginStoryboard x:Name="StoryBoardMouseEnter" Storyboard="{StaticResource XStoryboard.DoubleAnimation.Opacity.Up}" />
-            </Trigger.EnterActions>
-            <Trigger.ExitActions>
-              <BeginStoryboard x:Name="StoryBoardMouseExit" Storyboard="{StaticResource XStoryboard.DoubleAnimation.Opacity.Down}" />
-            </Trigger.ExitActions>-->
-          </Trigger>
-          <Trigger Property="IsPressed" Value="True">
-            <Setter TargetName="HoverBkg_PART" Property="Opacity" Value="1" />
-            <Setter TargetName="HoverBkg_PART" Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}" />
-          </Trigger>
-        </ControlTemplate.Triggers>
-      </ControlTemplate>
-
-      <Style x:Key="XStyle.Button.IconOverText1" TargetType="{x:Type Button}" >
-        <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.IconOverText1}"/>
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="extensions:IconedButton.IconSize" Value="21"/>
-      </Style>
-
     </Grid.Resources>
+    
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="Auto"/>
@@ -176,29 +23,26 @@
 
     <ToggleButton 
       Grid.Column="0"
-      Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText1}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.Shown}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.Hidden}"
-      Content="Show/Hide"
-      />
+      Content="Show/Hide"/>
     <!--IsChecked="{Binding IsSecondaryVisible}"-->
 
     <ToggleButton 
       Grid.Column="1"
-      Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText1}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.PlayOn}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.PlayOff}"
-      Content="Flicker"
-      />
+      Content="Flicker"/>
     <!--IsChecked="{Binding IsAutomated}"-->
 
     <Button
       Grid.Column="2"
-      extensions:IconedButton.IconSize="30"
+      extensions:IndependentSize.Width="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"
+      extensions:IconedButton.IconSize="34"
       Content="Speed"
       Command="{Binding ChangeStepCommand}">
       <Button.Style>
-        <Style TargetType="Button" BasedOn="{StaticResource XStyle.Button.IconOverText1}" >
+        <Style TargetType="Button" BasedOn="{StaticResource XStyle.Button.IconOverText}">
           <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Menu.Compare.Forward}"/>
           <Style.Triggers>
             <DataTrigger Binding="{Binding CurrentStep}" Value="1">
@@ -214,7 +58,6 @@
 
     <ToggleButton 
       Grid.Column="3"
-      Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText1}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOn}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOff}"
       Content="Color"

@@ -62,7 +62,6 @@
       VerticalAlignment="Center"
       Margin="12,0,0,0"
       extensions:IconedButton.Icon="{StaticResource XCanvas.Stop}"
-      extensions:IconedButton.IconSize="40"
       Style="{StaticResource XStyle.Button.Icon}"/>
 
     <Popup IsOpen="{Binding AskUser}" Placement="Bottom" AllowsTransparency="True">
@@ -72,7 +71,7 @@
         extensions:IndependentSize.Width="450"
         extensions:IndependentSize.Height="250"
         extensions:IndependentSize.Padding="18"
-        Style="{StaticResource XStyle.Border}"
+        Style="{StaticResource Q.XStyle.Border}"
         Background="{StaticResource XBrush.Application.Background}">
         <Grid>
           <Grid.ColumnDefinitions>

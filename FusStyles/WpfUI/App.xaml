@@ -43,7 +43,6 @@
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/103-TextStyle.xaml"/>
 
         <!--Buttons-->
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/000-ButtonBaseStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/100-ToolButton.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/010-ButtonStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/020-RadioButtonStyles.xaml"/>

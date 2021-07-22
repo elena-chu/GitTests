@@ -73,60 +73,11 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static bool GetHover(DependencyObject obj) { return (bool)obj.GetValue(HoverProperty); }
         public static void SetHover(DependencyObject obj, bool value) { obj.SetValue(HoverProperty, value); }
 
-        #region IsPressed
-
         /// <summary>
-        /// Attach IsPressed property to any FrameworkElement
+        /// IsPressed for any control
         /// </summary>
         public static readonly DependencyProperty IsPressedProperty = DependencyProperty.RegisterAttached("IsPressed", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
-        public static bool GetIsPressed(UIElement element) { return (bool)element.GetValue(IsPressedProperty); }
-        public static void SetIsPressed(UIElement element, bool val) { element.SetValue(IsPressedProperty, val); }
-
-        public static readonly DependencyProperty AttachIsPressedProperty = DependencyProperty.RegisterAttached("AttachIsPressed", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false, OnAttachIsPressedChanged));
-        public static bool GetAttachIsPressed(UIElement element) { return (bool)element.GetValue(AttachIsPressedProperty); }
-        public static void SetAttachIsPressed(UIElement element, bool val) { element.SetValue(AttachIsPressedProperty, val); }
-
-        public static void OnAttachIsPressedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            FrameworkElement element = (FrameworkElement)d;
-            if (element != null)
-            {
-                if ((bool)e.NewValue)
-                {
-                    element.MouseDown += new MouseButtonEventHandler(element_MouseDown);
-                    element.MouseUp += new MouseButtonEventHandler(element_MouseUp);
-                    element.MouseLeave += new MouseEventHandler(element_MouseLeave);
-                }
-                else
-                {
-                    element.MouseDown -= new MouseButtonEventHandler(element_MouseDown);
-                    element.MouseUp -= new MouseButtonEventHandler(element_MouseUp);
-                    element.MouseLeave -= new MouseEventHandler(element_MouseLeave);
-                }
-            }
-        }
-
-        static void element_MouseLeave(object sender, MouseEventArgs e)
-        {
-            FrameworkElement element = (FrameworkElement)sender;
-            if (element != null)
-                element.SetValue(IsPressedProperty, false);
-        }
-
-        static void element_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            FrameworkElement element = (FrameworkElement)sender;
-            if (element != null)
-                element.SetValue(IsPressedProperty, false);
-        }
-
-        static void element_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            FrameworkElement element = (FrameworkElement)sender;
-            if (element != null)
-                element.SetValue(IsPressedProperty, true);
-        }
-
-        #endregion
+        public static bool GetIsPressed(DependencyObject obj) { return (bool)obj.GetValue(IsPressedProperty); }
+        public static void SetIsPressed(DependencyObject obj, bool value) { obj.SetValue(IsPressedProperty, value); }
     }
 }

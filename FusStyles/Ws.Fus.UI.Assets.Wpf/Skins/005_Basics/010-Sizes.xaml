@@ -7,11 +7,11 @@
   <sys:Double x:Key="XDouble.Height.ControlDefault">36</sys:Double>
   <sys:Double x:Key="XDouble.Height.ControlDefault2">30</sys:Double>
   
-  <sys:Double x:Key="XDouble.IconSize.SquareTemplate.Default">37</sys:Double>
-  <sys:Double x:Key="XDouble.IconSize.SquareTemplate.Large">43</sys:Double>
+  <sys:Double x:Key="XDouble.IconSize.SquareTemplate">29</sys:Double>
 
   <sys:Double x:Key="XDouble.Height.IconOverText.OneLine">60</sys:Double>
   <sys:Double x:Key="XDouble.Height.IconOverText.TwoLines">80</sys:Double>
+  <sys:Double x:Key="XDouble.Width.IconOverText.ToolbarMenu">90</sys:Double>
 
   <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
 

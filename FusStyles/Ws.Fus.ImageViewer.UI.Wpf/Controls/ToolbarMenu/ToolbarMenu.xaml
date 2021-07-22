@@ -15,30 +15,19 @@
   x:Name="_thisToolbarMenu">
   
   <UserControl.Resources>
-    <extensions:NullToVisibilityConverter x:Key="null2Vis"/>
-    <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility"/>
-    <extensions:InvertedBooleanToVisibilityConverter x:Key="XConverter.InverseBooleanToVisibility"/>
-    <extensions:NullToVisibilityConverter x:Key="XConverter.NullToVisibility"/>
-
     <ControlTemplate x:Key="XControlTemplate.ToolbarMenuItem" TargetType="{x:Type local:ToolbarMenuItem}">
       <Border
         x:Name="HoverBorder"
         Grid.ColumnSpan="3"
         Margin="{TemplateBinding Margin}"
-        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-        Style="{StaticResource XStyle.Border.Hover}">
+        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
         <Grid Margin="{TemplateBinding Padding}">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
           </Grid.ColumnDefinitions>
-          <Border
-            x:Name="PressedBorder"
-            Grid.ColumnSpan="3"
-            Style="{StaticResource XStyle.Border.Pressed}"
-            extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-            Opacity="0"/>
           <Viewbox
             x:Name="IconViewbox"
             Grid.Column="0"
@@ -74,7 +63,6 @@
       <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
       <Style.Triggers>
         <Trigger Property="IsEnabled" Value="False">
-          <Setter Property="Background" Value="Transparent"/>
           <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
         </Trigger>
       </Style.Triggers>
@@ -237,7 +225,7 @@
       <Setter Property="extensions:IconedButton.Icon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.ActiveIcon" Value="{x:Null}"/>
       <Setter Property="extensions:IconedButton.InactiveIcon" Value="{x:Null}"/>
-      <Setter Property="extensions:IconedButton.IconSize" Value="40"/>
+      <Setter Property="extensions:IconedButton.IconSize" Value="{StaticResource XDouble.IconSize.SquareTemplate}"/>
       <Setter Property="extensions:IndependentSize.Margin" Value="0,0,20,0"/>
     </Style>
 
@@ -271,19 +259,18 @@
     <Border 
       Grid.Column="1" 
       Background="{StaticResource XBrush.Button.Secondary.Background.Hover}" 
-      Style="{StaticResource XStyle.Border}"
+      Style="{StaticResource Q.XStyle.Border}"
       Opacity="0.4"
       Visibility="{Binding Visibility, ElementName=CompareMenu}"
       extensions:IndependentSize.Margin="-85,0,0,-3"/>
 
-    <Menu x:Name="Menu" Grid.Column="0"
-        VerticalAlignment="Center">
+    <Menu x:Name="Menu" Grid.Column="0" VerticalAlignment="Center">
       <local:ToolbarMenuHeader
         x:Name="CycleMenuHeader"
         Header="Cycle"
         ToolbarItemType="Fire"
         Command="{Binding CycleCommand}"
-        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Cycle}"/>
 
       <local:ToolbarMenuHeader
@@ -380,6 +367,7 @@
         extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
+            <Setter Property="extensions:IconedButton.IconSize" Value="26"/>
             <Setter Property="IsCheckable" Value="True"/>
             <Setter Property="StaysOpenOnClick" Value="True"/>
           </Style>
@@ -442,26 +430,26 @@
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.Grid}"/>
       </local:ToolbarMenuHeader>
 
-        <local:ToolbarMenuHeader 
+      <local:ToolbarMenuHeader 
+        Header="Delete" 
+        DataContext="{Binding Commands.Delete}"
+        ToolbarItemType="Select">
+        <local:ToolbarMenuHeader.Resources>
+          <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
+            <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
+          </Style>
+        </local:ToolbarMenuHeader.Resources>
+        <local:ToolbarMenuItem 
           Header="Delete" 
-          DataContext="{Binding Commands.Delete}"
-          ToolbarItemType="Select">
-          <local:ToolbarMenuHeader.Resources>
-            <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
-              <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
-            </Style>
-          </local:ToolbarMenuHeader.Resources>
-          <local:ToolbarMenuItem 
-            Header="Delete" 
-            Command="{Binding DeleteCommand}"
-            ToolbarItemType="Select"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"/>
-          <local:ToolbarMenuItem 
-            Header="Delete All" 
-            Command="{Binding DeleteAllCommand}"
-            ToolbarItemType="Select"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.DeleteAll}"/>
-        </local:ToolbarMenuHeader>
+          Command="{Binding DeleteCommand}"
+          ToolbarItemType="Select"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"/>
+        <local:ToolbarMenuItem 
+          Header="Delete All" 
+          Command="{Binding DeleteAllCommand}"
+          ToolbarItemType="Select"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.DeleteAll}"/>
+      </local:ToolbarMenuHeader>
 
       <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
@@ -496,13 +484,7 @@
       </local:ToolbarMenuHeaderCompare>
     </Menu>
 
-    <Grid
-      x:Name="CompareMenu" 
-      Grid.Column="1" 
-      Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
-      VerticalAlignment="Center"
-      extensions:IndependentSize.Margin="0,2,0,0"
-      >
+    <Grid x:Name="CompareMenu" Grid.Column="1" Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}">
       <Grid.Resources>
         <DataTemplate x:Key ="SliderModeControl">
           <sliderViews:SliderModeControlView/>
@@ -525,15 +507,14 @@
         Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
         extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOn}"
         extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOff}"
-        extensions:IconedButton.IconSize="32"
-        VerticalAlignment="Center"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"
         Content="Linked"/>
 
       <!--<sliderViews:SliderModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Simple|Slider'}"/>
       <flickerViews:FlickerModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Flicker'}"/>
       <fusionViews:FusionModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Fusion'}"/>-->
 
-      <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left">
+      <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
         <ContentControl.Style>
           <Style TargetType="{x:Type ContentControl}">
             <Style.Triggers>
@@ -559,11 +540,7 @@
         Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"
         Content="Clear Images"
-        Command="{Binding ClearCompareStripsCommand}"
-        extensions:IconedButton.IconSize="32"
-        extensions:IndependentSize.Margin="0,0,7,0"
-        VerticalAlignment="Center"
-        />
+        Command="{Binding ClearCompareStripsCommand}"/>
     </Grid>
   </Grid>
 </UserControl>

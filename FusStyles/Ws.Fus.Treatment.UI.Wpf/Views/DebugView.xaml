@@ -18,77 +18,124 @@
   </UserControl.Resources>
 
   <Grid>
+    <Grid.Resources>
+      <Style TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+        <Setter Property="Foreground" Value="HotPink"/>
+      </Style>
+    </Grid.Resources>
     <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition/>
     </Grid.RowDefinitions>
-    <tm:ToolbarMenu Grid.Row="0" VerticalAlignment="Top" Height="Auto"/>
+    
+    <tm:ToolbarMenu Grid.Row="0" Margin="0,0,0,40" VerticalAlignment="Top" Height="Auto"/>
 
-    <!--<UniformGrid Grid.Row="1" Columns="5">
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Icon Over Text Button</TextBlock>
-        <Button
-          HorizontalAlignment="Left"
-          Style="{StaticResource XStyle.Button.IconOverText}"
-          Content="Icon Over Text"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Recalculate}"/>
-      </StackPanel>
+    <UniformGrid x:Name="ButtonGrid" Margin="0,0,0,10" Grid.Row="1" Columns="6" Rows="1">
+      <Button Style="{StaticResource XStyle.Button.Primary}" Content="Primary" extensions:IndependentSize.Width="170"/>
+      <Button Style="{StaticResource XStyle.Button.Secondary}" Content="Secondary" extensions:IndependentSize.Width="170"/>
+      <Button
+        Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}"
+        Content="Text side icon"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"
+        extensions:IndependentSize.Width="170"/>
+      <ToggleButton extensions:IndependentSize.Width="170" extensions:ProgressStatusDisplayer.ProgressState="Active">
+        <ToggleButton.Style>
+          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.StatusIndicator}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Auto Calibrate"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active">
+                <Setter Property="Content" Value="Calibrating..."/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="Calibrated"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </ToggleButton.Style>
+      </ToggleButton>
+      <Button extensions:IndependentSize.Width="170" extensions:ProgressStatusDisplayer.ProgressState="Completed">
+        <Button.Style>
+          <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Approval}">
+            <Style.Triggers>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Regular">
+                <Setter Property="Content" Value="Approve CT NPRs"/>
+              </Trigger>
+              <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
+                <Setter Property="Content" Value="CT NPRs Approved"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Button.Style>
+      </Button>
+    </UniformGrid>
 
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Icon Over Wrapped Text Button</TextBlock>
-        <Button
-          extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
-          HorizontalAlignment="Left"
-          Style="{StaticResource XStyle.Button.IconOverText}"
-          Content="Icon Over Wrapped"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"/>
-      </StackPanel>
+    <UniformGrid Grid.Row="2" Margin="0,0,0,20" Columns="{Binding Columns, ElementName=ButtonGrid}" Rows="1">
+      <TextBlock Text="Button.Primary"/>
+      <TextBlock Text="Button.Secondary"/>
+      <TextBlock Text="Button.Secondary.TextWithSideIcon"/>
+      <TextBlock Text="ToggleButton.StatusIndicator"/>
+      <TextBlock Text="Button.Approval"/>
+    </UniformGrid>
 
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Icon Over Text ToggleButton</TextBlock>
-        <ToggleButton
-          HorizontalAlignment="Left"
-          Style="{StaticResource XStyle.ToggleButton.IconOverText}"
-          Content="Toggle"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}"/>
-      </StackPanel>
+    <UniformGrid Grid.Row="3" Margin="0,10" Columns="{Binding Columns, ElementName=ButtonGrid}" Rows="1">
+      <Button Style="{StaticResource XStyle.Button.Plus}"/>
+      <Button Style="{StaticResource XStyle.Button.Exit}"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Cycle}"/>
+      <ToggleButton Style="{StaticResource XStyle.ToggleButton.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.ToggleIcon}"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Overlays.Shown}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}"/>
+    </UniformGrid>
 
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">ToggleIcon Over Text ToggleButton</TextBlock>
-        <ToggleButton
-          HorizontalAlignment="Left"
-          Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
-          Content="ToggleIcon"
-          extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Overlays.Shown}"
-          extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Overlays.Hidden}"/>
-      </StackPanel>
+    <UniformGrid Grid.Row="4" Margin="0,0,0,20" Columns="{Binding Columns, ElementName=ButtonGrid}" Rows="1">
+      <TextBlock Text="Button.Plus"/>
+      <TextBlock Text="Button.Exit"/>
+      <TextBlock Text="Button.Icon"/>
+      <TextBlock Text="ToggleButton.Icon"/>
+      <TextBlock Text="ToggleButton.ToggleIcon"/>
+    </UniformGrid>
 
+    <UniformGrid Grid.Row="5" Margin="0,10" Columns="{Binding Columns, ElementName=ButtonGrid}" Rows="1">
+      <Button
+        Style="{StaticResource XStyle.Button.IconOverText}"
+        Content="Icon Over Text"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.IconOverText}"
+        Content="Icon Over Text Toggle"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
+        Content="Toggle Icon Over Text"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Unlock}"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Lock}"
+        extensions:IconedButton.IconSize="28"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"
+        Content="Icon and Switch"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"/>
+    </UniformGrid>
 
-      <StackPanel>
-        <TextBlock Foreground="LightBlue" FontSize="12">Icon Button</TextBlock>
-        <Button
-          HorizontalAlignment="Left"
-          Style="{StaticResource XStyle.Button.Icon}"
-          extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"/>
-      </StackPanel>
+    <UniformGrid Grid.Row="6" Margin="0,0,0,20" Columns="{Binding Columns, ElementName=ButtonGrid}" Rows="1">
+      <TextBlock Text="Button.IconOverText"/>
+      <TextBlock Text="ToggleButton.IconOverText"/>
+      <TextBlock Text="ToggleButton.ToggleIconOverText"/>
+      <TextBlock Text="ToggleButton.IconAndSwitchOverText"/>
+    </UniformGrid>
 
-    </UniformGrid>-->
-
-    <!--<Border Grid.Row="1" Width=" 150" Height="200">
-      <ListBox Grid.Row="1">
-        <ListBoxItem Content="one"/>
-        <ListBoxItem Content="two"/>
-        <ListBoxItem Content="three"/>
-        <ListBoxItem Content="four"/>
-        <ListBoxItem Content="five"/>
-        <ListBoxItem Content="six"/>
-        <ListBoxItem Content="seven"/>
-        <ListBoxItem Content="eight"/>
-      </ListBox>
-    </Border>-->
-
-    <Grid Grid.Row="1" Width="400" Height="Auto" 
-          VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid Grid.Row="7" Width="400" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />

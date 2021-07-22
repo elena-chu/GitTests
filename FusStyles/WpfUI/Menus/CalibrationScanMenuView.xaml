@@ -139,10 +139,11 @@
             />
       </Grid>-->
 
-      <Button Grid.Row="4"
-            Content="Load Pre-Treatment Plan" 
-            Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}" 
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
+      <Button
+        Grid.Row="4"
+        Content="Load Pre-Treatment Plan"
+        Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
 
       <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" Style="{StaticResource XStyle.Expader.Menu.Bottom}" >
         <StackPanel>
@@ -153,47 +154,40 @@
           </StackPanel.Resources>
 
           <Button  
-              Command="{Binding TrackersScan}"
-              Content="Movement Evaluation Mode"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MovementEvaluation}"
-              extensions:IconedButton.IconSize="20"/>
+            Command="{Binding TrackersScan}"
+            Content="Movement Evaluation Mode"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MovementEvaluation}"/>
 
           <TextBlock 
-              Style="{StaticResource XStyle.TextBlock.Menu.Label}"
-              Text="Manual Calibration Scan"
-              extensions:IndependentSize.Margin="0,15,0,8"
-              />
+            Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+            Text="Manual Calibration Scan"
+            extensions:IndependentSize.Margin="0,15,0,8"/>
 
           <Button  
-              Command="{Binding TrackersScan}"
-              Content="Locate Transducer"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LocateTransducer}"
-              extensions:IconedButton.IconSize="20"
-              />
+            Command="{Binding TrackersScan}"
+            Content="Locate Transducer"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LocateTransducer}"/>
+          
           <Button   
-              Command="{Binding B0Scan}"
-              Content="Find Central Frequency"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
-              extensions:IconedButton.IconSize="17"
-          />
+            Command="{Binding B0Scan}"
+            Content="Find Central Frequency"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
+            extensions:IconedButton.IconSize="20"/>
+          
           <Button   
-              Command="{Binding LocalizerScan}"
-              Content="Acquire Localizer"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"
-              extensions:IconedButton.IconSize="19"    
-              />
+            Command="{Binding LocalizerScan}"
+            Content="Acquire Localizer"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.3dLocalizer}"/>
+          
           <Button   
-              Command="{Binding MFScan}"
-              Content="Membrane Folds Scan"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"
-              extensions:IconedButton.IconSize="20"
-              />
+            Command="{Binding MFScan}"
+            Content="Membrane Folds Scan"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.MembraneFoldScan}"/>
+          
           <Button   
-              Command="{Binding MdRefScan}"
-              Content="Acquire Movement Reference"
-              extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"
-              extensions:IconedButton.IconSize="21"
-              />
+            Command="{Binding MdRefScan}"
+            Content="Acquire Movement Reference"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.ScanMdReference}"/>
 
         </StackPanel>
       </Expander>

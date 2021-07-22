@@ -10,7 +10,7 @@
   <UserControl.Resources>
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconOverText}">
       <Setter Property="extensions:IndependentSize.Margin" Value="0,6"/>
-      <Setter Property="extensions:IconedButton.IconSize" Value="{StaticResource XDouble.IconSize.SquareTemplate.Large}"/>
+      <Setter Property="extensions:IconedButton.IconSize" Value="{StaticResource XDouble.IconSize.SquareTemplate}"/>
     </Style>
   </UserControl.Resources>
 
@@ -32,14 +32,12 @@
       <Button
         Grid.Row="0"
         Grid.Column="0"
-        Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"
         Content="Manual NPR"/>
       
       <Button
         Grid.Row="0"
         Grid.Column="1"
-        Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Spherical}"
         Content="Spherical NPR"/>
 

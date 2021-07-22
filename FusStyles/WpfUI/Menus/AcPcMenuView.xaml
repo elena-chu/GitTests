@@ -64,7 +64,7 @@
         ivBeh:UiModeShow.Mode="ACPCOverlay"
         Content="AC-PC Overlay"
         DataContext="{Binding Commands.Overlays}"
-        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Overlay}"
         Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
 
@@ -73,7 +73,7 @@
         Grid.Column="1"
         Content="Recalculate"
         Command="{Binding FindAcPcCommand}"
-        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Recalculate}"/>
 
       <Button
@@ -81,7 +81,7 @@
         Grid.Column="0"
         Content="Go to AC-PC"
         Command="{Binding ShowAcPcCommand}"
-        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.AcPc.Center}"/>
 
       <Button

@@ -41,7 +41,7 @@
         extensions:IndependentSize.Margin="0,6"
         ivBeh:UiModeShow.Mode="PreOpSegmentationOverlay"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.CtOverlay}"
-        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         Content="CT Overlay"
         DataContext="{Binding Commands.Overlays}"
         Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
@@ -51,7 +51,7 @@
         Grid.Column="1"
         Margin="0,6"
         Style="{StaticResource XStyle.Button.IconOverText}"
-        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate.Large}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         Command="{Binding AutoRegisterCommand}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
         Content="Auto Register"/>

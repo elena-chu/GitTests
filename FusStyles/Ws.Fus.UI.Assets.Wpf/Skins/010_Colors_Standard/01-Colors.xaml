@@ -34,7 +34,8 @@
   <Color x:Key="XColor.Button.Primary.Foreground">#FF000000</Color>
 
   <Color x:Key="XColor.Button.Secondary.Background">#FF002d32</Color>
-  <Color x:Key="XColor.Button.Secondary.Background.Hover">#FF004150</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Active">#FF004150</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Hover">#FF005566</Color>
   <Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF006a7e</Color>
   <Color x:Key="XColor.Button.Secondary.Foreground">#FFE5E5E5</Color>
 
