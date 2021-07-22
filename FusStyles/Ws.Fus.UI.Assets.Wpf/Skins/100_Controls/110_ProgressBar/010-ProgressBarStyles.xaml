@@ -20,6 +20,7 @@
         <Rectangle
           x:Name="IndeterminateIndicator"
           Fill="{TemplateBinding Foreground}"
+          Opacity=".6"
           RadiusX="{Binding Path=ActualHeight, ElementName=TemplateGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
           RadiusY="{Binding Path=ActualHeight, ElementName=TemplateGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
           Visibility="{TemplateBinding IsIndeterminate, Converter={StaticResource XConverter.BooleanToVisibility}}"
