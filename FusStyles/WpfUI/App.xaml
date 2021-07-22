@@ -12,6 +12,7 @@
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/005-SystemTypes.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/010-Sizes.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/020-MiscDefinitions.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/005_Basics/030-Converters.xaml"/>
 
         <!--Colors, Brushes-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/010_Colors_Standard/01-Colors.xaml"/>

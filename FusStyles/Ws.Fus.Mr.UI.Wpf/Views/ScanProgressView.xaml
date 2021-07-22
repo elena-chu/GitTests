@@ -9,12 +9,6 @@
   prism:ViewModelLocator.AutoWireViewModel="True"
   mc:Ignorable="d">
   
-  <UserControl.Resources>
-    <Style x:Key="LStyle.ProgressBar" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource XStyle.ProgressBar.Base}">
-      <Setter Property="IsIndeterminate" Value="{Binding IsPreScan}"/>
-    </Style>
-  </UserControl.Resources>
-  
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="0.7*"/>
@@ -49,12 +43,9 @@
       Grid.Column="0"
       Grid.ColumnSpan="2"
       Grid.Row="1"
-      extensions:IndependentSize.Margin="0,0,0,0"
-      Minimum="0"
-      Maximum="100"
-      Value="70"
-      Style="{StaticResource LStyle.ProgressBar}"/>
-    <!--Value="{Binding PercentPassed}"-->
+      Value="{Binding PercentPassed}"
+      IsIndeterminate="{Binding IsPreScan}"
+      Style="{StaticResource XStyle.ProgressBar.Base}"/>
 
     <TextBlock
       Grid.Column="2"
