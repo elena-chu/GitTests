@@ -28,74 +28,75 @@
   </Style>
 
   <ControlTemplate x:Key="XControlTemplate.ListBoxItem.Base" TargetType="{x:Type ListBoxItem}">
-    <Border
-      x:Name="BackgroundBorder"
+    <Grid
       extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
-      extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
-      extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-      Style="{StaticResource XStyle.Border.Background}"
-      Background="{TemplateBinding Background}"
-      extensions:IndependentSize.CornerRadius="0">
+      extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}">
+      <Border
+        x:Name="ActiveBorder"
+        extensions:ControlExtensions.IsActive="{TemplateBinding IsSelected}"
+        Style="{StaticResource XStyle.Border.Active.Secondary}"/>
       <Border
         x:Name="HoverBorder"
-        extensions:ControlExtensions.ControlTheme="{TemplateBinding extensions:ControlExtensions.ControlTheme}"
-        extensions:ControlExtensions.HoverPercentage="{TemplateBinding extensions:ControlExtensions.HoverPercentage}"
-        Style="{StaticResource XStyle.Border.Hover}"
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"
         extensions:IndependentSize.CornerRadius="0">
-        <Grid>
-          <ContentPresenter
-            x:Name="ContentPresenter"
-            Margin="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
-            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-            IsHitTestVisible="False">
-            <ContentPresenter.Resources>
-              <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
-              </Style>
-            </ContentPresenter.Resources>
-          </ContentPresenter>
-        </Grid>
+        <ContentPresenter
+          x:Name="ContentPresenter"
+          Margin="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
+          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+          IsHitTestVisible="False">
+          <ContentPresenter.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+              <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+            </Style>
+          </ContentPresenter.Resources>
+        </ContentPresenter>
       </Border>
-    </Border>
+    </Grid>
     <ControlTemplate.Triggers>
       <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={extensions:IsFirstConverter}}" Value="True">
-        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="BackgroundBorder" Value="{StaticResource XCornerRadius.Frame.Top}"/>
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Top}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="ActiveBorder" Value="{StaticResource XCornerRadius.Frame.Top}"/>
       </DataTrigger>
       <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={extensions:IsLastConverter}}" Value="True">
-        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="BackgroundBorder" Value="{StaticResource XCornerRadius.Frame.Bottom}"/>
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Bottom}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="ActiveBorder" Value="{StaticResource XCornerRadius.Frame.Bottom}"/>
       </DataTrigger>
+      <EventTrigger RoutedEvent="MouseDown" SourceName="HoverBorder">
+        <BeginStoryboard>
+          <Storyboard Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="(extensions:ControlExtensions.IsPressed)">
+            <BooleanAnimationUsingKeyFrames>
+              <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+            </BooleanAnimationUsingKeyFrames>
+          </Storyboard>
+        </BeginStoryboard>
+      </EventTrigger>
+      <EventTrigger RoutedEvent="MouseUp" SourceName="HoverBorder">
+        <BeginStoryboard>
+          <Storyboard Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="(extensions:ControlExtensions.IsPressed)">
+            <BooleanAnimationUsingKeyFrames>
+              <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
+            </BooleanAnimationUsingKeyFrames>
+          </Storyboard>
+        </BeginStoryboard>
+      </EventTrigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="9,0,9,1"/>
-    <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
-    <Setter Property="BorderThickness" Value="0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ListBoxItem.Base}"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
-    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
-    <Setter Property="Foreground" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToForegroundConverter}}"/>
-    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
-      <MultiTrigger>
-        <MultiTrigger.Conditions>
-          <Condition Property="IsEnabled" Value="False"/>
-          <Condition Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
-        </MultiTrigger.Conditions>
+      <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
-      </MultiTrigger>
-      <Trigger Property="IsSelected" Value="True">
-        <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundPressedConverter}}"/>
       </Trigger>
     </Style.Triggers>
   </Style>

@@ -155,18 +155,8 @@
     </Style.Triggers>
   </Style>
 
-  <!--LA: Remove-->
-  <Style x:Key="XStyle.Border.Background" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
-    <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundConverter}}"/>
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundDisabledConverter}}"/>
-      </Trigger>
-    </Style.Triggers>
-  </Style>
-
   <!--LA: remove-->
-  <Style x:Key="XStyle.Border.Pressed" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+  <Style x:Key="XStyle.Border.Pressed" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
     <Setter Property="extensions:ControlExtensions.ControlTheme" Value="None"/>
     <Setter Property="Background" Value="{Binding Path=(extensions:ControlExtensions.ControlTheme), RelativeSource={RelativeSource Self}, Converter={extensions:ControlThemeToBackgroundPressedConverter}}"/>
   </Style>
@@ -204,13 +194,13 @@
     </Style.Triggers>
   </Style>
 
-  <!--LA: remove-->
-  <Style x:Key="XStyle.Border.Background.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Background}">
-    <Setter Property="extensions:ControlExtensions.ControlTheme" Value="Secondary"/>
+  <Style x:Key="XStyle.Border.Background.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource Q.XStyle.Border}">
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,0,0,1"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Background" Value="{StaticResource XBrush.Control.Background.Disabled}"/>
         <Setter Property="BorderBrush" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
