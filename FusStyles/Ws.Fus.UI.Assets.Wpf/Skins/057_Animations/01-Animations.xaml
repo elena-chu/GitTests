@@ -2,32 +2,4 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.PressedPercentage.RunUp">
-    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.PressedPercentage)" To="1.0" Duration="{StaticResource XDuration.Animation.Short}"/>
-  </Storyboard>
-
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.PressedPercentage.RunDown">
-    <DoubleAnimation Storyboard.TargetProperty="(extensions:ControlExtensions.PressedPercentage)" To="0.0" Duration="{StaticResource XDuration.Animation.Short}"/>
-  </Storyboard>
-
-  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverPrimaryUp">
-    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
-  </Storyboard>
-
-  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverSecondaryUp">
-    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
-  </Storyboard>
-
-  <Storyboard x:Key="XStoryboard.ColorAnimation.HoverDown">
-    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}"/>
-  </Storyboard>
-
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.Opacity.Up">
-    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" Duration="{StaticResource XDuration.Animation.Short}" Storyboard.TargetName="HoverBkg_PART" />
-  </Storyboard>
-
-  <Storyboard x:Key="XStoryboard.DoubleAnimation.Opacity.Down" >
-    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0" Storyboard.TargetName="HoverBkg_PART"/>
-  </Storyboard>
-
 </ResourceDictionary>

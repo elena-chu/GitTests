@@ -1,15 +1,7 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
 {
-    public enum ControlTheme
-    {
-        None,
-        Primary,
-        Secondary
-    }
-
     public enum Placement
     {
         Left,
@@ -22,27 +14,6 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
     /// </summary>
     public class ControlExtensions
     {
-        /// <summary>
-        /// Used to set a Control's theme
-        /// </summary>
-        public static readonly DependencyProperty ControlThemeProperty = DependencyProperty.RegisterAttached("ControlTheme", typeof(ControlTheme), typeof(ControlExtensions), new PropertyMetadata(ControlTheme.Secondary));
-        public static ControlTheme GetControlTheme(DependencyObject obj) { return (ControlTheme)obj.GetValue(ControlThemeProperty); }
-        public static void SetControlTheme(DependencyObject obj, ControlTheme value) { obj.SetValue(ControlThemeProperty, value); }
-
-        /// <summary>
-        /// Used for animation when hovering over controls
-        /// </summary>
-        public static readonly DependencyProperty HoverPercentageProperty = DependencyProperty.RegisterAttached("HoverPercentage", typeof(double), typeof(ControlExtensions), new PropertyMetadata(0.0));
-        public static double GetHoverPercentage(DependencyObject obj) { return (double)obj.GetValue(HoverPercentageProperty); }
-        public static void SetHoverPercentage(DependencyObject obj, double value) { obj.SetValue(HoverPercentageProperty, value); }
-
-        /// <summary>
-        /// Used for animation when pressing controls
-        /// </summary>
-        public static readonly DependencyProperty PressedPercentageProperty = DependencyProperty.RegisterAttached("PressedPercentage", typeof(double), typeof(ControlExtensions), new PropertyMetadata(0.0));
-        public static double GetPressedPercentage(DependencyObject obj) { return (double)obj.GetValue(PressedPercentageProperty); }
-        public static void SetPressedPercentage(DependencyObject obj, double value) { obj.SetValue(PressedPercentageProperty, value); }
-
         /// <summary>
         /// Used for setting a control's style when placed in a consecutive line
         /// e.g. the leftmost button in a ToolBar might have rounded corners as opposed to middle buttons
