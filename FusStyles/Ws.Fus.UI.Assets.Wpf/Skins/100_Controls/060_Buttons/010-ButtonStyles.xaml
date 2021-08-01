@@ -6,7 +6,7 @@
   <!--Base-->
   <Style x:Key="XStyle.ButtonBase.Text" TargetType="{x:Type ButtonBase}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
     <Setter Property="extensions:IndependentSize.MinWidth" Value="150"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
@@ -143,7 +143,7 @@
   <Style x:Key="XStyle.Button.Plus" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Text}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.SingleLetter}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault2}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
     <Setter Property="Content" Value="+"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="20"/>
@@ -238,6 +238,7 @@
   <Style x:Key="XStyle.ToggleButton.MenuOpener" TargetType="{x:Type ToggleButton}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.MenuOpener}"/>
+    <Setter Property="Padding" Value="0"/>
     <Setter Property="extensions:IndependentSize.Width" Value="20"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Style.Triggers>
@@ -246,6 +247,67 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+  
+  <!--Spinner-->
+  <ControlTemplate x:Key="XControlTemplate.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
+    <Grid>
+      <Border
+        extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
+        extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
+        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+        <Border extensions:IndependentSize.Margin="3,0" extensions:IndependentSize.MaxWidth="15" HorizontalAlignment="Center">
+          <Path
+            x:Name="ArrowPath"
+            IsHitTestVisible="False"
+            Stretch="Uniform"
+            Data="{StaticResource XGeometry.Arrow.Down}"
+            Stroke="{TemplateBinding Foreground}"
+            StrokeThickness="1.3"
+            RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+              <ScaleTransform x:Name="ArrowScaleTransform" ScaleX="1" ScaleY="1"/>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+      </Border>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="extensions:ControlExtensions.VerticalPlacement" Value="Top">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ArrowScaleTransform" Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ArrowScaleTransform" Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Spinner}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="20"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
 
   <!--Solitary Icon-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.Icon" TargetType="{x:Type ButtonBase}">
@@ -289,8 +351,8 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ControlExtensions.IsActive" Value="False"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.Control.Default}"/>
   </Style>
 
   <Style x:Key="XStyle.Button.Icon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Icon}">
@@ -307,7 +369,7 @@
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
   </Style>
 
-  <!--Icon over Text new-->
+  <!--Icon over Text-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.IconOverText" TargetType="{x:Type ButtonBase}">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource XBrush.AlmostTransparent}">
       <Grid.RowDefinitions>
@@ -317,15 +379,15 @@
       <Border
         Grid.Row="0"
         HorizontalAlignment="Center"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
         extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
         Style="{StaticResource XStyle.Border.Active.Secondary}"/>
       <Border
         Grid.Row="0"
         HorizontalAlignment="Center"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
         extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
         extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
         Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
@@ -404,15 +466,15 @@
       <Border
         Grid.Row="0"
         Grid.Column="0"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
         extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
         Style="{StaticResource XStyle.Border.Active.Secondary}"/>
       <Border
         Grid.Row="0"
         Grid.Column="0"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Height.ControlDefault}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.ControlDefault}"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
         extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
         extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
         Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">

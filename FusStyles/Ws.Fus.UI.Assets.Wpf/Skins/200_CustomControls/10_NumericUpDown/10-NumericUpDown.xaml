@@ -2,98 +2,98 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <Style x:Key="XStyle.NumericUpDown"  TargetType="{x:Type extensions:NumericUpDown}">
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
-    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
-    <Setter Property="extensions:IndependentSize.Height" Value="45" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="extensions:NumericUpDown">
-          <Grid
-            Background="{TemplateBinding Background}"
-            Margin="{TemplateBinding Margin}">
-            <Grid.RowDefinitions>
-              <RowDefinition />
-              <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition />
-              <ColumnDefinition Width=".25*" MaxWidth="150" MinWidth="20"/>
-            </Grid.ColumnDefinitions>
+  <ControlTemplate x:Key="XControlTemplate.NumericUpDown" TargetType="extensions:NumericUpDown">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition extensions:IndependentSize.RowHeight="36"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="{Binding ActualWidth, ElementName=SpinnerColumn}"/>
+        <ColumnDefinition/>
+        <ColumnDefinition x:Name="SpinnerColumn" Width="Auto"/>
+      </Grid.ColumnDefinitions>
 
-            <TextBox 
-              x:Name="PART_NumberTB"
-              Foreground="{TemplateBinding Foreground}"
-              Background="{StaticResource XBrush.AlmostTransparent}"
-              FontSize="{TemplateBinding FontSize}"
-              HorizontalScrollBarVisibility="Hidden"
-              VerticalScrollBarVisibility="Hidden"
-              />
+      <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}"/>
 
-            <Grid x:Name="ButtonsContainer"
-              Grid.Column="1"
-                  Visibility="Hidden">
-              <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-              </Grid.RowDefinitions>
-              <RepeatButton Content="^" Margin="0"
-                Name="PART_UpButton"
-                Grid.Row="0"/>
-              <RepeatButton Content="^" Margin="0,1,0,0"
-                Name="PART_DownButton"
-                Grid.Row="1"
-                RenderTransformOrigin="0.5, 0.5"
-                >
-                <RepeatButton.RenderTransform>
-                  <ScaleTransform ScaleY="-1" />
-                </RepeatButton.RenderTransform>
-              </RepeatButton>
-            </Grid>
+      <TextBox
+        x:Name="PART_NumberTB"
+        Grid.Row="0"
+        Grid.ColumnSpan="3"
+        Foreground="{TemplateBinding Foreground}"
+        Background="{StaticResource XBrush.AlmostTransparent}"
+        FontFamily="{StaticResource XFontFamily.Base}"
+        FontSize="{TemplateBinding FontSize}"
+        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+        Padding="{TemplateBinding Padding}"
+        HorizontalScrollBarVisibility="Hidden"
+        VerticalScrollBarVisibility="Hidden"
+        BorderThickness="0"/>
 
-            <TextBlock
-              x:Name="PART_CodeLiteralTB"
-              Grid.Row="1" Grid.ColumnSpan="2" 
-              Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type extensions:NumericUpDown}}, Path=CodeLiteralVisibility}"
-              TextAlignment="Center"
-              Foreground="{TemplateBinding Foreground}"
-              />
+      <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1" Visibility="Hidden">
+        <RepeatButton Name="PART_UpButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Top"/>
+        <RepeatButton Name="PART_DownButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Bottom"/>
+      </UniformGrid>
 
-          </Grid>
-          <ControlTemplate.Triggers>
-            <Trigger Property="SeverityLevel" Value="High">
-              <Setter Property="Foreground" TargetName="PART_NumberTB" Value="Red" />
-            </Trigger>
-            <Trigger Property="SeverityLevel" Value="Low">
-              <Setter Property="Foreground" TargetName="PART_NumberTB" Value="Yellow" />
-            </Trigger>
-            <Trigger Property="DisplayStatus" Value="Disabled">
-              <Setter Property="IsEnabled" TargetName="PART_NumberTB" Value="False" />
-              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Hidden" />
-            </Trigger>
-            <Trigger Property="DisplayStatus" Value="ReadOnly">
-              <Setter Property="IsReadOnly" TargetName="PART_NumberTB" Value="True" />
-              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Hidden" />
-            </Trigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="DisplayStatus" Value="Active"/>
-                <Condition Property="IsMouseOver" Value="True"/>
-              </MultiTrigger.Conditions>
-              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Visible" />
-            </MultiTrigger>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="DisplayStatus" Value="Active"/>
-                <Condition Property="IsChildWithFocus" Value="True"/>
-              </MultiTrigger.Conditions>
-              <Setter Property="Visibility" TargetName="ButtonsContainer" Value="Visible" />
-            </MultiTrigger>
+      <TextBlock
+        x:Name="PART_CodeLiteralTB"
+        Grid.Row="1"
+        Grid.ColumnSpan="3"
+        extensions:IndependentSize.Margin="0,2,0,0"
+        Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type extensions:NumericUpDown}}, Path=CodeLiteralVisibility}"
+        Style="{StaticResource XStyle.TextBlock.Caption}"
+        Foreground="{TemplateBinding Foreground}"/>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="SeverityLevel" Value="High">
+        <Setter Property="Foreground" TargetName="PART_NumberTB" Value="{StaticResource XBrush.Error}"/>
+      </Trigger>
+      <Trigger Property="SeverityLevel" Value="Low">
+        <Setter Property="Foreground" TargetName="PART_NumberTB" Value="{StaticResource XBrush.Warning}"/>
+      </Trigger>
+      <Trigger Property="DisplayStatus" Value="Disabled">
+        <Setter Property="IsEnabled" TargetName="PART_NumberTB" Value="False"/>
+        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Hidden"/>
+      </Trigger>
+      <Trigger Property="DisplayStatus" Value="ReadOnly">
+        <Setter Property="IsReadOnly" TargetName="PART_NumberTB" Value="True"/>
+        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Hidden"/>
+      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="DisplayStatus" Value="Active"/>
+          <Condition Property="IsMouseOver" Value="True"/>
+        </MultiTrigger.Conditions>
+        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Visible"/>
+      </MultiTrigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="DisplayStatus" Value="Active"/>
+          <Condition Property="IsChildWithFocus" Value="True"/>
+        </MultiTrigger.Conditions>
+        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Visible"/>
+      </MultiTrigger>
 
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.NumericUpDown" TargetType="{x:Type extensions:NumericUpDown}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.NumericUpDown}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="150"/>
+    <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="9,0,9,1"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
 </ResourceDictionary>

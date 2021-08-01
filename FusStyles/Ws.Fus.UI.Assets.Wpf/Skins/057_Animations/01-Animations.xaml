@@ -1,5 +1,57 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:extensions="http://schemas.insightec.com/wpf/">
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <!--ColorAnimations-->
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToBase.Stop.Primary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Primary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Stop.Primary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToPressed.Primary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToBase.Stop.Secondary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Secondary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Stop.Secondary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToPressed.Secondary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.Stop.ToTransparent" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
+  
+  <!--BooleanAnimations-->
+  <Storyboard x:Key="XStoryboard.BooleanAnimation.ToPressed" Storyboard.TargetProperty="(extensions:ControlExtensions.IsPressed)">
+    <BooleanAnimationUsingKeyFrames>
+      <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+    </BooleanAnimationUsingKeyFrames>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.BooleanAnimation.ToUnpressed" Storyboard.TargetProperty="(extensions:ControlExtensions.IsPressed)">
+    <BooleanAnimationUsingKeyFrames>
+      <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
+    </BooleanAnimationUsingKeyFrames>
+  </Storyboard>
 
 </ResourceDictionary>

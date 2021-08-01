@@ -13,7 +13,7 @@
               <ColumnDefinition/>
               <ColumnDefinition extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Arrow}"/>
             </Grid.ColumnDefinitions>
-            <Border x:Name="BackgroundBorder" Grid.ColumnSpan="2" Style="{StaticResource XStyle.Border.Background.Control}"/>
+            <Border x:Name="BackgroundBorder" Grid.ColumnSpan="2" Style="{StaticResource XStyle.Border.Hover.Control}"/>
             <Path
               Grid.Column="1"
               extensions:IndependentSize.Margin="0,0,12,0"
@@ -141,18 +141,16 @@
   <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault2}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="9,0,9,1"/>
-    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
-    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Background" Value="{StaticResource XBrush.Control.Background.Disabled}"/>
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
     </Style.Triggers>

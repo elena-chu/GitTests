@@ -37,7 +37,7 @@
         Style="{StaticResource XStyle.Border.Active.Secondary}"/>
       <Border
         x:Name="HoverBorder"
-        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"
+        Style="{StaticResource XStyle.Border.HoverAndIndependentPress.TransparentToSecondary}"
         extensions:IndependentSize.CornerRadius="0">
         <ContentPresenter
           x:Name="ContentPresenter"
@@ -62,30 +62,12 @@
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Bottom}"/>
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="ActiveBorder" Value="{StaticResource XCornerRadius.Frame.Bottom}"/>
       </DataTrigger>
-      <EventTrigger RoutedEvent="MouseDown" SourceName="HoverBorder">
-        <BeginStoryboard>
-          <Storyboard Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="(extensions:ControlExtensions.IsPressed)">
-            <BooleanAnimationUsingKeyFrames>
-              <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
-            </BooleanAnimationUsingKeyFrames>
-          </Storyboard>
-        </BeginStoryboard>
-      </EventTrigger>
-      <EventTrigger RoutedEvent="MouseUp" SourceName="HoverBorder">
-        <BeginStoryboard>
-          <Storyboard Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="(extensions:ControlExtensions.IsPressed)">
-            <BooleanAnimationUsingKeyFrames>
-              <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
-            </BooleanAnimationUsingKeyFrames>
-          </Storyboard>
-        </BeginStoryboard>
-      </EventTrigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="9,0,9,1"/>

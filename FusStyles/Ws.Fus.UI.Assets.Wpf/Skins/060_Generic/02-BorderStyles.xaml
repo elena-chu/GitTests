@@ -20,34 +20,18 @@
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Primary}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToBase.Stop.Primary}"/>
         </Trigger.ExitActions>
       </Trigger>
       <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToPressed.Primary}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Stop.Primary}"/>
         </Trigger.ExitActions>
       </Trigger>
     </Style.Triggers>
@@ -61,80 +45,61 @@
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Secondary}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToBase.Stop.Secondary}"/>
         </Trigger.ExitActions>
       </Trigger>
       <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToPressed.Secondary}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Background.Color">
-              <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Stop.Secondary}"/>
         </Trigger.ExitActions>
       </Trigger>
     </Style.Triggers>
   </Style>
 
   <Style x:Key="XStyle.Border.HoverAndPress.TransparentToSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
-    <Style.Resources>
-      <Storyboard x:Key="LStoryboard.ToInactive" Storyboard.TargetProperty="Background.Color">
-        <ColorAnimation To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
-      </Storyboard>
-      <Storyboard x:Key="LStoryboard.ToHover" Storyboard.TargetProperty="Background.Color">
-        <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
-      </Storyboard>
-      <Storyboard x:Key="LStoryboard.ToHover.Stop" Storyboard.TargetProperty="Background.Color">
-        <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
-      </Storyboard>
-      <Storyboard x:Key="LStoryboard.ToPress" Storyboard.TargetProperty="Background.Color">
-        <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
-      </Storyboard>
-    </Style.Resources>
     <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
     <Style.Triggers>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover}"/>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Secondary}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToInactive}"/>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}"/>
         </Trigger.ExitActions>
       </Trigger>
       <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover}"/>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Secondary}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToInactive}"/>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}"/>
         </Trigger.ExitActions>
       </Trigger>
       <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToPress}"/>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToPressed.Secondary}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover.Stop}"/>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Stop.Secondary}"/>
         </Trigger.ExitActions>
       </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Border.HoverAndIndependentPress.TransparentToSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+    <Style.Triggers>
+      <EventTrigger RoutedEvent="MouseDown">
+        <BeginStoryboard Storyboard="{StaticResource XStoryboard.BooleanAnimation.ToPressed}"/>
+      </EventTrigger>
+      <EventTrigger RoutedEvent="MouseUp">
+        <BeginStoryboard Storyboard="{StaticResource XStoryboard.BooleanAnimation.ToUnpressed}"/>
+      </EventTrigger>
     </Style.Triggers>
   </Style>
 
@@ -147,7 +112,7 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.Border.Background.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+  <Style x:Key="XStyle.Border.Hover.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,0,0,1"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
     <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
@@ -160,7 +125,7 @@
         <Trigger.EnterActions>
           <BeginStoryboard>
             <Storyboard>
-              <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
             </Storyboard>
           </BeginStoryboard>
         </Trigger.EnterActions>

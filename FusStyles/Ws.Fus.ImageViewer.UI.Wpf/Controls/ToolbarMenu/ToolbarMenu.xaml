@@ -20,8 +20,7 @@
         x:Name="HoverBorder"
         Grid.ColumnSpan="3"
         Margin="{TemplateBinding Margin}"
-        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
-        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+        Style="{StaticResource XStyle.Border.HoverAndIndependentPress.TransparentToSecondary}">
         <Grid Margin="{TemplateBinding Padding}">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

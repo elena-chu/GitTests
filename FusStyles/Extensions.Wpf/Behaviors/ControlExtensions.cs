@@ -2,11 +2,18 @@
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
 {
-    public enum Placement
+    public enum HorizontalPlacement
     {
         Left,
         Middle,
         Right
+    }
+
+    public enum VerticalPlacement
+    {
+        Top,
+        Middle,
+        Bottom
     }
 
     /// <summary>
@@ -15,12 +22,18 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
     public class ControlExtensions
     {
         /// <summary>
-        /// Used for setting a control's style when placed in a consecutive line
-        /// e.g. the leftmost button in a ToolBar might have rounded corners as opposed to middle buttons
+        /// Horizontal Placement for control in a series of controls
         /// </summary>
-        public static readonly DependencyProperty PlacementProperty = DependencyProperty.RegisterAttached("Placement", typeof(Placement), typeof(ControlExtensions), new PropertyMetadata(Placement.Middle));
-        public static Placement GetPlacement(DependencyObject obj) { return (Placement)obj.GetValue(PlacementProperty); }
-        public static void SetPlacement(DependencyObject obj, Placement value) { obj.SetValue(PlacementProperty, value); }
+        public static readonly DependencyProperty HorizontalPlacementProperty = DependencyProperty.RegisterAttached("HorizontalPlacement", typeof(HorizontalPlacement), typeof(ControlExtensions), new PropertyMetadata(HorizontalPlacement.Middle));
+        public static HorizontalPlacement GetHorizontalPlacement(DependencyObject obj) { return (HorizontalPlacement)obj.GetValue(HorizontalPlacementProperty); }
+        public static void SetHorizontalPlacement(DependencyObject obj, HorizontalPlacement value) { obj.SetValue(HorizontalPlacementProperty, value); }
+
+        /// <summary>
+        /// Vertical Placement for control in a series of controls
+        /// </summary>
+        public static readonly DependencyProperty VerticalPlacementProperty = DependencyProperty.RegisterAttached("VerticalPlacement", typeof(VerticalPlacement), typeof(ControlExtensions), new PropertyMetadata(VerticalPlacement.Middle));
+        public static VerticalPlacement GetVerticalPlacement(DependencyObject obj) { return (VerticalPlacement)obj.GetValue(VerticalPlacementProperty); }
+        public static void SetVerticalPlacement(DependencyObject obj, VerticalPlacement value) { obj.SetValue(VerticalPlacementProperty, value); }
 
         /// <summary>
         /// Used for setting a control's alternative text

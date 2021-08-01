@@ -113,7 +113,7 @@
     <Grid
       x:Name="MainGrid"
       Background="{StaticResource XBrush.AlmostTransparent}"
-      extensions:ControlExtensions.Placement="{TemplateBinding extensions:ControlExtensions.Placement}"
+      extensions:ControlExtensions.HorizontalPlacement="{TemplateBinding extensions:ControlExtensions.HorizontalPlacement}"
       extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
       extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
       extensions:IndependentSize.MaxWidth="{TemplateBinding extensions:IndependentSize.MaxWidth}"
@@ -147,11 +147,11 @@
       </Border>
     </Grid>
     <ControlTemplate.Triggers>
-      <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.Placement), ElementName=MainGrid}" Value="Left">
+      <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.HorizontalPlacement), ElementName=MainGrid}" Value="Left">
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="ActiveBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
       </DataTrigger>
-      <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.Placement), ElementName=MainGrid}" Value="Right">
+      <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.HorizontalPlacement), ElementName=MainGrid}" Value="Right">
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
         <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="ActiveBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
       </DataTrigger>
@@ -160,11 +160,11 @@
 
   <Style x:Key="XStyle.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="extensions:ControlExtensions.Placement" Value="Middle"/>
+    <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Middle"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.RadioButtonPanel}"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.ControlDefault2}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Active}"/>
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame.Left}"/>
@@ -180,12 +180,12 @@
   </Style>
 
   <Style x:Key="XStyle.RadioButton.RadioButtonPanel.Left" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
-    <Setter Property="extensions:ControlExtensions.Placement" Value="Left"/>
+    <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Left"/>
   </Style>
 
   <Style x:Key="XStyle.RadioButton.RadioButtonPanel.Right" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>
-    <Setter Property="extensions:ControlExtensions.Placement" Value="Right"/>
+    <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Right"/>
   </Style>
 
 </ResourceDictionary>

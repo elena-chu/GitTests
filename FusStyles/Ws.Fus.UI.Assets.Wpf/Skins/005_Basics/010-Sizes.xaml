@@ -4,8 +4,8 @@
 
   <sys:Double x:Key="XDouble.Size.MainMenuIcon">44</sys:Double>
 
-  <sys:Double x:Key="XDouble.Height.ControlDefault">36</sys:Double>
-  <sys:Double x:Key="XDouble.Height.ControlDefault2">30</sys:Double>
+  <sys:Double x:Key="XDouble.Height.Control.Default">36</sys:Double>
+  <sys:Double x:Key="XDouble.Height.Control.Small">34</sys:Double>
   
   <sys:Double x:Key="XDouble.IconSize.SquareTemplate">29</sys:Double>
 
