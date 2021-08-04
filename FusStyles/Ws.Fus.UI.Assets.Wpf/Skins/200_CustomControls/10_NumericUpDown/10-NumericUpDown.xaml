@@ -5,13 +5,13 @@
   <ControlTemplate x:Key="XControlTemplate.NumericUpDown" TargetType="extensions:NumericUpDown">
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition extensions:IndependentSize.RowHeight="36"/>
+        <RowDefinition extensions:IndependentSize.RowHeight="{StaticResource XDouble.Height.Control.Small}"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="{Binding ActualWidth, ElementName=SpinnerColumn}"/>
         <ColumnDefinition/>
-        <ColumnDefinition x:Name="SpinnerColumn" Width="Auto"/>
+        <ColumnDefinition x:Name="SpinnerColumn" extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Chevron}"/>
       </Grid.ColumnDefinitions>
 
       <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}"/>
@@ -19,7 +19,6 @@
       <TextBox
         x:Name="PART_NumberTB"
         Grid.Row="0"
-        Grid.ColumnSpan="3"
         Foreground="{TemplateBinding Foreground}"
         Background="{StaticResource XBrush.AlmostTransparent}"
         FontFamily="{StaticResource XFontFamily.Base}"
@@ -29,7 +28,20 @@
         Padding="{TemplateBinding Padding}"
         HorizontalScrollBarVisibility="Hidden"
         VerticalScrollBarVisibility="Hidden"
-        BorderThickness="0"/>
+        BorderThickness="0">
+        <TextBox.Style>
+          <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Style.Triggers>
+              <Trigger Property="HorizontalContentAlignment" Value="Center">
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="Grid.ColumnSpan" Value="1"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </TextBox.Style>
+      </TextBox>
 
       <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1" Visibility="Hidden">
         <RepeatButton Name="PART_UpButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Top"/>
@@ -81,8 +93,8 @@
   <Style x:Key="XStyle.NumericUpDown" TargetType="{x:Type extensions:NumericUpDown}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.NumericUpDown}"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="150"/>
     <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
@@ -95,5 +107,7 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+
+  <Style x:Key="{x:Type extensions:NumericUpDown}" TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource XStyle.NumericUpDown}"/>
 
 </ResourceDictionary>

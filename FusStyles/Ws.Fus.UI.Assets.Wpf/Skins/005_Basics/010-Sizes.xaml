@@ -13,6 +13,8 @@
   <sys:Double x:Key="XDouble.Height.IconOverText.TwoLines">80</sys:Double>
   <sys:Double x:Key="XDouble.Width.IconOverText.ToolbarMenu">90</sys:Double>
 
+  <sys:Double x:Key="XDouble.ColumnWidth.Chevron">29</sys:Double>
+
   <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
 
   <Duration x:Key="XDuration.Animation.Short">0:0:0.19</Duration>

@@ -204,12 +204,12 @@
           <Path
             IsHitTestVisible="False"
             Stretch="Uniform"
-            Data="{StaticResource XGeometry.Arrow.Down}"
+            Data="{StaticResource XGeometry.Chevron.Down}"
             Stroke="{TemplateBinding Foreground}"
             StrokeThickness="1.3"
             RenderTransformOrigin="0.5,0.3">
             <Path.RenderTransform>
-              <RotateTransform x:Name="ArrowRotateTransform"/>
+              <RotateTransform x:Name="ChevronRotateTransform"/>
             </Path.RenderTransform>
           </Path>
         </Border>
@@ -220,14 +220,14 @@
         <Trigger.EnterActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimation Storyboard.TargetName="ArrowRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
             </Storyboard>
           </BeginStoryboard>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimation Storyboard.TargetName="ArrowRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
             </Storyboard>
           </BeginStoryboard>
         </Trigger.ExitActions>
@@ -248,36 +248,46 @@
     </Style.Triggers>
   </Style>
   
-  <!--Spinner-->
+  <!--Chevron-->
+  <Style x:Key="XStyle.ButtonBase.Chevron" TargetType="{x:Type ButtonBase}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  
   <ControlTemplate x:Key="XControlTemplate.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
-    <Grid>
-      <Border
-        extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
-        extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
-        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
-        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
-        <Border extensions:IndependentSize.Margin="3,0" extensions:IndependentSize.MaxWidth="15" HorizontalAlignment="Center">
-          <Path
-            x:Name="ArrowPath"
-            IsHitTestVisible="False"
-            Stretch="Uniform"
-            Data="{StaticResource XGeometry.Arrow.Down}"
-            Stroke="{TemplateBinding Foreground}"
-            StrokeThickness="1.3"
-            RenderTransformOrigin="0.5,0.5">
-            <Path.RenderTransform>
-              <ScaleTransform x:Name="ArrowScaleTransform" ScaleX="1" ScaleY="1"/>
-            </Path.RenderTransform>
-          </Path>
-        </Border>
+    <Border Background="{StaticResource XBrush.AlmostTransparent}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+      <Border x:Name="ChevronBorder" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
+        <Path
+          extensions:IndependentSize.Margin="0,2,0,0"
+          VerticalAlignment="Top"
+          IsHitTestVisible="False"
+          Stretch="Uniform"
+          Data="{StaticResource XGeometry.Chevron.Down}"
+          Stroke="{TemplateBinding Foreground}"
+          StrokeThickness="1.3"
+          RenderTransformOrigin="0.5,0.5">
+          <Path.RenderTransform>
+            <ScaleTransform x:Name="ChevronScaleTransform" ScaleX="1" ScaleY="1"/>
+          </Path.RenderTransform>
+        </Path>
       </Border>
-    </Grid>
+    </Border>
     <ControlTemplate.Triggers>
       <Trigger Property="extensions:ControlExtensions.VerticalPlacement" Value="Top">
+        <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,2" TargetName="ChevronBorder"/>
+        <Setter Property="VerticalAlignment" Value="Bottom" TargetName="ChevronBorder"/>
         <Trigger.EnterActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ArrowScaleTransform" Storyboard.TargetProperty="ScaleY">
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
                 <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
@@ -286,7 +296,7 @@
         <Trigger.ExitActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ArrowScaleTransform" Storyboard.TargetProperty="ScaleY">
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
                 <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
@@ -296,16 +306,8 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
+  <Style x:Key="XStyle.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}" BasedOn="{StaticResource XStyle.ButtonBase.Chevron}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Spinner}"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="20"/>
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
-      </Trigger>
-    </Style.Triggers>
   </Style>
 
 
