@@ -113,6 +113,14 @@
   </Style>
 
   <Style x:Key="XStyle.Border.Hover.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Style.Resources>
+      <Storyboard x:Key="LStoryboard.ToHover">
+        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+      </Storyboard>
+      <Storyboard x:Key="LStoryboard.ToBase">
+        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
+      </Storyboard>
+    </Style.Resources>
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,0,0,1"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}"/>
     <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
@@ -123,18 +131,18 @@
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard>
-              <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard>
-              <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToBase}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToBase}"/>
         </Trigger.ExitActions>
       </Trigger>
     </Style.Triggers>

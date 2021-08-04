@@ -14,7 +14,7 @@
         <ColumnDefinition x:Name="SpinnerColumn" extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Chevron}"/>
       </Grid.ColumnDefinitions>
 
-      <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}"/>
+      <Border x:Name="HoverBorder" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}" extensions:ControlExtensions.Hover="False"/>
 
       <TextBox
         x:Name="PART_NumberTB"
@@ -43,7 +43,30 @@
         </TextBox.Style>
       </TextBox>
 
-      <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1" Visibility="Hidden">
+      <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1">
+        <UniformGrid.Style>
+          <Style TargetType="{x:Type UniformGrid}">
+            <Setter Property="Opacity" Value="0"/>
+            <Style.Triggers>
+              <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
+                <Trigger.EnterActions>
+                  <BeginStoryboard>
+                    <Storyboard Storyboard.TargetProperty="Opacity">
+                      <DoubleAnimation To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+                    </Storyboard>
+                  </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                  <BeginStoryboard>
+                    <Storyboard Storyboard.TargetProperty="Opacity">
+                      <DoubleAnimation To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+                    </Storyboard>
+                  </BeginStoryboard>
+                </Trigger.ExitActions>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </UniformGrid.Style>
         <RepeatButton Name="PART_UpButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Top"/>
         <RepeatButton Name="PART_DownButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Bottom"/>
       </UniformGrid>
@@ -77,16 +100,17 @@
           <Condition Property="DisplayStatus" Value="Active"/>
           <Condition Property="IsMouseOver" Value="True"/>
         </MultiTrigger.Conditions>
-        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Visible"/>
+        <Setter Property="extensions:ControlExtensions.IsActive" TargetName="SpinnerGrid" Value="True"/>
+        <Setter Property="extensions:ControlExtensions.Hover" TargetName="HoverBorder" Value="True"/>
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="DisplayStatus" Value="Active"/>
           <Condition Property="IsChildWithFocus" Value="True"/>
         </MultiTrigger.Conditions>
-        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Visible"/>
+        <Setter Property="extensions:ControlExtensions.IsActive" TargetName="SpinnerGrid" Value="True"/>
+        <Setter Property="extensions:ControlExtensions.Hover" TargetName="HoverBorder" Value="True"/>
       </MultiTrigger>
-
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
@@ -102,6 +126,9 @@
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
+      <Trigger Property="DisplayStatus" Value="Disabled">
+        <Setter Property="IsEnabled" Value="False"/>
+      </Trigger>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
