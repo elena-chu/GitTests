@@ -102,7 +102,6 @@
                 <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
               <Border
-                x:Name="ArrowBorder"
                 extensions:IndependentSize.Margin="20,0,0,0"
                 extensions:IndependentSize.Width="25"
                 extensions:IndependentSize.Height="45"
@@ -117,7 +116,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Stretch="Uniform"
-                    Data="{StaticResource XGeometry.Arrow.Down}"
+                    Data="{StaticResource XGeometry.Chevron.Down}"
                     Stroke="{StaticResource XBrush.Frame}"
                     StrokeThickness="1"
                     Fill="{StaticResource XBrush.Application.Background}"

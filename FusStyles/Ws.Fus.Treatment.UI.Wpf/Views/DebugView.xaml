@@ -15,7 +15,7 @@
   mc:Ignorable="d">
 
   <UserControl.Resources>
-    <Style TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource {x:Type extensions:NumericUpDown}}"/>
+    <Style TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource XStyle.NumericUpDown}"/>
   </UserControl.Resources>
 
   <Grid>
@@ -39,6 +39,7 @@
 
     <UniformGrid Grid.Row="2" Columns="3">
       <extensions:NumericUpDown
+        Margin="12,0"
         CodeLiteralVisibility="Visible"
         PlusCode="L"
         MinusCode="R"
@@ -48,10 +49,10 @@
         IsNullable="False"
         MinusCodeLiteral="Right"
         PlusCodeLiteral="Left"
-        NumberOfFractionDigits="0"
-        Style="{StaticResource XStyle.NumericUpDown}"/>
+        NumberOfFractionDigits="0"/>
 
       <extensions:NumericUpDown
+        Margin="12,0"
         CodeLiteralVisibility="Visible"
         PlusCode="+"
         MinusCode="-"
@@ -60,8 +61,20 @@
         Increment="0.25"
         IsNullable="False"
         NumberOfFractionDigits="2"
-        HorizontalContentAlignment="Center"
-        Style="{StaticResource XStyle.NumericUpDown}"/>
+        HorizontalContentAlignment="Center"/>
+
+      <extensions:NumericUpDown
+        Margin="12,0"
+        DisplayStatus="ReadOnly"
+        CodeLiteralVisibility="Visible"
+        PlusCode="+"
+        MinusCode="-"
+        MinValue="-100"
+        MaxValue="600"
+        Increment="0.25"
+        IsNullable="False"
+        NumberOfFractionDigits="2"
+        HorizontalContentAlignment="Center"/>
     </UniformGrid>
     
   </Grid>

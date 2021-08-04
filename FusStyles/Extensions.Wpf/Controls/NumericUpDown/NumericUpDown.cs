@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Prism.Commands;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Prism.Commands;
 
 namespace Ws.Extensions.UI.Wpf.Controls
 {
@@ -271,6 +266,9 @@ namespace Ws.Extensions.UI.Wpf.Controls
 
         #endregion
 
+
+        #region Start, End
+
         static NumericUpDown()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericUpDown), new FrameworkPropertyMetadata(typeof(NumericUpDown)));
@@ -280,7 +278,16 @@ namespace Ws.Extensions.UI.Wpf.Controls
         {
             IncreaseCommand = new DelegateCommand(IncreaseExecute, IncreaseCanExecute);
             DecreaseCommand = new DelegateCommand(DecreaseExecute, DecreaseCanExecute);
+            Loaded += OnUnload;
         }
+
+        private void OnUnload(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.PreviewMouseDown -= OnTextElementLostFocus;
+        }
+
+        #endregion
+
 
         #region Commands
 
@@ -443,11 +450,15 @@ namespace Ws.Extensions.UI.Wpf.Controls
             UpdateDisplay();
 
             IsChildWithFocus = false;
+            Keyboard.ClearFocus();
+            FocusManager.SetFocusedElement(FocusManager.GetFocusScope(_textElement), null);
+            Application.Current.MainWindow.PreviewMouseDown -= OnTextElementLostFocus;
         }
 
         private void OnTextElementGotFocus(object sender, RoutedEventArgs e)
         {
             SelectAll();
+            Application.Current.MainWindow.PreviewMouseDown += OnTextElementLostFocus;
         }
         private void OnTextElementGotMouseCapture(object sender, MouseEventArgs e)
         {
@@ -536,6 +547,9 @@ namespace Ws.Extensions.UI.Wpf.Controls
             double number;
             if (TryParseToNumber(text, out number))
             {
+                if (Value.HasValue && Value.Value == number)
+                    return;
+
                 number = Math.Round(number, NumberOfFractionDigits);
                 Value = GetValueInMinMaxRange(number);
             }

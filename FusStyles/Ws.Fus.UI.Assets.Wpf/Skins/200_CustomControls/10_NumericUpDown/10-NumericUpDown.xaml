@@ -5,21 +5,20 @@
   <ControlTemplate x:Key="XControlTemplate.NumericUpDown" TargetType="extensions:NumericUpDown">
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition extensions:IndependentSize.RowHeight="36"/>
+        <RowDefinition extensions:IndependentSize.RowHeight="{StaticResource XDouble.Height.Control.Small}"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="{Binding ActualWidth, ElementName=SpinnerColumn}"/>
         <ColumnDefinition/>
-        <ColumnDefinition x:Name="SpinnerColumn" Width="Auto"/>
+        <ColumnDefinition x:Name="SpinnerColumn" extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Chevron}"/>
       </Grid.ColumnDefinitions>
 
-      <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}"/>
+      <Border x:Name="HoverBorder" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}" extensions:ControlExtensions.Hover="False"/>
 
       <TextBox
         x:Name="PART_NumberTB"
         Grid.Row="0"
-        Grid.ColumnSpan="3"
         Foreground="{TemplateBinding Foreground}"
         Background="{StaticResource XBrush.AlmostTransparent}"
         FontFamily="{StaticResource XFontFamily.Base}"
@@ -29,9 +28,45 @@
         Padding="{TemplateBinding Padding}"
         HorizontalScrollBarVisibility="Hidden"
         VerticalScrollBarVisibility="Hidden"
-        BorderThickness="0"/>
+        BorderThickness="0">
+        <TextBox.Style>
+          <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Style.Triggers>
+              <Trigger Property="HorizontalContentAlignment" Value="Center">
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="Grid.ColumnSpan" Value="1"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </TextBox.Style>
+      </TextBox>
 
-      <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1" Visibility="Hidden">
+      <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1">
+        <UniformGrid.Style>
+          <Style TargetType="{x:Type UniformGrid}">
+            <Setter Property="Opacity" Value="0"/>
+            <Style.Triggers>
+              <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
+                <Trigger.EnterActions>
+                  <BeginStoryboard>
+                    <Storyboard Storyboard.TargetProperty="Opacity">
+                      <DoubleAnimation To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+                    </Storyboard>
+                  </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                  <BeginStoryboard>
+                    <Storyboard Storyboard.TargetProperty="Opacity">
+                      <DoubleAnimation To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+                    </Storyboard>
+                  </BeginStoryboard>
+                </Trigger.ExitActions>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </UniformGrid.Style>
         <RepeatButton Name="PART_UpButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Top"/>
         <RepeatButton Name="PART_DownButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Bottom"/>
       </UniformGrid>
@@ -65,24 +100,25 @@
           <Condition Property="DisplayStatus" Value="Active"/>
           <Condition Property="IsMouseOver" Value="True"/>
         </MultiTrigger.Conditions>
-        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Visible"/>
+        <Setter Property="extensions:ControlExtensions.IsActive" TargetName="SpinnerGrid" Value="True"/>
+        <Setter Property="extensions:ControlExtensions.Hover" TargetName="HoverBorder" Value="True"/>
       </MultiTrigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
           <Condition Property="DisplayStatus" Value="Active"/>
           <Condition Property="IsChildWithFocus" Value="True"/>
         </MultiTrigger.Conditions>
-        <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Visible"/>
+        <Setter Property="extensions:ControlExtensions.IsActive" TargetName="SpinnerGrid" Value="True"/>
+        <Setter Property="extensions:ControlExtensions.Hover" TargetName="HoverBorder" Value="True"/>
       </MultiTrigger>
-
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
   <Style x:Key="XStyle.NumericUpDown" TargetType="{x:Type extensions:NumericUpDown}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.NumericUpDown}"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="150"/>
     <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
@@ -90,10 +126,15 @@
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
+      <Trigger Property="DisplayStatus" Value="Disabled">
+        <Setter Property="IsEnabled" Value="False"/>
+      </Trigger>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
     </Style.Triggers>
   </Style>
+
+  <Style x:Key="{x:Type extensions:NumericUpDown}" TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource XStyle.NumericUpDown}"/>
 
 </ResourceDictionary>
