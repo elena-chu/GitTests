@@ -129,14 +129,6 @@
         <Setter Property="Background" Value="{StaticResource XBrush.Control.Background.Disabled}"/>
         <Setter Property="BorderBrush" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
-      <Trigger Property="IsMouseOver" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover}"/>
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToBase}"/>
-        </Trigger.ExitActions>
-      </Trigger>
       <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover}"/>

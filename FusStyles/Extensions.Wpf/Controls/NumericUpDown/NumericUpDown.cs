@@ -264,6 +264,28 @@ namespace Ws.Extensions.UI.Wpf.Controls
             }
         }
 
+        /// <summary>
+        /// Units to describe Value
+        /// </summary>
+        public string Units
+        {
+            get { return (string)GetValue(UnitsProperty); }
+            set { SetValue(UnitsProperty, value); }
+        }
+        public static readonly DependencyProperty UnitsProperty = 
+            DependencyProperty.Register(nameof(Units), typeof(string), typeof(NumericUpDown), new PropertyMetadata(string.Empty));
+
+        /// <summary>
+        /// Where to place Units (on line = Center, below line = Subscript)
+        /// </summary>
+        public BaselineAlignment UnitsPlacement
+        {
+            get { return (BaselineAlignment)GetValue(UnitsPlacementProperty); }
+            set { SetValue(UnitsPlacementProperty, value); }
+        }
+        public static readonly DependencyProperty UnitsPlacementProperty = 
+            DependencyProperty.Register(nameof(UnitsPlacement), typeof(BaselineAlignment), typeof(NumericUpDown), new PropertyMetadata(BaselineAlignment.Center));
+
         #endregion
 
 

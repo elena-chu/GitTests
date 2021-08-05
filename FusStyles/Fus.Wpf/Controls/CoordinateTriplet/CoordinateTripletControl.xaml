@@ -7,58 +7,44 @@
              xmlns:local="clr-namespace:Ws.Fus.UI.Wpf.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+  
   <UserControl.Resources>
 
-    <Style x:Key="SingleStyle" TargetType="extensions:NumericUpDown" BasedOn="{StaticResource XStyle.NumericUpDown}">
-      <Setter Property="Height" Value="50" />
-      <Setter Property="MinValue" Value="-999" />
-      <Setter Property="MaxValue" Value="999" />
-      <Setter Property="Increment" Value="0.1" />
-      <Setter Property="NumberOfFractionDigits" Value="1" />
-      <Setter Property="DisplayLength" Value="8" />
-      <Setter Property="DisplayStatus" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=DisplayStatus, Mode=OneWay}" />
-      <Setter Property="SeverityLevel" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=SeverityLevel, Mode=OneWay}" />
-
+    <Style TargetType="extensions:NumericUpDown" BasedOn="{StaticResource XStyle.NumericUpDown}">
+      <Setter Property="Height" Value="50"/>
+      <Setter Property="MinValue" Value="-999"/>
+      <Setter Property="MaxValue" Value="999"/>
+      <Setter Property="Increment" Value="0.1"/>
+      <Setter Property="NumberOfFractionDigits" Value="1"/>
+      <Setter Property="DisplayLength" Value="8"/>
+      <Setter Property="DisplayStatus" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=DisplayStatus, Mode=OneWay}"/>
+      <Setter Property="SeverityLevel" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=SeverityLevel, Mode=OneWay}"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 
   </UserControl.Resources>
    
-  <Grid>
-    <Grid>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"></ColumnDefinition>
-        <ColumnDefinition Width="*"></ColumnDefinition>
-        <ColumnDefinition Width="*"></ColumnDefinition>
-      </Grid.ColumnDefinitions>
-      <extensions:NumericUpDown 
-        Style="{StaticResource  
-        ResourceKey=SingleStyle}"  
-        Grid.Column="0"
-        MinusCode="L"
-        PlusCode="R"
-        MinusCodeLiteral="Left"
-        PlusCodeLiteral="Right"
-        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=X, Mode=TwoWay}"
-        />
-      <extensions:NumericUpDown  
-        Style="{StaticResource  
-        ResourceKey=SingleStyle}" 
-        Grid.Column="1"
-        MinusCode="P"
-        PlusCode="A"
-        MinusCodeLiteral="Posterior"
-        PlusCodeLiteral="Anterior"
-        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Y, Mode=TwoWay}"
-        />
-      <extensions:NumericUpDown 
-        Style="{StaticResource  ResourceKey=SingleStyle}"  
-        Grid.Column="2"
-        MinusCode="I"
-        PlusCode="S"
-        MinusCodeLiteral="Inferior"
-        PlusCodeLiteral="Superior"
-        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Z, Mode=TwoWay}"
-        />
-    </Grid>
-  </Grid>
+  <UniformGrid Columns="3">
+    <extensions:NumericUpDown
+      extensions:IndependentSize.Margin="0,0,6,0"
+      MinusCode="L"
+      PlusCode="R"
+      MinusCodeLiteral="Left"
+      PlusCodeLiteral="Right"
+      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=X, Mode=TwoWay}"/>
+    <extensions:NumericUpDown
+      extensions:IndependentSize.Margin="6,0"
+      MinusCode="P"
+      PlusCode="A"
+      MinusCodeLiteral="Posterior"
+      PlusCodeLiteral="Anterior"
+      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Y, Mode=TwoWay}"/>
+    <extensions:NumericUpDown
+      extensions:IndependentSize.Margin="6,0,0,0"
+      MinusCode="I"
+      PlusCode="S"
+      MinusCodeLiteral="Inferior"
+      PlusCodeLiteral="Superior"
+      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Z, Mode=TwoWay}"/>
+  </UniformGrid>
 </UserControl>

@@ -12,7 +12,7 @@
               <ColumnDefinition/>
               <ColumnDefinition extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Chevron}"/>
             </Grid.ColumnDefinitions>
-            <Border x:Name="BackgroundBorder" Grid.ColumnSpan="2" Style="{StaticResource XStyle.Border.Hover.Control}"/>
+            <Border Grid.ColumnSpan="2" Style="{StaticResource XStyle.Border.Hover.Control}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"/>
             <Border Grid.Column="1" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
               <Path
                 IsHitTestVisible="False"
@@ -135,7 +135,7 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
+  <Style x:Key="XStyle.ComboBox" TargetType="{x:Type ComboBox}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox}"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
@@ -152,5 +152,7 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+
+  <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource XStyle.ComboBox}"/>
 
 </ResourceDictionary>
