@@ -74,8 +74,8 @@ namespace Ws.Extensions.UI.Wpf.Controls
         /// Numeric value. Is Nullable if IsNullable property set to true(default) otherwise 0. Default Value is null.
         /// When ones asigned to number only from outside can be set again to null(if IsNullable property set to true).
         /// </summary>
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-          nameof(Value), typeof(double?), typeof(NumericUpDown), new PropertyMetadata(null, OnValueChanged));
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register(nameof(Value), typeof(double?), typeof(NumericUpDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged));
         public double? Value
         {
             get { return (double?)this.GetValue(ValueProperty); }

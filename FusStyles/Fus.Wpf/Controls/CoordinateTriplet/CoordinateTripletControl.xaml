@@ -31,20 +31,20 @@
       PlusCode="R"
       MinusCodeLiteral="Left"
       PlusCodeLiteral="Right"
-      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=X, Mode=TwoWay}"/>
+      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=X}"/>
     <extensions:NumericUpDown
       extensions:IndependentSize.Margin="6,0"
       MinusCode="P"
       PlusCode="A"
       MinusCodeLiteral="Posterior"
       PlusCodeLiteral="Anterior"
-      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Y, Mode=TwoWay}"/>
+      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Y}"/>
     <extensions:NumericUpDown
       extensions:IndependentSize.Margin="6,0,0,0"
       MinusCode="I"
       PlusCode="S"
       MinusCodeLiteral="Inferior"
       PlusCodeLiteral="Superior"
-      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Z, Mode=TwoWay}"/>
+      Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Z}"/>
   </UniformGrid>
 </UserControl>
