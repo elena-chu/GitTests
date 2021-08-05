@@ -89,7 +89,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                 if (textBlock == null)
                     return;
 
-                textBlock.TextTrimming = TextTrimming.WordEllipsis;
+                textBlock.TextTrimming = TextTrimming.CharacterEllipsis;
                 SetToolTipIfTrimmed(frameworkElement);
                 frameworkElement.SizeChanged += FrameworkElement_SizeChanged;
                 if (frameworkElement is ComboBox)
@@ -162,8 +162,8 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
 
             // Measure against ContentPresenter parent if exists
             var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
-            if (contentPresenter != null)
-                return textBlock.DesiredSize.Width > contentPresenter.ActualWidth;
+            if (contentPresenter != null && textBlock.DesiredSize.Width > contentPresenter.ActualWidth)
+                return true;
 
             return textBlock.DesiredSize.Width > textBlock.ActualWidth;
         }

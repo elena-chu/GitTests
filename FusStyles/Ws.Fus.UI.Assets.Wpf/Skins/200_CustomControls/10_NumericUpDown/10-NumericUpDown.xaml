@@ -16,32 +16,56 @@
 
       <Border x:Name="HoverBorder" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}" extensions:ControlExtensions.Hover="False"/>
 
-      <TextBox
-        x:Name="PART_NumberTB"
-        Grid.Row="0"
-        Foreground="{TemplateBinding Foreground}"
-        Background="{StaticResource XBrush.AlmostTransparent}"
-        FontFamily="{StaticResource XFontFamily.Base}"
-        FontSize="{TemplateBinding FontSize}"
-        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-        Padding="{TemplateBinding Padding}"
-        HorizontalScrollBarVisibility="Hidden"
-        VerticalScrollBarVisibility="Hidden"
-        BorderThickness="0">
-        <TextBox.Style>
-          <Style TargetType="{x:Type TextBox}">
+      <Grid Grid.Row="0">
+        <Grid.Style>
+          <Style TargetType="{x:Type Grid}">
             <Setter Property="Grid.Column" Value="0"/>
             <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Style.Triggers>
-              <Trigger Property="HorizontalContentAlignment" Value="Center">
+              <DataTrigger Binding="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}" Value="Center">
                 <Setter Property="Grid.Column" Value="1"/>
                 <Setter Property="Grid.ColumnSpan" Value="1"/>
-              </Trigger>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+              </DataTrigger>
             </Style.Triggers>
           </Style>
-        </TextBox.Style>
-      </TextBox>
+        </Grid.Style>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox
+          x:Name="PART_NumberTB"
+          Grid.Column="0"
+          Foreground="{TemplateBinding Foreground}"
+          Background="{StaticResource XBrush.AlmostTransparent}"
+          FontFamily="{StaticResource XFontFamily.Base}"
+          FontSize="{TemplateBinding FontSize}"
+          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+          Padding="{TemplateBinding Padding}"
+          HorizontalScrollBarVisibility="Hidden"
+          VerticalScrollBarVisibility="Hidden"
+          BorderThickness="0"/>
+        <TextBlock
+          Grid.Column="1"
+          Text="{Binding Units, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}"
+          extensions:ToolTipExtension.AutoToolTip="True">
+          <TextBlock.Style>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+              <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+              <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding UnitsPlacement, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}" Value="Subscript">
+                  <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
+                  <Setter Property="extensions:IndependentSize.Margin" Value="0,3,0,0"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </TextBlock.Style>
+        </TextBlock>
+      </Grid>
 
       <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1">
         <UniformGrid.Style>
@@ -76,7 +100,7 @@
         Grid.Row="1"
         Grid.ColumnSpan="3"
         extensions:IndependentSize.Margin="0,2,0,0"
-        Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type extensions:NumericUpDown}}, Path=CodeLiteralVisibility}"
+        Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}, Path=CodeLiteralVisibility}"
         Style="{StaticResource XStyle.TextBlock.Caption}"
         Foreground="{TemplateBinding Foreground}"/>
     </Grid>
@@ -122,7 +146,7 @@
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="9,0,9,1"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="9,0,1,1"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>

@@ -28,17 +28,10 @@
 
     <tm:ToolbarMenu Grid.Row="0" Margin="0,0,0,40" VerticalAlignment="Top" Height="Auto"/>
 
-    <coordinate:CoordinateTripletControl 
-      Grid.Row="1"
-      Name="TargetCoordinateAcPcElement" FontSize="10" Height="50" 
-      SeverityLevel="Normal"
-      Margin="20"
-      Point="{Binding Point, Mode=TwoWay}"
-          />
-
+    <coordinate:CoordinateTripletControl Grid.Row="1" Margin="0,0,0,20" Width="300" SeverityLevel="Normal" Point="{Binding Point, Mode=TwoWay}"/>
 
     <UniformGrid Grid.Row="2" Columns="3">
-      <extensions:NumericUpDown
+      <extensions:NumericUpDown Width="90"
         Margin="12,0"
         CodeLiteralVisibility="Visible"
         PlusCode="L"
@@ -49,7 +42,9 @@
         IsNullable="False"
         MinusCodeLiteral="Right"
         PlusCodeLiteral="Left"
-        NumberOfFractionDigits="0"/>
+        NumberOfFractionDigits="3"
+        Units="{StaticResource XString.Joules}"
+        UnitsPlacement="Subscript"/>
 
       <extensions:NumericUpDown
         Margin="12,0"
@@ -61,6 +56,7 @@
         Increment="0.25"
         IsNullable="False"
         NumberOfFractionDigits="2"
+        Units="{StaticResource XString.DegreesCelcius}"
         HorizontalContentAlignment="Center"/>
 
       <extensions:NumericUpDown
@@ -73,8 +69,26 @@
         MaxValue="600"
         Increment="0.25"
         IsNullable="False"
-        NumberOfFractionDigits="2"
-        HorizontalContentAlignment="Center"/>
+        NumberOfFractionDigits="0"
+        Units="{StaticResource XString.Joules}"
+        UnitsPlacement="Subscript"
+        HorizontalContentAlignment="Left"/>
+
+      <RichTextBox
+        Name="richTB"
+        FontFamily="{StaticResource XFontFamily.Base}"
+        extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Base}">
+        <FlowDocument>
+          <Paragraph>
+            <Run FontSize="{Binding FontSize, ElementName=richTB}">L 13.4</Run>
+            <Run IsEnabled="False" BaselineAlignment="Subscript" FontSize="{Binding FontSize, ElementName=richTB, Converter={extensions:ScalarConverter}, ConverterParameter=0.8}">Joules</Run>
+          </Paragraph>
+          <Paragraph>
+            <Run>- 45.3</Run>
+            <Run BaselineAlignment="Center">&#176;C</Run>
+          </Paragraph>
+        </FlowDocument>
+      </RichTextBox>
     </UniformGrid>
     
   </Grid>

@@ -74,8 +74,8 @@ namespace Ws.Extensions.UI.Wpf.Controls
         /// Numeric value. Is Nullable if IsNullable property set to true(default) otherwise 0. Default Value is null.
         /// When ones asigned to number only from outside can be set again to null(if IsNullable property set to true).
         /// </summary>
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-          nameof(Value), typeof(double?), typeof(NumericUpDown), new PropertyMetadata(null, OnValueChanged));
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register(nameof(Value), typeof(double?), typeof(NumericUpDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged));
         public double? Value
         {
             get { return (double?)this.GetValue(ValueProperty); }
@@ -263,6 +263,28 @@ namespace Ws.Extensions.UI.Wpf.Controls
                     control.Value = control.GetDefaultValue();
             }
         }
+
+        /// <summary>
+        /// Units to describe Value
+        /// </summary>
+        public string Units
+        {
+            get { return (string)GetValue(UnitsProperty); }
+            set { SetValue(UnitsProperty, value); }
+        }
+        public static readonly DependencyProperty UnitsProperty = 
+            DependencyProperty.Register(nameof(Units), typeof(string), typeof(NumericUpDown), new PropertyMetadata(string.Empty));
+
+        /// <summary>
+        /// Where to place Units (on line = Center, below line = Subscript)
+        /// </summary>
+        public BaselineAlignment UnitsPlacement
+        {
+            get { return (BaselineAlignment)GetValue(UnitsPlacementProperty); }
+            set { SetValue(UnitsPlacementProperty, value); }
+        }
+        public static readonly DependencyProperty UnitsPlacementProperty = 
+            DependencyProperty.Register(nameof(UnitsPlacement), typeof(BaselineAlignment), typeof(NumericUpDown), new PropertyMetadata(BaselineAlignment.Center));
 
         #endregion
 
