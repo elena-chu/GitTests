@@ -178,29 +178,6 @@ namespace Ws.Extensions.UI.Wpf.Controls
         }
 
         /// <summary>
-        /// Property explicitly hides/shows Increament/Decreament buttons 
-        /// </summary>
-        public static readonly DependencyProperty ButtonsVisibilityProperty = DependencyProperty.Register(
-          nameof(ButtonsVisibility), typeof(Visibility), typeof(NumericUpDown), new PropertyMetadata(Visibility.Visible, OnButtonsVisibilityChanged));
-        public Visibility ButtonsVisibility
-        {
-            get { return (Visibility)this.GetValue(ButtonsVisibilityProperty); }
-            set { this.SetValue(ButtonsVisibilityProperty, value); }
-        }
-        private static void OnButtonsVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            NumericUpDown control = d as NumericUpDown;
-            if (control == null)
-                return;
-
-            if (control.UpButtonElement != null)
-                control.UpButtonElement.Visibility = (Visibility)e.NewValue;
-
-            if (control.DownButtonElement != null)
-                control.DownButtonElement.Visibility = (Visibility)e.NewValue;
-        }
-
-        /// <summary>
         /// Property describes whether keyboard action available for Up/Down keys
         /// </summary>
         public static readonly DependencyProperty UpDownByKeyboardEnabledProperty = DependencyProperty.Register(
@@ -264,6 +241,11 @@ namespace Ws.Extensions.UI.Wpf.Controls
             }
         }
 
+        #endregion
+
+
+        #region Units
+
         /// <summary>
         /// Units to describe Value
         /// </summary>
@@ -285,6 +267,18 @@ namespace Ws.Extensions.UI.Wpf.Controls
         }
         public static readonly DependencyProperty UnitsPlacementProperty = 
             DependencyProperty.Register(nameof(UnitsPlacement), typeof(BaselineAlignment), typeof(NumericUpDown), new PropertyMetadata(BaselineAlignment.Center));
+
+        #endregion
+
+
+        #region Width
+
+        public bool IsNarrow
+        {
+            get { return (bool)GetValue(IsNarrowProperty); }
+            set { SetValue(IsNarrowProperty, value); }
+        }
+        public static readonly DependencyProperty IsNarrowProperty = DependencyProperty.Register(nameof(IsNarrow), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
 
         #endregion
 

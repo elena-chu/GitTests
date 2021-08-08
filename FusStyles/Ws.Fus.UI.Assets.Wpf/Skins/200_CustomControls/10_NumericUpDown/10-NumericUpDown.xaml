@@ -9,9 +9,31 @@
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="{Binding ActualWidth, ElementName=SpinnerColumn}"/>
+        <ColumnDefinition>
+          <ColumnDefinition.Style>
+            <Style TargetType="ColumnDefinition">
+              <Setter Property="Width" Value="{Binding ActualWidth, ElementName=SpinnerColumn}"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding IsNarrow, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                  <Setter Property="Width" Value="0"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </ColumnDefinition.Style>
+        </ColumnDefinition>
         <ColumnDefinition/>
-        <ColumnDefinition x:Name="SpinnerColumn" extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.ColumnWidth.Chevron}"/>
+        <ColumnDefinition x:Name="SpinnerColumn">
+          <ColumnDefinition.Style>
+            <Style TargetType="ColumnDefinition">
+              <Setter Property="extensions:IndependentSize.ColumnWidth" Value="{StaticResource XDouble.ColumnWidth.Chevron}"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding IsNarrow, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                  <Setter Property="extensions:IndependentSize.ColumnWidth" Value="{StaticResource XDouble.ColumnWidth.Chevron.Narrow}"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </ColumnDefinition.Style>
+        </ColumnDefinition>
       </Grid.ColumnDefinitions>
 
       <Border x:Name="HoverBorder" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}" extensions:ControlExtensions.Hover="False"/>
@@ -67,10 +89,11 @@
         </TextBlock>
       </Grid>
 
-      <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" extensions:IndependentSize.Margin="0,0,2,1" Rows="2" Columns="1">
+      <UniformGrid x:Name="SpinnerGrid" Grid.Row="0" Grid.Column="2" Rows="2" Columns="1">
         <UniformGrid.Style>
           <Style TargetType="{x:Type UniformGrid}">
             <Setter Property="Opacity" Value="0"/>
+            <Setter Property="extensions:IndependentSize.Margin" Value="0,0,2,1"/>
             <Style.Triggers>
               <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
                 <Trigger.EnterActions>
@@ -88,6 +111,9 @@
                   </BeginStoryboard>
                 </Trigger.ExitActions>
               </Trigger>
+              <DataTrigger Binding="{Binding IsNarrow, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}" Value="True">
+                <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,1"/>
+              </DataTrigger>
             </Style.Triggers>
           </Style>
         </UniformGrid.Style>
@@ -155,6 +181,9 @@
       </Trigger>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsNarrow" Value="True">
+        <Setter Property="extensions:IndependentSize.Padding" Value="2,0,0,1"/>
       </Trigger>
     </Style.Triggers>
   </Style>
