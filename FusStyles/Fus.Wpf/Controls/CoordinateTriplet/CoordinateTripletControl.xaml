@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:extensions="http://schemas.insightec.com/wpf/"
              xmlns:local="clr-namespace:Ws.Fus.UI.Wpf.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d"
+             x:Name="_thisCoordinateTripletControl">
   
   <UserControl.Resources>
 
@@ -20,31 +20,39 @@
       <Setter Property="DisplayStatus" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=DisplayStatus, Mode=OneWay}"/>
       <Setter Property="SeverityLevel" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=SeverityLevel, Mode=OneWay}"/>
       <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="IsNarrow" Value="{Binding IsNarrow, ElementName=_thisCoordinateTripletControl}"/>
     </Style>
 
   </UserControl.Resources>
    
-  <UniformGrid Columns="3">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition extensions:IndependentSize.ColumnWidth="{Binding Gap, ElementName=_thisCoordinateTripletControl}"/>
+      <ColumnDefinition/>
+      <ColumnDefinition extensions:IndependentSize.ColumnWidth="{Binding Gap, ElementName=_thisCoordinateTripletControl}"/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
     <extensions:NumericUpDown
-      extensions:IndependentSize.Margin="0,0,6,0"
+      Grid.Column="0"
       MinusCode="L"
       PlusCode="R"
       MinusCodeLiteral="Left"
       PlusCodeLiteral="Right"
       Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=X}"/>
     <extensions:NumericUpDown
-      extensions:IndependentSize.Margin="6,0"
+      Grid.Column="2"
       MinusCode="P"
       PlusCode="A"
       MinusCodeLiteral="Posterior"
       PlusCodeLiteral="Anterior"
       Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Y}"/>
     <extensions:NumericUpDown
-      extensions:IndependentSize.Margin="6,0,0,0"
+      Grid.Column="4"
       MinusCode="I"
       PlusCode="S"
       MinusCodeLiteral="Inferior"
       PlusCodeLiteral="Superior"
       Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=Z}"/>
-  </UniformGrid>
+  </Grid>
 </UserControl>

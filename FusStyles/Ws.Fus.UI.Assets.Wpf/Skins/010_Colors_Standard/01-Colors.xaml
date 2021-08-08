@@ -21,7 +21,7 @@
 
   <!--Severity-->
   <Color x:Key="XColor.Error">#FFF24E1E</Color>
-  <Color x:Key="XColor.Warning">#FFF69412</Color>
+  <Color x:Key="XColor.Warning">#FFF6db12</Color>
   
   <!--Controls-->
   <Color x:Key="XColor.Control.Background.Disabled">#FF191919</Color>

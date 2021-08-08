@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Media3D;
 using Ws.Extensions.UI.Wpf.Controls;
@@ -11,8 +10,7 @@ namespace Ws.Fus.UI.Wpf.Controls
     /// </summary>
     public partial class CoordinateTripletControl : UserControl
     {
-
-        #region Dependency Properties
+        #region Statuses
 
         /// <summary>
         /// Propery defines the Value Severity level. Available values: Undefined, High, Low, Normal(default)
@@ -35,6 +33,33 @@ namespace Ws.Fus.UI.Wpf.Controls
             get { return (DisplayStatus)this.GetValue(DisplayStatusProperty); }
             set { this.SetValue(DisplayStatusProperty, value); }
         }
+
+        #endregion
+
+
+        #region Display
+
+        /// <summary>
+        /// Size of gap between NumericUpDown elements
+        /// </summary>
+        public double Gap
+        {
+            get { return (double)GetValue(GapProperty); }
+            set { SetValue(GapProperty, value); }
+        }
+        public static readonly DependencyProperty GapProperty = DependencyProperty.Register(nameof(Gap), typeof(double), typeof(CoordinateTripletControl), new PropertyMetadata(0.0));
+
+        public bool IsNarrow
+        {
+            get { return (bool)GetValue(IsNarrowProperty); }
+            set { SetValue(IsNarrowProperty, value); }
+        }
+        public static readonly DependencyProperty IsNarrowProperty = DependencyProperty.Register(nameof(IsNarrow), typeof(bool), typeof(CoordinateTripletControl), new PropertyMetadata(false));
+
+        #endregion
+
+
+        #region Point
 
         /// <summary>
         /// Coordinate Point of type Point3D. Nullable

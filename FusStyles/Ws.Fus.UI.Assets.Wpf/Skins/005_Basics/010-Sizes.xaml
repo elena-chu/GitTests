@@ -14,6 +14,7 @@
   <sys:Double x:Key="XDouble.Width.IconOverText.ToolbarMenu">90</sys:Double>
 
   <sys:Double x:Key="XDouble.ColumnWidth.Chevron">29</sys:Double>
+  <sys:Double x:Key="XDouble.ColumnWidth.Chevron.Narrow">22</sys:Double>
 
   <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
 

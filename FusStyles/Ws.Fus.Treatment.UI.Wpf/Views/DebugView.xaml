@@ -31,8 +31,9 @@
     <coordinate:CoordinateTripletControl Grid.Row="1" Margin="0,0,0,20" Width="300" SeverityLevel="Normal" Point="{Binding Point, Mode=TwoWay}"/>
 
     <UniformGrid Grid.Row="2" Columns="3">
-      <extensions:NumericUpDown Width="90"
+      <extensions:NumericUpDown
         Margin="12,0"
+        Width="90"
         CodeLiteralVisibility="Visible"
         PlusCode="L"
         MinusCode="R"

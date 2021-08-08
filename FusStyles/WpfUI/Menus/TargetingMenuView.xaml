@@ -25,6 +25,10 @@
       </Style.Triggers>
     </Style>
 
+    <Style x:Key="XStyle.CoordinateTripletControl" TargetType="{x:Type coordinate:CoordinateTripletControl}">
+      <Setter Property="Gap" Value="6"/>
+      <Setter Property="IsNarrow" Value="True"/>
+    </Style>
   </UserControl.Resources>
   
   <Grid Background="{StaticResource XBrush.Application.Background}" Name="MainGrid" Focusable="True">
@@ -119,21 +123,21 @@
         </StackPanel>
       </Grid>
 
-      <coordinate:CoordinateTripletControl 
-            Grid.Row="3"
-            Name="TargetCoordinateAcPcElement" FontSize="10" Height="50" 
-            Point="{Binding TargetPointAcPc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-            Visibility="{Binding IsChecked, ElementName=AcPcRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"
-            SeverityLevel="Normal"
-            />
+      <coordinate:CoordinateTripletControl
+        Name="TargetCoordinateAcPcElement"
+        Grid.Row="3"
+        Style="{StaticResource XStyle.CoordinateTripletControl}"
+        Point="{Binding TargetPointAcPc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+        Visibility="{Binding IsChecked, ElementName=AcPcRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"
+        SeverityLevel="Normal"/>
 
-      <coordinate:CoordinateTripletControl 
-            Grid.Row="3"
-            Name="TargetCoordinateRasElement" Height="50" 
-            Point="{Binding TargetPointRas,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-            Visibility="{Binding IsChecked, ElementName=RasRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-            SeverityLevel="Normal"
-            />
+      <coordinate:CoordinateTripletControl
+        Name="TargetCoordinateRasElement"
+        Grid.Row="3"
+        Style="{StaticResource XStyle.CoordinateTripletControl}"
+        Point="{Binding TargetPointRas,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        Visibility="{Binding IsChecked, ElementName=RasRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+        SeverityLevel="Normal"/>
 
 
       <ToggleButton Grid.Row="4" 
@@ -160,11 +164,13 @@
               Style="{StaticResource XStyle.TextBlock.Menu.Label}"
             />
 
-      <coordinate:CoordinateTripletControl Name="DistanceElement" Grid.Row="7" FontSize="10" Height="50" 
-                Point="{Binding DistanceFromFocalPoint,Mode=TwoWay}"
-                DisplayStatus="ReadOnly"
-                SeverityLevel="{Binding DistanceSeverityLevel}"
-                />
+      <coordinate:CoordinateTripletControl
+        Name="DistanceElement"
+        Grid.Row="7"
+        Style="{StaticResource XStyle.CoordinateTripletControl}"
+        Point="{Binding DistanceFromFocalPoint,Mode=TwoWay}"
+        DisplayStatus="ReadOnly"
+        SeverityLevel="{Binding DistanceSeverityLevel}"/>
 
       <Grid Grid.Row="8">
         <Grid.RowDefinitions>
