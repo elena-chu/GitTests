@@ -22,7 +22,7 @@
           </ColumnDefinition.Style>
         </ColumnDefinition>
         <ColumnDefinition/>
-        <ColumnDefinition x:Name="SpinnerColumn">
+        <ColumnDefinition x:Name="SpinnerColumn" >
           <ColumnDefinition.Style>
             <Style TargetType="ColumnDefinition">
               <Setter Property="extensions:IndependentSize.ColumnWidth" Value="{StaticResource XDouble.ColumnWidth.Chevron}"/>
@@ -140,10 +140,17 @@
       <Trigger Property="DisplayStatus" Value="Disabled">
         <Setter Property="IsEnabled" TargetName="PART_NumberTB" Value="False"/>
         <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Hidden"/>
+        <Setter Property="extensions:IndependentSize.BorderThickness" TargetName="HoverBorder" Value="1" />
+        <Setter Property="BorderBrush" TargetName="HoverBorder" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
+        <Setter Property="Foreground" TargetName="PART_NumberTB" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
+        <Setter Property="Background" TargetName="HoverBorder" Value="{StaticResource XBrush.Application.Background}" />
       </Trigger>
       <Trigger Property="DisplayStatus" Value="ReadOnly">
         <Setter Property="IsReadOnly" TargetName="PART_NumberTB" Value="True"/>
         <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Hidden"/>
+        <Setter Property="Background" TargetName="HoverBorder" Value="{StaticResource XBrush.Application.Background}" />
+        <Setter Property="extensions:IndependentSize.BorderThickness" TargetName="HoverBorder" Value="1" />
+        <!--<Setter Property="Width" TargetName="SpinnerColumn" Value="0" />-->
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>

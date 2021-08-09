@@ -5,7 +5,7 @@
   <sys:Double x:Key="XDouble.Size.MainMenuIcon">44</sys:Double>
 
   <sys:Double x:Key="XDouble.Height.Control.Default">36</sys:Double>
-  <sys:Double x:Key="XDouble.Height.Control.Small">34</sys:Double>
+  <sys:Double x:Key="XDouble.Height.Control.Small">32</sys:Double>
   
   <sys:Double x:Key="XDouble.IconSize.SquareTemplate">29</sys:Double>
 
@@ -14,7 +14,7 @@
   <sys:Double x:Key="XDouble.Width.IconOverText.ToolbarMenu">90</sys:Double>
 
   <sys:Double x:Key="XDouble.ColumnWidth.Chevron">29</sys:Double>
-  <sys:Double x:Key="XDouble.ColumnWidth.Chevron.Narrow">22</sys:Double>
+  <sys:Double x:Key="XDouble.ColumnWidth.Chevron.Narrow">18</sys:Double>
 
   <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
 

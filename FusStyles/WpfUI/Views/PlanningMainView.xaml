@@ -273,7 +273,7 @@
         <ColumnDefinition Style="{StaticResource StripMenuColumnStyle}" />
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
+        <RowDefinition Style="{StaticResource ToolBarRowStyle}"  />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
 
