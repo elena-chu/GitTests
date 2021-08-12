@@ -17,10 +17,10 @@
       <Setter Property="Increment" Value="0.1"/>
       <Setter Property="NumberOfFractionDigits" Value="1"/>
       <Setter Property="DisplayLength" Value="8"/>
-      <Setter Property="DisplayStatus" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=DisplayStatus, Mode=OneWay}"/>
-      <Setter Property="SeverityLevel" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CoordinateTripletControl}}, Path=SeverityLevel, Mode=OneWay}"/>
-      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="DisplayStatus" Value="{Binding DisplayStatus, ElementName=_thisCoordinateTripletControl, Mode=OneWay}"/>
+      <Setter Property="SeverityLevel" Value="{Binding SeverityLevel, ElementName=_thisCoordinateTripletControl, Mode=OneWay}"/>
       <Setter Property="IsNarrow" Value="{Binding IsNarrow, ElementName=_thisCoordinateTripletControl}"/>
+      <Setter Property="TextBoxContentHorizontalAlignment" Value="{Binding TextBoxContentHorizontalAlignment, ElementName=_thisCoordinateTripletControl}"/>
     </Style>
 
   </UserControl.Resources>

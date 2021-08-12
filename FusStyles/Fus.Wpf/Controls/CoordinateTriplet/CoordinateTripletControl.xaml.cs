@@ -54,7 +54,15 @@ namespace Ws.Fus.UI.Wpf.Controls
             get { return (bool)GetValue(IsNarrowProperty); }
             set { SetValue(IsNarrowProperty, value); }
         }
-        public static readonly DependencyProperty IsNarrowProperty = DependencyProperty.Register(nameof(IsNarrow), typeof(bool), typeof(CoordinateTripletControl), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsNarrowProperty = DependencyProperty.Register(nameof(IsNarrow), typeof(bool), typeof(CoordinateTripletControl), new PropertyMetadata(true));
+
+        public HorizontalAlignment TextBoxContentHorizontalAlignment
+        {
+            get { return (HorizontalAlignment)GetValue(TextBoxContentHorizontalAlignmentProperty); }
+            set { SetValue(TextBoxContentHorizontalAlignmentProperty, value); }
+        }
+        public static readonly DependencyProperty TextBoxContentHorizontalAlignmentProperty =
+            DependencyProperty.Register(nameof(TextBoxContentHorizontalAlignment), typeof(HorizontalAlignment), typeof(CoordinateTripletControl), new PropertyMetadata(HorizontalAlignment.Center));
 
         #endregion
 

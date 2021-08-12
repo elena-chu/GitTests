@@ -1,5 +1,7 @@
 ﻿using Prism.Commands;
 using System;
+using System.Reactive.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -13,7 +15,80 @@ namespace Ws.Extensions.UI.Wpf.Controls
     [TemplatePart(Name = "PART_CodeLiteralTB", Type = typeof(TextBlock))]
     public class NumericUpDown : Control
     {
-        #region Dependency Properties
+        #region Start, End
+
+        static NumericUpDown()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericUpDown), new FrameworkPropertyMetadata(typeof(NumericUpDown)));
+        }
+
+        public NumericUpDown()
+        {
+            IncreaseCommand = new DelegateCommand(IncreaseExecute, IncreaseCanExecute);
+            DecreaseCommand = new DelegateCommand(DecreaseExecute, DecreaseCanExecute);
+            Loaded += OnLoad;
+            Unloaded += OnUnload;
+        }
+
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            SetSpinnerMouseUpEvents();
+        }
+
+        private void OnUnload(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.PreviewMouseDown -= OnTextElementLostFocus;
+            UnregisterDownElement();
+            UnregisterUpElement();
+            UnregisterTextElement();
+            PreviewKeyDown -= OnControlPreviewKeyDown;
+            Loaded -= OnLoad;
+            Unloaded -= OnUnload;
+        }
+
+        public override void OnApplyTemplate()
+        {
+            UpButtonElement = GetTemplateChild("PART_UpButton") as RepeatButton;
+            DownButtonElement = GetTemplateChild("PART_DownButton") as RepeatButton;
+            TextElement = GetTemplateChild("PART_NumberTB") as TextBox;
+            CodeLiteralElement = GetTemplateChild("PART_CodeLiteralTB") as TextBlock;
+
+            this.PreviewKeyDown += OnControlPreviewKeyDown;
+
+            UpdateDisplay();
+        }
+
+        private void OnControlPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (UpDownByKeyboardEnabled)
+            {
+                if (e.Key == Key.Up)
+                {
+                    IncreaseExecute();
+                    e.Handled = true;
+                }
+                if (e.Key == Key.Down)
+                {
+                    DecreaseExecute();
+                    e.Handled = true;
+                }
+            }
+            if (e.Key == Key.Enter && e.OriginalSource is TextBox)
+            {
+                OnTextChanged(null, null);
+                UpdateValueDisplayAndFocus(sender, e);
+                e.Handled = true;
+            }
+            if (e.Key == Key.Enter && e.OriginalSource is RepeatButton)// ignore the buttons enter - to avoid mistakes
+            {
+                e.Handled = true;
+            }
+        }
+
+        #endregion
+
+
+        #region Numeric direction description (Code Literal)
 
         /// <summary>
         /// Positive Number single sign. Default Empty string.
@@ -60,15 +135,74 @@ namespace Ws.Extensions.UI.Wpf.Controls
         }
 
         /// <summary>
-        /// Max text length property including sign and spaces
+        /// Notifies whether to show Positive/Negative Values literal description
         /// </summary>
-        public static readonly DependencyProperty DisplayLengthProperty = DependencyProperty.Register(
-          nameof(DisplayLength), typeof(int), typeof(NumericUpDown), new PropertyMetadata(20));
-        public int DisplayLength
+        public static readonly DependencyProperty CodeLiteralVisibilityProperty = DependencyProperty.Register(
+          nameof(CodeLiteralVisibility), typeof(Visibility), typeof(NumericUpDown), new PropertyMetadata(Visibility.Visible, OnCodeLiteralVisibilityChanged));
+        public Visibility CodeLiteralVisibility
         {
-            get { return (int)this.GetValue(DisplayLengthProperty); }
-            set { this.SetValue(DisplayLengthProperty, value); }
+            get { return (Visibility)this.GetValue(CodeLiteralVisibilityProperty); }
+            set { this.SetValue(CodeLiteralVisibilityProperty, value); }
         }
+        private static void OnCodeLiteralVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            NumericUpDown control = d as NumericUpDown;
+            if (control != null && control.CodeLiteralElement != null)
+            {
+                control.CodeLiteralElement.Visibility = (Visibility)e.NewValue;
+            }
+        }
+
+        private TextBlock CodeLiteralElement { get; set; }
+
+        public string ValueSignCode
+        {
+            get { return (!Value.HasValue || Math.Sign(Value.Value) >= 0) ? PlusCode : MinusCode; }
+        }
+
+        private string GetCodeLiteralDisplay()
+        {
+            return Value.HasValue && Value.Value < default(double) ? MinusCodeLiteral : PlusCodeLiteral;
+        }
+
+        #endregion
+
+
+        #region Display
+
+        /// <summary>
+        /// Propery defines the Value Severity level. Available values: Undefined, High, Low, Normal(default)
+        /// </summary>
+        public static readonly DependencyProperty SeverityLevelProperty = DependencyProperty.Register(
+          nameof(SeverityLevel), typeof(SeverityLevel), typeof(NumericUpDown), new PropertyMetadata(SeverityLevel.Normal));
+        public SeverityLevel SeverityLevel
+        {
+            get { return (SeverityLevel)this.GetValue(SeverityLevelProperty); }
+            set { this.SetValue(SeverityLevelProperty, value); }
+        }
+
+        /// <summary>
+        /// Property defines control's Display Status. Available values: Active(default), Disabled, Readonly.
+        /// </summary>
+        public static readonly DependencyProperty DisplayStatusProperty = DependencyProperty.Register(
+          nameof(DisplayStatus), typeof(DisplayStatus), typeof(NumericUpDown), new PropertyMetadata(DisplayStatus.Active));
+        public DisplayStatus DisplayStatus
+        {
+            get { return (DisplayStatus)this.GetValue(DisplayStatusProperty); }
+            set { this.SetValue(DisplayStatusProperty, value); }
+        }
+
+        public bool IsNarrow
+        {
+            get { return (bool)GetValue(IsNarrowProperty); }
+            set { SetValue(IsNarrowProperty, value); }
+        }
+        public static readonly DependencyProperty IsNarrowProperty = DependencyProperty.Register(nameof(IsNarrow), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
+
+        #endregion
+
+
+        #region Value
 
         /// <summary>
         /// Numeric value. Is Nullable if IsNullable property set to true(default) otherwise 0. Default Value is null.
@@ -106,17 +240,6 @@ namespace Ws.Extensions.UI.Wpf.Controls
         }
 
         /// <summary>
-        /// Propery defines the Value Severity level. Available values: Undefined, High, Low, Normal(default)
-        /// </summary>
-        public static readonly DependencyProperty SeverityLevelProperty = DependencyProperty.Register(
-          nameof(SeverityLevel), typeof(SeverityLevel), typeof(NumericUpDown), new PropertyMetadata(SeverityLevel.Normal));
-        public SeverityLevel SeverityLevel
-        {
-            get { return (SeverityLevel)this.GetValue(SeverityLevelProperty); }
-            set { this.SetValue(SeverityLevelProperty, value); }
-        }
-
-        /// <summary>
         /// Min accepted Value
         /// </summary>
         public static readonly DependencyProperty MinValueProperty = DependencyProperty.Register(
@@ -142,69 +265,6 @@ namespace Ws.Extensions.UI.Wpf.Controls
         {
             get { return (double)this.GetValue(MaxValueProperty); }
             set { this.SetValue(MaxValueProperty, value); }
-        }
-
-        /// <summary>
-        /// Increament/Decreament step value
-        /// </summary>
-        public static readonly DependencyProperty IncrementProperty = DependencyProperty.Register(
-          nameof(Increment), typeof(double), typeof(NumericUpDown), new PropertyMetadata(1.0));
-        public double Increment
-        {
-            get { return (double)this.GetValue(IncrementProperty); }
-            set { this.SetValue(IncrementProperty, value); }
-        }
-
-        /// <summary>
-        /// Property notifies whether any of child elements has a focus now.
-        /// </summary>
-        public static readonly DependencyProperty IsChildWithFocusProperty = DependencyProperty.Register(
-          nameof(IsChildWithFocus), typeof(bool), typeof(NumericUpDown), new PropertyMetadata());
-        public bool IsChildWithFocus
-        {
-            get { return (bool)this.GetValue(IsChildWithFocusProperty); }
-            set { this.SetValue(IsChildWithFocusProperty, value); }
-        }
-
-        /// <summary>
-        /// Property defines control's Display Status. Available values: Active(default), Disabled, Readonly.
-        /// </summary>
-        public static readonly DependencyProperty DisplayStatusProperty = DependencyProperty.Register(
-          nameof(DisplayStatus), typeof(DisplayStatus), typeof(NumericUpDown), new PropertyMetadata(DisplayStatus.Active));
-        public DisplayStatus DisplayStatus
-        {
-            get { return (DisplayStatus)this.GetValue(DisplayStatusProperty); }
-            set { this.SetValue(DisplayStatusProperty, value); }
-        }
-
-        /// <summary>
-        /// Property describes whether keyboard action available for Up/Down keys
-        /// </summary>
-        public static readonly DependencyProperty UpDownByKeyboardEnabledProperty = DependencyProperty.Register(
-          nameof(UpDownByKeyboardEnabled), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
-        public bool UpDownByKeyboardEnabled
-        {
-            get { return (bool)this.GetValue(UpDownByKeyboardEnabledProperty); }
-            set { this.SetValue(UpDownByKeyboardEnabledProperty, value); }
-        }
-
-        /// <summary>
-        /// Notifies whether to show Positive/Negative Values literal description
-        /// </summary>
-        public static readonly DependencyProperty CodeLiteralVisibilityProperty = DependencyProperty.Register(
-          nameof(CodeLiteralVisibility), typeof(Visibility), typeof(NumericUpDown), new PropertyMetadata(Visibility.Visible, OnCodeLiteralVisibilityChanged));
-        public Visibility CodeLiteralVisibility
-        {
-            get { return (Visibility)this.GetValue(CodeLiteralVisibilityProperty); }
-            set { this.SetValue(CodeLiteralVisibilityProperty, value); }
-        }
-        private static void OnCodeLiteralVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            NumericUpDown control = d as NumericUpDown;
-            if (control != null && control.CodeLiteralElement != null)
-            {
-                control.CodeLiteralElement.Visibility = (Visibility)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -241,6 +301,263 @@ namespace Ws.Extensions.UI.Wpf.Controls
             }
         }
 
+        private void UpdateValue(string text)
+        {
+            if (!Value.HasValue && string.IsNullOrWhiteSpace(text))
+                return;
+
+            double number;
+            if (TryParseToNumber(text, out number))
+            {
+                if (Value.HasValue && Value.Value == number)
+                    return;
+
+                number = Math.Round(number, NumberOfFractionDigits);
+                Value = GetValueInMinMaxRange(number);
+            }
+        }
+
+        private double GetDefaultValue()
+        {
+            return GetValueInMinMaxRange(default(double));
+        }
+
+        private double GetValueInMinMaxRange(double value)
+        {
+            return Math.Max(Math.Min(value, MaxValue), MinValue);
+        }
+
+        private void UpdateValueDisplayAndFocus(object sender, EventArgs e)
+        {
+            UpdateValue(TextElement.Text);
+            UpdateDisplay();
+            IsChildWithFocus = false;
+            Console.WriteLine("###LA is this working?");
+        }
+
+        #endregion
+
+
+        #region Increment/Decrement
+
+        /// <summary>
+        /// Increament/Decreament step value
+        /// </summary>
+        public static readonly DependencyProperty IncrementProperty = DependencyProperty.Register(
+          nameof(Increment), typeof(double), typeof(NumericUpDown), new PropertyMetadata(1.0));
+        public double Increment
+        {
+            get { return (double)this.GetValue(IncrementProperty); }
+            set { this.SetValue(IncrementProperty, value); }
+        }
+
+        /// <summary>
+        /// Property describes whether keyboard action available for Up/Down keys
+        /// </summary>
+        public static readonly DependencyProperty UpDownByKeyboardEnabledProperty = DependencyProperty.Register(
+          nameof(UpDownByKeyboardEnabled), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
+        public bool UpDownByKeyboardEnabled
+        {
+            get { return (bool)this.GetValue(UpDownByKeyboardEnabledProperty); }
+            set { this.SetValue(UpDownByKeyboardEnabledProperty, value); }
+        }
+
+        private DelegateCommand IncreaseCommand;
+        private void IncreaseExecute()
+        {
+            if (!IncreaseCanExecute())
+                return;
+
+            if (!Value.HasValue)
+                Value = GetDefaultValue() + Increment;
+            else
+                Value += Increment;
+
+            UpdateDisplay();
+        }
+        private bool IncreaseCanExecute()
+        {
+            return DisplayStatus == DisplayStatus.Active && (!Value.HasValue || Value.Value < MaxValue);
+        }
+
+        private DelegateCommand DecreaseCommand;
+        private void DecreaseExecute()
+        {
+            if (!DecreaseCanExecute())
+                return;
+
+            if (!Value.HasValue)
+                Value = GetDefaultValue() - Increment;
+            else
+                Value -= Increment;
+
+            UpdateDisplay();
+        }
+        private bool DecreaseCanExecute()
+        {
+            return DisplayStatus == DisplayStatus.Active && (!Value.HasValue || Value.Value > MinValue);
+        }
+
+        private RepeatButton _downButtonElement;
+        private RepeatButton DownButtonElement
+        {
+            get { return _downButtonElement; }
+            set
+            {
+                UnregisterDownElement();
+                _downButtonElement = value;
+                RegisterDownElement();
+            }
+        }
+
+        private void RegisterDownElement()
+        {
+            if (_downButtonElement != null)
+            {
+                _downButtonElement.Command = DecreaseCommand;
+                _downButtonElement.GotFocus += OnButtonGotFocus;
+                _downButtonElement.LostFocus += OnButtonLostFocus;
+            }
+        }
+
+        private void UnregisterDownElement()
+        {
+            if (_downButtonElement != null)
+            {
+                _downButtonElement.Command = null;
+                _downButtonElement.GotFocus -= OnButtonGotFocus;
+                _downButtonElement.LostFocus -= OnButtonLostFocus;
+            }
+        }
+
+        private RepeatButton _upButtonElement;
+        private RepeatButton UpButtonElement
+        {
+            get { return _upButtonElement; }
+            set
+            {
+                UnregisterUpElement();
+                _upButtonElement = value;
+                RegisterUpElement();
+            }
+        }
+
+        private void RegisterUpElement()
+        {
+            if (_upButtonElement != null)
+            {
+                _upButtonElement.Command = IncreaseCommand;
+                _upButtonElement.GotFocus += OnButtonGotFocus;
+                _upButtonElement.LostFocus += OnButtonLostFocus;
+            }
+        }
+
+        private void UnregisterUpElement()
+        {
+            if (_upButtonElement != null)
+            {
+                _upButtonElement.Command = null;
+                _upButtonElement.GotFocus -= OnButtonGotFocus;
+                _upButtonElement.LostFocus -= OnButtonLostFocus;
+            }
+        }
+
+        private const int THROTTLE_WINDOW = 600;
+        private void SetSpinnerMouseUpEvents()
+        {
+            if (_downButtonElement != null)
+            {
+                IObservable<MouseButtonEventArgs> ObservableDownElementMouseUpEvents = Observable
+                    .FromEventPattern<MouseButtonEventArgs>(_downButtonElement, "PreviewMouseUp")
+                    .Select(x => x.EventArgs)
+                    .Throttle(TimeSpan.FromMilliseconds(THROTTLE_WINDOW));
+
+                IDisposable MouseUpSubscription = ObservableDownElementMouseUpEvents
+                    .ObserveOn(SynchronizationContext.Current)
+                    .Subscribe(x => {
+                        OnButtonRelease(x);
+                    });
+            }
+
+            if (_upButtonElement != null)
+            {
+                IObservable<MouseButtonEventArgs> ObservableUpElementMouseUpEvents = Observable
+                    .FromEventPattern<MouseButtonEventArgs>(_upButtonElement, "PreviewMouseUp")
+                    .Select(x => x.EventArgs)
+                    .Throttle(TimeSpan.FromMilliseconds(2000));
+
+                IDisposable MouseUpSubscription = ObservableUpElementMouseUpEvents
+                    .ObserveOn(SynchronizationContext.Current)
+                    .Subscribe(x => {
+                        OnButtonRelease(x);
+                    });
+            }
+        }
+
+        private void OnButtonRelease(MouseButtonEventArgs args)
+        {
+            UpdateValueDisplayAndFocus(this, args);
+        }
+
+        #endregion
+
+
+        #region Focus
+
+        /// <summary>
+        /// Property notifies whether any of child elements has a focus now.
+        /// </summary>
+        public static readonly DependencyProperty IsChildWithFocusProperty = DependencyProperty.Register(
+          nameof(IsChildWithFocus), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false, OnChangeChildWithFocus));
+
+        private static void OnChangeChildWithFocus(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var numericUpDown = d as NumericUpDown;
+            if (numericUpDown != null)
+            {
+                Application.Current.MainWindow.PreviewMouseDown -= numericUpDown.UpdateValueDisplayAndFocus;
+                if ((bool)e.NewValue)
+                    Application.Current.MainWindow.PreviewMouseDown += numericUpDown.UpdateValueDisplayAndFocus;
+                else
+                    numericUpDown.OnNumericLostFocus();
+
+                if ((bool)e.NewValue)
+                    Console.WriteLine("###LA Child with focus");
+                else
+                    Console.WriteLine("###LA Child no focus");
+            }
+        }
+
+        public bool IsChildWithFocus
+        {
+            get { return (bool)this.GetValue(IsChildWithFocusProperty); }
+            set { this.SetValue(IsChildWithFocusProperty, value); }
+        }
+
+        private void OnButtonLostFocus(object sender, RoutedEventArgs e) { IsChildWithFocus = false; }
+
+        private void OnButtonGotFocus(object sender, RoutedEventArgs e) { IsChildWithFocus = true; }
+
+        private void OnTextElementLostFocus(object sender, RoutedEventArgs e) { IsChildWithFocus = false; }
+
+        private void OnTextElementGotFocus(object sender, RoutedEventArgs e)
+        {
+            SelectAll();
+            IsChildWithFocus = true;
+        }
+
+        private void OnTextElementGotMouseCapture(object sender, MouseEventArgs e)
+        {
+            SelectAll();
+            IsChildWithFocus = true;
+        }
+
+        private void OnNumericLostFocus()
+        {
+            Keyboard.ClearFocus();
+            FocusManager.SetFocusedElement(FocusManager.GetFocusScope(_textElement), null);
+        }
+
         #endregion
 
 
@@ -271,146 +588,25 @@ namespace Ws.Extensions.UI.Wpf.Controls
         #endregion
 
 
-        #region Width
+        #region TextBox
 
-        public bool IsNarrow
+        public HorizontalAlignment TextBoxContentHorizontalAlignment
         {
-            get { return (bool)GetValue(IsNarrowProperty); }
-            set { SetValue(IsNarrowProperty, value); }
+            get { return (HorizontalAlignment)GetValue(TextBoxContentHorizontalAlignmentProperty); }
+            set { SetValue(TextBoxContentHorizontalAlignmentProperty, value); }
         }
-        public static readonly DependencyProperty IsNarrowProperty = DependencyProperty.Register(nameof(IsNarrow), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
+        public static readonly DependencyProperty TextBoxContentHorizontalAlignmentProperty = 
+            DependencyProperty.Register(nameof(TextBoxContentHorizontalAlignment), typeof(HorizontalAlignment), typeof(NumericUpDown), new PropertyMetadata(HorizontalAlignment.Center));
 
-        #endregion
-
-
-        #region Start, End
-
-        static NumericUpDown()
+        /// <summary>
+        /// Max text length property including sign and spaces
+        /// </summary>
+        public static readonly DependencyProperty DisplayLengthProperty = DependencyProperty.Register(
+          nameof(DisplayLength), typeof(int), typeof(NumericUpDown), new PropertyMetadata(20));
+        public int DisplayLength
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericUpDown), new FrameworkPropertyMetadata(typeof(NumericUpDown)));
-        }
-
-        public NumericUpDown()
-        {
-            IncreaseCommand = new DelegateCommand(IncreaseExecute, IncreaseCanExecute);
-            DecreaseCommand = new DelegateCommand(DecreaseExecute, DecreaseCanExecute);
-            Loaded += OnUnload;
-        }
-
-        private void OnUnload(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.PreviewMouseDown -= OnTextElementLostFocus;
-        }
-
-        #endregion
-
-
-        #region Commands
-
-        private DelegateCommand IncreaseCommand;
-        private void IncreaseExecute()
-        {
-            if (!IncreaseCanExecute())
-                return;
-
-            if (!Value.HasValue)
-                Value = GetDefaultValue() + Increment;
-            else
-                Value += Increment;
-
-            UpdateDisplay();
-        }
-        private bool IncreaseCanExecute()
-        {
-            return DisplayStatus == DisplayStatus.Active && (!Value.HasValue || Value.Value < MaxValue);
-        }
-
-
-        private DelegateCommand DecreaseCommand;
-        private void DecreaseExecute()
-        {
-            if (!DecreaseCanExecute())
-                return;
-
-            if (!Value.HasValue)
-                Value = GetDefaultValue() - Increment;
-            else
-                Value -= Increment;
-
-            UpdateDisplay();
-        }
-        private bool DecreaseCanExecute()
-        {
-            return DisplayStatus == DisplayStatus.Active && (!Value.HasValue || Value.Value > MinValue);
-        }
-
-        #endregion
-
-        #region Overrides
-
-        public override void OnApplyTemplate()
-        {
-            UpButtonElement = GetTemplateChild("PART_UpButton") as RepeatButton;
-            DownButtonElement = GetTemplateChild("PART_DownButton") as RepeatButton;
-            TextElement = GetTemplateChild("PART_NumberTB") as TextBox;
-            CodeLiteralElement = GetTemplateChild("PART_CodeLiteralTB") as TextBlock;
-
-            this.PreviewKeyDown += OnControlPreviewKeyDown;
-
-
-            UpdateDisplay();
-
-            //UpdateStates(false);
-        }
-
-        #endregion
-
-        #region Private Properties
-
-        private RepeatButton _downButtonElement;
-
-        private RepeatButton DownButtonElement
-        {
-            get { return _downButtonElement; }
-            set
-            {
-                if (_downButtonElement != null)
-                {
-                    _downButtonElement.Command = null;
-                    _downButtonElement.GotFocus -= OnButtonGotFocus;
-                    _downButtonElement.LostFocus -= OnButtonLostFocus;
-                }
-
-                _downButtonElement = value;
-
-                if (_downButtonElement != null)
-                {
-                    _downButtonElement.Command = DecreaseCommand;
-                    _downButtonElement.GotFocus += OnButtonGotFocus;
-                    _downButtonElement.LostFocus += OnButtonLostFocus;
-                }
-            }
-        }
-
-        private RepeatButton _upButtonElement;
-
-        private RepeatButton UpButtonElement
-        {
-            get { return _upButtonElement; }
-            set
-            {
-                if (_upButtonElement != null)
-                {
-                    _upButtonElement.Command = null;
-                }
-
-                _upButtonElement = value;
-
-                if (_upButtonElement != null)
-                {
-                    _upButtonElement.Command = IncreaseCommand;
-                }
-            }
+            get { return (int)this.GetValue(DisplayLengthProperty); }
+            set { this.SetValue(DisplayLengthProperty, value); }
         }
 
         private TextBox _textElement;
@@ -419,93 +615,31 @@ namespace Ws.Extensions.UI.Wpf.Controls
             get { return _textElement; }
             set
             {
-                if (_textElement != null)
-                {
-                    _textElement.GotFocus -= OnTextElementGotFocus;
-                    _textElement.LostFocus -= OnTextElementLostFocus;
-                    _textElement.TextChanged -= OnTextChanged;
-                    _textElement.GotMouseCapture -= OnTextElementGotMouseCapture;
-                }
-
+                UnregisterTextElement();
                 _textElement = value;
-
-                if (_textElement != null)
-                {
-                    _textElement.GotFocus += OnTextElementGotFocus;
-                    _textElement.LostFocus += OnTextElementLostFocus;
-                    _textElement.TextChanged += OnTextChanged;
-                    _textElement.GotMouseCapture += OnTextElementGotMouseCapture;
-                }
+                RegisterTextElement();
             }
         }
 
-        private TextBlock CodeLiteralElement { get; set; }
-
-        public string ValueSignCode
+        private void RegisterTextElement()
         {
-            get { return (!Value.HasValue || Math.Sign(Value.Value) >= 0) ? PlusCode : MinusCode; }
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private void OnButtonGotFocus(object sender, RoutedEventArgs e)
-        {
-            IsChildWithFocus = true;
-        }
-
-        private void OnButtonLostFocus(object sender, RoutedEventArgs e)
-        {
-            IsChildWithFocus = false;
-        }
-
-        private void OnTextElementLostFocus(object sender, RoutedEventArgs e)
-        {
-            UpdateValue(TextElement.Text);
-            UpdateDisplay();
-
-            IsChildWithFocus = false;
-            Keyboard.ClearFocus();
-            FocusManager.SetFocusedElement(FocusManager.GetFocusScope(_textElement), null);
-            Application.Current.MainWindow.PreviewMouseDown -= OnTextElementLostFocus;
-        }
-
-        private void OnTextElementGotFocus(object sender, RoutedEventArgs e)
-        {
-            SelectAll();
-            Application.Current.MainWindow.PreviewMouseDown += OnTextElementLostFocus;
-        }
-        private void OnTextElementGotMouseCapture(object sender, MouseEventArgs e)
-        {
-            SelectAll();
-        }
-
-        private void OnControlPreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (UpDownByKeyboardEnabled)
+            if (_textElement != null)
             {
-                if (e.Key == Key.Up)
-                {
-                    IncreaseExecute();
-                    e.Handled = true;
-                }
-                if (e.Key == Key.Down)
-                {
-                    DecreaseExecute();
-                    e.Handled = true;
-                }
+                _textElement.GotFocus += OnTextElementGotFocus;
+                _textElement.LostFocus += OnTextElementLostFocus;
+                _textElement.TextChanged += OnTextChanged;
+                _textElement.GotMouseCapture += OnTextElementGotMouseCapture;
             }
-            if (e.Key == Key.Enter && e.OriginalSource is TextBox)
+        }
+
+        private void UnregisterTextElement()
+        {
+            if (_textElement != null)
             {
-                OnTextChanged(null, null);
-                UpdateValue(TextElement.Text);
-                UpdateDisplay();
-                e.Handled = true;
-            }
-            if (e.Key == Key.Enter && e.OriginalSource is RepeatButton)// ignore the buttons enter - to avoid mistakes
-            {
-                e.Handled = true;
+                _textElement.GotFocus -= OnTextElementGotFocus;
+                _textElement.LostFocus -= OnTextElementLostFocus;
+                _textElement.TextChanged -= OnTextChanged;
+                _textElement.GotMouseCapture -= OnTextElementGotMouseCapture;
             }
         }
 
@@ -541,34 +675,18 @@ namespace Ws.Extensions.UI.Wpf.Controls
         {
             TextElement.CaretIndex = TextElement.Text.Length;
             TextElement.SelectAll();
-            IsChildWithFocus = true;
         }
 
+        const string HAIR_SPACE = "\u200A";
         private string GetValueDisplay()
         {
             string format = GetFormat();
             if (Value.HasValue)
             {
                 string displayedNumber = Math.Abs(Value.Value).ToString(format);
-                return $"{ValueSignCode} {displayedNumber}";
+                return $"{ValueSignCode}{HAIR_SPACE}{displayedNumber}";
             }
             else { return string.Empty; }
-        }
-
-        private void UpdateValue(string text)
-        {
-            if (!Value.HasValue && string.IsNullOrWhiteSpace(text))
-                return;
-
-            double number;
-            if (TryParseToNumber(text, out number))
-            {
-                if (Value.HasValue && Value.Value == number)
-                    return;
-
-                number = Math.Round(number, NumberOfFractionDigits);
-                Value = GetValueInMinMaxRange(number);
-            }
         }
 
         private bool IsInputValid(string text)
@@ -590,6 +708,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
         {
             number = double.MinValue;
             string input = inputString.ToUpper().Trim();
+            input = input.Replace(HAIR_SPACE, " ");
             string prefix = "+";
             string numberStr = input;
             if ((!string.IsNullOrWhiteSpace(MinusCode) && input.StartsWith(MinusCode))
@@ -632,11 +751,6 @@ namespace Ws.Extensions.UI.Wpf.Controls
             ValueDisplay = TextElement.Text;
         }
 
-        private string GetCodeLiteralDisplay()
-        {
-            return Value.HasValue && Value.Value < default(double) ? MinusCodeLiteral : PlusCodeLiteral;
-        }
-
         private string GetFormat()
         {
             string ret = "0";
@@ -649,16 +763,6 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 }
             }
             return ret;
-        }
-
-        private double GetDefaultValue()
-        {
-            return GetValueInMinMaxRange(default(double));
-        }
-
-        private double GetValueInMinMaxRange(double value)
-        {
-            return Math.Max(Math.Min(value, MaxValue), MinValue);
         }
 
         #endregion

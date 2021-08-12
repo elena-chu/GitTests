@@ -26,11 +26,18 @@
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
-    <tm:ToolbarMenu Grid.Row="0" Margin="0,0,0,40" VerticalAlignment="Top" Height="Auto"/>
+    <!--<tm:ToolbarMenu Grid.Row="0" Margin="0,0,0,20" VerticalAlignment="Top" Height="Auto"/>-->
 
-    <coordinate:CoordinateTripletControl Grid.Row="1" Margin="0,0,0,20" Width="300" SeverityLevel="Normal" Point="{Binding Point, Mode=TwoWay}"/>
 
-    <UniformGrid Grid.Row="2" Columns="3">
+    <UniformGrid Grid.Row="2" Columns="3" Margin="0,20,0,0">
+      <coordinate:CoordinateTripletControl
+        Grid.Row="1"
+        Margin="0,0,0,20"
+        Width="300"
+        SeverityLevel="Normal"
+        IsNarrow="False"
+        Point="{Binding Point, Mode=TwoWay}"/>
+      
       <extensions:NumericUpDown
         Margin="12,0"
         Width="90"
@@ -57,8 +64,7 @@
         Increment="0.25"
         IsNullable="False"
         NumberOfFractionDigits="2"
-        Units="{StaticResource XString.DegreesCelcius}"
-        HorizontalContentAlignment="Center"/>
+        Units="{StaticResource XString.DegreesCelcius}"/>
 
       <extensions:NumericUpDown
         Margin="12,0"
@@ -73,7 +79,22 @@
         NumberOfFractionDigits="0"
         Units="{StaticResource XString.Joules}"
         UnitsPlacement="Subscript"
-        HorizontalContentAlignment="Left"/>
+        TextBoxContentHorizontalAlignment="Left"/>
+
+      <extensions:NumericUpDown
+        Margin="12,0"
+        DisplayStatus="Disabled"
+        CodeLiteralVisibility="Visible"
+        PlusCode="+"
+        MinusCode="-"
+        MinValue="-100"
+        MaxValue="600"
+        Increment="0.25"
+        IsNullable="False"
+        NumberOfFractionDigits="0"
+        Units="{StaticResource XString.Joules}"
+        UnitsPlacement="Subscript"
+        TextBoxContentHorizontalAlignment="Right"/>
 
       <RichTextBox
         Name="richTB"
@@ -90,8 +111,9 @@
           </Paragraph>
         </FlowDocument>
       </RichTextBox>
+
     </UniformGrid>
-    
+
   </Grid>
-  
+
 </UserControl>

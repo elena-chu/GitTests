@@ -22,7 +22,7 @@
           </ColumnDefinition.Style>
         </ColumnDefinition>
         <ColumnDefinition/>
-        <ColumnDefinition x:Name="SpinnerColumn" >
+        <ColumnDefinition x:Name="SpinnerColumn">
           <ColumnDefinition.Style>
             <Style TargetType="ColumnDefinition">
               <Setter Property="extensions:IndependentSize.ColumnWidth" Value="{StaticResource XDouble.ColumnWidth.Chevron}"/>
@@ -38,17 +38,15 @@
 
       <Border x:Name="HoverBorder" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource XStyle.Border.Hover.Control}" extensions:ControlExtensions.Hover="False"/>
 
-      <Grid Grid.Row="0">
+      <Grid Grid.Row="0" HorizontalAlignment="{TemplateBinding TextBoxContentHorizontalAlignment}">
         <Grid.Style>
           <Style TargetType="{x:Type Grid}">
             <Setter Property="Grid.Column" Value="0"/>
             <Setter Property="Grid.ColumnSpan" Value="2"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Style.Triggers>
-              <DataTrigger Binding="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}" Value="Center">
+              <DataTrigger Binding="{Binding TextBoxContentHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}" Value="Center">
                 <Setter Property="Grid.Column" Value="1"/>
                 <Setter Property="Grid.ColumnSpan" Value="1"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
               </DataTrigger>
             </Style.Triggers>
           </Style>
@@ -60,12 +58,13 @@
         <TextBox
           x:Name="PART_NumberTB"
           Grid.Column="0"
+          extensions:IndependentSize.MinWidth="30"
           Foreground="{TemplateBinding Foreground}"
           Background="{StaticResource XBrush.AlmostTransparent}"
           FontFamily="{StaticResource XFontFamily.Base}"
           FontSize="{TemplateBinding FontSize}"
-          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+          HorizontalContentAlignment="{TemplateBinding TextBoxContentHorizontalAlignment}"
+          VerticalContentAlignment="Center"
           Padding="{TemplateBinding Padding}"
           HorizontalScrollBarVisibility="Hidden"
           VerticalScrollBarVisibility="Hidden"
@@ -73,6 +72,7 @@
         <TextBlock
           Grid.Column="1"
           Text="{Binding Units, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}"
+          Foreground="{TemplateBinding Foreground}"
           extensions:ToolTipExtension.AutoToolTip="True">
           <TextBlock.Style>
             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
@@ -138,11 +138,11 @@
         <Setter Property="Foreground" TargetName="PART_NumberTB" Value="{StaticResource XBrush.Warning}"/>
       </Trigger>
       <Trigger Property="DisplayStatus" Value="Disabled">
-        <Setter Property="IsEnabled" TargetName="PART_NumberTB" Value="False"/>
+        <Setter Property="IsReadOnly" TargetName="PART_NumberTB" Value="True"/>
         <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Hidden"/>
         <Setter Property="extensions:IndependentSize.BorderThickness" TargetName="HoverBorder" Value="1" />
         <Setter Property="BorderBrush" TargetName="HoverBorder" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
-        <Setter Property="Foreground" TargetName="PART_NumberTB" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
         <Setter Property="Background" TargetName="HoverBorder" Value="{StaticResource XBrush.Application.Background}" />
       </Trigger>
       <Trigger Property="DisplayStatus" Value="ReadOnly">
@@ -150,7 +150,6 @@
         <Setter Property="Visibility" TargetName="SpinnerGrid" Value="Hidden"/>
         <Setter Property="Background" TargetName="HoverBorder" Value="{StaticResource XBrush.Application.Background}" />
         <Setter Property="extensions:IndependentSize.BorderThickness" TargetName="HoverBorder" Value="1" />
-        <!--<Setter Property="Width" TargetName="SpinnerColumn" Value="0" />-->
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -179,18 +178,12 @@
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="9,0,1,1"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="1,0,1,1"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
       <Trigger Property="DisplayStatus" Value="Disabled">
-        <Setter Property="IsEnabled" Value="False"/>
-      </Trigger>
-      <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
-      </Trigger>
-      <Trigger Property="IsNarrow" Value="True">
-        <Setter Property="extensions:IndependentSize.Padding" Value="2,0,0,1"/>
       </Trigger>
     </Style.Triggers>
   </Style>

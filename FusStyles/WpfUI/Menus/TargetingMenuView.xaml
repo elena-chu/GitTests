@@ -28,6 +28,7 @@
     <Style x:Key="XStyle.CoordinateTripletControl" TargetType="{x:Type coordinate:CoordinateTripletControl}">
       <Setter Property="Gap" Value="6"/>
       <Setter Property="IsNarrow" Value="True"/>
+      <Setter Property="TextBoxContentHorizontalAlignment" Value="Right"/>
     </Style>
   </UserControl.Resources>
   
