@@ -14,17 +14,6 @@
     <extensions:BooleanToTrueFalseValueConverter x:Key="StripTrueFalseValueConverter" IsThreeState="False" TrueValue="OK" FalseValue="NO}" />
     <extensions:BooleanToTrueFalseValueConverter x:Key="StateTrueFalseValueConverter" IsThreeState="False" TrueValue="Completed" FalseValue="Active" />
 
-    <Style x:Key="ExpanderStyle" TargetType="Expander" BasedOn="{StaticResource XStyle.Expader.Menu.Bottom}">
-      <Style.Triggers>
-        <Trigger Property="IsExpanded" Value="false">
-          <Setter Property="Header" Value="More"/>
-        </Trigger>
-        <Trigger Property="IsExpanded" Value="true">
-          <Setter Property="Header" Value="Hide Patient Info"/>
-        </Trigger>
-      </Style.Triggers>
-    </Style>
-
     <Style x:Key="XStyle.CoordinateTripletControl" TargetType="{x:Type coordinate:CoordinateTripletControl}">
       <Setter Property="Gap" Value="6"/>
       <Setter Property="IsNarrow" Value="True"/>
@@ -253,7 +242,19 @@
       </Button>
 
 
-      <Expander Grid.Row="14" x:Name="MoreExp"   Foreground="White"  IsExpanded="{Binding PatientInfoRequired,Mode=TwoWay}" Style="{StaticResource ExpanderStyle}"  >
+      <Expander Grid.Row="14" x:Name="MoreExp" IsExpanded="{Binding PatientInfoRequired,Mode=TwoWay}">
+        <Expander.Style>
+          <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expander}">
+            <Style.Triggers>
+              <Trigger Property="IsExpanded" Value="false">
+                <Setter Property="Header" Value="More"/>
+              </Trigger>
+              <Trigger Property="IsExpanded" Value="true">
+                <Setter Property="Header" Value="Hide Patient Info"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Expander.Style>
         <!--<localuc:PatientInformationUserControl DataContext="{Binding PatientInformation}"  Panel.ZIndex="2"  />-->
       </Expander>
 

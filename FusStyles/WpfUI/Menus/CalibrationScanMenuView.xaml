@@ -145,7 +145,7 @@
         Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
 
-      <Expander x:Name="MoreExp" Grid.Row="6" Header="More" Foreground="White" Style="{StaticResource XStyle.Expader.Menu.Bottom}" >
+      <Expander x:Name="MoreExp" Grid.Row="6" Style="{StaticResource XStyle.Expander.MoreLess}">
         <StackPanel>
           <StackPanel.Resources>
             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}">

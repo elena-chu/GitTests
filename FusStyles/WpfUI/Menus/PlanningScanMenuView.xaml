@@ -40,9 +40,7 @@
         <RowDefinition Height="Auto" x:Name="OrientationAcquired_6" />
         <RowDefinition Height="Auto" />
         <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
-        <RowDefinition Height="Auto" x:Name="More_9" />
-        <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
-        <RowDefinition  />
+        <RowDefinition x:Name="More_9" />
       </Grid.RowDefinitions>
 
       <Grid x:Name="ScanModeContainer"
@@ -233,9 +231,9 @@
       </Border>-->
 
 
-      <Expander x:Name="MoreExp" Grid.Row="9" Header="More" >
+      <Expander x:Name="MoreExp" Grid.Row="9">
         <Expander.Style>
-          <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expader.Menu.Bottom}">
+          <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expander.MoreLess}">
             <Style.Triggers>
               <!--<EventTrigger RoutedEvent=""-->
               <DataTrigger Binding="{Binding IsChecked, ElementName=VolumetricBtn, Mode=OneWay}" Value="True">
@@ -251,7 +249,6 @@
         <Grid>
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Style="{StaticResource MenuGroupSeparationRowStyle}" />
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
 
