@@ -329,7 +329,6 @@
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>
       <Border Grid.ColumnSpan="2" extensions:IndependentSize.Margin="-3" Background="{StaticResource XBrush.AlmostTransparent}"/>

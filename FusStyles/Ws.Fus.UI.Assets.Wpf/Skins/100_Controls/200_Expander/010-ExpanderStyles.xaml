@@ -4,26 +4,28 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <ControlTemplate x:Key="XControlTemplate.Expander" TargetType="{x:Type Expander}">
-    <DockPanel>
-      <ToggleButton
-        x:Name="HeaderSite"
-        Content="{TemplateBinding Header}"
-        DockPanel.Dock="Top"
-        IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-        Style="{StaticResource XStyle.ToggleButton.Expander}"/>
-      <ContentPresenter
-        x:Name="ContentSite"
-        extensions:IndependentSize.Margin="0,6,0,0"
-        DockPanel.Dock="Bottom"
-        Focusable="False"
-        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-        Margin="{TemplateBinding Padding}"
-        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-        <ContentPresenter.LayoutTransform>
-          <ScaleTransform x:Name="ContentSiteScaleTransform" ScaleY="0"/>
-        </ContentPresenter.LayoutTransform>
-      </ContentPresenter>
-    </DockPanel>
+    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" extensions:IndependentSize.Padding="0,6,0,0">
+      <DockPanel>
+        <ToggleButton
+          x:Name="HeaderSite"
+          Content="{TemplateBinding Header}"
+          DockPanel.Dock="Top"
+          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+          Style="{StaticResource XStyle.ToggleButton.Expander}"/>
+        <ContentPresenter
+          x:Name="ContentSite"
+          extensions:IndependentSize.Margin="0,6,0,0"
+          DockPanel.Dock="Bottom"
+          Focusable="False"
+          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+          Margin="{TemplateBinding Padding}"
+          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+          <ContentPresenter.LayoutTransform>
+            <ScaleTransform x:Name="ContentSiteScaleTransform" ScaleY="0"/>
+          </ContentPresenter.LayoutTransform>
+        </ContentPresenter>
+      </DockPanel>
+    </Border>
     <ControlTemplate.Triggers>
       <Trigger Property="IsExpanded" Value="True">
         <Trigger.EnterActions>
@@ -59,7 +61,7 @@
 
   <Style x:Key="XStyle.Expander" TargetType="{x:Type Expander}">
     <Setter Property="Background" Value="Transparent"/>
-    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Frame}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Line}"/>
     <Setter Property="BorderThickness" Value="0,1,0,0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Expander}"/>
     <Setter Property="ExpandDirection" Value="Up"/>
