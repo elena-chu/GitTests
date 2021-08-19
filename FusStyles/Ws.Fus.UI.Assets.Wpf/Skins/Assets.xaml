@@ -45,6 +45,7 @@
 
     <ResourceDictionary Source="100_Controls/090_ListControls/010-ItemStyles.xaml"/>
     <ResourceDictionary Source="100_Controls/090_ListControls/030-ComboBoxStyles.xaml"/>
+    <ResourceDictionary Source="100_Controls/090_ListControls/040-MenuStyles.xaml"/>
 
     <ResourceDictionary Source="100_Controls/100_Slider/010-Slider.xaml"/>
     <ResourceDictionary Source="100_Controls/110_ProgressBar/010-ProgressBarStyles.xaml"/>

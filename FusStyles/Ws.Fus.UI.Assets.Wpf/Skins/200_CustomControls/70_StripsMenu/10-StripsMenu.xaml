@@ -11,10 +11,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToolTip}">
-          <Border
-              Style="{StaticResource XStyle.Border.Frame}"
-              Background="{StaticResource XBrush.Application.Background}"
-              BorderBrush="{StaticResource XBrush.Application.Active}">
+          <Border Style="{StaticResource XStyle.Border.Frame}" BorderBrush="{StaticResource XBrush.Application.Active}">
             <ContentPresenter
               extensions:IndependentSize.Margin="7,1,7,3"
               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"

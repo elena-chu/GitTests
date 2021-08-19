@@ -1,0 +1,82 @@
+<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <ControlTemplate x:Key="XControlTemplate.MenuItem.ContextMenu" TargetType="{x:Type MenuItem}">
+    <Border
+      Height="{TemplateBinding Height}"
+      Width="{TemplateBinding Width}"
+      Style="{StaticResource XStyle.Border.Active.Secondary}"
+      extensions:ControlExtensions.IsActive="{TemplateBinding IsChecked}">
+      <Border
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"
+        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+        extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
+        <ContentPresenter
+          x:Name="ContentPresenter"
+          Content="{TemplateBinding Header}"
+          Margin="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
+          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+          IsHitTestVisible="False">
+          <ContentPresenter.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+              <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+            </Style>
+          </ContentPresenter.Resources>
+        </ContentPresenter>
+      </Border>
+    </Border>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.MenuItem.ContextMenu" TargetType="{x:Type MenuItem}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.MenuItem.ContextMenu}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="9,0,11,1"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.ContextMenu" TargetType="{x:Type ContextMenu}">
+    <Setter Property="ItemContainerStyle" Value="{StaticResource XStyle.MenuItem.ContextMenu}"/>
+    <Setter Property="extensions:IndependentSize.HorizontalOffset" Value="4"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Style="{StaticResource XStyle.Border.Frame}">
+            <StackPanel IsItemsHost="True"/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ToggleButton.IconChevronAndContextMenu" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Chevron.Rotate90}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="56"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="4,6,4,4"/>
+    <Setter Property="extensions:LeftClickContextMenu.IsLeftClickEnabled" Value="True"/>
+    <Setter Property="ContextMenuService.IsEnabled" Value="False"/>
+    <Setter Property="ContextMenuService.Placement" Value="Left"/>
+    <Setter Property="ContextMenuService.HorizontalOffset" Value="4"/>
+    <Setter Property="IsChecked" Value="{Binding ContextMenu.IsOpen, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
+    <Style.Resources>
+      <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource XStyle.ContextMenu}"/>
+    </Style.Resources>
+  </Style>
+
+</ResourceDictionary>

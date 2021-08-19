@@ -187,105 +187,16 @@
     </Style.Triggers>
   </Style>
 
-  <!--Menu Opener-->
-  <ControlTemplate x:Key="XControlTemplate.ToggleButton.MenuOpener" TargetType="{x:Type ToggleButton}">
-    <Grid>
-      <Border
-        extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
-        extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
-        extensions:ControlExtensions.IsActive="{TemplateBinding IsChecked}"
-        Style="{StaticResource XStyle.Border.Active.Secondary}"/>
-      <Border
-        extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
-        extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
-        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
-        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
-        <Border extensions:IndependentSize.Margin="2,0" extensions:IndependentSize.MaxWidth="15" HorizontalAlignment="Center">
-          <Path
-            IsHitTestVisible="False"
-            Stretch="Uniform"
-            Data="{StaticResource XGeometry.Chevron.Down}"
-            Stroke="{TemplateBinding Foreground}"
-            StrokeThickness="1.3"
-            RenderTransformOrigin="0.5,0.3">
-            <Path.RenderTransform>
-              <RotateTransform x:Name="ChevronRotateTransform"/>
-            </Path.RenderTransform>
-          </Path>
-        </Border>
-      </Border>
-    </Grid>
-    <ControlTemplate.Triggers>
-      <Trigger Property="IsChecked" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard>
-              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard>
-              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.ExitActions>
-      </Trigger>
-    </ControlTemplate.Triggers>
-  </ControlTemplate>
-  
-  <Style x:Key="XStyle.ToggleButton.MenuOpener" TargetType="{x:Type ToggleButton}">
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.MenuOpener}"/>
-    <Setter Property="Padding" Value="0"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="20"/>
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
-      </Trigger>
-    </Style.Triggers>
-  </Style>
   
   <!--Chevron-->
-  <Style x:Key="XStyle.ButtonBase.Chevron" TargetType="{x:Type ButtonBase}">
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
-      </Trigger>
-      <Trigger Property="IsMouseOver" Value="True">
-        <Trigger.EnterActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Foreground.Color">
-              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.EnterActions>
-        <Trigger.ExitActions>
-          <BeginStoryboard>
-            <Storyboard Storyboard.TargetProperty="Foreground.Color">
-              <ColorAnimation To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}"/>
-            </Storyboard>
-          </BeginStoryboard>
-        </Trigger.ExitActions>
-      </Trigger>
-    </Style.Triggers>
-  </Style>
-  
   <ControlTemplate x:Key="XControlTemplate.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
     <Border Background="{StaticResource XBrush.AlmostTransparent}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
       <Border x:Name="ChevronBorder" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
         <Path
           extensions:IndependentSize.Margin="0,2,0,0"
           VerticalAlignment="Top"
-          IsHitTestVisible="False"
-          Stretch="Uniform"
-          Data="{StaticResource XGeometry.Chevron.Down}"
-          Stroke="{TemplateBinding Foreground}"
-          StrokeThickness="1.3"
+          Style="{StaticResource XStyle.Path.Chevron}"
+          extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
           RenderTransformOrigin="0.5,0.5">
           <Path.RenderTransform>
             <ScaleTransform x:Name="ChevronScaleTransform" ScaleX="1" ScaleY="1"/>
@@ -319,11 +230,121 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}" BasedOn="{StaticResource XStyle.ButtonBase.Chevron}">
+  <Style x:Key="XStyle.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Spinner}"/>
   </Style>
 
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.Chevon.Rotate180" TargetType="{x:Type ToggleButton}">
+    <Border 
+      Height="{TemplateBinding Height}"
+      Width="{TemplateBinding Width}"
+      Style="{StaticResource XStyle.Border.Active.Secondary}"
+      extensions:ControlExtensions.IsActive="{TemplateBinding IsChecked}">
+      <Border
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"
+        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+        extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
+        <Border Grid.Column="1" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
+          <Path Style="{StaticResource XStyle.Path.Chevron}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
+            <Path.RenderTransform>
+              <RotateTransform x:Name="ChevronRotateTransform"/>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+      </Border>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.Chevon.Rotate180" TargetType="{x:Type ToggleButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Chevon.Rotate180}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="20"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="4"/>
+  </Style>
   
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.Chevron.Rotate90" TargetType="{x:Type ToggleButton}">
+    <Border 
+      Height="{TemplateBinding Height}"
+      Width="{TemplateBinding Width}"
+      Style="{StaticResource XStyle.Border.Active.Secondary}"
+      extensions:ControlExtensions.IsActive="{TemplateBinding IsChecked}">
+      <Border
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"
+        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+        extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
+        <Grid Margin="{TemplateBinding Padding}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <Viewbox
+            Grid.Column="0"
+            extensions:IndependentSize.Margin="0,0,9,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            IsHitTestVisible="False"
+            Stretch="Uniform"
+            Height="{TemplateBinding extensions:IconedButton.IconSize}"
+            Width="{TemplateBinding extensions:IconedButton.IconSize}">
+            <ContentControl Content="{TemplateBinding extensions:IconedButton.Icon}"/>
+          </Viewbox>
+          <Border Grid.Column="1" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Path Style="{StaticResource XStyle.Path.Chevron}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
+              <Path.RenderTransform>
+                <RotateTransform x:Name="ChevronRotateTransform"/>
+              </Path.RenderTransform>
+            </Path>
+          </Border>
+        </Grid>
+      </Border>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="-90" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.Chevron.Rotate90" TargetType="{x:Type ToggleButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Chevron.Rotate90}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="20"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="4,6,4,4"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="0"/>
+  </Style>
+
   <!--Expander-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Expander" TargetType="{x:Type ToggleButton}">
     <Grid>
@@ -463,6 +484,7 @@
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
   </Style>
 
+  
   <!--Icon over Text-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.IconOverText" TargetType="{x:Type ButtonBase}">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource XBrush.AlmostTransparent}">
@@ -545,6 +567,7 @@
   <Style x:Key="XStyle.ToggleButton.ToggleIconOverText" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconOverText}">
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
   </Style>
+  
   
   <!--Icon and Switch over Text-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconAndSwitchOverText" TargetType="{x:Type ToggleButton}">

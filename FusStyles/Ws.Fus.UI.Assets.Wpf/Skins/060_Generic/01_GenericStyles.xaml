@@ -12,6 +12,37 @@
 
   <GridLength x:Key="ToolbarMenuHeight">0.068*</GridLength>
 
+  <Style x:Key="XStyle.Path.Chevron" TargetType="{x:Type Path}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="Data" Value="{StaticResource XGeometry.Chevron.Down}"/>
+    <Setter Property="StrokeThickness" Value="1.3"/>
+    <Setter Property="RenderTransformOrigin" Value="0.5,0.3"/>
+    <Setter Property="Stroke" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Stroke" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
   <Style x:Key="TitleBarRowStyle" TargetType="RowDefinition">
     <Setter Property="extensions:IndependentSize.RowHeight" Value="48" />
   </Style>

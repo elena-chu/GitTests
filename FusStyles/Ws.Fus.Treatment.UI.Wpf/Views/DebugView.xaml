@@ -112,6 +112,17 @@
         </FlowDocument>
       </RichTextBox>
 
+      <ToggleButton Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}">
+        <ToggleButton.ContextMenu>
+          <ContextMenu>
+            <MenuItem Header="Boo"/>
+            <MenuItem Header="Waiting for squills"/>
+            <MenuItem Header="I am disabled" IsEnabled="False"/>
+          </ContextMenu>
+        </ToggleButton.ContextMenu>
+      </ToggleButton>
+
+      <ToggleButton Style="{StaticResource XStyle.ToggleButton.Chevron.Rotate90}" extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"/>
     </UniformGrid>
 
   </Grid>

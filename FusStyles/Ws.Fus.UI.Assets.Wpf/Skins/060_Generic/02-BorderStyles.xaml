@@ -9,7 +9,8 @@
 
   <Style x:Key="XStyle.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Frame}"/>
-    <Setter Property="BorderThickness" Value="{StaticResource XThickness.Frame}"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
   </Style>
 
   <Style x:Key="XStyle.Border.HoverAndPress.Primary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">

@@ -3,7 +3,9 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <Style x:Key="XStyle.ToggleButton.RotatingChevron" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.Chevron}">
+  <!--Combo-->
+  <Style x:Key="XStyle.ToggleButton.ComboBoxChevron" TargetType="{x:Type ToggleButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -14,13 +16,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.ColumnSpan="2" Style="{StaticResource XStyle.Border.Hover.Control}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"/>
             <Border Grid.Column="1" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
-              <Path
-                IsHitTestVisible="False"
-                Stretch="Uniform"
-                Data="{StaticResource XGeometry.Chevron.Down}"
-                Stroke="{TemplateBinding Foreground}"
-                StrokeThickness="1.3"
-                RenderTransformOrigin="0.5,0.3">
+              <Path Style="{StaticResource XStyle.Path.Chevron}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
                 <Path.RenderTransform>
                   <RotateTransform x:Name="ChevronRotateTransform"/>
                 </Path.RenderTransform>
@@ -68,12 +64,7 @@
         VerticalOffset="4"
         MinWidth="{Binding ElementName=MainGrid, Path=ActualWidth}">
         <Grid>
-          <Border
-            x:Name="DropDownBorder"
-            Style="{StaticResource XStyle.Border}"
-            Background="{StaticResource XBrush.Application.Background}"
-            BorderBrush="{StaticResource XBrush.Button.Secondary.Background.Pressed}"
-            extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}">
+          <Border x:Name="DropDownBorder" Style="{StaticResource XStyle.Border.Frame}">
             <ContentControl x:Name="Popupcontent">
               <ScrollViewer>
                 <ItemsPresenter TextElement.FontSize="{TemplateBinding FontSize}" KeyboardNavigation.DirectionalNavigation="Contained"/>
@@ -89,7 +80,7 @@
         Grid.ColumnSpan="2"
         IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
         IsEnabled="{TemplateBinding IsEnabled}" 
-        Style="{StaticResource XStyle.ToggleButton.RotatingChevron}"/>
+        Style="{StaticResource XStyle.ToggleButton.ComboBoxChevron}"/>
 
       <!-- Selected Item -->
       <ContentPresenter
@@ -155,4 +146,6 @@
 
   <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource XStyle.ComboBox}"/>
 
+  
+  <!--Button and Combo-->
 </ResourceDictionary>

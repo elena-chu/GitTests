@@ -83,7 +83,7 @@
             Grid.Column="1"
             extensions:IndependentSize.Margin="3,0,0,0"
             IsChecked="{TemplateBinding IsSubmenuOpen}"
-            Style="{StaticResource XStyle.ToggleButton.MenuOpener}"
+            Style="{StaticResource XStyle.ToggleButton.Chevon.Rotate180}"
             Click="MenuOpenerButton_Click"
             HorizontalAlignment="Left"
             Visibility="{TemplateBinding HasItems, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -129,12 +129,7 @@
                   </Path>
                 </Grid>
               </Border>
-              <Border
-                Grid.Row="1"
-                Background="{StaticResource XBrush.Application.Background}"
-                BorderBrush="{StaticResource XBrush.Frame}"
-                CornerRadius="{StaticResource XCornerRadius.Frame}"
-                extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}">
+              <Border Grid.Row="1" Style="{StaticResource XStyle.Border.Frame}">
                 <StackPanel IsItemsHost="True"/>
               </Border>
             </Grid>
