@@ -81,19 +81,8 @@
         </Button.Style>
       </Button>
 
-      <Expander x:Name="MoreExp" Grid.Row="5" Foreground="White" Grid.ColumnSpan="2" >
-        <Expander.Style>
-          <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expader.Menu.Bottom}">
-            <Setter Property="Header" Value="More"/>
-            <Style.Triggers>
-              <Trigger Property="IsExpanded" Value="True">
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
-                <Setter Property="Header" Value="Less"/>
-              </Trigger>
-            </Style.Triggers>
-          </Style>
-        </Expander.Style>
-        <Grid VerticalAlignment="Bottom">
+      <Expander x:Name="MoreExp" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource XStyle.Expander.MoreLess}">
+        <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

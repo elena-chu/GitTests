@@ -257,7 +257,20 @@
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Foreground.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Foreground.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -308,6 +321,85 @@
 
   <Style x:Key="XStyle.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}" BasedOn="{StaticResource XStyle.ButtonBase.Chevron}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Spinner}"/>
+  </Style>
+
+  
+  <!--Expander-->
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.Expander" TargetType="{x:Type ToggleButton}">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Border Grid.ColumnSpan="2" extensions:IndependentSize.Margin="-3" Background="{StaticResource XBrush.AlmostTransparent}"/>
+      <Border Grid.Column="0" extensions:IndependentSize.Margin="2,6,2,0" extensions:IndependentSize.MaxWidth="12" HorizontalAlignment="Center">
+        <Path
+          x:Name="GuillemetPath"
+          IsHitTestVisible="False"
+          Stretch="Uniform"
+          Data="{StaticResource XGeometry.Guillemet.Down}"
+          Stroke="{TemplateBinding Foreground}"
+          StrokeThickness="1.3"
+          RenderTransformOrigin="0.5,0.5">
+          <Path.RenderTransform>
+            <RotateTransform x:Name="GuillemetRotateTransform" Angle="180"/>
+          </Path.RenderTransform>
+        </Path>
+      </Border>
+      <ContentPresenter
+        Grid.Column="1"
+        extensions:IndependentSize.Margin="6,6,8,0"
+        HorizontalAlignment="Left"
+        RecognizesAccessKey="True"
+        SnapsToDevicePixels="True"
+        VerticalAlignment="Center"/>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="GuillemetRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="GuillemetRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="GuillemetPath" Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetName="GuillemetPath" Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.Expander" TargetType="{x:Type ToggleButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Expander}"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
 
