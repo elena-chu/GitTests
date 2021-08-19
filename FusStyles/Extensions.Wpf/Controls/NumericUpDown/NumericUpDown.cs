@@ -1,6 +1,6 @@
 ﻿using Prism.Commands;
 using System;
-using System.Reactive.Linq;
+//using System.Reactive.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,7 +32,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            SetSpinnerMouseUpEvents();
+            //SetSpinnerMouseUpEvents();
         }
 
         private void OnUnload(object sender, RoutedEventArgs e)
@@ -462,37 +462,37 @@ namespace Ws.Extensions.UI.Wpf.Controls
             }
         }
 
-        private const int THROTTLE_WINDOW = 600;
-        private void SetSpinnerMouseUpEvents()
-        {
-            if (_downButtonElement != null)
-            {
-                IObservable<MouseButtonEventArgs> ObservableDownElementMouseUpEvents = Observable
-                    .FromEventPattern<MouseButtonEventArgs>(_downButtonElement, "PreviewMouseUp")
-                    .Select(x => x.EventArgs)
-                    .Throttle(TimeSpan.FromMilliseconds(THROTTLE_WINDOW));
+        //private const int THROTTLE_WINDOW = 600;
+        //private void SetSpinnerMouseUpEvents()
+        //{
+        //    if (_downButtonElement != null)
+        //    {
+        //        IObservable<MouseButtonEventArgs> ObservableDownElementMouseUpEvents = Observable
+        //            .FromEventPattern<MouseButtonEventArgs>(_downButtonElement, "PreviewMouseUp")
+        //            .Select(x => x.EventArgs)
+        //            .Throttle(TimeSpan.FromMilliseconds(THROTTLE_WINDOW));
 
-                IDisposable MouseUpSubscription = ObservableDownElementMouseUpEvents
-                    .ObserveOn(SynchronizationContext.Current)
-                    .Subscribe(x => {
-                        OnButtonRelease(x);
-                    });
-            }
+        //        IDisposable MouseUpSubscription = ObservableDownElementMouseUpEvents
+        //            .ObserveOn(SynchronizationContext.Current)
+        //            .Subscribe(x => {
+        //                OnButtonRelease(x);
+        //            });
+        //    }
 
-            if (_upButtonElement != null)
-            {
-                IObservable<MouseButtonEventArgs> ObservableUpElementMouseUpEvents = Observable
-                    .FromEventPattern<MouseButtonEventArgs>(_upButtonElement, "PreviewMouseUp")
-                    .Select(x => x.EventArgs)
-                    .Throttle(TimeSpan.FromMilliseconds(2000));
+        //    if (_upButtonElement != null)
+        //    {
+        //        IObservable<MouseButtonEventArgs> ObservableUpElementMouseUpEvents = Observable
+        //            .FromEventPattern<MouseButtonEventArgs>(_upButtonElement, "PreviewMouseUp")
+        //            .Select(x => x.EventArgs)
+        //            .Throttle(TimeSpan.FromMilliseconds(2000));
 
-                IDisposable MouseUpSubscription = ObservableUpElementMouseUpEvents
-                    .ObserveOn(SynchronizationContext.Current)
-                    .Subscribe(x => {
-                        OnButtonRelease(x);
-                    });
-            }
-        }
+        //        IDisposable MouseUpSubscription = ObservableUpElementMouseUpEvents
+        //            .ObserveOn(SynchronizationContext.Current)
+        //            .Subscribe(x => {
+        //                OnButtonRelease(x);
+        //            });
+        //    }
+        //}
 
         private void OnButtonRelease(MouseButtonEventArgs args)
         {
