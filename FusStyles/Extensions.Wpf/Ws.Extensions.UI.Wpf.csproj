@@ -92,6 +92,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\ExpaderExtension.cs" />
     <Compile Include="Behaviors\ToolTipExtension.cs" />
     <Compile Include="Behaviors\GridExtentions.cs" />
     <Compile Include="Behaviors\ElementSize.cs" />

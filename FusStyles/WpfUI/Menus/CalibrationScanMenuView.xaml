@@ -145,7 +145,10 @@
         Style="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.LoadPrePlan}"/>
 
-      <Expander x:Name="MoreExp" Grid.Row="6" Style="{StaticResource XStyle.Expander.MoreLess}">
+      <Expander x:Name="MoreExp" Grid.Row="6" Style="{StaticResource XStyle.Expander.MoreLess}"
+                extensions:ExpaderExtension.OpenHeaderText="Manual Calibration"
+                extensions:ExpaderExtension.ClosedHeaderText="Minimize"
+                >
         <StackPanel>
           <StackPanel.Resources>
             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Secondary.TextWithSideIcon}">
