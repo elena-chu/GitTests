@@ -7,10 +7,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   prism:ViewModelLocator.AutoWireViewModel="True"
-  xmlns:tm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
-  xmlns:vm="clr-namespace:Ws.Fus.Treatment.UI.Wpf.ViewModels"
-  xmlns:uc="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Views"
-  xmlns:coordinate="clr-namespace:Ws.Fus.UI.Wpf.Controls;assembly=Ws.Fus.UI.Wpf"
   Background="{StaticResource XBrush.Application.Background}"
   mc:Ignorable="d">
 
@@ -18,85 +14,9 @@
     <Style TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource XStyle.NumericUpDown}"/>
   </UserControl.Resources>
 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-    </Grid.RowDefinitions>
+    <UniformGrid Columns="2" Margin="0,20,0,0" Height="150">
 
-    <!--<tm:ToolbarMenu Grid.Row="0" Margin="0,0,0,20" VerticalAlignment="Top" Height="Auto"/>-->
-
-
-    <UniformGrid Grid.Row="2" Columns="3" Margin="0,20,0,0">
-      <coordinate:CoordinateTripletControl
-        Grid.Row="1"
-        Margin="0,0,0,20"
-        Width="300"
-        SeverityLevel="Normal"
-        IsNarrow="False"
-        Point="{Binding Point, Mode=TwoWay}"/>
-      
-      <extensions:NumericUpDown
-        Margin="12,0"
-        Width="90"
-        CodeLiteralVisibility="Visible"
-        PlusCode="L"
-        MinusCode="R"
-        MinValue="-10"
-        MaxValue="60"
-        Increment="1"
-        IsNullable="False"
-        MinusCodeLiteral="Right"
-        PlusCodeLiteral="Left"
-        NumberOfFractionDigits="3"
-        Units="{StaticResource XString.Joules}"
-        UnitsPlacement="Subscript"/>
-
-      <extensions:NumericUpDown
-        Margin="12,0"
-        CodeLiteralVisibility="Visible"
-        PlusCode="+"
-        MinusCode="-"
-        MinValue="-100"
-        MaxValue="600"
-        Increment="0.25"
-        IsNullable="False"
-        NumberOfFractionDigits="2"
-        Units="{StaticResource XString.DegreesCelcius}"/>
-
-      <extensions:NumericUpDown
-        Margin="12,0"
-        DisplayStatus="ReadOnly"
-        CodeLiteralVisibility="Visible"
-        PlusCode="+"
-        MinusCode="-"
-        MinValue="-100"
-        MaxValue="600"
-        Increment="0.25"
-        IsNullable="False"
-        NumberOfFractionDigits="0"
-        Units="{StaticResource XString.Joules}"
-        UnitsPlacement="Subscript"
-        TextBoxContentHorizontalAlignment="Left"/>
-
-      <extensions:NumericUpDown
-        Margin="12,0"
-        DisplayStatus="Disabled"
-        CodeLiteralVisibility="Visible"
-        PlusCode="+"
-        MinusCode="-"
-        MinValue="-100"
-        MaxValue="600"
-        Increment="0.25"
-        IsNullable="False"
-        NumberOfFractionDigits="0"
-        Units="{StaticResource XString.Joules}"
-        UnitsPlacement="Subscript"
-        TextBoxContentHorizontalAlignment="Right"/>
-
-      <RichTextBox
+      <!--<RichTextBox
         Name="richTB"
         FontFamily="{StaticResource XFontFamily.Base}"
         extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Base}">
@@ -110,21 +30,28 @@
             <Run BaselineAlignment="Center">&#176;C</Run>
           </Paragraph>
         </FlowDocument>
-      </RichTextBox>
+      </RichTextBox>-->
 
-      <ToggleButton Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}">
+    <TextBlock Foreground="HotPink" Text="ToggleButton with ContextMenu:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
+    <TextBlock Foreground="HotPink" Text="ToggleButton with Combo:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
+
+    <ToggleButton Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}">
         <ToggleButton.ContextMenu>
           <ContextMenu>
-            <MenuItem Header="Boo"/>
-            <MenuItem Header="Waiting for squills"/>
-            <MenuItem Header="I am disabled" IsEnabled="False"/>
+            <MenuItem Header="Blue"/>
+            <MenuItem Header="North Atlantic Right"/>
+            <MenuItem Header="Beluga"/>
+            <MenuItem Header="Pygmy" IsEnabled="False"/>
           </ContextMenu>
         </ToggleButton.ContextMenu>
       </ToggleButton>
 
-      <ToggleButton Style="{StaticResource XStyle.ToggleButton.Chevron.Rotate90}" extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"/>
-    </UniformGrid>
-
-  </Grid>
+    <ComboBox Style="{StaticResource XStyle.ComboBox.ToggleButtonHeader}" extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}">
+      <ComboBoxItem Content="Grey"/>
+      <ComboBoxItem Content="Humpback"/>
+      <ComboBoxItem Content="Bowhead"/>
+      <ComboBoxItem Content="Common Minke"/>
+    </ComboBox>
+  </UniformGrid>
 
 </UserControl>

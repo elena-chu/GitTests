@@ -148,4 +148,55 @@
 
   
   <!--Button and Combo-->
+  <ControlTemplate x:Key="XControlTemplate.ComboBox.ToggleButtonHeader" TargetType="{x:Type ComboBox}">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+      <ToggleButton
+        extensions:IndependentSize.Margin="0,0,4,0"
+        Style="{StaticResource XStyle.ToggleButton.Icon}"
+        Height="{TemplateBinding Height}"
+        Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+        extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}"
+        extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.Chevron.Rotate90}"
+        Height="{TemplateBinding Height}"
+        IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+
+        <!-- Popup -->
+        <Popup
+          Name="PART_Popup"
+          AllowsTransparency="True"
+          RenderOptions.ClearTypeHint="Enabled"
+          Placement="Left"
+          IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+          PopupAnimation="Fade"
+          extensions:IndependentSize.HorizontalOffset="4"
+          MinWidth="{Binding ElementName=MainGrid, Path=ActualWidth}">
+          <Grid>
+            <Border x:Name="DropDownBorder" Style="{StaticResource XStyle.Border.Frame}">
+              <ContentControl x:Name="Popupcontent">
+                <ScrollViewer>
+                  <ItemsPresenter TextElement.FontSize="{TemplateBinding FontSize}" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                </ScrollViewer>
+              </ContentControl>
+            </Border>
+          </Grid>
+        </Popup>
+    </StackPanel>
+
+    <ControlTemplate.Triggers>
+      <Trigger Property="HasItems" Value="False">
+        <Setter Property="IsEnabled" Value="False"/>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ComboBox.ToggleButtonHeader" TargetType="{x:Type ComboBox}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox.ToggleButtonHeader}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+  </Style>
 </ResourceDictionary>
