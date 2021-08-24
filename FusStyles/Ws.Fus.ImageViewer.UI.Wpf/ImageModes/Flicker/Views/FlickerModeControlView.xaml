@@ -6,8 +6,8 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   mc:Ignorable="d">
-  
-  <Grid>
+
+  <Grid Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
     <Grid.Resources>
       <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.ToggleIconOverText}">
         <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"/>

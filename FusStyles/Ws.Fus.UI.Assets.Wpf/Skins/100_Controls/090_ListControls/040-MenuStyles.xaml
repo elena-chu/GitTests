@@ -69,11 +69,11 @@
     <Setter Property="extensions:IndependentSize.Padding" Value="4,6,4,4"/>
     <Setter Property="extensions:LeftClickContextMenu.IsLeftClickEnabled" Value="True"/>
     <Setter Property="ContextMenuService.IsEnabled" Value="False"/>
-    <Setter Property="ContextMenuService.Placement" Value="Left"/>
+    <Setter Property="ContextMenuService.Placement" Value="Right"/>
     <Setter Property="ContextMenuService.HorizontalOffset" Value="4"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
     <Setter Property="IsChecked" Value="{Binding ContextMenu.IsOpen, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
-    <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
     <Style.Resources>
       <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource XStyle.ContextMenu}"/>
     </Style.Resources>

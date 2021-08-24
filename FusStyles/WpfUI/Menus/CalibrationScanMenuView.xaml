@@ -147,7 +147,7 @@
 
       <Expander x:Name="MoreExp" Grid.Row="6" Style="{StaticResource XStyle.Expander.MoreLess}"
                 extensions:ExpaderExtension.OpenHeaderText="Manual Calibration"
-                extensions:ExpaderExtension.ClosedHeaderText="Minimize"
+                extensions:ExpaderExtension.CloseHeaderText="Minimize"
                 >
         <StackPanel>
           <StackPanel.Resources>
@@ -175,7 +175,7 @@
             Command="{Binding B0Scan}"
             Content="Find Central Frequency"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.FindCentralFrequency}"
-            extensions:IconedButton.IconSize="20"/>
+            extensions:IconedButton.IconSize="18"/>
           
           <Button   
             Command="{Binding LocalizerScan}"

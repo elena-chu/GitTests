@@ -112,7 +112,7 @@ namespace WpfUI.ViewModels
                 {
                     strips.Add(new RegistrationStrip()
                     {
-                        StripName = stripNameBase + item.i,
+                        StripName = item.i == 0 ? "Test some very very very very long" : stripNameBase + item.i,
                         Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,
@@ -129,7 +129,7 @@ namespace WpfUI.ViewModels
                 {
                     strips.Add(new Strip()
                     {
-                        StripName = stripNameBase + item.i,
+                        StripName = item.i == 0 ? "Test some very very very very long" : stripNameBase + item.i,
                         Orientation = (StripOrientation)((randomNum1 % 6) + 1),
                         Image = new BitmapImage(new Uri(item.pngFile)),
                         ImageCount = randomNum1,

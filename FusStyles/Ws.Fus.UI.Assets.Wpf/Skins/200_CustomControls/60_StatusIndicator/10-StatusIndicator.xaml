@@ -159,7 +159,7 @@
           Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
           extensions:IndependentSize.Width="18"
           extensions:IndependentSize.Height="18"
-          extensions:IndependentSize.Margin="7,0,10,0"
+          extensions:IndependentSize.Margin="10,0,10,0"
           IsHitTestVisible="False"
           VerticalAlignment="Center"
           Foreground="{TemplateBinding Foreground}"

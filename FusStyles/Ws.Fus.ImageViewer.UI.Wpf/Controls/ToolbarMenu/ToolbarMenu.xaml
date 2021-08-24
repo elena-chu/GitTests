@@ -129,7 +129,9 @@
                   </Path>
                 </Grid>
               </Border>
-              <Border Grid.Row="1" Style="{StaticResource XStyle.Border.Frame}">
+              <Border 
+                Grid.Row="1" 
+                Style="{StaticResource XStyle.Border.Frame}">
                 <StackPanel IsItemsHost="True"/>
               </Border>
             </Grid>
@@ -239,9 +241,10 @@
     </Style>
 
   </UserControl.Resources>
-  
+
   <Grid>
-    <Grid.ColumnDefinitions>
+    <Grid Margin="10, 1" >
+      <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="Auto"/>
@@ -476,7 +479,13 @@
       </local:ToolbarMenuHeaderCompare>
     </Menu>
 
-    <Grid x:Name="CompareMenu" Grid.Column="1" Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Grid x:Name="CompareMenu" Grid.Column="1" 
+          Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
+          Width="Auto"
+          Height="Auto"
+          VerticalAlignment="Center"
+          extensions:IndependentSize.Margin="0,2,0,0"
+          >
       <Grid.Resources>
         <DataTemplate x:Key ="SliderModeControl">
           <sliderViews:SliderModeControlView/>
@@ -488,6 +497,7 @@
           <fusionViews:FusionModeControlView/>
         </DataTemplate>
       </Grid.Resources>
+      
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
@@ -500,6 +510,8 @@
         extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOn}"
         extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOff}"
         extensions:IndependentSize.Width="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"
+        extensions:IconedButton.IconSize="23"
+        VerticalAlignment="Center"
         Content="Linked"/>
 
       <!--<sliderViews:SliderModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Simple|Slider'}"/>
@@ -534,5 +546,8 @@
         Content="Clear Images"
         Command="{Binding ClearCompareStripsCommand}"/>
     </Grid>
+  </Grid>
+    <Rectangle Style="{DynamicResource BorderBottomLeftVerticalStyle}" extensions:IndependentSize.Height="80"  />
+    <Rectangle Style="{DynamicResource BorderBottomRightVerticalStyle}" extensions:IndependentSize.Height="80" />
   </Grid>
 </UserControl>

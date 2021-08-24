@@ -1,7 +1,10 @@
 <ResourceDictionary 
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:extensions="http://schemas.insightec.com/wpf/">
+  xmlns:extensions="http://schemas.insightec.com/wpf/"
+  xmlns:lex="http://wpflocalizeextension.codeplex.com"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  >
 
   <!--Main Menu RadioButtons-->
   <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility.Radio.Hidden" Invisible="Hidden"/>
@@ -108,6 +111,43 @@
     </Style.Triggers>
   </Style>
 
+  <!--Module RadioButtons -->
+  <Style x:Key="XStyle.RadioButton.ModuleButton" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.MainMenu}">
+    <Setter Property="Command" Value="{Binding SwitchModuleCommand}"/>
+    <Setter Property="IsThreeState" Value="False" />
+    <Setter Property="IsChecked" Value="{Binding IsActive, Mode=OneWay}" />
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding IsActive}" Value="True">
+        <Setter Property="extensions:IndependentSize.FontSize" Value="22" />
+        <Setter Property="extensions:IconedButton.IconSize" Value="62" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Planning" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_PLANNING}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Plan.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Plan.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Planning]}" />
+    <Setter Property="GroupName" Value="1" />
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Surgical" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Surgical.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Surgical.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Surgical]}" />
+    <Setter Property="GroupName" Value="2" />
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Reports" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_REPORT}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Report.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Report.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Reports]}" />
+    <Setter Property="GroupName" Value="3" />
+  </Style>
+
   <!--RadioButton Panel-->
   <ControlTemplate x:Key="XControlTemplate.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
     <Grid
@@ -136,14 +176,14 @@
           IsHitTestVisible="False"
           HorizontalAlignment="Center"
           VerticalAlignment="Center">
-            <ContentPresenter.Resources>
-              <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
-                <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
-                <Setter Property="TextAlignment" Value="Center"/>
-              </Style>
-            </ContentPresenter.Resources>
-          </ContentPresenter>
+          <ContentPresenter.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+              <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+              <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+              <Setter Property="TextAlignment" Value="Center"/>
+            </Style>
+          </ContentPresenter.Resources>
+        </ContentPresenter>
       </Border>
     </Grid>
     <ControlTemplate.Triggers>
@@ -186,6 +226,31 @@
   <Style x:Key="XStyle.RadioButton.RadioButtonPanel.Right" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>
     <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Right"/>
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.Navigation" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="extensions:IndependentSize.Height" Value="44" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,4" />
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Header4}" />
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type RadioButton}">
+          <Border extensions:IndependentSize.Margin="30,0,0,0" extensions:IndependentSize.CornerRadius="20,0,0,20" x:Name="_corderTest" 
+                        Background="{StaticResource XBrush.RadioButton.NavigationMenu.Inactive}" BorderThickness="{TemplateBinding BorderThickness}">
+            <ContentPresenter HorizontalAlignment="Right" extensions:IndependentSize.Margin="0,2,10,2" VerticalAlignment="Center" />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+              <Setter Property="extensions:IndependentSize.Margin" TargetName="_corderTest" Value="10,0,0,0" />
+              <Setter Property="Background" TargetName="_corderTest" Value="{StaticResource XBrush.RadioButton.NavigationMenu.Active}" />
+              <Setter Property="FontWeight" Value="SemiBold" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
   </Style>
 
 </ResourceDictionary>

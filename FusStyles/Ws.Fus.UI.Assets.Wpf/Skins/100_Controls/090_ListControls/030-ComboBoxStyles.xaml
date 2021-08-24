@@ -196,7 +196,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
-    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="HorizontalContentAlignment" Value="Right"/>
     <Setter Property="VerticalContentAlignment" Value="Center"/>
   </Style>
 </ResourceDictionary>

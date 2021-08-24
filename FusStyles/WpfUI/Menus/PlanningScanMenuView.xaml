@@ -208,34 +208,10 @@
             />
       </Grid>
 
-
-      <!--<Border Grid.Row="11" BorderThickness="1" CornerRadius="5" 
-          HorizontalAlignment="Stretch" 
-          BorderBrush="LightGray" MinHeight="40"
-          Visibility="{Binding IsChecked, ElementName=ThreePlaneBtn, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
-          <StackPanel Orientation="Horizontal">
-              <CheckBox Content="Sag" Margin = "3" IsEnabled="False"  IsChecked="{Binding IsSagAcquired}" />
-              <CheckBox Content="Ax" Margin = "3" IsEnabled="False"  IsChecked="{Binding IsAxAcquired}" />
-              <CheckBox Content="Cor" Margin = "3" IsEnabled="False"  IsChecked="{Binding IsCorAcquired}" />
-          </StackPanel>
-       </Border>-->
-
-      <!--<Border Grid.Row="11" BorderThickness="1" CornerRadius="5" 
-          HorizontalAlignment="Stretch" BorderBrush="LightGray" MinHeight="40"
-          Visibility="{Binding IsChecked, ElementName=VolumetricBtn, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
-        <StackPanel Orientation="Horizontal">
-          <CheckBox Content="Volumetric"
-              Margin = "3" IsEnabled="False"  
-              IsChecked="{Binding IsVolumetricAcquired}" />
-        </StackPanel>
-      </Border>-->
-
-
       <Expander x:Name="MoreExp" Grid.Row="9">
         <Expander.Style>
           <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expander.MoreLess}">
             <Style.Triggers>
-              <!--<EventTrigger RoutedEvent=""-->
               <DataTrigger Binding="{Binding IsChecked, ElementName=VolumetricBtn, Mode=OneWay}" Value="True">
                 <Setter Property="IsExpanded" Value="False" />
               </DataTrigger>
@@ -281,12 +257,5 @@
       </Expander>
 
     </Grid>
-
-
-    <!--<local:ViewerMenuView Grid.Row="4" HeaderBackground="{StaticResource PlanningScanMenuLevel2Brush}" 
-                          HeaderSelectedBackground ="{StaticResource PlanningScanBrush}"
-                          DataContext="{Binding ViewerMenu}"
-                          HeaderForeground="#FF99b8c4"/>-->
-
   </Grid>
 </UserControl>

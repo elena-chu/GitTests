@@ -235,6 +235,9 @@
     PreviewMouseMove="Strips_PreviewMouseMove">
     <ListView.Resources>
       <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource XStyle.ScrollViewer}"/>
+      <Style TargetType="{x:Type ItemsPresenter}">
+        <Setter Property="MaxWidth" Value="{Binding ActualWidth, RelativeSource={RelativeSource findAncestor, AncestorType=ScrollContentPresenter}}" />
+      </Style>
     </ListView.Resources>
     <ListView.GroupStyle>
       <GroupStyle>
@@ -243,8 +246,19 @@
             <TextBlock
               TextAlignment="Center"
               Text="{Binding Name}"
-              Style="{StaticResource XStyle.TextBlock.Caption}"
-              Foreground="{StaticResource XBrush.Strips.Foreground.Unloaded}"/>
+              Foreground="{StaticResource XBrush.Strips.Foreground.Unloaded}">
+              <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+                  <Setter Property="FontSize" Value="18" />
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsBottomLevel}" Value="True">
+                      <Setter Property="extensions:IndependentSize.FontSize" Value="15" />
+                      <Setter Property="Opacity" Value=".8" />
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </TextBlock.Style>
+            </TextBlock>
           </DataTemplate>
         </GroupStyle.HeaderTemplate>
         <GroupStyle.ContainerStyle>

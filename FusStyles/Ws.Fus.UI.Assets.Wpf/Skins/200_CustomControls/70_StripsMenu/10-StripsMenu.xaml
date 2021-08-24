@@ -101,9 +101,11 @@
   </Style>
 
   <Style x:Key="XStyle.Strips.TextBlock" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
-    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Foreground.Unloaded}"/>
+    <Setter Property="TextWrapping" Value="NoWrap"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="False"/>
     <Style.Triggers>
       <DataTrigger Binding="{Binding IsLoaded}" Value="True">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Strips.Foreground.Loaded}"/>
@@ -140,6 +142,7 @@
 
   <Style x:Key="LStyle.ListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource XStyle.ListBoxItem.Transparent}">
     <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="extensions:IndependentSize.Margin" Value="0,4,0,6"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">

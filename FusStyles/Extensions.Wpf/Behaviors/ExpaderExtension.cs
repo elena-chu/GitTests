@@ -15,9 +15,9 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static void SetOpenHeaderText(DependencyObject obj, string value) { obj.SetValue(OpenHeaderTextProperty, value); }
 
 
-        public static readonly DependencyProperty ClosedHeaderTextProperty = DependencyProperty.RegisterAttached("ClosedHeaderText", typeof(string), typeof(ExpaderExtension), new PropertyMetadata(null));
-        public static string GetClosedHeaderText(DependencyObject obj) { return (string)obj.GetValue(ClosedHeaderTextProperty); }
-        public static void SetClosedHeaderText(DependencyObject obj, string value) { obj.SetValue(ClosedHeaderTextProperty, value); }
+        public static readonly DependencyProperty CloseHeaderTextProperty = DependencyProperty.RegisterAttached("CloseHeaderText", typeof(string), typeof(ExpaderExtension), new PropertyMetadata(null));
+        public static string GetCloseHeaderText(DependencyObject obj) { return (string)obj.GetValue(CloseHeaderTextProperty); }
+        public static void SetCloseHeaderText(DependencyObject obj, string value) { obj.SetValue(CloseHeaderTextProperty, value); }
 
 
     }

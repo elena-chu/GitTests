@@ -81,7 +81,7 @@
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.Secondary}"/>
   </Style>
 
-  
+
   <!--Text With Side Icon-->
   <ControlTemplate x:Key="XControlTemplate.Button.TextWithSideIcon" TargetType="{x:Type Button}">
     <Border
@@ -89,35 +89,35 @@
       extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
       extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
       Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
-        <Grid>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-          </Grid.ColumnDefinitions>
-          <Viewbox
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Viewbox
             x:Name="IconViewbox"
             Grid.Column="0"
             extensions:IndependentSize.Margin="8,0,7,0"
             Stretch="Uniform"
             Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
             IsHitTestVisible="False">
-            <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
-          </Viewbox>
-          <ContentPresenter
+          <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
+        </Viewbox>
+        <ContentPresenter
             x:Name="ContentPresenter"
             Grid.Column="1"
             extensions:IndependentSize.Margin="1,0,8,1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             IsHitTestVisible="False">
-            <ContentPresenter.Resources>
-              <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
-              </Style>
-            </ContentPresenter.Resources>
-          </ContentPresenter>
-        </Grid>
-      </Border>
+          <ContentPresenter.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+              <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+            </Style>
+          </ContentPresenter.Resources>
+        </ContentPresenter>
+      </Grid>
+    </Border>
   </ControlTemplate>
 
   <Style x:Key="XStyle.Button.Secondary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
@@ -125,7 +125,7 @@
     <Setter Property="extensions:IconedButton.IconSize" Value="22"/>
   </Style>
 
-  
+
   <!--Plus / Exit-->
   <ControlTemplate x:Key="XControlTemplate.Button.SingleLetter" TargetType="{x:Type Button}">
     <Border
@@ -155,8 +155,8 @@
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="0,-2,0,2"/>
   </Style>
-  
-  
+
+
   <!--Switch Button-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Switch" TargetType="{x:Type ToggleButton}">
     <Border Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{StaticResource XBrush.AlmostTransparent}">
@@ -187,7 +187,7 @@
     </Style.Triggers>
   </Style>
 
-  
+
   <!--Chevron-->
   <ControlTemplate x:Key="XControlTemplate.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
     <Border Background="{StaticResource XBrush.AlmostTransparent}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
@@ -280,7 +280,7 @@
     <Setter Property="extensions:IndependentSize.Width" Value="20"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="4"/>
   </Style>
-  
+
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Chevron.Rotate90" TargetType="{x:Type ToggleButton}">
     <Border 
       Height="{TemplateBinding Height}"
@@ -484,7 +484,7 @@
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
   </Style>
 
-  
+
   <!--Icon over Text-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.IconOverText" TargetType="{x:Type ButtonBase}">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource XBrush.AlmostTransparent}">
@@ -567,8 +567,8 @@
   <Style x:Key="XStyle.ToggleButton.ToggleIconOverText" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconOverText}">
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
   </Style>
-  
-  
+
+
   <!--Icon and Switch over Text-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconAndSwitchOverText" TargetType="{x:Type ToggleButton}">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource XBrush.AlmostTransparent}">

@@ -81,7 +81,7 @@
     <Setter Property="Header" Value="{Binding (extensions:ExpaderExtension.OpenHeaderText), RelativeSource={RelativeSource Self}, FallbackValue=More, TargetNullValue=More}"/>
     <Style.Triggers>
       <Trigger Property="IsExpanded" Value="True">
-        <Setter Property="Header" Value="{Binding (extensions:ExpaderExtension.ClosedHeaderText), RelativeSource={RelativeSource Self}, FallbackValue=Less, TargetNullValue=Less}"/>
+        <Setter Property="Header" Value="{Binding (extensions:ExpaderExtension.CloseHeaderText), RelativeSource={RelativeSource Self}, FallbackValue=Less, TargetNullValue=Less}"/>
       </Trigger>
     </Style.Triggers>
   </Style>
