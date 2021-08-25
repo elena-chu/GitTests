@@ -14,26 +14,29 @@
     <Style TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource XStyle.NumericUpDown}"/>
   </UserControl.Resources>
 
-    <UniformGrid Columns="2" Margin="0,20,0,0" Height="150">
+  <UniformGrid Columns="4" Margin="0,20,0,0" Height="150">
 
-      <!--<RichTextBox
-        Name="richTB"
-        FontFamily="{StaticResource XFontFamily.Base}"
-        extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Base}">
-        <FlowDocument>
-          <Paragraph>
-            <Run FontSize="{Binding FontSize, ElementName=richTB}">L 13.4</Run>
-            <Run IsEnabled="False" BaselineAlignment="Subscript" FontSize="{Binding FontSize, ElementName=richTB, Converter={extensions:ScalarConverter}, ConverterParameter=0.8}">Joules</Run>
-          </Paragraph>
-          <Paragraph>
-            <Run>- 45.3</Run>
-            <Run BaselineAlignment="Center">&#176;C</Run>
-          </Paragraph>
-        </FlowDocument>
-      </RichTextBox>-->
+    <!--<RichTextBox
+      Name="richTB"
+      FontFamily="{StaticResource XFontFamily.Base}"
+      extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Base}">
+      <FlowDocument>
+        <Paragraph>
+          <Run FontSize="{Binding FontSize, ElementName=richTB}">L 13.4</Run>
+          <Run IsEnabled="False" BaselineAlignment="Subscript" FontSize="{Binding FontSize, ElementName=richTB, Converter={extensions:ScalarConverter}, ConverterParameter=0.8}">Joules</Run>
+        </Paragraph>
+        <Paragraph>
+          <Run>- 45.3</Run>
+          <Run BaselineAlignment="Center">&#176;C</Run>
+        </Paragraph>
+      </FlowDocument>
+    </RichTextBox>-->
 
     <TextBlock Foreground="HotPink" Text="ToggleButton with ContextMenu:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
     <TextBlock Foreground="HotPink" Text="ToggleButton with Combo:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
+
+    <TextBlock Foreground="HotPink" Text="IconOverText, Height=TwoLines:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
+    <TextBlock Foreground="HotPink" Text="IconOverText, Height=TwoLines:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
 
     <ToggleButton Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}">
         <ToggleButton.ContextMenu>
@@ -52,6 +55,23 @@
       <ComboBoxItem Content="Bowhead"/>
       <ComboBoxItem Content="Common Minke"/>
     </ComboBox>
+
+    <Button
+      HorizontalAlignment="Right"
+      Style="{StaticResource XStyle.Button.IconOverText}"
+      extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
+      Command="{Binding AutoRegisterCommand}"
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
+      extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+      Content="Auto Register"/>
+
+    <Button
+      HorizontalAlignment="Left"
+      Style="{StaticResource XStyle.Button.IconOverText}"
+      Command="{Binding ClearStripsCommand}"
+      extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
+      extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+      Content="Clear Images long text"/>
   </UniformGrid>
 
 </UserControl>

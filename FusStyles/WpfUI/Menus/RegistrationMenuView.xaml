@@ -49,7 +49,7 @@
       <Button
         Grid.Row="0"
         Grid.Column="1"
-        Margin="0,6"
+        extensions:IndependentSize.Margin="0,6"
         Style="{StaticResource XStyle.Button.IconOverText}"
         extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         Command="{Binding AutoRegisterCommand}"
@@ -59,7 +59,7 @@
       <Button
         Grid.Row="1"
         Grid.Column="0"
-        Margin="0,6"
+        extensions:IndependentSize.Margin="0,6"
         Style="{StaticResource XStyle.Button.IconOverText}"
         Command="{Binding ClearStripsCommand}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
