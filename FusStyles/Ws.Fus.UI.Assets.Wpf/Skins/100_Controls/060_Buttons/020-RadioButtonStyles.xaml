@@ -228,6 +228,108 @@
     <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Right"/>
   </Style>
 
+
+  <!--RadioButton Pipe-->
+  <ControlTemplate x:Key="XControlTemplate.RadioButton.Pipe" TargetType="{x:Type RadioButton}">
+    <Border x:Name="PipeBorder" Background="{StaticResource XBrush.AlmostTransparent}" BorderBrush="{TemplateBinding BorderBrush}">
+      <Border.Style>
+        <Style TargetType="{x:Type Border}">
+          <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,0,1,0"/>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding (extensions:ControlExtensions.HorizontalPlacement), RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
+              <Setter Property="extensions:IndependentSize.BorderThickness" Value="0"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Border.Style>
+      <ContentPresenter
+        x:Name="ContentPresenter"
+        extensions:IndependentSize.Margin="{TemplateBinding Padding}"
+        IsHitTestVisible="False"
+        VerticalAlignment="Center">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Border>
+    <ControlTemplate.Triggers>
+      <DataTrigger Binding="{Binding (extensions:ControlExtensions.HorizontalPlacement), RelativeSource={RelativeSource TemplatedParent}}" Value="Left">
+        <Setter Property="HorizontalAlignment" TargetName="ContentPresenter" Value="Right"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding (extensions:ControlExtensions.HorizontalPlacement), RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
+        <Setter Property="HorizontalAlignment" TargetName="ContentPresenter" Value="Left"/>
+      </DataTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.RadioButton.Pipe" TargetType="{x:Type RadioButton}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.RadioButton.Pipe}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Middle"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="22"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Active}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="IsThreeState" Value="False"/>
+    <Setter Property="Padding" Value="6,0" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Primary.Background}"/>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Foreground.Color">
+              <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Foreground.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Foreground.Color">
+              <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Foreground.Color">
+              <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.Pipe.Left" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.Pipe}">
+    <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Left"/>
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.Pipe.Right" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.Pipe}">
+    <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Right"/>
+  </Style>
+
+  <!--RadioButton Navigation-->
   <Style x:Key="XStyle.RadioButton.Navigation" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="extensions:IndependentSize.Height" Value="44" />

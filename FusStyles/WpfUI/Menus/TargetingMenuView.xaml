@@ -104,15 +104,17 @@
               extensions:IndependentSize.Margin="0"
               Text="Target Coordinates:"/>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-          <RadioButton x:Name="AcPcRadio"  
-              Content="AC-PC" 
-              IsChecked="{Binding Path=IsAcPc, Mode=TwoWay, FallbackValue=True, TargetNullValue=True}"
-              Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}"
-              IsEnabled="{Binding IsAcPcPointEnabled}"/>
-          <RadioButton x:Name="RasRadio" 
-              Content="RAS" 
-              IsChecked="{Binding Path=IsAcPc, Converter={StaticResource InvertedBooleanConverter}}"
-              Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}" />
+          <RadioButton
+            x:Name="AcPcRadio"
+            Content="AC-PC"
+            IsChecked="{Binding Path=IsAcPc, Mode=TwoWay, FallbackValue=True, TargetNullValue=True}"
+            Style="{StaticResource XStyle.RadioButton.Pipe.Left}"
+            IsEnabled="{Binding IsAcPcPointEnabled}"/>
+          <RadioButton
+            x:Name="RasRadio"
+            Content="RAS"
+            IsChecked="{Binding Path=IsAcPc, Converter={StaticResource InvertedBooleanConverter}}"
+            Style="{StaticResource XStyle.RadioButton.Pipe.Right}"/>
         </StackPanel>
       </Grid>
 
