@@ -95,7 +95,7 @@
         </Button.Style>
       </Button>
 
-      <Expander x:Name="MoreExp" Grid.Row="4" Grid.ColumnSpan="2"
+      <Expander x:Name="MoreExp" Grid.Row="5" Grid.ColumnSpan="2"
                 Style="{StaticResource XStyle.Expander.MoreLess}" >
         <Grid extensions:IndependentSize.Margin="0,0,0,10">
           <Grid.ColumnDefinitions>
