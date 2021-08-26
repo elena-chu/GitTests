@@ -88,32 +88,32 @@
 
     <StackPanel>
       <TextBlock Text="Info"/>
-      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Info}"/>
+      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Info}"/>
     </StackPanel>
 
     <StackPanel>
       <TextBlock Text="Help"/>
-      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Help}"/>
+      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Help}"/>
     </StackPanel>
 
     <StackPanel>
       <TextBlock Text="Exclamation Mark"/>
-      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.ExclamationMark}"/>
+      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.ExclamationMark}"/>
     </StackPanel>
 
     <StackPanel>
       <TextBlock Text="Settings"/>
-      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Settings}"/>
+      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Settings}"/>
     </StackPanel>
 
     <StackPanel>
       <TextBlock Text="Quit"/>
-      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}"/>
+      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}"/>
     </StackPanel>
 
     <StackPanel>
       <TextBlock Text="Refresh"/>
-      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}" extensions:IconedButton.IconSize="20"/>
+      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}" extensions:IconedButton.IconSize="17"/>
     </StackPanel>
 
     <StackPanel>

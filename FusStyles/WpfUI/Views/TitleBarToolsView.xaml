@@ -19,7 +19,7 @@
       <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
     </Style>
 
-    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon.Small}">
       <Setter Property="extensions:IndependentSize.Margin" Value="6,0"/>
     </Style>
 
@@ -44,7 +44,7 @@
         extensions:IndependentSize.Margin="0,0,12,0"
         Text="{Binding TimeNow, StringFormat='\{0:MMM dd.yyyy HH:mm\}'}"
         Style="{StaticResource XStyle.TextBlock.Base}"
-        FontSize="{StaticResource XDouble.FontSize.Base}"/>
+        FontSize="{StaticResource XDouble.FontSize.Caption}"/>
       <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Help}" Command="{Binding HelpCommand}"/>
       <Button
         x:Name="SettngsBtn"

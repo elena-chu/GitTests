@@ -52,22 +52,28 @@
       </StackPanel>
       <StackPanel Grid.Row="3">
         <TextBlock Text="{lex:Loc IDS_LBL_EXAM_INFO}"/>
-        <Grid Height="Auto" Background="White">
+        <Grid Height="Auto">
+          <Border Style="{StaticResource XStyle.Border.Frame}"/>
           <StackPanel Margin="4,7">
-            <TextBlock Foreground="Black">
+            <TextBlock Style="{StaticResource XStyle.TextBlock.Base}">
               <Run Text="{lex:Loc IDS_LBL_PATIENT_NAME}" />
               <Run Text="{Binding PatientName, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Foreground="Black">
+            <TextBlock Style="{StaticResource XStyle.TextBlock.Base}">
               <Run Text="{lex:Loc IDS_LBL_PATIENT_ID}" />
               <Run Text="{Binding PatientId, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Foreground="Black">
+            <TextBlock Style="{StaticResource XStyle.TextBlock.Base}">
               <Run Text="{lex:Loc IDS_LBL_EXAM_N}" />
               <Run Text="{Binding ExamNum, Mode=OneWay}" />
             </TextBlock>
           </StackPanel>
-          <Button Width="15" Height="15" FontFamily="Wingdings 3" Content="P" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="3" />
+          <Button
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Style="{StaticResource XStyle.Button.Icon.Small}"
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"
+            extensions:IconedButton.IconSize="17"/>
         </Grid>
       </StackPanel>
       <Button

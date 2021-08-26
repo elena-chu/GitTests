@@ -12,15 +12,7 @@
     <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
-    <Style.Triggers>
-      <MultiDataTrigger>
-        <MultiDataTrigger.Conditions>
-          <Condition Binding="{Binding Inlines.Count, RelativeSource={RelativeSource Mode=Self}}" Value="0"/>
-          <Condition Binding="{Binding Text, RelativeSource={RelativeSource Self}, Converter={extensions:StringHasContentToBooleanConverter}}" Value="False"/>
-        </MultiDataTrigger.Conditions>
-        <Setter Property="Visibility" Value="Collapsed"/>
-      </MultiDataTrigger>
-    </Style.Triggers>
+    <Setter Property="Visibility" Value="{Binding Text, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
   </Style>
 
   <Style x:Key="XStyle.TextBlock.Caption" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">

@@ -474,6 +474,12 @@
     <Setter Property="extensions:IconedButton.InactiveIcon" Value="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource Self}}"/>
   </Style>
 
+  <Style x:Key="XStyle.Button.Icon.Small" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
+    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.Control.Small}"/>
+  </Style>
+
   <Style x:Key="XStyle.ToggleButton.Icon" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.Icon}">
     <Setter Property="extensions:IconedButton.InactiveIcon" Value="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource Self}}"/>
     <Setter Property="extensions:IconedButton.ActiveIcon" Value="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource Self}}"/>
