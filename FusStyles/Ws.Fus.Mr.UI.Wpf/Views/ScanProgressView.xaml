@@ -94,7 +94,7 @@
             VerticalAlignment="Center"
             Style="{StaticResource XStyle.ContentControl.Icon}"
             extensions:IconedButton.IconSize="30"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Warning}"/>
+            extensions:IconedButton.Icon="{StaticResource XCanvas.Message.Warning}"/>
 
           <TextBlock
             Grid.Column="1"

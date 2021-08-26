@@ -12,9 +12,16 @@
 
   <UserControl.Resources>
     <Style TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource XStyle.NumericUpDown}"/>
+
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="Foreground" Value="HotPink"/>
+      <Setter Property="Margin" Value="0,0,0,12"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
   </UserControl.Resources>
 
-  <UniformGrid Columns="4" Margin="0,20,0,0" Height="150">
+  <UniformGrid Columns="4" Margin="0,20,0,0">
 
     <!--<RichTextBox
       Name="richTB"
@@ -32,13 +39,9 @@
       </FlowDocument>
     </RichTextBox>-->
 
-    <TextBlock Foreground="HotPink" Text="ToggleButton with ContextMenu:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
-    <TextBlock Foreground="HotPink" Text="ToggleButton with Combo:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
-
-    <TextBlock Foreground="HotPink" Text="IconOverText, Height=TwoLines:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
-    <TextBlock Foreground="HotPink" Text="IconOverText, Height=TwoLines:" Style="{StaticResource XStyle.TextBlock.Base}" HorizontalAlignment="Center"/>
-
-    <ToggleButton Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}">
+    <StackPanel>
+      <TextBlock Text="ToggleButton with ContextMenu:"/>
+      <ToggleButton Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}">
         <ToggleButton.ContextMenu>
           <ContextMenu>
             <MenuItem Header="Blue"/>
@@ -48,30 +51,76 @@
           </ContextMenu>
         </ToggleButton.ContextMenu>
       </ToggleButton>
+    </StackPanel>
 
-    <ComboBox Style="{StaticResource XStyle.ComboBox.ToggleButtonHeader}" extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}">
+    <StackPanel>
+      <TextBlock Text="ToggleButton with Combo:"/>
+      <ComboBox Style="{StaticResource XStyle.ComboBox.ToggleButtonHeader}" extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}">
       <ComboBoxItem Content="Grey"/>
       <ComboBoxItem Content="Humpback"/>
       <ComboBoxItem Content="Bowhead"/>
       <ComboBoxItem Content="Common Minke"/>
     </ComboBox>
+    </StackPanel>
 
-    <Button
-      HorizontalAlignment="Right"
-      Style="{StaticResource XStyle.Button.IconOverText}"
-      extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
-      Command="{Binding AutoRegisterCommand}"
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
-      extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
-      Content="Auto Register"/>
+    <StackPanel Margin="0,0,12,0" HorizontalAlignment="Right">
+      <TextBlock Text="IconOverText, Height=TwoLines:"/>
+      <Button
+        HorizontalAlignment="Right"
+        Style="{StaticResource XStyle.Button.IconOverText}"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
+        Command="{Binding AutoRegisterCommand}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+        Content="Auto Register"/>
+    </StackPanel>
 
-    <Button
-      HorizontalAlignment="Left"
-      Style="{StaticResource XStyle.Button.IconOverText}"
-      Command="{Binding ClearStripsCommand}"
-      extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
-      extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
-      Content="Clear Images long text"/>
+    <StackPanel HorizontalAlignment="Left">
+      <TextBlock Text="IconOverText, Height=TwoLines:"/>
+      <Button
+        HorizontalAlignment="Left"
+        Style="{StaticResource XStyle.Button.IconOverText}"
+        Command="{Binding ClearStripsCommand}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+        Content="Clear Images long text"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Info"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Info}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Help"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Help}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Exclamation Mark"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.ExclamationMark}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Settings"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Settings}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Quit"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Refresh"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}" extensions:IconedButton.IconSize="20"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Lock/Unlock"/>
+      <ToggleButton Style="{StaticResource XStyle.ToggleButton.Icon}" extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Lock}" extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Unlock}"/>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>

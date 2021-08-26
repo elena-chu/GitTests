@@ -19,8 +19,8 @@
       <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
     </Style>
 
-    <Style TargetType="Button">
-      <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
+      <Setter Property="extensions:IndependentSize.Margin" Value="6,0"/>
     </Style>
 
   </UserControl.Resources>
@@ -40,16 +40,21 @@
       VerticalAlignment="Center"/>
 
     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-      <Button Content="?" Width="Auto" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding HelpCommand}" />
-      <Button x:Name="SettngsBtn" TextBlock.FontFamily="Wingdings 2" Content="î" Width="Auto" VerticalAlignment="Center" Margin="6, 6,10,6" Background="Black"
-            Command="{Binding OpenSettingsCommand}"
-            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-      <TextBlock Text="{Binding TimeNow, StringFormat='\{0:MMM dd.yyyy HH:mm\}'}" Foreground="White" VerticalAlignment="Center" />
-      <Button Content="{lex:Loc IDS_LBL_QUIT}" VerticalAlignment="Center" Margin="6" Background="Black" Command="{Binding QuitCommand}"
-            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
+      <TextBlock
+        extensions:IndependentSize.Margin="0,0,12,0"
+        Text="{Binding TimeNow, StringFormat='\{0:MMM dd.yyyy HH:mm\}'}"
+        Style="{StaticResource XStyle.TextBlock.Base}"
+        FontSize="{StaticResource XDouble.FontSize.Base}"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Help}" Command="{Binding HelpCommand}"/>
+      <Button
+        x:Name="SettngsBtn"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Settings}"
+        Command="{Binding OpenSettingsCommand}"
+        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}" Command="{Binding QuitCommand}"
+        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
     </StackPanel>
   </Grid>
-
-
 
 </UserControl>
