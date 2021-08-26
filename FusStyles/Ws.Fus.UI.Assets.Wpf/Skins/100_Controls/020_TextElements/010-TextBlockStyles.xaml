@@ -20,6 +20,11 @@
     <Setter Property="TextAlignment" Value="Center"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
     <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Caption}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <Style x:Key="XStyle.TextBlock.ToolTip" TargetType="{x:Type TextBlock}">

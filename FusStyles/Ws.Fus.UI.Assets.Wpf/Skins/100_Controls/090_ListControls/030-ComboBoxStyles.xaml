@@ -148,30 +148,34 @@
 
   
   <!--Button and Combo-->
-  <ControlTemplate x:Key="XControlTemplate.ComboBox.ToggleButtonHeader" TargetType="{x:Type ComboBox}">
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
-      <ToggleButton
-        extensions:IndependentSize.Margin="0,0,4,0"
-        Style="{StaticResource XStyle.ToggleButton.Icon}"
-        Height="{TemplateBinding Height}"
-        Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-        extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}"
-        extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"/>
-      <ToggleButton
-        Style="{StaticResource XStyle.ToggleButton.Chevron.Rotate90}"
-        Height="{TemplateBinding Height}"
-        IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+  <ControlTemplate x:Key="XControlTemplate.ComboBox.ToggleButtonAndTextHeader" TargetType="{x:Type ComboBox}">
+    <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+        <ToggleButton
+          x:Name="HeaderToggleButton"
+          extensions:IndependentSize.Margin="0,0,4,0"
+          Style="{StaticResource XStyle.ToggleButton.Icon}"
+          extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}"
+          extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"/>
+        <ToggleButton
+          Style="{StaticResource XStyle.ToggleButton.ChevonRotate90}"
+          Height="{Binding ActualHeight, ElementName=HeaderToggleButton}"
+          IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
 
         <!-- Popup -->
         <Popup
-          Name="PART_Popup"
-          AllowsTransparency="True"
-          RenderOptions.ClearTypeHint="Enabled"
-          Placement="Left"
-          IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
-          PopupAnimation="Fade"
-          extensions:IndependentSize.HorizontalOffset="4"
-          MinWidth="{Binding ElementName=MainGrid, Path=ActualWidth}">
+            Name="PART_Popup"
+            AllowsTransparency="True"
+            RenderOptions.ClearTypeHint="Enabled"
+            Placement="Left"
+            IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+            PopupAnimation="Fade"
+            extensions:IndependentSize.HorizontalOffset="4"
+            MinWidth="{Binding ElementName=MainGrid, Path=ActualWidth}">
           <Grid>
             <Border x:Name="DropDownBorder" Style="{StaticResource XStyle.Border.Frame}">
               <ContentControl x:Name="Popupcontent">
@@ -182,8 +186,12 @@
             </Border>
           </Grid>
         </Popup>
-    </StackPanel>
-
+      </StackPanel>
+      <TextBlock
+        Grid.Row="1"
+        Text="{TemplateBinding extensions:ControlExtensions.AlternativeText}"
+        Style="{StaticResource XStyle.TextBlock.Caption}"/>
+    </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="HasItems" Value="False">
         <Setter Property="IsEnabled" Value="False"/>
@@ -191,12 +199,11 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.ComboBox.ToggleButtonHeader" TargetType="{x:Type ComboBox}">
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox.ToggleButtonHeader}"/>
+  <Style x:Key="XStyle.ComboBox.ToggleButtonAndTextHeader" TargetType="{x:Type ComboBox}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ComboBox.ToggleButtonAndTextHeader}"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
-    <Setter Property="HorizontalAlignment" Value="Center"/>
-    <Setter Property="HorizontalContentAlignment" Value="Right"/>
-    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="100"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.OneLine}"/>
+    <!--To show two text lines below button, set IndependentSize.Height to XDouble.Height.IconOverText.TwoLines on individual button-->
   </Style>
 </ResourceDictionary>

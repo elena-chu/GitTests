@@ -14,7 +14,7 @@
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.IconOverText}">
       <Setter Property="extensions:IndependentSize.Margin" Value="0,6"/>
       <Setter Property="extensions:IconedButton.IconSize" Value="{StaticResource XDouble.IconSize.SquareTemplate}" />
-      <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.TwoLines}" />
+      <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.TwoLines}"/>
     </Style>
 
   </UserControl.Resources>
@@ -39,19 +39,14 @@
         Grid.Column="0"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"
         Content="Manual NPR"/>
-      
-      <!--<Button
-        Grid.Row="0"
-        Grid.Column="1"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Spherical}"
-        Content="Spherical NPR"/>-->
 
       <ToggleButton 
-        Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}"
+        Style="{StaticResource XStyle.ToggleButton.IconAndChevronOverText}"
         Grid.Row="0"
         Grid.Column="1"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Spherical}"
-        Content="Spherical NPR">
+        Content="Spherical NPR"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}">
       <ToggleButton.ContextMenu>
           <ContextMenu>
             <MenuItem Header="Blue"/>

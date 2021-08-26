@@ -11,6 +11,7 @@
 
   <sys:Double x:Key="XDouble.Height.IconOverText.OneLine">60</sys:Double>
   <sys:Double x:Key="XDouble.Height.IconOverText.TwoLines">80</sys:Double>
+  <sys:Double x:Key="XDouble.Width.IconOverText">100</sys:Double>
   <sys:Double x:Key="XDouble.Width.IconOverText.ToolbarMenu">90</sys:Double>
 
   <sys:Double x:Key="XDouble.ColumnWidth.Chevron">29</sys:Double>

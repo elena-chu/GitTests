@@ -271,7 +271,7 @@
         VerticalAlignment="Top"
         Style="{StaticResource XStyle.Button.Icon.Small}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"
-        extensions:IconedButton.IconSize="17"
+        extensions:IconedButton.IconSize="15"
         Command="{Binding RefreshPatientInformation}"/>
     </Grid>
 

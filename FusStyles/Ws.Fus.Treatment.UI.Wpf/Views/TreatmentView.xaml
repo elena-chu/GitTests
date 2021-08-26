@@ -73,7 +73,7 @@
             VerticalAlignment="Bottom"
             Style="{StaticResource XStyle.Button.Icon.Small}"
             extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"
-            extensions:IconedButton.IconSize="17"/>
+            extensions:IconedButton.IconSize="15"/>
         </Grid>
       </StackPanel>
       <Button

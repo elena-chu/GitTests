@@ -62,18 +62,19 @@
     </Setter>
   </Style>
 
-  <Style x:Key="XStyle.ToggleButton.IconChevronAndContextMenu" TargetType="{x:Type ToggleButton}">
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Chevron.Rotate90}"/>
+  <Style x:Key="XStyle.ToggleButton.IconAndChevronOverText" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.IconAndChevronOverText}"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="56"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="4,6,4,4"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="0,0,0,0"/>
     <Setter Property="extensions:LeftClickContextMenu.IsLeftClickEnabled" Value="True"/>
     <Setter Property="ContextMenuService.IsEnabled" Value="False"/>
     <Setter Property="ContextMenuService.Placement" Value="Right"/>
     <Setter Property="ContextMenuService.HorizontalOffset" Value="4"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
     <Setter Property="IsChecked" Value="{Binding ContextMenu.IsOpen, RelativeSource={RelativeSource Self}}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Width.IconOverText}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.OneLine}"/>
+    <!--To show two text lines below button, set IndependentSize.Height to XDouble.Height.IconOverText.TwoLines on individual button-->
     <Style.Resources>
       <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource XStyle.ContextMenu}"/>
     </Style.Resources>

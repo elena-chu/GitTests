@@ -83,7 +83,7 @@
             Grid.Column="1"
             extensions:IndependentSize.Margin="3,0,0,0"
             IsChecked="{TemplateBinding IsSubmenuOpen}"
-            Style="{StaticResource XStyle.ToggleButton.Chevon.Rotate180}"
+            Style="{StaticResource XStyle.ToggleButton.ChevonRotate180}"
             Click="MenuOpenerButton_Click"
             HorizontalAlignment="Left"
             Visibility="{TemplateBinding HasItems, Converter={StaticResource BooleanToVisibilityConverter}}"/>

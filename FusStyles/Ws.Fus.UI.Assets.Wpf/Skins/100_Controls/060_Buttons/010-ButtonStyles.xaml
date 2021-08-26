@@ -235,7 +235,7 @@
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Spinner}"/>
   </Style>
 
-  <ControlTemplate x:Key="XControlTemplate.ToggleButton.Chevon.Rotate180" TargetType="{x:Type ToggleButton}">
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.ChevonRotate180" TargetType="{x:Type ToggleButton}">
     <Border 
       Height="{TemplateBinding Height}"
       Width="{TemplateBinding Width}"
@@ -274,15 +274,15 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.ToggleButton.Chevon.Rotate180" TargetType="{x:Type ToggleButton}">
+  <Style x:Key="XStyle.ToggleButton.ChevonRotate180" TargetType="{x:Type ToggleButton}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Chevon.Rotate180}"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.ChevonRotate180}"/>
     <Setter Property="extensions:IndependentSize.Width" Value="20"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="4"/>
   </Style>
 
-  <ControlTemplate x:Key="XControlTemplate.ToggleButton.Chevron.Rotate90" TargetType="{x:Type ToggleButton}">
-    <Border 
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.ChevonRotate90" TargetType="{x:Type ToggleButton}">
+    <Border
       Height="{TemplateBinding Height}"
       Width="{TemplateBinding Width}"
       Style="{StaticResource XStyle.Border.Active.Secondary}"
@@ -291,30 +291,13 @@
         Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"
         extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
         extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
-        <Grid Margin="{TemplateBinding Padding}">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
-          </Grid.ColumnDefinitions>
-          <Viewbox
-            Grid.Column="0"
-            extensions:IndependentSize.Margin="0,0,9,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            IsHitTestVisible="False"
-            Stretch="Uniform"
-            Height="{TemplateBinding extensions:IconedButton.IconSize}"
-            Width="{TemplateBinding extensions:IconedButton.IconSize}">
-            <ContentControl Content="{TemplateBinding extensions:IconedButton.Icon}"/>
-          </Viewbox>
-          <Border Grid.Column="1" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Path Style="{StaticResource XStyle.Path.Chevron}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
-              <Path.RenderTransform>
-                <RotateTransform x:Name="ChevronRotateTransform"/>
-              </Path.RenderTransform>
-            </Path>
-          </Border>
-        </Grid>
+        <Border Grid.Column="1" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
+          <Path Style="{StaticResource XStyle.Path.Chevron}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
+            <Path.RenderTransform>
+              <RotateTransform x:Name="ChevronRotateTransform"/>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
       </Border>
     </Border>
     <ControlTemplate.Triggers>
@@ -337,14 +320,14 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.ToggleButton.Chevron.Rotate90" TargetType="{x:Type ToggleButton}">
+  <Style x:Key="XStyle.ToggleButton.ChevonRotate90" TargetType="{x:Type ToggleButton}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.Chevron.Rotate90}"/>
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.ChevonRotate90}"/>
     <Setter Property="extensions:IndependentSize.Width" Value="20"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="4,6,4,4"/>
-    <Setter Property="extensions:IconedButton.IconSize" Value="0"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="4"/>
   </Style>
 
+  
   <!--Expander-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Expander" TargetType="{x:Type ToggleButton}">
     <Grid>
@@ -555,7 +538,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ControlExtensions.IsActive" Value="False"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="100"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Width.IconOverText}"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.OneLine}"/>
     <!--To show two text lines below button, set IndependentSize.Height to XDouble.Height.IconOverText.TwoLines on individual button-->
   </Style>
@@ -647,5 +630,84 @@
       </Trigger>
     </Style.Triggers>
   </Style>
-
+  
+  
+  <!--Icon and Chevron over Text-->
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconAndChevronOverText" TargetType="{x:Type ToggleButton}">
+    <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Border
+        x:Name="ActiveBorder"
+        HorizontalAlignment="Center"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
+        extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
+        Style="{StaticResource XStyle.Border.Active.Secondary}">
+        <Border
+          extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+          extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
+          Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+          <Grid HorizontalAlignment="Center" Margin="{TemplateBinding Padding}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition extensions:IndependentSize.ColumnWidth="4"/>
+              <ColumnDefinition extensions:IndependentSize.ColumnWidth="20"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox
+              Grid.Column="0"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center"
+              IsHitTestVisible="False"
+              Stretch="Uniform"
+              Height="{TemplateBinding extensions:IconedButton.IconSize}"
+              Width="{TemplateBinding extensions:IconedButton.IconSize}">
+              <ContentControl x:Name="IconContentControl" Content="{TemplateBinding extensions:IconedButton.Icon}"/>
+            </Viewbox>
+            <Border Grid.Column="2" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
+              <Path Style="{StaticResource XStyle.Path.Chevron}" extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}">
+                <Path.RenderTransform>
+                  <RotateTransform x:Name="ChevronRotateTransform"/>
+                </Path.RenderTransform>
+              </Path>
+            </Border>
+          </Grid>
+        </Border>
+      </Border>
+      <ContentPresenter Grid.Row="1" HorizontalAlignment="Center">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+            <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="{Binding (extensions:ToolTipExtension.AutoToolTip), RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+            <Style.Triggers>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="-90" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
 </ResourceDictionary>

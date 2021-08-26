@@ -41,7 +41,10 @@
 
     <StackPanel>
       <TextBlock Text="ToggleButton with ContextMenu:"/>
-      <ToggleButton Style="{StaticResource XStyle.ToggleButton.IconChevronAndContextMenu}" extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}">
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.IconAndChevronOverText}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"
+        Content="Choose Whale">
         <ToggleButton.ContextMenu>
           <ContextMenu>
             <MenuItem Header="Blue"/>
@@ -54,13 +57,17 @@
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="ToggleButton with Combo:"/>
-      <ComboBox Style="{StaticResource XStyle.ComboBox.ToggleButtonHeader}" extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}">
-      <ComboBoxItem Content="Grey"/>
-      <ComboBoxItem Content="Humpback"/>
-      <ComboBoxItem Content="Bowhead"/>
-      <ComboBoxItem Content="Common Minke"/>
-    </ComboBox>
+      <TextBlock Text="ToggleButton with Combo (two lines):"/>
+      <ComboBox
+        Style="{StaticResource XStyle.ComboBox.ToggleButtonAndTextHeader}"
+        extensions:ControlExtensions.AlternativeText="Blue whales are very very long "
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}">
+        <ComboBoxItem Content="Grey"/>
+        <ComboBoxItem Content="Humpback"/>
+        <ComboBoxItem Content="Bowhead"/>
+        <ComboBoxItem Content="Common Minke"/>
+      </ComboBox>
     </StackPanel>
 
     <StackPanel Margin="0,0,12,0" HorizontalAlignment="Right">
