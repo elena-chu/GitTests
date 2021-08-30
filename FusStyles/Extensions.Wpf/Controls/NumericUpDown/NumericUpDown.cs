@@ -33,17 +33,18 @@ namespace Ws.Extensions.UI.Wpf.Controls
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             //SetSpinnerMouseUpEvents();
+            //RegisterUpElement();
+            //RegisterDownElement();
+            //RegisterTextElement();
         }
 
         private void OnUnload(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.PreviewMouseDown -= OnTextElementLostFocus;
-            UnregisterDownElement();
-            UnregisterUpElement();
-            UnregisterTextElement();
+            //UnregisterDownElement();
+            //UnregisterUpElement();
+            //UnregisterTextElement();
             PreviewKeyDown -= OnControlPreviewKeyDown;
-            Loaded -= OnLoad;
-            Unloaded -= OnUnload;
         }
 
         public override void OnApplyTemplate()
