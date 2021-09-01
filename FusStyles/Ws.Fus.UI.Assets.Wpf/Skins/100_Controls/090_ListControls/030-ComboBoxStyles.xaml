@@ -91,6 +91,7 @@
         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
         Content="{TemplateBinding SelectionBoxItem}"
+        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
         ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
         ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}">
         <ContentPresenter.Resources>

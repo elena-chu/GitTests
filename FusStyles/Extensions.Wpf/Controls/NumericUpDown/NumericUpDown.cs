@@ -26,25 +26,12 @@ namespace Ws.Extensions.UI.Wpf.Controls
         {
             IncreaseCommand = new DelegateCommand(IncreaseExecute, IncreaseCanExecute);
             DecreaseCommand = new DelegateCommand(DecreaseExecute, DecreaseCanExecute);
-            Loaded += OnLoad;
             Unloaded += OnUnload;
-        }
-
-        private void OnLoad(object sender, RoutedEventArgs e)
-        {
-            //SetSpinnerMouseUpEvents();
-            //RegisterUpElement();
-            //RegisterDownElement();
-            //RegisterTextElement();
         }
 
         private void OnUnload(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.PreviewMouseDown -= OnTextElementLostFocus;
-            //UnregisterDownElement();
-            //UnregisterUpElement();
-            //UnregisterTextElement();
-            PreviewKeyDown -= OnControlPreviewKeyDown;
         }
 
         public override void OnApplyTemplate()
