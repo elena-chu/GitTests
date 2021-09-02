@@ -273,8 +273,14 @@
         extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"
         extensions:IconedButton.IconSize="15"
         Command="{Binding RefreshPatientInformation}"/>
+      
+      <extensions:BusyIndicator   
+        Grid.Row="14" 
+        Grid.RowSpan="2"
+        IsBusy="{Binding IsBusyPatient, FallbackValue=False}" 
+        BusyText="Refreshing" 
+        extensions:IndependentSize.Margin="-15,0,0,0" />
+    
     </Grid>
-
-
   </Grid>
 </UserControl>
