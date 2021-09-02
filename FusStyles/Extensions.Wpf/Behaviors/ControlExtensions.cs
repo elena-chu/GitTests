@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
 {
@@ -63,5 +64,12 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty IsPressedProperty = DependencyProperty.RegisterAttached("IsPressed", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
         public static bool GetIsPressed(DependencyObject obj) { return (bool)obj.GetValue(IsPressedProperty); }
         public static void SetIsPressed(DependencyObject obj, bool value) { obj.SetValue(IsPressedProperty, value); }
+
+        /// <summary>
+        /// Command for any control
+        /// </summary>
+        public static readonly DependencyProperty ControlCommandProperty = DependencyProperty.RegisterAttached("ControlCommand", typeof(ICommand), typeof(ControlExtensions));
+        public static ICommand GetControlCommand(DependencyObject obj) { return (ICommand)obj.GetValue(ControlCommandProperty); }
+        public static void SetControlCommand(DependencyObject obj, ICommand value) { obj.SetValue(ControlCommandProperty, value); }
     }
 }

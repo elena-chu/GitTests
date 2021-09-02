@@ -159,6 +159,8 @@
         <ToggleButton
           x:Name="HeaderToggleButton"
           extensions:IndependentSize.Margin="0,0,4,0"
+          extensions:ControlExtensions.ControlCommand="{TemplateBinding extensions:ControlExtensions.ControlCommand}"
+          IsChecked="{TemplateBinding extensions:ControlExtensions.IsActive}"
           Style="{StaticResource XStyle.ToggleButton.Icon}"
           extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}"
           extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"/>
