@@ -28,6 +28,7 @@
     <ResourceDictionary Source="100_Controls/010_Controls/010-ControlStyles.xaml"/>
     <ResourceDictionary Source="100_Controls/010_Controls/020-ControlTemplates.xaml"/>
     <ResourceDictionary Source="100_Controls/010_Controls/040-ScrollStyles.xaml"/>
+    <ResourceDictionary Source="100_Controls/010_Controls/050-AnimatedBorder.xaml"/>
 
     <!--Text Element-->
     <ResourceDictionary Source="100_Controls/020_TextElements/010-TextBlockStyles.xaml"/>

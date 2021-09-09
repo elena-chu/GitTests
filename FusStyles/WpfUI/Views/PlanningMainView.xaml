@@ -319,7 +319,7 @@
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         Click="OnLoadSeriesClick"
-        Style="{StaticResource XStyle.Button.Plus}"/>
+        Style="{StaticResource XStyle.Button.SingleLetter.Plus}"/>
     </Grid>
     <Popup x:Name="SeriesSelector" IsOpen ="{Binding SeriesSelectorOpen, Mode=TwoWay}" StaysOpen="True"
         Placement="Center"
