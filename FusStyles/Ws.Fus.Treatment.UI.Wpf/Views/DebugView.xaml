@@ -40,19 +40,28 @@
     </RichTextBox>-->
 
     <StackPanel>
-      <TextBlock Text="ToggleButton with ContextMenu:"/>
-      <ToggleButton
-        Style="{StaticResource XStyle.ToggleButton.IconAndChevronOverText}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"
-        Content="Choose Whale">
-        <ToggleButton.ContextMenu>
-          <ContextMenu>
-            <MenuItem Header="Blue"/>
-            <MenuItem Header="North Atlantic Right"/>
-            <MenuItem Header="Beluga"/>
-            <MenuItem Header="Pygmy" IsEnabled="False"/>
-          </ContextMenu>
-        </ToggleButton.ContextMenu>
+      <TextBlock Text="SingleLetter Plus:"/>
+      <Button x:Name="RippleButton" Style="{StaticResource XStyle.Button.SingleLetter.Plus}" extensions:ControlExtensions.ControlState="Normal" Click="ChangeControlState"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="SingleLetter Exit:"/>
+      <Button x:Name="ExitButton" Style="{StaticResource XStyle.Button.SingleLetter.Exit}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="SingleLetter Chevron:"/>
+      <ToggleButton x:Name="ChevronButton">
+        <ToggleButton.Style>
+          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.SingleLetter.Chevron}">
+            <Setter Property="IsEnabled" Value="True"/>
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding (extensions:ControlExtensions.ControlState), ElementName=RippleButton}" Value="CallToAction">
+                <Setter Property="IsEnabled" Value="False"/>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ToggleButton.Style>
       </ToggleButton>
     </StackPanel>
 
@@ -68,64 +77,6 @@
         <ComboBoxItem Content="Bowhead"/>
         <ComboBoxItem Content="Common Minke"/>
       </ComboBox>
-    </StackPanel>
-
-    <StackPanel Margin="0,0,12,0" HorizontalAlignment="Right">
-      <TextBlock Text="IconOverText, Height=TwoLines:"/>
-      <Button
-        HorizontalAlignment="Right"
-        Style="{StaticResource XStyle.Button.IconOverText}"
-        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
-        Command="{Binding AutoRegisterCommand}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Registration.AutoRegister}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
-        Content="Auto Register"/>
-    </StackPanel>
-
-    <StackPanel HorizontalAlignment="Left">
-      <TextBlock Text="IconOverText, Height=TwoLines:"/>
-      <Button
-        HorizontalAlignment="Left"
-        Style="{StaticResource XStyle.Button.IconOverText}"
-        Command="{Binding ClearStripsCommand}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
-        Content="Clear Images long text"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="Info"/>
-      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Info}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="Help"/>
-      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Help}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="Exclamation Mark"/>
-      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.ExclamationMark}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="Settings"/>
-      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Settings}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="Quit"/>
-      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="Refresh"/>
-      <Button Style="{StaticResource XStyle.Button.Icon.Small}" extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}" extensions:IconedButton.IconSize="17"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="Lock/Unlock"/>
-      <ToggleButton Style="{StaticResource XStyle.ToggleButton.Icon}" extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Lock}" extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Unlock}"/>
     </StackPanel>
 
   </UniformGrid>

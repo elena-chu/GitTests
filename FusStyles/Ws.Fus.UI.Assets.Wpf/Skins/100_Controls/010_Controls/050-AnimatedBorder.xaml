@@ -1,0 +1,91 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <ControlTemplate x:Key="XControlTemplate.Control.CircularWipeBorder" TargetType="{x:Type Control}">
+    <ControlTemplate.Resources>
+      <Style TargetType="{x:Type Line}">
+        <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="extensions:IndependentSize.StrokeThickness" Value="1.5"/>
+      </Style>
+      <Style TargetType="{x:Type Path}">
+        <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="extensions:IndependentSize.StrokeThickness" Value="1.5"/>
+      </Style>
+    </ControlTemplate.Resources>
+    <Viewbox Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Stretch="Uniform">
+      <Canvas Width="22" Height="22">
+        <Line x:Name="L1" X1="11" Y1="0" X2="11" Y2="0"/>
+        <Path>
+          <Path.Data>
+            <PathGeometry>
+              <PathFigure StartPoint="18,0">
+                <ArcSegment x:Name="A1" Size="4,4" Point="18,0" SweepDirection="Clockwise"/>
+              </PathFigure>
+            </PathGeometry>
+          </Path.Data>
+        </Path>
+        <Line x:Name="L2" X1="22" Y1="4" X2="22" Y2="4"/>
+        <Path>
+          <Path.Data>
+            <PathGeometry>
+              <PathFigure StartPoint="22,18">
+                <ArcSegment x:Name="A2" Size="4,4" Point="22,18" SweepDirection="Clockwise"/>
+              </PathFigure>
+            </PathGeometry>
+          </Path.Data>
+        </Path>
+        <Line x:Name="L3" X1="18" Y1="22" X2="18" Y2="22"/>
+        <Path>
+          <Path.Data>
+            <PathGeometry>
+              <PathFigure StartPoint="4,22">
+                <ArcSegment x:Name="A3" Size="4,4" Point="4,22" SweepDirection="Clockwise"/>
+              </PathFigure>
+            </PathGeometry>
+          </Path.Data>
+        </Path>
+        <Line x:Name="L4" X1="0" Y1="18" X2="0" Y2="18"/>
+        <Path>
+          <Path.Data>
+            <PathGeometry>
+              <PathFigure StartPoint="0,4">
+                <ArcSegment x:Name="A4" Size="4,4" Point="0,4" SweepDirection="Clockwise"/>
+              </PathFigure>
+            </PathGeometry>
+          </Path.Data>
+        </Path>
+        <Line x:Name="L5" X1="4" Y1="0" X2="4" Y2="0"/>
+      </Canvas>
+    </Viewbox>
+    <ControlTemplate.Triggers>
+      <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard x:Name="WipeStoryboard">
+            <Storyboard AutoReverse="True" RepeatBehavior="Forever">
+              <DoubleAnimation Storyboard.TargetName="L1" Storyboard.TargetProperty="X2" To="18" Duration="0:0:0.3"/>
+              <PointAnimation Storyboard.TargetName="A1" Storyboard.TargetProperty="Point" To="22,4" BeginTime="0:0:0.3" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L2" Storyboard.TargetProperty="Y2" To="18" BeginTime="0:0:0.6" Duration="0:0:0.5"/>
+              <PointAnimation Storyboard.TargetName="A2" Storyboard.TargetProperty="Point" To="18,22" BeginTime="0:0:1.1" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L3" Storyboard.TargetProperty="X2" To="4" BeginTime="0:0:1.4" Duration="0:0:0.5"/>
+              <PointAnimation Storyboard.TargetName="A3" Storyboard.TargetProperty="Point" To="0,18" BeginTime="0:0:1.9" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L4" Storyboard.TargetProperty="Y2" To="4" BeginTime="0:0:2.2" Duration="0:0:0.5"/>
+              <PointAnimation Storyboard.TargetName="A4" Storyboard.TargetProperty="Point" To="4,0" BeginTime="0:0:2.7" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L5" Storyboard.TargetProperty="X2" To="11.5" BeginTime="0:0:3" Duration="0:0:0.3"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <StopStoryboard BeginStoryboardName="WipeStoryboard"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.Control.CircularWipeBorder" TargetType="{x:Type Control}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.Control.CircularWipeBorder}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+  </Style>
+
+</ResourceDictionary>

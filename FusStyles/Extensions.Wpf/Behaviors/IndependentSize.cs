@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Shapes;
 using Ws.Extensions.UI.Wpf.Utils;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
@@ -54,7 +55,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static void OnMinWidthPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             FrameworkElement fe = d as FrameworkElement;
-            if (fe == null || e.NewValue == null)
+            if (fe == null || e.NewValue == null || !(e.NewValue is double) || double.IsNaN((double)e.NewValue))
                 return;
             fe.MinWidth = GetProportionalDoublePropertyFromArgs(e);
         }
@@ -72,7 +73,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static void OnMaxWidthPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             FrameworkElement fe = d as FrameworkElement;
-            if (fe == null || e.NewValue == null)
+            if (fe == null || e.NewValue == null || !(e.NewValue is double) || double.IsNaN((double)e.NewValue))
                 return;
             fe.MaxWidth = GetProportionalDoublePropertyFromArgs(e);
         }
@@ -106,7 +107,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static void OnMinHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             FrameworkElement fe = d as FrameworkElement;
-            if (fe == null || e.NewValue == null)
+            if (fe == null || e.NewValue == null || !(e.NewValue is double) || double.IsNaN((double)e.NewValue))
                 return;
             fe.MinHeight = GetProportionalDoublePropertyFromArgs(e);
         }
@@ -123,7 +124,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static void OnMaxHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             FrameworkElement fe = d as FrameworkElement;
-            if (fe == null || e.NewValue == null)
+            if (fe == null || e.NewValue == null || !(e.NewValue is double) || double.IsNaN((double)e.NewValue))
                 return;
             fe.MaxHeight = GetProportionalDoublePropertyFromArgs(e);
         }
@@ -176,6 +177,21 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                 popup.VerticalOffset = GetProportionalDoublePropertyFromArgs(e);
         }
 
+
+        /// <summary>
+        /// Independent StrokeThickness property of Shape. Updates the original StrokeThickness property
+        /// </summary>
+        public static DependencyProperty StrokeThicknessProperty = DependencyProperty.RegisterAttached("StrokeThickness", typeof(double), typeof(IndependentSize), new UIPropertyMetadata(double.NaN, OnStrokeThicknessPropertyChanged));
+        public static void SetStrokeThickness(FrameworkElement obj, double value) { obj.SetValue(StrokeThicknessProperty, value); }
+        public static double GetStrokeThickness(FrameworkElement obj) { return (double)obj.GetValue(StrokeThicknessProperty); }
+
+        public static void OnStrokeThicknessPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Shape shape = d as Shape;
+            if (shape == null || e.NewValue == null)
+                return;
+            shape.StrokeThickness = GetProportionalDoublePropertyFromArgs(e);
+        }
 
         // FontSize *********************************************
 

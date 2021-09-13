@@ -17,6 +17,13 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         Bottom
     }
 
+    public enum ControlState
+    {
+        Normal,
+        CallToAction,
+        Busy
+    }
+
     /// <summary>
     ///  ControlExtensions: extra abilities for Controls
     /// </summary>
@@ -64,6 +71,13 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty IsPressedProperty = DependencyProperty.RegisterAttached("IsPressed", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
         public static bool GetIsPressed(DependencyObject obj) { return (bool)obj.GetValue(IsPressedProperty); }
         public static void SetIsPressed(DependencyObject obj, bool value) { obj.SetValue(IsPressedProperty, value); }
+
+        /// <summary>
+        /// States for Control
+        /// </summary>
+        public static readonly DependencyProperty ControlStateProperty = DependencyProperty.RegisterAttached("ControlState", typeof(ControlState), typeof(ControlExtensions), new PropertyMetadata(ControlState.Normal));
+        public static ControlState GetControlState(DependencyObject obj) { return (ControlState)obj.GetValue(ControlStateProperty); }
+        public static void SetControlState(DependencyObject obj, ControlState value) { obj.SetValue(ControlStateProperty, value); }
 
         /// <summary>
         /// Command for any control

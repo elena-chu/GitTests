@@ -127,7 +127,7 @@
 
 
   <!--Plus / Exit-->
-  <ControlTemplate x:Key="XControlTemplate.Button.SingleLetter" TargetType="{x:Type Button}">
+  <ControlTemplate x:Key="XControlTemplate.ButtonBase.SingleLetter" TargetType="{x:Type ButtonBase}">
     <Border
       Padding="{TemplateBinding Padding}"
       Height="{TemplateBinding Height}"
@@ -140,22 +140,130 @@
     </Border>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.Button.Plus" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Text}">
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.SingleLetter}"/>
+  <Style x:Key="XStyle.ButtonBase.SingleLetter" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.SingleLetter}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
-    <Setter Property="Content" Value="+"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="20"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{Binding (extensions:IndependentSize.Height), RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="extensions:IndependentSize.MinWidth" Value="0"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="0,-1,0,1"/>
   </Style>
 
-  <Style x:Key="XStyle.Button.Exit" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Plus}">
-    <Setter Property="extensions:IndependentSize.Height" Value="20"/>
+  <Style x:Key="XStyle.Button.SingleLetter.Exit" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.SingleLetter}">
     <Setter Property="Content" Value="&#x00D7;"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="20"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="0,-2,0,2"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="0,-2.5,0,2.5"/>
   </Style>
 
+  <ControlTemplate x:Key="XControlTemplate.ToggleButton.SingleLetter.Chevron" TargetType="{x:Type ToggleButton}">
+    <ControlTemplate.Resources>
+      <Geometry x:Key="LGeometry.FlatLine">M 10.134445,0.28271351 L 20.134445,0.28271351</Geometry>
+    </ControlTemplate.Resources>
+    <Border
+      Padding="{TemplateBinding Padding}"
+      Height="{TemplateBinding Height}"
+      Width="{TemplateBinding Height}"
+      extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+      extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
+      BorderBrush="{TemplateBinding Foreground}"
+      Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
+      <Border x:Name="ChevronBorder" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
+        <Path
+          extensions:IndependentSize.Margin="0,2,0,0"
+          VerticalAlignment="Center"
+          Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+          RenderTransformOrigin="0.5,0.5">
+          <Path.RenderTransform>
+            <RotateTransform x:Name="ChevronRotateTransform" Angle="0"/>
+          </Path.RenderTransform>
+          <Path.Style>
+            <Style TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Path.Chevron}">
+              <Setter Property="Data" Value="{DynamicResource XGeometry.Chevron.Down}"/>
+              <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Data" Value="{DynamicResource LGeometry.FlatLine}"/>
+                </Trigger>
+              </Style.Triggers>
+            </Style>
+          </Path.Style>
+        </Path>
+      </Border>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,2" TargetName="ChevronBorder"/>
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="180" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ToggleButton.SingleLetter.Chevron" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.SingleLetter}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.SingleLetter.Chevron}"/>
+  </Style>
+
+  <ControlTemplate x:Key="XControlTemplate.Button.SingleLetter.States" TargetType="{x:Type Button}">
+    <ControlTemplate.Resources>
+      <Thickness x:Key="LThickness.BorderMargins">10</Thickness>
+    </ControlTemplate.Resources>
+    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Height}">
+      <Border
+        x:Name="RippleBorder"
+        extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
+        Style="{StaticResource XStyle.Border.Ripple}"
+        extensions:ControlExtensions.IsActive="False"
+        Visibility="Hidden"/>
+      <Border
+        x:Name="HoverAndPressBorder"
+        extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
+        Padding="{TemplateBinding Padding}"
+        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+        extensions:ControlExtensions.ControlState="{TemplateBinding extensions:ControlExtensions.ControlState}"
+        extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
+        Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}"
+        BorderBrush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+        <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+      </Border>
+      <Control
+        x:Name="BusyControl"
+        extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
+        Style="{StaticResource XStyle.Control.CircularWipeBorder}"
+        extensions:ControlExtensions.IsActive="False"/>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="extensions:ControlExtensions.ControlState" Value="CallToAction">
+        <Setter TargetName="RippleBorder" Property="Visibility" Value="Visible"/>
+        <Setter TargetName="RippleBorder" Property="extensions:ControlExtensions.IsActive" Value="True"/>
+        <Setter TargetName="HoverAndPressBorder" Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.ControlState" Value="Busy">
+        <Setter TargetName="HoverAndPressBorder" Property="IsEnabled" Value="False"/>
+        <Setter TargetName="BusyControl" Property="extensions:ControlExtensions.IsActive" Value="True"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.Button.SingleLetter.Plus" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.SingleLetter}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.SingleLetter.States}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="50"/>
+    <Setter Property="Content" Value="+"/>
+  </Style>
 
   <!--Switch Button-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Switch" TargetType="{x:Type ToggleButton}">
