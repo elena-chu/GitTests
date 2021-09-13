@@ -1,0 +1,158 @@
+﻿<UserControl x:Class="Ws.Fus.Surgical.UI.Wpf.SurgicalProgressView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+    <Grid.Resources>
+      <extensions:ComparisonConverter x:Key="CurrentStageToColorConverter" TrueValue="{StaticResource XBrush.Application.Active}" FalseValue="{StaticResource XBrush.Application.Foreground}" />
+      <local:SurgicalStageToProgressStateConverter x:Key="SurgicalStageToProgressStateConverter" />
+
+      <Style x:Key="StepSeparationRowStyle" TargetType="RowDefinition">
+        <Setter Property="extensions:IndependentSize.RowHeight" Value="30" />
+      </Style>
+      
+      <Style x:Key="EllipceStyle" TargetType="Ellipse">
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="extensions:IndependentSize.Height" Value="18" />
+        <Setter Property="extensions:IndependentSize.Width" Value="18" />
+        <Setter Property="Fill" Value="{StaticResource XBrush.Application.Background.Complementary}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="extensions:IndependentSize.Margin" Value="-9,0,10,0" />
+      </Style>
+
+      <Style x:Key="IndicatorStyle" TargetType="ContentControl" BasedOn="{StaticResource XStyle.ContentControl.StatusIndicator}">
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="extensions:IndependentSize.Margin" Value="-9,0,10,0" />
+      </Style>
+
+      <Style x:Key="TiitleStyle" TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+        <Setter Property="Grid.Column" Value="2" />
+      </Style>
+
+      <Style x:Key="TriangleStyle" TargetType="Path">
+        <Setter Property="Data" Value="M 18.178375,0.28735255 H 0.16550798 L 9.315157,14.838345 Z" />
+        <Setter Property="Fill" Value="{StaticResource XBrush.Application.Active}" />
+        <Setter Property="Stretch" Value="Fill" />
+        <Setter Property="extensions:IndependentSize.Width" Value="10" />
+        <Setter Property="extensions:IndependentSize.Height" Value="10" />
+        <Setter Property="extensions:IndependentSize.Margin" Value="0,0,-5,0" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Grid.Column" Value="0" />
+      </Style>
+
+    </Grid.Resources>
+    <!--<Grid.Style>
+      <Style TargetType="Grid">
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding SurgicalMode}" Value="{x:Type local:SurgicalMode.Definition}">
+            <Setter TargetName="DefineIndicator" Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Active" />
+            <Setter TargetName="DefineTxt" Property="Foreground" Value="{StaticResource XBrush.Application.Active}" />
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </Grid.Style>-->
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition extensions:IndependentSize.ColumnWidth="20" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition extensions:IndependentSize.RowHeight="29" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition  extensions:IndependentSize.RowHeight="21" />
+    </Grid.RowDefinitions>
+
+    <Rectangle 
+      Grid.RowSpan="8"
+      Fill="{x:Null}"
+      Stroke="{StaticResource XBrush.Application.Active}"
+      RadiusX="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
+      RadiusY="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}, Converter={extensions:ScalarConverter}, ConverterParameter=0.5}"
+                 />
+    <Path
+      Style="{StaticResource TriangleStyle}"
+      />
+    <Ellipse 
+      Style="{StaticResource EllipceStyle}"
+      Grid.Row="1"
+      />
+
+    <ContentControl
+      x:Name="DefineIndicator"
+      Grid.Row="1"
+      extensions:ProgressStatusDisplayer.ProgressState="{Binding Converter={StaticResource SurgicalStageToProgressStateConverter}, ConverterParameter={x:Static local:SurgicalMode.Definition}}"
+      Style="{StaticResource IndicatorStyle}"
+      />
+
+    <TextBlock
+      x:Name="DefineTxt"
+      Grid.Row="1"
+      Text="DEFINE"
+      Style="{StaticResource TiitleStyle}"
+      Foreground="{Binding Converter={StaticResource CurrentStageToColorConverter}, ConverterParameter={x:Static local:SurgicalMode.Definition}, FallbackValue={StaticResource XBrush.Application.Foreground}}"
+        />
+
+    <Path
+      Style="{StaticResource TriangleStyle}"
+      Grid.Row="2" 
+      />
+    <Ellipse 
+      Style="{StaticResource EllipceStyle}"
+      Grid.Row="3"
+      />
+
+    <ContentControl
+      x:Name="SonicateIndicator"
+      Grid.Row="3"
+      extensions:ProgressStatusDisplayer.ProgressState="{Binding Converter={StaticResource SurgicalStageToProgressStateConverter}, ConverterParameter={x:Static local:SurgicalMode.Sonication}}"
+      Style="{StaticResource IndicatorStyle}"
+      />
+
+    <TextBlock
+      x:Name="SonicateTxt"
+      Grid.Row="3"
+      Text="SONICATE"
+      Style="{StaticResource TiitleStyle}"
+      Foreground="{Binding Converter={StaticResource CurrentStageToColorConverter}, ConverterParameter={x:Static local:SurgicalMode.Sonication}, FallbackValue={StaticResource XBrush.Application.Foreground}}"
+        />
+
+    <Path
+      Style="{StaticResource TriangleStyle}"
+      Grid.Row="4" 
+      />
+    <Ellipse 
+      Style="{StaticResource EllipceStyle}"
+      Grid.Row="5"
+      />
+
+    <ContentControl
+      x:Name="ReviewIndicator"
+      Grid.Row="5"
+      extensions:ProgressStatusDisplayer.ProgressState="{Binding Converter={StaticResource SurgicalStageToProgressStateConverter}, ConverterParameter={x:Static local:SurgicalMode.Dosimetry}}"
+      Style="{StaticResource IndicatorStyle}"
+      />
+
+    <TextBlock
+      x:Name="ReviewTxt"
+      Grid.Row="5"
+      Text="REVIEW"
+      Style="{StaticResource TiitleStyle}"
+      Foreground="{Binding Converter={StaticResource CurrentStageToColorConverter}, ConverterParameter={x:Static local:SurgicalMode.Dosimetry}, FallbackValue={StaticResource XBrush.Application.Foreground}}"
+        />
+
+  </Grid>
+</UserControl>

@@ -14,7 +14,7 @@ using Prism.Mvvm;
 //using Ws.Fus.Sys.Interfaces.Entities;
 using Ws.Fus.ImageViewer.UI.Wpf;
 using Prism.Regions;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation;
+using Ws.Fus.UI.Navigation.Wpf;
 
 namespace Ws.Fus.Treatment.UI.Wpf.Module
 {

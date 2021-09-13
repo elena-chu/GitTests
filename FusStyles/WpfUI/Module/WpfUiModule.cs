@@ -17,8 +17,9 @@ using System.Windows;
 //using WpfUI.ViewModels;
 using System.Diagnostics;
 using Ws.Fus.ImageViewer.UI.Wpf;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation;
+using Ws.Fus.UI.Navigation.Wpf;
+using WpfUI.Controllers;
+using WpfUI.ViewModels;
 
 namespace WpfUI.Module
 {
@@ -43,7 +44,7 @@ namespace WpfUI.Module
             //regionManager.RegisterViewWithRegion(RegionNames.PlanningScreensRegion, typeof(CalibrationView));
 
             regionManager.RequestNavigate(RegionNames.ApplicationMainRegion, ViewNames.ApplicationMainView);
-            
+
 
             //NavigationController nc = containerProvider.Resolve<NavigationController>();
             //nc.SwitchModule(ApplicationModule.MainScreen);
@@ -57,6 +58,9 @@ namespace WpfUI.Module
 
             //containerRegistry.RegisterForNavigation<MainView>();
             containerRegistry.RegisterForNavigation<PlanningMainView>(ApplicationModule.Planning.ToString());
+            containerRegistry.Register<IModuleController, PlanningModuleController>(ApplicationModule.Planning.ToString());
+
+            ViewModelLocationProvider.Register<PlanningMainView, PlanningMainViewModel>();
 
             //containerRegistry.RegisterForNavigation<MDView>(ScreenMode.MD.ToString());
             //containerRegistry.RegisterForNavigation<NPRView>(ScreenMode.NPR.ToString());

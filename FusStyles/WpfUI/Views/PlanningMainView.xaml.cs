@@ -40,6 +40,13 @@ namespace WpfUI.Views
                 //ViewModel.SeriesSelected += OnViewModelSeriesSelected;
                 _firstTime = false;
             }
+            CalibBtn.Command = OpenStageCommand;
+            PlanBtn.Command = OpenStageCommand;
+            RegBtn.Command = OpenStageCommand;
+            AcPcBtn.Command = OpenStageCommand;
+            NprBtn.Command = OpenStageCommand;
+            TargBtn.Command = OpenStageCommand;
+
             _stages = new Dictionary<string, Tuple<ProgressNavigationButton, UserControl>>()
             {
                 {"Calibration", new Tuple<ProgressNavigationButton, UserControl>(CalibBtn, CalibrtionMenu )},

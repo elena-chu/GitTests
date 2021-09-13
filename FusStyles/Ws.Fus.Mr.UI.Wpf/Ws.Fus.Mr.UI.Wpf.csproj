@@ -121,6 +121,10 @@
       <Project>{5f4a6c6f-9c99-4588-bafe-f26b9fa43a6c}</Project>
       <Name>Ws.Fus.UI.Assets.Wpf</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ws.Fus.UI.Navigation.Wpf\Ws.Fus.UI.Navigation.Wpf.csproj">
+      <Project>{e0022a5e-b480-4fb9-81a6-0b3317dbdff0}</Project>
+      <Name>Ws.Fus.UI.Navigation.Wpf</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

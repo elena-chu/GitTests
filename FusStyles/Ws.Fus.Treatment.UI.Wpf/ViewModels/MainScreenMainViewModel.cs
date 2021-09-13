@@ -7,10 +7,9 @@ using Prism.Commands;
 using Prism.Regions;
 using Ws.Extensions.Mvvm.ViewModels;
 using Ws.Fus.ImageViewer.UI.Wpf;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation;
 using Ws.Fus.Treatment.UI.Wpf;
 using System.Windows.Threading;
+using Ws.Fus.UI.Navigation.Wpf;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {

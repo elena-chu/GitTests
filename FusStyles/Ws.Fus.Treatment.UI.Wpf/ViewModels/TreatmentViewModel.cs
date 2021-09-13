@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Commands;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation;
 using Ws.Fus.ImageViewer.UI.Wpf;
 using Ws.Extensions.UI.Wpf.Controls;
 using System.Threading.Tasks;
 using Ws.Extensions.UI.Wpf.Behaviors;
+using Ws.Fus.UI.Navigation.Wpf;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {

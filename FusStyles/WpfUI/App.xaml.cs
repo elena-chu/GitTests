@@ -12,6 +12,8 @@ using WpfUI.Module;
 using Ws.Extensions.UI.Wpf.Behaviors;
 using Ws.Fus.ImageViewer.UI.Wpf.Module;
 using Ws.Fus.Mr.UI.Wpf;
+using Ws.Fus.Reports.UI.Wpf;
+using Ws.Fus.Surgical.UI.Wpf;
 using Ws.Fus.Treatment.UI.Wpf.Module;
 
 namespace WpfUI
@@ -48,7 +50,8 @@ namespace WpfUI
             moduleCatalog.AddModule<ImageViewerModule>();
             moduleCatalog.AddModule<FusTreatmentUiModule>();
             moduleCatalog.AddModule<FusMrUiModule>();
-
+            moduleCatalog.AddModule<FusSurgicalUiModule>();
+            moduleCatalog.AddModule<FusReportsUiModule>();
 
             moduleCatalog.AddModule<WpfUiModule>();
         }

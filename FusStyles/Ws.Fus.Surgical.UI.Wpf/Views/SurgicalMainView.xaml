@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="Ws.Fus.Surgical.UI.Wpf.SurgicalMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
+             xmlns:core="clr-namespace:Ws.Fus.UI.Navigation.Wpf;assembly=Ws.Fus.UI.Navigation.Wpf"
+             xmlns:sv="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Views;assembly=Ws.Fus.ImageViewer.UI.Wpf"
+             xmlns:sm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
+             xmlns:tm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+ 
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="SurgicalStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
+ 
+  <Grid Background="{StaticResource XBrush.Application.Background}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="{StaticResource NavigationMenuWidth}" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Grid x:Name="MenuGrid" Background="{StaticResource XBrush.Application.Background.Complementary}" ClipToBounds="True">
+      <Grid.RowDefinitions>
+        <RowDefinition Style="{StaticResource ModuleRowHeightStyle}" />
+        <RowDefinition Style="{StaticResource ModuleActiveRowHeightStyle}" />
+        <RowDefinition Height="*" />
+        <RowDefinition Style="{StaticResource ModuleRowHeightStyle}" />
+      </Grid.RowDefinitions>
+
+      <Rectangle  Style="{StaticResource VerticalMenuSeparator}" Grid.RowSpan="4" />
+
+      <RadioButton
+        Style="{StaticResource XStyle.RadioButton.ModuleButton.Planning}" />
+
+      <Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"/>
+
+      <Grid Grid.Row="2" Height="Auto">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <extensions:NumericUpDown
+          CodeLiteralVisibility="Collapsed"
+          DisplayLength="8"
+          MaxValue="8"
+          MinValue="1"
+          Value="6"
+          NumberOfFractionDigits="0"
+          Style="{StaticResource LStyle.NumericUpDown.SonicationSelector}"
+        />
+        
+        <local:SurgicalProgressView
+          Grid.Row="1"
+          extensions:IndependentSize.Margin="20"
+          DataContext="{Binding SurgicalControlVM.SurgicalMode, Mode=OneWay}"
+        />
+
+      </Grid>
+      
+      <RadioButton
+        Grid.Row="1"
+        Style="{StaticResource XStyle.RadioButton.ModuleButton.Surgical}" 
+        />
+
+
+      <Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"/>
+      <RadioButton
+        Grid.Row="3"
+        Style="{StaticResource XStyle.RadioButton.ModuleButton.Reports}" />
+
+    </Grid>
+
+    <Grid Grid.Column="1" DataContext="{Binding SurgicalStripsViewModel}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Style="{StaticResource ToolBarRowStyle}"  />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+
+      <!---Menu-->
+      <Grid Grid.Column="0"
+            Grid.RowSpan="2">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <local:TargetLocationView  Height="100" />
+
+        <Decorator
+          Grid.Row="1"
+          DataContext="{Binding Content.DataContext, ElementName=SurgicalModeContent}">
+          <ContentControl
+            x:Name="SurgicalModeContent" 
+            Grid.Row="1" 
+            prism:RegionManager.RegionName="{x:Static core:RegionNames.SurgicalScreensRegion}"
+            DataContextChanged="OnSurgicalModeContentChanged"
+              >
+          </ContentControl>
+        </Decorator>
+      </Grid>
+
+      <sv:StripsViewer x:Name="StripsViewer" 
+        Grid.Column="1" Grid.Row="1"
+        Style="{StaticResource styleStripsViewer}"  />
+
+      <!-- Floating Strips Menu -->
+      <Grid
+        HorizontalAlignment="Right"
+        Grid.Row="0" Grid.RowSpan="2"
+        Grid.Column="1"
+        Visibility="{Binding IsChecked, ElementName=OpenBtn, Converter={StaticResource BooleanToVisibilityConverter}}"
+        Width="{Binding ActualWidth, ElementName=SizeRec}" 
+        >
+        <Grid.RowDefinitions>
+          <RowDefinition Style="{StaticResource ToolBarRowStyle}"  />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--Visibility="{Binding IsStripMenuActive, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"-->
+        <Rectangle 
+          Fill="{StaticResource XBrush.Application.Background}"
+          Stroke="{StaticResource XBrush.Button.Secondary.Background}"
+          StrokeThickness="1"
+          Grid.RowSpan="2"
+          Stretch="Fill"
+          Margin="0,0,1,0" />
+        <sm:StripsMenu
+          Grid.Row="1"
+          Style="{StaticResource PlannindStripsMenuStyle}" 
+          Strips="{Binding DataContext.Strips, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"
+        />
+      </Grid>
+
+      <Grid Grid.Column="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Style="{StaticResource StripMenuColumnStyle}" />
+        </Grid.ColumnDefinitions>
+        
+        <tm:ToolbarMenu Grid.Column="0" />
+        <Rectangle Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="{StaticResource XBrush.Application.Background}" />
+
+        <Rectangle x:Name="SizeRec" Stretch="Fill" Grid.Column="1" />
+
+        <ToggleButton x:Name="OpenBtn"
+          Grid.Column="1"
+          Width="25" Height="25"
+          Content="O"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center"
+          Command="{Binding OpenStripMenuCommand}"
+         />
+      </Grid>
+      
+
+    </Grid>
+    
+  </Grid>
+</UserControl>

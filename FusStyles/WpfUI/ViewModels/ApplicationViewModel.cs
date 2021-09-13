@@ -1,13 +1,13 @@
 using System;
 using Prism.Commands;
 using Ws.Extensions.UI.Wpf.Controls;
-using Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers;
 using Ws.Fus.ImageViewer.UI.Wpf;
 using System.Collections.ObjectModel;
 using Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Linq;
+using Ws.Fus.UI.Navigation.Wpf;
 
 namespace WpfUI.ViewModels
 {
