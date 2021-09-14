@@ -157,16 +157,16 @@
 
         <Rectangle x:Name="SizeRec" Stretch="Fill" Grid.Column="1" />
 
-        <ToggleButton x:Name="OpenBtn"
+        <ToggleButton 
+          x:Name="OpenBtn"
           Grid.Column="1"
-          Width="25" Height="25"
-          Content="O"
           VerticalAlignment="Center"
           HorizontalAlignment="Center"
           Command="{Binding OpenStripMenuCommand}"
-         />
+          Style="{StaticResource XStyle.ToggleButton.SingleLetter.Chevron}"
+          />
+
       </Grid>
-      
 
     </Grid>
     

@@ -21,7 +21,7 @@ namespace WpfUI.ViewModels
 
         private bool _isMainModuleActive
         {
-            get { return _navigationController?.CurrentModule == ApplicationModule.MainScreen; }
+            get { return false; /*_navigationController?.CurrentModule == ApplicationModule.MainScreen;*/ }
         }
 
         public ApplicationViewModel(NavigationController navigationController)
