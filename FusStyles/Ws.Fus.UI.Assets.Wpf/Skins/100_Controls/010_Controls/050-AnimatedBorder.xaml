@@ -20,7 +20,7 @@
         <Path>
           <Path.Data>
             <PathGeometry>
-              <PathFigure StartPoint="18,0">
+              <PathFigure x:Name="P1" StartPoint="18,0">
                 <ArcSegment x:Name="A1" Size="4,4" Point="18,0" SweepDirection="Clockwise"/>
               </PathFigure>
             </PathGeometry>
@@ -30,7 +30,7 @@
         <Path>
           <Path.Data>
             <PathGeometry>
-              <PathFigure StartPoint="22,18">
+              <PathFigure x:Name="P2" StartPoint="22,18">
                 <ArcSegment x:Name="A2" Size="4,4" Point="22,18" SweepDirection="Clockwise"/>
               </PathFigure>
             </PathGeometry>
@@ -40,7 +40,7 @@
         <Path>
           <Path.Data>
             <PathGeometry>
-              <PathFigure StartPoint="4,22">
+              <PathFigure x:Name="P3" StartPoint="4,22">
                 <ArcSegment x:Name="A3" Size="4,4" Point="4,22" SweepDirection="Clockwise"/>
               </PathFigure>
             </PathGeometry>
@@ -50,7 +50,7 @@
         <Path>
           <Path.Data>
             <PathGeometry>
-              <PathFigure StartPoint="0,4">
+              <PathFigure x:Name="P4" StartPoint="0,4">
                 <ArcSegment x:Name="A4" Size="4,4" Point="0,4" SweepDirection="Clockwise"/>
               </PathFigure>
             </PathGeometry>
@@ -63,7 +63,7 @@
       <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard x:Name="WipeStoryboard">
-            <Storyboard AutoReverse="True" RepeatBehavior="Forever">
+            <Storyboard RepeatBehavior="Forever">
               <DoubleAnimation Storyboard.TargetName="L1" Storyboard.TargetProperty="X2" To="18" Duration="0:0:0.3"/>
               <PointAnimation Storyboard.TargetName="A1" Storyboard.TargetProperty="Point" To="22,4" BeginTime="0:0:0.3" Duration="0:0:0.3"/>
               <DoubleAnimation Storyboard.TargetName="L2" Storyboard.TargetProperty="Y2" To="18" BeginTime="0:0:0.6" Duration="0:0:0.5"/>
@@ -73,6 +73,16 @@
               <DoubleAnimation Storyboard.TargetName="L4" Storyboard.TargetProperty="Y2" To="4" BeginTime="0:0:2.2" Duration="0:0:0.5"/>
               <PointAnimation Storyboard.TargetName="A4" Storyboard.TargetProperty="Point" To="4,0" BeginTime="0:0:2.7" Duration="0:0:0.3"/>
               <DoubleAnimation Storyboard.TargetName="L5" Storyboard.TargetProperty="X2" To="11.5" BeginTime="0:0:3" Duration="0:0:0.3"/>
+
+              <DoubleAnimation Storyboard.TargetName="L1" Storyboard.TargetProperty="X1" To="18" BeginTime="0:0:3.3" Duration="0:0:0.3"/>
+              <PointAnimation Storyboard.TargetName="P1" Storyboard.TargetProperty="StartPoint" To="22,4" BeginTime="0:0:3.6" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L2" Storyboard.TargetProperty="Y1" To="18" BeginTime="0:0:3.9" Duration="0:0:0.5"/>
+              <PointAnimation Storyboard.TargetName="P2" Storyboard.TargetProperty="StartPoint" To="18,22" BeginTime="0:0:4.4" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L3" Storyboard.TargetProperty="X1" To="4" BeginTime="0:0:4.7" Duration="0:0:0.5"/>
+              <PointAnimation Storyboard.TargetName="P3" Storyboard.TargetProperty="StartPoint" To="0,18" BeginTime="0:0:5.2" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L4" Storyboard.TargetProperty="Y1" To="4" BeginTime="0:0:5.5" Duration="0:0:0.5"/>
+              <PointAnimation Storyboard.TargetName="P4" Storyboard.TargetProperty="StartPoint" To="4,0" BeginTime="0:0:6" Duration="0:0:0.3"/>
+              <DoubleAnimation Storyboard.TargetName="L5" Storyboard.TargetProperty="X1" To="11.5" BeginTime="0:0:6.3" Duration="0:0:0.3"/>
             </Storyboard>
           </BeginStoryboard>
         </Trigger.EnterActions>

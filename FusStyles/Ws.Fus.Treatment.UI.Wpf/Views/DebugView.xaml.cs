@@ -32,7 +32,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.Views
 
         private async Task DelayAndReset()
         {
-            await Task.Delay(8000);
+            await Task.Delay(18000);
             ControlExtensions.SetControlState(RippleButton, ControlState.Normal);
         }
     }
