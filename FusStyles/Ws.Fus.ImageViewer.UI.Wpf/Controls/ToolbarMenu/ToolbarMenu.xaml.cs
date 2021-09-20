@@ -25,5 +25,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             if (menuItem != null)
                 menuItem.IsSubmenuOpen = !menuItem.IsSubmenuOpen;
         }
+
+        private void CloseCompareMenu(object sender, System.Windows.RoutedEventArgs e)
+        {
+            CompareMenuHeader.IsActive = false;
+        }
     }
 }

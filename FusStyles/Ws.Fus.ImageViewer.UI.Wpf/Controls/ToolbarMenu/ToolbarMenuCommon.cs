@@ -4,7 +4,16 @@
     {
         Fire,
         Select,
-        SelectAndToggle,
+        SelectToggle,
+        SelectCaptionToggle,
         Toggle
+    }
+
+    public static class ToolbarMenuExtension
+    {
+        public static bool IsSelectable(this ToolbarItemType toolbarItemType)
+        {
+            return toolbarItemType == ToolbarItemType.Select || toolbarItemType == ToolbarItemType.SelectToggle || toolbarItemType == ToolbarItemType.SelectCaptionToggle;
+        }
     }
 }

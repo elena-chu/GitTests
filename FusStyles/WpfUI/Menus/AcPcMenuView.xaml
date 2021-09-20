@@ -89,7 +89,7 @@
         Grid.Column="1"
         Content="Clear Images"
         Command="{Binding ClearStripsCommand}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"/>
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Clear}"/>
 
       <core:StepProgress Grid.Row="4" Grid.ColumnSpan="2"
             ValuePosition="OneLine"

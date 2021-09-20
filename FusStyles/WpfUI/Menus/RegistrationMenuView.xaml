@@ -62,7 +62,7 @@
         extensions:IndependentSize.Margin="0,6"
         Style="{StaticResource XStyle.Button.IconOverText}"
         Command="{Binding ClearStripsCommand}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.ClearAll}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Clear}"
         Content="Clear Images"/>
 
       <core:StepProgress Grid.Row="3" Grid.ColumnSpan="2"

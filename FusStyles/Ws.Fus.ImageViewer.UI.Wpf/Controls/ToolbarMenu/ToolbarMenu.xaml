@@ -150,6 +150,9 @@
                   <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="Fire">
                     <Setter Property="Visibility" Value="Visible"/>
                   </DataTrigger>
+                  <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="Select">
+                    <Setter Property="Visibility" Value="Visible"/>
+                  </DataTrigger>
                 </Style.Triggers>
               </Style>
             </Button.Style>
@@ -166,7 +169,10 @@
               <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
                 <Setter Property="Visibility" Value="Collapsed"/>
                 <Style.Triggers>
-                  <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="Select">
+                  <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="SelectToggle">
+                    <Setter Property="Visibility" Value="Visible"/>
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="SelectCaptionToggle">
                     <Setter Property="Visibility" Value="Visible"/>
                   </DataTrigger>
                 </Style.Triggers>
@@ -187,9 +193,6 @@
                 <Setter Property="Visibility" Value="Collapsed"/>
                 <Style.Triggers>
                   <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="Toggle">
-                    <Setter Property="Visibility" Value="Visible"/>
-                  </DataTrigger>
-                  <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="SelectAndToggle">
                     <Setter Property="Visibility" Value="Visible"/>
                   </DataTrigger>
                 </Style.Triggers>
@@ -242,24 +245,31 @@
 
   </UserControl.Resources>
 
-  <Grid>
-    <Grid Margin="10, 1" >
-      <Grid.ColumnDefinitions>
+  <Grid extensions:IndependentSize.Margin="0,1">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition/>
+      <ColumnDefinition Width="Auto"/>
     </Grid.ColumnDefinitions>
 
+    <Rectangle
+      Grid.Column="0"
+      extensions:IndependentSize.Margin="0,0,10,0"
+      Style="{DynamicResource BorderBottomLeftVerticalStyle}"
+      extensions:IndependentSize.Height="80"/>
+
     <Border 
-      Grid.Column="1" 
+      Grid.Column="2"
+      extensions:IndependentSize.Margin="-112,-1,0,-1"
       Background="{StaticResource XBrush.Button.Secondary.Background.Hover}" 
       Style="{StaticResource XStyle.Border}"
       Opacity="0.4"
-      Visibility="{Binding Visibility, ElementName=CompareMenu}"
-      extensions:IndependentSize.Margin="-85,0,0,-3"/>
+      Visibility="{Binding Visibility, ElementName=CompareMenu}"/>
 
-    <Menu x:Name="Menu" Grid.Column="0" VerticalAlignment="Center">
+    <Menu x:Name="Menu" Grid.Column="1" VerticalAlignment="Center">
       <local:ToolbarMenuHeader
         x:Name="CycleMenuHeader"
         Header="Cycle"
@@ -270,7 +280,7 @@
 
       <local:ToolbarMenuHeader
         Header="View"
-        ToolbarItemType="Select"
+        ToolbarItemType="SelectToggle"
         IsActive="False"
         CheckedCommandParameter ="{StaticResource XBoolean.True}"
         UncheckedCommandParameter ="{StaticResource XBoolean.False}"
@@ -284,24 +294,24 @@
         <local:ToolbarMenuItem
           Header="Zoom"
           localBeh:UiModeEnter.Mode="Zoom"
-          ToolbarItemType="Select"
+          ToolbarItemType="SelectToggle"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Zoom}"/>
         <local:ToolbarMenuItem
           Header="Pan"
           localBeh:UiModeEnter.Mode="Pan"
-          ToolbarItemType="Select"
+          ToolbarItemType="SelectToggle"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Pan}"/>
         <local:ToolbarMenuItem
           Header="Window"
           localBeh:UiModeEnter.Mode="Windowing"
-          ToolbarItemType="Select"
+          ToolbarItemType="SelectToggle"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Window}"/>
         <local:ToolbarMenuItem
           Header="Reset View"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.ResetView}"/>
         <local:ToolbarMenuItem
           Header="Center on Click"
-          ToolbarItemType="Select"
+          ToolbarItemType="SelectToggle"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.CenterOnClick}"/>
         <local:ToolbarMenuItem
           Header="Center on Target"
@@ -313,7 +323,7 @@
 
       <local:ToolbarMenuHeader
         Header="Draw"
-        ToolbarItemType="Select"
+        ToolbarItemType="SelectToggle"
         IsActive="False"
         CheckedCommandParameter ="{StaticResource XBoolean.True}"
         UncheckedCommandParameter ="{StaticResource XBoolean.False}"
@@ -321,7 +331,7 @@
         ActivatedEvent="OnToolbarMenuHeaderActivated">
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
-            <Setter Property="ToolbarItemType" Value="Select"/>
+            <Setter Property="ToolbarItemType" Value="SelectToggle"/>
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
           </Style>
         </local:ToolbarMenuHeader.Resources>
@@ -432,33 +442,33 @@
         <local:ToolbarMenuHeader.Resources>
           <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
             <Setter Property="CommandParameter" Value="{StaticResource XBoolean.True}"/>
+            <Setter Property="ToolbarItemType" Value="Select"/>
           </Style>
         </local:ToolbarMenuHeader.Resources>
         <local:ToolbarMenuItem 
           Header="Delete" 
           Command="{Binding DeleteCommand}"
-          ToolbarItemType="Select"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Delete}"/>
         <local:ToolbarMenuItem 
           Header="Delete All" 
           Command="{Binding DeleteAllCommand}"
-          ToolbarItemType="Select"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.DeleteAll}"/>
       </local:ToolbarMenuHeader>
 
       <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
+        extensions:IndependentSize.Margin="0,0,5,0"
         Header="Compare"
-        ToolbarItemType="Select"
+        ToolbarItemType="SelectCaptionToggle"
         IsActive="False"
         UncheckedCommandParameter ="{x:Static entities:CompareMode.Simple}"
         MemberOfMutuallyExclusiveGroup="True"
         ActivatedEvent="OnToolbarMenuHeaderActivated"
-        extensions:IndependentSize.Margin="0,0,5,0">
+        extensions:IndependentSize.MinWidth="100">
         <local:ToolbarMenuHeaderCompare.Resources>
             <Style TargetType="{x:Type local:ToolbarMenuItem}" BasedOn="{StaticResource XStyle.ToolbarMenuItem}">
-              <Setter Property="ToolbarItemType" Value="Select"/>
-              <Setter Property="Command" Value="{Binding SwitchCompareModeCommand}" />
+              <Setter Property="ToolbarItemType" Value="SelectCaptionToggle"/>
+              <Setter Property="Command" Value="{Binding SwitchCompareModeCommand}"/>
             </Style>
         </local:ToolbarMenuHeaderCompare.Resources>
         <local:ToolbarMenuItem
@@ -479,13 +489,14 @@
       </local:ToolbarMenuHeaderCompare>
     </Menu>
 
-    <Grid x:Name="CompareMenu" Grid.Column="1" 
-          Visibility="{Binding IsCompareModeOn, Converter={StaticResource BooleanToVisibilityConverter}}"
-          Width="Auto"
-          Height="Auto"
-          VerticalAlignment="Center"
-          extensions:IndependentSize.Margin="0,2,0,0"
-          >
+    <Grid
+      x:Name="CompareMenu"
+      Grid.Column="2" 
+      extensions:IndependentSize.Margin="0,2,0,0"
+      Visibility="{Binding IsActive, ElementName=CompareMenuHeader, Converter={StaticResource BooleanToVisibilityConverter}}"
+      Width="Auto"
+      Height="Auto"
+      VerticalAlignment="Center">
       <Grid.Resources>
         <DataTemplate x:Key ="SliderModeControl">
           <sliderViews:SliderModeControlView/>
@@ -502,9 +513,11 @@
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
-      <ToggleButton 
+      <ToggleButton
+        Grid.Column="0"
         IsChecked="{Binding IsLinked}"
         Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
         extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOn}"
@@ -542,12 +555,24 @@
       <Button 
         Grid.Column="2"
         Style="{StaticResource XStyle.Button.IconOverText}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Compare.ClearImages}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Clear}"
         Content="Clear Images"
         Command="{Binding ClearCompareStripsCommand}"/>
+
+      <Button
+        Grid.Column="3"
+        extensions:IndependentSize.Margin="0,-8,0,0"
+        Style="{StaticResource XStyle.Button.Icon.Small}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}"
+        VerticalAlignment="Top"
+        Click="CloseCompareMenu"/>
     </Grid>
+    
+    <Rectangle
+      Grid.Column="5"
+      extensions:IndependentSize.Margin="10,0,0,0"
+      Style="{DynamicResource BorderBottomRightVerticalStyle}"
+      extensions:IndependentSize.Height="80"/>
   </Grid>
-    <Rectangle Style="{DynamicResource BorderBottomLeftVerticalStyle}" extensions:IndependentSize.Height="80"  />
-    <Rectangle Style="{DynamicResource BorderBottomRightVerticalStyle}" extensions:IndependentSize.Height="80" />
-  </Grid>
+    
 </UserControl>

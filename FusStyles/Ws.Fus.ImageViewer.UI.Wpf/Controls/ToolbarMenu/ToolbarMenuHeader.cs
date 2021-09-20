@@ -74,7 +74,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         {
             bool requestedCheck = !this.IsActive;
 
-            if (ToolbarItemType == ToolbarItemType.Select || ToolbarItemType == ToolbarItemType.SelectAndToggle)
+            if (ToolbarItemType.IsSelectable())
             {
                 ExecuteItemCommandByHeaderStatus(_selectedItem, requestedCheck);
             }
@@ -92,7 +92,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         }
         private bool HeaderClickCanExecute()
         {
-            if (ToolbarItemType == ToolbarItemType.Select || ToolbarItemType == ToolbarItemType.SelectAndToggle)
+            if (ToolbarItemType.IsSelectable())
                 return _selectedItem == null || _selectedItem.Command == null || _selectedItem.Command.CanExecute(_selectedItem.CommandParameter);
 
             return true;
@@ -179,7 +179,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             if (menuItem.IsCheckable)
                 UpdateActiveSet();
 
-            if (menuItem.ToolbarItemType == ToolbarItemType.Select || menuItem.ToolbarItemType == ToolbarItemType.SelectAndToggle)
+            if (menuItem.ToolbarItemType.IsSelectable())
                 SetSelectedItem(menuItem);
 
             UpdateActiveStatus();
@@ -236,7 +236,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         {
             if (Items != null && !Items.IsEmpty)
             {
-                var selectableItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.ToolbarItemType == ToolbarItemType.Select || x.ToolbarItemType == ToolbarItemType.SelectAndToggle);
+                var selectableItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.ToolbarItemType.IsSelectable());
                 if (selectableItem != null)
                     SetSelectedItem(selectableItem);
             }
@@ -254,6 +254,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             SetValue(IconedButton.IconProperty, _selectedItem.GetValue(IconedButton.IconProperty));
             SetValue(IconedButton.ActiveIconProperty, _selectedItem.GetValue(IconedButton.ActiveIconProperty));
             SetValue(IconedButton.InactiveIconProperty, _selectedItem.GetValue(IconedButton.InactiveIconProperty));
+            if (_selectedItem.ToolbarItemType == ToolbarItemType.SelectCaptionToggle)
+                Header = _selectedItem.Header;
             //Command = _selectedItem.Command;
 
             HeaderClickCommand.RaiseCanExecuteChanged();

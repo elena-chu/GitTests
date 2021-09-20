@@ -52,7 +52,7 @@
         Command="{Binding OpenSettingsCommand}"
         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
       <Button
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}" Command="{Binding QuitCommand}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Quit.Circular}" Command="{Binding QuitCommand}"
         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
     </StackPanel>
   </Grid>
