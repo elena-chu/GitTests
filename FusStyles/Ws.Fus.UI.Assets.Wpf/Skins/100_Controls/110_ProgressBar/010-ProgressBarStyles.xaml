@@ -47,7 +47,7 @@
       <Trigger Property="IsIndeterminate" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard x:Name="IndeterminateAnimation">
-            <Storyboard RepeatBehavior="Forever" Storyboard.TargetName="IndeterminateIndicator" AutoReverse="True">
+            <Storyboard RepeatBehavior="Forever" Storyboard.TargetName="IndeterminateIndicator">
               <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ScaleTransform" Storyboard.TargetProperty="ScaleX">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0.15"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.15"/>
