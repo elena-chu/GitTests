@@ -30,7 +30,7 @@
           <Viewbox
             x:Name="IconViewbox"
             Grid.Column="0"
-            extensions:IndependentSize.Margin="8,0,7,0"
+            extensions:IndependentSize.Margin="8,0,12,0"
             Stretch="Uniform"
             Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type local:ToolbarMenuItem}}}"
             IsHitTestVisible="False">
@@ -45,6 +45,7 @@
             Foreground="{TemplateBinding Foreground}"/>
           <ToggleButton
             Grid.Column="2"
+            IsHitTestVisible="False"
             IsChecked="{TemplateBinding IsChecked}"
             Style="{StaticResource XStyle.ToggleButton.Switch}"
             Visibility="{Binding IsCheckable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -56,7 +57,7 @@
       <Setter Property="Template" Value="{StaticResource XControlTemplate.ToolbarMenuItem}"/>
       <Setter Property="extensions:IndependentSize.MinHeight" Value="40"/>
       <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
-      <Setter Property="extensions:IndependentSize.Padding" Value="3,3,6,3"/>
+      <Setter Property="extensions:IndependentSize.Padding" Value="9,12,12,12"/>
       <Setter Property="extensions:IconedButton.IconSize" Value="24"/>
       <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
       <Style.Triggers>
@@ -316,6 +317,9 @@
         <local:ToolbarMenuItem
           Header="Center on Target"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.CenterOnTarget}"/>
+        <local:ToolbarMenuItem
+          Header="Transducer Map"
+          extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.TransducerMap}"/>
         <local:ToolbarMenuItem
           Header="Screenshot"
           extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.View.Screenshot}"/>
