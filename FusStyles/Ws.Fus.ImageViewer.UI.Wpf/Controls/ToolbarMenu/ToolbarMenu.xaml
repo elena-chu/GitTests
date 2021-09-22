@@ -457,7 +457,7 @@
 
       <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
-        extensions:IndependentSize.Margin="0,0,5,0"
+        extensions:IndependentSize.Margin="0"
         Header="Compare"
         ToolbarItemType="SelectCaptionToggle"
         IsActive="False"
@@ -512,26 +512,9 @@
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
-      <ToggleButton
-        Grid.Column="0"
-        IsChecked="{Binding IsLinked}"
-        Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
-        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOn}"
-        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOff}"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"
-        extensions:IconedButton.IconSize="23"
-        VerticalAlignment="Center"
-        Content="Linked"/>
-
-      <!--<sliderViews:SliderModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Simple|Slider'}"/>
-      <flickerViews:FlickerModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Flicker'}"/>
-      <fusionViews:FusionModeControlView Grid.Column="1" Visibility="{Binding CompareMode, ElementName=CompareMenuHeader, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Fusion'}"/>-->
-
-      <ContentControl x:Name="CompareModeControl" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+      <ContentControl x:Name="CompareModeControl" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
         <ContentControl.Style>
           <Style TargetType="{x:Type ContentControl}">
             <Style.Triggers>
@@ -552,15 +535,8 @@
         </ContentControl.Style>
       </ContentControl>
 
-      <Button 
-        Grid.Column="2"
-        Style="{StaticResource XStyle.Button.IconOverText}"
-        extensions:IconedButton.Icon="{StaticResource XCanvas.Clear}"
-        Content="Clear Images"
-        Command="{Binding ClearCompareStripsCommand}"/>
-
       <Button
-        Grid.Column="3"
+        Grid.Column="1"
         extensions:IndependentSize.Margin="0,-8,0,0"
         Style="{StaticResource XStyle.Button.Icon.Small}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Quit}"
@@ -569,7 +545,7 @@
     </Grid>
     
     <Rectangle
-      Grid.Column="5"
+      Grid.Column="4"
       extensions:IndependentSize.Margin="10,0,0,0"
       Style="{DynamicResource BorderBottomRightVerticalStyle}"
       extensions:IndependentSize.Height="80"/>

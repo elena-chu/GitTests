@@ -11,10 +11,22 @@
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
     </Grid.ColumnDefinitions>
 
+    <ToggleButton
+        Grid.Column="0"
+        Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOn}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.LinkOff}"
+        extensions:IndependentSize.Width="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"
+        extensions:IconedButton.IconSize="23"
+        Content="Linked"
+        IsChecked="{Binding IsLinked}"/>
+
     <ToggleButton 
-      Grid.Column="0"
+      Grid.Column="1"
       Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.Shown}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.Hidden}"
@@ -23,12 +35,19 @@
       IsChecked="{Binding IsSecondaryVisible}"/>
 
     <ToggleButton 
-      Grid.Column="1"
+      Grid.Column="2"
       Style="{StaticResource XStyle.ToggleButton.ToggleIconOverText}"
       extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOn}"
       extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Menu.Compare.ColorOff}"
       extensions:IndependentSize.Width="{StaticResource XDouble.Width.IconOverText.ToolbarMenu}"
       Content="Color"
       IsChecked="{Binding IsColored}"/>
+
+    <Button 
+      Grid.Column="3"
+      Style="{StaticResource XStyle.Button.IconOverText}"
+      extensions:IconedButton.Icon="{StaticResource XCanvas.Clear}"
+      Content="Clear Images"
+      Command="{Binding ClearCompareStripsCommand}"/>
   </Grid>
 </UserControl>

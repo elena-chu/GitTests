@@ -61,7 +61,7 @@
       Command="{Binding ConsiderCancelScan}"
       VerticalAlignment="Center"
       Margin="12,0,0,0"
-      extensions:IconedButton.Icon="{StaticResource XCanvas.Stop}"
+      extensions:IconedButton.Icon="{StaticResource XCanvas.StopSign}"
       Style="{StaticResource XStyle.Button.Icon.Small}"/>
 
     <Popup IsOpen="{Binding AskUser}" Placement="Bottom" AllowsTransparency="True">
