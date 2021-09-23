@@ -14,63 +14,68 @@
   d:DesignWidth="120">
 
   <UserControl.Resources>
-    <extensions:ConverterProxy x:Key="converterProxy" />
-    <extensions:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-    <!--<local:StripOrientationToTextConverter x:Key="orientationConverter" />-->
-    <!--<extensions:BindingProxy x:Key="proxy" Data="{Binding StripActionsHolder, ElementName=parent}" />-->
-
     <DataTemplate DataType="{x:Type vm:RegistrationStrip}">
-      <Border Style="{StaticResource XStyle.Strips.Border.Frame}">
-        <Border.Resources>
-          <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource XStyle.Strips.ToolTip}"/>
-        </Border.Resources>
-        <Border.ToolTip>
-          <StackPanel>
-            <StackPanel.Resources>
-              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}"/>
-            </StackPanel.Resources>
-            <TextBlock Text="{Binding Series.PatientName}"/>
-            <StackPanel Orientation="Horizontal">
-              <TextBlock Text="I.D. " Visibility="{Binding Text, ElementName=PatientId, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
-              <TextBlock x:Name="PatientId" Text="{Binding Series.PatientId}"/>
+      <Grid x:Name="OuterGrid">
+        <Border x:Name="OuterBorder" Style="{StaticResource XStyle.Strips.Border.Frame}">
+          <Border.Resources>
+            <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource XStyle.Strips.ToolTip}"/>
+          </Border.Resources>
+          <Border.ToolTip>
+            <StackPanel>
+              <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}"/>
+              </StackPanel.Resources>
+              <TextBlock Text="{Binding Series.PatientName}"/>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="I.D. " Visibility="{Binding Text, ElementName=PatientId, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
+                <TextBlock x:Name="PatientId" Text="{Binding Series.PatientId}"/>
+              </StackPanel>
+              <TextBlock Text="{Binding Series.SeriesDescription}"/>
+              <TextBlock Text="{Binding Series.SeriesNumber}"/>
+              <TextBlock Text="{Binding Series.Resolution}"/>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="SliceThicknessValue" Text="{Binding Series.SliceThickness}"/>
+                <TextBlock Text="mm Thickness" Visibility="{Binding Text, ElementName=SliceThicknessValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
+              </StackPanel>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="SliceSpacingValue" Text="{Binding Series.SliceSpacing}"/>
+                <TextBlock Text="mm Spacing" Visibility="{Binding Text, ElementName=SliceSpacingValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
+              </StackPanel>
             </StackPanel>
-            <TextBlock Text="{Binding Series.SeriesDescription}"/>
-            <TextBlock Text="{Binding Series.SeriesNumber}"/>
-            <TextBlock Text="{Binding Series.Resolution}"/>
-            <StackPanel Orientation="Horizontal">
-              <TextBlock x:Name="SliceThicknessValue" Text="{Binding Series.SliceThickness}"/>
-              <TextBlock Text="mm Thickness" Visibility="{Binding Text, ElementName=SliceThicknessValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
+          </Border.ToolTip>
+          <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" Style="{StaticResource XStyle.Strips.Image}">
+              <Image.OpacityMask>
+                <VisualBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Center">
+                  <VisualBrush.Visual>
+                    <Border
+                      Style="{StaticResource XStyle.Border}"
+                      Width="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
+                      Height="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
+                      Background="{StaticResource XBrush.Application.Background}"/>
+                  </VisualBrush.Visual>
+                </VisualBrush>
+              </Image.OpacityMask>
+            </Image>
+            <Border Grid.Row="0" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"/>
+            <TextBlock Grid.Row="0" extensions:IndependentSize.Margin="2" Text="{Binding StripName}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+            <Border Grid.Row="2" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Bottom}"/>
+            <StackPanel Grid.Row="2" extensions:IndependentSize.Margin="2" HorizontalAlignment="Center" Orientation="Horizontal">
+              <TextBlock Text="{Binding OrientationString}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+              <TextBlock Text=" (" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+              <TextBlock Text="{Binding ImageCount}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+              <TextBlock Text=")" Style="{StaticResource XStyle.Strips.TextBlock}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-              <TextBlock x:Name="SliceSpacingValue" Text="{Binding Series.SliceSpacing}"/>
-              <TextBlock Text="mm Spacing" Visibility="{Binding Text, ElementName=SliceSpacingValue, Converter={extensions:StringHasContentToVisibilityConverter}}"/>
-            </StackPanel>
-          </StackPanel>
-        </Border.ToolTip>
-        <Grid x:Name="MainGrid" 
-              Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-          </Grid.RowDefinitions>
-          <Image Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" Style="{StaticResource XStyle.Strips.Image}">
-            <Image.OpacityMask>
-              <VisualBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Center">
-                <VisualBrush.Visual>
-                  <Border
-                    Style="{StaticResource XStyle.Border}"
-                    Width="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
-                    Height="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.97}"
-                    Background="{StaticResource XBrush.Application.Background}"/>
-                </VisualBrush.Visual>
-              </VisualBrush>
-            </Image.OpacityMask>
-          </Image>
-          <Border Grid.Row="0" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"/>
-          <TextBlock Grid.Row="0" extensions:IndependentSize.Margin="2" Text="{Binding StripName}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
+          </Grid>
+        </Border>
+
+        <Grid x:Name="IconGrid">
           <Border
-            Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="{StaticResource XBrush.Application.Background}"
@@ -91,10 +96,9 @@
           </Border>
           <Border
             x:Name="IconBorder"
-            Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Height="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.28}"
+            Height="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.28}"
             Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
             <Border.Style>
               <Style TargetType="{x:Type Border}">
@@ -147,15 +151,21 @@
               </Path.Style>
             </Path>
           </Border>
-          <Border Grid.Row="2" Style="{StaticResource XStyle.Strips.Border.Emphasis}" extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Bottom}"/>
-          <StackPanel Grid.Row="2" extensions:IndependentSize.Margin="2" HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="{Binding OrientationString}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
-            <TextBlock Text=" (" Style="{StaticResource XStyle.Strips.TextBlock}"/>
-            <TextBlock Text="{Binding ImageCount}" Style="{StaticResource XStyle.Strips.TextBlock}"/>
-            <TextBlock Text=")" Style="{StaticResource XStyle.Strips.TextBlock}"/>
-          </StackPanel>
         </Grid>
-      </Border>
+      </Grid>
+      
+      <DataTemplate.Triggers>
+        <Trigger Property="IsEnabled" Value="False">
+          <Setter Property="Opacity" TargetName="OuterBorder" Value="0.5"/>
+        </Trigger>
+        <MultiDataTrigger>
+          <MultiDataTrigger.Conditions>
+            <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}" Value="False"/>
+            <Condition Binding="{Binding IsReference}" Value="False"/>
+          </MultiDataTrigger.Conditions>
+          <Setter Property="Opacity" TargetName="IconGrid" Value="0.5"/>
+        </MultiDataTrigger>
+      </DataTemplate.Triggers>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:Strip}">
@@ -216,6 +226,11 @@
           </StackPanel>
         </Grid>
       </Border>
+      <DataTemplate.Triggers>
+        <Trigger Property="IsEnabled" Value="False">
+          <Setter Property="Opacity" Value="0.5"/>
+        </Trigger>
+      </DataTemplate.Triggers>
     </DataTemplate>
   </UserControl.Resources>
 
@@ -230,7 +245,7 @@
     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
     BorderThickness="0"
     ItemsSource="{Binding Strips}"
-    ItemContainerStyle="{StaticResource LStyle.ListBoxItem}"
+    ItemContainerStyle="{StaticResource XStyle.ListBoxItem.Strips}"
     PreviewMouseLeftButtonDown="Strips_PreviewMouseLeftButtonDown"
     PreviewMouseMove="Strips_PreviewMouseMove">
     <ListView.Resources>
@@ -268,31 +283,5 @@
         </GroupStyle.ContainerStyle>
       </GroupStyle>
     </ListView.GroupStyle>
-    <!--<ListView.ContextMenu>
-      <ContextMenu SnapsToDevicePixels="True" >
-        <ContextMenu.Style>
-          <Style TargetType="{x:Type ContextMenu}">
-            <Style.Triggers>
-              <Trigger Property="HasItems" Value="False">
-                <Setter Property="Visibility" Value="Collapsed" />
-              </Trigger>
-            </Style.Triggers>
-          </Style>
-        </ContextMenu.Style>
-        <MenuItem x:Name="LoadAct" Header="Load" Command="{Binding StripActionsHolder.LoadStripCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent.PlacementTarget.Tag}" />
-        <MenuItem Header="Load to all" Command="{Binding StripActionsHolder.LoadToAllStripsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent.PlacementTarget.Tag}" />
-        <Separator Visibility="{Binding Visibility, Source={x:Reference LoadAct}}" />
-
-          -->
-    <!--&#10; for 2lines-->
-    <!--
-        <MenuItem x:Name="CopyRegAct" Header="Copy Registration" Command="{Binding StripActionsHolder.CopyRegistrationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent.PlacementTarget.Tag}" Visibility="{Binding Command, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}" />
-        <MenuItem x:Name="ClearRegAct" Header="Clear Registration" Command="{Binding StripActionsHolder.ClearRegistrationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent.PlacementTarget.Tag}" Visibility="{Binding Command, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"  />
-        <Separator Visibility="{Binding Visibility, Source={x:Reference ClearRegAct}}" />
-
-        <MenuItem Header="Delete Series" Command="{Binding StripActionsHolder.DeleteStripCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent.PlacementTarget.Tag}" />
-
-      </ContextMenu>
-    </ListView.ContextMenu>-->
   </ListView>
 </UserControl>

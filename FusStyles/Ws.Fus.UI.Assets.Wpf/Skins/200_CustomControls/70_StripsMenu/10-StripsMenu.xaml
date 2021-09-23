@@ -140,14 +140,9 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="LStyle.ListBoxItem" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource XStyle.ListBoxItem.Transparent}">
+  <Style x:Key="XStyle.ListBoxItem.Strips" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource XStyle.ListBoxItem.Transparent}">
     <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="extensions:IndependentSize.Margin" Value="0,4,0,6"/>
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Opacity" Value="0.5"/>
-      </Trigger>
-    </Style.Triggers>
   </Style>
 </ResourceDictionary>
