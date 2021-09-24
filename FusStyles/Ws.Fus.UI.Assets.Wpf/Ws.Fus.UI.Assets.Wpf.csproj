@@ -150,7 +150,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\100_Controls\010_Controls\020-ControlTemplates.xaml">
+    <Page Include="Skins\100_Controls\030_ContentControls\010-ContentControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

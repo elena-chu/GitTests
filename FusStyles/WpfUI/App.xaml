@@ -32,7 +32,6 @@
 
         <!--Controls-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/010_Controls/010-ControlStyles.xaml"/>
-        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/010_Controls/020-ControlTemplates.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/010_Controls/040-ScrollStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/010_Controls/050-AnimatedBorder.xaml"/>
 
@@ -42,6 +41,9 @@
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/101-HeaderStyle.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/102-LabelStyle.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/020_TextElements/103-TextStyle.xaml"/>
+
+        <!--ContentControls-->
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/030_ContentControls/010-ContentControls.xaml"/>
 
         <!--Buttons-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/100-ToolButton.xaml"/>

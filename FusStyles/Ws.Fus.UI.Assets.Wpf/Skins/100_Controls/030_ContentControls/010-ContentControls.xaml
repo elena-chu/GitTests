@@ -75,4 +75,32 @@
     </Setter>
   </Style>
 
+  <Style x:Key="XStyle.ContentControl.Info" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Width" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid x:Name="MainGrid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+            <Border
+              Style="{StaticResource XStyle.Border.Frame}"
+              BorderBrush="{StaticResource XBrush.Control.Foreground.Disabled}"
+              Background="{StaticResource XBrush.Application.Background.Complementary}"/>
+            <Ellipse
+              Width="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.55}"
+              Height="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.55}"
+              extensions:IndependentSize.StrokeThickness="1.5"
+              Stroke="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+            <TextBlock
+              Text="i"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center"
+              Style="{StaticResource XStyle.TextBlock.Base}"
+              Foreground="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 </ResourceDictionary>

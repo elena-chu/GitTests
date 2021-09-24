@@ -79,6 +79,19 @@
       </ComboBox>
     </StackPanel>
 
+    <StackPanel>
+      <TextBlock Text="Info Content Control:"/>
+
+      <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Source="{Binding TestImage}" Style="{StaticResource XStyle.Strips.Image}" Width="300" Height="300"/>
+        <ContentControl
+          extensions:IndependentSize.Margin="12,0,0,12"
+          Style="{StaticResource XStyle.ContentControl.Info}"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Bottom"/>
+      </Grid>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>

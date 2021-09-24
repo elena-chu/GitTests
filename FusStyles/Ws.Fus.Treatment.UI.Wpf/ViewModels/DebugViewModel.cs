@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Ws.Extensions.Mvvm.ViewModels;
 using Ws.Extensions.UI.Wpf.Behaviors;
-using Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;
 using System.Windows.Media.Media3D;
+using System.IO;
+using System.Linq;
+using System.Windows.Media.Imaging;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -161,7 +163,23 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         {
             get { return _point; }
             set { SetProperty(ref _point, value); }
-        } 
+        }
+
+        #endregion
+
+
+        #region Info
+
+        public BitmapImage TestImage
+        {
+            get
+            {
+                var imageFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\ImageLoad\ImageLoad\Images\");
+                var fullPath = Path.GetFullPath(new Uri(imageFolder).LocalPath);
+                var imageName = Directory.GetFiles(fullPath, "*.*").First(file => file.ToLower().EndsWith("png") || file.ToLower().EndsWith("bmp"));
+                return new BitmapImage(new Uri(imageName));
+            }
+        }
 
         #endregion
     }
