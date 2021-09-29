@@ -19,7 +19,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             }
         }
 
-
         protected override void MenuItemClicked(object sender, RoutedEventArgs e)
         {
             base.MenuItemClicked(sender, e);
@@ -32,6 +31,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             if (menuItem.CommandParameter != null)
                 mode = (CompareMode)Enum.Parse(typeof(CompareMode), menuItem.CommandParameter.ToString());
             CompareMode = mode;
+            ActiveHeader = menuItem.Header;
         }
 
         #region INotifyPropertyChanged implementation

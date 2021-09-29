@@ -230,7 +230,14 @@
     <Style
       x:Key="{x:Type local:ToolbarMenuHeaderCompare}"
       TargetType="{x:Type local:ToolbarMenuHeaderCompare}"
-      BasedOn="{StaticResource {x:Type local:ToolbarMenuHeader}}"/>
+      BasedOn="{StaticResource {x:Type local:ToolbarMenuHeader}}">
+      <Setter Property="Header" Value="{Binding InactiveHeader, RelativeSource={RelativeSource Self}}"/>
+      <Style.Triggers>
+        <Trigger Property="IsActive" Value="True">
+          <Setter Property="Header" Value="{Binding ActiveHeader, RelativeSource={RelativeSource Self}}"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
 
     <Style x:Key="{x:Type Menu}" TargetType="{x:Type Menu}">
       <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -462,7 +469,7 @@
       <local:ToolbarMenuHeaderCompare
         x:Name="CompareMenuHeader"
         extensions:IndependentSize.Margin="0"
-        Header="Compare"
+        InactiveHeader="Compare"
         ToolbarItemType="SelectCaptionToggle"
         IsActive="False"
         UncheckedCommandParameter ="{x:Static entities:CompareMode.Simple}"

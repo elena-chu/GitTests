@@ -13,49 +13,44 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
     public class ToolbarMenuHeader : MenuItem
     {
         bool _isBulkUpdating = false;
-        private List<ToolbarMenuItem> _activeSet = new List<ToolbarMenuItem>();
-        private ToolbarMenuItem _selectedItem;
-
-        #region Dependency Properties
-
-        public static readonly DependencyProperty UncheckedCommandParameterProperty = DependencyProperty.Register("UncheckedCommandParameter", typeof(object), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
-        public object UncheckedCommandParameter
-        {
-            get { return GetValue(UncheckedCommandParameterProperty); }
-            set { SetValue(UncheckedCommandParameterProperty, value); }
-        }
-
-        public static readonly DependencyProperty CheckedCommandParameterProperty = DependencyProperty.Register("CheckedCommandParameter", typeof(object), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
-        public object CheckedCommandParameter
-        {
-            get { return GetValue(CheckedCommandParameterProperty); }
-            set { SetValue(CheckedCommandParameterProperty, value); }
-        }
 
 
-        public static readonly DependencyProperty ToolbarItemTypeProperty = DependencyProperty.Register("ToolbarItemType", typeof(ToolbarItemType), typeof(ToolbarMenuHeader), new PropertyMetadata(ToolbarItemType.Fire, OnHeaderTypeChanged));
+        #region General
+
+        public static readonly DependencyProperty ToolbarItemTypeProperty = DependencyProperty.Register("ToolbarItemType", typeof(ToolbarItemType), typeof(ToolbarMenuHeader), new PropertyMetadata(ToolbarItemType.Fire));
         public ToolbarItemType ToolbarItemType
         {
             get { return (ToolbarItemType)GetValue(ToolbarItemTypeProperty); }
             set { SetValue(ToolbarItemTypeProperty, value); }
         }
-        private static void OnHeaderTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var menuHeader = d as ToolbarMenuHeader;
 
-            if (menuHeader.ToolbarItemType != ToolbarItemType.Fire)
-            {
-                //menuHeader.Command = menuHeader.HeaderClickCommand;
-            }
+        public static readonly DependencyProperty ActiveHeaderProperty = DependencyProperty.Register(nameof(ActiveHeader), typeof(object), typeof(ToolbarMenuHeader));
+        public object ActiveHeader
+        {
+            get { return (object)GetValue(ActiveHeaderProperty); }
+            set { SetValue(ActiveHeaderProperty, value); }
         }
 
-        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false, OnActivationStateChanged));
+        public static readonly DependencyProperty InactiveHeaderProperty = DependencyProperty.Register(nameof(InactiveHeader), typeof(object), typeof(ToolbarMenuHeader));
+        public object InactiveHeader
+        {
+            get { return (object)GetValue(InactiveHeaderProperty); }
+            set { SetValue(InactiveHeaderProperty, value); }
+        }
+
+        #endregion
+
+
+        #region Active/Inactive State
+
         // Cannot use MenuItem's IsChecked because it doesn't fire when not IsCheckable (see above)
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false, OnActivationStateChanged));
         public bool IsActive
         {
             get { return (bool)GetValue(IsActiveProperty); }
             set { SetValue(IsActiveProperty, value); }
         }
+
         private static void OnActivationStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var menuHeader = d as ToolbarMenuHeader;
@@ -63,13 +58,33 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                 menuHeader.NotifyActivationState();
         }
 
+        public delegate void Activated(ToolbarMenuHeader menuHeader);
+        public event Activated ActivatedEvent;
 
-        public static readonly DependencyProperty HeaderClickCommandProperty = DependencyProperty.Register("HeaderClickCommand", typeof(DelegateCommand), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
+        private void NotifyActivationState()
+        {
+            if (IsActive)
+                ActivatedEvent?.Invoke(this);
+        }
+
+        private void UpdateActiveStatusByCheckedItems()
+        {
+            if (HasCheckableItems())
+                IsActive = Items.Cast<ToolbarMenuItem>().Any(x => x.IsChecked);
+        }
+
+        #endregion
+
+
+        #region Header Click
+
+        public static readonly DependencyProperty HeaderClickCommandProperty = DependencyProperty.Register(nameof(HeaderClickCommand), typeof(DelegateCommand), typeof(ToolbarMenuHeader));
         public DelegateCommand HeaderClickCommand
         {
             get { return (DelegateCommand)GetValue(HeaderClickCommandProperty); }
             set { SetValue(HeaderClickCommandProperty, value); }
         }
+
         private void HeaderClickExecute()
         {
             bool requestedCheck = !this.IsActive;
@@ -77,8 +92,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             if (ToolbarItemType.IsSelectable())
             {
                 ExecuteItemCommandByHeaderStatus(_selectedItem, requestedCheck);
+                if (ToolbarItemType.IsToggleable())
+                    IsActive = requestedCheck;
             }
-            else if (ToolbarItemType == ToolbarItemType.Toggle)
+            else if (HasCheckableItems())
             {
                 IEnumerable<ToolbarMenuItem> items = requestedCheck ? _activeSet : Items.Cast<ToolbarMenuItem>();
 
@@ -87,9 +104,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                     ExecuteItemCommandByHeaderStatus(item, requestedCheck);
 
                 _isBulkUpdating = false;
-                UpdateActiveStatus();
+                UpdateActiveStatusByCheckedItems();
             }
         }
+
         private bool HeaderClickCanExecute()
         {
             if (ToolbarItemType.IsSelectable())
@@ -100,21 +118,21 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         #endregion
 
+
+        #region Start, End
+        
         public ToolbarMenuHeader()
         {
             HeaderClickCommand = new DelegateCommand(HeaderClickExecute, HeaderClickCanExecute);
             Loaded += OnLoad;
         }
 
-
-        #region Start, End
-
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             Unloaded += OnUnload;
             UpdateActiveSet();
             InitSelectedItem();
-            UpdateActiveStatus();
+            UpdateActiveStatusByCheckedItems();
             RegisterItemEvents();
         }
 
@@ -145,10 +163,31 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             });
         }
 
+        private bool HasCheckableItems()
+        {
+            return Items.Cast<ToolbarMenuItem>().Any(x => x.IsCheckable);
+        }
+
         #endregion
 
 
-        #region Events handling
+        #region Items and Active Set
+
+        private List<ToolbarMenuItem> _activeSet = new List<ToolbarMenuItem>();
+
+        public static readonly DependencyProperty UncheckedCommandParameterProperty = DependencyProperty.Register("UncheckedCommandParameter", typeof(object), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
+        public object UncheckedCommandParameter
+        {
+            get { return GetValue(UncheckedCommandParameterProperty); }
+            set { SetValue(UncheckedCommandParameterProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckedCommandParameterProperty = DependencyProperty.Register("CheckedCommandParameter", typeof(object), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
+        public object CheckedCommandParameter
+        {
+            get { return GetValue(CheckedCommandParameterProperty); }
+            set { SetValue(CheckedCommandParameterProperty, value); }
+        }
 
         private void OnCheckedChanged(object sender, RoutedEventArgs e)
         {
@@ -166,7 +205,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                 else
                     UpdateActiveSet();
             }
-            UpdateActiveStatus();
+            UpdateActiveStatusByCheckedItems();
         }
 
 
@@ -182,16 +221,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             if (menuItem.ToolbarItemType.IsSelectable())
                 SetSelectedItem(menuItem);
 
-            UpdateActiveStatus();
-        }
-
-        public delegate void Activated(ToolbarMenuHeader menuHeader);
-        public event Activated ActivatedEvent;
-
-        private void NotifyActivationState()
-        {
-            if (IsActive)
-                ActivatedEvent?.Invoke(this);
+            UpdateActiveStatusByCheckedItems();
         }
 
         private void ExecuteItemCommandByHeaderStatus(ToolbarMenuItem item, bool requestedCheck)
@@ -212,15 +242,6 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             {
                 Debug.WriteLine($"ToolbarMenuHeader {item.Header?.ToString()} item.Command?.Execute(commandParam) Exception: {ex.Message}");
             }
-
-            //Lena: temp
-            item.IsChecked = requestedCheck;
-        }
-
-        private void UpdateActiveStatus()
-        {
-            bool hasCheckedItems = Items.Cast<ToolbarMenuItem>().Any(x => x.IsChecked);
-            this.IsActive = hasCheckedItems;
         }
 
         private void UpdateActiveSet()
@@ -230,7 +251,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         #endregion
 
+
         #region Selected Item
+
+        private ToolbarMenuItem _selectedItem;
 
         private void InitSelectedItem()
         {
@@ -255,7 +279,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             SetValue(IconedButton.ActiveIconProperty, _selectedItem.GetValue(IconedButton.ActiveIconProperty));
             SetValue(IconedButton.InactiveIconProperty, _selectedItem.GetValue(IconedButton.InactiveIconProperty));
             if (_selectedItem.ToolbarItemType == ToolbarItemType.SelectCaptionToggle)
-                Header = _selectedItem.Header;
+                ActiveHeader = _selectedItem.Header;
             //Command = _selectedItem.Command;
 
             HeaderClickCommand.RaiseCanExecuteChanged();
@@ -268,6 +292,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         }
 
         #endregion
+
 
         #region Exclusive Group
 

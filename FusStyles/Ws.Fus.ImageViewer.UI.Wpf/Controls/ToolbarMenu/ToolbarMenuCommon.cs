@@ -15,5 +15,10 @@
         {
             return toolbarItemType == ToolbarItemType.Select || toolbarItemType == ToolbarItemType.SelectToggle || toolbarItemType == ToolbarItemType.SelectCaptionToggle;
         }
+
+        public static bool IsToggleable(this ToolbarItemType toolbarItemType)
+        {
+            return toolbarItemType == ToolbarItemType.Toggle || toolbarItemType == ToolbarItemType.SelectToggle || toolbarItemType == ToolbarItemType.SelectCaptionToggle;
+        }
     }
 }

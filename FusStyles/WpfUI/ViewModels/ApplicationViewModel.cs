@@ -120,7 +120,7 @@ namespace WpfUI.ViewModels
                         IsEnabled = randomNum1 % 5 != 0,
                         IsLoaded = randomNum1 % 3 == 0,
                         Series = GetSeries(random),
-                        IsReference = randomNum2 % 4 == 0,
+                        IsReference = randomNum2 % 2 == 0,
                         IsRegistered = randomNum1 % 5 == 0,
                         HasAutoRegistration = randomNum2 % 4 != 0
                     });
