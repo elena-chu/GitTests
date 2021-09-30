@@ -45,8 +45,8 @@
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="SingleLetter Exit:"/>
-      <Button x:Name="ExitButton" Style="{StaticResource XStyle.Button.SingleLetter.Exit}"/>
+      <TextBlock Text="New Entry:"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.NewEntry}"/>
     </StackPanel>
 
     <StackPanel>
