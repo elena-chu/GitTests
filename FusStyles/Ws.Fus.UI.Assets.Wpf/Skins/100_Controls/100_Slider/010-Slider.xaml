@@ -2,71 +2,61 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:extensions="http://schemas.insightec.com/wpf/"
-  >
+ >
 
-  <Style x:Key="XStyle.Slider.Repeat" TargetType="{x:Type RepeatButton}">
-    <Setter Property="SnapsToDevicePixels" Value="true" />
-    <Setter Property="OverridesDefaultStyle" Value="true" />
-    <Setter Property="IsTabStop" Value="false" />
-    <Setter Property="Focusable" Value="false" />
+  <Style x:Key="XStyle.RepeatButton.Slider.Transparent" TargetType="{x:Type RepeatButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="Focusable" Value="False"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type RepeatButton}">
-          <Border Background="Transparent" />
+          <Border Background="Transparent"/>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
-  <Style x:Key="XStyle.Slider.Thumb.Base" TargetType="{x:Type Thumb}" >
-    <Setter Property="SnapsToDevicePixels" Value="true" />
-    <Setter Property="OverridesDefaultStyle" Value="true" />
-    <Setter Property="extensions:IndependentSize.Height" Value="14" />
-    <Setter Property="extensions:IndependentSize.Width" Value="14" />
+  <Style x:Key="XStyle.Path.SliderChevron" TargetType="{x:Type Path}">
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="12"/>
+    <Setter Property="Data" Value="{StaticResource XGeometry.Chevron.Down}"/>
+    <Setter Property="StrokeThickness" Value="1.3"/>
+    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="0"/>
+    <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Foreground}"/>
   </Style>
 
-  <Style x:Key="XStyle.Slider.Path" TargetType="{x:Type Path}">
-    <Setter Property="IsHitTestVisible" Value="False" />
-    <Setter Property="Stretch" Value="Uniform" />
-    <Setter Property="extensions:IndependentSize.Width" Value="12" />
-    <Setter Property="Data" Value="{StaticResource XGeometry.Chevron.Down}" />
-    <Setter Property="StrokeThickness" Value="1.3" />
-    <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
-    <Setter Property="extensions:IndependentSize.Margin" Value="0" />
-    <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+  <Style x:Key="XStyle.Border.SliderThumb.ViewerControl" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Frame}">
+    <Setter Property="Width" Value="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}"/>
+    <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}"/>
   </Style>
 
-  <Style x:Key="XStyle.Slider.Thumb.Border" TargetType="{x:Type Border}">
-    <Setter Property="Width" Value="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" />
-    <Setter Property="Height" Value="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}" />
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}" />
-    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}" />
-    <Setter Property="CornerRadius" Value="{StaticResource XCornerRadius.Frame}" />
-  </Style>
-
-  <Style x:Key="XStyle.Slider.Thumb.Horizontal" TargetType="{x:Type Thumb}" BasedOn="{StaticResource XStyle.Slider.Thumb.Base}">
+  <Style x:Key="XStyle.Thumb.Slider.ViewerControl.Horizontal" TargetType="{x:Type Thumb}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Thumb}">
-          <Border x:Name="TumbBorder" Style="{StaticResource XStyle.Slider.Thumb.Border}" >
+          <Border Style="{StaticResource XStyle.Border.SliderThumb.ViewerControl}">
             <Grid>
               <Grid.Resources>
-                <Style TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Slider.Path}" />
+                <Style TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Path.SliderChevron}"/>
               </Grid.Resources>
               <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
               </Grid.ColumnDefinitions>
-              <Path Grid.Column="0" >
+              <Path Grid.Column="0">
                 <Path.RenderTransform>
-                  <RotateTransform x:Name="ArrowRotateTransform" Angle="90"/>
+                  <RotateTransform Angle="90"/>
                 </Path.RenderTransform>
               </Path>
-              <Path Grid.Column="2" >
+              <Path Grid.Column="2">
                 <Path.RenderTransform>
-                  <RotateTransform x:Name="ArrowRotateTransform2" Angle="-90"/>
+                  <RotateTransform Angle="-90"/>
                 </Path.RenderTransform>
               </Path>
             </Grid>
@@ -76,28 +66,29 @@
     </Setter>
   </Style>
 
-  <Style x:Key="XStyle.Slider.Thumb.Vertical" TargetType="{x:Type Thumb}" BasedOn="{StaticResource XStyle.Slider.Thumb.Base}">
+  <Style x:Key="XStyle.Thumb.Slider.ViewerControl.Vertical" TargetType="{x:Type Thumb}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Thumb}">
-          <Border x:Name="TumbBorder" Style="{StaticResource XStyle.Slider.Thumb.Border}" >
+          <Border Style="{StaticResource XStyle.Border.SliderThumb.ViewerControl}">
             <Grid>
               <Grid.Resources>
-                <Style TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Slider.Path}" >
-                  <Setter Property="extensions:IndependentSize.Margin" Value="0,2" />
+                <Style TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Path.SliderChevron}">
+                  <Setter Property="extensions:IndependentSize.Margin" Value="0,2"/>
                 </Style>
               </Grid.Resources>
               <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
-              <Path Grid.Row="0" >
+              <Path Grid.Row="0">
                 <Path.RenderTransform>
                   <ScaleTransform x:Name="ArrowScaleTransform" ScaleY="-1"/>
                 </Path.RenderTransform>
               </Path>
-              <Path Grid.Row="2" />
+              <Path Grid.Row="2"/>
             </Grid>
           </Border>
         </ControlTemplate>
@@ -105,92 +96,126 @@
     </Setter>
   </Style>
 
-  <Style x:Key="XStyle.Slider.Base" TargetType="{x:Type Slider}">
-    <Setter Property="SnapsToDevicePixels" Value="False" />
-    <Setter Property="LargeChange" Value="0.01" />
-    <Setter Property="Minimum" Value="0" />
-    <Setter Property="Maximum" Value="1" />
+  <Style x:Key="XStyle.TextBlock.Slider.ViewerControl" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
   </Style>
 
-  <Style x:Key="XStyle.Slider.Horizontal.Large" TargetType="{x:Type Slider}" BasedOn="{StaticResource XStyle.Slider.Base}">
-    <Setter Property="Orientation" Value="Horizontal" />
-    <Setter Property="extensions:IndependentSize.MinHeight" Value="18" />
-    <Setter Property="extensions:IndependentSize.Margin" Value="0,6" />
+  <Style x:Key="XStyle.Slider.ViewerControl" TargetType="{x:Type Slider}">
+    <Setter Property="SnapsToDevicePixels" Value="False"/>
+    <Setter Property="LargeChange" Value="0.01"/>
+    <Setter Property="Minimum" Value="0"/>
+    <Setter Property="Maximum" Value="1"/>
+  </Style>
+
+  <Style x:Key="XStyle.Slider.ViewerControl.Horizontal" TargetType="{x:Type Slider}" BasedOn="{StaticResource XStyle.Slider.ViewerControl}">
+    <Setter Property="Orientation" Value="Horizontal"/>
+    <Setter Property="extensions:IndependentSize.MinHeight" Value="18"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="0,6"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Slider}">
           <Grid MinHeight="{TemplateBinding MinHeight}">
-            <Border x:Name="TrackBackground"
-              Margin="0"
-              CornerRadius="1"
+            <Border
+              extensions:IndependentSize.CornerRadius="1"
               extensions:IndependentSize.Height="2"
-              BorderThickness="0"
-              Background="{StaticResource XBrush.Application.Active}"
-                    />
+              Background="{StaticResource XBrush.Application.Active}"/>
             <Track x:Name="PART_Track">
               <Track.DecreaseRepeatButton>
-                <RepeatButton Style="{StaticResource XStyle.Slider.Repeat}"
-                      Command="Slider.DecreaseLarge" />
+                <RepeatButton Style="{StaticResource XStyle.RepeatButton.Slider.Transparent}" Command="Slider.DecreaseLarge"/>
               </Track.DecreaseRepeatButton>
               <Track.Thumb>
-                <Thumb Style="{StaticResource XStyle.Slider.Thumb.Horizontal}" 
-                       extensions:IndependentSize.Width="36"
-                       extensions:IndependentSize.Height="18"
-                       />
+                <Thumb
+                  Style="{StaticResource XStyle.Thumb.Slider.ViewerControl.Horizontal}" 
+                  extensions:IndependentSize.Width="36"
+                  extensions:IndependentSize.Height="18"/>
               </Track.Thumb>
               <Track.IncreaseRepeatButton>
-                <RepeatButton Style="{StaticResource XStyle.Slider.Repeat}"
-                      Command="Slider.IncreaseLarge" />
+                <RepeatButton Style="{StaticResource XStyle.RepeatButton.Slider.Transparent}" Command="Slider.IncreaseLarge"/>
               </Track.IncreaseRepeatButton>
             </Track>
-
+            <Popup
+              x:Name="Popup"
+              Placement="Bottom"
+              extensions:IndependentSize.VerticalOffset="-4"
+              AllowsTransparency="True"
+              Focusable="False"
+              PopupAnimation="Fade">
+              <Grid Width="{Binding ActualWidth, ElementName=PART_Track}">
+                <TextBlock HorizontalAlignment="Left" Text="{TemplateBinding extensions:ControlExtensions.CaptionMax}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+                <TextBlock HorizontalAlignment="Right" Text="{TemplateBinding extensions:ControlExtensions.CaptionMin}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+              </Grid>
+            </Popup>
           </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="IsOpen" TargetName="Popup" Value="True"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+              <Setter Property="IsOpen" TargetName="Popup" Value="False"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
-  <Style x:Key="XStyle.Slider.Vertical.Opacity" TargetType="{x:Type Slider}" BasedOn="{StaticResource XStyle.Slider.Base}">
-    <Setter Property="Orientation" Value="Vertical" />
-    <Setter Property="extensions:IndependentSize.MinWidth" Value="18" />
-    <Setter Property="extensions:IndependentSize.Margin" Value="6" />
-    <Setter Property="VerticalAlignment" Value="Top" />
-    <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="extensions:IndependentSize.Height" Value="150" />
+  <Style x:Key="XStyle.Slider.ViewerControl.Vertical" TargetType="{x:Type Slider}" BasedOn="{StaticResource XStyle.Slider.ViewerControl}">
+    <Setter Property="Orientation" Value="Vertical"/>
+    <Setter Property="extensions:IndependentSize.MinWidth" Value="18"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="6"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="150"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Slider}">
           <Grid MinHeight="{TemplateBinding MinHeight}">
-            <Border x:Name="TrackBackground"
-              Margin="0"
-              CornerRadius="1"
-              extensions:IndependentSize.Width="2"
-              BorderThickness="0">
+            <Border
+              extensions:IndependentSize.CornerRadius="1"
+              extensions:IndependentSize.Width="2">
               <Border.Background>
                 <LinearGradientBrush>
-                  <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0" />
-                  <GradientStop Color="#88FFFFFF" Offset="1" />
+                  <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
+                  <GradientStop Color="#88FFFFFF" Offset="1"/>
                 </LinearGradientBrush>
               </Border.Background>
             </Border>
             <Track x:Name="PART_Track">
               <Track.DecreaseRepeatButton>
-                <RepeatButton Style="{StaticResource XStyle.Slider.Repeat}"
-                      Command="Slider.DecreaseLarge" />
+                <RepeatButton Style="{StaticResource XStyle.RepeatButton.Slider.Transparent}" Command="Slider.DecreaseLarge"/>
               </Track.DecreaseRepeatButton>
               <Track.Thumb>
-                <Thumb Style="{StaticResource XStyle.Slider.Thumb.Vertical}" 
-                       extensions:IndependentSize.Width="18"
-                       extensions:IndependentSize.Height="36"
-                       />
+                <Thumb
+                  Style="{StaticResource XStyle.Thumb.Slider.ViewerControl.Vertical}" 
+                  extensions:IndependentSize.Width="18"
+                  extensions:IndependentSize.Height="36"/>
               </Track.Thumb>
               <Track.IncreaseRepeatButton>
-                <RepeatButton Style="{StaticResource XStyle.Slider.Repeat}"
-                      Command="Slider.IncreaseLarge" />
+                <RepeatButton Style="{StaticResource XStyle.RepeatButton.Slider.Transparent}" Command="Slider.IncreaseLarge"/>
               </Track.IncreaseRepeatButton>
             </Track>
-
+            <Popup
+              x:Name="Popup"
+              Placement="Right"
+              extensions:IndependentSize.HorizontalOffset="3"
+              AllowsTransparency="True"
+              Focusable="False"
+              PopupAnimation="Fade">
+              <Grid Height="{Binding ActualHeight, ElementName=PART_Track}">
+                <TextBlock VerticalAlignment="Top" Text="{TemplateBinding extensions:ControlExtensions.CaptionMax}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+                <TextBlock VerticalAlignment="Bottom" Text="{TemplateBinding extensions:ControlExtensions.CaptionMin}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+              </Grid>
+            </Popup>
           </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="IsOpen" TargetName="Popup" Value="True"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+              <Setter Property="IsOpen" TargetName="Popup" Value="False"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

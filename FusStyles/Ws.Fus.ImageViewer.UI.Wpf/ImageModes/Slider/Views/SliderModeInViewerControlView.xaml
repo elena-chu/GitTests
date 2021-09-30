@@ -20,24 +20,27 @@
 
     <!--<Rectangle Stretch="Fill" Grid.Column="1" Fill="Yellow" />-->
 
-    <Slider Grid.Column="1"
-        Style="{StaticResource XStyle.Slider.Horizontal.Large}"
-        HorizontalAlignment="Stretch" 
-        VerticalAlignment="Top"
-        Value="{Binding SlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
-            />
+    <Slider
+      Grid.Column="1"
+      Style="{StaticResource XStyle.Slider.ViewerControl.Horizontal}"
+      HorizontalAlignment="Stretch" 
+      VerticalAlignment="Top"
+      Value="{Binding SlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
+      extensions:ControlExtensions.CaptionMax="Secondary Images"
+      extensions:ControlExtensions.CaptionMin="Main Images"/>
 
     <Slider 
-        Grid.Row="1"
-        Grid.Column="0"
-        Style="{StaticResource XStyle.Slider.Vertical.Opacity}"
-        Orientation="Vertical"
-        VerticalAlignment="Top"
-        HorizontalAlignment="Left"
-        extensions:IndependentSize.Margin="4"
-        extensions:IndependentSize.Height="150"
-        Value="{Binding OpacitySlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
-            />
+      Grid.Row="1"
+      Grid.Column="0"
+      Style="{StaticResource XStyle.Slider.ViewerControl.Vertical}"
+      Orientation="Vertical"
+      VerticalAlignment="Top"
+      HorizontalAlignment="Left"
+      extensions:IndependentSize.Margin="4"
+      extensions:IndependentSize.Height="150"
+      Value="{Binding OpacitySlidedValue, FallbackValue=0.5, Mode=TwoWay}"
+      extensions:ControlExtensions.CaptionMax="100%"
+      extensions:ControlExtensions.CaptionMin="0%"/>
     <!--<Canvas
         Grid.Row="1"
         Grid.Column="0"

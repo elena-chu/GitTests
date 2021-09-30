@@ -41,6 +41,16 @@
   </Storyboard>
 
   
+  <!--DoubleAnimations-->
+  <Storyboard x:Key="XStoryboard.DoubleAnimation.Opacity.ToOpaque" Storyboard.TargetProperty="Opacity">
+    <DoubleAnimation To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.DoubleAnimation.Opacity.ToTransparent" Storyboard.TargetProperty="Opacity">
+    <DoubleAnimation To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+
   <!--BooleanAnimations-->
   <Storyboard x:Key="XStoryboard.BooleanAnimation.ToPressed" Storyboard.TargetProperty="(extensions:ControlExtensions.IsPressed)">
     <BooleanAnimationUsingKeyFrames>

@@ -108,18 +108,10 @@
             <Style.Triggers>
               <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
                 <Trigger.EnterActions>
-                  <BeginStoryboard>
-                    <Storyboard Storyboard.TargetProperty="Opacity">
-                      <DoubleAnimation To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
-                    </Storyboard>
-                  </BeginStoryboard>
+                  <BeginStoryboard Storyboard="{StaticResource XStoryboard.DoubleAnimation.Opacity.ToOpaque}"/>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
-                  <BeginStoryboard>
-                    <Storyboard Storyboard.TargetProperty="Opacity">
-                      <DoubleAnimation To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
-                    </Storyboard>
-                  </BeginStoryboard>
+                  <BeginStoryboard Storyboard="{StaticResource XStoryboard.DoubleAnimation.Opacity.ToTransparent}"/>
                 </Trigger.ExitActions>
               </Trigger>
               <DataTrigger Binding="{Binding IsNarrow, RelativeSource={RelativeSource AncestorType={x:Type extensions:NumericUpDown}}}" Value="True">

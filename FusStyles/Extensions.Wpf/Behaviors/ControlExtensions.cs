@@ -52,6 +52,22 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static void SetAlternativeText(DependencyObject obj, string value) { obj.SetValue(AlternativeTextProperty, value); }
 
         /// <summary>
+        /// Used for setting control's caption for Max Value etc.
+        /// e.g. watermark for combo
+        /// </summary>
+        public static readonly DependencyProperty CaptionMaxProperty = DependencyProperty.RegisterAttached("CaptionMax", typeof(string), typeof(ControlExtensions), new PropertyMetadata(string.Empty));
+        public static string GetCaptionMax(DependencyObject obj) { return (string)obj.GetValue(CaptionMaxProperty); }
+        public static void SetCaptionMax(DependencyObject obj, string value) { obj.SetValue(CaptionMaxProperty, value); }
+
+        /// <summary>
+        /// Used for setting control's caption for Min Value etc.
+        /// e.g. watermark for combo
+        /// </summary>
+        public static readonly DependencyProperty CaptionMinProperty = DependencyProperty.RegisterAttached("CaptionMin", typeof(string), typeof(ControlExtensions), new PropertyMetadata(string.Empty));
+        public static string GetCaptionMin(DependencyObject obj) { return (string)obj.GetValue(CaptionMinProperty); }
+        public static void SetCaptionMin(DependencyObject obj, string value) { obj.SetValue(CaptionMinProperty, value); }
+
+        /// <summary>
         /// IsActive imitates "IsChecked" property, for any control
         /// </summary>
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.RegisterAttached("IsActive", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
