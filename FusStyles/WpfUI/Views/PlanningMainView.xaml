@@ -53,6 +53,8 @@
 
       <Grid Height="Auto" Grid.Row="1">
         <Grid.Resources>
+          <Thickness x:Key="LThickness.BorderMargins">8</Thickness>
+
           <Style TargetType="{x:Type locControls:ProgressNavigationButton}">
             <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
             <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
@@ -145,16 +147,19 @@
                       </VisualStateGroup>
                       <VisualStateGroup x:Name="CallToActionStates">
                         <VisualState x:Name="CallToActionActive">
-                          <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="CTA_El">
-                              <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                            </ObjectAnimationUsingKeyFrames>
-                            <DoubleAnimation Storyboard.TargetName="CTAScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From=".5" To="1" Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever" />
-                            <DoubleAnimation Storyboard.TargetName="CTAScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From=".5" To="1" Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever" />
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CTA_El" From=".3" To=".8" Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever" />
+                          <Storyboard Storyboard.TargetProperty="(extensions:ControlExtensions.IsActive)" Storyboard.TargetName="RippleBorder">
+                            <BooleanAnimationUsingKeyFrames>
+                              <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+                            </BooleanAnimationUsingKeyFrames>
                           </Storyboard>
                         </VisualState>
-                        <VisualState x:Name="CallToActionInactive" />
+                        <VisualState x:Name="CallToActionInactive">
+                          <Storyboard Storyboard.TargetProperty="(extensions:ControlExtensions.IsActive)" Storyboard.TargetName="RippleBorder">
+                            <BooleanAnimationUsingKeyFrames>
+                              <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
+                            </BooleanAnimationUsingKeyFrames>
+                          </Storyboard>
+                        </VisualState>
                       </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
                     <ContentPresenter x:Name="ActiveBkg" 
@@ -163,30 +168,28 @@
                         Visibility="Hidden" 
                         extensions:IndependentSize.Margin="0,4"              
                         />
-                    <Grid x:Name="Root" 
-                          extensions:IndependentSize.Margin="10,3,10,8" 
-                          Background="Transparent">
+                    <Grid x:Name="Root" extensions:IndependentSize.Margin="10,3,10,8">
                       <Grid.RowDefinitions>
-                        <RowDefinition  />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
                       </Grid.RowDefinitions>
-                      <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                            extensions:IndependentSize.Margin="0,0,0,2">
-                        <Ellipse x:Name="CTA_El" extensions:IndependentSize.Width="18" extensions:IndependentSize.Height="18" Visibility="Hidden" Opacity=".6" Stroke="White" StrokeThickness="4" Fill="Transparent" >
-                          <Ellipse.RenderTransformOrigin>
-                            <Point X=".5" Y=".5"/>
-                          </Ellipse.RenderTransformOrigin>
-                          <Ellipse.RenderTransform >
-                            <ScaleTransform x:Name="CTAScaleTransform" />
-                          </Ellipse.RenderTransform>
-                        </Ellipse>
+                      <Grid
+                        extensions:IndependentSize.Margin="0,0,0,2"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left">
+                        <Border
+                          x:Name="RippleBorder"
+                          extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
+                          Style="{StaticResource XStyle.Border.Ripple}"
+                          extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Circle}"
+                          extensions:ControlExtensions.IsActive="False"/>
                         <ContentControl
                           x:Name="StatusIndicator"
-                          extensions:IndependentSize.Margin="3"
+                          extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
                           Style="{StaticResource XStyle.ContentControl.StatusIndicator}"
                           extensions:ProgressStatusDisplayer.ActiveAsForeground="False"
-                          VerticalAlignment="Bottom"
-                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
                           IsEnabled="{TemplateBinding IsEnabled}"
                           ToolTip="{TemplateBinding ToolTip}"
                           ToolTipService.ShowOnDisabled="True"/>

@@ -63,5 +63,13 @@
       <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
     </BooleanAnimationUsingKeyFrames>
   </Storyboard>
+  
+  
+  <!--Ripple Animation-->
+  <Storyboard x:Key="XStoryboard.RippleAnimation">
+    <ThicknessAnimation Storyboard.TargetProperty="Margin" To="0" Duration="0:0:1.5" RepeatBehavior="Forever"/>
+    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:1.5" RepeatBehavior="Forever"/>
+  </Storyboard>
+
 
 </ResourceDictionary>

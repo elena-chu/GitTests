@@ -225,8 +225,7 @@
         x:Name="RippleBorder"
         extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
         Style="{StaticResource XStyle.Border.Ripple}"
-        extensions:ControlExtensions.IsActive="False"
-        Visibility="Hidden"/>
+        extensions:ControlExtensions.IsActive="False"/>
       <Border
         x:Name="HoverAndPressBorder"
         extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
@@ -246,7 +245,6 @@
     </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="extensions:ControlExtensions.ControlState" Value="CallToAction">
-        <Setter TargetName="RippleBorder" Property="Visibility" Value="Visible"/>
         <Setter TargetName="RippleBorder" Property="extensions:ControlExtensions.IsActive" Value="True"/>
         <Setter TargetName="HoverAndPressBorder" Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
       </Trigger>

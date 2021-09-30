@@ -142,19 +142,17 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.Border.Ripple" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Frame}">
+  <Style x:Key="XStyle.Border.Ripple" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Setter Property="Opacity" Value="1"/>
+    <Setter Property="Visibility" Value="Hidden"/>
     <Style.Triggers>
       <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
+        <Setter Property="Visibility" Value="Visible"/>
         <Trigger.EnterActions>
-          <BeginStoryboard x:Name="RippleAnimation">
-            <Storyboard>
-              <ThicknessAnimation Storyboard.TargetProperty="Margin" To="0" Duration="0:0:1.5" RepeatBehavior="Forever"/>
-              <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:1.5" RepeatBehavior="Forever"/>
-            </Storyboard>
-          </BeginStoryboard>
+          <BeginStoryboard x:Name="RippleAnimation" Storyboard="{StaticResource XStoryboard.RippleAnimation}"/>
         </Trigger.EnterActions>
         <Trigger.ExitActions>
           <StopStoryboard BeginStoryboardName="RippleAnimation"/>
