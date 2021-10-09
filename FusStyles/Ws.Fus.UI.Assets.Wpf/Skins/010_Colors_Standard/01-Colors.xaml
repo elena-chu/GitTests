@@ -50,6 +50,31 @@
   <!--Frame/Line-->
   <Color x:Key="XColor.Line">#FF333333</Color>
 
+  <!--Temperatures-->
+  <Color x:Key="XColor.Temperature.37">#FF059DC7</Color>
+  <Color x:Key="XColor.Temperature.38">#FF2b9ea7</Color>
+  <Color x:Key="XColor.Temperature.39">#FF509f89</Color>
+  <Color x:Key="XColor.Temperature.40">#FF6d9f71</Color>
+  <Color x:Key="XColor.Temperature.41">#FF8BA15B</Color>
+  <Color x:Key="XColor.Temperature.42">#FF9DA14E</Color>
+  <Color x:Key="XColor.Temperature.43">#FFaaa042</Color>
+  <Color x:Key="XColor.Temperature.44">#FFc59f2e</Color>
+  <Color x:Key="XColor.Temperature.45">#FFd59f21</Color>
+  <Color x:Key="XColor.Temperature.46">#FFe19e17</Color>
+  <Color x:Key="XColor.Temperature.47">#FFfc9d02</Color>
+  <Color x:Key="XColor.Temperature.48">#FFff8d00</Color>
+  <Color x:Key="XColor.Temperature.49">#FFff8500</Color>
+  <Color x:Key="XColor.Temperature.50">#FFfe7d00</Color>
+  <Color x:Key="XColor.Temperature.51">#FFff7300</Color>
+  <Color x:Key="XColor.Temperature.52">#FFfe6900</Color>
+  <Color x:Key="XColor.Temperature.53">#FFfe6200</Color>
+  <Color x:Key="XColor.Temperature.54">#FFFF5000</Color>
+  <Color x:Key="XColor.Temperature.55">#FFFF4400</Color>
+  <Color x:Key="XColor.Temperature.56">#FFfe3000</Color>
+  <Color x:Key="XColor.Temperature.57">#FFff2c00</Color>
+  <Color x:Key="XColor.Temperature.58">#FFfe1e00</Color>
+  <Color x:Key="XColor.Temperature.59">#FFfe1300</Color>
+  <Color x:Key="XColor.Temperature.60">#FFFF0000</Color>
 
   <!-- OLD COLORS-->
   <Color x:Key="MouseOverColor">#FF669933</Color> <!--Green-->

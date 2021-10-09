@@ -84,6 +84,32 @@
     <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0" />
   </RadialGradientBrush>
 
+  <!--Temperature-->
+  <SolidColorBrush x:Key="XBrush.Temperature.37" Color="{StaticResource XColor.Temperature.37}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.38" Color="{StaticResource XColor.Temperature.38}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.39" Color="{StaticResource XColor.Temperature.39}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.40" Color="{StaticResource XColor.Temperature.40}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.41" Color="{StaticResource XColor.Temperature.41}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.42" Color="{StaticResource XColor.Temperature.42}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.43" Color="{StaticResource XColor.Temperature.43}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.44" Color="{StaticResource XColor.Temperature.44}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.45" Color="{StaticResource XColor.Temperature.45}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.46" Color="{StaticResource XColor.Temperature.46}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.47" Color="{StaticResource XColor.Temperature.47}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.48" Color="{StaticResource XColor.Temperature.48}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.49" Color="{StaticResource XColor.Temperature.49}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.50" Color="{StaticResource XColor.Temperature.50}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.51" Color="{StaticResource XColor.Temperature.51}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.52" Color="{StaticResource XColor.Temperature.52}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.53" Color="{StaticResource XColor.Temperature.53}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.54" Color="{StaticResource XColor.Temperature.54}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.55" Color="{StaticResource XColor.Temperature.55}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.56" Color="{StaticResource XColor.Temperature.56}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.57" Color="{StaticResource XColor.Temperature.57}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.58" Color="{StaticResource XColor.Temperature.58}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.59" Color="{StaticResource XColor.Temperature.59}"/>
+  <SolidColorBrush x:Key="XBrush.Temperature.60" Color="{StaticResource XColor.Temperature.60}"/>
+
 
   <!-- ImageBrushes -->
   <!--<ImageBrush x:Key="LogoBrush" ImageSource="../../Images/Common/Insightec-Logo.png" Stretch="Uniform" ></ImageBrush>-->
