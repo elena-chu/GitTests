@@ -8,16 +8,13 @@ namespace InsightecFiddle.ViewModels
 {
     public class DataPoint
     {
-        public int Seconds { get; set; }
+        public double Seconds { get; set; }
         public int Temperature { get; set; }
     }
 
     public class ChartViewModel : MinimalViewModel
     {
-        private DispatcherTimer timer;
-        private int _currentSecond;
-        private const int TimerInterval = 500;
-        private List<int> _temperatures = new List<int>() { 0, 47, 57, 62, 67, 72, 65, 60, 50, 43, 42, 41, 39};
+        #region Start
 
         public ChartViewModel()
         {
@@ -25,37 +22,24 @@ namespace InsightecFiddle.ViewModels
             timer.Interval = TimeSpan.FromMilliseconds(TimerInterval);
             timer.Tick += OnTimer;
 
-            FillData();
+            InitSeries();
             AverageTemperature = 0;
         }
 
-        private int _averageTemperature;
-        public int AverageTemperature
+        private void InitSeries()
         {
-            get => _averageTemperature;
-            set
-            {
-                if (_averageTemperature != value)
-                {
-                    _averageTemperature = value;
-                    OnPropertyChanged();
-                }
-            }
+            InitTemperatureData();
+            InitLimitData();
         }
 
-        public RadObservableCollection<DataPoint> _data;
-        public RadObservableCollection<DataPoint> Data
-        {
-            get => _data;
-            set
-            {
-                if (_data != value)
-                {
-                    _data = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        #endregion
+
+
+        #region Timer
+
+        private DispatcherTimer timer;
+        private int _currentSecond;
+        private const int TimerInterval = 500;
 
         public void StartTimer()
         {
@@ -72,20 +56,16 @@ namespace InsightecFiddle.ViewModels
             timer.Interval = TimeSpan.FromMilliseconds(interval);
         }
 
-        private void FillData()
-        {
-            RadObservableCollection<DataPoint> collection = new RadObservableCollection<DataPoint>();
-            collection.Add(CreateBusinessObject());
-            Data = collection;
-        }
-
         private void OnTimer(object sender, EventArgs e)
         {
-            Data.SuspendNotifications();
+            TemperatureData.SuspendNotifications();
+            LimitData.SuspendNotifications();
+            AddTemperaturePoint();
+            AddLimitPoints();
+            TemperatureData.ResumeNotifications();
+            LimitData.ResumeNotifications();
 
-            Data.Add(CreateBusinessObject());
-            Data.ResumeNotifications();
-            UpdateMetrics();
+            _currentSecond++;
             if (_currentSecond > 12)
             {
                 timer.Tick -= OnTimer;
@@ -93,20 +73,121 @@ namespace InsightecFiddle.ViewModels
             }
         }
 
-        private void UpdateMetrics()
+        #endregion
+
+
+        #region Temperature Data
+
+        private List<int> _temperatures = new List<int>() { 35, 47, 57, 62, 67, 72, 65, 60, 50, 43, 42, 41, 39 };
+
+        public RadObservableCollection<DataPoint> _temperatureData;
+        public RadObservableCollection<DataPoint> TemperatureData
         {
-            AverageTemperature = (int)Data.Select(point => point.Temperature).Average();
+            get => _temperatureData;
+            set
+            {
+                if (_temperatureData != value)
+                {
+                    _temperatureData = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
-        private DataPoint CreateBusinessObject()
+        private void InitTemperatureData()
         {
-            DataPoint obj = new DataPoint();
-
-            obj.Temperature = _temperatures[_currentSecond];
-            obj.Seconds = _currentSecond;
-            _currentSecond++;
-
-            return obj;
+            TemperatureData = new RadObservableCollection<DataPoint>();
+            AddTemperaturePoint();
         }
+
+        private void AddTemperaturePoint()
+        {
+            DataPoint temperaturePoint = new DataPoint()
+            {
+                Temperature = _temperatures[_currentSecond],
+                Seconds = _currentSecond
+            };
+            TemperatureData.Add(temperaturePoint);
+            UpdateTemperatureMetrics();
+        }
+
+        private int _averageTemperature;
+        public int AverageTemperature
+        {
+            get => _averageTemperature;
+            set
+            {
+                if (_averageTemperature != value)
+                {
+                    _averageTemperature = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void UpdateTemperatureMetrics()
+        {
+            AverageTemperature = (int)TemperatureData.Select(point => point.Temperature).Average();
+        }
+
+        #endregion
+
+
+        #region Limit Data
+
+        private int _limit = 67;
+
+        public RadObservableCollection<DataPoint> _limitData;
+        public RadObservableCollection<DataPoint> LimitData
+        {
+            get => _limitData;
+            set
+            {
+                if (_limitData != value)
+                {
+                    _limitData = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void InitLimitData()
+        {
+            LimitData = new RadObservableCollection<DataPoint>();
+            AddLimitPoints();
+        }
+
+        private void AddLimitPoints()
+        {
+            DataPoint limitPoint = new DataPoint()
+            {
+                Temperature = _limit,
+                Seconds = _currentSecond
+            };
+            LimitData.Add(limitPoint);
+            limitPoint = new DataPoint()
+            {
+                Temperature = _limit,
+                Seconds = _currentSecond + 0.5
+            };
+            LimitData.Add(limitPoint);
+        }
+
+        public void OnLimitChanged(int change)
+        {
+            _limit = change;
+            LimitData.SuspendNotifications();
+
+            var newLimitData = new RadObservableCollection<DataPoint>();
+            foreach (var limitPoint in LimitData)
+                newLimitData.Add(new DataPoint() { 
+                    Seconds = limitPoint.Seconds,
+                    Temperature = _limit
+                });
+            LimitData = newLimitData;
+            OnPropertyChanged(nameof(LimitData));
+            LimitData.ResumeNotifications();
+        }
+        #endregion
     }
 }

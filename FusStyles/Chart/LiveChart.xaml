@@ -10,6 +10,7 @@
   xmlns:conv="clr-namespace:InsightecFiddle.Converters"
   Loaded="UserControl_Loaded"
   Unloaded="UserControl_Unloaded"
+  x:Name="thisLiveChart"
   mc:Ignorable="d">
 
   <UserControl.DataContext>
@@ -30,15 +31,43 @@
         <TextBlock Text="AVG: " Style="{StaticResource XStyle.TextBlock.Base}"/>
         <TextBlock Text="{Binding AverageTemperature}" Style="{StaticResource XStyle.TextBlock.Base}"/>
       </StackPanel>
-      <telerik:RadCartesianChart Grid.Row="1" EmptyContent="This is a custom string">
+      
+      <telerik:RadCartesianChart x:Name="RadCartesianChart" Grid.Row="1" EmptyContent="Some notification goes here">
+        <telerik:RadCartesianChart.Resources>
+          <DataTemplate x:Key="LDataTemplate.LimitTrackBall">
+            <Ellipse
+              Width="20"
+              Height="20"
+              Fill="{StaticResource XBrush.Application.Active}"
+              PreviewMouseDown="LimitTrackBall_PreviewMouseDown"
+              PreviewMouseMove="LimitTrackBall_PreviewMouseMove"/>
+          </DataTemplate>
+          <DataTemplate x:Key="LDataTemplate.TemperatureTrackBall"/>
+        </telerik:RadCartesianChart.Resources>
+        <telerik:RadCartesianChart.Behaviors>
+          <telerik:ChartTrackBallBehavior ShowIntersectionPoints="True" ShowTrackInfo="False"/>
+        </telerik:RadCartesianChart.Behaviors>
+        <telerik:RadCartesianChart.TrackBallLineStyle>
+          <Style TargetType="Polyline">
+            <Setter Property="Visibility" Value="Collapsed"/>
+          </Style>
+        </telerik:RadCartesianChart.TrackBallLineStyle>
+        <telerik:LineSeries
+          Stroke="{StaticResource XBrush.Application.Active}"
+          StrokeThickness="1"
+          CategoryBinding="Seconds"
+          ValueBinding="Temperature"
+          ItemsSource="{Binding LimitData}"
+          TrackBallTemplate="{StaticResource LDataTemplate.LimitTrackBall}"/>
         <telerik:LineSeries
           Stroke="White"
           StrokeThickness="2"
           CategoryBinding="Seconds"
           ValueBinding="Temperature"
-          ItemsSource="{Binding Data}"/>
+          ItemsSource="{Binding TemperatureData}"
+          TrackBallTemplate="{StaticResource LDataTemplate.TemperatureTrackBall}"/>
         <telerik:RadCartesianChart.HorizontalAxis>
-          <telerik:CategoricalAxis>
+          <telerik:CategoricalAxis LabelInterval="2">
             <telerik:CategoricalAxis.LabelStyle>
               <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}"/>
             </telerik:CategoricalAxis.LabelStyle>
@@ -46,9 +75,10 @@
         </telerik:RadCartesianChart.HorizontalAxis>
         <telerik:RadCartesianChart.VerticalAxis>
           <telerik:LinearAxis
+            x:Name="VerticalAxis"
             Minimum="35"
-            MajorStep="1"
             Maximum="75"
+            MajorStep="1"
             LineStroke="Transparent"
             FontFamily="{StaticResource XFontFamily.Base}">
             <telerik:LinearAxis.MajorTickStyle>
