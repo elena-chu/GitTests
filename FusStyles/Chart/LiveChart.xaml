@@ -76,8 +76,8 @@
         <telerik:RadCartesianChart.VerticalAxis>
           <telerik:LinearAxis
             x:Name="VerticalAxis"
-            Minimum="35"
-            Maximum="75"
+            Minimum="{Binding MinTemperature}"
+            Maximum="{Binding MaxTemperature}"
             MajorStep="1"
             LineStroke="Transparent"
             FontFamily="{StaticResource XFontFamily.Base}">

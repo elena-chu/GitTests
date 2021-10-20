@@ -76,6 +76,33 @@ namespace InsightecFiddle.ViewModels
         #endregion
 
 
+        #region Axis
+
+        private int _minTemperature = 35;
+        public int MinTemperature
+        {
+            get => _minTemperature;
+            set
+            {
+                _minTemperature = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _maxTemperature = 50;
+        public int MaxTemperature
+        {
+            get => _maxTemperature;
+            set
+            {
+                _maxTemperature = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
         #region Temperature Data
 
         private List<int> _temperatures = new List<int>() { 35, 47, 57, 62, 67, 72, 65, 60, 50, 43, 42, 41, 39 };
@@ -108,7 +135,7 @@ namespace InsightecFiddle.ViewModels
                 Seconds = _currentSecond
             };
             TemperatureData.Add(temperaturePoint);
-            UpdateTemperatureMetrics();
+            OnAddTemperatureData();
         }
 
         private int _averageTemperature;
@@ -125,9 +152,13 @@ namespace InsightecFiddle.ViewModels
             }
         }
 
-        private void UpdateTemperatureMetrics()
+        private void OnAddTemperatureData()
         {
             AverageTemperature = (int)TemperatureData.Select(point => point.Temperature).Average();
+            if (TemperatureData.Last().Temperature >= MaxTemperature)
+                MaxTemperature = TemperatureData.Last().Temperature + 5;
+            if (TemperatureData.Last().Temperature < MinTemperature)
+                MinTemperature = TemperatureData.Last().Temperature - 5;
         }
 
         #endregion
