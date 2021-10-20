@@ -8,6 +8,7 @@
   xmlns:vm="clr-namespace:InsightecFiddle.ViewModels"
   xmlns:local="clr-namespace:InsightecFiddle.UserControls"
   xmlns:conv="clr-namespace:InsightecFiddle.Converters"
+  xmlns:utilities="clr-namespace:InsightecFiddle.Utilities"
   Loaded="UserControl_Loaded"
   Unloaded="UserControl_Unloaded"
   x:Name="thisLiveChart"
@@ -33,41 +34,36 @@
       </StackPanel>
       
       <telerik:RadCartesianChart x:Name="RadCartesianChart" Grid.Row="1" EmptyContent="Some notification goes here">
-        <telerik:RadCartesianChart.Resources>
-          <DataTemplate x:Key="LDataTemplate.LimitTrackBall">
-            <Ellipse
-              Width="20"
-              Height="20"
-              Fill="{StaticResource XBrush.Application.Active}"
-              PreviewMouseDown="LimitTrackBall_PreviewMouseDown"
-              PreviewMouseMove="LimitTrackBall_PreviewMouseMove"/>
-          </DataTemplate>
-          <DataTemplate x:Key="LDataTemplate.TemperatureTrackBall"/>
-        </telerik:RadCartesianChart.Resources>
-        <telerik:RadCartesianChart.Behaviors>
-          <telerik:ChartTrackBallBehavior ShowIntersectionPoints="True" ShowTrackInfo="False"/>
-        </telerik:RadCartesianChart.Behaviors>
-        <telerik:RadCartesianChart.TrackBallLineStyle>
-          <Style TargetType="Polyline">
-            <Setter Property="Visibility" Value="Collapsed"/>
-          </Style>
-        </telerik:RadCartesianChart.TrackBallLineStyle>
-        <telerik:LineSeries
-          Stroke="{StaticResource XBrush.Application.Active}"
-          StrokeThickness="1"
-          CategoryBinding="Seconds"
-          ValueBinding="Temperature"
-          ItemsSource="{Binding LimitData}"
-          TrackBallTemplate="{StaticResource LDataTemplate.LimitTrackBall}"/>
+        <telerik:RadCartesianChart.Annotations>
+          <telerik:CartesianGridLineAnnotation
+            x:Name="LimitLine"
+            Axis="{Binding ElementName=VerticalAxis}"
+            Value="{Binding Limit, Mode=TwoWay}" 
+            StrokeThickness="9"
+            Stroke="{StaticResource XBrush.Application.Active}"
+            IsHitTestVisible="True"
+            ZIndex="49"
+            utilities:AnnotationUtilities.IsDraggingEnabled="True">
+            <telerik:CartesianGridLineAnnotation.Effect>
+              <BlurEffect Radius="30"/>
+            </telerik:CartesianGridLineAnnotation.Effect>
+          </telerik:CartesianGridLineAnnotation>
+          <telerik:CartesianGridLineAnnotation
+            Axis="{Binding ElementName=VerticalAxis}"
+            Value="{Binding Value, ElementName=LimitLine}" 
+            StrokeThickness="1"
+            Stroke="{StaticResource XBrush.Application.Active}"
+            IsHitTestVisible="False"
+            ZIndex="50"/>
+        </telerik:RadCartesianChart.Annotations>
         <telerik:LineSeries
           Stroke="White"
           StrokeThickness="2"
           CategoryBinding="Seconds"
           ValueBinding="Temperature"
-          ItemsSource="{Binding TemperatureData}"
-          TrackBallTemplate="{StaticResource LDataTemplate.TemperatureTrackBall}"/>
+          ItemsSource="{Binding TemperatureData}"/>
         <telerik:RadCartesianChart.HorizontalAxis>
-          <telerik:CategoricalAxis LabelInterval="2">
+          <telerik:CategoricalAxis x:Name="HorizontalAxis" LabelInterval="2">
             <telerik:CategoricalAxis.LabelStyle>
               <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}"/>
             </telerik:CategoricalAxis.LabelStyle>

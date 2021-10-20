@@ -29,7 +29,6 @@ namespace InsightecFiddle.ViewModels
         private void InitSeries()
         {
             InitTemperatureData();
-            InitLimitData();
         }
 
         #endregion
@@ -59,11 +58,8 @@ namespace InsightecFiddle.ViewModels
         private void OnTimer(object sender, EventArgs e)
         {
             TemperatureData.SuspendNotifications();
-            LimitData.SuspendNotifications();
             AddTemperaturePoint();
-            AddLimitPoints();
             TemperatureData.ResumeNotifications();
-            LimitData.ResumeNotifications();
 
             _currentSecond++;
             if (_currentSecond > 12)
@@ -166,59 +162,20 @@ namespace InsightecFiddle.ViewModels
 
         #region Limit Data
 
-        private int _limit = 67;
-
-        public RadObservableCollection<DataPoint> _limitData;
-        public RadObservableCollection<DataPoint> LimitData
+        private int _limit = 45;
+        public int Limit
         {
-            get => _limitData;
+            get => _limit;
             set
             {
-                if (_limitData != value)
+                if (value != _limit)
                 {
-                    _limitData = value;
+                    _limit = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private void InitLimitData()
-        {
-            LimitData = new RadObservableCollection<DataPoint>();
-            AddLimitPoints();
-        }
-
-        private void AddLimitPoints()
-        {
-            DataPoint limitPoint = new DataPoint()
-            {
-                Temperature = _limit,
-                Seconds = _currentSecond
-            };
-            LimitData.Add(limitPoint);
-            limitPoint = new DataPoint()
-            {
-                Temperature = _limit,
-                Seconds = _currentSecond + 0.5
-            };
-            LimitData.Add(limitPoint);
-        }
-
-        public void OnLimitChanged(int change)
-        {
-            _limit = change;
-            LimitData.SuspendNotifications();
-
-            var newLimitData = new RadObservableCollection<DataPoint>();
-            foreach (var limitPoint in LimitData)
-                newLimitData.Add(new DataPoint() { 
-                    Seconds = limitPoint.Seconds,
-                    Temperature = _limit
-                });
-            LimitData = newLimitData;
-            OnPropertyChanged(nameof(LimitData));
-            LimitData.ResumeNotifications();
-        }
         #endregion
     }
 }
