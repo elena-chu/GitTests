@@ -82,13 +82,15 @@ namespace Ws.Extensions.UI.Wpf.Converters
                 return Binding.DoNothing;
 
             int numerator = 0;
-            if (value is string valueString)
+            string valueString = value as string;
+            if (!string.IsNullOrWhiteSpace(valueString))
                 int.TryParse(valueString, out numerator);
             if (value is int)
                 numerator = (int)value;
 
             int denominator = 0;
-            if (parameter is string paramString)
+            string paramString = parameter as string;
+            if (!string.IsNullOrWhiteSpace(paramString))
                 int.TryParse(paramString, out denominator);
             if (parameter is int)
                 denominator = (int)parameter;

@@ -182,7 +182,7 @@
                           extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
                           Style="{StaticResource XStyle.Border.Ripple}"
                           extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Circle}"
-                          extensions:ControlExtensions.IsActive="False"/>
+                          />
                         <ContentControl
                           x:Name="StatusIndicator"
                           extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
