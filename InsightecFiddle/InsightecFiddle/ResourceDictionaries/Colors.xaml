@@ -1,0 +1,78 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!--Theme-->
+  <Color x:Key="XColor.Application.Active">#FF20CAF9</Color>
+  <Color x:Key="XColor.Application.Foreground">#FFFAFAFA</Color>
+  <Color x:Key="XColor.Application.Foreground.Secondary">#FFD0D0D0</Color>
+  <Color x:Key="XColor.Application.Background">#FF000000</Color>
+  <Color x:Key="XColor.Application.Background.Complementary">#FF191919</Color>
+
+  <Color x:Key="XColor.Application.Active.30">#4D00E0FF</Color><!--Blue Opacity 30% -->
+  <Color x:Key="XColor.Application.Active.10">#1A00E0FF</Color><!--Blue OPacity 10%-->
+
+  <!--Gradients-->
+  <Color x:Key="XColor.Application.Active.Transparent">#0020CAF9</Color>
+  <Color x:Key="XColor.Application.Active.AlmostTransparent">#1A00E0FF</Color>
+
+  <!--General-->
+  <Color x:Key="XColor.AlmostTransparent">#01000000</Color>
+  <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
+
+  <!--Severity-->
+  <Color x:Key="XColor.Error">#FFF24E1E</Color>
+  <Color x:Key="XColor.Warning">#FFF6db12</Color>
+  
+  <!--Controls-->
+  <Color x:Key="XColor.Control.Background.Disabled">#FF191919</Color>
+  <Color x:Key="XColor.Control.Foreground.Disabled">#FF666666</Color>
+
+  <!--Buttons-->
+  <Color x:Key="XColor.Button.Primary.Background.Hover">#FF1bacd4</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Pressed">#FF168dae</Color>
+  <Color x:Key="XColor.Button.Primary.Background.Disabled">#FF0a3d4b</Color>
+  <Color x:Key="XColor.Button.Primary.Foreground">#FF000000</Color>
+
+  <Color x:Key="XColor.Button.Secondary.Background">#FF002d32</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Active">#FF004150</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Hover">#FF005566</Color>
+  <Color x:Key="XColor.Button.Secondary.Background.Pressed">#FF006a7e</Color>
+  <Color x:Key="XColor.Button.Secondary.Foreground">#FFE5E5E5</Color>
+
+  <Color x:Key="XColor.Button.IconButton.Caption">#FFB2B2B2</Color>
+  <Color x:Key="XColor.Button.IconButton.Beta">#FF7F7F7F</Color>
+
+  <Color x:Key="XColor.RadioButton.MainMenu.Inactive">#FF999999</Color>
+
+  <!--Switch-->
+  <Color x:Key="XColor.Switch.Background.On">#ff002d33</Color>
+
+  <!--Frame/Line-->
+  <Color x:Key="XColor.Line">#FF333333</Color>
+  
+  <!--Temperatures-->
+  <Color x:Key="XColor.Temperature.37">#FF059DC7</Color>
+  <Color x:Key="XColor.Temperature.38">#FF2b9ea7</Color>
+  <Color x:Key="XColor.Temperature.39">#FF509f89</Color>
+  <Color x:Key="XColor.Temperature.40">#FF6d9f71</Color>
+  <Color x:Key="XColor.Temperature.41">#FF8BA15B</Color>
+  <Color x:Key="XColor.Temperature.42">#FF9DA14E</Color>
+  <Color x:Key="XColor.Temperature.43">#FFaaa042</Color>
+  <Color x:Key="XColor.Temperature.44">#FFc59f2e</Color>
+  <Color x:Key="XColor.Temperature.45">#FFd59f21</Color>
+  <Color x:Key="XColor.Temperature.46">#FFe19e17</Color>
+  <Color x:Key="XColor.Temperature.47">#FFfc9d02</Color>
+  <Color x:Key="XColor.Temperature.48">#FFff8d00</Color>
+  <Color x:Key="XColor.Temperature.49">#FFff8500</Color>
+  <Color x:Key="XColor.Temperature.50">#FFfe7d00</Color>
+  <Color x:Key="XColor.Temperature.51">#FFff7300</Color>
+  <Color x:Key="XColor.Temperature.52">#FFfe6900</Color>
+  <Color x:Key="XColor.Temperature.53">#FFfe6200</Color>
+  <Color x:Key="XColor.Temperature.54">#FFFF5000</Color>
+  <Color x:Key="XColor.Temperature.55">#FFFF4400</Color>
+  <Color x:Key="XColor.Temperature.56">#FFfe3000</Color>
+  <Color x:Key="XColor.Temperature.57">#FFff2c00</Color>
+  <Color x:Key="XColor.Temperature.58">#FFfe1e00</Color>
+  <Color x:Key="XColor.Temperature.59">#FFfe1300</Color>
+  <Color x:Key="XColor.Temperature.60">#FFFF0000</Color>
+</ResourceDictionary>

@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <sys:Double x:Key="XDouble.Size.MainMenuIcon">44</sys:Double>
+
+  <sys:Double x:Key="XDouble.Height.Control.Default">36</sys:Double>
+  <sys:Double x:Key="XDouble.Height.Control.Small">30</sys:Double>
+  
+  <sys:Double x:Key="XDouble.IconSize.SquareTemplate">29</sys:Double>
+
+  <sys:Double x:Key="XDouble.Height.IconOverText.OneLine">60</sys:Double>
+  <sys:Double x:Key="XDouble.Height.IconOverText.TwoLines">80</sys:Double>
+  <sys:Double x:Key="XDouble.Width.IconOverText">100</sys:Double>
+  <sys:Double x:Key="XDouble.Width.IconOverText.ToolbarMenu">90</sys:Double>
+
+  <sys:Double x:Key="XDouble.ColumnWidth.Chevron">29</sys:Double>
+  <sys:Double x:Key="XDouble.ColumnWidth.Chevron.Narrow">18</sys:Double>
+
+  <sys:Double x:Key="XDouble.Opacity.Pressed">0.7</sys:Double>
+
+  <Duration x:Key="XDuration.Animation.Short">0:0:0.19</Duration>
+
+  <CornerRadius x:Key="XCornerRadius.Frame">4</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Left">4,0,0,4</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Right">0,4,4,0</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Top">4,4,0,0</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Bottom">0,0,4,4</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Circle">500</CornerRadius>
+
+  <sys:Double x:Key="XRectRadius.X">4</sys:Double>
+  <sys:Double x:Key="XRectRadius.Y">4</sys:Double>
+
+  <Thickness x:Key="XThickness.Frame">1</Thickness>
+  <Thickness x:Key="XThickness.Frame.Left">1,1,0,1</Thickness>
+  <Thickness x:Key="XThickness.Frame.Right">0,1,1,1</Thickness>
+
+  <sys:Double x:Key="XDouble.FontSize.Header2">26</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Header3">22</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Header4">18</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Base">16</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Caption">15</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.ToolTip">14</sys:Double>
+  <sys:Double x:Key="XDouble.FontSize.Thumbnail">12</sys:Double>
+
+</ResourceDictionary>

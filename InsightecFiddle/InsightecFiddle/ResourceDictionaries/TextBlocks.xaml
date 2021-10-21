@@ -1,0 +1,52 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <FontFamily x:Key="XFontFamily.Base">Calibri</FontFamily>
+
+  <Style x:Key="XStyle.TextBlock.Base" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+  </Style>
+
+  <Style x:Key="XStyle.TextBlock.Caption" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+    <Setter Property="TextAlignment" Value="Center"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Caption}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.TextBlock.ToolTip" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
+  </Style>
+
+  <Style x:Key="XStyle.TextBlock.Paragraph" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
+    <Setter Property="TextWrapping" Value="Wrap"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+  </Style>
+
+  <Style x:Key="XStyle.TextBlock.Title" TargetType="{x:Type TextBlock}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Header4}" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}" />
+    <Setter Property="Margin" Value="0,20,15,15" />
+  </Style>
+
+</ResourceDictionary>

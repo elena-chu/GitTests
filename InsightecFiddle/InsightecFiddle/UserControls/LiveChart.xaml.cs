@@ -15,6 +15,7 @@ namespace InsightecFiddle.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            //CalculateVerticalAxisHeight();
             (DataContext as ChartViewModel).StartTimer();
         }
 
