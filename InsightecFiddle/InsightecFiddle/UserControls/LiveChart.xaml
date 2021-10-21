@@ -109,7 +109,15 @@
                     </TextBlock.Style>
                   </TextBlock>
                   <TextBlock Grid.Column="1" Margin="0,0,6,0" Text="°" Style="{StaticResource XStyle.TextBlock.Caption}" Foreground="{Binding Foreground, ElementName=TemperatureTextBlock}"/>
-                  <Rectangle Grid.Column="2" Fill="{Binding Converter={conv:TemperatureToBrushConverter}}"/>
+                  <Rectangle Grid.Column="2">
+                    <Rectangle.Fill>
+                      <MultiBinding Converter="{conv:TemperatureToBrushConverter}">
+                        <Binding Path="."/>
+                        <Binding Path="DataContext.CutoffTop" ElementName="thisLiveChart"/>
+                        <Binding Path="DataContext.CutoffBottom" ElementName="thisLiveChart"/>
+                      </MultiBinding>
+                    </Rectangle.Fill>
+                  </Rectangle>
                 </Grid>
               </DataTemplate>
             </telerik:LinearAxis.LabelTemplate>

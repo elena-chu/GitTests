@@ -155,12 +155,14 @@ namespace InsightecFiddle.ViewModels
                 MaxTemperature = TemperatureData.Last().Temperature + 5;
             if (TemperatureData.Last().Temperature < MinTemperature)
                 MinTemperature = TemperatureData.Last().Temperature - 5;
+            if (TemperatureData.Count() > 5)
+                CutoffTop = 51;
         }
 
         #endregion
 
 
-        #region Limit Data
+        #region Limit
 
         private int _limit = 45;
         public int Limit
@@ -173,6 +175,33 @@ namespace InsightecFiddle.ViewModels
                     _limit = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        #endregion
+
+
+        #region Cutoff
+
+        private double _cutoffTop = double.NaN;
+        public double CutoffTop
+        {
+            get => _cutoffTop;
+            set
+            {
+                _cutoffTop = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _cutoffBottom = double.NaN;
+        public double CutoffBottom
+        {
+            get => _cutoffBottom;
+            set
+            {
+                _cutoffBottom = value;
+                OnPropertyChanged();
             }
         }
 
