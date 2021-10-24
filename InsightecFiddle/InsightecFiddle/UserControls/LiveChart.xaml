@@ -34,27 +34,71 @@
       </StackPanel>
       
       <telerik:RadCartesianChart x:Name="RadCartesianChart" Grid.Row="1" EmptyContent="Some notification goes here">
+        <telerik:RadCartesianChart.Resources>
+          <LinearGradientBrush x:Key="XLinearGradientBrush.TargetTolerance" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.0"/>
+            <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="{Binding TargetProportion}"/>
+            <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0"/>
+          </LinearGradientBrush>
+        </telerik:RadCartesianChart.Resources>
         <telerik:RadCartesianChart.Annotations>
+          <telerik:CartesianMarkedZoneAnnotation
+            ZIndex="-200"
+            Fill="{StaticResource XLinearGradientBrush.TargetTolerance}"
+            Opacity="0.5"
+            Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}">
+          <telerik:CartesianMarkedZoneAnnotation.VerticalFrom>
+              <MultiBinding Converter="{conv:AdditionConverter}">
+                <Binding Path="Target"/>
+                <Binding Path="ToleranceAboveTarget"/>
+              </MultiBinding>
+            </telerik:CartesianMarkedZoneAnnotation.VerticalFrom>
+            <telerik:CartesianMarkedZoneAnnotation.VerticalTo>
+              <MultiBinding Converter="{conv:NonNegativeSubtractionConverter}">
+                <Binding Path="Target"/>
+                <Binding Path="ToleranceBelowTarget"/>
+              </MultiBinding>
+            </telerik:CartesianMarkedZoneAnnotation.VerticalTo>
+          </telerik:CartesianMarkedZoneAnnotation>
+          <telerik:CartesianGridLineAnnotation
+            x:Name="TargetLine"
+            Margin="0,1,0,0"
+            Axis="{Binding ElementName=VerticalAxis}"
+            Value="{Binding Target, Mode=TwoWay}" 
+            StrokeThickness="21"
+            Stroke="{StaticResource XBrush.AlmostTransparent}"
+            IsHitTestVisible="True"
+            ZIndex="-2"
+            utilities:AnnotationUtilities.IsDraggingEnabled="True"
+            Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
+          <telerik:CartesianGridLineAnnotation
+            Axis="{Binding ElementName=VerticalAxis}"
+            Value="{Binding Value, ElementName=TargetLine}" 
+            StrokeThickness="1"
+            Stroke="{StaticResource XBrush.Application.Active}"
+            IsHitTestVisible="False"
+            ZIndex="50"
+            Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
           <telerik:CartesianGridLineAnnotation
             x:Name="LimitLine"
+            Margin="0,1,0,0"
             Axis="{Binding ElementName=VerticalAxis}"
             Value="{Binding Limit, Mode=TwoWay}" 
-            StrokeThickness="9"
-            Stroke="{StaticResource XBrush.Application.Active}"
+            StrokeThickness="21"
+            Stroke="{StaticResource XBrush.AlmostTransparent}"
             IsHitTestVisible="True"
-            ZIndex="49"
-            utilities:AnnotationUtilities.IsDraggingEnabled="True">
-            <telerik:CartesianGridLineAnnotation.Effect>
-              <BlurEffect Radius="30"/>
-            </telerik:CartesianGridLineAnnotation.Effect>
-          </telerik:CartesianGridLineAnnotation>
+            ZIndex="-2"
+            utilities:AnnotationUtilities.IsDraggingEnabled="True"
+            Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
           <telerik:CartesianGridLineAnnotation
             Axis="{Binding ElementName=VerticalAxis}"
             Value="{Binding Value, ElementName=LimitLine}" 
             StrokeThickness="1"
-            Stroke="{StaticResource XBrush.Application.Active}"
+            Stroke="{StaticResource XBrush.Temperature.Limit}"
+            DashArray="4,2"
             IsHitTestVisible="False"
-            ZIndex="50"/>
+            ZIndex="50"
+            Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
         </telerik:RadCartesianChart.Annotations>
         <telerik:LineSeries
           Stroke="White"
@@ -113,8 +157,8 @@
                     <Rectangle.Fill>
                       <MultiBinding Converter="{conv:TemperatureToBrushConverter}">
                         <Binding Path="."/>
-                        <Binding Path="DataContext.CutoffTop" ElementName="thisLiveChart"/>
-                        <Binding Path="DataContext.CutoffBottom" ElementName="thisLiveChart"/>
+                        <Binding Path="DataContext.TemperatureCutoffTop" ElementName="thisLiveChart"/>
+                        <Binding Path="DataContext.TemperatureCutoffBottom" ElementName="thisLiveChart"/>
                       </MultiBinding>
                     </Rectangle.Fill>
                   </Rectangle>

@@ -85,6 +85,8 @@
   </RadialGradientBrush>
   
   <!--Temperature-->
+  <SolidColorBrush x:Key="XBrush.Temperature.Limit" Color="{StaticResource XColor.Temperature.60}"/>
+
   <SolidColorBrush x:Key="XBrush.Temperature.37" Color="{StaticResource XColor.Temperature.37}"/>
   <SolidColorBrush x:Key="XBrush.Temperature.38" Color="{StaticResource XColor.Temperature.38}"/>
   <SolidColorBrush x:Key="XBrush.Temperature.39" Color="{StaticResource XColor.Temperature.39}"/>
@@ -110,9 +112,4 @@
   <SolidColorBrush x:Key="XBrush.Temperature.59" Color="{StaticResource XColor.Temperature.59}"/>
   <SolidColorBrush x:Key="XBrush.Temperature.60" Color="{StaticResource XColor.Temperature.60}"/>
 
-  <LinearGradientBrush x:Key="XLinearGradientBrush.LimitLineRange" StartPoint="0,0">
-    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0" />
-    <GradientStop Color="{StaticResource XColor.Application.Active}"  Offset="0.0" />
-    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0" />
-  </LinearGradientBrush>
 </ResourceDictionary>

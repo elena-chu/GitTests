@@ -1,13 +1,13 @@
 ﻿using InsightecFiddle.ViewModels;
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace InsightecFiddle.UserControls
 {
     public partial class LiveChart : UserControl
     {
+        #region Start, End
+
         public LiveChart()
         {
             InitializeComponent();
@@ -15,7 +15,6 @@ namespace InsightecFiddle.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //CalculateVerticalAxisHeight();
             (DataContext as ChartViewModel).StartTimer();
         }
 
@@ -23,5 +22,7 @@ namespace InsightecFiddle.UserControls
         {
             (DataContext as ChartViewModel).StopTimer();
         }
+
+        #endregion
     }
 }

@@ -72,6 +72,22 @@ namespace InsightecFiddle.ViewModels
         #endregion
 
 
+        #region State
+
+        private SonicationState _sonicationState = SonicationState.Preparation;
+        public SonicationState SonicationState
+        {
+            get => _sonicationState;
+            set
+            {
+                _sonicationState = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
         #region Axis
 
         private int _minTemperature = 35;
@@ -101,7 +117,7 @@ namespace InsightecFiddle.ViewModels
 
         #region Temperature Data
 
-        private List<int> _temperatures = new List<int>() { 35, 47, 57, 62, 67, 72, 65, 60, 50, 43, 42, 41, 39 };
+        private List<int> _temperatures = new List<int>() { 35, 45, 49, 51, 53, 55, 59, 54, 50, 43, 42, 41, 39 };
 
         public RadObservableCollection<DataPoint> _temperatureData;
         public RadObservableCollection<DataPoint> TemperatureData
@@ -152,20 +168,47 @@ namespace InsightecFiddle.ViewModels
         {
             AverageTemperature = (int)TemperatureData.Select(point => point.Temperature).Average();
             if (TemperatureData.Last().Temperature >= MaxTemperature)
-                MaxTemperature = TemperatureData.Last().Temperature + 5;
+                MaxTemperature = TemperatureData.Last().Temperature + 3;
             if (TemperatureData.Last().Temperature < MinTemperature)
-                MinTemperature = TemperatureData.Last().Temperature - 5;
-            if (TemperatureData.Count() > 5)
-                CutoffTop = 51;
+                MinTemperature = TemperatureData.Last().Temperature - 3;
+            //if (TemperatureData.Count() > 5)
+            //    CutoffTop = 51;
         }
 
         #endregion
 
 
-        #region Limit
+        #region Temperature Cutoff
 
-        private int _limit = 45;
-        public int Limit
+        private double _temperatureCutoffTop = double.NaN;
+        public double TemperatureCutoffTop
+        {
+            get => _temperatureCutoffTop;
+            set
+            {
+                _temperatureCutoffTop = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _temperatureCutoffBottom = double.NaN;
+        public double TemperatureCutoffBottom
+        {
+            get => _temperatureCutoffBottom;
+            set
+            {
+                _temperatureCutoffBottom = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
+        #region Limit, Target
+
+        private double _limit = 50;
+        public double Limit
         {
             get => _limit;
             set
@@ -178,33 +221,61 @@ namespace InsightecFiddle.ViewModels
             }
         }
 
-        #endregion
-
-
-        #region Cutoff
-
-        private double _cutoffTop = double.NaN;
-        public double CutoffTop
+        private double _target = 45;
+        public double Target
         {
-            get => _cutoffTop;
+            get => _target;
             set
             {
-                _cutoffTop = value;
-                OnPropertyChanged();
+                if (value != _target)
+                {
+                    _target = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private double _cutoffBottom = double.NaN;
-        public double CutoffBottom
+        // Tolerance above target
+        private int _toleranceAboveTarget = 4;
+        public int ToleranceAboveTarget
         {
-            get => _cutoffBottom;
+            get => _toleranceAboveTarget;
             set
             {
-                _cutoffBottom = value;
+                _toleranceAboveTarget = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(TargetProportion));
+            }
+        }
+
+        // Tolerance below target
+        private int _toleranceBelowTarget = 2;
+        public int ToleranceBelowTarget
+        {
+            get => _toleranceBelowTarget;
+            set
+            {
+                _toleranceBelowTarget = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(TargetProportion));
+            }
+        }
+
+        public double TargetProportion
+        {
+            get
+            {
+                return (double)ToleranceAboveTarget / (double)(ToleranceAboveTarget + ToleranceBelowTarget);
             }
         }
 
         #endregion
+    }
+
+    public enum SonicationState
+    {
+        Preparation,
+        Active,
+        Postactivation
     }
 }

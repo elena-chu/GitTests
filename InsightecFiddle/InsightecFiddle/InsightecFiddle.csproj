@@ -66,6 +66,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\ConverterAssists.cs" />
     <Compile Include="Converters\ConverterMarkupExtension.cs" />
+    <Compile Include="Converters\EnumConverters.cs" />
     <Compile Include="Converters\NumericConverters.cs" />
     <Compile Include="Converters\ResourceConverters.cs" />
     <Compile Include="Utilities\AnnotationUtilities.cs" />
