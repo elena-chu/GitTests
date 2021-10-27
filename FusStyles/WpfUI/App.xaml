@@ -29,6 +29,7 @@
         <!--Generics,Layouts-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/01_GenericStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/02-BorderStyles.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/060_Generic/10_SurgicalStyles.xaml"/>
 
         <!--Controls-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/010_Controls/010-ControlStyles.xaml"/>

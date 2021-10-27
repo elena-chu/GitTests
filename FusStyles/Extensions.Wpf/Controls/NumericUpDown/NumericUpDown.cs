@@ -173,12 +173,24 @@ namespace Ws.Extensions.UI.Wpf.Controls
         /// Property defines control's Display Status. Available values: Active(default), Disabled, Readonly.
         /// </summary>
         public static readonly DependencyProperty DisplayStatusProperty = DependencyProperty.Register(
-          nameof(DisplayStatus), typeof(DisplayStatus), typeof(NumericUpDown), new PropertyMetadata(DisplayStatus.Active));
+          nameof(DisplayStatus), typeof(DisplayStatus), typeof(NumericUpDown), new PropertyMetadata(DisplayStatus.Active, OnDisplayStatusChanged));
+
         public DisplayStatus DisplayStatus
         {
             get { return (DisplayStatus)this.GetValue(DisplayStatusProperty); }
             set { this.SetValue(DisplayStatusProperty, value); }
         }
+
+        private static void OnDisplayStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            NumericUpDown control = d as NumericUpDown;
+            if (control != null)
+            {
+                control.IncreaseCommand.RaiseCanExecuteChanged();
+                control.DecreaseCommand.RaiseCanExecuteChanged();
+            }
+        }
+
 
         public bool IsNarrow
         {
@@ -211,8 +223,38 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 control.UpdateDisplay();
                 control.IncreaseCommand.RaiseCanExecuteChanged();
                 control.DecreaseCommand.RaiseCanExecuteChanged();
+
+                if (control.UpButtonElement == null || control.DownButtonElement == null ||
+                    !control.UpButtonElement.IsPressed && !control.DownButtonElement.IsPressed)
+                {
+                    control.StoppedValue = control.Value;
+                }
             }
         }
+
+        /// <summary>
+        /// This is the same property as Value but it is updated only when Up or Down buttons are released 
+        /// (not on continuous press)
+        /// </summary>
+        public static readonly DependencyProperty StoppedValueProperty =
+            DependencyProperty.Register(nameof(StoppedValue), typeof(double?), typeof(NumericUpDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnStoppedValueChanged));
+        public double? StoppedValue
+        {
+            get { return (double?)this.GetValue(StoppedValueProperty); }
+            set { this.SetValue(StoppedValueProperty, value); }
+        }
+        private static void OnStoppedValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            NumericUpDown control = d as NumericUpDown;
+            if (control != null)
+            {
+                if (control.Value != control.StoppedValue)
+                {
+                    control.Value = control.StoppedValue;
+                }
+            }
+        }
+
 
         private static readonly DependencyPropertyKey ValueDisplayKeyPropertyKey = DependencyProperty.RegisterReadOnly(
             "ValueDisplayKey", typeof(string), typeof(NumericUpDown), new PropertyMetadata(string.Empty/*, OnReadOnlyPropChanged*/));
@@ -350,6 +392,17 @@ namespace Ws.Extensions.UI.Wpf.Controls
             set { this.SetValue(UpDownByKeyboardEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// Property describes whether any of Up or Down buttons is pressed
+        /// </summary>
+        public static readonly DependencyProperty IsButtonsPressedProperty = DependencyProperty.Register(
+          nameof(IsButtonsPressed), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
+        public bool IsButtonsPressed
+        {
+            get { return (bool)this.GetValue(IsButtonsPressedProperty); }
+            set { this.SetValue(IsButtonsPressedProperty, value); }
+        }
+
         private DelegateCommand IncreaseCommand;
         private void IncreaseExecute()
         {
@@ -405,6 +458,8 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 _downButtonElement.Command = DecreaseCommand;
                 _downButtonElement.GotFocus += OnButtonGotFocus;
                 _downButtonElement.LostFocus += OnButtonLostFocus;
+                _downButtonElement.PreviewMouseDown += OnUpDownButtonMouseDown;
+                _downButtonElement.PreviewMouseUp += OnUpDownButtonMouseUp;
             }
         }
 
@@ -415,6 +470,8 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 _downButtonElement.Command = null;
                 _downButtonElement.GotFocus -= OnButtonGotFocus;
                 _downButtonElement.LostFocus -= OnButtonLostFocus;
+                _downButtonElement.PreviewMouseDown -= OnUpDownButtonMouseDown;
+                _downButtonElement.PreviewMouseUp -= OnUpDownButtonMouseUp;
             }
         }
 
@@ -437,7 +494,20 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 _upButtonElement.Command = IncreaseCommand;
                 _upButtonElement.GotFocus += OnButtonGotFocus;
                 _upButtonElement.LostFocus += OnButtonLostFocus;
+                _upButtonElement.PreviewMouseDown += OnUpDownButtonMouseDown;
+                _upButtonElement.PreviewMouseUp += OnUpDownButtonMouseUp;
             }
+        }
+
+        private void OnUpDownButtonMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            IsButtonsPressed = false;
+            StoppedValue = Value;
+        }
+
+        private void OnUpDownButtonMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            IsButtonsPressed = true;
         }
 
         private void UnregisterUpElement()
@@ -447,6 +517,8 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 _upButtonElement.Command = null;
                 _upButtonElement.GotFocus -= OnButtonGotFocus;
                 _upButtonElement.LostFocus -= OnButtonLostFocus;
+                _upButtonElement.PreviewMouseDown += OnUpDownButtonMouseDown;
+                _upButtonElement.PreviewMouseUp += OnUpDownButtonMouseUp;
             }
         }
 
@@ -559,7 +631,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
             get { return (string)GetValue(UnitsProperty); }
             set { SetValue(UnitsProperty, value); }
         }
-        public static readonly DependencyProperty UnitsProperty = 
+        public static readonly DependencyProperty UnitsProperty =
             DependencyProperty.Register(nameof(Units), typeof(string), typeof(NumericUpDown), new PropertyMetadata(string.Empty));
 
         /// <summary>
@@ -570,7 +642,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
             get { return (BaselineAlignment)GetValue(UnitsPlacementProperty); }
             set { SetValue(UnitsPlacementProperty, value); }
         }
-        public static readonly DependencyProperty UnitsPlacementProperty = 
+        public static readonly DependencyProperty UnitsPlacementProperty =
             DependencyProperty.Register(nameof(UnitsPlacement), typeof(BaselineAlignment), typeof(NumericUpDown), new PropertyMetadata(BaselineAlignment.Center));
 
         #endregion
@@ -583,7 +655,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
             get { return (HorizontalAlignment)GetValue(TextBoxContentHorizontalAlignmentProperty); }
             set { SetValue(TextBoxContentHorizontalAlignmentProperty, value); }
         }
-        public static readonly DependencyProperty TextBoxContentHorizontalAlignmentProperty = 
+        public static readonly DependencyProperty TextBoxContentHorizontalAlignmentProperty =
             DependencyProperty.Register(nameof(TextBoxContentHorizontalAlignment), typeof(HorizontalAlignment), typeof(NumericUpDown), new PropertyMetadata(HorizontalAlignment.Center));
 
         /// <summary>

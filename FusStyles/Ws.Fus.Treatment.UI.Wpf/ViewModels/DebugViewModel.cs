@@ -9,6 +9,7 @@ using System.Windows.Media.Media3D;
 using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
+using System.Diagnostics;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -19,6 +20,8 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             ProgressCommand = new DelegateCommand(ToggleProgress);
             ApprovalCommand = new DelegateCommand(ToggleApproval);
             InitMenu();
+
+            StoppedValue = 5;
         }
 
 
@@ -163,6 +166,28 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         {
             get { return _point; }
             set { SetProperty(ref _point, value); }
+        }
+
+        private double? _value;
+        public double? Value
+        {
+            get { return _value; }
+            set
+            {
+                if (SetProperty(ref _value, value))
+                    Debug.WriteLine("Value set: " + _value);
+            }
+        }
+
+        private double? _stoppedValue;
+        public double? StoppedValue
+        {
+            get { return _stoppedValue; }
+            set
+            {
+                if (SetProperty(ref _stoppedValue, value))
+                    Debug.WriteLine("StoppedValue set: " + _stoppedValue);
+            }
         }
 
         #endregion

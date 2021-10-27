@@ -92,6 +92,13 @@
       </Grid>
     </StackPanel>
 
+    <extensions:NumericUpDown Width="100" Height="50"
+                              MinValue="0" MaxValue="50"
+                              Increment="1"
+                              Value="{Binding Value, Mode=TwoWay}"
+                              StoppedValue="{Binding StoppedValue, Mode=TwoWay}"
+      />
+
   </UniformGrid>
 
 </UserControl>

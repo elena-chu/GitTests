@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:coordinate="clr-namespace:Ws.Fus.UI.Wpf.Controls;assembly=Ws.Fus.UI.Wpf"
              xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -12,19 +13,154 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="SurgicalStyles.xaml"/>
       </ResourceDictionary.MergedDictionaries>
+      <extensions:BooleanToTrueFalseValueConverter x:Key="DisplayStatusTrueFalseValueConverter" IsThreeState="False" TrueValue="Disabled" FalseValue="Active" />
+
+      <Style x:Key="XStyle.CoordinateTripletControl" TargetType="{x:Type coordinate:CoordinateTripletControl}">
+        <Setter Property="Gap" Value="6"/>
+        <Setter Property="IsNarrow" Value="True"/>
+        <Setter Property="TextBoxContentHorizontalAlignment" Value="Right"/>
+      </Style>
+
     </ResourceDictionary>
   </UserControl.Resources>
   
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Style="{StaticResource LStyle.RowDefinition.SonicationParamsRow}" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" x:Name="ScanParamsRow" />
+      <RowDefinition Height="Auto" x:Name="TargetRow" />
       <RowDefinition Style="{StaticResource LStyle.RowDefinition.SonicationBtnRow}" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    <Rectangle Stretch="Fill" StrokeThickness="1" Stroke="Magenta" />
-    <TextBlock Text="Definition Control" Foreground="Yellow" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto"  />
+    <!--<Rectangle Stretch="Fill" StrokeThickness="1" Stroke="Magenta" />
+    <TextBlock Text="Definition Control" Foreground="Yellow" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto"  />-->
 
-    <Button 
+    <local:SonicationParametersView />
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Style="{StaticResource LStyle.ColumnGap.Surgical}" />
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Style="{StaticResource LStyle.ColumnGap.Surgical}" />
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Text="Scan Orientation" Grid.Row="0" Grid.Column="0" Style="{StaticResource XStyle.TextBlock.Menu.Label}"/>
+      <TextBlock Text="Multi-Slice" Grid.Row="0" Grid.Column="2" Style="{StaticResource XStyle.TextBlock.Menu.Label}"/>
+      <TextBlock Text="Freq. Direction" Grid.Row="0" Grid.Column="4" Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+                Visibility="{Binding IsScanFrequentDirectionControl,Converter={StaticResource BooleanToVisibilityConverter}}"
+                />
+      <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
+        <RadioButton Content="AX" IsChecked="{Binding IsAxial,Mode=TwoWay}" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}" />
+        <RadioButton Content="COR" IsChecked="{Binding IsCoronal,Mode=TwoWay}" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel}"  />
+        <RadioButton Content="SAG" IsChecked="{Binding IsSaggital,Mode=TwoWay}" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}"  />
+      </StackPanel>
+
+      <ToggleButton Grid.Row="1" Grid.Column="2" IsChecked="{Binding IsSingleSlice,Converter={StaticResource InvertedBooleanConverter},Mode=TwoWay}" 
+                    ToolTip="Toggle multi slice thermometry"
+                    Style="{StaticResource XStyle.ToggleButton.Switch}" HorizontalAlignment="Center"
+                    />
+      <StackPanel Grid.Row="1" Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right" 
+                  Visibility="{Binding IsScanFrequentDirectionControl,Converter={StaticResource BooleanToVisibilityConverter}}"
+                  >
+        <RadioButton Content="AP" 
+                    IsChecked="{Binding IsFrequencyDirectionAP,Mode=TwoWay}"
+                    Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}"
+                    />
+        <RadioButton Content="RL" 
+                    IsChecked="{Binding IsFrequencyDirectionRL,Mode=TwoWay}"
+                    Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}"
+                    />
+      </StackPanel>
+    </Grid>
+
+    <!--<ContentControl 
+      Grid.Row="1"
+      beh:UserInputLocator.DataTemplateId="http://insightec.com/fus/thermometry/preferences?part=5"/>-->
+
+    <Grid x:Name="TargetAndScan" Grid.Row="2" extensions:IndependentSize.Margin="0,10,0,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <!--<TextBlock Text="Targets and Scans" Foreground="Yellow" Margin="10" />-->
+      <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" 
+              HorizontalAlignment="Left"
+              Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+              VerticalAlignment="Center"
+              extensions:IndependentSize.Margin="0"
+              Text="Target Coordinates:"/>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+          <RadioButton x:Name="AcPcRadio"  
+              Content="AC-PC" 
+              IsChecked="{Binding Path=TargetPointViewModel.IsAcPc, Mode=TwoWay}"
+              Style="{StaticResource XStyle.RadioButton.Pipe.Left}"
+              IsEnabled="{Binding IsAcPcPointEnabled}"/>
+          <RadioButton x:Name="RasRadio" 
+              Content="RAS" 
+              IsChecked="{Binding Path=TargetPointViewModel.IsAcPc, Converter={StaticResource InvertedBooleanConverter}}"
+              Style="{StaticResource XStyle.RadioButton.Pipe.Right}"/>
+        </StackPanel>
+      </Grid>
+
+      <coordinate:CoordinateTripletControl
+        Name="TargetCoordinateAcPcElement"
+        Grid.Row="1"
+        Style="{StaticResource XStyle.CoordinateTripletControl}"
+        Point="{Binding TargetPointViewModel.TargetPointAcPc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+        Visibility="{Binding IsChecked, ElementName=AcPcRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"
+        DisplayStatus="{Binding TargetPointViewModel.IsTargetLocked, Converter={StaticResource DisplayStatusTrueFalseValueConverter}, Mode=OneWay}"
+        SeverityLevel="Normal"/>
+
+      <coordinate:CoordinateTripletControl
+        Name="TargetCoordinateRasElement"
+        Grid.Row="1"
+        Style="{StaticResource XStyle.CoordinateTripletControl}"
+        Point="{Binding TargetPointViewModel.TargetPointRas,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        Visibility="{Binding IsChecked, ElementName=RasRadio, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+        DisplayStatus="{Binding TargetPointViewModel.IsTargetLocked, Converter={StaticResource DisplayStatusTrueFalseValueConverter}, Mode=OneWay}"
+        SeverityLevel="Normal"/>
+
+      <ToggleButton 
+        Grid.Column="1"
+        Grid.Row="1"
+        IsChecked="{Binding TargetPointViewModel.IsTargetLocked, Mode=TwoWay}"
+        HorizontalAlignment="Right"
+        extensions:IndependentSize.Margin="30,0,0,0"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Lock}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Unlock}"
+        extensions:IndependentSize.Width="35"
+        >
+        <ToggleButton.Style>
+          <Style TargetType="ToggleButton" BasedOn="{StaticResource XStyle.ToggleButton.ToggleIconOverText}">
+            <Setter Property="ToolTip" Value="Unlock Target" />
+            <Style.Triggers>
+              <Trigger Property="IsChecked" Value="False">
+                <Setter Property="ToolTip" Value="Lock Target" />
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </ToggleButton.Style>
+      </ToggleButton>
+
+
+    </Grid>
+
+    <Button
+      Grid.Row="3"
       Command="{Binding StartSonicationCommand}">
       <Button.Style>
         <Style TargetType="Button" BasedOn="{StaticResource LStyle.Button.Sonication}">
@@ -37,6 +173,8 @@
         </Style>
       </Button.Style>
     </Button>
-        <local:SurgicalPreferencesView Grid.Row="2" VerticalAlignment="Bottom"/>
-    </Grid>
+
+    <local:SurgicalPreferencesView Grid.Row="4" VerticalAlignment="Bottom"/>
+  
+  </Grid>
 </UserControl>

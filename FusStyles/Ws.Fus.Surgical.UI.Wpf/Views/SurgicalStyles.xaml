@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:extensions="http://schemas.insightec.com/wpf/"
                     >
+  
+  
 
   <Style x:Key="LStyle.RowDefinition.SonicationParamsRow" TargetType="RowDefinition">
     <Setter Property="extensions:IndependentSize.RowHeight" Value="410" />

@@ -85,7 +85,7 @@
     <TabControl Name="tabControl"  VerticalAlignment="Bottom" Style="{StaticResource TabControlWithExpander}" >
 
 
-      <TabItem Name="c1" Header="Tools" Width="100" IsSelected="True"   >
+      <TabItem Name="c1" Header="Tools" Width="90" IsSelected="True"   >
         <Border BorderThickness="1" BorderBrush="White" extensions:IndependentSize.Margin="0 20 0 0">
           <StackPanel VerticalAlignment="Stretch">
 

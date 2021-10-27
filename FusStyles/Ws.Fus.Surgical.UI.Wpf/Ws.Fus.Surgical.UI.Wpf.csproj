@@ -82,6 +82,9 @@
     <Compile Include="SurgicalMode.cs" />
     <Compile Include="SurgicalNavigationConsts.cs" />
     <Compile Include="ViewModels\SurgicalMainViewModel.cs" />
+    <Compile Include="Views\SonicationParametersView.xaml.cs">
+      <DependentUpon>SonicationParametersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SurgicalDualPreferenceLauncher.xaml.cs">
       <DependentUpon>SurgicalDualPreferenceLauncher.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\SonicationParametersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SurgicalDualPreferenceLauncher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
