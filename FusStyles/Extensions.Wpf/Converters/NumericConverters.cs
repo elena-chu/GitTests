@@ -103,4 +103,67 @@ namespace Ws.Extensions.UI.Wpf.Converters
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// Returns: sum of all values
+    /// </summary>
+    public class AdditionConverter : MultiConverterMarkupExtension<AdditionConverter>
+    {
+        public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!ConverterAssists.CheckAllValuesValidity(values))
+                return Binding.DoNothing;
+
+            double sum = 0.0;
+            foreach (var value in values)
+            {
+                if (double.TryParse(value.ToString(), out double parsedValue))
+                    sum += parsedValue;
+            }
+
+            return sum;
+        }
+
+        public override object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Subtracts all following values from first value
+    /// Will not return negative values
+    /// </summary>
+    public class NonNegativeSubtractionConverter : MultiConverterMarkupExtension<NonNegativeSubtractionConverter>
+    {
+        public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!ConverterAssists.CheckAllValuesValidity(values))
+                return Binding.DoNothing;
+
+            double diff = 0.0;
+            if (double.TryParse(values[0].ToString(), out double parsedValue))
+            {
+                diff = parsedValue;
+                if (values.Length > 1)
+                {
+                    for (int i = 1; i < values.Length; i++)
+                    {
+                        if (values[i] != null)
+                        {
+                            if (double.TryParse(values[i].ToString(), out parsedValue))
+                                diff -= parsedValue;
+                        }
+                    }
+                }
+            }
+
+            return diff >= 0.0 ? diff : 0.0;
+        }
+
+        public override object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

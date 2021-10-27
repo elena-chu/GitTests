@@ -117,10 +117,13 @@
               Increment="1.0"
             />
       <!--DisplayStatus ="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedValCompariosionConverter}, ConverterParameter={x:Static sonDef:SonicationCalculatedParam.eDurationCalculated}}"-->
-      <Slider Grid.Row="2" 
-                Minimum="{Binding MinDuration}"
-                Maximum="{Binding MaxDuration}"
-                Value="{Binding Duration}"/>
+      <Slider
+        Grid.Row="2"
+        LargeChange="1"
+        Minimum="{Binding MinDuration}"
+        Maximum="{Binding MaxDuration}"
+        Value="{Binding Duration}"
+        Style="{StaticResource XStyle.Slider.Small}"/>
         <!--IsEnabled="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedParameterConverter}, ConverterParameter=duration}"-->
 
         <TextBlock Grid.Column ="2" Text="Power" Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" />
@@ -143,10 +146,13 @@
               Increment="50.0"
              />
       <!--DisplayStatus ="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedValCompariosionConverter}, ConverterParameter={x:Static sonDef:SonicationCalculatedParam.ePowerCalculated}}"-->
-      <Slider Grid.Row="2" Grid.Column="2"
-                Minimum="{Binding MinPower}"
-                Maximum="{Binding MaxPower}"
-                Value="{Binding Power}"/>
+      <Slider
+        Grid.Row="2"
+        Grid.Column="2"
+        Minimum="{Binding MinPower}"
+        Maximum="{Binding MaxPower}"
+        Value="{Binding Power}"
+        Style="{StaticResource XStyle.Slider.Small}"/>
       <!--IsEnabled="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedParameterConverter}, ConverterParameter=power}"-->
 
       <TextBlock Grid.Column ="4" Text="Energy" Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" />
@@ -160,13 +166,17 @@
               MaxValue="{Binding MaxEnergy}"
               DisplayStatus="Disabled"
             />
-            <Slider Grid.Row="2" Grid.Column="4"
-              IsEnabled="False"
-              Minimum="{Binding MinEnergy}"
-              Maximum="{Binding MaxEnergy}"
-              Value="{Binding Energy, Mode=OneWay}"/>
+      
+      <Slider
+        Grid.Row="2"
+        Grid.Column="4"
+        IsEnabled="False"
+        Minimum="{Binding MinEnergy}"
+        Maximum="{Binding MaxEnergy}"
+        Value="{Binding Energy, Mode=OneWay}"
+        Style="{StaticResource XStyle.Slider.Small}"/>
 
-        </Grid>
+    </Grid>
 
     </Grid>
    
