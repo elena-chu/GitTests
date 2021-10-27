@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:extensions="http://schemas.insightec.com/wpf/"
+             xmlns:fusui="clr-namespace:Ws.Fus.UI.Wpf;assembly=Ws.Fus.UI.Wpf"
+             xmlns:core="http://schemas.insightec.com/wpf/imageViewer/"
              xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -17,14 +19,84 @@
 
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Style="{StaticResource LStyle.RowDefinition.SonicationParamsRow}" />
+      <RowDefinition Height="Auto" x:Name="ActualSonicationParamsRow" />
+      <RowDefinition Height="Auto" x:Name="TargetRow" />
+      <RowDefinition Height="Auto" x:Name="ProgressRow" />
       <RowDefinition Style="{StaticResource LStyle.RowDefinition.SonicationBtnRow}" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    <Rectangle Stretch="Fill" StrokeThickness="1" Stroke="Magenta" />
-    <TextBlock Text="Snication Control" Foreground="Yellow" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto"  />
+
+    <local:ActualSonicationParamsView x:Name="SonicationParams" />
+
+    <local:ActualTargetScanParamsView x:Name="TargetLocation" Grid.Row="1" />
+
+    <Grid x:Name="ProgressStatuses"
+          Grid.Row="2"
+          Visibility="{Binding IsSonicationEnergyStarted, Converter={StaticResource InvertedBooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <TextBlock 
+        Style="{StaticResource XStyle.TextBlock.Menu.Label}"
+        Text="Preparing Sonication"
+        />
+
+      <Grid Grid.Row="1"
+            extensions:IndependentSize.Margin="7,0,7,0" >
+        <Grid.Resources>
+          <Style x:Key="StepSeparationRowStyle" TargetType="RowDefinition">
+            <Setter Property="extensions:IndependentSize.RowHeight" Value="22" />
+          </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Style="{StaticResource StepSeparationRowStyle}" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Rectangle 
+            Width="1" VerticalAlignment="Stretch"
+            Fill="{StaticResource XBrush.Application.Active}" 
+            HorizontalAlignment="Left" 
+            extensions:IndependentSize.Margin="7,10,0,25"
+            Grid.RowSpan="7" />
+
+        <core:StepProgress 
+            Title="Transducer Location"
+            Value="{Binding XdLocationStateValue}"
+            extensions:ProgressStatusDisplayer.AnimateActive="True"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding XdLocationState, Mode=OneWay}"
+            />
+        <core:StepProgress Grid.Row="2"
+            Title="Patient Movement:"
+            Value="{Binding MdScanStateValue}"
+            extensions:ProgressStatusDisplayer.AnimateActive="True"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding MdScanState, Mode=OneWay}"
+            />
+        <core:StepProgress Grid.Row="4"
+            Title="Preparing Sonication"
+            Value="{Binding PreparingSonicationStateValue, Mode=OneWay}"
+            extensions:ProgressStatusDisplayer.AnimateActive="True"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding PreparingSonicationState, Mode=OneWay}" 
+            />
+        <core:StepProgress Grid.Row="6"
+            Title="Cold Phase Acquisition"
+            Value="{Binding ColdPhaseStateValue, Mode=OneWay}"
+            extensions:ProgressStatusDisplayer.AnimateActive="True"
+            extensions:ProgressStatusDisplayer.ProgressState="{Binding ColdPhaseState, Mode=OneWay}"
+            />
+
+      </Grid>
+    </Grid>
 
     <Button 
+      Grid.Row="3"
       Style="{StaticResource LStyle.Button.Sonication}"
       Content="STOP SONICATION"
       Background="{StaticResource XBrush.Error}"

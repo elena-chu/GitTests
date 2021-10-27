@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
-namespace Ws.Extensions.geometry
+namespace Ws.Extensions.Geometry
 {
     public static class UnitVector3DExtensions
     {

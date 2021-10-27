@@ -20,17 +20,18 @@ namespace Ws.Fus.Surgical.UI.Wpf
     {
         //private ISurgicalService _surgicalService;
         //private ISurgicalController _surgivalController;
-       
+
         public SurgicalMainViewModel(/*IDispatcher dispatcher,*/
             NavigationController navigationController,
             IEnumerable<IModuleController> moduleControllers/*,*/
-            //ISurgicalService surgicalService,
-            /*SurgicalViewModel surgicalVm*/)
+                                                            //ISurgicalService surgicalService,
+                                                            /*SurgicalViewModel surgicalVm*/)
             : base(/*dispatcher,*/ navigationController, moduleControllers)
         {
             //_surgicalService = surgicalService;
             //SurgicalStripsViewModel = surgicalVm;
             ModeChangedCommand = new DelegateCommand<object>(ModeChangedExecute);
+            ChangeSurgicalStageCommand = new DelegateCommand<SurgicalMode?>(ChangeSurgicalStageExecute);
         }
 
         #region Commands
@@ -42,6 +43,13 @@ namespace Ws.Fus.Surgical.UI.Wpf
         private void ModeChangedExecute(object modeControl)
         {
             //SurgicalControlVM = modeControl as SurgicalControlBaseViewModel;
+        }
+
+        public DelegateCommand<SurgicalMode?> ChangeSurgicalStageCommand { get; }
+        private void ChangeSurgicalStageExecute(SurgicalMode? mode)
+        {
+            if(mode.HasValue)
+             _navigationController.SwitchScreen(ApplicationModule.Surgical, mode.Value);
         }
 
         #endregion

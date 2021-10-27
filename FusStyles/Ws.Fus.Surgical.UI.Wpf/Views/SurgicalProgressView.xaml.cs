@@ -24,5 +24,20 @@ namespace Ws.Fus.Surgical.UI.Wpf
         {
             InitializeComponent();
         }
+
+        private void OnTxtMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = sender as TextBlock;
+            SurgicalMainViewModel vm = this.DataContext as SurgicalMainViewModel;
+            if (tb != null && vm!= null)
+            {
+                if (tb == DefineTxt)
+                    vm.ChangeSurgicalStageCommand.Execute(SurgicalMode.Definition);
+                else if(tb == SonicateTxt)
+                    vm.ChangeSurgicalStageCommand.Execute(SurgicalMode.Sonication);
+                else if(tb == ReviewTxt)
+                    vm.ChangeSurgicalStageCommand.Execute(SurgicalMode.Dosimetry);
+            }
+        }
     }
 }

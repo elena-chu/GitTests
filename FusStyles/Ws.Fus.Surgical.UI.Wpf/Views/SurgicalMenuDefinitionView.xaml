@@ -106,9 +106,10 @@
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
           <RadioButton x:Name="AcPcRadio"  
               Content="AC-PC" 
-              IsChecked="{Binding Path=TargetPointViewModel.IsAcPc, Mode=TwoWay}"
+              IsChecked="True"
               Style="{StaticResource XStyle.RadioButton.Pipe.Left}"
               IsEnabled="{Binding IsAcPcPointEnabled}"/>
+          <!--IsChecked="{Binding Path=TargetPointViewModel.IsAcPc, Mode=TwoWay}"-->
           <RadioButton x:Name="RasRadio" 
               Content="RAS" 
               IsChecked="{Binding Path=TargetPointViewModel.IsAcPc, Converter={StaticResource InvertedBooleanConverter}}"

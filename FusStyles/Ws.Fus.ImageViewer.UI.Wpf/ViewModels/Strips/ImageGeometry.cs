@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
-using Ws.Extensions.geometry;
+using Ws.Extensions.Geometry;
 
-namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
+namespace Ws.Dicom
 {
     public class ImageGeometry
     {

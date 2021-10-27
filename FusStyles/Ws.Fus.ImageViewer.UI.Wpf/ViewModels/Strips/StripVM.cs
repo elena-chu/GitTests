@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Prism.Commands;
 using Prism.Mvvm;
+using Ws.Dicom;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.ViewModels.Strips
 {

@@ -104,6 +104,7 @@
       Text="DEFINE"
       Style="{StaticResource TiitleStyle}"
       Foreground="{Binding Converter={StaticResource CurrentStageToColorConverter}, ConverterParameter={x:Static local:SurgicalMode.Definition}, FallbackValue={StaticResource XBrush.Application.Foreground}}"
+      MouseUp="OnTxtMouseUp"
         />
 
     <Path
@@ -128,7 +129,8 @@
       Text="SONICATE"
       Style="{StaticResource TiitleStyle}"
       Foreground="{Binding Converter={StaticResource CurrentStageToColorConverter}, ConverterParameter={x:Static local:SurgicalMode.Sonication}, FallbackValue={StaticResource XBrush.Application.Foreground}}"
-        />
+      MouseUp="OnTxtMouseUp"
+      />
 
     <Path
       Style="{StaticResource TriangleStyle}"
@@ -152,7 +154,8 @@
       Text="REVIEW"
       Style="{StaticResource TiitleStyle}"
       Foreground="{Binding Converter={StaticResource CurrentStageToColorConverter}, ConverterParameter={x:Static local:SurgicalMode.Dosimetry}, FallbackValue={StaticResource XBrush.Application.Foreground}}"
-        />
+      MouseUp="OnTxtMouseUp"
+      />
 
   </Grid>
 </UserControl>

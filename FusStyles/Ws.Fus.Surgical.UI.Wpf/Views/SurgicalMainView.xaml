@@ -64,8 +64,8 @@
         <local:SurgicalProgressView
           Grid.Row="1"
           extensions:IndependentSize.Margin="20"
-          DataContext="{Binding SurgicalControlVM.SurgicalMode, Mode=OneWay}"
         />
+        <!--DataContext="{Binding SurgicalControlVM.SurgicalMode, Mode=OneWay}"-->
 
       </Grid>
       

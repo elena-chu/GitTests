@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ws.Extensions.geometry
+namespace Ws.Extensions.Geometry
 {
     public static class GeometryConsts
     {

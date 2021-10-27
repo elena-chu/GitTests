@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
-namespace Ws.Extensions.geometry
+namespace Ws.Extensions.Geometry
 {
     public class CoordinateSystem
     {
         /// <summary>
         /// Create default(identity) Coordinate System
         /// </summary>
-        public CoordinateSystem() : this(new Vector3D(1,0,0), new Vector3D(0, 1, 0), new Vector3D(0, 0, 1))
+        public CoordinateSystem() : this(new Vector3D(1, 0, 0), new Vector3D(0, 1, 0), new Vector3D(0, 0, 1))
         { }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Ws.Extensions.geometry
         {
             if (angle == 0)
                 return;
-            
+
             // Build the rotation matrix reflecting the current rotation matrix
             Matrix3D rotationMatrix = new Matrix3D();
             Quaternion quant = new Quaternion(vector, angle);
@@ -156,7 +156,7 @@ namespace Ws.Extensions.geometry
         public bool IsEqual(CoordinateSystem other, double delta = GeometryConsts.COMPARISION_DELTA)
         {
             bool isEqual = TransformationMatrix.IsEqualWithDelta(other.TransformationMatrix, delta);
-            if(isEqual)
+            if (isEqual)
                 isEqual = isEqual && Center.IsEqualWithDelta(other.Center, delta);
 
             return isEqual;

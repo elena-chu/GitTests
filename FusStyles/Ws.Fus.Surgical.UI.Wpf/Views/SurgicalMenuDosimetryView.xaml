@@ -17,22 +17,26 @@
 
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Style="{StaticResource LStyle.RowDefinition.SonicationParamsRow}" />
+      <RowDefinition Height="Auto" x:Name="ActualSonicationParamsRow" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Style="{StaticResource LStyle.RowDefinition.SonicationBtnRow}" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    <Rectangle Stretch="Fill" StrokeThickness="1" Stroke="Magenta" />
-    <TextBlock Text="Dosimetry Control" Foreground="Yellow" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto"  />
 
+    <local:ActualSonicationParamsView x:Name="SonicationParams" />
+
+    <local:ActualTargetScanParamsView x:Name="TargetLocation" Grid.Row="1" />
 
     <Button 
       Style="{StaticResource LStyle.Button.Sonication}"
+      Grid.Row="2"
       Content="ACCEPT &amp; CONTINUE"
       Command="{Binding AcceptDoseCommand}"
       CommandParameter="{StaticResource XBoolean.True}"
      />
     <Button 
       Style="{StaticResource LStyle.Button.Sonication}"
+      Grid.Row="2"
       HorizontalAlignment="Left"
       extensions:IndependentSize.MinWidth="10"
       extensions:IndependentSize.MaxWidth="150"
