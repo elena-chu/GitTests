@@ -96,8 +96,9 @@
           <Setter Property="extensions:IndependentSize.FontSize" Value="11" />
         </Style>
 
-        <Style TargetType="ProgressBar" x:Key="LStyle.Surgical.ProgressBar" BasedOn="{StaticResource XStyle.ProgressBar.Base}">
-          <Setter Property="extensions:IndependentSize.Margin" Value="0,5,0,0" />
+        <Style TargetType="ProgressBar" x:Key="LStyle.ProgressBar.Surgical" BasedOn="{StaticResource XStyle.ProgressBar.Base}">
+          <Setter Property="extensions:IndependentSize.Margin" Value="0,9,0,3"/>
+          <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
         </Style>
 
       </Grid.Resources>
@@ -121,7 +122,15 @@
           Value="{Binding Duration}"
           Units="sec"
           />
-      <ProgressBar Grid.Row="2" Value="{Binding CurrentDuration}" Minimum="0" Maximum="{Binding Duration}" Style="{StaticResource LStyle.Surgical.ProgressBar}" />
+      
+      <ProgressBar
+        Grid.Row="2"
+        Grid.Column="0"
+        Value="{Binding CurrentDuration}"
+        Minimum="0"
+        Maximum="{Binding Duration}"
+        Style="{StaticResource LStyle.ProgressBar.Surgical}"/>
+      
       <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
         <TextBlock Text="{Binding CurrentDuration}" Style="{StaticResource LStyle.Surgical.TextBlock.PowerCurrentValue}" />
         <TextBlock Text="{StaticResource XString.Sec}" Style="{StaticResource LStyle.Surgical.TextBlock.PowerCurrentUnit}" />
@@ -134,7 +143,15 @@
           Value="{Binding Power, FallbackValue= 850, TargetNullValue=850}"
           Units="{StaticResource XString.Watt}"
           />
-      <ProgressBar Grid.Row="2" Grid.Column="2" Value="{Binding CurrentPower}" Minimum="0" Maximum="{Binding Power}" Style="{StaticResource LStyle.Surgical.ProgressBar}" />
+      
+      <ProgressBar
+        Grid.Row="2"
+        Grid.Column="2"
+        Value="{Binding CurrentPower}"
+        Minimum="0"
+        Maximum="{Binding Power}"
+        Style="{StaticResource LStyle.ProgressBar.Surgical}" />
+      
       <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
         <TextBlock Text="{Binding CurrentPower, FallbackValue=50, TargetNullValue=850}" Style="{StaticResource LStyle.Surgical.TextBlock.PowerCurrentValue}" />
         <TextBlock Text="{StaticResource XString.Watt}" Style="{StaticResource LStyle.Surgical.TextBlock.PowerCurrentUnit}" />
@@ -147,7 +164,15 @@
           Value="{Binding Energy}"
           Units="{StaticResource XString.Joules}"
           />
-      <ProgressBar Grid.Row="2" Grid.Column="4" Value="{Binding CurrentPower}" Minimum="0" Maximum="{Binding Power}" Style="{StaticResource LStyle.Surgical.ProgressBar}" />
+      
+      <ProgressBar
+        Grid.Row="2"
+        Grid.Column="4"
+        Value="{Binding CurrentEnergy}"
+        Minimum="0"
+        Maximum="{Binding Energy}"
+        Style="{StaticResource LStyle.ProgressBar.Surgical}"/>
+      
       <StackPanel Grid.Row="3" Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center">
         <TextBlock Text="{Binding CurrentPower}" Style="{StaticResource LStyle.Surgical.TextBlock.PowerCurrentValue}" />
         <TextBlock Text="{StaticResource XString.Joules}" Style="{StaticResource LStyle.Surgical.TextBlock.PowerCurrentUnit}" />
