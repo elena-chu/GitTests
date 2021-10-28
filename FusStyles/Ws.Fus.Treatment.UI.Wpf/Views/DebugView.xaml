@@ -92,13 +92,16 @@
       </Grid>
     </StackPanel>
 
-    <extensions:NumericUpDown Width="100" Height="50"
-                              MinValue="0" MaxValue="50"
-                              Increment="1"
-                              Value="{Binding Value, Mode=TwoWay}"
-                              StoppedValue="{Binding StoppedValue, Mode=TwoWay}"
-      />
+    <StackPanel>
+      <TextBlock Text="Small Slider:"/>
+      <Slider Style="{StaticResource XStyle.Slider.Small}" Width="213" Minimum="0" Maximum="30" Value="13"/>
+    </StackPanel>
 
+    <StackPanel>
+      <TextBlock Text="Small Slider Disabled:"/>
+      <Slider Style="{StaticResource XStyle.Slider.Small}" Width="253" Minimum="0" Maximum="30" Value="13" IsEnabled="False"/>
+    </StackPanel>
+    
   </UniformGrid>
 
 </UserControl>
