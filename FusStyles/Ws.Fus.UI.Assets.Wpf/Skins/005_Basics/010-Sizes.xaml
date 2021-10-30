@@ -21,15 +21,15 @@
 
   <Duration x:Key="XDuration.Animation.Short">0:0:0.19</Duration>
 
-  <CornerRadius x:Key="XCornerRadius.Frame">4</CornerRadius>
-  <CornerRadius x:Key="XCornerRadius.Frame.Left">4,0,0,4</CornerRadius>
-  <CornerRadius x:Key="XCornerRadius.Frame.Right">0,4,4,0</CornerRadius>
-  <CornerRadius x:Key="XCornerRadius.Frame.Top">4,4,0,0</CornerRadius>
-  <CornerRadius x:Key="XCornerRadius.Frame.Bottom">0,0,4,4</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame">5</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Left">5,0,0,5</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Right">0,5,5,0</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Top">5,5,0,0</CornerRadius>
+  <CornerRadius x:Key="XCornerRadius.Frame.Bottom">0,0,5,5</CornerRadius>
   <CornerRadius x:Key="XCornerRadius.Circle">500</CornerRadius>
 
-  <sys:Double x:Key="XRectRadius.X">4</sys:Double>
-  <sys:Double x:Key="XRectRadius.Y">4</sys:Double>
+  <sys:Double x:Key="XRectRadius.X">5</sys:Double>
+  <sys:Double x:Key="XRectRadius.Y">5</sys:Double>
 
   <Thickness x:Key="XThickness.Frame">1</Thickness>
   <Thickness x:Key="XThickness.Frame.Left">1,1,0,1</Thickness>

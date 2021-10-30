@@ -1,11 +1,7 @@
 ﻿<ResourceDictionary 
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:extensions="http://schemas.insightec.com/wpf/"
-  xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
-  <extensions:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" Invisible="Hidden"/>
-  <extensions:InvertedBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <Style x:Key="XStyle.RepeatButton.Slider.Transparent" TargetType="{x:Type RepeatButton}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -270,7 +266,7 @@
             Height="{TemplateBinding Width}"
             Style="{StaticResource XStyle.Border.HoverAndPress.Primary}"
             extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Circle}"
-            Visibility="{TemplateBinding IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            Visibility="{TemplateBinding IsEnabled, Converter={StaticResource XConverter.BooleanToVisibility}}"/>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -315,7 +311,7 @@
               extensions:IndependentSize.CornerRadius="1"
               extensions:IndependentSize.Height="1"
               Background="{StaticResource XBrush.Application.Foreground}"
-              Visibility="{TemplateBinding IsEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+              Visibility="{TemplateBinding IsEnabled, Converter={StaticResource XConverter.InverseBooleanToVisibility}}">
               <Border.Width>
                 <MultiBinding Converter="{extensions:NonNegativeSubtractionConverter}">
                   <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -323,7 +319,7 @@
                 </MultiBinding>
               </Border.Width>
             </Border>
-            <Track x:Name="PART_Track" Visibility="{TemplateBinding IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Track x:Name="PART_Track" Visibility="{TemplateBinding IsEnabled, Converter={StaticResource XConverter.BooleanToVisibility.Hidden}}">
               <Track.DecreaseRepeatButton>
                 <RepeatButton x:Name="DecreaseRepeatButton" Style="{StaticResource XStyle.RepeatButton.Slider.Small.Left}" Command="Slider.DecreaseLarge"/>
               </Track.DecreaseRepeatButton>

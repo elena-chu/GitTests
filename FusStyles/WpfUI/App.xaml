@@ -62,6 +62,8 @@
 
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/010-ExpanderStyles.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/200_Expander/PinableExpanderStyle.xaml"/>
+        
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/250_TabControl/010-TabStyles.xaml"/>
 
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/200_CustomControls/10_NumericUpDown/10-NumericUpDown.xaml"/>
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/200_CustomControls/60_StatusIndicator/10-StatusIndicator.xaml"/>

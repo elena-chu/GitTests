@@ -101,7 +101,36 @@
       <TextBlock Text="Small Slider Disabled:"/>
       <Slider Style="{StaticResource XStyle.Slider.Small}" Width="253" Minimum="0" Maximum="30" Value="13" IsEnabled="False"/>
     </StackPanel>
-    
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <TextBlock Grid.Row="0" Text="Tab Control"/>
+      <TabControl Grid.Row="1" Style="{StaticResource XStyle.TabControl}">
+        <TabItem Header="{StaticResource XContentControl.TabItem.Guillemet}"/>
+
+        <TabItem Header="Yellow">
+          <TabItem.Content>
+            <Border Height="200" Background="Yellow" Width="200"/>
+          </TabItem.Content>
+        </TabItem>
+
+        <TabItem Header="Orange">
+          <TabItem.Content>
+            <Border Height="100" Background="Orange" Width="200"/>
+          </TabItem.Content>
+        </TabItem>
+
+        <TabItem Header="Pink">
+          <TabItem.Content>
+            <Border Height="250" Background="HotPink" Width="200"/>
+          </TabItem.Content>
+        </TabItem>
+      </TabControl>
+    </Grid>
+
   </UniformGrid>
 
 </UserControl>

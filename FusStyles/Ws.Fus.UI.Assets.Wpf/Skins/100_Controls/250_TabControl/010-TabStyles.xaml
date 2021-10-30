@@ -1,0 +1,119 @@
+﻿<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
+  <ContentControl x:Key="XContentControl.TabItem.Guillemet">
+    <Border extensions:IndependentSize.Margin="2,0,2,0" extensions:IndependentSize.MaxWidth="12" HorizontalAlignment="Center">
+      <Path
+        IsHitTestVisible="False"
+        Stretch="Uniform"
+        Data="{StaticResource XGeometry.Guillemet.Down}"
+        Stroke="{StaticResource XBrush.Button.Secondary.Foreground}"
+        StrokeThickness="1.3">
+      </Path>
+    </Border>
+  </ContentControl>
+
+  <ControlTemplate x:Key="XControlTemplate.TabItem" TargetType="{x:Type TabItem}">
+    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+      <Border
+        extensions:IndependentSize.Margin="{TemplateBinding Margin}"
+        extensions:ControlExtensions.IsActive="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}}"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        extensions:IndependentSize.BorderThickness="1,1,1,0"
+        extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"
+        Style="{StaticResource XStyle.Border.Active.Secondary}"/>
+      <!--<Border
+        extensions:IndependentSize.Margin="{TemplateBinding Margin}"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        extensions:IndependentSize.BorderThickness="1,1,1,0"
+        extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"
+        Style="{StaticResource XStyle.Border.HoverAndIndependentPress.TransparentToSecondary}"/>-->
+      <ContentPresenter
+        x:Name="ContentPresenter"
+        Margin="{TemplateBinding Padding}"
+        ContentSource="Header"
+        Focusable="False" 
+        RecognizesAccessKey="True"
+        SnapsToDevicePixels="True"
+        IsHitTestVisible="False"
+        HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+        VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Paragraph}">
+            <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}"/>
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.TabItem" TargetType="{x:Type TabItem}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.TabItem}"/>
+    <Setter Property="Grid.Column">
+      <Setter.Value>
+        <MultiBinding Converter="{extensions:ItemToIndexConverter}">
+          <Binding RelativeSource="{RelativeSource AncestorType={x:Type TabControl}}"/>
+          <Binding RelativeSource="{RelativeSource Self}"/>
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="extensions:IndependentSize.Margin" Value="0.5,0"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Active}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Style.Triggers>
+      <Trigger Property="IsSelected" Value="False">
+        <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <ControlTemplate x:Key="XControlTemplate.TabControl" TargetType="{x:Type TabControl}">
+    <Grid ClipToBounds="True" SnapsToDevicePixels="True" KeyboardNavigation.TabNavigation="Local">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid
+        Grid.Row="0"
+        Panel.ZIndex="1"
+        IsItemsHost="True"
+        KeyboardNavigation.TabIndex="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.Height.Control.Small}"/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+      </Grid>
+      <Border
+        Grid.Row="1"
+        Style="{StaticResource XStyle.Border}"
+        extensions:IndependentSize.CornerRadius="0"
+        extensions:IndependentSize.BorderThickness="0,0,0,1"
+        BorderBrush="{StaticResource XBrush.Line}"/>
+      <ContentPresenter
+        x:Name="PART_SelectedContentHost"
+        Grid.Row="2"
+        ContentSource="SelectedContent"
+        Margin="{TemplateBinding Padding}"
+        SnapsToDevicePixels="True"
+        Visibility="{TemplateBinding SelectedIndex, Converter={extensions:MoreThanToVisibilityConverter}, ConverterParameter=0}"/>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.TabControl" TargetType="{x:Type TabControl}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.TabControl}"/>
+    <Setter Property="VerticalAlignment" Value="Bottom"/>
+    <Setter Property="ItemContainerStyle" Value="{StaticResource XStyle.TabItem}"/>
+  </Style>
+
+</ResourceDictionary>
