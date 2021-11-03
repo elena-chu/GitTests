@@ -24,12 +24,12 @@
         extensions:IndependentSize.BorderThickness="1,1,1,0"
         extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"
         Style="{StaticResource XStyle.Border.Active.Secondary}"/>
-      <!--<Border
+      <Border
         extensions:IndependentSize.Margin="{TemplateBinding Margin}"
         BorderBrush="{TemplateBinding BorderBrush}"
         extensions:IndependentSize.BorderThickness="1,1,1,0"
         extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"
-        Style="{StaticResource XStyle.Border.HoverAndIndependentPress.TransparentToSecondary}"/>-->
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"/>
       <ContentPresenter
         x:Name="ContentPresenter"
         Margin="{TemplateBinding Padding}"
