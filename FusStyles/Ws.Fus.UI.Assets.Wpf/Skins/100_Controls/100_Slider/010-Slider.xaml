@@ -273,6 +273,7 @@
   </Style>
 
   <Style x:Key="XStyle.TextBlock.Slider.Small" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Thumbnail}"/>
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}"/>
     <Setter Property="HorizontalAlignment" Value="Right"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
@@ -333,7 +334,7 @@
             <Popup
               x:Name="Popup"
               Placement="Bottom"
-              extensions:IndependentSize.VerticalOffset="-8"
+              extensions:IndependentSize.VerticalOffset="-10"
               AllowsTransparency="True"
               Focusable="False"
               PopupAnimation="Fade">
