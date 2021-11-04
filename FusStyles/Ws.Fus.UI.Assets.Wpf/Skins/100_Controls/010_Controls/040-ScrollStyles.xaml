@@ -91,6 +91,7 @@
 
   <!--ScrollViewer-->
   <Style x:Key="XStyle.ScrollViewer" TargetType="{x:Type ScrollViewer}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ControlExtensions.Hover" Value="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Template">
       <Setter.Value>
@@ -151,5 +152,7 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <Style x:Key="{x:Type ScrollViewer}" TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource XStyle.ScrollViewer}"/>
 
 </ResourceDictionary>

@@ -108,7 +108,7 @@
         <RowDefinition/>
       </Grid.RowDefinitions>
       <TextBlock Grid.Row="0" Text="Tab Control"/>
-      <TabControl Grid.Row="1" Style="{StaticResource XStyle.TabControl}">
+      <TabControl Grid.Row="1" Style="{StaticResource XStyle.TabControl}" extensions:IndependentSize.Height="250">
         <TabItem Header="{StaticResource XContentControl.TabItem.Guillemet}"/>
 
         <TabItem Header="Yellow">

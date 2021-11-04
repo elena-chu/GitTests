@@ -51,6 +51,29 @@ namespace Ws.Extensions.UI.Wpf.Converters
     /// <summary>
     /// Returns Visible if input is more than param
     /// </summary>
+    public class MoreThanToBooleanConverter : ConverterMarkupExtension<MoreThanToBooleanConverter>
+    {
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!ConverterAssists.CheckValueValidity(value) || !ConverterAssists.CheckValueValidity(parameter))
+                return Binding.DoNothing;
+
+            double valueNum, paramNum;
+            if (double.TryParse(value.ToString(), out valueNum) && double.TryParse(parameter.ToString(), out paramNum))
+                return valueNum > paramNum;
+
+            return Binding.DoNothing;
+        }
+
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Returns Visible if input is more than param
+    /// </summary>
     public class MoreThanToVisibilityConverter : ConverterMarkupExtension<MoreThanToVisibilityConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)

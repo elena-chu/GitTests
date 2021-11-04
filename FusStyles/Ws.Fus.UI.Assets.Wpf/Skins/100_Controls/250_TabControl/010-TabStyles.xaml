@@ -61,9 +61,9 @@
     </Setter>
     <Setter Property="extensions:IndependentSize.Margin" Value="0.5,0"/>
     <Setter Property="HorizontalAlignment" Value="Stretch"/>
-    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
-    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
     <Setter Property="Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Active}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
@@ -77,10 +77,31 @@
 
   <ControlTemplate x:Key="XControlTemplate.TabControl" TargetType="{x:Type TabControl}">
     <Grid ClipToBounds="True" SnapsToDevicePixels="True" KeyboardNavigation.TabNavigation="Local">
+      <Grid.Style>
+        <Style TargetType="{x:Type Grid}">
+          <Setter Property="VerticalAlignment" Value="Bottom"/>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding SelectedIndex, RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:MoreThanToBooleanConverter}, ConverterParameter=0}" Value="True">
+              <Setter Property="VerticalAlignment" Value="Stretch"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Grid.Style>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
+        <RowDefinition>
+          <RowDefinition.Style>
+            <Style TargetType="{x:Type RowDefinition}">
+              <Setter Property="Height" Value="0"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedIndex, RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:MoreThanToBooleanConverter}, ConverterParameter=0}" Value="True">
+                  <Setter Property="Height" Value="*"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </RowDefinition.Style>
+        </RowDefinition>
       </Grid.RowDefinitions>
       <Grid
         Grid.Row="0"
@@ -100,18 +121,23 @@
         extensions:IndependentSize.CornerRadius="0"
         extensions:IndependentSize.BorderThickness="0,0,0,1"
         BorderBrush="{StaticResource XBrush.Line}"/>
-      <ContentPresenter
-        x:Name="PART_SelectedContentHost"
+      <ScrollViewer
         Grid.Row="2"
-        ContentSource="SelectedContent"
-        Margin="{TemplateBinding Padding}"
-        SnapsToDevicePixels="True"
-        Visibility="{TemplateBinding SelectedIndex, Converter={extensions:MoreThanToVisibilityConverter}, ConverterParameter=0}"/>
+        Visibility="{TemplateBinding SelectedIndex, Converter={extensions:MoreThanToVisibilityConverter}, ConverterParameter=0}">
+        <ContentPresenter
+          x:Name="PART_SelectedContentHost"
+          Grid.Row="2"
+          ContentSource="SelectedContent"
+          Margin="{TemplateBinding Padding}"
+          SnapsToDevicePixels="True">
+        </ContentPresenter>
+      </ScrollViewer>
     </Grid>
   </ControlTemplate>
 
   <Style x:Key="XStyle.TabControl" TargetType="{x:Type TabControl}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.TabControl}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="250"/>
     <Setter Property="VerticalAlignment" Value="Bottom"/>
     <Setter Property="ItemContainerStyle" Value="{StaticResource XStyle.TabItem}"/>
   </Style>
