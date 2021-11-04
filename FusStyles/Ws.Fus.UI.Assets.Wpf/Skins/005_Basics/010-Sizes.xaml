@@ -6,6 +6,7 @@
 
   <sys:Double x:Key="XDouble.Height.Control.Default">36</sys:Double>
   <sys:Double x:Key="XDouble.Height.Control.Small">30</sys:Double>
+  <sys:Double x:Key="XDouble.Height.Control.TwoLines">45</sys:Double>
   
   <sys:Double x:Key="XDouble.IconSize.SquareTemplate">29</sys:Double>
 

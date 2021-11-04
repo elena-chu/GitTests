@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Utils;
 
@@ -110,7 +109,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
 
         private static void SetToolTipIfTrimmed(FrameworkElement frameworkElement)
         {
-            if (IsFrameworkElementTrimmed(frameworkElement))
+            if (TextAssists.IsFrameworkElementTrimmedOrWrapped(frameworkElement))
                 SetToolTip(frameworkElement);
             else
                 ToolTipService.SetToolTip(frameworkElement, null);
@@ -120,7 +119,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         {
             if (frameworkElement.IsHitTestVisible)
             {
-                ToolTipService.SetToolTip(frameworkElement, GetFrameworkElementText(frameworkElement));
+                ToolTipService.SetToolTip(frameworkElement, TextAssists.GetFrameworkElementText(frameworkElement));
                 return;
             }
 
@@ -140,70 +139,6 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             return frameworkElement != null && frameworkElement is Control && frameworkElement.IsHitTestVisible;
         }
 
-        private static bool IsFrameworkElementTrimmed<T>(T frameworkElement) where T : FrameworkElement
-        {
-            if (frameworkElement is TextBlock)
-                return IsTextBlockTrimmed(frameworkElement as TextBlock);
-            else
-                return IsChildTextBlockTrimmed(frameworkElement);
-        }
-
-        private static bool IsTextBlockTrimmed(TextBlock textBlock)
-        {
-            if (string.IsNullOrEmpty(textBlock.Text))
-                return false;
-
-            textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-
-            // Measure against Border parent that might be narrower
-            var border = textBlock.ParentOfType<Border>();
-            if (border != null && textBlock.DesiredSize.Width > border.ActualWidth)
-                return true;
-
-            // Measure against ContentPresenter parent if exists
-            var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
-            if (contentPresenter != null && textBlock.DesiredSize.Width > contentPresenter.ActualWidth)
-                return true;
-
-            return textBlock.DesiredSize.Width > textBlock.ActualWidth;
-        }
-
-        private static bool IsChildTextBlockTrimmed(FrameworkElement frameworkElement)
-        {
-            // Get text and measure
-            TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
-            if (textBlock == null || string.IsNullOrEmpty(textBlock.Text))
-                return false;
-
-            textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            if (frameworkElement is ContentPresenter || frameworkElement is Border)
-                return textBlock.DesiredSize.Width > frameworkElement.ActualWidth;
-
-            // Measure against Border if exists between frameworkElement and text
-            var border = textBlock.ParentOfType<Border>();
-            if (border != null && border.IsDescendantOf(frameworkElement) && textBlock.DesiredSize.Width > border.ActualWidth)
-                return true;
-
-            // Measure against ContentPresenter if exists between frameworkElement and text
-            var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
-            if (contentPresenter != null && contentPresenter.IsDescendantOf(frameworkElement))
-                return textBlock.DesiredSize.Width > contentPresenter.ActualWidth;
-
-            return textBlock.DesiredSize.Width > frameworkElement.ActualWidth;
-        }
-
-        private static string GetFrameworkElementText<T>(T frameworkElement) where T : FrameworkElement
-        {
-            var textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
-            if (textBlock != null)
-                return textBlock.Text;
-
-            if (frameworkElement is ComboBox && (frameworkElement as ComboBox).SelectedValue != null)
-                return (frameworkElement as ComboBox).SelectedValue.ToString();
-
-            return string.Empty;
-        }
+        #endregion
     }
-
-    #endregion
 }

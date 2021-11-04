@@ -171,6 +171,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utils\BindingProxy.cs" />
+    <Compile Include="Utils\TextAssists.cs" />
     <Compile Include="Utils\ByteUtils.cs" />
     <Compile Include="Utils\DependencyObjectExtensions.cs" />
     <Compile Include="Utils\ArgumentVerificationExtensions.cs" />

@@ -16,7 +16,26 @@
   </ContentControl>
 
   <ControlTemplate x:Key="XControlTemplate.TabItem" TargetType="{x:Type TabItem}">
-    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+    <Grid x:Name="OuterGrid" Width="{TemplateBinding Width}">
+      <Grid.Style>
+        <Style TargetType="{x:Type Grid}">
+          <Setter Property="extensions:IndependentSize.MinHeight" Value="{StaticResource XDouble.Height.Control.Small}"/>
+          <Style.Triggers>
+            <DataTrigger Value="True">
+              <DataTrigger.Binding>
+                <MultiBinding Converter="{extensions:TextTrimmedOrWrappedToBooleanConverter}">
+                  <Binding ElementName="ContentPresenter"/>
+                  <Binding Path="ActualWidth" ElementName="OuterGrid"/>
+                </MultiBinding>
+              </DataTrigger.Binding>
+              <Setter Property="extensions:IndependentSize.MinHeight" Value="{StaticResource XDouble.Height.Control.TwoLines}"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Grid.Style>
+      <Grid.RowDefinitions>
+        <RowDefinition SharedSizeGroup="TabItemGroup"/>
+      </Grid.RowDefinitions>
       <Border
         extensions:IndependentSize.Margin="{TemplateBinding Margin}"
         extensions:ControlExtensions.IsActive="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}}"
@@ -62,9 +81,8 @@
     <Setter Property="extensions:IndependentSize.Margin" Value="0.5,0"/>
     <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Stretch"/>
     <Setter Property="VerticalContentAlignment" Value="Top"/>
-    <Setter Property="Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Active}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
@@ -107,7 +125,8 @@
         Grid.Row="0"
         Panel.ZIndex="1"
         IsItemsHost="True"
-        KeyboardNavigation.TabIndex="1">
+        KeyboardNavigation.TabIndex="1"
+        Grid.IsSharedSizeScope="True">
         <Grid.ColumnDefinitions>
           <ColumnDefinition extensions:IndependentSize.ColumnWidth="{StaticResource XDouble.Height.Control.Small}"/>
           <ColumnDefinition/>
