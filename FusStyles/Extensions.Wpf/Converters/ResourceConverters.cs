@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace InsightecFiddle.Converters
+namespace Ws.Extensions.UI.Wpf.Converters
 {
     public static class TemperatureAssists
     {

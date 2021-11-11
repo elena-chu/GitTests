@@ -51,6 +51,7 @@
     <ResourceDictionary Source="100_Controls/090_ListControls/040-MenuStyles.xaml"/>
 
     <ResourceDictionary Source="100_Controls/100_Slider/010-Slider.xaml"/>
+    <ResourceDictionary Source="100_Controls/100_Slider/020-ThermalSlider.xaml"/>
     <ResourceDictionary Source="100_Controls/110_ProgressBar/010-ProgressBarStyles.xaml"/>
     <!--<ResourceDictionary Source="100_Controls/090_ListControls/050-MenuStyles.xaml"/>-->
 
