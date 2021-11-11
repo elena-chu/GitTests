@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,10 +33,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is ThermalSlider thermalSlider)
-            {
-                thermalSlider.UpdateDegreesAboveValue();
-                thermalSlider.UpdateDegreesBelowValue();
-            }
+                thermalSlider.MoveDegrees();
         }
 
         private void UpdateDegreesAboveValue()
@@ -55,6 +54,34 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 degreesBelowValue.Add(i + (int)Minimum);
             DegreesBelowValue = degreesBelowValue;
             OnPropertyChanged(nameof(DegreesBelowValue));
+        }
+
+        private void MoveDegrees()
+        {
+            bool degreesChanged = false;
+            int value = (int)Math.Round(Value);
+
+            if (DegreesAboveValue.Count > 1 && value > DegreesAboveValue.Last())
+            {
+                var degreesToMove = DegreesAboveValue.Where(x => x < value).ToList();
+                degreesToMove.ForEach(x => DegreesAboveValue.Remove(x));
+                degreesToMove.Reverse();
+                degreesToMove.ForEach(x => DegreesBelowValue.Insert(0,x));
+                degreesChanged = true;
+            }
+            else if (DegreesBelowValue.Count > 0 && value < DegreesBelowValue.First())
+            {
+                var degreesToMove = DegreesBelowValue.Where(x => x >= value).ToList();
+                degreesToMove.ForEach(x => DegreesBelowValue.Remove(x));
+                degreesToMove.ForEach(x => DegreesAboveValue.Add(x));
+                degreesChanged = true;
+            }
+
+            if (degreesChanged)
+            {
+                OnPropertyChanged(nameof(DegreesAboveValue));
+                OnPropertyChanged(nameof(DegreesBelowValue));
+            }
         }
 
         public ObservableCollection<int> DegreesAboveValue { get; private set; } = new ObservableCollection<int>();
