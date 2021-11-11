@@ -69,7 +69,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 degreesToMove.ForEach(x => DegreesBelowValue.Insert(0,x));
                 degreesChanged = true;
             }
-            else if (DegreesBelowValue.Count > 0 && value < DegreesBelowValue.First())
+            else if (DegreesBelowValue.Count > 0 && value <= DegreesBelowValue.First())
             {
                 var degreesToMove = DegreesBelowValue.Where(x => x >= value).ToList();
                 degreesToMove.ForEach(x => DegreesBelowValue.Remove(x));
