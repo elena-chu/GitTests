@@ -95,6 +95,7 @@
     <StackPanel>
       <TextBlock Text="Thermal Slider:"/>
       <extensions:ThermalSlider
+        HorizontalAlignment="Center"
         Style="{StaticResource XStyle.ThermalSlider}"
         Minimum="37"
         Maximum="63"
