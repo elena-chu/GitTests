@@ -1,0 +1,128 @@
+﻿<UserControl
+  x:Class="Ws.Fus.Surgical.UI.Wpf.SonicateControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:extension="http://schemas.insightec.com/wpf/"
+  xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
+  mc:Ignorable="d"
+  x:Name="_thisSonicateControl">
+  
+  <UserControl.Resources>
+    <Color x:Key="LColor.Highlight">#FF00E0FF</Color>
+    <Color x:Key="LColor.Highlight.Transparent">#0000E0FF</Color>
+    
+    <RadialGradientBrush x:Key="LRadialGradientBrush.Highlight" Center="0.5,0.5" RadiusX="1" RadiusY="0.75">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight}"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Transparent}" Offset="0.47"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TranslateTransform Y="-0.1"/>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
+    <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Long" StartPoint="0,0" EndPoint="0,1">
+      <LinearGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Transparent}" Offset="0.6"/>
+        </GradientStopCollection>
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Medium" StartPoint="0,0" EndPoint="0,1">
+      <LinearGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Transparent}" Offset="0.45"/>
+        </GradientStopCollection>
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Short" StartPoint="0,0" EndPoint="0,1">
+      <LinearGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Transparent}" Offset="0.2"/>
+        </GradientStopCollection>
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <Style x:Key="LStyle.Ellipse" TargetType="{x:Type Ellipse}">
+      <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Storyboard x:Key="LStoryboard.SonicateReady">
+      <DoubleAnimation Storyboard.TargetProperty="Width" To="486" BeginTime="0:0:0" Duration="0:0:1"/>
+      <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.8" BeginTime="0:0:1" Duration="0:0:1"/>
+    </Storyboard>
+  </UserControl.Resources>
+
+  <Viewbox Stretch="Uniform">
+    <Grid Width="587" Height="587">
+      <Ellipse x:Name="BackgroundEllipse" Width="398" Fill="{StaticResource XBrush.Application.Active}" Opacity="0.1">
+        <Ellipse.Style>
+          <Style TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
+                <DataTrigger.EnterActions>
+                  <BeginStoryboard Storyboard="{StaticResource LStoryboard.SonicateReady}"/>
+                </DataTrigger.EnterActions>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </Ellipse.Style>
+      </Ellipse>
+      <Ellipse
+        Width="{Binding ActualWidth, ElementName=BackgroundEllipse}"
+        Fill="{StaticResource LRadialGradientBrush.Highlight}"
+        Style="{StaticResource LStyle.Ellipse}"
+        Opacity="0.9"/>
+      <Ellipse
+        Style="{StaticResource LStyle.Ellipse}"
+        Width="374"
+        extension:IndependentSize.StrokeThickness="2"
+        Stroke="{StaticResource XBrush.Application.Active}"
+        StrokeDashArray="1,5"/>
+      <Ellipse
+        x:Name="LongArc"
+        Width="422"
+        Stroke="{StaticResource LLinearGradientBrush.Arc.Long}"
+        StrokeThickness="3"
+        Style="{StaticResource LStyle.Ellipse}"
+        RenderTransformOrigin="0.5,0.5">
+        <Ellipse.RenderTransform>
+          <RotateTransform x:Name="LongArcRotateTransform"/>
+        </Ellipse.RenderTransform>
+      </Ellipse>
+      <Ellipse
+        x:Name="MediumArc"
+        Width="422"
+        Stroke="{StaticResource LLinearGradientBrush.Arc.Medium}"
+        StrokeThickness="4"
+        Style="{StaticResource LStyle.Ellipse}"
+        RenderTransformOrigin="0.5,0.5">
+        <Ellipse.RenderTransform>
+          <RotateTransform x:Name="MediumArcRotateTransform"/>
+        </Ellipse.RenderTransform>
+      </Ellipse>
+      <Ellipse
+        x:Name="ShortArc"
+        Width="422"
+        Stroke="{StaticResource LLinearGradientBrush.Arc.Short}"
+        StrokeThickness="5"
+        Style="{StaticResource LStyle.Ellipse}"
+        RenderTransformOrigin="0.5,0.5">
+        <Ellipse.RenderTransform>
+          <RotateTransform x:Name="ShortArcRotateTransform"/>
+        </Ellipse.RenderTransform>
+      </Ellipse>
+    </Grid>
+  </Viewbox>
+</UserControl>

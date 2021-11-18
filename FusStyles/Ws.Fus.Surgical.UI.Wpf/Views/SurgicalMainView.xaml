@@ -178,6 +178,24 @@
       </Grid>
 
     </Grid>
-    
+
+    <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+      <local:SonicateControl
+        Grid.ColumnSpan="2"
+        extensions:IndependentSize.Margin="0,0,0,-50"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Bottom"
+        SonicateHeight="50"
+        SonicateWidth="200"
+        SonicateState="{Binding SonicateState}"/>
+      <Button
+        Margin="0,40,0,0"
+        Padding="5"
+        Background="GreenYellow"
+        VerticalAlignment="Bottom"
+        HorizontalAlignment="Center"
+        Content="{Binding SonicateState}"
+        Command="{Binding ChangeSonicateStateCommand}"/>
+    </StackPanel>
   </Grid>
 </UserControl>
