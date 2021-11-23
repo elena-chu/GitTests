@@ -155,7 +155,7 @@
                   <TextBlock Grid.Column="1" Margin="0,0,6,0" Text="°" Style="{StaticResource XStyle.TextBlock.Caption}" Foreground="{Binding Foreground, ElementName=TemperatureTextBlock}"/>
                   <Rectangle Grid.Column="2">
                     <Rectangle.Fill>
-                      <MultiBinding Converter="{conv:TemperatureToBrushConverter}">
+                      <MultiBinding Converter="{conv:TemperatureAndCutoffsToBrushConverter}">
                         <Binding Path="."/>
                         <Binding Path="DataContext.TemperatureCutoffTop" ElementName="thisLiveChart"/>
                         <Binding Path="DataContext.TemperatureCutoffBottom" ElementName="thisLiveChart"/>

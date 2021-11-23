@@ -39,17 +39,7 @@
       </FlowDocument>
     </RichTextBox>-->
 
-    <StackPanel>
-      <TextBlock Text="SingleLetter Plus:"/>
-      <Button x:Name="RippleButton" Style="{StaticResource XStyle.Button.SingleLetter.Plus}" extensions:ControlExtensions.ControlState="Normal" Click="ChangeControlState"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="New Entry:"/>
-      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.NewEntry}"/>
-    </StackPanel>
-
-    <StackPanel>
+    <!--<StackPanel>
       <TextBlock Text="SingleLetter Chevron:"/>
       <ToggleButton x:Name="ChevronButton">
         <ToggleButton.Style>
@@ -77,9 +67,9 @@
         <ComboBoxItem Content="Bowhead"/>
         <ComboBoxItem Content="Common Minke"/>
       </ComboBox>
-    </StackPanel>
+    </StackPanel>-->
 
-    <StackPanel>
+    <!--<StackPanel>
       <TextBlock Text="Info Content Control:"/>
 
       <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -90,9 +80,9 @@
           HorizontalAlignment="Left"
           VerticalAlignment="Bottom"/>
       </Grid>
-    </StackPanel>
+    </StackPanel>-->
 
-    <StackPanel>
+    <!--<StackPanel>
       <TextBlock Text="Small Slider:"/>
       <Slider Style="{StaticResource XStyle.Slider.Small}" Width="213" Minimum="0" Maximum="30" Value="13"/>
     </StackPanel>
@@ -100,37 +90,19 @@
     <StackPanel>
       <TextBlock Text="Small Slider Disabled:"/>
       <Slider Style="{StaticResource XStyle.Slider.Small}" Width="253" Minimum="0" Maximum="30" Value="13" IsEnabled="False"/>
+    </StackPanel>-->
+
+    <StackPanel>
+      <TextBlock Text="Thermal Slider:"/>
+      <extensions:ThermalSlider
+        HorizontalAlignment="Center"
+        Style="{StaticResource XStyle.ThermalSlider}"
+        Minimum="37"
+        Maximum="63"
+        Value="44"
+        extensions:IndependentSize.Height="250"
+        extensions:IndependentSize.Width="70"/>
     </StackPanel>
-
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition/>
-      </Grid.RowDefinitions>
-      <TextBlock Grid.Row="0" Text="Tab Control"/>
-      <TabControl Grid.Row="1" Style="{StaticResource XStyle.TabControl}" extensions:IndependentSize.Height="250">
-        <TabItem Header="{StaticResource XContentControl.TabItem.Guillemet}"/>
-
-        <TabItem Header="Yellow">
-          <TabItem.Content>
-            <Border Height="200" Background="Yellow" Width="200"/>
-          </TabItem.Content>
-        </TabItem>
-
-        <TabItem Header="Orange">
-          <TabItem.Content>
-            <Border Height="100" Background="Orange" Width="200"/>
-          </TabItem.Content>
-        </TabItem>
-
-        <TabItem Header="Pink">
-          <TabItem.Content>
-            <Border Height="250" Background="HotPink" Width="200"/>
-          </TabItem.Content>
-        </TabItem>
-      </TabControl>
-    </Grid>
-
   </UniformGrid>
 
 </UserControl>

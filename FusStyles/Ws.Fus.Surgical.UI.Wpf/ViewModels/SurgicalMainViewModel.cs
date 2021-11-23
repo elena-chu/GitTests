@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Regions;
 using Ws.Extensions.Mvvm;
@@ -32,6 +33,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             //SurgicalStripsViewModel = surgicalVm;
             ModeChangedCommand = new DelegateCommand<object>(ModeChangedExecute);
             ChangeSurgicalStageCommand = new DelegateCommand<SurgicalMode?>(ChangeSurgicalStageExecute);
+            ChangeSonicateStateCommand = new DelegateCommand(ChangeSonicateState);
         }
 
         #region Commands
@@ -119,7 +121,48 @@ namespace Ws.Fus.Surgical.UI.Wpf
             bool succeeded = _navigationController.SwitchScreen(ApplicationModule.Surgical, ViewNames.DummyView);
             continuationCallback(succeeded);
 
-        } 
+        }
+
+        #endregion
+
+
+        #region Sonicate
+
+        private SonicateState _sonicateState = SonicateState.CoolingRunning;
+        public SonicateState SonicateState
+        {
+            get => _sonicateState;
+            set
+            {
+                _sonicateState = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ICommand ChangeSonicateStateCommand { get; set; }
+        private void ChangeSonicateState()
+        {
+            switch (SonicateState)
+            {
+                case SonicateState.CoolingRunning:
+                    SonicateState = SonicateState.CoolingComplete;
+                    break;
+                case SonicateState.CoolingComplete:
+                    SonicateState = SonicateState.SonicateReady;
+                    break;
+                case SonicateState.SonicateReady:
+                    SonicateState = SonicateState.SonicatePress;
+                    break;
+                case SonicateState.SonicatePress:
+                    SonicateState = SonicateState.SonicateDisabled;
+                    break;
+                case SonicateState.SonicateDisabled:
+                    SonicateState = SonicateState.CoolingRunning;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         #endregion
     }
