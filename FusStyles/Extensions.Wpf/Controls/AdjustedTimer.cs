@@ -51,12 +51,17 @@ namespace Ws.Extensions.UI.Wpf.Controls
             get { return _intervalMilliSeconds; }
             set
             {
-                if(_intervalMilliSeconds != value)
+                if (_intervalMilliSeconds != value)
                 {
                     _intervalMilliSeconds = value;
                     SetTimerInterval();
                 }
             }
+        }
+
+        public bool IsEnabled
+        {
+            get { return !_disposed && _timer.IsEnabled; }
         }
 
         /// <summary>
@@ -108,6 +113,11 @@ namespace Ws.Extensions.UI.Wpf.Controls
 
             _timer.Stop();
             _timer.IsEnabled = false;
+        }
+
+        public void UpdateTimeTickAction(Action action)
+        {
+            _timerTickAction = action;
         }
 
         private DispatcherTimer CreateTimer()

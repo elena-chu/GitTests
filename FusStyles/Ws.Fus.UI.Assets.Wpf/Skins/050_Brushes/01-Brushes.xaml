@@ -110,6 +110,8 @@
   <SolidColorBrush x:Key="XBrush.Temperature.59" Color="{StaticResource XColor.Temperature.59}"/>
   <SolidColorBrush x:Key="XBrush.Temperature.60" Color="{StaticResource XColor.Temperature.60}"/>
 
+  <SolidColorBrush x:Key="XBrush.Temperature.Limit" Color="{StaticResource XColor.Temperature.60}"/>
+
 
   <!-- ImageBrushes -->
   <!--<ImageBrush x:Key="LogoBrush" ImageSource="../../Images/Common/Insightec-Logo.png" Stretch="Uniform" ></ImageBrush>-->

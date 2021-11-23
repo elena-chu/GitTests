@@ -79,7 +79,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         /// <summary>
         /// Animate when in Active state
         /// </summary>
-        public static readonly DependencyProperty AnimateActiveProperty = 
+        public static readonly DependencyProperty AnimateActiveProperty =
             DependencyProperty.RegisterAttached("AnimateActive", typeof(bool), typeof(ProgressStatusDisplayer), new UIPropertyMetadata(false));
         public static bool GetAnimateActive(DependencyObject obj)
         {

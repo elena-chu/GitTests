@@ -236,7 +236,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
             if (!_screenProportionCalculated)
             {
                 //Lena: Check Validity!!!
-                _screenProportion = Math.Min(SystemParameters.PrimaryScreenHeight / 1080, SystemParameters.PrimaryScreenWidth /1920);
+                _screenProportion = Math.Min(SystemParameters.PrimaryScreenHeight / 1080, SystemParameters.PrimaryScreenWidth / 1920);
                 _screenProportionCalculated = true;
 
                 //var d = DpiUtils.GetToDeviceMatrix(null);

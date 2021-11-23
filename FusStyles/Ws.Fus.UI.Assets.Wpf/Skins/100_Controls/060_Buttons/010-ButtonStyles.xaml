@@ -99,7 +99,7 @@
             Grid.Column="0"
             extensions:IndependentSize.Margin="8,0,7,0"
             Stretch="Uniform"
-            Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
+            extensions:IndependentSize.Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"
             IsHitTestVisible="False">
           <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}"/>
         </Viewbox>
@@ -225,7 +225,8 @@
         x:Name="RippleBorder"
         extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
         Style="{StaticResource XStyle.Border.Ripple}"
-        extensions:ControlExtensions.IsActive="False"/>
+        extensions:ControlExtensions.IsActive="False"
+        Visibility="Hidden"/>
       <Border
         x:Name="HoverAndPressBorder"
         extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
@@ -245,6 +246,7 @@
     </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="extensions:ControlExtensions.ControlState" Value="CallToAction">
+        <Setter TargetName="RippleBorder" Property="Visibility" Value="Visible"/>
         <Setter TargetName="RippleBorder" Property="extensions:ControlExtensions.IsActive" Value="True"/>
         <Setter TargetName="HoverAndPressBorder" Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
       </Trigger>
@@ -433,7 +435,7 @@
     <Setter Property="extensions:IndependentSize.Padding" Value="4"/>
   </Style>
 
-  
+
   <!--Expander-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Expander" TargetType="{x:Type ToggleButton}">
     <Grid>
@@ -531,8 +533,8 @@
         <Viewbox
           IsHitTestVisible="False"
           Stretch="Uniform"
-          Height="{TemplateBinding extensions:IconedButton.IconSize}"
-          Width="{TemplateBinding extensions:IconedButton.IconSize}">
+          extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+          extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
           <Grid>
             <ContentControl
               x:Name="ActiveIconContentControl"
@@ -605,8 +607,8 @@
         <Viewbox
           IsHitTestVisible="False"
           Stretch="Uniform"
-          Height="{TemplateBinding extensions:IconedButton.IconSize}"
-          Width="{TemplateBinding extensions:IconedButton.IconSize}">
+          extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+          extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
           <Grid>
             <ContentControl
               x:Name="ActiveIconContentControl"
@@ -693,8 +695,8 @@
         <Viewbox
           IsHitTestVisible="False"
           Stretch="Uniform"
-          Height="{TemplateBinding extensions:IconedButton.IconSize}"
-          Width="{TemplateBinding extensions:IconedButton.IconSize}">
+          extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+          extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
           <ContentControl x:Name="IconContentControl" Content="{TemplateBinding extensions:IconedButton.Icon}"/>
         </Viewbox>
       </Border>
@@ -736,8 +738,8 @@
       </Trigger>
     </Style.Triggers>
   </Style>
-  
-  
+
+
   <!--Icon and Chevron over Text-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.IconAndChevronOverText" TargetType="{x:Type ToggleButton}">
     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
@@ -767,8 +769,8 @@
               HorizontalAlignment="Center"
               IsHitTestVisible="False"
               Stretch="Uniform"
-              Height="{TemplateBinding extensions:IconedButton.IconSize}"
-              Width="{TemplateBinding extensions:IconedButton.IconSize}">
+              extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+              extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
               <ContentControl x:Name="IconContentControl" Content="{TemplateBinding extensions:IconedButton.Icon}"/>
             </Viewbox>
             <Border Grid.Column="2" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">

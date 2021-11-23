@@ -1,5 +1,8 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:extensions="http://schemas.insightec.com/wpf/">
+
   <!-- Labels used as label -->
   <Style x:Key="styleLabelBright_Base">
     <Setter Property="Control.Foreground" Value="{StaticResource LabelBrightBrush}" />
@@ -10,4 +13,38 @@
   <!-- For those who won't override -->
   <Style x:Key="styleLabelBright" BasedOn="{StaticResource styleLabelBright_Base}" />
   <Style x:Key="styleLabelDim" BasedOn="{StaticResource styleLabelDim_Base}" />
+
+
+  <Style x:Key="XStyle.Label.Caption"    TargetType="{x:Type Label}"    >
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.IconButton.Caption}" />
+    <!--<Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Thumbnail}" />-->
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style x:Key="XStyle.Label.Caption.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}">
+
+  </Style>
+
+  <Style x:Key="XStyle.Label.Caption.Marked.Preference" TargetType="Label" BasedOn="{StaticResource XStyle.Label.Caption.Preference}">
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Label.Caption.Marked.Margin.Preference" TargetType="Label" BasedOn="{StaticResource XStyle.Label.Caption.Marked.Preference}">
+    <Setter Property="extensions:IndependentSize.Margin" Value="10,0,0,0"/>
+  </Style>
+
+
+
+  <Style x:Key="XStyle.Label.Title.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}">
+    <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Title}" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0 0 0 5" />
+  </Style>
+
+
+
 </ResourceDictionary>

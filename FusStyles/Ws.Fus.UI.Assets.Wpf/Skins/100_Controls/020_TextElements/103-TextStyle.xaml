@@ -10,4 +10,12 @@
   <!-- For those who won't override -->
   <Style x:Key="styleLabelTextBright" BasedOn="{StaticResource styleLabelTextBright_Base}" />
   <Style x:Key="styleLabelTextDim" BasedOn="{StaticResource styleLabelTextDim_Base}" />
+
+
+  <Style x:Key="XStyle.TextBox.Preference" TargetType="TextBox" >
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+    <!--<Setter Property="extensions:IndependentSize.Margin" Value="0 0 0 6"/>-->
+  </Style>
 </ResourceDictionary>

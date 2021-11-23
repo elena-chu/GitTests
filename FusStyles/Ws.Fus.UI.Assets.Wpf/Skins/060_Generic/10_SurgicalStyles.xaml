@@ -8,15 +8,15 @@
   </Style>
 
   <Style x:Key="LStyle.Surgical.RowDefinition.TemperatureRow" TargetType="RowDefinition">
-    <Setter Property="extensions:IndependentSize.RowHeight" Value="40" />
+    <Setter Property="extensions:IndependentSize.RowHeight" Value="45" />
   </Style>
 
   <Style x:Key="LStyle.Surgical.RowDefinition.GraphRow" TargetType="RowDefinition">
-    <Setter Property="extensions:IndependentSize.RowHeight" Value="210" />
+    <Setter Property="extensions:IndependentSize.RowHeight" Value="235" />
   </Style>
 
   <Style x:Key="LStyle.Surgical.RowDefinition.PowerParamsRow" TargetType="RowDefinition">
-    <Setter Property="extensions:IndependentSize.RowHeight" Value="90" />
+    <Setter Property="extensions:IndependentSize.RowHeight" Value="110" />
   </Style>
 
   <Style x:Key="LStyle.ColumnGap.Surgical" TargetType="ColumnDefinition">

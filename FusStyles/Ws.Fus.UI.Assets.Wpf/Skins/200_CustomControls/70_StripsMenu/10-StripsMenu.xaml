@@ -8,12 +8,19 @@
   <SolidColorBrush x:Key="XBrush.Strips.Foreground.Unloaded" Color="{StaticResource XColor.Application.Foreground.Secondary}"/>
 
   <Style x:Key="XStyle.Strips.ToolTip" TargetType="{x:Type ToolTip}" BasedOn="{StaticResource {x:Type ToolTip}}">
+    <Setter Property="Placement" Value="Left" />
+    <Setter Property="HorizontalOffset" Value="10" />
+    <Setter Property="VerticalOffset" Value="10" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ToolTip}">
-          <Border Style="{StaticResource XStyle.Border.Frame}" BorderBrush="{StaticResource XBrush.Application.Active}">
+          <Border
+              Style="{StaticResource XStyle.Border.Frame}"
+              extensions:IndependentSize.CornerRadius="1"
+              Background="{StaticResource XBrush.Application.Background}"
+              BorderBrush="{StaticResource XBrush.Line}">
             <ContentPresenter
-              extensions:IndependentSize.Margin="7,1,7,3"
+              extensions:IndependentSize.Margin="12,5,12,8"
               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
               SnapsToDevicePixels="True"/>
@@ -25,7 +32,8 @@
 
   <Style x:Key="XStyle.Strips.Border.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="ToolTipService.InitialShowDelay" Value="1200"/>
-    <Setter Property="ToolTipService.ShowDuration" Value="6000"/>
+    <Setter Property="ToolTipService.ShowDuration" Value="15000"/>
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
     <Setter Property="extensions:IndependentSize.Margin" Value="12,1"/>
     <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame}"/>

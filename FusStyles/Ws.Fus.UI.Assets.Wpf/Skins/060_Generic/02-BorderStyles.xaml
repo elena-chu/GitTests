@@ -142,6 +142,21 @@
     </Style.Triggers>
   </Style>
 
+  <Style x:Key="XStyle.Border.Preferences" TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}" />
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}" />
+    <!--<Setter Property="extensions:IndependentSize.Margin" Value="0 10 10 0" />-->
+    <Setter Property="extensions:IndependentSize.Padding" Value="30 15" />
+  </Style>
+
+
+  <Style x:Key="XStyle.Border.Preferences.Seperator" TargetType="Rectangle">
+    <Setter Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0 20" />
+    <Setter Property="extensions:IndependentSize.Height" Value="3" />
+  </Style>
+
   <Style x:Key="XStyle.Border.Ripple" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="1"/>
@@ -160,5 +175,7 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+
+
 
 </ResourceDictionary>

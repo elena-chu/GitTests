@@ -147,7 +147,7 @@
 
   <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource XStyle.ComboBox}"/>
 
-  
+
   <!--Button and Combo-->
   <ControlTemplate x:Key="XControlTemplate.ComboBox.ToggleButtonAndTextHeader" TargetType="{x:Type ComboBox}">
     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">

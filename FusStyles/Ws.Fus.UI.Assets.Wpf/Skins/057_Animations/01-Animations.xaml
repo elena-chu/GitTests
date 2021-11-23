@@ -40,7 +40,7 @@
     <ColorAnimation To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
   </Storyboard>
 
-  
+
   <!--DoubleAnimations-->
   <Storyboard x:Key="XStoryboard.DoubleAnimation.Opacity.ToOpaque" Storyboard.TargetProperty="Opacity">
     <DoubleAnimation To="1" Duration="{StaticResource XDuration.Animation.Short}"/>
@@ -63,8 +63,8 @@
       <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
     </BooleanAnimationUsingKeyFrames>
   </Storyboard>
-  
-  
+
+
   <!--Ripple Animation-->
   <Storyboard x:Key="XStoryboard.RippleAnimation">
     <ThicknessAnimation Storyboard.TargetProperty="Margin" To="0" Duration="0:0:1.5" RepeatBehavior="Forever"/>

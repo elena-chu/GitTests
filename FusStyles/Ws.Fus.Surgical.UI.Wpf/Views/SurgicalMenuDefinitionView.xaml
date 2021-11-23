@@ -32,8 +32,6 @@
       <RowDefinition Style="{StaticResource LStyle.RowDefinition.SonicationBtnRow}" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    <!--<Rectangle Stretch="Fill" StrokeThickness="1" Stroke="Magenta" />
-    <TextBlock Text="Definition Control" Foreground="Yellow" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto"  />-->
 
     <local:SonicationParametersView />
 

@@ -153,13 +153,7 @@
                             </BooleanAnimationUsingKeyFrames>
                           </Storyboard>
                         </VisualState>
-                        <VisualState x:Name="CallToActionInactive">
-                          <Storyboard Storyboard.TargetProperty="(extensions:ControlExtensions.IsActive)" Storyboard.TargetName="RippleBorder">
-                            <BooleanAnimationUsingKeyFrames>
-                              <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
-                            </BooleanAnimationUsingKeyFrames>
-                          </Storyboard>
-                        </VisualState>
+                        <VisualState x:Name="CallToActionInactive" />
                       </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
                     <ContentPresenter x:Name="ActiveBkg" 

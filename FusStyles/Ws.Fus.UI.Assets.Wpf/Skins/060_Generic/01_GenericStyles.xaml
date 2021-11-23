@@ -4,11 +4,13 @@
                     >
 
   <!--Sizes-->
-  <GridLength x:Key="NavigationMenuWidth">.089*</GridLength><!-- 170px/1920-->
+  <GridLength x:Key="NavigationMenuWidth">.089*</GridLength>
+  <!-- 170px/1920-->
   <GridLength x:Key="RegularMenuWidth">.18*</GridLength>
-  <GridLength x:Key="StripMenuWidth">.078*</GridLength><!--150px/1920-->
+  <GridLength x:Key="StripMenuWidth">.078*</GridLength>
+  <!--150px/1920-->
 
-  <GridLength x:Key="TextInViewerWidth">.15*</GridLength>
+  <GridLength x:Key="TextInViewerWidth">.18*</GridLength>
 
   <GridLength x:Key="ToolbarMenuHeight">0.068*</GridLength>
 
@@ -64,11 +66,17 @@
     <Setter Property="extensions:IndependentSize.RowHeight" Value="32" />
   </Style>
 
-  <Style x:Key="PreferenceDataTemplateSeparationColumnStyle" TargetType="ColumnDefinition">
-     <Setter Property="extensions:IndependentSize.ColumnWidth" Value="220" />
+  <Style x:Key="PreferenceSeparationColumnDefinitionStyle" TargetType="ColumnDefinition">
+    <Setter Property="extensions:IndependentSize.ColumnWidth" Value="20" />
   </Style>
 
-    <Style x:Key="TextInViewerColumnStyle" TargetType="ColumnDefinition">
+
+
+  <Style x:Key="PreferenceRowDefinitionStyle" TargetType="RowDefinition">
+    <Setter Property="extensions:IndependentSize.RowHeight" Value="43" />
+  </Style>
+
+  <Style x:Key="TextInViewerColumnStyle" TargetType="ColumnDefinition">
     <Setter Property="Width" Value="{StaticResource TextInViewerWidth}" />
   </Style>
 
@@ -83,7 +91,7 @@
   <!--End Sizes-->
 
   <Style x:Key="MenuContainerStyle" TargetType="Panel">
-    <Setter Property="extensions:IndependentSize.Margin" Value="23, 25, 20, 15" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="20, 25, 20, 15" />
   </Style>
 
   <Style x:Key="ExpanderMenuContainerStyle" TargetType="Panel">

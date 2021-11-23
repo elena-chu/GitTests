@@ -7,10 +7,14 @@
   <sys:Boolean x:Key="XBoolean.False">False</sys:Boolean>
 
   <sys:String x:Key="XString.DegreesCelcius">&#176;C</sys:String>
+  <sys:String x:Key="XString.Degrees">&#176;</sys:String>
   <sys:String x:Key="XString.DegreesFahrenheit">&#176;F</sys:String>
   <sys:String x:Key="XString.Joules">Joules</sys:String>
   <sys:String x:Key="XString.Kilojoules">kJ</sys:String>
   <sys:String x:Key="XString.Watt">Watt</sys:String>
   <sys:String x:Key="XString.Sec">sec</sys:String>
-  
+  <sys:String x:Key="XString.kHz">kHz</sys:String>
+  <sys:String x:Key="XString.Hz">Hz</sys:String>
+  <sys:String x:Key="XString.Percentage">%</sys:String>
+
 </ResourceDictionary>

@@ -109,6 +109,8 @@
               x:Name="PART_ScrollContentPresenter"
               Grid.Row="0"
               Grid.Column="0"
+              Grid.RowSpan="2"
+              Grid.ColumnSpan="2"
               Margin="{TemplateBinding Padding}"
               CanContentScroll="{TemplateBinding CanContentScroll}"
               CanHorizontallyScroll="False"
@@ -146,6 +148,7 @@
               x:Name="Corner"
               Grid.Row="1"
               Grid.Column="1"
+              Visibility="Collapsed"
               Fill="{TemplateBinding Background}"/>
           </Grid>
         </ControlTemplate>

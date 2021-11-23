@@ -81,7 +81,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         {
             if (frameworkElement == null)
                 return;
-            
+
             if (turnOnAutoToolTip)
             {
                 TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
@@ -101,11 +101,6 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
                     ((ComboBox)frameworkElement).SelectionChanged -= ComboBox_SelectionChanged;
             }
         }
-
-        #endregion
-
-
-        #region Set ToolTip
 
         private static void SetToolTipIfTrimmed(FrameworkElement frameworkElement)
         {

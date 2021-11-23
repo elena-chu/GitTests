@@ -14,6 +14,12 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="SurgicalStyles.xaml"/>
       </ResourceDictionary.MergedDictionaries>
+
+      <ContentControl x:Key="LContentControl.TabItem.Guillemet">
+        <Border Style="{StaticResource TabItem.Guillemet.Border}">
+          <Path Style="{StaticResource TabItem.Guillemet.Path}" />
+        </Border>
+      </ContentControl>
     </ResourceDictionary>
   </UserControl.Resources>
 
@@ -102,6 +108,38 @@
       Background="{StaticResource XBrush.Error}"
       Command="{Binding StopSonicationCommand}"
      />
-       
-    </Grid>
+    <TabControl 
+      Grid.Row="2" Grid.RowSpan="3" 
+        VerticalAlignment="Bottom" Name="tabControl" 
+        Style="{StaticResource XStyle.TabControl}" 
+        Height="Auto" 
+        extensions:IndependentSize.Margin="-3,0,0,0">
+      <TabItem  Header="{StaticResource LContentControl.TabItem.Guillemet}" IsSelected="True" />
+
+      <TabItem Name="c1" Header="Spectrum" TabIndex="0" >
+        <Grid extensions:IndependentSize.Margin="0,0,0,10">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+
+          <!--<local:CavitationChartView
+            DataContext="{Binding CavitationChartViewModel}"
+            Channel1="{Binding Power,Mode=OneWay}"
+            Channel2="{Binding Cav1,Mode=OneWay}"
+            MaximumX="{Binding CavMaximumX}"
+            DeltaX="{Binding CavDelta,Mode=OneWay}"
+            Threshold="{Binding CavThreshold,Mode=OneWay}"
+            />-->
+
+          <!--<local:SpectrumChartView 
+            Grid.Row="1" 
+            DataContext="{Binding SpectrumChartViewModel}"
+            TimeInSeconds="{Binding Time,Mode=OneWay}"
+            Channel1="{Binding SpecChannel1,Mode=OneWay}"/>-->
+
+        </Grid>
+      </TabItem>
+    </TabControl>
+  </Grid>
 </UserControl>

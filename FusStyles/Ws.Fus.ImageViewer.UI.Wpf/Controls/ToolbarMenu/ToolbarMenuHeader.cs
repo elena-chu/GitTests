@@ -69,8 +69,12 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         private void UpdateActiveStatusByCheckedItems()
         {
-            if (HasCheckableItems())
+            if (HasCheckableItems() || ToolbarItemType == ToolbarItemType.SelectCaptionToggle)
+            {
                 IsActive = Items.Cast<ToolbarMenuItem>().Any(x => x.IsChecked);
+                if (ToolbarItemType == ToolbarItemType.SelectCaptionToggle && _selectedItem != null)
+                    ActiveHeader = _selectedItem.Header;
+            }
         }
 
         #endregion
@@ -120,7 +124,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
 
         #region Start, End
-        
+
         public ToolbarMenuHeader()
         {
             HeaderClickCommand = new DelegateCommand(HeaderClickExecute, HeaderClickCanExecute);
@@ -220,6 +224,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
             if (menuItem.ToolbarItemType.IsSelectable())
                 SetSelectedItem(menuItem);
+
 
             UpdateActiveStatusByCheckedItems();
         }

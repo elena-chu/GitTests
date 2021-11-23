@@ -16,7 +16,7 @@
             <Setter Property="Grid.Row" Value="1" />
             <Setter Property="NumberOfFractionDigits" Value="0" />
             <Setter Property="IsNarrow" Value="True" />
-            <Setter Property="UnitsPlacement" Value="Baseline" />
+            <Setter Property="UnitsPlacement" Value="Subscript" />
             <Setter Property="CodeLiteralVisibility" Value="Collapsed" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>

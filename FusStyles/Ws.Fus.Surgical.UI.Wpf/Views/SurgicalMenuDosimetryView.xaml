@@ -47,5 +47,7 @@
       CommandParameter="{StaticResource XBoolean.False}"
      />
 
+    <local:SurgicalDosimetryOptionsView Grid.Row="3" VerticalAlignment="Bottom" extensions:IndependentSize.Margin="-3,0,0,0"/>
+
   </Grid>
 </UserControl>

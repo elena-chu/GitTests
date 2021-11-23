@@ -63,16 +63,23 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         /// <summary>
         /// Icon size
         /// </summary>
-        public static readonly DependencyProperty IconSizeProperty = DependencyProperty.RegisterAttached("IconSize", typeof(double), typeof(IconedButton), new PropertyMetadata(20.0, OnIconSizeChanged, CoerceIconSizeValue));
+        public static readonly DependencyProperty IconSizeProperty = DependencyProperty.RegisterAttached("IconSize", typeof(double), typeof(IconedButton), new PropertyMetadata(20.0, OnIconSizeChanged/*, CoerceIconSizeValue*/));
         public static void SetIconSize(DependencyObject obj, double value) { obj.SetValue(IconSizeProperty, value); }
         public static double GetIconSize(DependencyObject obj) { return (double)obj.GetValue(IconSizeProperty); }
 
-        private static void OnIconSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {}
-
-        private static object CoerceIconSizeValue(DependencyObject d, object baseValue)
+        private static void OnIconSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            return IndependentSize.CalculateProportionalDouble((double)baseValue);
+            d.SetCurrentValue(IconedButton.CalculatedIconSizeProperty, IndependentSize.CalculateProportionalDouble((double)e.NewValue));
         }
+
+        /// <summary>
+        /// Readonly property returning calculated Icon Size according to screen resolution. Setter used just for event
+        /// </summary>
+        //public static readonly DependencyProperty CalculatedIconSizeProperty = CalculatedIconSizeKeyPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty CalculatedIconSizeProperty = DependencyProperty.RegisterAttached("CalculatedIconSize", typeof(double), typeof(IconedButton), new PropertyMetadata(20.0/*, CoerceIconSizeValue*/));
+        public static double GetCalculatedIconSize(DependencyObject obj) { return IndependentSize.CalculateProportionalDouble((double)obj.GetValue(IconSizeProperty)); }
+        public static void SetCalculatedIconSize(DependencyObject obj, double value) { obj.SetValue(CalculatedIconSizeProperty, value); }
+
 
 
         // ********************* Helpers ********************

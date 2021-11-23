@@ -10,8 +10,8 @@
         <ControlTemplate>
           <Viewbox
             Stretch="Uniform"
-            Height="{TemplateBinding extensions:IconedButton.IconSize}"
-            Width="{TemplateBinding extensions:IconedButton.IconSize}"
+            extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+            extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}"
             IsHitTestVisible="False">
             <ContentControl Content="{TemplateBinding extensions:IconedButton.Icon}"/>
           </Viewbox>

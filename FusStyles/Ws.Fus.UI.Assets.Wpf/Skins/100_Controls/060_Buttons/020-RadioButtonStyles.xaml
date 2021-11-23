@@ -53,7 +53,7 @@
           </Canvas>
         </Viewbox>
       </Grid>
-      <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" Margin="0,5,0,0" IsHitTestVisible="False">
+      <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" extensions:IndependentSize.Margin="0,5,0,0" IsHitTestVisible="False">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}">
             <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
@@ -99,7 +99,7 @@
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DefaultAlpha}"/>
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.DefaultBeta}"/>
-    <Setter Property="extensions:IndependentSize.Margin" Value="20"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="20, 13,20,17"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="50"/>
     <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
@@ -119,7 +119,7 @@
     <Style.Triggers>
       <DataTrigger Binding="{Binding IsActive}" Value="True">
         <Setter Property="extensions:IndependentSize.FontSize" Value="22" />
-        <Setter Property="extensions:IconedButton.IconSize" Value="62" />
+        <Setter Property="extensions:IconedButton.IconSize" Value="58" />
       </DataTrigger>
     </Style.Triggers>
   </Style>
@@ -210,7 +210,7 @@
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame.Left}"/>
     <Setter Property="extensions:IndependentSize.CornerRadius" Value="0"/>
     <Setter Property="IsThreeState" Value="False"/>
-    <Setter Property="Padding" Value="15,0" />
+    <Setter Property="extensions:IndependentSize.Padding" Value="15,0" />
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
