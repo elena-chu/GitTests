@@ -179,10 +179,9 @@
 
     </Grid>
 
-    <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+    <StackPanel Grid.ColumnSpan="2" extensions:IndependentSize.Margin="0,0,0,-50" HorizontalAlignment="Center" VerticalAlignment="Bottom">
       <local:SonicateControl
         Grid.ColumnSpan="2"
-        extensions:IndependentSize.Margin="0,0,0,-50"
         HorizontalAlignment="Center"
         VerticalAlignment="Bottom"
         SonicateHeight="50"
