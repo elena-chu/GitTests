@@ -52,7 +52,13 @@
         BorderBrush="{TemplateBinding BorderBrush}"
         extensions:IndependentSize.BorderThickness="1,1,1,0"
         extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Frame.Top}"
-        Style="{StaticResource XStyle.Border.Active.Secondary}"/>
+        >
+        <Border.Style>
+          <Style TargetType="Border" BasedOn="{StaticResource XStyle.Border.Active.Secondary}">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType=TabControl}}" />
+          </Style>
+        </Border.Style>
+      </Border>
       <Border
         extensions:IndependentSize.Margin="{TemplateBinding Margin}"
         BorderBrush="{TemplateBinding BorderBrush}"
@@ -95,6 +101,7 @@
     <Setter Property="VerticalContentAlignment" Value="Top"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background.Active}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType=TabControl}}" />
     <Style.Triggers>
       <Trigger Property="IsSelected" Value="False">
         <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
