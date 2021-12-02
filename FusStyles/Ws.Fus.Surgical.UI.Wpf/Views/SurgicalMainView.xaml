@@ -179,15 +179,20 @@
 
     </Grid>
 
-    <StackPanel Grid.ColumnSpan="2" extensions:IndependentSize.Margin="0,0,0,-50" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+    <Grid Grid.ColumnSpan="2" extensions:IndependentSize.Margin="0,0,0,-50" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
       <local:SonicateControl
-        Grid.ColumnSpan="2"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Bottom"
+        x:Name="SonicateControl"
+        Grid.Row="0"
         SonicateHeight="50"
         SonicateWidth="200"
         SonicateState="{Binding SonicateState}"/>
+      <Border Grid.Row="0" Background="Black" VerticalAlignment="Bottom" Height="150"/>
       <Button
+        Grid.Row="1"
         Margin="0,40,0,0"
         Padding="5"
         Background="GreenYellow"
@@ -195,6 +200,6 @@
         HorizontalAlignment="Center"
         Content="{Binding SonicateState}"
         Command="{Binding ChangeSonicateStateCommand}"/>
-    </StackPanel>
+    </Grid>
   </Grid>
 </UserControl>
