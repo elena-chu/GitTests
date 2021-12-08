@@ -34,6 +34,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             ModeChangedCommand = new DelegateCommand<object>(ModeChangedExecute);
             ChangeSurgicalStageCommand = new DelegateCommand<SurgicalMode?>(ChangeSurgicalStageExecute);
             ChangeSonicateStateCommand = new DelegateCommand(ChangeSonicateState);
+            SonicateCommand = new DelegateCommand(Sonicate);
         }
 
         #region Commands
@@ -162,6 +163,12 @@ namespace Ws.Fus.Surgical.UI.Wpf
                 default:
                     break;
             }
+        }
+
+        public ICommand SonicateCommand { get; set; }
+        private void Sonicate()
+        {
+            // Do something here when Sonicate button is pressed
         }
 
         #endregion

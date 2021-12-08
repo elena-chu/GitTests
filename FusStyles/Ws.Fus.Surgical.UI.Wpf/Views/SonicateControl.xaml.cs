@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Ws.Extensions.UI.Wpf.Behaviors;
 
 namespace Ws.Fus.Surgical.UI.Wpf
 {
@@ -36,14 +38,27 @@ namespace Ws.Fus.Surgical.UI.Wpf
                 sonicateControl.CalculateRadius();
         }
 
+        public double Chord { get; private set; }
+
+        private double _arcHeight;
+        public double ArcHeight
+        {
+            get => _arcHeight;
+            private set
+            {
+                _arcHeight = value;
+                OnPropertyChanged();
+            }
+        }
+
         public double Radius { get; private set; }
         private void CalculateRadius()
         {
             if (SonicateHeight != 0)
             {
-                double chord = SonicateWidth;
-                double arcHeight = SonicateHeight;
-                Radius = (0.5 * arcHeight) + (0.125 * Math.Pow(chord, 2) / arcHeight);
+                Chord = IndependentSize.CalculateProportionalDouble(SonicateWidth);
+                ArcHeight = IndependentSize.CalculateProportionalDouble(SonicateHeight);
+                Radius = (0.5 * ArcHeight) + (0.125 * Math.Pow(Chord, 2) / ArcHeight);
                 Width = 2 * Radius;
                 Height = Width;
                 OnPropertyChanged(nameof(Radius));
@@ -56,8 +71,8 @@ namespace Ws.Fus.Surgical.UI.Wpf
         {
             if (Radius != 0)
             {
-                double chord = SonicateWidth;
-                Alpha = 2 * Math.Asin(0.5 * chord / Radius);
+                Chord = IndependentSize.CalculateProportionalDouble(SonicateWidth);
+                Alpha = 2 * Math.Asin(0.5 * Chord / Radius);
                 OnPropertyChanged(nameof(Alpha));
             }
         }
@@ -73,6 +88,30 @@ namespace Ws.Fus.Surgical.UI.Wpf
             set { SetValue(SonicateStateProperty, value); }
         }
         public static readonly DependencyProperty SonicateStateProperty = DependencyProperty.Register(nameof(SonicateState), typeof(SonicateState), typeof(SonicateControl), new PropertyMetadata(SonicateState.CoolingRunning));
+
+        #endregion
+
+
+        #region Command
+
+        public ICommand SonicateStartPressCommand
+        {
+            get { return (ICommand)GetValue(SonicateStartPressCommandProperty); }
+            set { SetValue(SonicateStartPressCommandProperty, value); }
+        }
+        public static readonly DependencyProperty SonicateStartPressCommandProperty = DependencyProperty.Register(nameof(SonicateStartPressCommand), typeof(ICommand), typeof(SonicateControl));
+
+        public ICommand SonicateEndPressCommand
+        {
+            get { return (ICommand)GetValue(SonicateEndPressCommandProperty); }
+            set { SetValue(SonicateEndPressCommandProperty, value); }
+        }
+        public static readonly DependencyProperty SonicateEndPressCommandProperty = DependencyProperty.Register(nameof(SonicateEndPressCommand), typeof(ICommand), typeof(SonicateControl));
+
+        private void OnPressAnimationEnd(object sender, EventArgs e)
+        {
+            SonicateEndPressCommand?.Execute(null);
+        }
 
         #endregion
 

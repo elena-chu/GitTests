@@ -14,6 +14,7 @@
              xmlns:sm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.StripsMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
              xmlns:tm="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
              mc:Ignorable="d" 
+             x:Name="_thisSurgicalMainView"
              d:DesignHeight="450" d:DesignWidth="800">
  
   <UserControl.Resources>
@@ -176,30 +177,39 @@
           />
 
       </Grid>
-
-    </Grid>
-
-    <Grid Grid.ColumnSpan="2" extensions:IndependentSize.Margin="0,0,0,-50" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-      </Grid.RowDefinitions>
-      <local:SonicateControl
-        x:Name="SonicateControl"
-        Grid.Row="0"
-        SonicateHeight="50"
-        SonicateWidth="200"
-        SonicateState="{Binding SonicateState}"/>
-      <Border Grid.Row="0" Background="Black" VerticalAlignment="Bottom" Height="150"/>
-      <Button
+      
+      <Grid
         Grid.Row="1"
-        Margin="0,40,0,0"
-        Padding="5"
-        Background="GreenYellow"
-        VerticalAlignment="Bottom"
-        HorizontalAlignment="Center"
-        Content="{Binding SonicateState}"
-        Command="{Binding ChangeSonicateStateCommand}"/>
+        Grid.Column="1"
+        Width="{Binding ActualWidth, ElementName=StripsViewer, Converter={extensions:ScalarConverter}, ConverterParameter=0.66}"
+        extensions:IndependentSize.Margin="0,0,0,-50"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button
+          Grid.Row="0"
+          Width="120"
+          Height="40"
+          Margin="0,0,0,40"
+          Padding="5"
+          Background="GreenYellow"
+          HorizontalAlignment="Center"
+          Content="{Binding SonicateState}"
+          Command="{Binding ChangeSonicateStateCommand}"
+          DataContext="{Binding DataContext, ElementName=_thisSurgicalMainView}"/>
+        <local:SonicateControl
+          x:Name="SonicateControl"
+          Grid.Row="1"
+          SonicateHeight="110"
+          SonicateWidth="320"
+          SonicateState="{Binding SonicateState}"
+          SonicateStartPressCommand="{Binding ChangeSonicateStateCommand}"
+          SonicateEndPressCommand="{Binding SonicateCommand}"
+          DataContext="{Binding DataContext, ElementName=_thisSurgicalMainView}"/>
+      </Grid>
     </Grid>
   </Grid>
 </UserControl>

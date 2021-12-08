@@ -4,7 +4,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:extension="http://schemas.insightec.com/wpf/"
+  xmlns:extensions="http://schemas.insightec.com/wpf/"
   xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
   xmlns:sys="clr-namespace:System;assembly=mscorlib"
   mc:Ignorable="d"
@@ -61,6 +61,15 @@
       <RadialGradientBrush.RelativeTransform>
         <TranslateTransform Y="-0.1"/>
       </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+    
+    <RadialGradientBrush x:Key="LRadialGradientBrush.Button" Center="0.5,0.5" RadiusX="0.8" RadiusY="0.8">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight}"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Transparent}" Offset="0"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
     </RadialGradientBrush>
 
     <!--LA: need to compute gradient stop for cooling progress-->
@@ -192,7 +201,7 @@
     <Style x:Key="LStyle.Ellipse.Highlight" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
       <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.Highlight}"/>
       <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Width" Value="{Binding ActualWidth, ElementName=BackgroundEllipse, Converter={extension:ScalarConverter}, ConverterParameter=0.9}"/>
+      <Setter Property="Width" Value="{Binding ActualWidth, ElementName=BackgroundEllipse, Converter={extensions:ScalarConverter}, ConverterParameter=0.9}"/>
       <Style.Triggers>
         <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
           <DataTrigger.EnterActions>
@@ -566,7 +575,7 @@
     </Grid>
 
     <Style x:Key="LStyle.Border.Halo" TargetType="{x:Type Border}">
-      <Setter x:Name="WidthSetter" Property="Width" Value="{Binding ActualWidth, ElementName=BackgroundEllipse, Converter={extension:ScalarConverter}, ConverterParameter=0.85}"/>
+      <Setter x:Name="WidthSetter" Property="Width" Value="{Binding ActualWidth, ElementName=BackgroundEllipse, Converter={extensions:ScalarConverter}, ConverterParameter=0.85}"/>
       <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
       <Setter Property="HorizontalAlignment" Value="Center"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
@@ -603,7 +612,7 @@
             <BeginStoryboard>
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
-                <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="104" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
+                <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="114" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
               </Storyboard>
             </BeginStoryboard>
           </DataTrigger.EnterActions>
@@ -623,22 +632,92 @@
 
   </UserControl.Resources>
 
-  <Viewbox Stretch="Uniform">
-    <Grid Width="{StaticResource LDouble.Width.OuterBoundary}" Height="{StaticResource LDouble.Width.OuterBoundary}">
-      <Ellipse x:Name="BackgroundEllipse" Style="{StaticResource LStyle.Ellipse.Back}"/>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.Highlight}"/>
-      <ContentControl x:Name="TrioContentControl" Content="{StaticResource LGrid.Trio}"/>
-      <Border Style="{StaticResource LStyle.Border.Halo}">
-        <Path Style="{StaticResource LStyle.Path.Halo}"/>
-      </Border>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.Dashed}"/>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.Dotted}"/>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.CoolingArc}"/>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Outer}"/>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Inner}"/>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.LongArc}"/>
-      <Ellipse Style="{StaticResource LStyle.Ellipse.ShortArc}"/>
-      <TextBlock Style="{StaticResource LStyle.TextBlock}" Text="SONICATE"/>
-    </Grid>
-  </Viewbox>
+  <Grid>
+    <Grid.RenderTransform>
+      <TranslateTransform>
+        <TranslateTransform.Y>
+          <MultiBinding Converter="{extensions:NonNegativeSubtractionConverter}">
+            <Binding Path="ActualHeight" ElementName="_thisSonicateControl"/>
+            <Binding Path="ArcHeight" ElementName="_thisSonicateControl"/>
+          </MultiBinding>
+        </TranslateTransform.Y>
+      </TranslateTransform>
+    </Grid.RenderTransform>
+    <Border x:Name="SonicateMask" Background="{StaticResource XBrush.AlmostTransparent}">
+      <Border
+        Height="{Binding ArcHeight, ElementName=_thisSonicateControl}"
+        VerticalAlignment="Top"
+        Background="{StaticResource XBrush.Application.Background}"/>
+    </Border>
+    <Viewbox Stretch="Uniform">
+      <Grid Width="{StaticResource LDouble.Width.OuterBoundary}" Height="{StaticResource LDouble.Width.OuterBoundary}">
+        <Ellipse x:Name="BackgroundEllipse" Style="{StaticResource LStyle.Ellipse.Back}"/>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.Highlight}"/>
+        <ContentControl x:Name="TrioContentControl" Content="{StaticResource LGrid.Trio}"/>
+        <Border Style="{StaticResource LStyle.Border.Halo}">
+          <Path Style="{StaticResource LStyle.Path.Halo}"/>
+        </Border>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.Dashed}"/>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.Dotted}"/>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.CoolingArc}"/>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Outer}"/>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Inner}"/>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.LongArc}"/>
+        <Ellipse Style="{StaticResource LStyle.Ellipse.ShortArc}"/>
+        <TextBlock Style="{StaticResource LStyle.TextBlock}" Text="SONICATE"/>
+        <Button
+          Command="{Binding SonicateStartPressCommand, ElementName=_thisSonicateControl}"
+          Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+          Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
+          <Button.Style>
+            <Style TargetType="{x:Type Button}">
+              <Setter Property="Visibility" Value="Hidden"/>
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
+                  <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </Button.Style>
+          <Button.Template>
+            <ControlTemplate>
+              <Ellipse
+                Fill="{StaticResource LRadialGradientBrush.Button}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+                <Ellipse.Triggers>
+                  <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.5" Duration="{StaticResource XDuration.Animation.Short}"/>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </EventTrigger>
+                  <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.1" Duration="{StaticResource XDuration.Animation.Short}"/>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </EventTrigger>
+                </Ellipse.Triggers>
+              </Ellipse>
+            </ControlTemplate>
+          </Button.Template>
+          <Button.Triggers>
+            <EventTrigger RoutedEvent="Button.Click">
+              <BeginStoryboard>
+                <Storyboard>
+                  <DoubleAnimation Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.TwiceLong}" Completed="OnPressAnimationEnd"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+          </Button.Triggers>
+        </Button>
+      </Grid>
+    </Viewbox>
+    <Grid.OpacityMask>
+      <VisualBrush Stretch="None" Visual="{Binding ElementName=SonicateMask}"/>
+    </Grid.OpacityMask>
+  </Grid>
 </UserControl>
