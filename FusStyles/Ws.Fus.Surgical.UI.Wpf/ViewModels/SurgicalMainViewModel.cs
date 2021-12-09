@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Prism.Commands;
 using Prism.Regions;
 using Ws.Extensions.Mvvm;
@@ -35,6 +36,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             ChangeSurgicalStageCommand = new DelegateCommand<SurgicalMode?>(ChangeSurgicalStageExecute);
             ChangeSonicateStateCommand = new DelegateCommand(ChangeSonicateState);
             SonicateCommand = new DelegateCommand(Sonicate);
+            InitTimer();
         }
 
         #region Commands
@@ -127,9 +129,55 @@ namespace Ws.Fus.Surgical.UI.Wpf
         #endregion
 
 
-        #region Sonicate
+        #region Cooling
 
-        private SonicateState _sonicateState = SonicateState.CoolingRunning;
+        private double _coolingValue = 0.0;
+        public double CoolingValue
+        {
+            get => _coolingValue;
+            set
+            {
+                _coolingValue = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public double MinCoolingValue => 0.0;
+        public double MaxCoolingValue => 1.0;
+
+        #endregion
+
+
+        #region Cooling Timer
+
+        private DispatcherTimer _timer;
+        private const int TimerInterval = 40;
+
+        private void InitTimer()
+        {
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromMilliseconds(TimerInterval);
+            _timer.Tick += OnTimer;
+            _timer.Stop();
+        }
+
+        private void OnTimer(object sender, EventArgs e)
+        {
+            CoolingValue += 0.01;
+            if (CoolingValue >=1)
+            {
+                _timer.Tick -= OnTimer;
+                _timer.Stop();
+                ChangeSonicateState();
+            }
+        }
+
+        #endregion
+
+
+        #region Sonicate State
+
+        private SonicateState _sonicateState = SonicateState.SonicateDisabled;
         public SonicateState SonicateState
         {
             get => _sonicateState;
@@ -146,9 +194,6 @@ namespace Ws.Fus.Surgical.UI.Wpf
             switch (SonicateState)
             {
                 case SonicateState.CoolingRunning:
-                    SonicateState = SonicateState.CoolingComplete;
-                    break;
-                case SonicateState.CoolingComplete:
                     SonicateState = SonicateState.SonicateReady;
                     break;
                 case SonicateState.SonicateReady:
@@ -159,6 +204,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
                     break;
                 case SonicateState.SonicateDisabled:
                     SonicateState = SonicateState.CoolingRunning;
+                    _timer.Start();
                     break;
                 default:
                     break;

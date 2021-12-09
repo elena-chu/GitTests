@@ -208,6 +208,9 @@
           SonicateState="{Binding SonicateState}"
           SonicateStartPressCommand="{Binding ChangeSonicateStateCommand}"
           SonicateEndPressCommand="{Binding SonicateCommand}"
+          CoolingMinimum="{Binding MinCoolingValue}"
+          CoolingMaximum="{Binding MaxCoolingValue}"
+          CoolingValue="{Binding CoolingValue}"
           DataContext="{Binding DataContext, ElementName=_thisSurgicalMainView}"/>
       </Grid>
     </Grid>

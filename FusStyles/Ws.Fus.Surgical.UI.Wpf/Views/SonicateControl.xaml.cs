@@ -38,42 +38,29 @@ namespace Ws.Fus.Surgical.UI.Wpf
                 sonicateControl.CalculateRadius();
         }
 
-        public double Chord { get; private set; }
-
-        private double _arcHeight;
-        public double ArcHeight
+        private double _sonicateArcHeight;
+        public double SonicateArcHeight
         {
-            get => _arcHeight;
+            get => _sonicateArcHeight;
             private set
             {
-                _arcHeight = value;
+                _sonicateArcHeight = value;
                 OnPropertyChanged();
             }
         }
 
-        public double Radius { get; private set; }
+        public double SonicateRadius { get; private set; }
         private void CalculateRadius()
         {
-            if (SonicateHeight != 0)
+            if (SonicateHeight > 0 && SonicateWidth > 0)
             {
-                Chord = IndependentSize.CalculateProportionalDouble(SonicateWidth);
-                ArcHeight = IndependentSize.CalculateProportionalDouble(SonicateHeight);
-                Radius = (0.5 * ArcHeight) + (0.125 * Math.Pow(Chord, 2) / ArcHeight);
-                Width = 2 * Radius;
+                double chord = IndependentSize.CalculateProportionalDouble(SonicateWidth);
+                SonicateArcHeight = IndependentSize.CalculateProportionalDouble(SonicateHeight);
+                SonicateRadius = (0.5 * SonicateArcHeight) + (0.125 * Math.Pow(chord, 2) / SonicateArcHeight);
+                Width = 2 * SonicateRadius;
                 Height = Width;
-                OnPropertyChanged(nameof(Radius));
-                CalculateAlpha();
-            }
-        }
-
-        public double Alpha { get; private set; }
-        private void CalculateAlpha()
-        {
-            if (Radius != 0)
-            {
-                Chord = IndependentSize.CalculateProportionalDouble(SonicateWidth);
-                Alpha = 2 * Math.Asin(0.5 * Chord / Radius);
-                OnPropertyChanged(nameof(Alpha));
+                OnPropertyChanged(nameof(SonicateRadius));
+                CalculateCoolingAlpha();
             }
         }
 
@@ -92,7 +79,79 @@ namespace Ws.Fus.Surgical.UI.Wpf
         #endregion
 
 
-        #region Command
+        #region Cooling Progress
+
+        public double CoolingMinimum
+        {
+            get { return (double)GetValue(CoolingMinimumProperty); }
+            set { SetValue(CoolingMinimumProperty, value); }
+        }
+        public static readonly DependencyProperty CoolingMinimumProperty = DependencyProperty.Register(nameof(CoolingMinimum), typeof(double), typeof(SonicateControl), new PropertyMetadata(0.0));
+
+        public double CoolingMaximum
+        {
+            get { return (double)GetValue(CoolingMaximumProperty); }
+            set { SetValue(CoolingMaximumProperty, value); }
+        }
+        public static readonly DependencyProperty CoolingMaximumProperty = DependencyProperty.Register(nameof(CoolingMaximum), typeof(double), typeof(SonicateControl), new PropertyMetadata(1.0));
+
+        public double CoolingValue
+        {
+            get { return (double)GetValue(CoolingValueProperty); }
+            set { SetValue(CoolingValueProperty, value); }
+        }
+        public static readonly DependencyProperty CoolingValueProperty = DependencyProperty.Register(nameof(CoolingValue), typeof(double), typeof(SonicateControl), new PropertyMetadata(0.0, OnCoolingValueChanged));
+
+        private static void OnCoolingValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is SonicateControl sonicateControl)
+                sonicateControl.CalculateCoolingIncrementAngle();
+        }
+
+        public double CoolingIncrementAngle { get; private set; } = 0;
+        private void CalculateCoolingIncrementAngle()
+        {
+            if (CoolingMaximum - CoolingMinimum <= 0)
+                return;
+            CoolingIncrementAngle = -0.5 * CoolingAlpha;
+            if (CoolingValue >= CoolingMaximum)
+                CoolingIncrementAngle += CoolingAlpha;
+            if (CoolingValue >= CoolingMinimum && CoolingValue <= CoolingMaximum)
+                CoolingIncrementAngle += CoolingAlpha * CoolingValue / (CoolingMaximum - CoolingMinimum);
+            OnPropertyChanged(nameof(CoolingIncrementAngle));
+        }
+
+        private const string BOUNDARY_WIDTH_NAME = "LDouble.Width.Boundary";
+        private const string COOLING_WIDTH_NAME = "LDouble.Width.Cooling";
+        public double CoolingAlpha { get; private set; }
+        private void CalculateCoolingAlpha()
+        {
+            // 1. Calculate CoolingArcHeight
+            // Determine BoundaryArcHeight (proportional to SonicateArcHeight, as BoundaryRadius to SonicateRadius)
+            // Diff between BoundaryRadius and CoolingRadius
+            // CoolingArcHeight = BoundaryArcHeight - Diff
+            double boundaryRadius = (double)TryFindResource(BOUNDARY_WIDTH_NAME) / 2;
+            double boundaryArcHeight = SonicateArcHeight * boundaryRadius / SonicateRadius;
+            double coolingRadius = (double)TryFindResource(COOLING_WIDTH_NAME) / 2;
+            double radiusDiff = boundaryRadius - coolingRadius;
+            double coolingArcHeight = boundaryArcHeight - radiusDiff;
+
+            // 2. CoolingChord
+            double coolingChord = Math.Sqrt((8 * coolingArcHeight * coolingRadius) - (4 * coolingArcHeight * coolingArcHeight));
+
+            // 3. CoolingAlpha
+            if (coolingChord > 0)
+            {
+                CoolingAlpha = 2 * Math.Asin(coolingChord / (2 * coolingRadius)) * (180 / Math.PI);
+                OnPropertyChanged(nameof(CoolingAlpha));
+                CalculateCoolingIncrementAngle();
+            }
+        }
+
+        #endregion
+
+
+        #region Commands
 
         public ICommand SonicateStartPressCommand
         {

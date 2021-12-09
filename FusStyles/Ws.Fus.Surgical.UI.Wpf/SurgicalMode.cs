@@ -11,7 +11,6 @@
     public enum SonicateState
     {
         CoolingRunning,
-        CoolingComplete,
         SonicateReady,
         SonicatePress,
         SonicateDisabled

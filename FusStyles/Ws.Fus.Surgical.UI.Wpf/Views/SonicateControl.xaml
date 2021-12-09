@@ -39,7 +39,7 @@
     <sys:TimeSpan x:Key="LTimeSpan.Swell.2">0:0:6</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Swing">0:0:8</sys:TimeSpan>-->
     
-    <sys:Double x:Key="LDouble.Width.OuterBoundary">588</sys:Double>
+    <sys:Double x:Key="LDouble.Width.Boundary">588</sys:Double>
     <sys:Double x:Key="LDouble.Width.Cooling">374</sys:Double>
     <sys:Double x:Key="LDouble.Width.Back">400</sys:Double>
     <sys:Double x:Key="LDouble.Width.TrioMask">440</sys:Double>
@@ -50,7 +50,9 @@
 
     <Color x:Key="LColor.Highlight">#FF00E0FF</Color>
     <Color x:Key="LColor.Highlight.Transparent">#0000E0FF</Color>
-    
+
+    <SolidColorBrush x:Key="LBrush.Highlight" Color="{StaticResource LColor.Highlight}"/>
+
     <RadialGradientBrush x:Key="LRadialGradientBrush.Highlight" Center="0.5,0.5" RadiusX="1" RadiusY="0.75">
       <RadialGradientBrush.GradientStops>
         <GradientStopCollection>
@@ -72,11 +74,11 @@
       </RadialGradientBrush.GradientStops>
     </RadialGradientBrush>
 
-    <!--LA: need to compute gradient stop for cooling progress-->
-    <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Cooling" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Cooling" StartPoint="0,0" EndPoint="1,0">
       <LinearGradientBrush.GradientStops>
         <GradientStopCollection>
           <GradientStop Color="{StaticResource LColor.Highlight}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Highlight}" Offset="0.49"/>
           <GradientStop Color="{StaticResource LColor.Highlight.Transparent}" Offset="0.5"/>
         </GradientStopCollection>
       </LinearGradientBrush.GradientStops>
@@ -106,7 +108,7 @@
 
     <Storyboard x:Key="LStoryboard.RippleOut" Duration="{StaticResource LDuration.Long}">
       <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-      <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.OuterBoundary}"/>
+      <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.WidthToLongArcMax">
@@ -121,6 +123,7 @@
       <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
       <Setter Property="HorizontalAlignment" Value="Center"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="SnapsToDevicePixels" Value="True"/>
     </Style>
 
     <Style x:Key="LStyle.Ellipse.Dotted" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
@@ -148,7 +151,7 @@
       <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
       <Setter Property="RenderTransform">
         <Setter.Value>
-          <RotateTransform/>
+          <RotateTransform Angle="{Binding CoolingIncrementAngle, ElementName=_thisSonicateControl}"/>
         </Setter.Value>
       </Setter>
       <Style.Triggers>
@@ -174,6 +177,50 @@
         </DataTrigger>
       </Style.Triggers>
     </Style>
+
+    <Style x:Key="LStyle.Ellipse.CoolingStar" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="VerticalAlignment" Value="Top"/>
+      <Setter Property="Width" Value="17"/>
+      <Setter Property="Fill" Value="{StaticResource LBrush.Highlight}"/>
+      <Setter Property="Margin" Value="0,-8,0,0"/>
+    </Style>
+    
+    <Grid
+      x:Key="LGrid.CoolingStar"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center"
+      Width="{StaticResource LDouble.Width.Cooling}"
+      Height="{StaticResource LDouble.Width.Cooling}"
+      RenderTransformOrigin="0.5,0.5">
+      <Ellipse Margin="0,-11,0,0" Width="23" Style="{StaticResource LStyle.Ellipse.CoolingStar}">
+        <Ellipse.Effect>
+          <BlurEffect Radius="18" KernelType="Gaussian"/>
+        </Ellipse.Effect>
+      </Ellipse>
+      <Ellipse Style="{StaticResource LStyle.Ellipse.CoolingStar}"/>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="{Binding CoolingIncrementAngle, ElementName=_thisSonicateControl}"/>
+      </Grid.RenderTransform>
+      <Grid.Style>
+        <Style TargetType="{x:Type Grid}">
+          <Setter Property="Visibility" Value="Hidden"/>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
+              <DataTrigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Short}"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </DataTrigger.EnterActions>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="CoolingRunning">
+              <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Grid.Style>
+    </Grid>
 
     <Style x:Key="LStyle.Ellipse.Back" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
       <Setter Property="Width" Value="{StaticResource LDouble.Width.Back}"/>
@@ -341,7 +388,7 @@
             <BeginStoryboard>
               <Storyboard>
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.OuterBoundary}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
                 <DoubleAnimation Storyboard.TargetProperty="StrokeDashOffset" BeginTime="{StaticResource LTimeSpan.Swell.1}" To="20" Duration="{StaticResource LDuration.Short}"/>
               </Storyboard>
@@ -352,7 +399,7 @@
     </Style>
 
     <Style x:Key="LStyle.Ellipse.Ripple" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.OuterBoundary}"/>
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.Boundary}"/>
       <Setter Property="Opacity" Value="0"/>
       <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
       <Setter Property="StrokeThickness" Value="2"/>
@@ -365,7 +412,7 @@
             <BeginStoryboard x:Name="InnerRippleBeginStoryboard">
               <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}" RepeatBehavior="Forever" AutoReverse="True">
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0.4" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Lazy}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.OuterBoundary}" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Lazy}"/>
+                <DoubleAnimation Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.Boundary}" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Lazy}"/>
               </Storyboard>
             </BeginStoryboard>
           </DataTrigger.EnterActions>
@@ -384,7 +431,7 @@
             <BeginStoryboard x:Name="OuterRippleBeginStoryboard">
               <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}" RepeatBehavior="Forever" AutoReverse="True">
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0.4" BeginTime="{StaticResource LTimeSpan.Swing.3}" Duration="{StaticResource LDuration.Lazy}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.OuterBoundary}" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Swing.3}" Duration="{StaticResource LDuration.Lazy}"/>
+                <DoubleAnimation Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.Boundary}" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Swing.3}" Duration="{StaticResource LDuration.Lazy}"/>
               </Storyboard>
             </BeginStoryboard>
           </DataTrigger.EnterActions>
@@ -396,7 +443,7 @@
       </Style.Triggers>
     </Style>
 
-    <Grid x:Key="LGrid.TrioMask" Width="{StaticResource LDouble.Width.OuterBoundary}" Height="{StaticResource LDouble.Width.OuterBoundary}">
+    <Grid x:Key="LGrid.TrioMask" Width="{StaticResource LDouble.Width.Boundary}" Height="{StaticResource LDouble.Width.Boundary}">
       <Ellipse Width="{StaticResource LDouble.Width.TrioMask}" Fill="Black">
         <Ellipse.Style>
           <Style TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
@@ -426,8 +473,8 @@
       x:Key="LGrid.Trio"
       Opacity="0"
       Background="{StaticResource XBrush.AlmostTransparent}"
-      Width="{StaticResource LDouble.Width.OuterBoundary}"
-      Height="{StaticResource LDouble.Width.OuterBoundary}"
+      Width="{StaticResource LDouble.Width.Boundary}"
+      Height="{StaticResource LDouble.Width.Boundary}"
       HorizontalAlignment="Center"
       VerticalAlignment="Center">
       <Grid.OpacityMask>
@@ -638,19 +685,25 @@
         <TranslateTransform.Y>
           <MultiBinding Converter="{extensions:NonNegativeSubtractionConverter}">
             <Binding Path="ActualHeight" ElementName="_thisSonicateControl"/>
-            <Binding Path="ArcHeight" ElementName="_thisSonicateControl"/>
+            <Binding Path="SonicateArcHeight" ElementName="_thisSonicateControl"/>
           </MultiBinding>
         </TranslateTransform.Y>
       </TranslateTransform>
     </Grid.RenderTransform>
     <Border x:Name="SonicateMask" Background="{StaticResource XBrush.AlmostTransparent}">
       <Border
-        Height="{Binding ArcHeight, ElementName=_thisSonicateControl}"
+        Height="{Binding SonicateArcHeight, ElementName=_thisSonicateControl}"
         VerticalAlignment="Top"
         Background="{StaticResource XBrush.Application.Background}"/>
     </Border>
+    <!--<Border
+      x:Name="RemoveMe"
+      Height="{Binding SonicateArcHeight, ElementName=_thisSonicateControl}"
+      VerticalAlignment="Top"
+      BorderBrush="HotPink"
+      BorderThickness="0.5"/>-->
     <Viewbox Stretch="Uniform">
-      <Grid Width="{StaticResource LDouble.Width.OuterBoundary}" Height="{StaticResource LDouble.Width.OuterBoundary}">
+      <Grid Width="{StaticResource LDouble.Width.Boundary}" Height="{StaticResource LDouble.Width.Boundary}">
         <Ellipse x:Name="BackgroundEllipse" Style="{StaticResource LStyle.Ellipse.Back}"/>
         <Ellipse Style="{StaticResource LStyle.Ellipse.Highlight}"/>
         <ContentControl x:Name="TrioContentControl" Content="{StaticResource LGrid.Trio}"/>
@@ -660,6 +713,7 @@
         <Ellipse Style="{StaticResource LStyle.Ellipse.Dashed}"/>
         <Ellipse Style="{StaticResource LStyle.Ellipse.Dotted}"/>
         <Ellipse Style="{StaticResource LStyle.Ellipse.CoolingArc}"/>
+        <ContentControl Content="{StaticResource LGrid.CoolingStar}"/>
         <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Outer}"/>
         <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Inner}"/>
         <Ellipse Style="{StaticResource LStyle.Ellipse.LongArc}"/>
