@@ -157,7 +157,18 @@ namespace Ws.Fus.Surgical.UI.Wpf
         {
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(TimerInterval);
+            StopTimer();
+        }
+
+        private void StartTimer()
+        {
+            _timer.Start();
             _timer.Tick += OnTimer;
+        }
+
+        private void StopTimer()
+        {
+            _timer.Tick -= OnTimer;
             _timer.Stop();
         }
 
@@ -166,8 +177,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             CoolingValue += 0.01;
             if (CoolingValue >=1)
             {
-                _timer.Tick -= OnTimer;
-                _timer.Stop();
+                StopTimer();
                 ChangeSonicateState();
             }
         }
@@ -177,7 +187,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         #region Sonicate State
 
-        private SonicateState _sonicateState = SonicateState.SonicateDisabled;
+        private SonicateState _sonicateState = SonicateState.Ready;
         public SonicateState SonicateState
         {
             get => _sonicateState;
@@ -193,6 +203,10 @@ namespace Ws.Fus.Surgical.UI.Wpf
         {
             switch (SonicateState)
             {
+                case SonicateState.Ready:
+                    SonicateState = SonicateState.CoolingRunning;
+                    StartTimer();
+                    break;
                 case SonicateState.CoolingRunning:
                     SonicateState = SonicateState.SonicateReady;
                     break;
@@ -200,11 +214,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
                     SonicateState = SonicateState.SonicatePress;
                     break;
                 case SonicateState.SonicatePress:
-                    SonicateState = SonicateState.SonicateDisabled;
-                    break;
-                case SonicateState.SonicateDisabled:
-                    SonicateState = SonicateState.CoolingRunning;
-                    _timer.Start();
+                    SonicateState = SonicateState.Ready;
                     break;
                 default:
                     break;
@@ -214,6 +224,9 @@ namespace Ws.Fus.Surgical.UI.Wpf
         public ICommand SonicateCommand { get; set; }
         private void Sonicate()
         {
+            CoolingValue = 0;
+            ChangeSonicateState();
+
             // Do something here when Sonicate button is pressed
         }
 

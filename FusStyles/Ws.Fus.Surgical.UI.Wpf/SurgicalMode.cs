@@ -10,9 +10,9 @@
 
     public enum SonicateState
     {
+        Ready,
         CoolingRunning,
         SonicateReady,
         SonicatePress,
-        SonicateDisabled
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -62,6 +63,25 @@ namespace Ws.Fus.Surgical.UI.Wpf
                 OnPropertyChanged(nameof(SonicateRadius));
                 CalculateCoolingAlpha();
             }
+        }
+
+        #endregion
+
+
+        #region Reset
+
+        private const string RESET_DURATION_NAME = "LDuration.TwiceLong";
+        public bool ResetNow { get; set; }
+        private async Task ToggleResetNowAsync()
+        {
+            Duration resetDuration = (Duration)TryFindResource(RESET_DURATION_NAME);
+            int ms = resetDuration.TimeSpan.Milliseconds;
+
+            ResetNow = true;
+            OnPropertyChanged(nameof(ResetNow));
+            await Task.Delay(ms);
+            ResetNow = false;
+            OnPropertyChanged(nameof(ResetNow));
         }
 
         #endregion
@@ -170,6 +190,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
         private void OnPressAnimationEnd(object sender, EventArgs e)
         {
             SonicateEndPressCommand?.Execute(null);
+            ToggleResetNowAsync();
         }
 
         #endregion
