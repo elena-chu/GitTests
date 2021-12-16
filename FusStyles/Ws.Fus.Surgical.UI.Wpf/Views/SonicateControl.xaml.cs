@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +22,20 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
     public partial class SonicateControl : UserControl, INotifyPropertyChanged
     {
+        #region General
+
         public SonicateControl()
         {
             SonicatePressCommand = new DelegateCommand(SonicatePress);
             InitializeComponent();
         }
+
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            InitAnimationStoryboards();
+        }
+
+        #endregion
 
 
         #region Dimensions
@@ -112,7 +120,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
                     break;
                 case SonicateControlState.SonicateReady:
                     _resetRequired = true;
-                    AnimateSonicateReadyLaunch();
+                    AnimateSonicateReady();
                     break;
                 case SonicateControlState.SonicatePress:
                     _resetRequired = true;
@@ -261,15 +269,29 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         #region Animation
 
-        private const string _sonicateReadyLaunchStoryboardName = "LStoryboard.SonicateReady.Launch";
-        private void AnimateSonicateReadyLaunch()
+        private void InitAnimationStoryboards()
         {
-            Storyboard sonicateReadyLaunchStoryboard = FindResource(_sonicateReadyLaunchStoryboardName) as Storyboard;
-            sonicateReadyLaunchStoryboard.Completed += SonicateReadyLaunchAnimationCompleted;
-            sonicateReadyLaunchStoryboard.Begin();
+            _sonicateReadySwellStoryboard = FindResource(_sonicateReadySwellStoryboardName) as Storyboard;
+
+            _sonicateReadyOscillateStoryboards = new List<Storyboard>();
+            foreach (var storyBoardName in _sonicateReadyOscillateStoryboardNames)
+                _sonicateReadyOscillateStoryboards.Add(FindResource(storyBoardName) as Storyboard);
+
+            _sonicatePressStoryboard = FindResource(_sonicatePressStoryboardName) as Storyboard;
+
+            _resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
         }
 
-        private void SonicateReadyLaunchAnimationCompleted(object sender, EventArgs e)
+        private const string _sonicateReadySwellStoryboardName = "LStoryboard.SonicateReady.Swell";
+        private Storyboard _sonicateReadySwellStoryboard;
+        private void AnimateSonicateReady()
+        {
+            _sonicateReadySwellStoryboard.Completed -= SonicateReadySwellAnimationCompleted;
+            _sonicateReadySwellStoryboard.Completed += SonicateReadySwellAnimationCompleted;
+            _sonicateReadySwellStoryboard.Begin();
+        }
+
+        private void SonicateReadySwellAnimationCompleted(object sender, EventArgs e)
         {
             AnimateSonicateReadyOscillate();
         }
@@ -285,42 +307,38 @@ namespace Ws.Fus.Surgical.UI.Wpf
             "LStoryboard.SonicateReady.Oscillate.TrioPath"
         };
 
-        private List<Storyboard> _sonicateReadyOscillateStoryboards = new List<Storyboard>();
+        private List<Storyboard> _sonicateReadyOscillateStoryboards;
         private void AnimateSonicateReadyOscillate()
         {
-            if (_sonicateReadyOscillateStoryboards == null || !_sonicateReadyOscillateStoryboards.Any())
-            {
-                _sonicateReadyOscillateStoryboards = new List<Storyboard>();
-                foreach (var storyBoardName in _sonicateReadyOscillateStoryboardNames)
-                    _sonicateReadyOscillateStoryboards.Add(FindResource(storyBoardName) as Storyboard);
-            }
-
             foreach (var storyboard in _sonicateReadyOscillateStoryboards)
                 storyboard.Begin();
         }
 
         private const string _sonicatePressStoryboardName = "LStoryboard.SonicatePress";
+        private Storyboard _sonicatePressStoryboard;
         private void AnimateSonicatePress()
         {
             foreach (var storyboard in _sonicateReadyOscillateStoryboards)
                 storyboard.Stop();
-            Storyboard sonicatePressStoryboard = FindResource(_sonicatePressStoryboardName) as Storyboard;
-            sonicatePressStoryboard.Completed += PressAnimationCompleted;
-            sonicatePressStoryboard.Begin();
+
+            _sonicatePressStoryboard.Completed -= SonicatePressAnimationCompleted;
+            _sonicatePressStoryboard.Completed += SonicatePressAnimationCompleted;
+            _sonicatePressStoryboard.Begin();
         }
 
-        private void PressAnimationCompleted(object sender, EventArgs e)
+        private void SonicatePressAnimationCompleted(object sender, EventArgs e)
         {
+            _sonicatePressStoryboard.Completed -= SonicatePressAnimationCompleted;
             SonicateCommand?.Execute(null);
         }
 
         private bool _resetRequired = false;
 
         private const string _resetStoryboardName = "LStoryboard.Reset";
+        Storyboard _resetStoryboard;
         private void AnimateReset()
         {
-            Storyboard resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
-            resetStoryboard.Begin();
+            _resetStoryboard.Begin();
             _resetRequired = false;
         }
 

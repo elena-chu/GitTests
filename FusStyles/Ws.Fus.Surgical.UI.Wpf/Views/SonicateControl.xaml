@@ -7,6 +7,7 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
   xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  Loaded="OnLoad"
   mc:Ignorable="d"
   x:Name="_thisSonicateControl">
   
@@ -112,7 +113,7 @@
       </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
-    <Storyboard x:Key="LStoryboard.SonicateReady.Launch">
+    <Storyboard x:Key="LStoryboard.SonicateReady.Swell">
       <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="486" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Opacity" To="0.9" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
