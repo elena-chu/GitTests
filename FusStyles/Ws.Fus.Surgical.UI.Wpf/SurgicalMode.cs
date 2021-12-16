@@ -7,12 +7,4 @@
         Dosimetry,
         Playback
     }
-
-    public enum SonicateState
-    {
-        Ready,
-        CoolingRunning,
-        SonicateReady,
-        SonicatePress,
-    }
 }

@@ -34,9 +34,8 @@ namespace Ws.Fus.Surgical.UI.Wpf
             //SurgicalStripsViewModel = surgicalVm;
             ModeChangedCommand = new DelegateCommand<object>(ModeChangedExecute);
             ChangeSurgicalStageCommand = new DelegateCommand<SurgicalMode?>(ChangeSurgicalStageExecute);
-            ChangeSonicateStateCommand = new DelegateCommand(ChangeSonicateState);
-            SonicateCommand = new DelegateCommand(Sonicate);
-            InitTimer();
+            InitSonicationCommands();
+            InitCoolingTimer();
         }
 
         #region Commands
@@ -131,6 +130,22 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         #region Cooling
 
+        private bool _coolingAvailable = false;
+        public bool CoolingAvailable
+        {
+            get => _coolingAvailable;
+            set
+            {
+                if (value != _coolingAvailable)
+                {
+                    _coolingAvailable = value;
+                    RaisePropertyChanged();
+                    if (_coolingAvailable)
+                        StartCoolingTimer();
+                }
+            }
+        }
+
         private double _coolingValue = 0.0;
         public double CoolingValue
         {
@@ -153,71 +168,60 @@ namespace Ws.Fus.Surgical.UI.Wpf
         private DispatcherTimer _timer;
         private const int TimerInterval = 40;
 
-        private void InitTimer()
+        private void InitCoolingTimer()
         {
+            CoolingValue = 0.0;
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(TimerInterval);
-            StopTimer();
+            StopCoolingTimer();
         }
 
-        private void StartTimer()
+        private void StartCoolingTimer()
         {
             _timer.Start();
-            _timer.Tick += OnTimer;
+            _timer.Tick += OnCoolingTimer;
         }
 
-        private void StopTimer()
+        private void StopCoolingTimer()
         {
-            _timer.Tick -= OnTimer;
+            _timer.Tick -= OnCoolingTimer;
             _timer.Stop();
         }
 
-        private void OnTimer(object sender, EventArgs e)
+        private void OnCoolingTimer(object sender, EventArgs e)
         {
             CoolingValue += 0.01;
             if (CoolingValue >=1)
             {
-                StopTimer();
-                ChangeSonicateState();
+                StopCoolingTimer();
+                CoolingAvailable = false;
             }
         }
 
         #endregion
 
 
-        #region Sonicate State
+        #region Sonication
 
-        private SonicateState _sonicateState = SonicateState.Ready;
-        public SonicateState SonicateState
+        private bool _sonicationAvailable = false;
+        public bool SonicationAvailable
         {
-            get => _sonicateState;
+            get => _sonicationAvailable;
             set
             {
-                _sonicateState = value;
+                _sonicationAvailable = value;
                 RaisePropertyChanged();
             }
         }
 
-        public ICommand ChangeSonicateStateCommand { get; set; }
-        private void ChangeSonicateState()
+        private bool _sonicationEnabled = false;
+        public bool SonicationEnabled
         {
-            switch (SonicateState)
+            get => _sonicationEnabled;
+            set
             {
-                case SonicateState.Ready:
-                    SonicateState = SonicateState.CoolingRunning;
-                    StartTimer();
-                    break;
-                case SonicateState.CoolingRunning:
-                    SonicateState = SonicateState.SonicateReady;
-                    break;
-                case SonicateState.SonicateReady:
-                    SonicateState = SonicateState.SonicatePress;
-                    break;
-                case SonicateState.SonicatePress:
-                    SonicateState = SonicateState.Ready;
-                    break;
-                default:
-                    break;
+                _sonicationEnabled = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -225,9 +229,27 @@ namespace Ws.Fus.Surgical.UI.Wpf
         private void Sonicate()
         {
             CoolingValue = 0;
-            ChangeSonicateState();
+            CoolingAvailable = false;
+            SonicationAvailable = false;
 
             // Do something here when Sonicate button is pressed
+        }
+
+        #endregion
+
+
+        #region Sonication Flow
+
+        public ICommand ToggleCoolingAvailableCommand { get; set; }
+        public ICommand ToggleSonicateAvailableCommand { get; set; }
+        public ICommand ToggleSonicateEnabledCommand { get; set; }
+        
+        private void InitSonicationCommands()
+        {
+            SonicateCommand = new DelegateCommand(Sonicate);
+            ToggleCoolingAvailableCommand = new DelegateCommand(() => CoolingAvailable = !CoolingAvailable);
+            ToggleSonicateAvailableCommand = new DelegateCommand(() => SonicationAvailable = !SonicationAvailable);
+            ToggleSonicateEnabledCommand = new DelegateCommand(() => SonicationEnabled = !SonicationEnabled);
         }
 
         #endregion

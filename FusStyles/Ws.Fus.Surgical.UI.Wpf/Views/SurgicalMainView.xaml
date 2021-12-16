@@ -189,29 +189,31 @@
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button
-          Grid.Row="0"
-          Width="120"
-          Height="40"
-          Margin="0,0,0,40"
-          Padding="5"
-          Background="Green"
-          HorizontalAlignment="Center"
-          Content="{Binding SonicateState}"
-          Command="{Binding ChangeSonicateStateCommand}"
-          DataContext="{Binding DataContext, ElementName=_thisSurgicalMainView}"
-          IsEnabled="{Binding SonicateState, Converter={extensions:EnumToBooleanConverter}, ConverterParameter='Ready'}"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+          <StackPanel.Resources>
+            <Style TargetType="{x:Type CheckBox}">
+              <Setter Property="Height" Value="40"/>
+              <Setter Property="Foreground" Value="Tomato"/>
+              <Setter Property="Margin" Value="12,0"/>
+              <Setter Property="DataContext" Value="{Binding DataContext, ElementName=_thisSurgicalMainView}"/>
+            </Style>
+          </StackPanel.Resources>
+          <CheckBox Content="Cooling Available" IsChecked="{Binding CoolingAvailable, Mode=TwoWay}"/>
+          <CheckBox Content="Sonicate Available" IsChecked="{Binding SonicationAvailable, Mode=TwoWay}"/>
+          <CheckBox Content="Sonicate Enabled" IsChecked="{Binding SonicationEnabled, Mode=TwoWay}"/>
+        </StackPanel>
         <local:SonicateControl
           x:Name="SonicateControl"
           Grid.Row="1"
           SonicateHeight="110"
           SonicateWidth="320"
-          SonicateState="{Binding SonicateState}"
-          SonicateStartPressCommand="{Binding ChangeSonicateStateCommand}"
-          SonicateEndPressCommand="{Binding SonicateCommand}"
+          CoolingAvailable="{Binding CoolingAvailable}"
           CoolingMinimum="{Binding MinCoolingValue}"
           CoolingMaximum="{Binding MaxCoolingValue}"
           CoolingValue="{Binding CoolingValue}"
+          SonicationAvailable="{Binding SonicationAvailable}"
+          SonicationEnabled="{Binding SonicationEnabled}"
+          SonicateCommand="{Binding SonicateCommand}"
           DataContext="{Binding DataContext, ElementName=_thisSurgicalMainView}"/>
       </Grid>
     </Grid>

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,10 +12,20 @@ using Ws.Extensions.UI.Wpf.Behaviors;
 
 namespace Ws.Fus.Surgical.UI.Wpf
 {
+    public enum SonicateControlState
+    {
+        None,
+        Cooling,
+        SonicateReady,
+        SonicatePress,
+        SonicateDisabled
+    }
+
     public partial class SonicateControl : UserControl, INotifyPropertyChanged
     {
         public SonicateControl()
         {
+            SonicatePressCommand = new DelegateCommand(SonicatePress);
             InitializeComponent();
         }
 
@@ -71,116 +81,112 @@ namespace Ws.Fus.Surgical.UI.Wpf
         #endregion
 
 
-        #region Sonicate State
+        #region Control State
 
-        public bool SonicateEnabled
+        private SonicateControlState _sonicateControlState = SonicateControlState.None;
+        public SonicateControlState SonicateControlState
         {
-            get { return (bool)GetValue(SonicateEnabledProperty); }
-            set { SetValue(SonicateEnabledProperty, value); }
-        }
-        public static readonly DependencyProperty SonicateEnabledProperty = DependencyProperty.Register(nameof(SonicateEnabled), typeof(bool), typeof(SonicateControl), new PropertyMetadata(true));
-
-        public SonicateState SonicateState
-        {
-            get { return (SonicateState)GetValue(SonicateStateProperty); }
-            set { SetValue(SonicateStateProperty, value); }
-        }
-        public static readonly DependencyProperty SonicateStateProperty = DependencyProperty.Register(nameof(SonicateState), typeof(SonicateState), typeof(SonicateControl), new PropertyMetadata(SonicateState.CoolingRunning, OnSonicateStateChanged));
-
-        private static void OnSonicateStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is SonicateControl sonicateControl)
-                sonicateControl.SonicateStateChanged();
-        }
-
-        private void SonicateStateChanged()
-        {
-            switch (SonicateState)
+            get => _sonicateControlState;
+            private set
             {
-                case SonicateState.Ready:
+                if (value != _sonicateControlState)
+                {
+                    _sonicateControlState = value;
+                    OnPropertyChanged();
+                    OnSonicateControlStateChanged();
+                }
+            }
+        }
+
+        private void OnSonicateControlStateChanged()
+        {
+            switch (SonicateControlState)
+            {
+                case SonicateControlState.None:
                     if (_resetRequired)
                         AnimateReset();
                     break;
-                case SonicateState.CoolingRunning:
+                case SonicateControlState.Cooling:
+                    CalculateCoolingIncrementAngle();
                     _resetRequired = true;
                     break;
-                case SonicateState.SonicateReady:
+                case SonicateControlState.SonicateReady:
+                    _resetRequired = true;
                     AnimateSonicateReadyLaunch();
                     break;
-                case SonicateState.SonicatePress:
+                case SonicateControlState.SonicatePress:
+                    _resetRequired = true;
                     AnimateSonicatePress();
+                    break;
+                case SonicateControlState.SonicateDisabled:
+                    _resetRequired = true;
                     break;
                 default:
                     break;
             }
         }
 
-        #endregion
-
-
-        #region Animation
-
-        private const string _sonicateReadyLaunchStoryboardName = "LStoryboard.SonicateReady.Launch";
-        private void AnimateSonicateReadyLaunch()
+        private static void OnExternalStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Storyboard sonicateReadyLaunchStoryboard = FindResource(_sonicateReadyLaunchStoryboardName) as Storyboard;
-            sonicateReadyLaunchStoryboard.Completed += SonicateReadyLaunchStoryboard_Completed;
-            sonicateReadyLaunchStoryboard.Begin();
+            if (d is SonicateControl sonicateControl)
+                sonicateControl.ExternalStateChanged();
         }
 
-        private void SonicateReadyLaunchStoryboard_Completed(object sender, EventArgs e)
+        private void ExternalStateChanged()
         {
-            AnimateSonicateReadyOscillate();
-        }
-
-        private List<string> _sonicateReadyOscillateStoryboardNames = new List<string>()
-        {
-            "LStoryboard.SonicateReady.Oscillate.InnerRipple",
-            "LStoryboard.SonicateReady.Oscillate.OuterRipple",
-            "LStoryboard.SonicateReady.Oscillate.LongArc",
-            "LStoryboard.SonicateReady.Oscillate.ShortArc",
-            "LStoryboard.SonicateReady.Oscillate.TrioEllipse1",
-            "LStoryboard.SonicateReady.Oscillate.TrioEllipse2",
-            "LStoryboard.SonicateReady.Oscillate.TrioPath"
-        };
-
-        private List<Storyboard> _sonicateReadyOscillateStoryboards = new List<Storyboard>();
-        private void AnimateSonicateReadyOscillate()
-        {
-            if (_sonicateReadyOscillateStoryboards == null || !_sonicateReadyOscillateStoryboards.Any())
-            {
-                _sonicateReadyOscillateStoryboards = new List<Storyboard>();
-                foreach (var storyBoardName in _sonicateReadyOscillateStoryboardNames)
-                    _sonicateReadyOscillateStoryboards.Add(FindResource(storyBoardName) as Storyboard);
-            }
-
-            foreach (var storyboard in _sonicateReadyOscillateStoryboards)
-                storyboard.Begin();
-        }
-
-        private const string _sonicatePressStoryboardName = "LStoryboard.SonicatePress";
-        private void AnimateSonicatePress()
-        {
-            foreach (var storyboard in _sonicateReadyOscillateStoryboards)
-                storyboard.Stop();
-            Storyboard sonicatePressStoryboard = FindResource(_sonicatePressStoryboardName) as Storyboard;
-            sonicatePressStoryboard.Begin();
-        }
-
-        private bool _resetRequired = false;
-
-        private const string _resetStoryboardName = "LStoryboard.Reset";
-        private void AnimateReset()
-        {
-            Storyboard resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
-            resetStoryboard.Begin();
-            _resetRequired = false;
+            if (CoolingAvailable)
+                SonicateControlState = SonicateControlState.Cooling;
+            else if (!SonicationAvailable)
+                SonicateControlState = SonicateControlState.None;
+            else if (SonicationEnabled)
+                SonicateControlState = SonicateControlState.SonicateReady;
+            else
+                SonicateControlState = SonicateControlState.SonicateDisabled;
         }
 
         #endregion
 
 
-        #region Cooling Progress
+        #region Sonication
+
+        public bool SonicationAvailable
+        {
+            get { return (bool)GetValue(SonicationAvailableProperty); }
+            set { SetValue(SonicationAvailableProperty, value); }
+        }
+        public static readonly DependencyProperty SonicationAvailableProperty = DependencyProperty.Register(nameof(SonicationAvailable), typeof(bool), typeof(SonicateControl), new PropertyMetadata(false, OnExternalStateChanged));
+
+        public bool SonicationEnabled
+        {
+            get { return (bool)GetValue(SonicationEnabledProperty); }
+            set { SetValue(SonicationEnabledProperty, value); }
+        }
+        public static readonly DependencyProperty SonicationEnabledProperty = DependencyProperty.Register(nameof(SonicationEnabled), typeof(bool), typeof(SonicateControl), new PropertyMetadata(false, OnExternalStateChanged));
+
+        public ICommand SonicateCommand
+        {
+            get { return (ICommand)GetValue(SonicateCommandProperty); }
+            set { SetValue(SonicateCommandProperty, value); }
+        }
+        public static readonly DependencyProperty SonicateCommandProperty = DependencyProperty.Register(nameof(SonicateCommand), typeof(ICommand), typeof(SonicateControl));
+
+        public ICommand SonicatePressCommand { get; set; }
+        private void SonicatePress()
+        {
+            SonicateControlState = SonicateControlState.SonicatePress;
+        }
+
+        #endregion
+
+
+        #region Cooling
+
+        public bool CoolingAvailable
+        {
+            get { return (bool)GetValue(CoolingAvailableProperty); }
+            set { SetValue(CoolingAvailableProperty, value); }
+        }
+        public static readonly DependencyProperty CoolingAvailableProperty = DependencyProperty.Register(nameof(CoolingAvailable), typeof(bool), typeof(SonicateControl), new PropertyMetadata(false, OnExternalStateChanged));
 
         public double CoolingMinimum
         {
@@ -214,6 +220,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
         {
             if (CoolingMaximum - CoolingMinimum <= 0)
                 return;
+
             CoolingIncrementAngle = -0.5 * CoolingAlpha;
             if (CoolingValue >= CoolingMaximum)
                 CoolingIncrementAngle += CoolingAlpha;
@@ -252,25 +259,69 @@ namespace Ws.Fus.Surgical.UI.Wpf
         #endregion
 
 
-        #region Commands
+        #region Animation
 
-        public ICommand SonicateStartPressCommand
+        private const string _sonicateReadyLaunchStoryboardName = "LStoryboard.SonicateReady.Launch";
+        private void AnimateSonicateReadyLaunch()
         {
-            get { return (ICommand)GetValue(SonicateStartPressCommandProperty); }
-            set { SetValue(SonicateStartPressCommandProperty, value); }
+            Storyboard sonicateReadyLaunchStoryboard = FindResource(_sonicateReadyLaunchStoryboardName) as Storyboard;
+            sonicateReadyLaunchStoryboard.Completed += SonicateReadyLaunchAnimationCompleted;
+            sonicateReadyLaunchStoryboard.Begin();
         }
-        public static readonly DependencyProperty SonicateStartPressCommandProperty = DependencyProperty.Register(nameof(SonicateStartPressCommand), typeof(ICommand), typeof(SonicateControl));
 
-        public ICommand SonicateEndPressCommand
+        private void SonicateReadyLaunchAnimationCompleted(object sender, EventArgs e)
         {
-            get { return (ICommand)GetValue(SonicateEndPressCommandProperty); }
-            set { SetValue(SonicateEndPressCommandProperty, value); }
+            AnimateSonicateReadyOscillate();
         }
-        public static readonly DependencyProperty SonicateEndPressCommandProperty = DependencyProperty.Register(nameof(SonicateEndPressCommand), typeof(ICommand), typeof(SonicateControl));
 
-        private void OnPressAnimationEnd(object sender, EventArgs e)
+        private List<string> _sonicateReadyOscillateStoryboardNames = new List<string>()
         {
-            SonicateEndPressCommand?.Execute(null);
+            "LStoryboard.SonicateReady.Oscillate.InnerRipple",
+            "LStoryboard.SonicateReady.Oscillate.OuterRipple",
+            "LStoryboard.SonicateReady.Oscillate.LongArc",
+            "LStoryboard.SonicateReady.Oscillate.ShortArc",
+            "LStoryboard.SonicateReady.Oscillate.TrioEllipse1",
+            "LStoryboard.SonicateReady.Oscillate.TrioEllipse2",
+            "LStoryboard.SonicateReady.Oscillate.TrioPath"
+        };
+
+        private List<Storyboard> _sonicateReadyOscillateStoryboards = new List<Storyboard>();
+        private void AnimateSonicateReadyOscillate()
+        {
+            if (_sonicateReadyOscillateStoryboards == null || !_sonicateReadyOscillateStoryboards.Any())
+            {
+                _sonicateReadyOscillateStoryboards = new List<Storyboard>();
+                foreach (var storyBoardName in _sonicateReadyOscillateStoryboardNames)
+                    _sonicateReadyOscillateStoryboards.Add(FindResource(storyBoardName) as Storyboard);
+            }
+
+            foreach (var storyboard in _sonicateReadyOscillateStoryboards)
+                storyboard.Begin();
+        }
+
+        private const string _sonicatePressStoryboardName = "LStoryboard.SonicatePress";
+        private void AnimateSonicatePress()
+        {
+            foreach (var storyboard in _sonicateReadyOscillateStoryboards)
+                storyboard.Stop();
+            Storyboard sonicatePressStoryboard = FindResource(_sonicatePressStoryboardName) as Storyboard;
+            sonicatePressStoryboard.Completed += PressAnimationCompleted;
+            sonicatePressStoryboard.Begin();
+        }
+
+        private void PressAnimationCompleted(object sender, EventArgs e)
+        {
+            SonicateCommand?.Execute(null);
+        }
+
+        private bool _resetRequired = false;
+
+        private const string _resetStoryboardName = "LStoryboard.Reset";
+        private void AnimateReset()
+        {
+            Storyboard resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
+            resetStoryboard.Begin();
+            _resetRequired = false;
         }
 
         #endregion

@@ -14,7 +14,6 @@
     <Duration x:Key="LDuration.VeryShort">0:0:0.3</Duration>
     <Duration x:Key="LDuration.Short">0:0:1</Duration>
     <Duration x:Key="LDuration.Long">0:0:2</Duration>
-    <Duration x:Key="LDuration.TwiceLong">0:0:4</Duration>
     <Duration x:Key="LDuration.Lazy">0:0:3.5</Duration>
     <Duration x:Key="LDuration.Lazier">0:0:4.5</Duration>
     
@@ -326,15 +325,7 @@
       <Setter Property="Width" Value="17"/>
       <Setter Property="Fill" Value="{StaticResource LBrush.Highlight}"/>
       <Setter Property="Margin" Value="0,-8,0,0"/>
-      <Setter Property="Visibility" Value="Hidden"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="CoolingRunning">
-          <Setter Property="Visibility" Value="Visible"/>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <Setter Property="Visibility" Value="Hidden"/>
-        </DataTrigger>
-      </Style.Triggers>
+      <Setter Property="Visibility" Value="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='#Cooling'}"/>
     </Style>
     
     <Grid
@@ -508,19 +499,10 @@
         <TextBlock x:Name="SonicateTextBlock" Style="{StaticResource LStyle.TextBlock}" Text="SONICATE"/>
         <Button
           x:Name="PressButton"
-          Command="{Binding SonicateStartPressCommand, ElementName=_thisSonicateControl}"
+          Command="{Binding SonicatePressCommand, ElementName=_thisSonicateControl}"
           Width="{StaticResource LDouble.Width.Boundary}"
-          Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
-          <Button.Style>
-            <Style TargetType="{x:Type Button}">
-              <Setter Property="Visibility" Value="Hidden"/>
-              <Style.Triggers>
-                <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-                  <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-              </Style.Triggers>
-            </Style>
-          </Button.Style>
+          Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+          Visibility="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='#SonicateReady'}">
           <Button.Template>
             <ControlTemplate>
               <Ellipse Fill="{StaticResource LRadialGradientBrush.Button}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -543,15 +525,6 @@
               </Ellipse>
             </ControlTemplate>
           </Button.Template>
-          <Button.Triggers>
-            <EventTrigger RoutedEvent="Button.Click">
-              <BeginStoryboard>
-                <Storyboard>
-                  <DoubleAnimation Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.TwiceLong}" Completed="OnPressAnimationEnd"/>
-                </Storyboard>
-              </BeginStoryboard>
-            </EventTrigger>
-          </Button.Triggers>
         </Button>
       </Grid>
     </Viewbox>
