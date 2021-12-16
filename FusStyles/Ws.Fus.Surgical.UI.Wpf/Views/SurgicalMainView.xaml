@@ -182,7 +182,7 @@
         Grid.Row="1"
         Grid.Column="1"
         Width="{Binding ActualWidth, ElementName=StripsViewer, Converter={extensions:ScalarConverter}, ConverterParameter=0.66}"
-        extensions:IndependentSize.Margin="0,0,0,-50"
+        extensions:IndependentSize.Margin="0,0,0,-58"
         HorizontalAlignment="Left"
         VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
@@ -200,7 +200,7 @@
           Content="{Binding SonicateState}"
           Command="{Binding ChangeSonicateStateCommand}"
           DataContext="{Binding DataContext, ElementName=_thisSurgicalMainView}"
-          IsEnabled="{Binding SonicateState, Converter={extensions:EnumToBooleanConverter}, ConverterParameter='!CoolingRunning|SonicateReady'}"/>
+          IsEnabled="{Binding SonicateState, Converter={extensions:EnumToBooleanConverter}, ConverterParameter='Ready'}"/>
         <local:SonicateControl
           x:Name="SonicateControl"
           Grid.Row="1"

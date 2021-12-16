@@ -11,6 +11,7 @@
   x:Name="_thisSonicateControl">
   
   <UserControl.Resources>
+    <Duration x:Key="LDuration.VeryShort">0:0:0.3</Duration>
     <Duration x:Key="LDuration.Short">0:0:1</Duration>
     <Duration x:Key="LDuration.Long">0:0:2</Duration>
     <Duration x:Key="LDuration.TwiceLong">0:0:4</Duration>
@@ -20,32 +21,24 @@
     <sys:TimeSpan x:Key="LTimeSpan.Swell.0">0:0:0</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Swell.1">0:0:0.5</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Swell.2">0:0:1.5</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing">0:0:2.5</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing.0">0:0:0</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing.1">0:0:0.5</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing.2">0:0:1</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing.3">0:0:1.5</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing.4">0:0:3.5</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing.5">0:0:4.5</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate">0:0:2.5</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate.0">0:0:0</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate.1">0:0:0.5</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate.2">0:0:1</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate.3">0:0:1.5</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate.4">0:0:3.5</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate.5">0:0:4.5</sys:TimeSpan>
 
-    <sys:TimeSpan x:Key="LTimespan.Press.0">0:0:0</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimespan.Press.1">0:0:2</sys:TimeSpan>
     
-    <sys:TimeSpan x:Key="LTimespan.DelayATinyBit">0:0:0.05</sys:TimeSpan>
-
-    <!--LA: for testing timeline-->
-    <!--<Duration x:Key="LDuration.Short">0:0:2</Duration>
-    <Duration x:Key="LDuration.Medium">0:0:3</Duration>
-    <Duration x:Key="LDuration.Long">0:0:4</Duration>
-    <sys:TimeSpan x:Key="LTimeSpan.Swell.1">0:0:2</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swell.2">0:0:6</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Swing">0:0:8</sys:TimeSpan>-->
+    <sys:TimeSpan x:Key="LTimespan.Reset.Delay">0:0:0.5</sys:TimeSpan>
     
     <sys:Double x:Key="LDouble.Width.Boundary">588</sys:Double>
     <sys:Double x:Key="LDouble.Width.Highlight">360</sys:Double>
     <sys:Double x:Key="LDouble.Width.Halo">340</sys:Double>
     <sys:Double x:Key="LDouble.Width.Cooling">374</sys:Double>
     <sys:Double x:Key="LDouble.Width.Back">400</sys:Double>
+    <sys:Double x:Key="LDouble.Width.TrioMaskMin">420</sys:Double>
     <sys:Double x:Key="LDouble.Width.TrioMask">440</sys:Double>
     <sys:Double x:Key="LDouble.Width.TrioMaskMax">480</sys:Double>
     <sys:Double x:Key="LDouble.Width.ShortArc">410</sys:Double>
@@ -54,11 +47,22 @@
     <sys:Double x:Key="LDouble.Width.LongArcMax">530</sys:Double>
 
     <Geometry x:Key="LGeometry.Halo">m 435.72756,161.8794 c -7.83281,-3.08305 -14.38371,1.7696 -10.96385,10.37201 21.09929,2.9554 106.93075,59.0056 121.22066,144.15807 C 534.36725,213.72777 457.10294,171.96934 435.72756,161.8794 Z m -186.31813,11.32159 c -45.08014,22.07763 -76.88038,58.50177 -97.96558,118.38855 0.9652,4.3434 8.36425,12.50599 13.62539,3.84521 13.63175,-61.827 48.68623,-94.71271 84.34019,-122.23376 z</Geometry>
+    <Geometry x:Key="LGeometry.Trio">M 90.026782,65.63255 C 112.62696,59.674449 131.59513,49.816534 141.76328,35.4529 c 16.2701,-22.983302 28.7426,-47.42515 63.2336,-28.7425095 34.491,18.6826295 37.3652,83.3532895 8.6227,112.0958095 -28.7425,28.74251 -80.4791,76.16767 -133.652698,74.73053 -49.1393,-1.3281 -93.4132,-31.61676 -76.1677007,-67.5449 C 22.784682,86.43877 52.946377,75.408081 90.026782,65.63255 Z</Geometry>
 
     <Color x:Key="LColor.Highlight">#FF00E0FF</Color>
     <Color x:Key="LColor.Highlight.Transparent">#0000E0FF</Color>
 
     <SolidColorBrush x:Key="LBrush.Highlight" Color="{StaticResource LColor.Highlight}"/>
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.TrioMask" Center="0.5,0.5" RadiusX="0.98" RadiusY="0.98">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource XColor.Application.Background}" Offset="0"/>
+          <GradientStop Color="{StaticResource XColor.Application.Background}" Offset="0.47"/>
+          <GradientStop Color="{StaticResource XColor.AlmostTransparent}" Offset="0.9"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
 
     <RadialGradientBrush x:Key="LRadialGradientBrush.Highlight" Center="0.5,0.5" RadiusX="1" RadiusY="0.75">
       <RadialGradientBrush.GradientStops>
@@ -109,21 +113,130 @@
       </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
-    <Storyboard x:Key="LStoryboard.OpacityToZero">
-      <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Short}"/>
+    <Storyboard x:Key="LStoryboard.SonicateReady.Launch">
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="486" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Opacity" To="0.9" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="438" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioGrid" Storyboard.TargetProperty="Opacity" To="0.6" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioGrid" Storyboard.TargetProperty="Opacity" To="0.8" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Opacity" To="0.4" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="414" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Opacity" To="0.1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="StrokeDashOffset" BeginTime="{StaticResource LTimeSpan.Swell.1}" To="20" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="DottedEllipse" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingArcEllipse" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="StrokeThickness" To="3" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="-105" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.45" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.ShortArcMax}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="StrokeThickness" To="3" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="20" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.15" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="114" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
     </Storyboard>
 
-    <Storyboard x:Key="LStoryboard.RippleOut" Duration="{StaticResource LDuration.Long}">
-      <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-      <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
+    <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.InnerRipple" RepeatBehavior="Forever" AutoReverse="True">
+      <DoubleAnimation Storyboard.TargetName="InnerRippleEllipse" Storyboard.TargetProperty="Opacity" From="0" To="0.4" BeginTime="{StaticResource LTimeSpan.Oscillate.2}" Duration="{StaticResource LDuration.Lazy}"/>
+      <DoubleAnimation Storyboard.TargetName="InnerRippleEllipse" Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.Boundary}" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Oscillate.2}" Duration="{StaticResource LDuration.Lazy}"/>
+    </Storyboard>
+    
+    <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.OuterRipple" BeginTime="{StaticResource LTimeSpan.Oscillate.1}" RepeatBehavior="Forever" AutoReverse="True">
+      <DoubleAnimation Storyboard.TargetName="OuterRippleEllipse" Storyboard.TargetProperty="Opacity" From="0" To="0.4" BeginTime="{StaticResource LTimeSpan.Oscillate.3}" Duration="{StaticResource LDuration.Lazy}"/>
+      <DoubleAnimation Storyboard.TargetName="OuterRippleEllipse" Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.Boundary}" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Oscillate.3}" Duration="{StaticResource LDuration.Lazy}"/>
     </Storyboard>
 
-    <Storyboard x:Key="LStoryboard.WidthToLongArcMax">
-      <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Long}"/>
+    <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.LongArc">
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="70" BeginTime="{StaticResource LTimeSpan.Oscillate.0}" Duration="{StaticResource LDuration.Lazier}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" From="70" To="-70" BeginTime="{StaticResource LTimeSpan.Oscillate.5}" Duration="{StaticResource LDuration.Lazier}" RepeatBehavior="Forever" AutoReverse="True"/>
     </Storyboard>
 
-    <Storyboard x:Key="LStoryboard.WidthToZeroOnPress">
-      <DoubleAnimation Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
+    <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.ShortArc">
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="-70" BeginTime="{StaticResource LTimeSpan.Oscillate.0}" Duration="{StaticResource LDuration.Lazy}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" From="-70" To="70" BeginTime="{StaticResource LTimeSpan.Oscillate.4}" Duration="{StaticResource LDuration.Lazy}" RepeatBehavior="Forever" AutoReverse="True"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.TrioEllipse1" RepeatBehavior="Forever">
+      <ThicknessAnimation Storyboard.TargetName="TrioEllipse1" Storyboard.TargetProperty="Margin" To="60,5,10,25" BeginTime="{StaticResource LTimeSpan.Oscillate.0}" Duration="{StaticResource LDuration.Short}"/>
+      <ThicknessAnimation Storyboard.TargetName="TrioEllipse1" Storyboard.TargetProperty="Margin" To="70,15,0,15" BeginTime="{StaticResource LTimeSpan.Oscillate.1}" Duration="{StaticResource LDuration.Short}"/>
+      <ThicknessAnimation Storyboard.TargetName="TrioEllipse1" Storyboard.TargetProperty="Margin" To="65,30,5,0" BeginTime="{StaticResource LTimeSpan.Oscillate.2}" Duration="{StaticResource LDuration.Short}"/>
+      <ThicknessAnimation Storyboard.TargetName="TrioEllipse1" Storyboard.TargetProperty="Margin" To="55,0,15,30" BeginTime="{StaticResource LTimeSpan.Oscillate.3}" Duration="{StaticResource LDuration.Short}"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.TrioEllipse2">
+      <DoubleAnimation Storyboard.TargetName="TrioEllipse2" Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.85" BeginTime="{StaticResource LTimeSpan.Oscillate.0}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioEllipse2" Storyboard.TargetProperty="Fill.GradientStops[1].Offset" From="0.85" To="0.6" BeginTime="{StaticResource LTimeSpan.Oscillate.4}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
+      <DoubleAnimation Storyboard.TargetName="TrioEllipse2" Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" From="0.1" To="0.4" BeginTime="{StaticResource LTimeSpan.Oscillate.3}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
+    </Storyboard>
+    
+    <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.TrioPath">
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" To="-0.3" BeginTime="{StaticResource LTimeSpan.Oscillate.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.3" BeginTime="{StaticResource LTimeSpan.Oscillate.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" From="-0.3" To="-0.1" BeginTime="{StaticResource LTimeSpan.Oscillate.2}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.Y)" From="0.2" To="0" BeginTime="{StaticResource LTimeSpan.Oscillate.2}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.GradientStops[1].Offset" From="0.3" To="0.2" BeginTime="{StaticResource LTimeSpan.Oscillate.2}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LStoryboard.SonicatePress">
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMax}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="500" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="230" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.FontSize)" To="14" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Short}"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LStoryboard.Reset" BeginTime="{StaticResource LTimespan.Reset.Delay}" Duration="{StaticResource LDuration.Short}">
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMin}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Back}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Highlight}"/>
+      <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}"/>
+      <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="StrokeDashOffset" To="0"/>
+      <DoubleAnimation Storyboard.TargetName="DottedEllipse" Storyboard.TargetProperty="Opacity" To="1"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingArcEllipse" Storyboard.TargetProperty="Opacity" To="1"/>
+      <DoubleAnimation Storyboard.TargetName="InnerRippleEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="InnerRippleEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
+      <DoubleAnimation Storyboard.TargetName="OuterRippleEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="OuterRippleEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArc}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="StrokeThickness" To="5"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="0"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.4"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.ShortArc}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="StrokeThickness" To="5"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="0"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.05"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Halo}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="164"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.FontSize)" To="35"/>
+      <DoubleAnimation Storyboard.TargetName="TrioGrid" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <ThicknessAnimation Storyboard.TargetName="TrioEllipse1" Storyboard.TargetProperty="Margin" To="55,0,15,30"/>
+      <DoubleAnimation Storyboard.TargetName="TrioEllipse2" Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.5"/>
+      <DoubleAnimation Storyboard.TargetName="TrioEllipse2" Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" To="0.1"/>
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" To="-0.2"/>
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.Y)" To="0.2"/>
+      <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.2"/>
+      <DoubleAnimation Storyboard.TargetName="PressButton" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
     </Storyboard>
 
     <Style x:Key="LStyle.Ellipse" TargetType="{x:Type Ellipse}">
@@ -134,31 +247,36 @@
       <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
     </Style>
 
+    <Style x:Key="LStyle.Ellipse.TrioMask" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.TrioMaskMin}"/>
+      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioMask}"/>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.Back" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.Back}"/>
+      <Setter Property="Fill" Value="{StaticResource XBrush.Application.Active}"/>
+      <Setter Property="Opacity" Value="0.1"/>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.Highlight" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.Highlight}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.Highlight}"/>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.Dashed" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.TrioMask}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
+      <Setter Property="StrokeThickness" Value="2"/>
+      <Setter Property="StrokeDashArray" Value="2,3"/>
+    </Style>
+
     <Style x:Key="LStyle.Ellipse.Dotted" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
       <Setter Property="Width" Value="{StaticResource LDouble.Width.Cooling}"/>
       <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
       <Setter Property="StrokeThickness" Value="2"/>
       <Setter Property="StrokeDashArray" Value="1,5"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Long}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
     </Style>
 
     <Style x:Key="LStyle.Ellipse.CoolingArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
@@ -170,38 +288,37 @@
           <RotateTransform Angle="{Binding CoolingIncrementAngle, ElementName=_thisSonicateControl}"/>
         </Setter.Value>
       </Setter>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-          <Setter Property="Width" Value="{StaticResource LDouble.Width.TrioMaskMax}"/>
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimespan.Press.0}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Cooling}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.Ripple" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.Boundary}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
+      <Setter Property="StrokeThickness" Value="2"/>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.LongArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.LongArc}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Long}"/>
+      <Setter Property="StrokeThickness" Value="5"/>
+      <Setter Property="RenderTransform">
+        <Setter.Value>
+          <RotateTransform/>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.ShortArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.ShortArc}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Short}"/>
+      <Setter Property="StrokeThickness" Value="5"/>
+      <Setter Property="RenderTransform">
+        <Setter.Value>
+          <RotateTransform/>
+        </Setter.Value>
+      </Setter>
     </Style>
 
     <Style x:Key="LStyle.Ellipse.CoolingStar" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
@@ -239,207 +356,8 @@
       <Ellipse Style="{StaticResource LStyle.Ellipse.CoolingStar}"/>
     </Grid>
 
-    <Style x:Key="LStyle.ContentControl.CoolingStar" TargetType="{x:Type ContentControl}">
-      <Setter Property="Opacity" Value="0"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="CoolingRunning">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="{StaticResource LDuration.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Back" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.Back}"/>
-      <Setter Property="Fill" Value="{StaticResource XBrush.Application.Active}"/>
-      <Setter Property="Opacity" Value="0.1"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="486" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.WidthToLongArcMax}"/>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.WidthToZeroOnPress}"/>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Back}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Highlight" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.Highlight}"/>
-      <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.Highlight}"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.9" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="438" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.WidthToLongArcMax}"/>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.WidthToZeroOnPress}"/>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Highlight}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.LongArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.LongArc}"/>
-      <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Long}"/>
-      <Setter Property="StrokeThickness" Value="5"/>
-      <Setter Property="RenderTransform">
-        <Setter.Value>
-          <RotateTransform/>
-        </Setter.Value>
-      </Setter>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="StrokeThickness" To="3" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="-105" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.45" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-            <BeginStoryboard x:Name="LongArcSwingBeginStoryboard">
-              <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}">
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="70" BeginTime="{StaticResource LTimeSpan.Swing.0}" Duration="{StaticResource LDuration.Lazier}"/>
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" From="70" To="-70" BeginTime="{StaticResource LTimeSpan.Swing.5}" Duration="{StaticResource LDuration.Lazier}" RepeatBehavior="Forever" AutoReverse="True"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-          <DataTrigger.ExitActions>
-            <PauseStoryboard BeginStoryboardName="LongArcSwingBeginStoryboard"/>
-          </DataTrigger.ExitActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.RippleOut}"/>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArc}"/>
-                <DoubleAnimation Storyboard.TargetProperty="StrokeThickness" To="5"/>
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.4"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.ShortArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.ShortArc}"/>
-      <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Short}"/>
-      <Setter Property="StrokeThickness" Value="5"/>
-      <Setter Property="RenderTransform">
-        <Setter.Value>
-          <RotateTransform/>
-        </Setter.Value>
-      </Setter>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.ShortArcMax}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="StrokeThickness" To="3" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="20" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.15" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-            <BeginStoryboard x:Name="ShortArcSwingBeginStoryboard">
-              <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}">
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="-70" BeginTime="{StaticResource LTimeSpan.Swing.0}" Duration="{StaticResource LDuration.Lazy}"/>
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" From="-70" To="70" BeginTime="{StaticResource LTimeSpan.Swing.4}" Duration="{StaticResource LDuration.Lazy}" RepeatBehavior="Forever" AutoReverse="True"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-          <DataTrigger.ExitActions>
-            <PauseStoryboard BeginStoryboardName="ShortArcSwingBeginStoryboard"/>
-          </DataTrigger.ExitActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.RippleOut}"/>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.ShortArc}"/>
-                <DoubleAnimation Storyboard.TargetProperty="StrokeThickness" To="5"/>
-                <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.05"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
     <Style x:Key="LStyle.Path.Halo" TargetType="{x:Type Path}">
       <Setter Property="Fill" Value="{StaticResource XBrush.Application.Active}"/>
-      <Setter Property="Opacity" Value="0"/>
       <Setter Property="Stretch" Value="Uniform"/>
       <Setter Property="Data" Value="{StaticResource LGeometry.Halo}"/>
       <Setter Property="VerticalAlignment" Value="Top"/>
@@ -448,388 +366,20 @@
           <BlurEffect Radius="18" KernelType="Gaussian"/>
         </Setter.Value>
       </Setter>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.4" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
     </Style>
-
-    <Style x:Key="LStyle.Ellipse.Dashed" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.TrioMask}"/>
-      <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
-      <Setter Property="StrokeThickness" Value="2"/>
-      <Setter Property="StrokeDashArray" Value="2,3"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-                <DoubleAnimation Storyboard.TargetProperty="StrokeDashOffset" BeginTime="{StaticResource LTimeSpan.Swell.1}" To="20" Duration="{StaticResource LDuration.Short}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}"/>
-                <DoubleAnimation Storyboard.TargetProperty="StrokeDashOffset" To="0"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Ripple" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.Boundary}"/>
-      <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
-      <Setter Property="StrokeThickness" Value="2"/>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Ripple.Inner" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse.Ripple}">
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard x:Name="InnerRippleBeginStoryboard">
-              <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}" RepeatBehavior="Forever" AutoReverse="True">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0.4" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Lazy}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.Boundary}" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Lazy}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-          <DataTrigger.ExitActions>
-            <StopStoryboard BeginStoryboardName="InnerRippleBeginStoryboard"/>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.OpacityToZero}"/>
-          </DataTrigger.ExitActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Ripple.Outer" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse.Ripple}">
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard x:Name="OuterRippleBeginStoryboard">
-              <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}" RepeatBehavior="Forever" AutoReverse="True">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0.4" BeginTime="{StaticResource LTimeSpan.Swing.3}" Duration="{StaticResource LDuration.Lazy}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.Boundary}" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Swing.3}" Duration="{StaticResource LDuration.Lazy}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-          <DataTrigger.ExitActions>
-            <StopStoryboard BeginStoryboardName="OuterRippleBeginStoryboard"/>
-            <BeginStoryboard Storyboard="{StaticResource LStoryboard.OpacityToZero}"/>
-          </DataTrigger.ExitActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Grid x:Key="LGrid.TrioMask" Width="{StaticResource LDouble.Width.Boundary}" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
-      <Ellipse Width="{StaticResource LDouble.Width.TrioMask}" Fill="Black">
-        <Ellipse.Style>
-          <Style TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard>
-                    <Storyboard>
-                      <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMax}" BeginTime="{StaticResource LTimespan.Press.0}" Duration="{StaticResource LDuration.Long}"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-              </DataTrigger>
-              <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard>
-                    <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                      <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-              </DataTrigger>
-            </Style.Triggers>
-          </Style>
-        </Ellipse.Style>
-      </Ellipse>
-    </Grid>
 
     <Style x:Key="LStyle.Ellipse.Trio" TargetType="{x:Type Ellipse}">
       <Setter Property="HorizontalAlignment" Value="Left"/>
       <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
     
-    <Grid
-      x:Key="LGrid.Trio"
-      Opacity="0"
-      Background="{StaticResource XBrush.AlmostTransparent}"
-      Width="{StaticResource LDouble.Width.Boundary}"
-      Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-      HorizontalAlignment="Center"
-      VerticalAlignment="Center">
-      <Grid.OpacityMask>
-        <VisualBrush Stretch="None" Visual="{StaticResource LGrid.TrioMask}"/>
-      </Grid.OpacityMask>
-      <Grid.Effect>
-        <BlurEffect Radius="10"/>
-      </Grid.Effect>
-      <Grid.Style>
-        <Style TargetType="{x:Type Grid}">
-          <Style.Triggers>
-            <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-              <DataTrigger.EnterActions>
-                <BeginStoryboard>
-                  <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.8" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-                  </Storyboard>
-                </BeginStoryboard>
-              </DataTrigger.EnterActions>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-              <DataTrigger.EnterActions>
-                <BeginStoryboard>
-                  <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                  </Storyboard>
-                </BeginStoryboard>
-              </DataTrigger.EnterActions>
-            </DataTrigger>
-          </Style.Triggers>
-        </Style>
-      </Grid.Style>
-      
-      <Ellipse Margin="55,0,15,30" Width="240" Height="200">
-        <Ellipse.Fill>
-          <RadialGradientBrush Center="0.5,0.5" RadiusX="1" RadiusY="1">
-            <RadialGradientBrush.GradientStops>
-              <GradientStopCollection>
-                <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
-                <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.7"/>
-              </GradientStopCollection>
-            </RadialGradientBrush.GradientStops>
-            <RadialGradientBrush.RelativeTransform>
-              <TranslateTransform X="0.2" Y="-0.3"/>
-            </RadialGradientBrush.RelativeTransform>
-          </RadialGradientBrush>
-        </Ellipse.Fill>
-        <Ellipse.Style>
-          <Style TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse.Trio}">
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard x:Name="TrioEllipse1SwingBeginStoryboard">
-                    <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}" RepeatBehavior="Forever">
-                      <ThicknessAnimation Storyboard.TargetProperty="Margin" To="60,5,10,25" BeginTime="{StaticResource LTimeSpan.Swing.0}" Duration="{StaticResource LDuration.Short}"/>
-                      <ThicknessAnimation Storyboard.TargetProperty="Margin" To="70,15,0,15" BeginTime="{StaticResource LTimeSpan.Swing.1}" Duration="{StaticResource LDuration.Short}"/>
-                      <ThicknessAnimation Storyboard.TargetProperty="Margin" To="65,30,5,0" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Short}"/>
-                      <ThicknessAnimation Storyboard.TargetProperty="Margin" To="55,0,15,30" BeginTime="{StaticResource LTimeSpan.Swing.3}" Duration="{StaticResource LDuration.Short}"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                  <StopStoryboard BeginStoryboardName="TrioEllipse1SwingBeginStoryboard"/>
-                </DataTrigger.ExitActions>
-              </DataTrigger>
-              <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard>
-                    <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                      <ThicknessAnimation Storyboard.TargetProperty="Margin" To="55,0,15,30"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-              </DataTrigger>
-            </Style.Triggers>
-          </Style>
-        </Ellipse.Style>
-      </Ellipse>
-      
-      <Ellipse Margin="160,58,0,0" Width="384" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
-        <Ellipse.Fill>
-          <RadialGradientBrush Center="0.5,0.5" RadiusX="1" RadiusY="1">
-            <RadialGradientBrush.GradientStops>
-              <GradientStopCollection>
-                <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
-                <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.5"/>
-              </GradientStopCollection>
-            </RadialGradientBrush.GradientStops>
-            <RadialGradientBrush.RelativeTransform>
-              <TranslateTransform X="0.1" Y="-0.4"/>
-            </RadialGradientBrush.RelativeTransform>
-          </RadialGradientBrush>
-        </Ellipse.Fill>
-        <Ellipse.Style>
-          <Style TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse.Trio}">
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard x:Name="TrioEllipse2SwingBeginStoryboard">
-                    <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}">
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.85" BeginTime="{StaticResource LTimeSpan.Swing.0}" Duration="{StaticResource LDuration.Long}"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" From="0.85" To="0.6" BeginTime="{StaticResource LTimeSpan.Swing.4}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" From="0.1" To="0.4" BeginTime="{StaticResource LTimeSpan.Swing.3}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                  <StopStoryboard BeginStoryboardName="TrioEllipse2SwingBeginStoryboard"/>
-                </DataTrigger.ExitActions>
-              </DataTrigger>
-              <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard>
-                    <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.5"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" To="0.1"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-              </DataTrigger>
-            </Style.Triggers>
-          </Style>
-        </Ellipse.Style>
-      </Ellipse>
-      
-      <Path
-        Margin="270,64,0,0"
-        VerticalAlignment="Top"
-        HorizontalAlignment="Left"
-        Width="240"
-        Stretch="Uniform"
-        Data="M 90.026782,65.63255 C 112.62696,59.674449 131.59513,49.816534 141.76328,35.4529 c 16.2701,-22.983302 28.7426,-47.42515 63.2336,-28.7425095 34.491,18.6826295 37.3652,83.3532895 8.6227,112.0958095 -28.7425,28.74251 -80.4791,76.16767 -133.652698,74.73053 -49.1393,-1.3281 -93.4132,-31.61676 -76.1677007,-67.5449 C 22.784682,86.43877 52.946377,75.408081 90.026782,65.63255 Z">
-        <Path.Fill>
-          <RadialGradientBrush Center="0.5,0.5" RadiusX="1.5" RadiusY="1">
-            <RadialGradientBrush.GradientStops>
-              <GradientStopCollection>
-                <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
-                <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.2"/>
-              </GradientStopCollection>
-            </RadialGradientBrush.GradientStops>
-            <RadialGradientBrush.RelativeTransform>
-              <TransformGroup>
-                <TranslateTransform X="-0.2" Y="0.2"/>
-                <RotateTransform Angle="-37"/>
-              </TransformGroup>
-            </RadialGradientBrush.RelativeTransform>
-          </RadialGradientBrush>
-        </Path.Fill>
-        <Path.Style>
-          <Style TargetType="{x:Type Path}">
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard x:Name="TrioPathBeginStoryboard">
-                    <Storyboard BeginTime="{StaticResource LTimeSpan.Swing}">
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" To="-0.3" BeginTime="{StaticResource LTimeSpan.Swing.0}" Duration="{StaticResource LDuration.Short}"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.3" BeginTime="{StaticResource LTimeSpan.Swing.0}" Duration="{StaticResource LDuration.Short}"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" From="-0.3" To="-0.1" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.Y)" From="0.2" To="0" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" From="0.3" To="0.2" BeginTime="{StaticResource LTimeSpan.Swing.2}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-                <DataTrigger.ExitActions>
-                  <StopStoryboard BeginStoryboardName="TrioPathBeginStoryboard"/>
-                </DataTrigger.ExitActions>
-              </DataTrigger>
-              <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-                <DataTrigger.EnterActions>
-                  <BeginStoryboard>
-                    <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.X)" To="-0.2"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.RelativeTransform.(TranslateTransform.Y)" To="0.2"/>
-                      <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0.2"/>
-                    </Storyboard>
-                  </BeginStoryboard>
-                </DataTrigger.EnterActions>
-              </DataTrigger>
-            </Style.Triggers>
-          </Style>
-        </Path.Style>
-      </Path>
-    </Grid>
-
     <Style x:Key="LStyle.Border.Halo" TargetType="{x:Type Border}">
+      <Setter Property="Opacity" Value="0"/>
       <Setter Property="Width" Value="{StaticResource LDouble.Width.Halo}"/>
       <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
       <Setter Property="HorizontalAlignment" Value="Center"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
       <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="414" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="500" BeginTime="{StaticResource LTimespan.Press.0}" Duration="{StaticResource LDuration.Long}"/>
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Halo}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
     </Style>
 
     <Style x:Key="LStyle.TextBlock" TargetType="{x:Type TextBlock}">
@@ -844,28 +394,6 @@
           <TranslateTransform Y="164"/>
         </Setter.Value>
       </Setter>
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
-                <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="114" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-        <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicatePress">
-          <DataTrigger.EnterActions>
-            <BeginStoryboard>
-              <Storyboard BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0"/>
-                <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="164"/>
-              </Storyboard>
-            </BeginStoryboard>
-          </DataTrigger.EnterActions>
-        </DataTrigger>
-      </Style.Triggers>
     </Style>
   </UserControl.Resources>
 
@@ -880,15 +408,6 @@
         </TranslateTransform.Y>
       </TranslateTransform>
     </Grid.RenderTransform>
-    <Grid.OpacityMask>
-      <VisualBrush Stretch="None" Visual="{Binding ElementName=SonicateMask}"/>
-    </Grid.OpacityMask>
-    <Border x:Name="SonicateMask" Background="{StaticResource XBrush.AlmostTransparent}">
-      <Border
-        Height="{Binding SonicateArcHeight, ElementName=_thisSonicateControl}"
-        VerticalAlignment="Top"
-        Background="{StaticResource XBrush.Application.Background}"/>
-    </Border>
     <!--<Border
       x:Name="RemoveMe"
       Height="{Binding SonicateArcHeight, ElementName=_thisSonicateControl}"
@@ -897,22 +416,98 @@
       BorderThickness="0.5"/>-->
     <Viewbox Stretch="Uniform">
       <Grid Width="{StaticResource LDouble.Width.Boundary}" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
-        <Ellipse x:Name="BackgroundEllipse" Style="{StaticResource LStyle.Ellipse.Back}"/>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.Highlight}"/>
-        <ContentControl x:Name="TrioContentControl" Content="{StaticResource LGrid.Trio}"/>
-        <Border Style="{StaticResource LStyle.Border.Halo}">
+        <Ellipse x:Name="TrioMaskEllipse" Style="{StaticResource LStyle.Ellipse.TrioMask}"/>
+        <Ellipse x:Name="BackEllipse" Style="{StaticResource LStyle.Ellipse.Back}"/>
+        <Ellipse x:Name="HighlightEllipse" Style="{StaticResource LStyle.Ellipse.Highlight}"/>
+        <Grid
+          x:Name="TrioGrid"
+          Opacity="0"
+          Background="{StaticResource XBrush.AlmostTransparent}"
+          Width="{StaticResource LDouble.Width.Boundary}"
+          Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+          <Grid.OpacityMask>
+            <VisualBrush Stretch="None" Visual="{Binding ElementName=TrioMaskEllipse}"/>
+          </Grid.OpacityMask>
+          <Grid.Effect>
+            <BlurEffect Radius="10"/>
+          </Grid.Effect>
+          <Ellipse x:Name="TrioEllipse1" Margin="55,0,15,30" Width="240" Height="200" Style="{StaticResource LStyle.Ellipse.Trio}">
+            <Ellipse.Fill>
+              <RadialGradientBrush Center="0.5,0.5" RadiusX="1" RadiusY="1">
+                <RadialGradientBrush.GradientStops>
+                  <GradientStopCollection>
+                    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
+                    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.7"/>
+                  </GradientStopCollection>
+                </RadialGradientBrush.GradientStops>
+                <RadialGradientBrush.RelativeTransform>
+                  <TranslateTransform X="0.2" Y="-0.3"/>
+                </RadialGradientBrush.RelativeTransform>
+              </RadialGradientBrush>
+            </Ellipse.Fill>
+          </Ellipse>
+          <Ellipse
+            x:Name="TrioEllipse2"
+            Margin="160,58,0,0"
+            Width="384"
+            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+            Style="{StaticResource LStyle.Ellipse.Trio}">
+            <Ellipse.Fill>
+              <RadialGradientBrush Center="0.5,0.5" RadiusX="1" RadiusY="1">
+                <RadialGradientBrush.GradientStops>
+                  <GradientStopCollection>
+                    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
+                    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.5"/>
+                  </GradientStopCollection>
+                </RadialGradientBrush.GradientStops>
+                <RadialGradientBrush.RelativeTransform>
+                  <TranslateTransform X="0.1" Y="-0.4"/>
+                </RadialGradientBrush.RelativeTransform>
+              </RadialGradientBrush>
+            </Ellipse.Fill>
+          </Ellipse>
+          <Path
+            x:Name="TrioPath"
+            Margin="270,64,0,0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Width="240"
+            Stretch="Uniform"
+            Data="{StaticResource LGeometry.Trio}">
+            <Path.Fill>
+              <RadialGradientBrush Center="0.5,0.5" RadiusX="1.5" RadiusY="1">
+                <RadialGradientBrush.GradientStops>
+                  <GradientStopCollection>
+                    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
+                    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.2"/>
+                  </GradientStopCollection>
+                </RadialGradientBrush.GradientStops>
+                <RadialGradientBrush.RelativeTransform>
+                  <TransformGroup>
+                    <TranslateTransform X="-0.2" Y="0.2"/>
+                    <RotateTransform Angle="-37"/>
+                  </TransformGroup>
+                </RadialGradientBrush.RelativeTransform>
+              </RadialGradientBrush>
+            </Path.Fill>
+          </Path>
+        </Grid>
+        <Border x:Name="HaloBorder" Style="{StaticResource LStyle.Border.Halo}">
           <Path Style="{StaticResource LStyle.Path.Halo}"/>
         </Border>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.Dashed}"/>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.Dotted}"/>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.CoolingArc}"/>
-        <ContentControl Content="{StaticResource LGrid.CoolingStar}"/>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Outer}"/>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.Ripple.Inner}"/>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.LongArc}"/>
-        <Ellipse Style="{StaticResource LStyle.Ellipse.ShortArc}"/>
-        <TextBlock Style="{StaticResource LStyle.TextBlock}" Text="SONICATE"/>
+        <Ellipse x:Name="DashedEllipse" Style="{StaticResource LStyle.Ellipse.Dashed}"/>
+        <Ellipse x:Name="DottedEllipse" Style="{StaticResource LStyle.Ellipse.Dotted}"/>
+        <Ellipse x:Name="CoolingArcEllipse" Style="{StaticResource LStyle.Ellipse.CoolingArc}"/>
+        <ContentControl x:Name="CoolingStarContentControl" Content="{StaticResource LGrid.CoolingStar}"/>
+        <Ellipse x:Name="OuterRippleEllipse" Style="{StaticResource LStyle.Ellipse.Ripple}"/>
+        <Ellipse x:Name="InnerRippleEllipse" Style="{StaticResource LStyle.Ellipse.Ripple}"/>
+        <Ellipse x:Name="LongArcEllipse" Style="{StaticResource LStyle.Ellipse.LongArc}"/>
+        <Ellipse x:Name="ShortArcEllipse" Style="{StaticResource LStyle.Ellipse.ShortArc}"/>
+        <TextBlock x:Name="SonicateTextBlock" Style="{StaticResource LStyle.TextBlock}" Text="SONICATE"/>
         <Button
+          x:Name="PressButton"
           Command="{Binding SonicateStartPressCommand, ElementName=_thisSonicateControl}"
           Width="{StaticResource LDouble.Width.Boundary}"
           Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
@@ -922,16 +517,6 @@
               <Style.Triggers>
                 <DataTrigger Binding="{Binding SonicateState, ElementName=_thisSonicateControl}" Value="SonicateReady">
                   <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ResetNow, ElementName=_thisSonicateControl}" Value="True">
-                  <DataTrigger.EnterActions>
-                    <BeginStoryboard>
-                      <Storyboard BeginTime="{StaticResource LTimespan.DelayATinyBit}" Duration="{StaticResource LDuration.Short}">
-                        <DoubleAnimation Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
-                        <DoubleAnimation Storyboard.TargetProperty="Fill.GradientStops[1].Offset" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
-                      </Storyboard>
-                    </BeginStoryboard>
-                  </DataTrigger.EnterActions>
                 </DataTrigger>
               </Style.Triggers>
             </Style>
