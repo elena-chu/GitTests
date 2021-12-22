@@ -18,7 +18,7 @@
     <Duration x:Key="LDuration.Lazy">0:0:3.5</Duration>
     <Duration x:Key="LDuration.Lazier">0:0:4.5</Duration>
     
-    <sys:TimeSpan x:Key="LTimeSpan.Cooling.Delay">0:0:1.5</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Cooling.Delay">0:0:0.5</sys:TimeSpan>
     
     <sys:TimeSpan x:Key="LTimeSpan.Swell.0">0:0:0</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Swell.1">0:0:0.5</sys:TimeSpan>

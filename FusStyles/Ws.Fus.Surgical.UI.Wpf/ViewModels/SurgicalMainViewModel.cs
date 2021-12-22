@@ -204,9 +204,8 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void OnCoolingTimer(object sender, EventArgs e)
         {
-            var randomSeconds = new Random();
-            var randomMinutes = new Random();
-            CoolingTime = new TimeSpan(0, randomSeconds.Next(60), randomMinutes.Next(60));
+            var random = new Random();
+            CoolingTime = new TimeSpan(0, random.Next(60), random.Next(60));
 
             CoolingValue += 0.01;
             if (CoolingValue >=1)
