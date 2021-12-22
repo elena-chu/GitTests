@@ -32,7 +32,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            InitAnimationStoryboards();
+            InitAnimationResources();
         }
 
         #endregion
@@ -91,6 +91,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         #region Control State
 
+        private SonicateControlState _previousSonicateControlState = SonicateControlState.None;
         private SonicateControlState _sonicateControlState = SonicateControlState.None;
         public SonicateControlState SonicateControlState
         {
@@ -99,6 +100,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             {
                 if (value != _sonicateControlState)
                 {
+                    _previousSonicateControlState = _sonicateControlState;
                     _sonicateControlState = value;
                     OnPropertyChanged();
                     OnSonicateControlStateChanged();
@@ -113,20 +115,29 @@ namespace Ws.Fus.Surgical.UI.Wpf
                 case SonicateControlState.None:
                     if (_resetRequired)
                         AnimateReset();
+                    if (_previousSonicateControlState == SonicateControlState.Cooling)
+                        AnimateCoolingDisappear();
                     break;
                 case SonicateControlState.Cooling:
                     CalculateCoolingIncrementAngle();
-                    _resetRequired = true;
+                    AnimateCoolingAppear();
                     break;
                 case SonicateControlState.SonicateReady:
                     _resetRequired = true;
-                    AnimateSonicateReady();
+                    if (_previousSonicateControlState == SonicateControlState.SonicateDisabled)
+                        AnimateSonicateReadyOscillate(new TimeSpan(0));
+                    else
+                        AnimateSonicateReady();
                     break;
                 case SonicateControlState.SonicatePress:
                     _resetRequired = true;
                     AnimateSonicatePress();
                     break;
                 case SonicateControlState.SonicateDisabled:
+                    if (_previousSonicateControlState == SonicateControlState.SonicateReady)
+                        PauseSonicateReadyOscillate();
+                    else
+                        AnimateSonicateReady();
                     _resetRequired = true;
                     break;
                 default:
@@ -264,38 +275,35 @@ namespace Ws.Fus.Surgical.UI.Wpf
             }
         }
 
+        public TimeSpan CoolingTime
+        {
+            get { return (TimeSpan)GetValue(CoolingTimeProperty); }
+            set { SetValue(CoolingTimeProperty, value); }
+        }
+        public static readonly DependencyProperty CoolingTimeProperty = DependencyProperty.Register(nameof(CoolingTime), typeof(TimeSpan), typeof(SonicateControl), new PropertyMetadata(new TimeSpan(0)));
+
         #endregion
 
 
         #region Animation
 
-        private void InitAnimationStoryboards()
-        {
-            _sonicateReadySwellStoryboard = FindResource(_sonicateReadySwellStoryboardName) as Storyboard;
+        // Cooling
+        private const string _coolingAppearStoryboardName = "LStoryboard.Cooling.Appear";
+        private Storyboard _coolingAppearStoryboard;
 
-            _sonicateReadyOscillateStoryboards = new List<Storyboard>();
-            foreach (var storyBoardName in _sonicateReadyOscillateStoryboardNames)
-                _sonicateReadyOscillateStoryboards.Add(FindResource(storyBoardName) as Storyboard);
+        private const string _coolingDisappearStoryboardName = "LStoryboard.Cooling.Disappear";
+        private Storyboard _coolingDisappearStoryboard;
 
-            _sonicatePressStoryboard = FindResource(_sonicatePressStoryboardName) as Storyboard;
-
-            _resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
-        }
-
+        // Sonicate Swell
         private const string _sonicateReadySwellStoryboardName = "LStoryboard.SonicateReady.Swell";
         private Storyboard _sonicateReadySwellStoryboard;
-        private void AnimateSonicateReady()
-        {
-            _sonicateReadySwellStoryboard.Completed -= SonicateReadySwellAnimationCompleted;
-            _sonicateReadySwellStoryboard.Completed += SonicateReadySwellAnimationCompleted;
-            _sonicateReadySwellStoryboard.Begin();
-        }
 
-        private void SonicateReadySwellAnimationCompleted(object sender, EventArgs e)
-        {
-            AnimateSonicateReadyOscillate();
-        }
+        // Sonicate Oscillate
+        private const string _sonicateReadyGrowArcsStoryboardName = "LStoryboard.SonicateReady.GrowArcs";
+        private Storyboard _sonicateReadyGrowArcsStoryboard;
 
+        private const string _sonicateReadyOscillateDelayTimeSpanName = "LTimeSpan.Oscillate.Delay";
+        private TimeSpan _sonicateReadyOscillateDelayTimeSpan;
         private List<string> _sonicateReadyOscillateStoryboardNames = new List<string>()
         {
             "LStoryboard.SonicateReady.Oscillate.InnerRipple",
@@ -306,36 +314,115 @@ namespace Ws.Fus.Surgical.UI.Wpf
             "LStoryboard.SonicateReady.Oscillate.TrioEllipse2",
             "LStoryboard.SonicateReady.Oscillate.TrioPath"
         };
-
         private List<Storyboard> _sonicateReadyOscillateStoryboards;
-        private void AnimateSonicateReadyOscillate()
+
+        private const string _sonicatePress1TimespanName = "LTimeSpan.Press.1";
+        private TimeSpan _press1TimeSpan;
+        
+        // Sonicate Press
+        private const string _sonicatePressSwellStoryboardName = "LStoryboard.SonicatePress.Swell";
+        private Storyboard _sonicatePressSwellStoryboard;
+        
+        private const string _sonicateBlackHoldStoryboardName = "LStoryboard.Sonicate.BlackHole";
+        private Storyboard _sonicateBlackHoleStoryboard;
+
+        // Reset
+        private const string _resetStoryboardName = "LStoryboard.Reset";
+        private Storyboard _resetStoryboard;
+
+        private void InitAnimationResources()
         {
-            foreach (var storyboard in _sonicateReadyOscillateStoryboards)
-                storyboard.Begin();
+            _coolingAppearStoryboard = FindResource(_coolingAppearStoryboardName) as Storyboard;
+            _coolingDisappearStoryboard = FindResource(_coolingDisappearStoryboardName) as Storyboard;
+
+            _sonicateReadySwellStoryboard = FindResource(_sonicateReadySwellStoryboardName) as Storyboard;
+            _sonicateReadyGrowArcsStoryboard = FindResource(_sonicateReadyGrowArcsStoryboardName) as Storyboard;
+
+            _sonicateReadyOscillateDelayTimeSpan = (TimeSpan)FindResource(_sonicateReadyOscillateDelayTimeSpanName);
+            _sonicateReadyOscillateStoryboards = new List<Storyboard>();
+            foreach (var storyBoardName in _sonicateReadyOscillateStoryboardNames)
+                _sonicateReadyOscillateStoryboards.Add(FindResource(storyBoardName) as Storyboard);
+
+            _press1TimeSpan = (TimeSpan)FindResource(_sonicatePress1TimespanName);
+            _sonicatePressSwellStoryboard = FindResource(_sonicatePressSwellStoryboardName) as Storyboard;
+            _sonicateBlackHoleStoryboard = FindResource(_sonicateBlackHoldStoryboardName) as Storyboard;
+
+            _resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
         }
 
-        private const string _sonicatePressStoryboardName = "LStoryboard.SonicatePress";
-        private Storyboard _sonicatePressStoryboard;
-        private void AnimateSonicatePress()
+        private void AnimateCoolingAppear()
+        {
+            _coolingAppearStoryboard.Begin();
+        }
+
+        private void AnimateCoolingDisappear()
+        {
+            _coolingDisappearStoryboard.Begin();
+        }
+
+        private void AnimateSonicateReady()
+        {
+            _sonicateReadySwellStoryboard.Begin();
+            AnimateCoolingDisappear();
+            if (SonicateControlState == SonicateControlState.SonicateReady)
+                AnimateSonicateReadyOscillate(_sonicateReadyOscillateDelayTimeSpan);
+        }
+
+        private void AnimateSonicateReadyOscillate(TimeSpan delayTimeSpan)
+        {
+            _sonicateReadyGrowArcsStoryboard.BeginTime = delayTimeSpan;
+            _sonicateReadyGrowArcsStoryboard.Begin();
+
+            if (_oscillatePaused)
+            {
+                foreach (var storyboard in _sonicateReadyOscillateStoryboards)
+                    storyboard.Resume();
+                _oscillatePaused = false;
+            }
+            else
+            {
+                foreach (var storyboard in _sonicateReadyOscillateStoryboards)
+                {
+                    storyboard.BeginTime = delayTimeSpan;
+                    storyboard.Begin();
+                }
+            }
+        }
+
+        bool _oscillatePaused = false;
+        private void PauseSonicateReadyOscillate()
+        {
+            foreach (var storyboard in _sonicateReadyOscillateStoryboards)
+                storyboard.Pause();
+            _oscillatePaused = true;
+        }
+
+        private void StopSonicateReadyOscillate()
         {
             foreach (var storyboard in _sonicateReadyOscillateStoryboards)
                 storyboard.Stop();
+        }
 
-            _sonicatePressStoryboard.Completed -= SonicatePressAnimationCompleted;
-            _sonicatePressStoryboard.Completed += SonicatePressAnimationCompleted;
-            _sonicatePressStoryboard.Begin();
+        private void AnimateSonicatePress()
+        {
+            StopSonicateReadyOscillate();
+
+            _sonicateBlackHoleStoryboard.BeginTime = _press1TimeSpan;
+            _sonicateBlackHoleStoryboard.Completed -= SonicatePressAnimationCompleted;
+            _sonicateBlackHoleStoryboard.Completed += SonicatePressAnimationCompleted;
+
+            _sonicatePressSwellStoryboard.Begin();
+            _sonicateBlackHoleStoryboard.Begin();
         }
 
         private void SonicatePressAnimationCompleted(object sender, EventArgs e)
         {
-            _sonicatePressStoryboard.Completed -= SonicatePressAnimationCompleted;
+            _sonicateBlackHoleStoryboard.Completed -= SonicatePressAnimationCompleted;
+            _sonicateBlackHoleStoryboard.BeginTime = new TimeSpan(0);
             SonicateCommand?.Execute(null);
         }
 
         private bool _resetRequired = false;
-
-        private const string _resetStoryboardName = "LStoryboard.Reset";
-        Storyboard _resetStoryboard;
         private void AnimateReset()
         {
             _resetStoryboard.Begin();

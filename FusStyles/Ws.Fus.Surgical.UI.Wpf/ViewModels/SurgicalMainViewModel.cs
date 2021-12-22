@@ -142,6 +142,8 @@ namespace Ws.Fus.Surgical.UI.Wpf
                     RaisePropertyChanged();
                     if (_coolingAvailable)
                         StartCoolingTimer();
+                    else
+                        StopCoolingTimer();
                 }
             }
         }
@@ -160,6 +162,18 @@ namespace Ws.Fus.Surgical.UI.Wpf
         public double MinCoolingValue => 0.0;
         public double MaxCoolingValue => 1.0;
 
+        private TimeSpan _coolingTime = new TimeSpan();
+        public TimeSpan CoolingTime
+        {
+            get => _coolingTime;
+            set
+            {
+                _coolingTime = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         #endregion
 
 
@@ -170,7 +184,6 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void InitCoolingTimer()
         {
-            CoolingValue = 0.0;
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(TimerInterval);
             StopCoolingTimer();
@@ -178,6 +191,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void StartCoolingTimer()
         {
+            CoolingValue = 0.0;
             _timer.Start();
             _timer.Tick += OnCoolingTimer;
         }
@@ -190,6 +204,10 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void OnCoolingTimer(object sender, EventArgs e)
         {
+            var randomSeconds = new Random();
+            var randomMinutes = new Random();
+            CoolingTime = new TimeSpan(0, randomSeconds.Next(60), randomMinutes.Next(60));
+
             CoolingValue += 0.01;
             if (CoolingValue >=1)
             {

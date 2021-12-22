@@ -18,10 +18,13 @@
     <Duration x:Key="LDuration.Lazy">0:0:3.5</Duration>
     <Duration x:Key="LDuration.Lazier">0:0:4.5</Duration>
     
+    <sys:TimeSpan x:Key="LTimeSpan.Cooling.Delay">0:0:1.5</sys:TimeSpan>
+    
     <sys:TimeSpan x:Key="LTimeSpan.Swell.0">0:0:0</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Swell.1">0:0:0.5</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Swell.2">0:0:1.5</sys:TimeSpan>
-    <sys:TimeSpan x:Key="LTimeSpan.Oscillate">0:0:2.5</sys:TimeSpan>
+    
+    <sys:TimeSpan x:Key="LTimeSpan.Oscillate.Delay">0:0:2.8</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.0">0:0:0</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.1">0:0:0.5</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.2">0:0:1</sys:TimeSpan>
@@ -29,9 +32,9 @@
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.4">0:0:3.5</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.5">0:0:4.5</sys:TimeSpan>
 
-    <sys:TimeSpan x:Key="LTimespan.Press.1">0:0:2</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Press.1">0:0:2</sys:TimeSpan>
     
-    <sys:TimeSpan x:Key="LTimespan.Reset.Delay">0:0:0.5</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Reset.Delay">0:0:0.5</sys:TimeSpan>
     
     <sys:Double x:Key="LDouble.Width.Boundary">588</sys:Double>
     <sys:Double x:Key="LDouble.Width.Highlight">360</sys:Double>
@@ -51,8 +54,13 @@
 
     <Color x:Key="LColor.Highlight">#FF00E0FF</Color>
     <Color x:Key="LColor.Highlight.Transparent">#0000E0FF</Color>
+    <Color x:Key="LColor.Highlight.Greyscale">#FFA0A0A0</Color>
+    <Color x:Key="LColor.Highlight.Greyscale.Transparent">#00A0A0A0</Color>
+    <Color x:Key="LColor.Main.Greyscale">#FF9c9c9c</Color>
+    <Color x:Key="LColor.Main.Greyscale.Transparent">#009c9c9c</Color>
 
     <SolidColorBrush x:Key="LBrush.Highlight" Color="{StaticResource LColor.Highlight}"/>
+    <SolidColorBrush x:Key="LBrush.Main.Greyscale" Color="{StaticResource LColor.Main.Greyscale}"/>
 
     <RadialGradientBrush x:Key="LRadialGradientBrush.TrioMask" Center="0.5,0.5" RadiusX="0.98" RadiusY="0.98">
       <RadialGradientBrush.GradientStops>
@@ -75,7 +83,97 @@
         <TranslateTransform Y="-0.1"/>
       </RadialGradientBrush.RelativeTransform>
     </RadialGradientBrush>
-    
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.Highlight.Greyscale" Center="0.5,0.5" RadiusX="1" RadiusY="0.75">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight.Greyscale}"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Greyscale.Transparent}" Offset="0.47"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TranslateTransform Y="-0.1"/>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.TrioEllipse1" Center="0.5,0.5" RadiusX="1" RadiusY="1">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
+          <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.7"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TranslateTransform X="0.2" Y="-0.3"/>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.TrioEllipse1.Greyscale" Center="0.5,0.5" RadiusX="1" RadiusY="1">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Main.Greyscale}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Main.Greyscale.Transparent}" Offset="0.7"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TranslateTransform X="0.2" Y="-0.3"/>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.TrioEllipse2" Center="0.5,0.5" RadiusX="1" RadiusY="1">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
+          <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.5"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TranslateTransform X="0.1" Y="-0.4"/>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.TrioEllipse2.Greyscale" Center="0.5,0.5" RadiusX="1" RadiusY="1">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Main.Greyscale}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Main.Greyscale.Transparent}" Offset="0.5"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TranslateTransform X="0.1" Y="-0.4"/>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.TrioPath" Center="0.5,0.5" RadiusX="1.5" RadiusY="1">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
+          <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.2"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TransformGroup>
+          <TranslateTransform X="-0.2" Y="0.2"/>
+          <RotateTransform Angle="-37"/>
+        </TransformGroup>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LRadialGradientBrush.TrioPath.Greyscale" Center="0.5,0.5" RadiusX="1.5" RadiusY="1">
+      <RadialGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Main.Greyscale}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Main.Greyscale.Transparent}" Offset="0.2"/>
+        </GradientStopCollection>
+      </RadialGradientBrush.GradientStops>
+      <RadialGradientBrush.RelativeTransform>
+        <TransformGroup>
+          <TranslateTransform X="-0.2" Y="0.2"/>
+          <RotateTransform Angle="-37"/>
+        </TransformGroup>
+      </RadialGradientBrush.RelativeTransform>
+    </RadialGradientBrush>
+
     <RadialGradientBrush x:Key="LRadialGradientBrush.Button" Center="0.5,0.5" RadiusX="0.8" RadiusY="0.8">
       <RadialGradientBrush.GradientStops>
         <GradientStopCollection>
@@ -104,6 +202,15 @@
       </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Long.Greyscale" StartPoint="0,0" EndPoint="0,1">
+      <LinearGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight.Greyscale}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Greyscale.Transparent}" Offset="0.4"/>
+        </GradientStopCollection>
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
     <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Short" StartPoint="0,0" EndPoint="0,1">
       <LinearGradientBrush.GradientStops>
         <GradientStopCollection>
@@ -113,9 +220,35 @@
       </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="LLinearGradientBrush.Arc.Short.Greyscale" StartPoint="0,0" EndPoint="0,1">
+      <LinearGradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="{StaticResource LColor.Highlight.Greyscale}" Offset="0"/>
+          <GradientStop Color="{StaticResource LColor.Highlight.Greyscale.Transparent}" Offset="0.05"/>
+        </GradientStopCollection>
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <Storyboard x:Key="LStoryboard.Cooling.Appear" Duration="{StaticResource LDuration.Short}">
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Opacity" To="0.1"/>
+      <DoubleAnimation Storyboard.TargetName="DottedEllipse" Storyboard.TargetProperty="Opacity" To="1"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingArcEllipse" Storyboard.TargetProperty="Opacity" To="1"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingTimeTextBlock" Storyboard.TargetProperty="Opacity" To="1"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingTextBlock" Storyboard.TargetProperty="Opacity" To="1"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LStoryboard.Cooling.Disappear">
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Opacity" To="0"/>
+      <DoubleAnimation Storyboard.TargetName="DottedEllipse" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Cooling.Delay}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingArcEllipse" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Cooling.Delay}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingTimeTextBlock" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Cooling.Delay}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="CoolingTextBlock" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Cooling.Delay}" Duration="{StaticResource LDuration.Short}"/>
+    </Storyboard>
+
     <Storyboard x:Key="LStoryboard.SonicateReady.Swell">
       <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="486" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Opacity" To="0.1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="486" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Opacity" To="0.9" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="438" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="TrioGrid" Storyboard.TargetProperty="Opacity" To="0.6" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
@@ -126,18 +259,10 @@
       <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Opacity" To="0.1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="StrokeDashOffset" BeginTime="{StaticResource LTimeSpan.Swell.1}" To="20" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="DottedEllipse" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="CoolingArcEllipse" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="StrokeThickness" To="3" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="-105" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.45" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.ShortArcMax}" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="StrokeThickness" To="3" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(RotateTransform.Angle)" To="20" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.15" BeginTime="{StaticResource LTimeSpan.Swell.2}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="Opacity" To="1" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="114" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Long}"/>
     </Storyboard>
@@ -150,6 +275,13 @@
     <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.OuterRipple" BeginTime="{StaticResource LTimeSpan.Oscillate.1}" RepeatBehavior="Forever" AutoReverse="True">
       <DoubleAnimation Storyboard.TargetName="OuterRippleEllipse" Storyboard.TargetProperty="Opacity" From="0" To="0.4" BeginTime="{StaticResource LTimeSpan.Oscillate.3}" Duration="{StaticResource LDuration.Lazy}"/>
       <DoubleAnimation Storyboard.TargetName="OuterRippleEllipse" Storyboard.TargetProperty="Width" From="{StaticResource LDouble.Width.Boundary}" To="{StaticResource LDouble.Width.LongArcMax}" BeginTime="{StaticResource LTimeSpan.Oscillate.3}" Duration="{StaticResource LDuration.Lazy}"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LStoryboard.SonicateReady.GrowArcs" Duration="{StaticResource LDuration.Short}">
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.45"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Stroke.GradientStops[1].Offset" To="0.15"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.ShortArcMax}"/>
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.SonicateReady.Oscillate.LongArc">
@@ -183,34 +315,36 @@
       <DoubleAnimation Storyboard.TargetName="TrioPath" Storyboard.TargetProperty="Fill.GradientStops[1].Offset" From="0.3" To="0.2" BeginTime="{StaticResource LTimeSpan.Oscillate.2}" Duration="{StaticResource LDuration.Long}" RepeatBehavior="Forever" AutoReverse="True"/>
     </Storyboard>
 
-    <Storyboard x:Key="LStoryboard.SonicatePress">
+    <Storyboard x:Key="LStoryboard.SonicatePress.Swell">
       <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMax}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Long}"/>
       <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="500" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="Opacity" To="0" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="230" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.FontSize)" To="14" BeginTime="{StaticResource LTimespan.Press.1}" Duration="{StaticResource LDuration.Short}"/>
     </Storyboard>
 
-    <Storyboard x:Key="LStoryboard.Reset" BeginTime="{StaticResource LTimespan.Reset.Delay}" Duration="{StaticResource LDuration.Short}">
+    <Storyboard x:Key="LStoryboard.Sonicate.BlackHole">
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="230" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.FontSize)" To="14" Duration="{StaticResource LDuration.Short}"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LStoryboard.Reset" BeginTime="{StaticResource LTimeSpan.Reset.Delay}" Duration="{StaticResource LDuration.Short}">
       <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMin}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
       <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Back}"/>
       <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
       <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Highlight}"/>
       <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
       <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}"/>
       <DoubleAnimation Storyboard.TargetName="DashedEllipse" Storyboard.TargetProperty="StrokeDashOffset" To="0"/>
-      <DoubleAnimation Storyboard.TargetName="DottedEllipse" Storyboard.TargetProperty="Opacity" To="1"/>
-      <DoubleAnimation Storyboard.TargetName="CoolingArcEllipse" Storyboard.TargetProperty="Opacity" To="1"/>
       <DoubleAnimation Storyboard.TargetName="InnerRippleEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
       <DoubleAnimation Storyboard.TargetName="InnerRippleEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}"/>
       <DoubleAnimation Storyboard.TargetName="OuterRippleEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
@@ -255,34 +389,14 @@
     <Style x:Key="LStyle.Ellipse.Back" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
       <Setter Property="Width" Value="{StaticResource LDouble.Width.Back}"/>
       <Setter Property="Fill" Value="{StaticResource XBrush.Application.Active}"/>
-      <Setter Property="Opacity" Value="0.1"/>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Highlight" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.Highlight}"/>
       <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.Highlight}"/>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Dashed" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.TrioMask}"/>
-      <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
-      <Setter Property="StrokeThickness" Value="2"/>
-      <Setter Property="StrokeDashArray" Value="2,3"/>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.Dotted" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.Cooling}"/>
-      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
-      <Setter Property="StrokeThickness" Value="2"/>
-      <Setter Property="StrokeDashArray" Value="1,5"/>
     </Style>
 
     <Style x:Key="LStyle.Ellipse.CoolingArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
       <Setter Property="Width" Value="{StaticResource LDouble.Width.Cooling}"/>
       <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Cooling}"/>
       <Setter Property="StrokeThickness" Value="3"/>
+      <Setter Property="Opacity" Value="0"/>
       <Setter Property="RenderTransform">
         <Setter.Value>
           <RotateTransform Angle="{Binding CoolingIncrementAngle, ElementName=_thisSonicateControl}"/>
@@ -290,35 +404,12 @@
       </Setter>
     </Style>
 
-    <Style x:Key="LStyle.Ellipse.Ripple" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.Boundary}"/>
-      <Setter Property="Opacity" Value="0"/>
+    <Style x:Key="LStyle.Ellipse.Dotted" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.Cooling}"/>
       <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
       <Setter Property="StrokeThickness" Value="2"/>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.LongArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.LongArc}"/>
+      <Setter Property="StrokeDashArray" Value="1,5"/>
       <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Long}"/>
-      <Setter Property="StrokeThickness" Value="5"/>
-      <Setter Property="RenderTransform">
-        <Setter.Value>
-          <RotateTransform/>
-        </Setter.Value>
-      </Setter>
-    </Style>
-
-    <Style x:Key="LStyle.Ellipse.ShortArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
-      <Setter Property="Width" Value="{StaticResource LDouble.Width.ShortArc}"/>
-      <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Short}"/>
-      <Setter Property="StrokeThickness" Value="5"/>
-      <Setter Property="RenderTransform">
-        <Setter.Value>
-          <RotateTransform/>
-        </Setter.Value>
-      </Setter>
     </Style>
 
     <Style x:Key="LStyle.Ellipse.CoolingStar" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
@@ -328,7 +419,7 @@
       <Setter Property="Margin" Value="0,-8,0,0"/>
       <Setter Property="Visibility" Value="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='#Cooling'}"/>
     </Style>
-    
+
     <Grid
       x:Key="LGrid.CoolingStar"
       HorizontalAlignment="Center"
@@ -348,6 +439,76 @@
       <Ellipse Style="{StaticResource LStyle.Ellipse.CoolingStar}"/>
     </Grid>
 
+    <Style x:Key="LStyle.Ellipse.Highlight" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.Highlight}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.Highlight}"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.Highlight.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.Dashed" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.TrioMask}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
+      <Setter Property="StrokeThickness" Value="2"/>
+      <Setter Property="StrokeDashArray" Value="2,3"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Stroke" Value="{StaticResource LBrush.Main.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.Ripple" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.Boundary}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
+      <Setter Property="StrokeThickness" Value="2"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Stroke" Value="{StaticResource LBrush.Main.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.LongArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.LongArc}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Long}"/>
+      <Setter Property="StrokeThickness" Value="5"/>
+      <Setter Property="RenderTransform">
+        <Setter.Value>
+          <RotateTransform/>
+        </Setter.Value>
+      </Setter>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Long.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LStyle.Ellipse.ShortArc" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="Width" Value="{StaticResource LDouble.Width.ShortArc}"/>
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Short}"/>
+      <Setter Property="StrokeThickness" Value="5"/>
+      <Setter Property="RenderTransform">
+        <Setter.Value>
+          <RotateTransform/>
+        </Setter.Value>
+      </Setter>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Stroke" Value="{StaticResource LLinearGradientBrush.Arc.Short.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
     <Style x:Key="LStyle.Path.Halo" TargetType="{x:Type Path}">
       <Setter Property="Fill" Value="{StaticResource XBrush.Application.Active}"/>
       <Setter Property="Stretch" Value="Uniform"/>
@@ -358,13 +519,56 @@
           <BlurEffect Radius="18" KernelType="Gaussian"/>
         </Setter.Value>
       </Setter>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Fill" Value="{StaticResource LBrush.Main.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
     </Style>
 
-    <Style x:Key="LStyle.Ellipse.Trio" TargetType="{x:Type Ellipse}">
+    <Style x:Key="LStyle.Ellipse.Trio1" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
       <Setter Property="HorizontalAlignment" Value="Left"/>
       <Setter Property="VerticalAlignment" Value="Top"/>
+      <Setter Property="Width" Value="240"/>
+      <Setter Property="Height" Value="200"/>
+      <Setter Property="Margin" Value="55,0,15,30"/>
+      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioEllipse1}"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioEllipse1.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
     </Style>
-    
+
+    <Style x:Key="LStyle.Ellipse.Trio2" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Top"/>
+      <Setter Property="Width" Value="384"/>
+      <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
+      <Setter Property="Margin" Value="160,58,0,0"/>
+      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioEllipse2}"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioEllipse2.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LStyle.Path.Trio" TargetType="{x:Type Path}">
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Top"/>
+      <Setter Property="Width" Value="240"/>
+      <Setter Property="Stretch" Value="Uniform"/>
+      <Setter Property="Margin" Value="270,64,0,0"/>
+      <Setter Property="Data" Value="{StaticResource LGeometry.Trio}"/>
+      <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioPath}"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioPath.Greyscale}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
     <Style x:Key="LStyle.Border.Halo" TargetType="{x:Type Border}">
       <Setter Property="Opacity" Value="0"/>
       <Setter Property="Width" Value="{StaticResource LDouble.Width.Halo}"/>
@@ -374,7 +578,16 @@
       <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
     </Style>
 
-    <Style x:Key="LStyle.TextBlock" TargetType="{x:Type TextBlock}">
+    <Style x:Key="LStyle.TextBlock.Cooling" TargetType="{x:Type TextBlock}">
+      <Setter Property="SnapsToDevicePixels" Value="True"/>
+      <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="Foreground" Value="{StaticResource LBrush.Highlight}"/>
+      <Setter Property="Opacity" Value="0"/>
+    </Style>
+
+    <Style x:Key="LStyle.TextBlock.Sonicate" TargetType="{x:Type TextBlock}">
       <Setter Property="SnapsToDevicePixels" Value="True"/>
       <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
       <Setter Property="FontSize" Value="35"/>
@@ -386,6 +599,11 @@
           <TranslateTransform Y="164"/>
         </Setter.Value>
       </Setter>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding SonicateControlState, ElementName=_thisSonicateControl}" Value="SonicateDisabled">
+          <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground.Secondary}"/>
+        </DataTrigger>
+      </Style.Triggers>
     </Style>
   </UserControl.Resources>
 
@@ -410,6 +628,15 @@
       <Grid Width="{StaticResource LDouble.Width.Boundary}" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
         <Ellipse x:Name="TrioMaskEllipse" Style="{StaticResource LStyle.Ellipse.TrioMask}"/>
         <Ellipse x:Name="BackEllipse" Style="{StaticResource LStyle.Ellipse.Back}"/>
+        
+        <!--Cooling-->
+        <Ellipse x:Name="DottedEllipse" Style="{StaticResource LStyle.Ellipse.Dotted}"/>
+        <Ellipse x:Name="CoolingArcEllipse" Style="{StaticResource LStyle.Ellipse.CoolingArc}"/>
+        <ContentControl x:Name="CoolingStarContentControl" Content="{StaticResource LGrid.CoolingStar}"/>
+        <TextBlock x:Name="CoolingTimeTextBlock" Margin="0,113,0,0" Text="{Binding CoolingTime, ElementName=_thisSonicateControl, StringFormat=mm\\:ss}" FontSize="38" Style="{StaticResource LStyle.TextBlock.Cooling}"/>
+        <TextBlock x:Name="CoolingTextBlock" Margin="0,154,0,0" Text="COOLING" Style="{StaticResource LStyle.TextBlock.Cooling}"/>
+
+        <!--Sonicate-->
         <Ellipse x:Name="HighlightEllipse" Style="{StaticResource LStyle.Ellipse.Highlight}"/>
         <Grid
           x:Name="TrioGrid"
@@ -425,79 +652,19 @@
           <Grid.Effect>
             <BlurEffect Radius="10"/>
           </Grid.Effect>
-          <Ellipse x:Name="TrioEllipse1" Margin="55,0,15,30" Width="240" Height="200" Style="{StaticResource LStyle.Ellipse.Trio}">
-            <Ellipse.Fill>
-              <RadialGradientBrush Center="0.5,0.5" RadiusX="1" RadiusY="1">
-                <RadialGradientBrush.GradientStops>
-                  <GradientStopCollection>
-                    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
-                    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.7"/>
-                  </GradientStopCollection>
-                </RadialGradientBrush.GradientStops>
-                <RadialGradientBrush.RelativeTransform>
-                  <TranslateTransform X="0.2" Y="-0.3"/>
-                </RadialGradientBrush.RelativeTransform>
-              </RadialGradientBrush>
-            </Ellipse.Fill>
-          </Ellipse>
-          <Ellipse
-            x:Name="TrioEllipse2"
-            Margin="160,58,0,0"
-            Width="384"
-            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-            Style="{StaticResource LStyle.Ellipse.Trio}">
-            <Ellipse.Fill>
-              <RadialGradientBrush Center="0.5,0.5" RadiusX="1" RadiusY="1">
-                <RadialGradientBrush.GradientStops>
-                  <GradientStopCollection>
-                    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
-                    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.5"/>
-                  </GradientStopCollection>
-                </RadialGradientBrush.GradientStops>
-                <RadialGradientBrush.RelativeTransform>
-                  <TranslateTransform X="0.1" Y="-0.4"/>
-                </RadialGradientBrush.RelativeTransform>
-              </RadialGradientBrush>
-            </Ellipse.Fill>
-          </Ellipse>
-          <Path
-            x:Name="TrioPath"
-            Margin="270,64,0,0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left"
-            Width="240"
-            Stretch="Uniform"
-            Data="{StaticResource LGeometry.Trio}">
-            <Path.Fill>
-              <RadialGradientBrush Center="0.5,0.5" RadiusX="1.5" RadiusY="1">
-                <RadialGradientBrush.GradientStops>
-                  <GradientStopCollection>
-                    <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0"/>
-                    <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="0.2"/>
-                  </GradientStopCollection>
-                </RadialGradientBrush.GradientStops>
-                <RadialGradientBrush.RelativeTransform>
-                  <TransformGroup>
-                    <TranslateTransform X="-0.2" Y="0.2"/>
-                    <RotateTransform Angle="-37"/>
-                  </TransformGroup>
-                </RadialGradientBrush.RelativeTransform>
-              </RadialGradientBrush>
-            </Path.Fill>
-          </Path>
+          <Ellipse x:Name="TrioEllipse1" Style="{StaticResource LStyle.Ellipse.Trio1}"/>
+          <Ellipse x:Name="TrioEllipse2" Style="{StaticResource LStyle.Ellipse.Trio2}"/>
+          <Path x:Name="TrioPath" Style="{StaticResource LStyle.Path.Trio}"/>
         </Grid>
         <Border x:Name="HaloBorder" Style="{StaticResource LStyle.Border.Halo}">
           <Path Style="{StaticResource LStyle.Path.Halo}"/>
         </Border>
         <Ellipse x:Name="DashedEllipse" Style="{StaticResource LStyle.Ellipse.Dashed}"/>
-        <Ellipse x:Name="DottedEllipse" Style="{StaticResource LStyle.Ellipse.Dotted}"/>
-        <Ellipse x:Name="CoolingArcEllipse" Style="{StaticResource LStyle.Ellipse.CoolingArc}"/>
-        <ContentControl x:Name="CoolingStarContentControl" Content="{StaticResource LGrid.CoolingStar}"/>
         <Ellipse x:Name="OuterRippleEllipse" Style="{StaticResource LStyle.Ellipse.Ripple}"/>
         <Ellipse x:Name="InnerRippleEllipse" Style="{StaticResource LStyle.Ellipse.Ripple}"/>
         <Ellipse x:Name="LongArcEllipse" Style="{StaticResource LStyle.Ellipse.LongArc}"/>
         <Ellipse x:Name="ShortArcEllipse" Style="{StaticResource LStyle.Ellipse.ShortArc}"/>
-        <TextBlock x:Name="SonicateTextBlock" Style="{StaticResource LStyle.TextBlock}" Text="SONICATE"/>
+        <TextBlock x:Name="SonicateTextBlock" Style="{StaticResource LStyle.TextBlock.Sonicate}" Text="SONICATE"/>
         <Button
           x:Name="PressButton"
           Command="{Binding SonicatePressCommand, ElementName=_thisSonicateControl}"

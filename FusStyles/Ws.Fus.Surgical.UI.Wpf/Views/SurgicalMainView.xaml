@@ -211,6 +211,7 @@
           CoolingMinimum="{Binding MinCoolingValue}"
           CoolingMaximum="{Binding MaxCoolingValue}"
           CoolingValue="{Binding CoolingValue}"
+          CoolingTime="{Binding CoolingTime}"
           SonicationAvailable="{Binding SonicationAvailable}"
           SonicationEnabled="{Binding SonicationEnabled}"
           SonicateCommand="{Binding SonicateCommand}"
