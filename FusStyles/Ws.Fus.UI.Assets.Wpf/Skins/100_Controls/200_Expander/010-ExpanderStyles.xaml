@@ -4,25 +4,18 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <ControlTemplate x:Key="XControlTemplate.Expander" TargetType="{x:Type Expander}">
-    <Border BorderThickness="0" extensions:IndependentSize.Padding="0,0,0,0">
-      <!--BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" -->
+    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" extensions:IndependentSize.Padding="0,6,0,0">
       <DockPanel>
-        <Rectangle 
-          DockPanel.Dock="Top"
-          HorizontalAlignment="Stretch" 
-          extensions:IndependentSize.Height="1"
-          extensions:IndependentSize.Margin="-15,0,-15,0" 
-          Fill="{TemplateBinding BorderBrush}"/>
         <ToggleButton
           x:Name="HeaderSite"
+          extensions:IndependentSize.Margin="0,0,0,3"
           Content="{TemplateBinding Header}"
           DockPanel.Dock="Top"
           IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-          extensions:IndependentSize.Margin="-15,0,-15,0" 
           Style="{StaticResource XStyle.ToggleButton.Expander}"/>
         <ContentPresenter
           x:Name="ContentSite"
-          extensions:IndependentSize.Margin="0,5,0,0"
+          extensions:IndependentSize.Margin="0,3,0,0"
           DockPanel.Dock="Bottom"
           Focusable="False"
           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -70,7 +63,7 @@
   <Style x:Key="XStyle.Expander" TargetType="{x:Type Expander}">
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Line}"/>
-    <!--<Setter Property="BorderThickness" Value="0,1,0,0"/>-->
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,1,0,0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Expander}"/>
     <Setter Property="ExpandDirection" Value="Up"/>
     <Setter Property="VerticalAlignment" Value="Bottom"/>

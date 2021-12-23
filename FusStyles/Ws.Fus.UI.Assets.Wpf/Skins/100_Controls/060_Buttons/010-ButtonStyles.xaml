@@ -688,10 +688,7 @@
         Grid.Row="0"
         Grid.Column="0"
         extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
-        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
-        extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
-        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}">
         <Viewbox
           IsHitTestVisible="False"
           Stretch="Uniform"
