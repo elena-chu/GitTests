@@ -67,7 +67,7 @@
     <Popup IsOpen="{Binding AskUser}" Placement="Bottom" AllowsTransparency="True">
       <Border
         BorderBrush="{StaticResource XBrush.Warning}"
-        BorderThickness="2"
+        extensions:IndependentSize.BorderThickness="2"
         extensions:IndependentSize.Width="450"
         extensions:IndependentSize.Height="250"
         extensions:IndependentSize.Padding="18"

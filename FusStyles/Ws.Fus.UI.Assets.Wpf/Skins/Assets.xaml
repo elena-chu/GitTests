@@ -44,6 +44,7 @@
     <ResourceDictionary Source="100_Controls/060_Buttons/100-ToolButton.xaml"/>
     <ResourceDictionary Source="100_Controls/060_Buttons/010-ButtonStyles.xaml"/>
     <ResourceDictionary Source="100_Controls/060_Buttons/020-RadioButtonStyles.xaml"/>
+    <ResourceDictionary Source="100_Controls/060_Buttons/030-CheckBoxStyles.xaml"/>
     <ResourceDictionary Source="100_Controls/060_Buttons/101-ToolToggleButton.xaml"/>
     <ResourceDictionary Source="100_Controls/060_Buttons/102-PinButtonStyle.xaml"/>
 

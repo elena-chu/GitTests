@@ -21,7 +21,7 @@
     </Style>
   </UserControl.Resources>
 
-  <UniformGrid Columns="4" Margin="0,20,0,0">
+  <UniformGrid Columns="5" Margin="0,20,0,0">
 
     <!--<RichTextBox
       Name="richTB"
@@ -120,6 +120,35 @@
         HorizontalAlignment="Center"
         extensions:IndependentSize.Width="200"/>
     </StackPanel>
+
+    <Border/>
+    <Border/>
+
+    <StackPanel>
+      <TextBlock Text="CheckBox:"/>
+      <CheckBox Content="My CheckBox"/>
+    </StackPanel>
+    
+    <StackPanel>
+      <TextBlock Text="Checked=NULL:"/>
+      <CheckBox Content="My CheckBox" IsChecked="{x:Null}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Checked=False Disabled:"/>
+      <CheckBox Content="My CheckBox" IsEnabled="False"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Checked=True Disabled:"/>
+      <CheckBox Content="My CheckBox" IsChecked="True" IsEnabled="False"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Checked=NULL Disabled:"/>
+      <CheckBox Content="My CheckBox" IsChecked="{x:Null}" IsEnabled="False"/>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>
