@@ -4,7 +4,6 @@
   <!--Theme-->
   <SolidColorBrush x:Key="XBrush.Application.Active" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Application.Foreground" Color="{StaticResource XColor.Application.Foreground}"/>
-  <SolidColorBrush x:Key="XBrush.Application.Foreground.Secondary" Color="{StaticResource XColor.Application.Foreground.Secondary}"/>
   <SolidColorBrush x:Key="XBrush.Application.Background" Color="{StaticResource XColor.Application.Background}"/>
   <SolidColorBrush x:Key="XBrush.Application.Background.Complementary" Color="{StaticResource XColor.Application.Background.Complementary}"/>
 
