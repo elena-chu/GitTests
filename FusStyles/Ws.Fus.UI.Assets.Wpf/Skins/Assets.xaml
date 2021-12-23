@@ -32,6 +32,7 @@
     <!--Text Element-->
     <ResourceDictionary Source="100_Controls/020_TextElements/010-TextBlockStyles.xaml"/>
     <ResourceDictionary Source="100_Controls/020_TextElements/030-ToolTipStyles.xaml"/>
+    <ResourceDictionary Source="100_Controls/020_TextElements/050-TextBoxStyles.xaml"/>
     <ResourceDictionary Source="100_Controls/020_TextElements/101-HeaderStyle.xaml"/>
     <ResourceDictionary Source="100_Controls/020_TextElements/102-LabelStyle.xaml"/>
     <ResourceDictionary Source="100_Controls/020_TextElements/103-TextStyle.xaml"/>

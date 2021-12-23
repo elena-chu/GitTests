@@ -114,6 +114,16 @@
     </Style.Triggers>
   </Style>
 
+  <Style x:Key="XStyle.Border.Active.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Frame}">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.AlmostTransparent}"/>
+    <Style.Triggers>
+      <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
+        <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
   <Style x:Key="XStyle.Border.Hover.Control" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Style.Resources>
       <Storyboard x:Key="LStoryboard.ToHover">
@@ -130,6 +140,35 @@
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="{StaticResource XBrush.Control.Background.Disabled}"/>
         <Setter Property="BorderBrush" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToHover}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource LStoryboard.ToBase}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Border.Hover.Frame" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Style.Resources>
+      <Storyboard x:Key="LStoryboard.ToHover">
+        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}"/>
+      </Storyboard>
+      <Storyboard x:Key="LStoryboard.ToBase">
+        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}"/>
+      </Storyboard>
+    </Style.Resources>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.AlmostTransparent}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="BorderBrush" Value="{StaticResource XBrush.AlmostTransparent}"/>
+        <Setter Property="Background" Value="{StaticResource XBrush.Control.Background.Disabled}"/>
+        <!--<Setter Property="BorderBrush" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>-->
       </Trigger>
       <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
         <Trigger.EnterActions>

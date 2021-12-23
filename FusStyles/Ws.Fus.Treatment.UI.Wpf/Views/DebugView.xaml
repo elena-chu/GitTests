@@ -103,6 +103,23 @@
         extensions:IndependentSize.Height="250"
         extensions:IndependentSize.Width="70"/>
     </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="TextBox:"/>
+      <TextBox
+        extensions:ControlExtensions.AlternativeText="Watermark..."
+        HorizontalAlignment="Center"
+        extensions:IndependentSize.Width="200"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="TextBox Disabled:"/>
+      <TextBox
+        extensions:ControlExtensions.AlternativeText="Watermark..."
+        IsEnabled="False"
+        HorizontalAlignment="Center"
+        extensions:IndependentSize.Width="200"/>
+    </StackPanel>
   </UniformGrid>
 
 </UserControl>
