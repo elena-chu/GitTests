@@ -119,13 +119,14 @@ namespace Ws.Fus.Surgical.UI.Wpf
                         AnimateCoolingDisappear();
                     break;
                 case SonicateControlState.Cooling:
+                    ClearStageForCooling();
                     CalculateCoolingIncrementAngle();
                     AnimateCoolingAppear();
                     break;
                 case SonicateControlState.SonicateReady:
                     _resetRequired = true;
                     if (_previousSonicateControlState == SonicateControlState.SonicateDisabled)
-                        AnimateSonicateReadyOscillate(new TimeSpan(0));
+                        AnimateSonicateReadyOscillate(TimeSpan.Zero);
                     else
                         AnimateSonicateReady();
                     break;
@@ -280,7 +281,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             get { return (TimeSpan)GetValue(CoolingTimeProperty); }
             set { SetValue(CoolingTimeProperty, value); }
         }
-        public static readonly DependencyProperty CoolingTimeProperty = DependencyProperty.Register(nameof(CoolingTime), typeof(TimeSpan), typeof(SonicateControl), new PropertyMetadata(new TimeSpan(0)));
+        public static readonly DependencyProperty CoolingTimeProperty = DependencyProperty.Register(nameof(CoolingTime), typeof(TimeSpan), typeof(SonicateControl), new PropertyMetadata(TimeSpan.Zero));
 
         #endregion
 
@@ -348,6 +349,20 @@ namespace Ws.Fus.Surgical.UI.Wpf
             _sonicateBlackHoleStoryboard = FindResource(_sonicateBlackHoldStoryboardName) as Storyboard;
 
             _resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
+        }
+
+        private void ClearStageForCooling()
+        {
+            if (_previousSonicateControlState == SonicateControlState.SonicateReady)
+                StopSonicateReadyOscillate();
+            if (_previousSonicateControlState == SonicateControlState.SonicateReady || _previousSonicateControlState == SonicateControlState.SonicateDisabled)
+            {
+                _sonicateBlackHoleStoryboard.BeginTime = TimeSpan.Zero;
+                _sonicateBlackHoleStoryboard.Completed -= SonicatePressAnimationCompleted;
+                _sonicateBlackHoleStoryboard.Begin();
+            }
+            if (_resetRequired)
+                AnimateReset();
         }
 
         private void AnimateCoolingAppear()
@@ -418,7 +433,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
         private void SonicatePressAnimationCompleted(object sender, EventArgs e)
         {
             _sonicateBlackHoleStoryboard.Completed -= SonicatePressAnimationCompleted;
-            _sonicateBlackHoleStoryboard.BeginTime = new TimeSpan(0);
+            _sonicateBlackHoleStoryboard.BeginTime = TimeSpan.Zero;
             SonicateCommand?.Execute(null);
         }
 
