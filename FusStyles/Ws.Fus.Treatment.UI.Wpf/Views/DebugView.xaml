@@ -19,6 +19,10 @@
       <Setter Property="Margin" Value="0,0,0,12"/>
       <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
+      <Setter Property="extensions:IconedButton.IconSize" Value="28"/>
+    </Style>
   </UserControl.Resources>
 
   <UniformGrid Columns="5" Margin="0,20,0,0">
@@ -105,48 +109,87 @@
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="TextBox:"/>
-      <TextBox
-        extensions:ControlExtensions.AlternativeText="Watermark..."
-        HorizontalAlignment="Center"
-        extensions:IndependentSize.Width="200"/>
+      <TextBlock Text="13 Monitoring Volume:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.MonitoringVolume}"/>
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="TextBox Disabled:"/>
-      <TextBox
-        extensions:ControlExtensions.AlternativeText="Watermark..."
-        IsEnabled="False"
-        HorizontalAlignment="Center"
-        extensions:IndependentSize.Width="200"/>
-    </StackPanel>
-
-    <Border/>
-    <Border/>
-
-    <StackPanel>
-      <TextBlock Text="CheckBox:"/>
-      <CheckBox Content="My CheckBox"/>
-    </StackPanel>
-    
-    <StackPanel>
-      <TextBlock Text="Checked=NULL:"/>
-      <CheckBox Content="My CheckBox" IsChecked="{x:Null}"/>
+      <TextBlock Text="17 Correct Spot Alignment:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.CorrectSpotAlignment}"
+        extensions:IconedButton.IconSize="30"/>
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="Checked=False Disabled:"/>
-      <CheckBox Content="My CheckBox" IsEnabled="False"/>
+      <TextBlock Text="18 Reset spot alignment:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.ResetSpotAlignment}"/>
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="Checked=True Disabled:"/>
-      <CheckBox Content="My CheckBox" IsChecked="True" IsEnabled="False"/>
+      <TextBlock Text="19 Update max temperature:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.UpdateMaxTemperature}"/>
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="Checked=NULL Disabled:"/>
-      <CheckBox Content="My CheckBox" IsChecked="{x:Null}" IsEnabled="False"/>
+      <TextBlock Text="20 Background elimination:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="21 Accept:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="21 Reject:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="26 Manual\Auto:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Rays_ON:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Rays_Off:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Grid:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Dose:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Ghost Cursor:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Thermal scan planes:"/>
+      <Button
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Refresh}"/>
     </StackPanel>
 
   </UniformGrid>
