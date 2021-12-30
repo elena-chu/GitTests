@@ -439,44 +439,6 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Scan.SeriesFromMri}"/>
   </Canvas>
 
-  <!--Others-->
-  <Geometry x:Key="XGeometry.MonitoringVolume.Objects">m 8.4864532,12.263694 5.6708988,11.078677 m 25.24834,-10.586678 5.020539,3.220713 M 42.972855,6.3032152 48.361144,9.6693838 36.437984,29.050207 32.114627,30.141099 31.049702,25.684055 Z M 5.4033153,6.5388329 C 7.1234427,5.6266701 9.2523227,6.3210491 10.176951,8.094802 l 6.057281,11.619938 c 1.781903,0.32659 3.328556,1.479113 4.184155,3.117927 1.517287,2.909744 0.459644,6.482004 -2.362244,7.978618 -2.822062,1.49628 -6.339341,0.35007 -7.855867,-2.560077 -0.8546666,-1.64001 -0.9200503,-3.579085 -0.176844,-5.245536 L 3.9672048,11.387755 C 3.0425768,9.6140026 3.6832069,7.4509857 5.4033153,6.5388329 Z</Geometry>
-  <Geometry x:Key="XGeometry.MonitoringVolume.AlmostEllipse">M 38.40253,26.140848 C 44.650547,27.86026 48.75,30.748463 48.75,34.02145 c 0,5.271255 -10.633237,9.544451 -23.75,9.544451 -13.116763,0 -23.7499997,-4.273196 -23.75,-9.544451 -1e-7,-2.86384 3.1385928,-5.433085 8.1088665,-7.182524 M 21.151199,24.601686 C 22.403927,24.51965 23.689569,24.476999 25,24.476999 c 2.091241,0 4.382546,0.10862 6.314503,0.312586</Geometry>
-  <Geometry x:Key="XGeometry.CorrectSpotAlignment.Ameba">m 27.896313,0.4314682 c -9.109959,3.2359097 -8.969048,3.3523593 -9.528807,7.6583111 -0.316267,2.4328867 -3.663991,4.4830387 -2.694934,7.7661787 1.306963,4.427961 -1.49355,9.06055 -0.341715,10.354914 1.151836,1.294363 1.465969,7.442593 10.261789,9.060545 8.79582,1.617954 7.653588,-1.554427 13.275608,-0.868491 5.455349,0.665601 7.439297,-0.611684 9.219402,-3.200414 1.78011,-2.588725 -0.191327,-11.571356 0.751084,-13.512904 0.942409,-1.941539 2.094241,-4.422403 -0.314139,-7.550448 C 46.116229,7.0111293 46.116229,4.3145449 41.823027,2.2651372 37.529835,0.2157274 38.472241,0 35.121452,0 Z</Geometry>
-  <Geometry x:Key="XGeometry.CorrectSpotAlignment.Target">m 45.216353,18.702552 h -8.661379 m -8.059893,0 h -8.66138 M 32.525027,6.0112253 v 8.6613797 m 0,8.059893 v 8.66138</Geometry>
-  <Geometry x:Key="XGeometry.ResetSpotAlignment.Ameba">m 35.121094,0 -7.22461,0.4316407 c -9.109959,3.2359097 -8.969537,3.3522513 -9.529296,7.6582032 -0.316267,2.4328871 -3.662417,4.4824851 -2.69336,7.7656251 1.306963,4.427961 -1.493632,9.061105 -0.341797,10.355469 1.151836,1.294363 1.465899,7.442595 10.261719,9.060547 8.79582,1.617953 7.653371,-1.555077 13.275391,-0.869141 5.455349,0.665601 7.438645,-0.612442 9.21875,-3.201172 1.78011,-2.588725 -0.190458,-11.570171 0.751953,-13.511719 0.942409,-1.941539 2.093927,-4.422736 -0.314453,-7.550781 C 46.117019,7.0106409 46.117421,4.3150327 41.824219,2.265625 37.531027,0.2162152 38.471883,0 35.121094,0 Z m -3.998047,5.8203125 h 2.869141 V 14.652344 H 31.123047 Z M 19.771484,17.171875 h 8.832032 v 2.869141 h -8.832032 z m 16.740235,0 h 8.832031 v 2.869141 h -8.832031 z m -5.388672,5.388672 h 2.869141 v 8.832031 h -2.869141 z</Geometry>
-  <Geometry x:Key="XGeometry.ResetSpotAlignment.ArrowHead">M 19.997379,35.517215 H 34.440474 L 19.997379,49.9293 Z</Geometry>
-  <Geometry x:Key="XGeometry.ResetSpotAlignment.ArrowTail">m 25.270607,23.729083 c 2.223952,-2.078498 5.569919,-3.606741 8.852802,-3.606741 6.874002,0 12.4465,5.577202 12.446476,12.457001 0,6.8798 -5.572474,12.456979 -12.446476,12.456979 -3.357901,0 -6.405235,-1.330856 -8.644131,-3.494306</Geometry>
-  <Geometry x:Key="XGeometry.UpdateMaxTemperature.Thermometer">m 10.536865,19.025406 8.802564,16.964115 M 5.7511124,10.259269 C 8.4211532,8.8625287 11.725674,9.9257897 13.160914,12.641831 l 9.402319,17.792916 c 2.765932,0.500089 5.166699,2.264878 6.494789,4.774295 2.355186,4.455517 0.713476,9.925506 -3.666756,12.217181 -4.380501,2.291164 -9.840143,0.536042 -12.194146,-3.920093 -1.326643,-2.511249 -1.428134,-5.480438 -0.274504,-8.032175 L 3.5219323,17.684133 C 2.086693,14.968093 3.0811011,11.655994 5.7511124,10.259269 Z</Geometry>
-  <Geometry x:Key="XGeometry.UpdateMaxTemperature.Checkmark">m 22.44898,17.474489 c 0,0 2.997448,1.72194 4.081632,3.635205 1.308916,2.309849 3.061225,6.250001 3.061225,6.250001 l 3.635204,-2.869899 c 0,0 3.826531,-7.52551 7.142857,-11.543367 C 43.686225,8.9285715 49.808674,2.9336735 49.808674,2.9336735 L 49.144476,2.1050352 c -2.901243,1.7035681 -9.389409,6.4095268 -11.516925,8.8643518 -3.316327,3.82653 -6.632653,8.928572 -6.632653,8.928572 -0.319792,-2.515203 -2.140228,-3.642821 -4.145408,-5.165816 -1.296769,0.03265 -3.103741,1.789043 -4.40051,2.742346 z</Geometry>
-
-  <Canvas x:Key="XCanvas.MonitoringVolume" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.MonitoringVolume.AlmostEllipse}"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" StrokeThickness="2.5" Data="{StaticResource XGeometry.MonitoringVolume.Objects}"/>
-    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="12" Canvas.Top="22" Width="6" Height="6"/>
-  </Canvas>
-
-  <Canvas x:Key="XCanvas.CorrectSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Left="0" Canvas.Top="20.5" Width="26" Height="26"/>
-    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Canvas.Left="7.5" Canvas.Top="28" Width="10.5" Height="10.5"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.CorrectSpotAlignment.Ameba}"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.CorrectSpotAlignment.Target}"/>
-  </Canvas>
-
-  <Canvas x:Key="XCanvas.ResetSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Left="0" Canvas.Top="20.5" Width="26" Height="26"/>
-    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Canvas.Left="7.5" Canvas.Top="28" Width="10.5" Height="10.5"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.ResetSpotAlignment.Ameba}"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.ResetSpotAlignment.ArrowTail}"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ResetSpotAlignment.ArrowHead}"/>
-  </Canvas>
-
-  <Canvas x:Key="XCanvas.UpdateMaxTemperature" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.UpdateMaxTemperature.Thermometer}"/>
-    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="16" Canvas.Top="34" Width="10" Height="10"/>
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.UpdateMaxTemperature.Checkmark}"/>
-  </Canvas>
-
   <!--Menu: Cycle-->
   <Geometry x:Key="XGeometry.Menu.Cycle">m 16.811263 43.154811 28.237415 -4.8e-5 c 1.417724 0 2.567037 -1.114519 2.567037 -2.489376 V 6.8299925 M 23.010659 48.921235 16.811263 43.112928 23.010659 37.304617 M 33.188738 6.8451885 4.9513215 6.8452375 c -1.417723 0 -2.567037 1.114519 -2.567037 2.489376 V 43.170007 M 26.989342 1.0787645 l 6.199396 5.808307 -6.199396 5.8083105</Geometry>
 
@@ -579,7 +541,7 @@
   <Geometry x:Key="XGeometry.Menu.Pencil">m 27.042981 16.748852 6.33875 6.683061 m -0.64072 -12.144798 6.10469 6.214421 -22.183782 21.78712 -6.124245 0.03638 0.01957 -6.250776 z</Geometry>
   <Geometry x:Key="XGeometry.Menu.Helmet">M 24.853021 2.7944269 A 21.875674 20.669066 0 0 0 3.124329 23.463493 h 43.751342 a 21.875674 20.669066 0 0 0 -21.87568 -20.6690661 21.875674 20.669066 0 0 0 -0.14697 0 z</Geometry>
   <Geometry x:Key="XGeometry.Menu.Head">M 20.432681 49.313485 V 41.239839 H 16.87659 C 15.652249 40.886223 14.473828 40.382344 13.8994 37.901696 V 32.75915 l -1.819389 -0.09022 c -1.359739 -0.284783 -1.904423 -1.299336 -1.488593 -1.98484 l 3.721476 -6.134967 c 0 0 -0.38802 -4.915156 0 -5.503424 1.936647 -2.93608 5.084781 -5.011216 10.128687 -5.142546 4.91138 -0.127884 8.82739 1.139228 12.0348 6.315408 2.94427 4.751519 3.57133 10.528141 -0.90968 15.788515 -1.88961 2.218257 -3.3907 3.428363 -3.3907 3.428363 v 9.87805</Geometry>
-  <Geometry x:Key="XGeometry.Menu.Cursor">M 39.515565 33.530507 31.420094 21.705161 41.13686 18.277083 13.949186 6.6264482 l 1.025285 29.5610498 6.711261 -7.818326 8.095471 11.825347 z</Geometry>
+  <Geometry x:Key="XGeometry.Menu.Cursor">M 10.416656,43.782363 2.3262298,9.4406537 31.363906,28.607682 l -14.539788,0.864514 -0.574878,0.03427 -0.221734,0.542989 z</Geometry>
   <Geometry x:Key="XGeometry.Menu.NonPassArea">m 20.98857 15.558592 c -1.259044 -0.01695 -2.822307 0.387404 -3.70141 1.392872 -1.229304 1.406009 -1.676897 4.425065 -0.254662 5.146323 1.007338 0.510838 6.354142 -4.388993 5.877082 -5.818402 -0.14645 -0.438826 -0.94175 -0.70763 -1.92101 -0.720793 z m 8.02286 0 c -0.97925 0.01315 -1.77455 0.281967 -1.92101 0.720793 -0.47706 1.429409 4.86975 6.32924 5.87708 5.818402 1.42223 -0.721258 0.97464 -3.740314 -0.25465 -5.146323 -0.87911 -1.005468 -2.44237 -1.409805 -3.70142 -1.392872 z m 3.75899 -2.854896 c 3.88501 1.683889 8.51505 6.939387 11.07873 4.804195 C 46.41281 15.3727 42.25601 9.021252 37.15613 5.6327884 28.57673 0.19695252 18.849798 1.38202 12.313954 5.6327884 7.214085 9.021252 3.661578 16.912196 6.225246 19.047388 8.78891 21.182599 13.84928 15.315936 17.441289 13.41542 22.86312 10.178606 28.51866 10.880742 32.77042 12.703696 Z m -11.87734 22.13752 c -1.352428 0 -2.441218 0.954272 -2.441218 2.139481 0 1.18522 1.08879 2.139477 2.441218 2.139477 h 2.02165 c 1.35244 0 2.44122 -0.954257 2.44122 -2.139477 0 -1.185209 -1.08878 -2.139481 -2.44122 -2.139481 z m -4.474954 -5.987322 c -1.159228 0 -2.092478 0.933253 -2.092478 2.092481 v 1.542792 c 0 1.15923 0.93325 2.09248 2.092478 2.09248 h 0.0245 c 1.15924 0 2.09249 -0.93325 2.09249 -2.09248 v -1.542792 c 0 -1.159228 -0.93325 -2.092481 -2.09249 -2.092481 z</Geometry>
   <Geometry x:Key="XGeometry.Menu.NonPassLine">m 33.25119 5.7102734 c 3.0937 2.6640485 4.46671 6.8187616 5.1706 10.9972146 0.36386 2.15989 2.57483 8.090247 2.65918 11.028921 0.0844 2.941189 0.16096 9.560189 -5.90058 14.59688 -4.26174 3.541188 -8.94971 4.098775 -10.2626 4.179887 -1.51226 -0.128965 -6.002091 -0.776341 -10.098179 -4.179887 -6.061543 -5.036694 -5.98499 -11.655691 -5.90058 -14.59688 0.08435 -2.938674 2.29532 -8.869031 2.659174 -11.028921 0.703897 -4.178453 2.076903 -8.3331651 5.170607 -10.9972146 2.286041 -1.968555 6.262898 -1.1072141 8.185068 -0.5029415 1.86613 -0.5621268 5.97742 -1.5119806 8.31731 0.5029415 z</Geometry>
   <Geometry x:Key="XGeometry.Menu.PartialCircle">m 3.258452 31.737993 c -0.187622 -1.156776 -0.28515 -2.343763 -0.28515 -3.55353 1e-6 -12.165009 9.861687 -22.0266966 22.026696 -22.0266983 12.16501 -6e-7 22.0267 9.8616883 22.0267 22.0266983 0 1.327899 -0.1175 2.628352 -0.34268 3.891531</Geometry>
@@ -628,8 +590,8 @@
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.Overlays.GhostCursor" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Canvas.Left="-3" Canvas.Top="3" Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.Menu.Cursor}"/>
-    <Path Canvas.Left="3" Canvas.Top="-2" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.Cursor}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.Cursor}"/>
+    <Path Canvas.Left="14" Canvas.Top="-5" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Cursor}"/>
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.Overlays.NonPassRegions" Style="{StaticResource XStyle.Canvas.Icon}">
@@ -789,6 +751,100 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.ColorOffArea}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.ColorDropLine}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DiagonalLine}"/>
+  </Canvas>
+
+  <!--Others-->
+  <Geometry x:Key="XGeometry.MonitoringVolume.Objects">m 8.4864532,12.263694 5.6708988,11.078677 m 25.24834,-10.586678 5.020539,3.220713 M 42.972855,6.3032152 48.361144,9.6693838 36.437984,29.050207 32.114627,30.141099 31.049702,25.684055 Z M 5.4033153,6.5388329 C 7.1234427,5.6266701 9.2523227,6.3210491 10.176951,8.094802 l 6.057281,11.619938 c 1.781903,0.32659 3.328556,1.479113 4.184155,3.117927 1.517287,2.909744 0.459644,6.482004 -2.362244,7.978618 -2.822062,1.49628 -6.339341,0.35007 -7.855867,-2.560077 -0.8546666,-1.64001 -0.9200503,-3.579085 -0.176844,-5.245536 L 3.9672048,11.387755 C 3.0425768,9.6140026 3.6832069,7.4509857 5.4033153,6.5388329 Z</Geometry>
+  <Geometry x:Key="XGeometry.MonitoringVolume.AlmostEllipse">M 38.40253,26.140848 C 44.650547,27.86026 48.75,30.748463 48.75,34.02145 c 0,5.271255 -10.633237,9.544451 -23.75,9.544451 -13.116763,0 -23.7499997,-4.273196 -23.75,-9.544451 -1e-7,-2.86384 3.1385928,-5.433085 8.1088665,-7.182524 M 21.151199,24.601686 C 22.403927,24.51965 23.689569,24.476999 25,24.476999 c 2.091241,0 4.382546,0.10862 6.314503,0.312586</Geometry>
+  <Geometry x:Key="XGeometry.CorrectSpotAlignment.Ameba">m 27.896313,0.4314682 c -9.109959,3.2359097 -8.969048,3.3523593 -9.528807,7.6583111 -0.316267,2.4328867 -3.663991,4.4830387 -2.694934,7.7661787 1.306963,4.427961 -1.49355,9.06055 -0.341715,10.354914 1.151836,1.294363 1.465969,7.442593 10.261789,9.060545 8.79582,1.617954 7.653588,-1.554427 13.275608,-0.868491 5.455349,0.665601 7.439297,-0.611684 9.219402,-3.200414 1.78011,-2.588725 -0.191327,-11.571356 0.751084,-13.512904 0.942409,-1.941539 2.094241,-4.422403 -0.314139,-7.550448 C 46.116229,7.0111293 46.116229,4.3145449 41.823027,2.2651372 37.529835,0.2157274 38.472241,0 35.121452,0 Z</Geometry>
+  <Geometry x:Key="XGeometry.CorrectSpotAlignment.Target">m 45.216353,18.702552 h -8.661379 m -8.059893,0 h -8.66138 M 32.525027,6.0112253 v 8.6613797 m 0,8.059893 v 8.66138</Geometry>
+  <Geometry x:Key="XGeometry.ResetSpotAlignment.Ameba">m 35.121094,0 -7.22461,0.4316407 c -9.109959,3.2359097 -8.969537,3.3522513 -9.529296,7.6582032 -0.316267,2.4328871 -3.662417,4.4824851 -2.69336,7.7656251 1.306963,4.427961 -1.493632,9.061105 -0.341797,10.355469 1.151836,1.294363 1.465899,7.442595 10.261719,9.060547 8.79582,1.617953 7.653371,-1.555077 13.275391,-0.869141 5.455349,0.665601 7.438645,-0.612442 9.21875,-3.201172 1.78011,-2.588725 -0.190458,-11.570171 0.751953,-13.511719 0.942409,-1.941539 2.093927,-4.422736 -0.314453,-7.550781 C 46.117019,7.0106409 46.117421,4.3150327 41.824219,2.265625 37.531027,0.2162152 38.471883,0 35.121094,0 Z m -3.998047,5.8203125 h 2.869141 V 14.652344 H 31.123047 Z M 19.771484,17.171875 h 8.832032 v 2.869141 h -8.832032 z m 16.740235,0 h 8.832031 v 2.869141 h -8.832031 z m -5.388672,5.388672 h 2.869141 v 8.832031 h -2.869141 z</Geometry>
+  <Geometry x:Key="XGeometry.ResetSpotAlignment.ArrowHead">m 11.893336,27.150983 h 18.70898 l -18.70898,18.64413 z</Geometry>
+  <Geometry x:Key="XGeometry.ResetSpotAlignment.ArrowTail">m 18.724054,11.901318 c 2.880815,-2.6888394 7.21504,-4.6658442 11.467548,-4.6658442 8.904294,0 16.122675,7.2149222 16.122643,16.1149442 0,8.900022 -7.218349,16.114915 -16.122643,16.114915 -4.349684,0 -8.297072,-1.721656 -11.197245,-4.520393</Geometry>
+  <Geometry x:Key="XGeometry.UpdateMaxTemperature.Thermometer">m 10.536865,19.025406 8.802564,16.964115 M 5.7511124,10.259269 C 8.4211532,8.8625287 11.725674,9.9257897 13.160914,12.641831 l 9.402319,17.792916 c 2.765932,0.500089 5.166699,2.264878 6.494789,4.774295 2.355186,4.455517 0.713476,9.925506 -3.666756,12.217181 -4.380501,2.291164 -9.840143,0.536042 -12.194146,-3.920093 -1.326643,-2.511249 -1.428134,-5.480438 -0.274504,-8.032175 L 3.5219323,17.684133 C 2.086693,14.968093 3.0811011,11.655994 5.7511124,10.259269 Z</Geometry>
+  <Geometry x:Key="XGeometry.UpdateMaxTemperature.Checkmark">m 22.44898,17.474489 c 0,0 2.997448,1.72194 4.081632,3.635205 1.308916,2.309849 3.061225,6.250001 3.061225,6.250001 l 3.635204,-2.869899 c 0,0 3.826531,-7.52551 7.142857,-11.543367 C 43.686225,8.9285715 49.808674,2.9336735 49.808674,2.9336735 L 49.144476,2.1050352 c -2.901243,1.7035681 -9.389409,6.4095268 -11.516925,8.8643518 -3.316327,3.82653 -6.632653,8.928572 -6.632653,8.928572 -0.319792,-2.515203 -2.140228,-3.642821 -4.145408,-5.165816 -1.296769,0.03265 -3.103741,1.789043 -4.40051,2.742346 z</Geometry>
+  <Geometry x:Key="XGeometry.ThumbsUp">m 2.8322329,21.818792 h 9.6393591 c 0.738058,0 1.332233,0.569097 1.332233,1.276002 v 21.246885 c 0,0.706905 -0.594175,1.276002 -1.332233,1.276002 H 2.8322329 C 2.0941759,45.617681 1.5,45.048584 1.5,44.341679 V 23.094794 c 0,-0.706905 0.5941759,-1.276002 1.3322329,-1.276002 z m 10.8873391,2.402826 c 0,0 8.627803,-2.395337 10.482387,-10.276789 1.854563,-7.8814499 0.44513,-9.2234472 1.290129,-9.5813717 2.630287,-1.1141148 5.761877,0.2186033 6.658056,5.7241047 0.954719,5.865128 -2.07131,12.334629 -2.09647,12.329038 l 14.759366,0.105096 c 1.362443,0.02777 3.732394,0.01465 3.686559,2.504117 -0.03401,1.846891 -1.547911,3.338159 -9.145184,4.081272 6.525704,1.053043 8.191004,1.069302 8.334991,3.454451 0.163231,2.703937 -4.769525,2.4838 -8.925272,2.4838 2.140336,0.645282 7.367793,-0.02794 7.560397,3.605718 0.08033,1.515593 -2.361866,1.873139 -7.326571,2.120077 0.671439,0.68631 4.036257,0.360133 4.001541,3.022521 -0.01761,1.350771 -1.750523,2.121644 -3.292992,2.156022 -3.467242,0.07728 -16.099854,0.0296 -18.035998,-0.247231 -1.936142,-0.276831 -5.931538,-2.92941 -7.866743,-2.774874</Geometry>
+  <Geometry x:Key="XGeometry.Suitcase">M 31.491124,7.9827586 C 31.491124,4.4024282 28.584886,1.5 25,1.5 c -3.584885,0 -6.491124,2.9024282 -6.491124,6.4827586 m -4.868343,0 H 36.359468 M 13.640533,32.293103 H 36.359468 M 13.640533,24.189656 H 36.359468 M 9.271503,7.9827586 H 7.149408 c -1.792476,0 -3.245563,1.4512141 -3.245563,3.2413794 v 34.034483 c 0,1.790214 1.453087,3.241379 3.245563,3.241379 h 35.701184 c 1.792524,0 3.245563,-1.451165 3.245563,-3.241379 V 11.224138 c 0,-1.7901653 -1.453039,-3.2413794 -3.245563,-3.2413794 h -2.122111</Geometry>
+  <Geometry x:Key="XGeometry.Tools">m 30.313803,26.184761 7.638739,7.911387 c 2.655718,-1.204199 8.117488,0.58886 8.117488,0.58886 2.179373,1.617494 3.678147,4.1219 3.92997,6.84364 l -0.441262,0.662765 c 0,0 -5.435113,-3.725645 -6.24766,-4.249979 0,0 -2.627815,1.645437 -3.133863,2.352172 -0.398093,0.405276 -1.393381,4.07617 -1.393381,4.07617 l 6.928611,4.210114 -0.616408,0.984484 C 42.41839,49.462128 40.619772,49.1432 38.057002,48.617772 c -2.219295,-0.87375 -4.478992,-2.961327 -5.01695,-5.164279 -0.171508,-2.534389 0.436165,-4.13683 0.436165,-4.13683 -1.750016,-1.703133 -8.025948,-8.596736 -8.025948,-8.596736 M 19.230892,24.409835 11.636969,15.8248 C 8.9212091,16.886676 3.5620544,14.806908 3.5620544,14.806908 1.4713917,13.076279 0.10733935,10.49602 0,7.7647625 l 0.47573835,-0.638468 c 0,0 5.23019755,4.0082295 6.01383655,4.5748565 0,0 2.7112649,-1.503973 3.2540267,-2.182921 C 10.162595,9.1346037 11.350879,5.521566 11.350879,5.521566 L 4.6549304,0.95045837 5.3226062,0 c 2.6684768,0.24388933 4.4476845,0.6576188 6.9790328,1.3180193 2.169912,0.9900462 4.315893,3.1943549 4.736439,5.4227016 0.03707,2.5399176 -0.654614,4.1079291 -0.654614,4.1079291 1.657371,1.793415 7.672874,8.863815 7.672874,8.863815 M 4.8650536,49.717906 C 2.4897099,49.167779 0.69201968,47.360687 0.17668232,45.340484 -0.07863778,43.457838 0.07557443,42.164665 1.0730623,41.101377 L 10.00118,31.873716 c 2.458661,-0.353831 3.650612,-0.0928 4.545231,-1.932841 0.01747,-1.179525 1.299413,-3.35186 1.932992,-2.791295 L 18.25562,28.66623 40.11385,7.0206966 40.652822,3.9928268 47.95613,0.09685525 49.960809,2.1108628 46.06459,9.1685201 43.11792,9.8242689 21.302314,31.648541 c 1.266826,1.154222 1.855036,2.26353 1.855036,2.26353 -1.244602,1.360374 -2.10175,1.199473 -2.772803,1.357138 -0.600571,0.06402 -1.434896,1.338185 -1.753954,3.703635 -3.411054,3.322639 -6.179235,6.562324 -9.606492,9.89601 -1.7314351,1.198975 -4.1590474,0.849052 -4.1590474,0.849052 z</Geometry>
+  <Geometry x:Key="XGeometry.BackgroundEllimination.Focused">M 26.390085,46.086909 C 37.504467,45.622973 49.367279,34.036189 42.521002,19.925779 42.442259,19.763346 42.007367,17.731069 42.194944,19.040666 40.129331,8.7741898 38.196925,3.6220478 30.396877,3.7478915 29.282604,3.7658705 26.932034,4.3366229 26.104282,4.4535531 Z</Geometry>
+  <Geometry x:Key="XGeometry.BackgroundEllimination.Blurred">M 20.236328,3.7480469 C 12.43628,3.6222032 10.503113,8.7745394 8.4375,19.041016 8.625077,17.731419 8.1920212,19.763348 8.1132812,19.925781 1.2926106,33.983416 13.041022,45.531199 24.119141,46.076172 c 0.0036,0.0091 0.0061,0.01821 0.0098,0.02734 l 0.03906,-0.02344 c 0.02534,0.0012 0.05084,0.0048 0.07617,0.0059 v -0.04883 l 1.518447,-0.0069 C 38.720778,30.349606 34.68118,12.883508 26.1334,4.8998255 L 24.856867,4.6817928 C 24.443968,4.4104371 21.350601,3.7660259 20.236328,3.7480469 Z</Geometry>
+
+  <Canvas x:Key="XCanvas.MonitoringVolume" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.MonitoringVolume.AlmostEllipse}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" StrokeThickness="2.5" Data="{StaticResource XGeometry.MonitoringVolume.Objects}"/>
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="12" Canvas.Top="22" Width="6" Height="6"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.CorrectSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Left="0" Canvas.Top="20.5" Width="26" Height="26"/>
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Canvas.Left="7.5" Canvas.Top="28" Width="10.5" Height="10.5"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.CorrectSpotAlignment.Ameba}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.CorrectSpotAlignment.Target}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.ResetSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Left="0" Canvas.Top="20.5" Width="26" Height="26"/>
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Canvas.Left="7.5" Canvas.Top="28" Width="10.5" Height="10.5"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.ResetSpotAlignment.Ameba}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.ResetSpotAlignment.ArrowTail}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ResetSpotAlignment.ArrowHead}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.UpdateMaxTemperature" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.UpdateMaxTemperature.Thermometer}"/>
+    <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="16" Canvas.Top="34" Width="10" Height="10"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.UpdateMaxTemperature.Checkmark}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.ThumbsUp" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.ThumbsUp}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.ThumbsDown" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.ThumbsUp}" RenderTransformOrigin="0.5,0.5">
+      <Path.RenderTransform>
+        <ScaleTransform ScaleY="-1"/>
+      </Path.RenderTransform>
+    </Path>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Expand" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50" RadiusX="3" RadiusY="3"/>
+    <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Top="18" Width="32" Height="32" RadiusX="3" RadiusY="3"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Contract" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Width="50" Height="50" RadiusX="3" RadiusY="3"/>
+    <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Canvas.Top="18" Width="32" Height="32" RadiusX="3" RadiusY="3"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Report" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Suitcase}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.Setup" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Tools}"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.BackgroundEllimination" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.BackgroundEllimination.Blurred}" RenderTransformOrigin="0.5,0.5">
+      <Path.Effect>
+        <BlurEffect Radius="15" KernelType="Box"/>
+      </Path.Effect>
+    </Path>
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.BackgroundEllimination.Focused}"/>
+    <Rectangle Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="23" Width="4" Height="50"/>
+  </Canvas>
+
+  <Canvas x:Key="XCanvas.ScanParams" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.CornerFrame}"/>
+    <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.HeadOuter}" RenderTransformOrigin="0.5,0.5">
+      <Path.RenderTransform>
+        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+      </Path.RenderTransform>
+    </Path>
+    <Rectangle Canvas.Top="23.5" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="3"/>
+    <Rectangle Canvas.Left="23.5" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="3" Height="50"/>
   </Canvas>
 
 </ResourceDictionary>

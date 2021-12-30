@@ -674,38 +674,37 @@
         <RowDefinition/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition/>
+        <ColumnDefinition extensions:IndependentSize.ColumnWidth="10"/>
+        <ColumnDefinition/>
       </Grid.ColumnDefinitions>
-      <Border
-        Grid.Row="0"
-        Grid.Column="0"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
-        extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
-        Style="{StaticResource XStyle.Border.Active.Secondary}"/>
-      <Border
-        Grid.Row="0"
-        Grid.Column="0"
-        extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
-        extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}">
-        <Viewbox
-          IsHitTestVisible="False"
-          Stretch="Uniform"
-          extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
-          extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
-          <ContentControl x:Name="IconContentControl" Content="{TemplateBinding extensions:IconedButton.Icon}"/>
-        </Viewbox>
-      </Border>
+      <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+        <Border
+          extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
+          extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
+          extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
+          Style="{StaticResource XStyle.Border.Active.Secondary}"/>
+        <Border
+          extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
+          extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}">
+          <Viewbox
+            IsHitTestVisible="False"
+            Stretch="Uniform"
+            extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+            extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
+            <ContentControl x:Name="IconContentControl" Content="{TemplateBinding extensions:IconedButton.Icon}"/>
+          </Viewbox>
+        </Border>
+      </Grid>
       <ContentControl
         x:Name="Switch"
         Grid.Row="0"
-        Grid.Column="1"
-        extensions:IndependentSize.Margin="2,0,0,2"
+        Grid.Column="2"
+        HorizontalAlignment="Left"
         extensions:IndependentSize.Height="20"
         Style="{StaticResource XStyle.ContentControl.Switch}"
         extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
-      <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+      <ContentPresenter Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
             <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
