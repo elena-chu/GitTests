@@ -28,7 +28,17 @@
         <ControlTemplate TargetType="{x:Type ContentControl}">
           <Viewbox Stretch="Uniform">
             <Canvas Width="90" Height="50">
-              <Rectangle x:Name="SwitchBackground" Canvas.Left="0" Canvas.Top="0" Width="90" Height="50" RadiusX="26" RadiusY="26" Fill="{StaticResource XBrush.Switch.Background.Off}"/>
+              <Rectangle
+                x:Name="SwitchBackground"
+                Canvas.Left="0"
+                Canvas.Top="0"
+                Width="90"
+                Height="50"
+                RadiusX="26"
+                RadiusY="26"
+                Fill="{StaticResource XBrush.Switch.Background.Off}"
+                extensions:IndependentSize.StrokeThickness="1.5"
+                Stroke="{StaticResource XBrush.AlmostTransparent}"/>
               <Ellipse x:Name="SwitchIndicator" Canvas.Left="8" Canvas.Top="9" Width="32" Height="32" Fill="{StaticResource XBrush.Switch.Foreground.Off}"/>
             </Canvas>
           </Viewbox>
@@ -49,6 +59,22 @@
                     <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Switch.Background.On}" To="{StaticResource XColor.Control.Background.Disabled}" Duration="{StaticResource XDuration.Animation.Short}"/>
                     <DoubleAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="(Canvas.Left)" To="8" Duration="{StaticResource XDuration.Animation.Short}"/>
                     <ColorAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Application.Active}" To="{StaticResource XColor.Button.IconButton.Beta}" Duration="{StaticResource XDuration.Animation.Short}"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </DataTrigger.ExitActions>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.Hover), RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="True">
+              <DataTrigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Stroke.Color" To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </DataTrigger.EnterActions>
+              <DataTrigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Stroke.Color" To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}"/>
                   </Storyboard>
                 </BeginStoryboard>
               </DataTrigger.ExitActions>

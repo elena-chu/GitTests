@@ -120,7 +120,7 @@
                     Stretch="Uniform"
                     Data="{StaticResource XGeometry.Chevron.Down}"
                     Stroke="{StaticResource XBrush.Frame}"
-                    StrokeThickness="1"
+                    extensions:IndependentSize.StrokeThickness="1"
                     Fill="{StaticResource XBrush.Application.Background}"
                     RenderTransformOrigin="0.5,0.5">
                     <Path.RenderTransform>

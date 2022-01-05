@@ -502,7 +502,7 @@
           Stretch="Uniform"
           Data="{StaticResource XGeometry.Guillemet.Down}"
           Stroke="{TemplateBinding Foreground}"
-          StrokeThickness="1.3"
+          extensions:IndependentSize.StrokeThickness="1.3"
           RenderTransformOrigin="0.5,0.5">
           <Path.RenderTransform>
             <RotateTransform x:Name="GuillemetRotateTransform" Angle="180"/>
@@ -754,7 +754,8 @@
         HorizontalAlignment="Left"
         extensions:IndependentSize.Height="20"
         Style="{StaticResource XStyle.ContentControl.Switch}"
-        extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
+        extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"
+        extensions:ControlExtensions.Hover="{Binding Path=(extensions:ControlExtensions.Hover), RelativeSource={RelativeSource TemplatedParent}}"/>
       <ContentPresenter Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
@@ -776,12 +777,16 @@
   <Style x:Key="XStyle.ToggleButton.IconAndSwitchOverText" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.IconOverText}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.IconAndSwitchOverText}"/>
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="extensions:ControlExtensions.Hover" Value="False"/>
     <Style.Triggers>
       <Trigger Property="IsChecked" Value="True">
         <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Right"/>
       </Trigger>
       <Trigger Property="IsChecked" Value="False">
         <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="extensions:ControlExtensions.Hover" Value="True"/>
       </Trigger>
     </Style.Triggers>
   </Style>

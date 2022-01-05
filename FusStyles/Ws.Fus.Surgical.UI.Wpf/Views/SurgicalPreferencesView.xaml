@@ -17,7 +17,7 @@
           Stretch="Uniform"
           Data="{StaticResource XGeometry.Guillemet.Down}"
           Stroke="{StaticResource XBrush.Button.Secondary.Foreground}"
-          StrokeThickness="1.3">
+          extensions:IndependentSize.StrokeThickness="1.3">
         </Path>
       </Border>
     </ContentControl>
