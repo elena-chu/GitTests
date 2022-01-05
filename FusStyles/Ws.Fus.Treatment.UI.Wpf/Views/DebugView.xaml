@@ -170,12 +170,26 @@
 
     <StackPanel>
       <TextBlock Text="24 Report:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Report}"/>
+      <ToggleButton
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Report}"
+        Style="{StaticResource XStyle.ToggleButton.TextWithSideIcon}"
+        extensions:IconedButton.IconSize="18"
+        Content="Report Thingie"
+        HorizontalAlignment="Center"/>
     </StackPanel>
 
     <StackPanel>
       <TextBlock Text="25 Ghost Cursor:"/>
       <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.GhostCursor}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="26 Manual/Auto Calc:"/>
+      <ToggleButton
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.ManualCalculation}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.AutoCalculation}"
+        extensions:IconedButton.IconSize="25"
+        Style="{StaticResource XStyle.ToggleButton.Icon}"/>
     </StackPanel>
 
   </UniformGrid>
