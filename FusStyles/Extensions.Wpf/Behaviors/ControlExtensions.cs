@@ -21,7 +21,8 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
     {
         Normal,
         CallToAction,
-        Busy
+        Busy,
+        Error
     }
 
     /// <summary>
@@ -91,7 +92,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         /// <summary>
         /// States for Control
         /// </summary>
-        public static readonly DependencyProperty ControlStateProperty = DependencyProperty.RegisterAttached("ControlState", typeof(ControlState), typeof(ControlExtensions), new PropertyMetadata(ControlState.Normal));
+        public static readonly DependencyProperty ControlStateProperty = DependencyProperty.RegisterAttached("ControlState", typeof(ControlState), typeof(ControlExtensions), new FrameworkPropertyMetadata(ControlState.Normal, FrameworkPropertyMetadataOptions.Inherits));
         public static ControlState GetControlState(DependencyObject obj) { return (ControlState)obj.GetValue(ControlStateProperty); }
         public static void SetControlState(DependencyObject obj, ControlState value) { obj.SetValue(ControlStateProperty, value); }
 

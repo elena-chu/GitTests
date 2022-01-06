@@ -103,7 +103,7 @@
 
   <Style x:Key="XStyle.ContentControl.Info" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Width" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Template">
       <Setter.Value>
@@ -128,5 +128,87 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentControl.StatusIconAndText" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="23"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}"/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="IconBorder" Grid.Column="0" Style="{StaticResource XStyle.Border.Frame}" BorderBrush="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+              <Border.RenderTransform>
+                <RotateTransform/>
+              </Border.RenderTransform>
+              <Viewbox
+                x:Name="IconViewbox"
+                Stretch="Uniform"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                extensions:IndependentSize.Height="{Binding Path=(extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}">
+                <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"/>
+              </Viewbox>
+            </Border>
+            <TextBlock Grid.Column="1" extensions:IndependentSize.Margin="6,0" Text="{TemplateBinding Content}">
+              <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Paragraph}">
+                  <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                      <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+                    </Trigger>
+                  </Style.Triggers>
+                </Style>
+              </TextBlock.Style>
+            </TextBlock>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="extensions:ControlExtensions.ControlState" Value="Busy"/>
+                <Condition Property="IsEnabled" Value="True"/>
+              </MultiTrigger.Conditions>
+              <MultiTrigger.EnterActions>
+                <BeginStoryboard x:Name="BusyBeginStoryboard">
+                  <Storyboard Storyboard.TargetName="IconBorder" RepeatBehavior="Forever">
+                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="90" BeginTime="0:0:1" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="180" BeginTime="0:0:3" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="270" BeginTime="0:0:5" Duration="0:0:1.5"/>
+                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="360" BeginTime="0:0:7" Duration="0:0:1.5"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </MultiTrigger.EnterActions>
+              <MultiTrigger.ExitActions>
+                <StopStoryboard BeginStoryboardName="BusyBeginStoryboard"/>
+              </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="extensions:ControlExtensions.ControlState" Value="Error"/>
+                <Condition Property="IsEnabled" Value="True"/>
+              </MultiTrigger.Conditions>
+              <MultiTrigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation To="0" Duration="0:0:1" AutoReverse="True" RepeatBehavior="3x"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </MultiTrigger.EnterActions>
+            </MultiTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Icon.Disabled}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 </ResourceDictionary>

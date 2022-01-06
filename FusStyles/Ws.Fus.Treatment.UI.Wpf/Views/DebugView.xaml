@@ -192,6 +192,49 @@
         Style="{StaticResource XStyle.ToggleButton.Icon}"/>
     </StackPanel>
 
+    <StackPanel>
+      <TextBlock Text="Status MRI:"/>
+      <ContentControl
+        extensions:ControlExtensions.ControlState="Busy"
+        HorizontalAlignment="Center"
+        Content="Boo!"
+        extensions:IconedButton.IconSize="21"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Mri}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Status Connection:"/>
+      <ContentControl
+        extensions:ControlExtensions.ControlState="Normal"
+        HorizontalAlignment="Center"
+        Content="Double Boo!!"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Connection}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Status Circulation:"/>
+      <ContentControl
+        extensions:ControlExtensions.ControlState="Error"
+        HorizontalAlignment="Center"
+        Content="Triple Boo!!!"
+        extensions:IconedButton.IconSize="26"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Circulation}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Status Disabled:"/>
+      <ContentControl
+        IsEnabled="False"
+        extensions:ControlExtensions.ControlState="Error"
+        HorizontalAlignment="Center"
+        Content="Boo hoo hoo..."
+        extensions:IconedButton.IconSize="26"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Circulation}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
   </UniformGrid>
 
 </UserControl>
