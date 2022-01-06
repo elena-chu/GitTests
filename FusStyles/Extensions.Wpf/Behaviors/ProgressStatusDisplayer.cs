@@ -12,6 +12,7 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         Regular,
         Active,
         Completed,
+        Error
     }
 
     /// <summary>

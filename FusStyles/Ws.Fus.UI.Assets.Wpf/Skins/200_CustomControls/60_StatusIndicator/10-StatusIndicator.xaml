@@ -35,6 +35,16 @@
         Fill="{TemplateBinding Foreground}"
         Stretch="Uniform"
         Visibility="Visible"/>
+      <Path
+        x:Name="X"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Data="{StaticResource XGeometry.x}"
+        Stroke="{StaticResource XBrush.Error}"
+        extensions:IndependentSize.StrokeThickness="1.5"
+        Stretch="Uniform"
+        Height="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.45}"
+        Visibility="Collapsed"/>
     </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Regular}">
@@ -48,6 +58,10 @@
         <Setter TargetName="Checkmark" Property="Height" Value="{Binding ActualHeight, ElementName=OuterGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.4}"/>
         <Setter TargetName="Circle" Property="StrokeDashArray" Value="2,1.5"/>
         <Setter TargetName="Circle" Property="extensions:IndependentSize.StrokeThickness" Value="1.3"/>
+      </Trigger>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="{x:Static extensions:ProgressState.Error}">
+        <Setter TargetName="X" Property="Visibility" Value="Visible"/>
+        <Setter TargetName="Checkmark" Property="Visibility" Value="Collapsed"/>
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
@@ -96,6 +110,9 @@
       </Trigger>
       <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Completed">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+      </Trigger>
+      <Trigger Property="extensions:ProgressStatusDisplayer.ProgressState" Value="Error">
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Error}"/>
       </Trigger>
     </Style.Triggers>
   </Style>

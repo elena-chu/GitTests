@@ -174,7 +174,7 @@
           <ControlTemplate.Triggers>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="extensions:ControlExtensions.ControlState" Value="Busy"/>
+                <Condition Property="extensions:ControlExtensions.ControlState" Value="{x:Static extensions:ControlState.Busy}"/>
                 <Condition Property="IsEnabled" Value="True"/>
               </MultiTrigger.Conditions>
               <Setter TargetName="BusyControl" Property="Visibility" Value="Visible"/>
@@ -182,7 +182,7 @@
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="extensions:ControlExtensions.ControlState" Value="Error"/>
+                <Condition Property="extensions:ControlExtensions.ControlState" Value="{x:Static extensions:ControlState.Error}"/>
                 <Condition Property="IsEnabled" Value="True"/>
               </MultiTrigger.Conditions>
               <MultiTrigger.EnterActions>
@@ -203,7 +203,7 @@
       </Trigger>
       <MultiTrigger>
         <MultiTrigger.Conditions>
-          <Condition Property="extensions:ControlExtensions.ControlState" Value="Busy"/>
+          <Condition Property="extensions:ControlExtensions.ControlState" Value="{x:Static extensions:ControlState.Busy}"/>
           <Condition Property="IsEnabled" Value="True"/>
         </MultiTrigger.Conditions>
         <Setter Property="BorderBrush" Value="Transparent"/>
