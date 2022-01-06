@@ -134,7 +134,7 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="23"/>
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Active}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Active}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ContentControl}">
@@ -143,12 +143,8 @@
               <ColumnDefinition Width="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}"/>
               <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border x:Name="IconBorder" Grid.Column="0" Style="{StaticResource XStyle.Border.Frame}" BorderBrush="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
-              <Border.RenderTransform>
-                <RotateTransform/>
-              </Border.RenderTransform>
+            <Border x:Name="IconBorder" Grid.Column="0" Style="{StaticResource XStyle.Border.Frame}" BorderBrush="{TemplateBinding BorderBrush}" RenderTransformOrigin="0.5,0.5">
               <Viewbox
-                x:Name="IconViewbox"
                 Stretch="Uniform"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -156,6 +152,13 @@
                 <ContentControl Content="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}"/>
               </Viewbox>
             </Border>
+            <Control
+              x:Name="BusyControl"
+              Height="{Binding ActualHeight, ElementName=IconBorder}"
+              Width="{Binding ActualWidth, ElementName=IconBorder}"
+              Style="{StaticResource XStyle.Control.CircularWipeBorder}"
+              extensions:ControlExtensions.IsActive="False"
+              Visibility="Hidden"/>
             <TextBlock Grid.Column="1" extensions:IndependentSize.Margin="6,0" Text="{TemplateBinding Content}">
               <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Paragraph}">
@@ -174,19 +177,8 @@
                 <Condition Property="extensions:ControlExtensions.ControlState" Value="Busy"/>
                 <Condition Property="IsEnabled" Value="True"/>
               </MultiTrigger.Conditions>
-              <MultiTrigger.EnterActions>
-                <BeginStoryboard x:Name="BusyBeginStoryboard">
-                  <Storyboard Storyboard.TargetName="IconBorder" RepeatBehavior="Forever">
-                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="90" BeginTime="0:0:1" Duration="0:0:1.5"/>
-                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="180" BeginTime="0:0:3" Duration="0:0:1.5"/>
-                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="270" BeginTime="0:0:5" Duration="0:0:1.5"/>
-                    <DoubleAnimation Storyboard.TargetName="IconBorder" Storyboard.TargetProperty="(Border.RenderTransform).(RotateTransform.Angle)" To="360" BeginTime="0:0:7" Duration="0:0:1.5"/>
-                  </Storyboard>
-                </BeginStoryboard>
-              </MultiTrigger.EnterActions>
-              <MultiTrigger.ExitActions>
-                <StopStoryboard BeginStoryboardName="BusyBeginStoryboard"/>
-              </MultiTrigger.ExitActions>
+              <Setter TargetName="BusyControl" Property="Visibility" Value="Visible"/>
+              <Setter TargetName="BusyControl" Property="extensions:ControlExtensions.IsActive" Value="True"/>
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
@@ -207,8 +199,15 @@
     </Setter>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Icon.Disabled}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource XBrush.Icon.Disabled}"/>
       </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="extensions:ControlExtensions.ControlState" Value="Busy"/>
+          <Condition Property="IsEnabled" Value="True"/>
+        </MultiTrigger.Conditions>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+      </MultiTrigger>
     </Style.Triggers>
   </Style>
 </ResourceDictionary>
