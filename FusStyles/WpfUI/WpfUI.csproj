@@ -112,6 +112,14 @@
     <Compile Include="Menus\TargetingMenuView.xaml.cs">
       <DependentUpon>TargetingMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Messages\MessageRequestedEventHandler.cs" />
+    <Compile Include="Messages\MessageService.cs" />
+    <Compile Include="Messages\ViewModels\GenericMessageButton.cs" />
+    <Compile Include="Messages\GenericMessageType.cs" />
+    <Compile Include="Messages\ViewModels\GenericMessageViewModel.cs" />
+    <Compile Include="Messages\Views\GenericMessageView.xaml.cs">
+      <DependentUpon>GenericMessageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\WpfUiModule.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\PlanningMainViewModel.cs" />
@@ -160,6 +168,10 @@
     <Page Include="Menus\TargetingMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Messages\Views\GenericMessageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ApplicationView.xaml">
       <SubType>Designer</SubType>
