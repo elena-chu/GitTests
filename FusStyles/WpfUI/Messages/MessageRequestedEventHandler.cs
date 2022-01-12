@@ -14,6 +14,7 @@ namespace WpfUI.Messages
 	public class MessageRequestedEventArgs : EventArgs
 	{
 		public string MessageText;
+		public string MessageTitle;
 		public GenericMessageType MessageType;
 		public string MessageId;
 		public bool HasAction;
@@ -28,6 +29,7 @@ namespace WpfUI.Messages
 		public string Text;
 		public string Tip;
 		public GenericMessageReply Result;
+		public bool IsSecondary;
 	}
 
 	public delegate void MessageRequestedEventHandler(object sender, MessageRequestedEventArgs ea);
