@@ -66,13 +66,11 @@
 
     <Popup IsOpen="{Binding AskUser}" Placement="Bottom" AllowsTransparency="True">
       <Border
-        BorderBrush="{StaticResource XBrush.Warning}"
-        extensions:IndependentSize.BorderThickness="2"
         extensions:IndependentSize.Width="450"
         extensions:IndependentSize.Height="250"
         extensions:IndependentSize.Padding="18"
-        Style="{StaticResource XStyle.Border}"
-        Background="{StaticResource XBrush.Application.Background}">
+        extensions:ControlExtensions.Severity="Warning"
+        Style="{StaticResource XStyle.Border.Message}">
         <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -92,9 +90,8 @@
             IsHitTestVisible="False"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Style="{StaticResource XStyle.ContentControl.Icon}"
-            extensions:IconedButton.IconSize="30"
-            extensions:IconedButton.Icon="{StaticResource XCanvas.Message.Warning}"/>
+            Style="{StaticResource XStyle.ContentControl.SeverityIcon}"
+            extensions:IconedButton.IconSize="30"/>
 
           <TextBlock
             Grid.Column="1"

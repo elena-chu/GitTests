@@ -158,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Skins\100_Controls\030_ContentControls\020-Windows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Skins\100_Controls\030_ContentControls\010-ContentControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

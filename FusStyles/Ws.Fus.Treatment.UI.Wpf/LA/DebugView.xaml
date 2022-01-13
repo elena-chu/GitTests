@@ -1,5 +1,5 @@
 ﻿<UserControl
-  x:Class="Ws.Fus.Treatment.UI.Wpf.Views.DebugView"
+  x:Class="Ws.Fus.Treatment.UI.Wpf.LA.DebugView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:prism="http://prismlibrary.com/"
   xmlns:extensions="http://schemas.insightec.com/wpf/"
@@ -109,36 +109,6 @@
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="9 Setup MRI:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Setup}" extensions:IconedButton.IconSize="26"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="13 Monitoring Volume:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.MonitoringVolume}" extensions:IconedButton.IconSize="30"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="16 Scan Params:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ScanParams}" extensions:IconedButton.IconSize="30"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="17 Correct Spot Alignment:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.CorrectSpotAlignment}" extensions:IconedButton.IconSize="30"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="18 Reset spot alignment:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ResetSpotAlignment}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="19 Update max temperature:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.UpdateMaxTemperature}"/>
-    </StackPanel>
-
-    <StackPanel>
       <TextBlock Text="20 Background elimination:"/>
       <ToggleButton
         Content="Background Elimination"
@@ -146,26 +116,6 @@
         extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"
         extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
         Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="21 Accept:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ThumbsUp}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="21 Reject:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ThumbsDown}"/>
-    </StackPanel>
-
-    <StackPanel>
-      <TextBlock Text="23 Expand:"/>
-      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Expand}"/>
-    </StackPanel>
-
-    <StackPanel>
-    <TextBlock Text="23 Contract:"/>
-    <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Contract}"/>
     </StackPanel>
 
     <StackPanel>
@@ -235,6 +185,14 @@
         extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Circulation}"
         Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
     </StackPanel>
+
+    <Button
+      Content="Message"
+      Width="100"
+      Height="50"
+      Style="{StaticResource XStyle.Button.Primary}"
+      VerticalAlignment="Top"
+      Command="{Binding SendMessageCommand}"/>
   </UniformGrid>
 
 </UserControl>

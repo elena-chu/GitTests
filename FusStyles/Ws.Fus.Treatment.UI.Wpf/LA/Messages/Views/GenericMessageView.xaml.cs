@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace WpfUI.Messages.Views
+namespace Ws.Fus.Treatment.UI.Wpf.LA.Messages.Views
 {
     public partial class GenericMessageView : UserControl
     {

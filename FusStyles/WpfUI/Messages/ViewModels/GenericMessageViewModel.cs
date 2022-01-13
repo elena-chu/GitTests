@@ -55,6 +55,13 @@ namespace WpfUI.Messages.ViewModels
 			set { SetProperty(ref _actionText, value); }
 		}
 
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set { _title = value; RaisePropertyChanged(); }
+        }
+
 		private bool _actionChecked;
 		public bool ActionChecked
 		{

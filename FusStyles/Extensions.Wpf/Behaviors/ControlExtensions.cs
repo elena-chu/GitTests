@@ -25,6 +25,14 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         Error
     }
 
+    public enum Severity
+    {
+        Info,
+        Warning,
+        Error,
+        Safety
+    }
+
     /// <summary>
     ///  ControlExtensions: extra abilities for Controls
     /// </summary>
@@ -102,5 +110,12 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty ControlCommandProperty = DependencyProperty.RegisterAttached("ControlCommand", typeof(ICommand), typeof(ControlExtensions));
         public static ICommand GetControlCommand(DependencyObject obj) { return (ICommand)obj.GetValue(ControlCommandProperty); }
         public static void SetControlCommand(DependencyObject obj, ICommand value) { obj.SetValue(ControlCommandProperty, value); }
+
+        /// <summary>
+        /// Severity
+        /// </summary>
+        public static readonly DependencyProperty SeverityProperty = DependencyProperty.RegisterAttached("Severity", typeof(Severity), typeof(ControlExtensions), new FrameworkPropertyMetadata(Severity.Info, FrameworkPropertyMetadataOptions.Inherits));
+        public static Severity GetSeverity(DependencyObject obj) { return (Severity)obj.GetValue(SeverityProperty); }
+        public static void SetSeverity(DependencyObject obj, Severity value) { obj.SetValue(SeverityProperty, value); }
     }
 }

@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Ws.Extensions.UI.Wpf.Behaviors;
 
-namespace Ws.Fus.Treatment.UI.Wpf.Views
+namespace Ws.Fus.Treatment.UI.Wpf.LA
 {
     public partial class DebugView : UserControl
     {

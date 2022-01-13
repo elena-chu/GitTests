@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:views="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Views"
+             xmlns:la="clr-namespace:Ws.Fus.Treatment.UI.Wpf.LA"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -84,7 +85,7 @@
         Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>
 
-    <views:DebugView Grid.Column="1" Grid.ColumnSpan="2"/>
+    <la:DebugView Grid.Column="1" Grid.ColumnSpan="2"/>
     
   </Grid>
 </UserControl>

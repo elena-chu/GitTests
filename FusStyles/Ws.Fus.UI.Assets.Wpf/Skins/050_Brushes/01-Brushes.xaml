@@ -12,6 +12,7 @@
   <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}"/>
 
   <!--Severity-->
+  <SolidColorBrush x:Key="XBrush.Safety" Color="{StaticResource XColor.Safety}"/>
   <SolidColorBrush x:Key="XBrush.Error" Color="{StaticResource XColor.Error}"/>
   <SolidColorBrush x:Key="XBrush.Warning" Color="{StaticResource XColor.Warning}"/>
   <SolidColorBrush x:Key="XBrush.Info" Color="{StaticResource XColor.Application.Active}"/>

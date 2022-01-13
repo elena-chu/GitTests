@@ -46,6 +46,7 @@
 
         <!--ContentControls-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/030_ContentControls/010-ContentControls.xaml"/>
+        <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/030_ContentControls/020-Windows.xaml"/>
 
         <!--Buttons-->
         <ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/100_Controls/060_Buttons/100-ToolButton.xaml"/>

@@ -86,10 +86,22 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LA\DebugView.xaml.cs">
+      <DependentUpon>DebugView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LA\DebugViewModel.cs" />
     <Compile Include="Entities\MainScreenActionEnum.cs" />
     <Compile Include="Interfaces\IMainScreenAction.cs" />
     <Compile Include="Entities\PreferncesMode.cs" />
     <Compile Include="Entities\SavePreferencesMode.cs" />
+    <Compile Include="LA\Messages\GenericMessageType.cs" />
+    <Compile Include="LA\Messages\MessageRequestedEventHandler.cs" />
+    <Compile Include="LA\Messages\MessageService.cs" />
+    <Compile Include="LA\Messages\ViewModels\GenericMessageButton.cs" />
+    <Compile Include="LA\Messages\ViewModels\GenericMessageViewModel.cs" />
+    <Compile Include="LA\Messages\Views\GenericMessageView.xaml.cs">
+      <DependentUpon>GenericMessageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\FusTreatmentUiModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -106,7 +118,6 @@
     </Compile>
     <Compile Include="ViewModels\MainScreenBaseViewModel.cs" />
     <Compile Include="ViewModels\MainScreenMainViewModel.cs" />
-    <Compile Include="ViewModels\DebugViewModel.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
     <Compile Include="Views\DataBaseView.xaml.cs">
       <DependentUpon>DataBaseView.xaml</DependentUpon>
@@ -125,9 +136,6 @@
     </Compile>
     <Compile Include="Views\MainScreenMainView.xaml.cs">
       <DependentUpon>MainScreenMainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DebugView.xaml.cs">
-      <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TreatmentView.xaml.cs">
       <DependentUpon>TreatmentView.xaml</DependentUpon>
@@ -160,6 +168,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LA\DebugView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LA\Messages\Views\GenericMessageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DataBaseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,10 +199,6 @@
     <Page Include="Views\MainScreenMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DebugView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TreatmentView.xaml">
       <SubType>Designer</SubType>

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using WpfUI.Messages.ViewModels;
-using WpfUI.Messages.Views;
+using Ws.Fus.Treatment.UI.Wpf.LA.Messages.ViewModels;
+using Ws.Fus.Treatment.UI.Wpf.LA.Messages.Views;
 
-namespace WpfUI.Messages
+namespace Ws.Fus.Treatment.UI.Wpf.LA.Messages
 {
     //Temp class 
     public class MessageService

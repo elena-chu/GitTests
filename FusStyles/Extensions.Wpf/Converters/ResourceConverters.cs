@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using Ws.Extensions.UI.Wpf.Behaviors;
 
 namespace Ws.Extensions.UI.Wpf.Converters
 {
@@ -124,6 +126,102 @@ namespace Ws.Extensions.UI.Wpf.Converters
                 return TemperatureAssists.GetTemperatureBrush(temperatureInt).ToGreyscale();
             if (value is double temperatureDouble)
                 return TemperatureAssists.GetTemperatureBrush((int)temperatureDouble).ToGreyscale();
+            return Binding.DoNothing;
+        }
+
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Receives: Severity
+    /// Returns: Brush representing Severity color
+    /// </summary>
+    public class SeverityToBrushConverter : ConverterMarkupExtension<SeverityToBrushConverter>
+    {
+        public const string SAFETY_BRUSH_NAME = "XBrush.Safety";
+        public const string ERROR_BRUSH_NAME = "XBrush.Error";
+        public const string WARNING_BRUSH_NAME = "XBrush.Warning";
+        public const string INFO_BRUSH_NAME = "XBrush.Info";
+        
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!ConverterAssists.CheckValueValidity(value))
+                return Binding.DoNothing;
+
+            string brushName = null;
+            if (value is Severity severity)
+            {
+                switch (severity)
+                {
+                    case Severity.Info:
+                        brushName = INFO_BRUSH_NAME;
+                        break;
+                    case Severity.Warning:
+                        brushName = WARNING_BRUSH_NAME;
+                        break;
+                    case Severity.Error:
+                        brushName = ERROR_BRUSH_NAME;
+                        break;
+                    case Severity.Safety:
+                        brushName = SAFETY_BRUSH_NAME;
+                        break;
+                    default:
+                        break;
+                }
+                return (SolidColorBrush)Application.Current.TryFindResource(brushName);
+            }
+
+            return Binding.DoNothing;
+        }
+
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Receives: Severity
+    /// Returns: Icon (Canvas) representing Severity
+    /// </summary>
+    public class SeverityToIconConverter : ConverterMarkupExtension<SeverityToIconConverter>
+    {
+        public const string SAFETY_ICON_NAME = "XCanvas.Message.Safety";
+        public const string ERROR_ICON_NAME = "XCanvas.Message.Error";
+        public const string WARNING_ICON_NAME = "XCanvas.Message.Warning";
+        public const string INFO_ICON_NAME = "XCanvas.Message.Info";
+        
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!ConverterAssists.CheckValueValidity(value))
+                return Binding.DoNothing;
+
+            string iconName = null;
+            if (value is Severity severity)
+            {
+                switch (severity)
+                {
+                    case Severity.Info:
+                        iconName = INFO_ICON_NAME;
+                        break;
+                    case Severity.Warning:
+                        iconName = WARNING_ICON_NAME;
+                        break;
+                    case Severity.Error:
+                        iconName = ERROR_ICON_NAME;
+                        break;
+                    case Severity.Safety:
+                        iconName = SAFETY_ICON_NAME;
+                        break;
+                    default:
+                        break;
+                }
+                return (Canvas)Application.Current.TryFindResource(iconName);
+            }
+
             return Binding.DoNothing;
         }
 

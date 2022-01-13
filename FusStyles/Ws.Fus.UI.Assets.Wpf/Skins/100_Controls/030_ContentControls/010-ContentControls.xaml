@@ -20,6 +20,23 @@
     </Setter>
   </Style>
 
+  <Style x:Key="XStyle.ContentControl.SeverityIcon" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Viewbox
+            Stretch="Uniform"
+            extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+            extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}"
+            IsHitTestVisible="False">
+            <ContentControl Content="{Binding (extensions:ControlExtensions.Severity), RelativeSource={RelativeSource Self}, Converter={extensions:SeverityToIconConverter}}"/>
+          </Viewbox>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Style x:Key="XStyle.ContentControl.Switch" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IconedButton.IconHorizontalAlignment" Value="Left"/>

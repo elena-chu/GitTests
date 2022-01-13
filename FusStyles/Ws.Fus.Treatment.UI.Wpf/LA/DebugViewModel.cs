@@ -10,8 +10,10 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
+using Ws.Fus.Treatment.UI.Wpf.LA.Messages;
+using System.Collections.Generic;
 
-namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
+namespace Ws.Fus.Treatment.UI.Wpf.LA
 {
     public class DebugViewModel: ViewModelBase
     {
@@ -19,6 +21,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
         {
             ProgressCommand = new DelegateCommand(ToggleProgress);
             ApprovalCommand = new DelegateCommand(ToggleApproval);
+            SendMessageCommand = new DelegateCommand(SendMessage);
             InitMenu();
 
             StoppedValue = 5;
@@ -206,6 +209,59 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             }
         }
 
+        #endregion
+
+
+        #region Message
+
+        private int status = 0;
+        private bool isChecked = false;
+        private List<string> quotes = new List<string>()
+        {
+            "Hello. My name is Inigo Montoya. You killed my father. Prepare to die",
+            "But it's so simple. All I have to do is divine from what I know of you: are you the sort of man who would put the poison into his own goblet or his enemy's? Now, a clever man would put the poison into his own goblet, because he would know that only a great fool would reach for what he was given. I am not a great fool, so I can clearly not choose the wine in front of you. But you must have known I was not a great fool, you would have counted on it, so I can clearly not choose the wine in front of me.",
+            "Anybody want a peanut?",
+            "Death cannot stop true love. All it can do is delay it for a while.",
+            "Prince Humperdinck: First things first, to the death. Westley: No. To the pain. Prince Humperdinck: I don't think I'm quite familiar with that phrase. Westley: I'll explain and I'll use small words so that you'll be sure to understand, you warthog faced buffoon. Prince Humperdinck: That may be the first time in my life a man has dared insult me. Westley: It won't be the last. To the pain means the first thing you will lose will be your feet below the ankles. Then your hands at the wrists. Next your nose. Prince Humperdinck: And then my tongue I suppose, I killed you too quickly the last time. A mistake I don't mean to duplicate tonight. Westley: I wasn't finished. The next thing you will lose will be your left eye followed by your right. Prince Humperdinck: And then my ears, I understand let's get on with it. Westley: WRONG. Your ears you keep and I'll tell you why. So that every shriek of every child at seeing your hideousness will be yours to cherish. Every babe that weeps at your approach, every woman who cries out, Dear God! What is that thing, will echo in your perfect ears. That is what to the pain means. It means I leave you in anguish, wallowing in freakish misery forever. Prince Humperdinck: I think you're bluffing. Westley: It's possible, Pig, I might be bluffing. It's conceivable, you miserable, vomitous mass, that I'm only lying here because I lack the strength to stand. But, then again... perhaps I have the strength after all."
+        };
+        public ICommand SendMessageCommand { get; set; }
+        private void SendMessage()
+        {
+            MessageService.ShowMessage(new MessageRequestedEventArgs()
+            {
+                MessageText = quotes[status],
+                MessageTitle = "The Princess Bride",
+                MessageType = (GenericMessageType)status,
+                MessageId = "12345",
+                HasAction = isChecked,
+                ActionText = "Vizzini",
+                ActionChecked = false,
+                Buttons = new MessageRequestedButton[]
+                {
+                    new MessageRequestedButton()
+                    {
+                        Text = "Fezzik",
+                        Tip = "Anybody want a peanut?",
+                        Result = GenericMessageReply.No,
+                    },
+                    new MessageRequestedButton()
+                    {
+                        Text = "Inigo",
+                        Tip = "Prepare to die",
+                        Result = GenericMessageReply.Cancel,
+                    },
+                    new MessageRequestedButton()
+                    {
+                        Text = "Westley",
+                        Tip = "As you wish",
+                        Result = GenericMessageReply.Ok,
+                    },
+                },
+            });
+
+            status = (status + 1) % 5;
+            isChecked = !isChecked;
+        }
         #endregion
     }
 }

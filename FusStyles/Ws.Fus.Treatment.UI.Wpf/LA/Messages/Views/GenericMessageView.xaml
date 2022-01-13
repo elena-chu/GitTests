@@ -1,11 +1,11 @@
 ﻿<UserControl
-  x:Class="WpfUI.Messages.Views.GenericMessageView"
+  x:Class="Ws.Fus.Treatment.UI.Wpf.LA.Messages.Views.GenericMessageView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:i="clr-namespace:WpfUI.Messages"
+  xmlns:i="clr-namespace:Ws.Fus.Treatment.UI.Wpf.LA.Messages"
   mc:Ignorable="d">
 
   <UserControl.Style>
