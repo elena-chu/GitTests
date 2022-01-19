@@ -419,7 +419,8 @@
       <Setter Property="Width" Value="17"/>
       <Setter Property="Fill" Value="{StaticResource LBrush.Highlight}"/>
       <Setter Property="Margin" Value="0,-8,0,0"/>
-      <Setter Property="Visibility" Value="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='#Cooling'}"/>
+      <Setter Property="Visibility" Value="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={StaticResource ComparisionToVisibilityConverter}, ConverterParameter={x:Static local:SonicateControlState.Cooling}}"/>
+      <!--<Setter Property="Visibility" Value="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='#Cooling'}"/>-->
     </Style>
 
     <Grid
@@ -672,7 +673,7 @@
           Command="{Binding SonicatePressCommand, ElementName=_thisSonicateControl}"
           Width="{StaticResource LDouble.Width.Boundary}"
           Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-          Visibility="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='#SonicateReady'}">
+          Visibility="{Binding SonicateControlState, ElementName=_thisSonicateControl, Converter={StaticResource ComparisionToVisibilityConverter}, ConverterParameter={x:Static local:SonicateControlState.SonicateReady}}">
           <Button.Template>
             <ControlTemplate>
               <Ellipse Fill="{StaticResource LRadialGradientBrush.Button}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

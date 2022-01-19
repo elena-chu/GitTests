@@ -4,15 +4,25 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
   <ControlTemplate x:Key="XControlTemplate.Expander" TargetType="{x:Type Expander}">
-    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" extensions:IndependentSize.Padding="0,6,0,0">
+    <Border extensions:IndependentSize.BorderThickness="{TemplateBinding extensions:IndependentSize.BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="0,0,0,0">
       <DockPanel>
-        <ToggleButton
-          x:Name="HeaderSite"
-          extensions:IndependentSize.Margin="0,0,0,3"
-          Content="{TemplateBinding Header}"
+        <Grid
+          Height="Auto"
           DockPanel.Dock="Top"
-          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-          Style="{StaticResource XStyle.ToggleButton.Expander}"/>
+          extensions:IndependentSize.Margin="{TemplateBinding Padding}" >
+          <Rectangle 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Top"
+            extensions:IndependentSize.Height="1"
+            Fill="{TemplateBinding BorderBrush}"/>
+          <ToggleButton
+            x:Name="HeaderSite"
+            Content="{TemplateBinding Header}"
+            VerticalAlignment="Top"
+            IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+            extensions:IndependentSize.Margin="0,8,0,0"
+            Style="{StaticResource XStyle.ToggleButton.Expander}"/>
+        </Grid>
         <ContentPresenter
           x:Name="ContentSite"
           extensions:IndependentSize.Margin="0,3,0,0"
@@ -63,11 +73,12 @@
   <Style x:Key="XStyle.Expander" TargetType="{x:Type Expander}">
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="BorderBrush" Value="{StaticResource XBrush.Line}"/>
-    <Setter Property="extensions:IndependentSize.BorderThickness" Value="0,1,0,0"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="-15,0,-15,0" />
+    <!--<Setter Property="extensions:IndependentSize.BorderThickness" Value="0,1,0,0"/>-->
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="0"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Expander}"/>
     <Setter Property="ExpandDirection" Value="Up"/>
     <Setter Property="VerticalAlignment" Value="Bottom"/>
-    <Setter Property="Padding" Value="0" />
   </Style>
 
   <Style x:Key="XStyle.Expander.MoreLess" TargetType="{x:Type Expander}" BasedOn="{StaticResource XStyle.Expander}">

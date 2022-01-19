@@ -11,17 +11,15 @@
 
   <UserControl.Resources>
     <ContentControl x:Key="LContentControl.TabItem.Guillemet">
-      <Border extensions:IndependentSize.Margin="2,0,2,0" extensions:IndependentSize.MaxWidth="12" HorizontalAlignment="Center">
-        <Path
-          IsHitTestVisible="False"
-          Stretch="Uniform"
-          Data="{StaticResource XGeometry.Guillemet.Down}"
-          Stroke="{StaticResource XBrush.Button.Secondary.Foreground}"
-          extensions:IndependentSize.StrokeThickness="1.3">
-        </Path>
+      <Border Style="{StaticResource TabItem.Guillemet.Border}">
+        <Path Style="{StaticResource TabItem.Guillemet.Path}" />
       </Border>
     </ContentControl>
 
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption.Preference}">
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="extensions:IndependentSize.Margin" Value="0 0 0 0"/>
+    </Style>
   </UserControl.Resources>
   
   <TabControl Style="{StaticResource XStyle.TabControl}">

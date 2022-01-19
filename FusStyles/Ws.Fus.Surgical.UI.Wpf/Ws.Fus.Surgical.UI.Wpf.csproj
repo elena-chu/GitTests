@@ -89,7 +89,7 @@
     <Compile Include="Views\ActualTargetScanParamsView.xaml.cs">
       <DependentUpon>ActualTargetScanParamsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SonicateControl.xaml.cs">
+    <Compile Include="Controls\SonicateControl.xaml.cs">
       <DependentUpon>SonicateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SonicationParametersView.xaml.cs">
@@ -167,7 +167,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SonicateControl.xaml">
+    <Page Include="Controls\SonicateControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

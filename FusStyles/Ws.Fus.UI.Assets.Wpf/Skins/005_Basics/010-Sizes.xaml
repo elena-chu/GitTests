@@ -44,9 +44,11 @@
   <sys:Double x:Key="XDouble.FontSize.Title">13</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Thumbnail">12</sys:Double>
 
-  <sys:Double x:Key="XDouble.ColumnGap.Preferences">75</sys:Double>
-  <sys:Double x:Key="XDouble.Width.Preferences">205</sys:Double>
-
+  <sys:Double x:Key="XDouble.ColumnGap.Preferences">50</sys:Double>
+  <sys:Double x:Key="XDouble.ColumnGap.Big.Preferences">68</sys:Double>
+  <sys:Double x:Key="XDouble.PlaceHolderWidth.Preferences">350</sys:Double>
+  <!--<sys:Double x:Key="XDouble.GapWidth.Layout.Preferences">50</sys:Double>
+  <sys:Double x:Key="XDouble.PlaceHolderWidth.Preferences">350</sys:Double>-->
 
   <sys:Double x:Key="XDouble.Chart.Label.Size">8</sys:Double>
 

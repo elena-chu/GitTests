@@ -132,8 +132,32 @@
     <Setter Property="GroupName" Value="1" />
   </Style>
 
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Preplanning" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_PREPLANNING}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Preparation.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Preparation.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Planning]}" />
+    <Setter Property="GroupName" Value="1" />
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Planning.Dqa" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SETUP}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Dqa.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Dqa.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Planning]}" />
+    <Setter Property="GroupName" Value="1" />
+  </Style>
+
   <Style x:Key="XStyle.RadioButton.ModuleButton.Surgical" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
     <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Surgical.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Surgical.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Surgical]}" />
+    <Setter Property="GroupName" Value="2" />
+  </Style>
+
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Surgical.Dqa" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL_DQA}" />
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Surgical.Alpha}" />
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Surgical.Beta}" />
     <Setter Property="DataContext" Value="{Binding Path=[Surgical]}" />
@@ -152,7 +176,7 @@
   <ControlTemplate x:Key="XControlTemplate.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
     <Grid
       x:Name="MainGrid"
-      Background="{StaticResource XBrush.AlmostTransparent}"
+      Background="{TemplateBinding Background}"
       extensions:ControlExtensions.HorizontalPlacement="{TemplateBinding extensions:ControlExtensions.HorizontalPlacement}"
       extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
       extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
@@ -211,6 +235,7 @@
     <Setter Property="extensions:IndependentSize.CornerRadius" Value="0"/>
     <Setter Property="IsThreeState" Value="False"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="15,0" />
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
@@ -271,20 +296,20 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Middle"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
-    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="22"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Caption}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="18"/>
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
-    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Active}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}"/>
     <Setter Property="BorderThickness" Value="0"/>
     <Setter Property="IsThreeState" Value="False"/>
     <Setter Property="Padding" Value="6,0" />
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+    <Setter Property="Foreground" Value="{StaticResource XBrush.RadioButton.MainMenu.Inactive}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Primary.Background}"/>
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
@@ -332,14 +357,14 @@
   <!--RadioButton Navigation-->
   <Style x:Key="XStyle.RadioButton.Navigation" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="extensions:IndependentSize.Height" Value="44" />
+    <Setter Property="extensions:IndependentSize.Height" Value="40" />
     <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,4" />
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Header4}" />
 
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type RadioButton}">
-          <Border extensions:IndependentSize.Margin="30,0,0,0" extensions:IndependentSize.CornerRadius="20,0,0,20" x:Name="_corderTest" 
+          <Border extensions:IndependentSize.Margin="25,0,0,0" extensions:IndependentSize.CornerRadius="20,0,0,20" x:Name="_corderTest" 
                         Background="{StaticResource XBrush.RadioButton.NavigationMenu.Inactive}" BorderThickness="{TemplateBinding BorderThickness}">
             <ContentPresenter HorizontalAlignment="Right" extensions:IndependentSize.Margin="0,2,10,2" VerticalAlignment="Center" />
           </Border>
@@ -349,6 +374,13 @@
               <Setter Property="Background" TargetName="_corderTest" Value="{StaticResource XBrush.RadioButton.NavigationMenu.Active}" />
               <Setter Property="FontWeight" Value="SemiBold" />
             </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsMouseOver" Value="True"/>
+                <Condition Property="IsChecked" Value="False"/>
+              </MultiTrigger.Conditions>
+              <Setter Property="Background" TargetName="_corderTest" Value="{StaticResource  XBrush.Button.Secondary.Background.Hover}" />
+            </MultiTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>

@@ -81,6 +81,32 @@
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.Secondary}"/>
   </Style>
 
+  <!--Transparent Button with MouseOver-->
+  <Style x:Key="XStyle.Button.Transparent" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource XStyle.ButtonBase.Text}">
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="Height" Value="NaN" />
+    <Setter Property="extensions:IndependentSize.Height" Value="NaN" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ButtonBase}">
+          <Border
+              Padding="{TemplateBinding Padding}"
+              extensions:IndependentSize.Height="{TemplateBinding Height}"
+              extensions:IndependentSize.Width="{TemplateBinding Width}"
+              extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+              extensions:IndependentSize.BorderThickness="0"
+              Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+            <ContentPresenter x:Name="ContentPr" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="Stretch"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Opacity" Value=".3" TargetName="ContentPr"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
   <!--Text With Side Icon-->
   <ControlTemplate x:Key="XControlTemplate.Button.TextWithSideIcon" TargetType="{x:Type Button}">
@@ -326,7 +352,9 @@
         extensions:IndependentSize.Margin="3,0,0,0"
         extensions:IndependentSize.Height="20"
         Style="{StaticResource XStyle.ContentControl.Switch}"
-        extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"/>
+        extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"
+        extensions:ControlExtensions.Hover="{Binding Path=(extensions:ControlExtensions.Hover), RelativeSource={RelativeSource TemplatedParent}}"
+        />
     </Border>
   </ControlTemplate>
 
@@ -342,6 +370,9 @@
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="extensions:ControlExtensions.Hover" Value="True"/>
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -515,7 +546,11 @@
         HorizontalAlignment="Left"
         RecognizesAccessKey="True"
         SnapsToDevicePixels="True"
-        VerticalAlignment="Center"/>
+        VerticalAlignment="Center">
+        <ContentPresenter.Resources>
+          <Style TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}" />
+        </ContentPresenter.Resources>
+      </ContentPresenter>
     </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="IsChecked" Value="True">
@@ -632,6 +667,12 @@
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
   </Style>
 
+  <Style x:Key="XStyle.ToggleButton.Icon.Small" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
+    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.Control.Small}"/>
+  </Style>
+
 
   <!--Icon over Text-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.IconOverText" TargetType="{x:Type ButtonBase}">
@@ -729,7 +770,11 @@
         <ColumnDefinition extensions:IndependentSize.ColumnWidth="10"/>
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>
-      <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+      <Grid 
+        Grid.Row="0" 
+        Grid.Column="0" 
+        HorizontalAlignment="Right" 
+        VerticalAlignment="Center">
         <Border
           extensions:IndependentSize.Width="{StaticResource XDouble.Height.Control.Default}"
           extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
@@ -756,6 +801,7 @@
         Style="{StaticResource XStyle.ContentControl.Switch}"
         extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}"
         extensions:ControlExtensions.Hover="{Binding Path=(extensions:ControlExtensions.Hover), RelativeSource={RelativeSource TemplatedParent}}"/>
+
       <ContentPresenter Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Caption}">
@@ -870,4 +916,27 @@
       </Trigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
+
+  <Style x:Key="XStyle.Button.QuitModule" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Transparent}">
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground.Secondary}" />
+    <Setter Property="Height" Value="NaN" />
+    <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+    <Setter Property="TextBlock.HorizontalAlignment" Value="Left" />
+    <Setter Property="extensions:IndependentSize.Height" Value="NaN" />
+    <Setter Property="extensions:IndependentSize.Padding" Value="10,0,5,0" />
+  </Style>
+
+  <Style x:Key="XStyle.Button.Specific.Refresh" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon.Small}">
+    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Refresh}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Button.Specific.Refresh.Small" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Specific.Refresh}">
+    <Setter Property="extensions:IconedButton.IconSize" Value="15" />
+    <Setter Property="extensions:IndependentSize.Width" Value="22" />
+    <Setter Property="extensions:IndependentSize.Height" Value="22" />
+  </Style>
+
 </ResourceDictionary>

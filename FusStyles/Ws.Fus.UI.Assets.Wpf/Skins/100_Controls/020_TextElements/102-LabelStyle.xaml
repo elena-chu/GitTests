@@ -25,9 +25,7 @@
     <Setter Property="VerticalAlignment" Value="Center" />
   </Style>
 
-  <Style x:Key="XStyle.Label.Caption.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}">
-
-  </Style>
+  <Style x:Key="XStyle.Label.Caption.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}" />
 
   <Style x:Key="XStyle.Label.Caption.Marked.Preference" TargetType="Label" BasedOn="{StaticResource XStyle.Label.Caption.Preference}">
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
@@ -37,12 +35,11 @@
     <Setter Property="extensions:IndependentSize.Margin" Value="10,0,0,0"/>
   </Style>
 
-
-
   <Style x:Key="XStyle.Label.Title.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}">
     <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Title}" />
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}" />
-    <Setter Property="extensions:IndependentSize.Margin" Value="0 0 0 5" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0 0 8 5" />
+    <Setter Property="FontWeight" Value="Bold" />
   </Style>
 
 

@@ -4,6 +4,7 @@
   <!--Theme-->
   <SolidColorBrush x:Key="XBrush.Application.Active" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Application.Foreground" Color="{StaticResource XColor.Application.Foreground}"/>
+  <SolidColorBrush x:Key="XBrush.Application.Foreground.Secondary" Color="{StaticResource XColor.Application.Foreground.Secondary}"/>
   <SolidColorBrush x:Key="XBrush.Application.Background" Color="{StaticResource XColor.Application.Background}"/>
   <SolidColorBrush x:Key="XBrush.Application.Background.Complementary" Color="{StaticResource XColor.Application.Background.Complementary}"/>
 
@@ -34,6 +35,7 @@
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Hover" Color="{StaticResource XColor.Button.Secondary.Background.Hover}"/>
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Background.Pressed" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>
   <SolidColorBrush x:Key="XBrush.Button.Secondary.Foreground" Color="{StaticResource XColor.Button.Secondary.Foreground}"/>
+  <SolidColorBrush x:Key="XBrush.BackgroundDark" Color="{StaticResource XColor.BackgroundDark}"/>
 
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Caption" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
   <SolidColorBrush x:Key="XBrush.Button.IconButton.Alpha" Color="{StaticResource XColor.Application.Foreground}"/>
@@ -149,6 +151,15 @@
   <SolidColorBrush x:Key="LabelHeaderDimBrush"  Color="{StaticResource LabelHeaderDimColor}" />
   <SolidColorBrush x:Key="LabelTextBrightBrush" Color="{StaticResource LabelTextBrightColor}" />
   <SolidColorBrush x:Key="LabelTextDimBrush" Color="{StaticResource LabelTextDimColor}" />
+
+  <SolidColorBrush x:Key="Cav0Brush"  Color="Orange" />
+  <SolidColorBrush x:Key="Cav1Brush"  Color="Blue" />
+  <SolidColorBrush x:Key="Cav2Brush"  Color="Green"/>
+  <SolidColorBrush x:Key="Cav3Brush"  Color="Aqua"/>
+  <SolidColorBrush x:Key="Cav4Brush"  Color="Azure"/>
+  <SolidColorBrush x:Key="Cav5Brush"  Color="Bisque"/>
+  <SolidColorBrush x:Key="Cav6Brush"  Color="CornflowerBlue"/>
+  <SolidColorBrush x:Key="Cav7Brush"  Color="DarkOliveGreen"/>
 
   <SolidColorBrush x:Key="brushToolButton" Color="{StaticResource colorToolButton}" />
 

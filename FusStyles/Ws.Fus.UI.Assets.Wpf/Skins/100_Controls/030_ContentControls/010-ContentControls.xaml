@@ -120,7 +120,7 @@
 
   <Style x:Key="XStyle.ContentControl.Info" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IndependentSize.Width" Value="27"/>
     <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Template">
       <Setter.Value>
@@ -139,7 +139,7 @@
               Text="i"
               VerticalAlignment="Center"
               HorizontalAlignment="Center"
-              Style="{StaticResource XStyle.TextBlock.Base}"
+              Style="{StaticResource XStyle.TextBlock.Caption}"
               Foreground="{StaticResource XBrush.Control.Foreground.Disabled}"/>
           </Grid>
         </ControlTemplate>

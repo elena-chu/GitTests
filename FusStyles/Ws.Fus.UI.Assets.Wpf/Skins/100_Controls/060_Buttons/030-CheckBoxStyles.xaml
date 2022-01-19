@@ -20,6 +20,7 @@
         Height="{Binding ActualHeight, ElementName=HoverBorder}">
         <Border.Style>
           <Style TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Active.Secondary}">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
             <Style.Triggers>
               <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -83,10 +84,11 @@
 
   <Style x:Key="XStyle.CheckBox" TargetType="{x:Type CheckBox}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.CheckBox}"/>
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="20"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}" />
     <Setter Property="VerticalContentAlignment" Value="Center"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
@@ -96,5 +98,5 @@
   </Style>
 
   <Style x:Key="{x:Type CheckBox}" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource XStyle.CheckBox}"/>
-  
+
 </ResourceDictionary>

@@ -713,7 +713,7 @@
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.Compare.Play" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Play}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Play}" RenderTransformOrigin="0.5,0.5">
       <Path.RenderTransform>
         <TransformGroup>
           <ScaleTransform ScaleX="1.7" ScaleY="1.7"/>
@@ -724,7 +724,7 @@
   </Canvas>
 
   <Canvas x:Key="XCanvas.Menu.Compare.Pause" Style="{StaticResource XStyle.Canvas.Icon}">
-    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Pause}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Pause}" RenderTransformOrigin="0.5,0.5">
       <Path.RenderTransform>
         <TransformGroup>
           <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
