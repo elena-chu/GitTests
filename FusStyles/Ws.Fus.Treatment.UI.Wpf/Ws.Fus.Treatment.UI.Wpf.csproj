@@ -255,6 +255,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Skin.txt</LastGenOutput>
     </Content>
+    <None Include="Resources\WarningMsg.wav" />
+    <None Include="Resources\Infomsg.wav" />
+    <None Include="Resources\ErrorMsg.wav" />
+    <None Include="Resources\CautionMsg.wav" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Skins\Skin.txt">

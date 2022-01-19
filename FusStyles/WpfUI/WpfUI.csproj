@@ -264,8 +264,12 @@
       <Name>Ws.Fus.UI.Navigation.Wpf</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Messages\Assets\Sounds\" />
+    <Content Include="Messages\Assets\Sounds\CautionMsg.wav" />
+    <Content Include="Messages\Assets\Sounds\ErrorMsg.wav" />
+    <Content Include="Messages\Assets\Sounds\Infomsg.wav" />
+    <Content Include="Messages\Assets\Sounds\WarningMsg.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

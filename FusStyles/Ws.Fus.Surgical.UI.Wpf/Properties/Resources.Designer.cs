@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfUI.Properties {
+namespace Ws.Fus.Surgical.UI.Wpf.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WpfUI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WpfUI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ws.Fus.Surgical.UI.Wpf.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,36 +63,18 @@ namespace WpfUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream CautionMsg {
+        internal static System.IO.UnmanagedMemoryStream CoolingReminder {
             get {
-                return ResourceManager.GetStream("CautionMsg", resourceCulture);
+                return ResourceManager.GetStream("CoolingReminder", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ErrorMsg {
+        internal static System.IO.UnmanagedMemoryStream Sonicate {
             get {
-                return ResourceManager.GetStream("ErrorMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Infomsg {
-            get {
-                return ResourceManager.GetStream("Infomsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream WarningMsg {
-            get {
-                return ResourceManager.GetStream("WarningMsg", resourceCulture);
+                return ResourceManager.GetStream("Sonicate", resourceCulture);
             }
         }
     }

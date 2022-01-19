@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows;
 using WpfUI.Messages.ViewModels;
 using WpfUI.Messages.Views;
@@ -52,6 +54,28 @@ namespace WpfUI.Messages
                 wnd.Close();
                 closeCallback?.Invoke(ea);
             };
+
+
+            Stream messageStream = Properties.Resources.Infomsg;
+            switch (vm.MessageType)
+            {
+                case GenericMessageType.Safety:
+                    messageStream = Properties.Resources.WarningMsg;
+                    break;
+                case GenericMessageType.UserError:
+                    messageStream = Properties.Resources.CautionMsg;
+                    break;
+                case GenericMessageType.SystemError:
+                    messageStream = Properties.Resources.ErrorMsg;
+                    break;
+                case GenericMessageType.UserInfo:
+                case GenericMessageType.SystemStatus:
+                default:
+                    break;
+            }
+            SoundPlayer soundPlayer = new SoundPlayer(messageStream);
+            soundPlayer.Play();
+
             wnd.ShowDialog();
 
             //ea.ActionChecked = vm.ActionChecked;
