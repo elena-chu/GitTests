@@ -227,4 +227,45 @@
       </MultiTrigger>
     </Style.Triggers>
   </Style>
+
+  <Style x:Key="XStyle.ContentControl.MessagePanel" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="12"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Border Style="{StaticResource XStyle.Border.Message}">
+            <Grid Margin="{TemplateBinding Padding}">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <ContentControl
+                Grid.Row="0"
+                Grid.Column="0"
+                extensions:IndependentSize.Margin="0,0,12,0"
+                Style="{StaticResource XStyle.ContentControl.SeverityIcon}"
+                extensions:IconedButton.IconSize="30"/>
+              <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding (extensions:ControlExtensions.AlternativeText), RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}"
+                Style="{StaticResource XStyle.TextBlock.Base}"
+                extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Header2}"/>
+              <ContentPresenter extensions:IndependentSize.Margin="0,12,0,0" Grid.Row="1" Grid.ColumnSpan="2" Content="{TemplateBinding Content}">
+                <ContentPresenter.Resources>
+                  <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}"/>
+                </ContentPresenter.Resources>
+              </ContentPresenter>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
 </ResourceDictionary>
