@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
-  <!--ColorAnimations-->
+  <!--ColorAnimations: Primary-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.ToBase.Stop.Primary" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
   </Storyboard>
@@ -20,6 +20,7 @@
     <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
+  <!--ColorAnimations: Secondary-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.ToBase.Stop.Secondary" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
   </Storyboard>
@@ -36,6 +37,20 @@
     <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
+  <!--ColorAnimations: Safety-->
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Safety" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Safety}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Stop.Safety" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Safety}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToPressed.Safety" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Safety.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <!--ColorAnimations: General-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.Stop.ToTransparent" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
   </Storyboard>

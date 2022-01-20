@@ -32,6 +32,16 @@
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
+    <Button 
+      Grid.Row="0"
+      extensions:IndependentSize.Margin="0,-57,0,0"
+      extensions:IndependentSize.Width="378"
+      VerticalAlignment="Top"
+      extensions:IndependentSize.Height="{StaticResource XDouble.Height.Control.Default}"
+      Style="{StaticResource LStyle.Button.StopSonicate}"
+      Content="Stop Sonication (Soft Halt)"
+      Command="{Binding StopSonicationCommand}"/>
+
     <local:ActualSonicationParamsView x:Name="SonicationParams" />
 
     <local:ActualTargetScanParamsView x:Name="TargetLocation" Grid.Row="1" />
@@ -101,13 +111,6 @@
       </Grid>
     </Grid>
 
-    <Button 
-      Grid.Row="3"
-      Style="{StaticResource LStyle.Button.Sonication}"
-      Content="STOP SONICATION"
-      Background="{StaticResource XBrush.Error}"
-      Command="{Binding StopSonicationCommand}"
-     />
     <TabControl 
       Grid.Row="2" Grid.RowSpan="3" 
         VerticalAlignment="Bottom" Name="tabControl" 

@@ -20,9 +20,10 @@
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
 
   <!--Severity-->
-  <Color x:Key="XColor.Safety">#FFF50000</Color>
-  <Color x:Key="XColor.Error">#FFeb571d</Color>
-  <Color x:Key="XColor.Warning">#FFe39718</Color>
+  <Color x:Key="XColor.Safety">#FFb73f3f</Color>
+  <Color x:Key="XColor.Safety.Pressed">#FF8c3030</Color>
+  <Color x:Key="XColor.Error">#FFeb701d</Color>
+  <Color x:Key="XColor.Warning">#FFe3b118</Color>
   
   <!--Controls-->
   <Color x:Key="XColor.Control.Background.Disabled">#FF191919</Color>

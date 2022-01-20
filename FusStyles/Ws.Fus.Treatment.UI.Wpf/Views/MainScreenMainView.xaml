@@ -32,7 +32,8 @@
           <RowDefinition Height="0.125*"/>
           <RowDefinition Height="0.125*"/>
           <RowDefinition Height="0.125*"/>
-          <RowDefinition Height="0.25*"/>
+          <RowDefinition Height="0.17*"/>
+          <RowDefinition Height="0.08*"/>
         </Grid.RowDefinitions>
 
         <RadioButton
@@ -89,6 +90,7 @@
           IsChecked="{Binding CurrentScreen, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static mainScr:MainScreenAction.Settings}, Mode=OneWay}"/>
         <Rectangle Grid.Row="5" Style="{StaticResource HorizontalMenuSeparator}"/>
 
+        <Button Grid.Row="7" Style="{StaticResource XStyle.Button.TransparentToSafety}" Content="END TREATMENT"/>
       </Grid>
     </Grid>
 

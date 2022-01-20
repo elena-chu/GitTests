@@ -33,9 +33,9 @@
     
     <ContentControl
       Grid.Column="0"
-      extensions:IndependentSize.Margin="23,0,0,0"
+      extensions:IndependentSize.Margin="20,0,0,0"
       prism:RegionManager.RegionName="{x:Static core:RegionNames.ScanProgressBar}"
-      extensions:IndependentSize.Width="358"
+      extensions:IndependentSize.Width="372"
       HorizontalAlignment="Left"
       VerticalAlignment="Center"/>
 
