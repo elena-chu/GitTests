@@ -45,6 +45,27 @@
     </Style.Triggers>
   </Style>
 
+  <Style x:Key="XStyle.Path.Chevron.Press" TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Path.Chevron}">
+    <Style.Triggers>
+      <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
   <Style x:Key="TitleBarRowStyle" TargetType="RowDefinition">
     <Setter Property="extensions:IndependentSize.RowHeight" Value="48" />
   </Style>

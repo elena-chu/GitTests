@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
@@ -51,6 +52,13 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty VerticalPlacementProperty = DependencyProperty.RegisterAttached("VerticalPlacement", typeof(VerticalPlacement), typeof(ControlExtensions), new PropertyMetadata(VerticalPlacement.Middle));
         public static VerticalPlacement GetVerticalPlacement(DependencyObject obj) { return (VerticalPlacement)obj.GetValue(VerticalPlacementProperty); }
         public static void SetVerticalPlacement(DependencyObject obj, VerticalPlacement value) { obj.SetValue(VerticalPlacementProperty, value); }
+
+        /// <summary>
+        /// Direction for control (Left, Right, Top, Bottom)
+        /// </summary>
+        public static readonly DependencyProperty DirectionProperty = DependencyProperty.RegisterAttached("Direction", typeof(Dock), typeof(ControlExtensions), new PropertyMetadata(Dock.Left));
+        public static Dock GetDirection(DependencyObject obj) { return (Dock)obj.GetValue(DirectionProperty); }
+        public static void SetDirection(DependencyObject obj, Dock value) { obj.SetValue(DirectionProperty, value); }
 
         /// <summary>
         /// Used for setting a control's alternative text

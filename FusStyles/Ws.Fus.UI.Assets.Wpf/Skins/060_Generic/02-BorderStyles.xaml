@@ -135,6 +135,36 @@
     </Style.Triggers>
   </Style>
 
+  <Style x:Key="XStyle.Border.Hover.TransparentToFadedSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.FadedSecondary}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.FadedSecondary}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.FadedSecondary}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Stop.FadedSecondary}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  
   <Style x:Key="XStyle.Border.Active.Secondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
     <Style.Triggers>
