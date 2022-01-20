@@ -18,6 +18,7 @@
       <Setter Property="Foreground" Value="HotPink"/>
       <Setter Property="Margin" Value="0,0,0,12"/>
       <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
@@ -111,6 +112,17 @@
     <StackPanel>
       <TextBlock Text="20 Background elimination:"/>
       <ToggleButton
+        Content="Background Elimination"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Switch disabled:"/>
+      <ToggleButton
+        IsEnabled="False"
         Content="Background Elimination"
         extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"

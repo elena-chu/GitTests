@@ -50,9 +50,11 @@
 
   <!--Switch-->
   <SolidColorBrush x:Key="XBrush.Switch.Foreground.On" Color="{StaticResource XColor.Application.Active}"/>
-  <SolidColorBrush x:Key="XBrush.Switch.Background.On" Color="{StaticResource XColor.Switch.Background.On}"/>
-  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
-  <SolidColorBrush x:Key="XBrush.Switch.Background.Off" Color="{StaticResource XColor.Control.Background.Disabled}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Background" Color="{StaticResource XColor.Switch.Background}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Disabled.On" Color="{StaticResource XColor.Button.IconButton.Caption}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Disabled.Off" Color="{StaticResource XColor.Button.IconButton.Beta}"/>
+  <SolidColorBrush x:Key="XBrush.Switch.Background.Disabled" Color="{StaticResource XColor.Line}"/>
 
   <!--Frame/Line-->
   <SolidColorBrush x:Key="XBrush.Frame" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}"/>

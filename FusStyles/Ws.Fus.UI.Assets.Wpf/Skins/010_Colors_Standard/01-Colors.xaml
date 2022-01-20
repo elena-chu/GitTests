@@ -47,7 +47,7 @@
   <Color x:Key="XColor.RadioButton.MainMenu.Inactive">#FF999999</Color>
 
   <!--Switch-->
-  <Color x:Key="XColor.Switch.Background.On">#ff002d33</Color>
+  <Color x:Key="XColor.Switch.Background">#ff002d33</Color>
 
   <!--Frame/Line-->
   <Color x:Key="XColor.Line">#FF333333</Color>
