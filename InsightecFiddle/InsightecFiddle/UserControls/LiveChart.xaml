@@ -99,6 +99,14 @@
             IsHitTestVisible="False"
             ZIndex="50"
             Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
+          <telerik:CartesianGridLineAnnotation
+            Axis="{Binding ElementName=HorizontalAxis}"
+            Value="{Binding TimeIndication, Mode=TwoWay}" 
+            StrokeThickness="1"
+            Stroke="{StaticResource XBrush.TimeIndicator}"
+            IsHitTestVisible="False"
+            ZIndex="-150"
+            Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
         </telerik:RadCartesianChart.Annotations>
         <telerik:LineSeries
           Stroke="White"

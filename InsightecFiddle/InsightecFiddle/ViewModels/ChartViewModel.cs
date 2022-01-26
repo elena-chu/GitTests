@@ -270,6 +270,25 @@ namespace InsightecFiddle.ViewModels
         }
 
         #endregion
+
+
+        #region Time Indication
+
+        private double _timeIndication = 3;
+        public double TimeIndication
+        {
+            get => _timeIndication;
+            set
+            {
+                if (value != _timeIndication)
+                {
+                    _timeIndication = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        #endregion
     }
 
     public enum SonicationState

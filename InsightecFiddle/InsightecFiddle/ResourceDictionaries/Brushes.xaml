@@ -84,6 +84,9 @@
     <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0" />
   </RadialGradientBrush>
   
+  <!--Chart-->
+  <SolidColorBrush x:Key="XBrush.TimeIndicator" Color="{StaticResource XColor.TimeIndicator}"/>
+  
   <!--Temperature-->
   <SolidColorBrush x:Key="XBrush.Temperature.Limit" Color="{StaticResource XColor.Temperature.60}"/>
 

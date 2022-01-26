@@ -52,6 +52,9 @@
   <!--Frame/Line-->
   <Color x:Key="XColor.Line">#FF333333</Color>
 
+  <!--Chart-->
+  <Color x:Key="XColor.TimeIndicator">#FF527033</Color>
+
   <!--Temperatures-->
   <Color x:Key="XColor.Temperature.37">#FF059DC7</Color>
   <Color x:Key="XColor.Temperature.38">#FF2b9ea7</Color>
