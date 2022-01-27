@@ -43,6 +43,14 @@
               </StackPanel>
             </StackPanel>
           </Border.ToolTip>
+          <Border.ContextMenu>
+            <ContextMenu Style="{StaticResource XStyle.ContextMenu}" extensions:IndependentSize.MinWidth="120">
+              <MenuItem Header="Load"/>
+              <MenuItem Header="Load All"/>
+              <Separator/>
+              <MenuItem Header="Delete"/>
+            </ContextMenu>
+          </Border.ContextMenu>
           <Grid x:Name="MainGrid" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto"/>
