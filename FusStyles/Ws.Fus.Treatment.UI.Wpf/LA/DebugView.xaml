@@ -223,7 +223,7 @@
     <StackPanel>
       <TextBlock Text="Message Panel + content:"/>
       <ContentControl
-        extensions:ControlExtensions.Severity="Safety"
+        extensions:ControlExtensions.Severity="Warning"
         extensions:ControlExtensions.AlternativeText="Title"
         Style="{StaticResource XStyle.ContentControl.MessagePanel}">
         <StackPanel>
@@ -234,6 +234,14 @@
       </ContentControl>
     </StackPanel>
 
+    <StackPanel>
+      <TextBlock Text="Minor Message Panel:"/>
+      <ContentControl
+        extensions:IndependentSize.Width="180"
+        extensions:ControlExtensions.Severity="Info"
+        Content="Everything that happens once can never happen again. But everything that happens twice will surely happen a third time."
+        Style="{StaticResource XStyle.ContentControl.MessagePanel.Minor}"/>
+    </StackPanel>
   </UniformGrid>
 
 </UserControl>
