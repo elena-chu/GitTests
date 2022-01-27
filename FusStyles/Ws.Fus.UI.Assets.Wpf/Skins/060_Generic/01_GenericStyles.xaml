@@ -21,7 +21,7 @@
     <Setter Property="Data" Value="{StaticResource XGeometry.Chevron.Down}"/>
     <Setter Property="StrokeThickness" Value="1.3"/>
     <Setter Property="RenderTransformOrigin" Value="0.5,0.3"/>
-    <Setter Property="Stroke" Value="{StaticResource XBrush.Button.IconButton.Caption}"/>
+    <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Foreground}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Stroke" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>

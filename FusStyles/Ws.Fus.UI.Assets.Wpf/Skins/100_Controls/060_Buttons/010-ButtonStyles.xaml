@@ -397,27 +397,52 @@
   <!--Chevron-->
   <ControlTemplate x:Key="XControlTemplate.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
     <Border Background="{StaticResource XBrush.AlmostTransparent}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-      <Border x:Name="ChevronBorder" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
-        <Path
-          extensions:IndependentSize.Margin="0,2,0,0"
-          VerticalAlignment="Top"
-          Style="{StaticResource XStyle.Path.Chevron}"
-          extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
-          RenderTransformOrigin="0.5,0.5">
-          <Path.RenderTransform>
-            <ScaleTransform x:Name="ChevronScaleTransform" ScaleX="1" ScaleY="1"/>
-          </Path.RenderTransform>
-        </Path>
-      </Border>
+      <Grid>
+        <Border
+          x:Name="TopBottomChevronBorder"
+          Padding="0"
+          extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          extensions:IndependentSize.Width="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Visibility="{Binding (extensions:ControlExtensions.Direction), RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Top|Bottom'}">
+          <Path
+            extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
+            Style="{StaticResource XStyle.Path.Chevron}"
+            RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+              <ScaleTransform x:Name="TopBottomChevronScaleTransform" ScaleX="1" ScaleY="1"/>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+        <Border
+          x:Name="LeftRightChevronBorder"
+          Padding="0"
+          extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          extensions:IndependentSize.Width="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Visibility="{Binding (extensions:ControlExtensions.Direction), RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Left|Right'}">
+          <Path
+            extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
+            Style="{StaticResource XStyle.Path.Chevron}"
+            RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+              <TransformGroup>
+                <RotateTransform Angle="90"/>
+                <ScaleTransform x:Name="LeftRightChevronScaleTransform" ScaleX="1" ScaleY="1"/>
+              </TransformGroup>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+      </Grid>
     </Border>
     <ControlTemplate.Triggers>
-      <Trigger Property="extensions:ControlExtensions.VerticalPlacement" Value="Top">
-        <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,2" TargetName="ChevronBorder"/>
-        <Setter Property="VerticalAlignment" Value="Bottom" TargetName="ChevronBorder"/>
+      <Trigger Property="extensions:ControlExtensions.Direction" Value="Top">
         <Trigger.EnterActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBottomChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
                 <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
@@ -426,7 +451,27 @@
         <Trigger.ExitActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBottomChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Direction" Value="Right">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftRightChevronScaleTransform" Storyboard.TargetProperty="ScaleX">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftRightChevronScaleTransform" Storyboard.TargetProperty="ScaleX">
                 <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
