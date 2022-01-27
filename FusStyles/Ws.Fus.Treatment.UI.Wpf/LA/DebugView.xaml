@@ -350,6 +350,7 @@
         extensions:IndependentSize.Width="180"
         extensions:ControlExtensions.Severity="Info"
         Content="Everything that happens once can never happen again. But everything that happens twice will surely happen a third time."
+        extensions:ControlExtensions.AlternativeText="Tt"
         Style="{StaticResource XStyle.ContentControl.MessagePanel.Minor}"/>
     </StackPanel>
     <!-- 
