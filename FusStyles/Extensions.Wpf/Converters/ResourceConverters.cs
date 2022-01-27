@@ -182,53 +182,5 @@ namespace Ws.Extensions.UI.Wpf.Converters
             throw new NotImplementedException();
         }
     }
-
-    /// <summary>
-    /// Receives: Severity
-    /// Returns: Icon (Canvas) representing Severity
-    /// </summary>
-    public class SeverityToIconConverter : ConverterMarkupExtension<SeverityToIconConverter>
-    {
-        public const string SAFETY_ICON_NAME = "XCanvas.Message.Safety";
-        public const string ERROR_ICON_NAME = "XCanvas.Message.Error";
-        public const string WARNING_ICON_NAME = "XCanvas.Message.Warning";
-        public const string INFO_ICON_NAME = "XCanvas.Message.Info";
-        
-        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (!ConverterAssists.CheckValueValidity(value))
-                return Binding.DoNothing;
-
-            string iconName = null;
-            if (value is Severity severity)
-            {
-                switch (severity)
-                {
-                    case Severity.Info:
-                        iconName = INFO_ICON_NAME;
-                        break;
-                    case Severity.Warning:
-                        iconName = WARNING_ICON_NAME;
-                        break;
-                    case Severity.Error:
-                        iconName = ERROR_ICON_NAME;
-                        break;
-                    case Severity.Safety:
-                        iconName = SAFETY_ICON_NAME;
-                        break;
-                    default:
-                        break;
-                }
-                return (Canvas)Application.Current.TryFindResource(iconName);
-            }
-
-            return Binding.DoNothing;
-        }
-
-        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
 

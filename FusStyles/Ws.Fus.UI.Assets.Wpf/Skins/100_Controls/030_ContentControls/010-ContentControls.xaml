@@ -24,17 +24,31 @@
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
           <Viewbox
             Stretch="Uniform"
             extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
             extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}"
             IsHitTestVisible="False">
-            <ContentControl Content="{Binding (extensions:ControlExtensions.Severity), RelativeSource={RelativeSource Self}, Converter={extensions:SeverityToIconConverter}}"/>
+            <ContentControl Content="{Binding (extensions:IconedButton.ActiveIcon), RelativeSource={RelativeSource TemplatedParent}}"/>
           </Viewbox>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+    <Style.Triggers>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Safety">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Safety}"/>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Error">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Error}"/>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Warning">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Warning}"/>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Info">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Info}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <Style x:Key="XStyle.ContentControl.Switch" TargetType="{x:Type ContentControl}">
@@ -246,10 +260,14 @@
   <Style x:Key="XStyle.ContentControl.MessagePanel" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IndependentSize.Padding" Value="12"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="30"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="2"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ContentControl}">
-          <Border Style="{StaticResource XStyle.Border.Message}">
+          <Border
+            Style="{StaticResource XStyle.Border.Message}"
+            extensions:IndependentSize.BorderThickness="{TemplateBinding extensions:IndependentSize.BorderThickness}">
             <Grid Margin="{TemplateBinding Padding}">
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -264,23 +282,43 @@
                 Grid.Column="0"
                 extensions:IndependentSize.Margin="0,0,12,0"
                 Style="{StaticResource XStyle.ContentControl.SeverityIcon}"
-                extensions:IconedButton.IconSize="30"/>
+                extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"/>
               <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
                 Text="{Binding (extensions:ControlExtensions.AlternativeText), RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}"
                 Style="{StaticResource XStyle.TextBlock.Base}"
                 extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Header2}"/>
-              <ContentPresenter extensions:IndependentSize.Margin="0,12,0,0" Grid.Row="1" Grid.ColumnSpan="2" Content="{TemplateBinding Content}">
+              <ContentPresenter
+                x:Name="ContentPresenter"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                extensions:IndependentSize.Margin="0,12,0,0"
+                Content="{TemplateBinding Content}">
                 <ContentPresenter.Resources>
                   <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}"/>
                 </ContentPresenter.Resources>
               </ContentPresenter>
             </Grid>
           </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="extensions:ControlExtensions.AlternativeText" Value="">
+              <Setter TargetName="ContentPresenter" Property="Grid.Row" Value="0"/>
+              <Setter TargetName="ContentPresenter" Property="Grid.RowSpan" Value="2"/>
+              <Setter TargetName="ContentPresenter" Property="Grid.Column" Value="1"/>
+              <Setter TargetName="ContentPresenter" Property="Grid.ColumnSpan" Value="1"/>
+              <Setter TargetName="ContentPresenter" Property="extensions:IndependentSize.Margin" Value="6,0,0,0"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentControl.MessagePanel.Minor" TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.MessagePanel}">
+    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1"/>
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}"/>
   </Style>
 
 </ResourceDictionary>
