@@ -141,7 +141,7 @@
     </StackPanel>
 
     <StackPanel>
-      <TextBlock Text="Chevron:"/>
+      <TextBlock Text="Repeat Chevron:"/>
       <Grid HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
           <ColumnDefinition/>
@@ -242,6 +242,27 @@
         Content="Everything that happens once can never happen again. But everything that happens twice will surely happen a third time."
         Style="{StaticResource XStyle.ContentControl.MessagePanel.Minor}"/>
     </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Button Chevron:"/>
+      <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button
+          Margin="0,0,6,0"
+          Style="{StaticResource XStyle.Button.Chevron}"
+          extensions:IndependentSize.Height="50"
+          extensions:IndependentSize.Width="28"
+          extensions:IconedButton.IconSize="36"
+          extensions:ControlExtensions.Direction="Left"/>
+        <Button
+          Margin="6,0,0,0"
+          Style="{StaticResource XStyle.Button.Chevron}"
+          extensions:IndependentSize.Height="50"
+          extensions:IndependentSize.Width="28"
+          extensions:IconedButton.IconSize="36"
+          extensions:ControlExtensions.Direction="Right"/>
+      </StackPanel>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>

@@ -578,7 +578,7 @@
     <Setter Property="extensions:IndependentSize.Padding" Value="4"/>
   </Style>
 
-  <ControlTemplate x:Key="XControlTemplate.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+  <ControlTemplate x:Key="XControlTemplate.ButtonBase.Chevron" TargetType="{x:Type ButtonBase}">
     <Border
       Style="{StaticResource XStyle.Border.Hover.TransparentToFadedSecondary}"
       extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}">
@@ -666,10 +666,16 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+  <Style x:Key="XStyle.Button.Chevron" TargetType="{x:Type Button}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.Chevron}"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Chevron}"/>
+  </Style>
+
+  <Style x:Key="XStyle.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.Chevron}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
   </Style>
 
 
