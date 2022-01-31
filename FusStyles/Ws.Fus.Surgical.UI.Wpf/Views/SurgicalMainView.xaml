@@ -53,14 +53,14 @@
         </Grid.RowDefinitions>
         
         <extensions:NumericUpDown
-          HorizontalAlignment="Center"
           CodeLiteralVisibility="Collapsed"
           DisplayLength="8"
           MaxValue="8"
           MinValue="1"
           Value="6"
           NumberOfFractionDigits="0"
-          Style="{StaticResource LStyle.NumericUpDown.SonicationSelector}"/>
+          Style="{StaticResource LStyle.NumericUpDown.SonicationSelector}"
+        />
         
         <local:SurgicalProgressView
           Grid.Row="1"
