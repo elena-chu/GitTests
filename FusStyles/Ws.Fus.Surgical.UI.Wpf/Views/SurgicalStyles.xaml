@@ -1,10 +1,21 @@
-﻿<ResourceDictionary
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:extensions="http://schemas.insightec.com/wpf/">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:extensions="http://schemas.insightec.com/wpf/"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    >
+
+  <sys:Int32 x:Key="IntervalForNumeric">500</sys:Int32>
+
+  <Style x:Key="LStyle.RowDefinition.SonicationParamsRow" TargetType="RowDefinition">
+    <Setter Property="extensions:IndependentSize.RowHeight" Value="410" />
+  </Style>
 
   <Style x:Key="LStyle.RowDefinition.SonicationBtnRow" TargetType="RowDefinition">
     <Setter Property="extensions:IndependentSize.RowHeight" Value="70" />
+  </Style>
+
+  <Style x:Key="LStyle.Surgical.MenuContainerStyle" TargetType="Panel" BasedOn="{StaticResource MenuContainerStyle}">
+    <Setter Property="extensions:IndependentSize.Margin" Value="18,15,18,0" />
   </Style>
 
   <Style x:Key="LStyle.Button.Sonication" TargetType="Button" BasedOn="{StaticResource XStyle.Button.Primary}">
@@ -78,22 +89,26 @@
         Grid.Column="1"
         Grid.Row="1"
         VerticalAlignment="Bottom"
+        TextAlignment="Left"
+        Width="Auto"
         extensions:IndependentSize.Margin="0,0,-5,-5"
         Foreground="{StaticResource XBrush.Application.Foreground}"
+        Opacity=".8"
+        Visibility="{TemplateBinding extensions:ControlExtensions.IsActive, Converter={StaticResource BooleanToVisibilityConverter}}"
         extensions:IndependentSize.FontSize="20"
-        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MaxValue, StringFormat='/{0}'}"/>
+        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MaxValue, StringFormat='/{0}'}" />
       <RepeatButton
         Name="PART_DownButton" 
         Grid.Column="2"
         Grid.Row="1"
         Style="{StaticResource XStyle.RepeatButton.Spinner}" 
-        extensions:IndependentSize.Margin="0,0,1,0"
+        extensions:IndependentSize.Margin="0,10,1,0"
         extensions:ControlExtensions.Direction="Left"/>
       <RepeatButton
         Name="PART_UpButton"
         Grid.Column="3"
         Grid.Row="1"
-        extensions:IndependentSize.Margin="1,0,0,0"
+        extensions:IndependentSize.Margin="1,10,0,0"
         Style="{StaticResource XStyle.RepeatButton.Spinner}"
         extensions:ControlExtensions.Direction="Right"/>
       <TextBlock x:Name="PART_CodeLiteralTB" Visibility="Collapsed"/>
@@ -103,8 +118,15 @@
   <Style x:Key="LStyle.NumericUpDown.SonicationSelector" TargetType="{x:Type extensions:NumericUpDown}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.NumericUpDown.SonicationSelector}"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{x:Null}"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="extensions:IndependentSize.Margin" Value="20, 5, 20, 0" />
+    <Setter Property="CodeLiteralVisibility" Value="Collapsed" />
+    <Setter Property="DisplayLength" Value="3" />
+    <Setter Property="MinValue" Value="1" />
+    <Setter Property="Interval" Value="{StaticResource IntervalForNumeric}" />
   </Style>
-  
+
   <!--End of Sonication Number Selector-->
-  
+
 </ResourceDictionary>

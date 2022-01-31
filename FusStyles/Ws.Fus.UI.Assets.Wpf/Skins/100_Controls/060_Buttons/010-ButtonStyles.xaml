@@ -38,7 +38,11 @@
 
   <!--Text-->
   <ControlTemplate x:Key="XControlTemplate.Button.Primary" TargetType="{x:Type Button}">
-    <Border extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.Primary}">
+    <Border
+      extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
+      extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
+      extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+      Style="{StaticResource XStyle.Border.HoverAndPress.Primary}">
       <ContentPresenter
         extensions:IndependentSize.Margin="1,0,1,1"
         HorizontalAlignment="Center"
@@ -58,7 +62,11 @@
   </Style>
 
   <ControlTemplate x:Key="XControlTemplate.Button.Secondary" TargetType="{x:Type Button}">
-    <Border extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
+    <Border
+      extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
+      extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
+      extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+      Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
       <ContentPresenter
         extensions:IndependentSize.Margin="1,0,1,1"
         HorizontalAlignment="Center"
@@ -392,7 +400,6 @@
       </Trigger>
     </Style.Triggers>
   </Style>
-
 
   <!--Chevron-->
   <ControlTemplate x:Key="XControlTemplate.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
@@ -1078,17 +1085,17 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.Button.QuitModule" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Transparent}">
+  <Style x:Key="XStyle.Button.QuitModule" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.TransparentToSafety}">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground.Secondary}" />
-    <Setter Property="Height" Value="NaN" />
     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
     <Setter Property="TextBlock.HorizontalAlignment" Value="Left" />
-    <Setter Property="extensions:IndependentSize.Height" Value="NaN" />
     <Setter Property="extensions:IndependentSize.Padding" Value="10,0,5,0" />
   </Style>
+
+  <!-- Specific buttons, that used in several places-->
 
   <Style x:Key="XStyle.Button.Specific.Refresh" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon.Small}">
     <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Refresh}"/>
@@ -1098,6 +1105,14 @@
     <Setter Property="extensions:IconedButton.IconSize" Value="15" />
     <Setter Property="extensions:IndependentSize.Width" Value="22" />
     <Setter Property="extensions:IndependentSize.Height" Value="22" />
+  </Style>
+
+  <Style x:Key="XStyle.Button.Specific.Play>pause" TargetType="ToggleButton" BasedOn="{StaticResource XStyle.ToggleButton.Icon.Small}">
+    <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Menu.Compare.Pause}" />
+    <Setter Property="extensions:IconedButton.InactiveIcon" Value="{StaticResource XCanvas.Menu.Compare.Play}" />
+    <Setter Property="Content" Value="Play/Pause" />
+    <Setter Property="IsChecked" Value="False" />
+    <Setter Property="extensions:IconedButton.IconSize" Value="34" />
   </Style>
 
 </ResourceDictionary>

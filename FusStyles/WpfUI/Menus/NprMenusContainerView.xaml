@@ -40,7 +40,7 @@
         extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Manual}"
         Content="Manual NPR"/>
 
-      <ToggleButton 
+      <!--<ToggleButton 
         Style="{StaticResource XStyle.ToggleButton.IconAndChevronOverText}"
         Grid.Row="0"
         Grid.Column="1"
@@ -55,7 +55,19 @@
             <MenuItem Header="Pygmy" IsEnabled="False"/>
           </ContextMenu>
         </ToggleButton.ContextMenu>
-      </ToggleButton>
+      </ToggleButton>-->
+      <ComboBox Style="{StaticResource XStyle.ComboBox.ToggleButtonAndTextHeader}" 
+                extensions:IconedButton.Icon="{StaticResource XCanvas.Npr.Spherical}"
+                Grid.Row="0"
+                Grid.Column="1"
+                extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+                extensions:ControlExtensions.AlternativeText="Spherical NPR"
+                >
+        <ComboBoxItem Content="Grey"/>
+        <ComboBoxItem Content="Humpback"/>
+        <ComboBoxItem Content="Bowhead"/>
+        <ComboBoxItem Content="Common Minke"/>
+      </ComboBox>
 
       <Button Grid.Row="2" Grid.ColumnSpan="2"
           ToolTip="Approve CT NPRs"

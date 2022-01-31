@@ -8,8 +8,11 @@
   <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
   <converters:ConverterProxy x:Key="converterProxy" />
   <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-  <converters:ComparisonConverter x:Key="ComparisonConverter" />
+  <converters:PostfixFormatConverter x:Key="PostfixFormatConverter" />
+  <converters:PrefixFormatConverter x:Key="PrefixFormatConverter" />
+  <converters:MathConverter x:Key="MathConverter" />
 
+  <converters:ComparisonConverter x:Key="ComparisonConverter" />
   <converters:ComparisonConverter x:Key="ComparisionToVisibilityConverter" TrueValue="Visible" FalseValue="Collapsed" />
   <converters:ComparisonConverter x:Key="ComparisionToBooleanConverter" TrueValue="True" FalseValue="False" />
 

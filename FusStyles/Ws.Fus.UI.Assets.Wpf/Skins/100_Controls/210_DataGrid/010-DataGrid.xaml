@@ -4,189 +4,189 @@
   xmlns:extensions="http://schemas.insightec.com/wpf/">
 
 
-    <Style x:Key="DataGridCommon" TargetType="{x:Type DataGrid}">
-        <Setter Property="CanUserAddRows" Value="False"/>
-        <Setter Property="AutoGenerateColumns" Value="False"/>
-        <Setter Property="IsReadOnly" Value="True"/>
-        <Setter Property="AlternationCount" Value="2"/>
-        <Setter Property="AlternatingRowBackground" Value="LightGray"/>
-    </Style>
+  <Style x:Key="DataGridCommon" TargetType="{x:Type DataGrid}">
+    <Setter Property="CanUserAddRows" Value="False"/>
+    <Setter Property="AutoGenerateColumns" Value="False"/>
+    <Setter Property="IsReadOnly" Value="True"/>
+    <Setter Property="AlternationCount" Value="2"/>
+    <Setter Property="AlternatingRowBackground" Value="LightGray"/>
+  </Style>
 
 
 
-    <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
-        <Setter Property="Width" Value="1"/>
-        <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
-        <Setter Property="Cursor" Value="SizeWE"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+  <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+    <Setter Property="Width" Value="1"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="Cursor" Value="SizeWE"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Thumb}">
+          <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
-    <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Background" Value="LightBlue"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Height" Value="32"/>
-        <Setter Property="Padding" Value="5 0"/>
-        <Setter Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background}"/>
+  <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+    <Setter Property="Background" Value="LightBlue"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Height" Value="32"/>
+    <Setter Property="Padding" Value="5 0"/>
+    <Setter Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background}"/>
 
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                    <Grid>
-                        <Border Background="{TemplateBinding Background}"
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+          <Grid>
+            <Border Background="{TemplateBinding Background}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     Padding="{TemplateBinding Padding}"
                                     x:Name="_headerBorder"
                                     >
-                            <Grid Margin="{TemplateBinding Padding}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <ContentPresenter RecognizesAccessKey="True"
+              <Grid Margin="{TemplateBinding Padding}">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="auto"/>
+                  <ColumnDefinition Width="auto"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter RecognizesAccessKey="True"
                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                       TextBlock.Foreground="{StaticResource XBrush.Button.IconButton.Alpha}"/>
 
-                                <Path Grid.Column="1" Style="{StaticResource XStyle.Path.Chevron}" x:Name="_sortDirection"  Stretch="Uniform"
+                <Path Grid.Column="1" Style="{StaticResource XStyle.Path.Chevron}" x:Name="_sortDirection"  Stretch="Uniform"
                                           extensions:IndependentSize.Margin="5 0 0 0"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
 
-                                    <Path.LayoutTransform>
-                                        <RotateTransform Angle="0"/>
-                                    </Path.LayoutTransform>
-                                </Path>
-                            </Grid>
-                        </Border>
-                        <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
-                        <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
+                  <Path.LayoutTransform>
+                    <RotateTransform Angle="0"/>
+                  </Path.LayoutTransform>
+                </Path>
+              </Grid>
+            </Border>
+            <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+            <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+          </Grid>
+          <ControlTemplate.Triggers>
 
-                        <Trigger Property="SortDirection" Value="{x:Null}">
-                            <Setter TargetName="_sortDirection" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background}"/>
-                        </Trigger>
+            <Trigger Property="SortDirection" Value="{x:Null}">
+              <Setter TargetName="_sortDirection" Property="Visibility" Value="Collapsed"/>
+              <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background}"/>
+            </Trigger>
 
-                        <Trigger Property="SortDirection" Value="Ascending">
-                            <Setter TargetName="_sortDirection" Property="LayoutTransform">
-                                <Setter.Value>
-                                    <RotateTransform Angle="180"/>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="_sortDirection" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}"/>
-                        </Trigger>
-
-
-                        <Trigger Property="SortDirection" Value="Descending">
-
-                            <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}"/>
-                        </Trigger>
-
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+            <Trigger Property="SortDirection" Value="Ascending">
+              <Setter TargetName="_sortDirection" Property="LayoutTransform">
+                <Setter.Value>
+                  <RotateTransform Angle="180"/>
+                </Setter.Value>
+              </Setter>
+              <Setter TargetName="_sortDirection" Property="Visibility" Value="Visible"/>
+              <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}"/>
+            </Trigger>
 
 
-    <Style x:Key="DataGridStyle1" TargetType="DataGrid">
+            <Trigger Property="SortDirection" Value="Descending">
 
-        <Setter Property="CanUserAddRows" Value="False"/>
-        <Setter Property="AutoGenerateColumns" Value="False"/>
-        <Setter Property="IsReadOnly" Value="True"/>
+              <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}"/>
+            </Trigger>
 
-        <!--<Setter Property="Background" Value="LightGray"/>-->
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
 
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
-        <Setter Property="extensions:IndependentSize.BorderThickness" Value="1"/>
+  <Style x:Key="DataGridStyle1" TargetType="DataGrid">
 
-        <Setter Property="GridLinesVisibility" Value="All"/>
-        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
-        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="CanUserAddRows" Value="False"/>
+    <Setter Property="AutoGenerateColumns" Value="False"/>
+    <Setter Property="IsReadOnly" Value="True"/>
 
-        <Setter Property="HeadersVisibility" Value="Column"/>
-        <Setter Property="SelectionMode" Value="Single"/>
+    <!--<Setter Property="Background" Value="LightGray"/>-->
 
-        <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
 
-        <Setter Property="RowStyle">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1"/>
+
+    <Setter Property="GridLinesVisibility" Value="All"/>
+    <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+    <Setter Property="VerticalGridLinesBrush" Value="{StaticResource XBrush.Button.Secondary.Background}"/>
+
+    <Setter Property="HeadersVisibility" Value="Column"/>
+    <Setter Property="SelectionMode" Value="Single"/>
+
+    <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+    <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+    <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+
+    <Setter Property="RowStyle">
+      <Setter.Value>
+        <Style TargetType="DataGridRow">
+          <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Caption}"/>
+          <Setter Property="Background" Value="Transparent"/>
+          <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}" />
+            </Trigger>
+          </Style.Triggers>
+        </Style>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="CellStyle">
+      <Setter.Value>
+        <Style TargetType="DataGridCell">
+
+          <Setter Property="BorderBrush" Value="Transparent" />
+          <Setter Property="Background" Value="Transparent" />
+          <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Caption}"/>
+
+          <Setter Property="extensions:IndependentSize.Padding" Value="4,3,4,3" />
+          <Setter Property="BorderThickness" Value="1"/>
+          <Setter Property="Template">
             <Setter.Value>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Caption}"/>
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="CellStyle">
-            <Setter.Value>
-                <Style TargetType="DataGridCell">
-                    
-                    <Setter Property="BorderBrush" Value="Transparent" />
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Caption}"/>
-                    
-                    <Setter Property="extensions:IndependentSize.Padding" Value="4,3,4,3" />
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="DataGridCell">
-                                <Border Padding="{TemplateBinding Padding}" 
+              <ControlTemplate TargetType="DataGridCell">
+                <Border Padding="{TemplateBinding Padding}" 
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Background="{TemplateBinding Background}">
-                                    <ContentPresenter />
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="FocusVisualStyle">
-                        <Setter.Value>
-                            <Style TargetType="Control">
-                                <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>
-                        </Setter.Value>
-                    </Setter>
+                  <ContentPresenter />
+                </Border>
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+          <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+              <Style TargetType="Control">
+                <Setter Property="BorderBrush" Value="Transparent" />
+              </Style>
+            </Setter.Value>
+          </Setter>
 
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Alpha}" />
-                        </Trigger>
-                    </Style.Triggers>
+          <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Alpha}" />
+            </Trigger>
+          </Style.Triggers>
 
-                    <!-- Highlight selected rows -->
-                    <!--<Style.Triggers>
+          <!-- Highlight selected rows -->
+          <!--<Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background.Active}" />
                             <Setter Property="BorderBrush" Value="Transparent" />
                             <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Alpha}" />
                         </Trigger>
                     </Style.Triggers>-->
-                </Style>
-            </Setter.Value>
-        </Setter>
-    </Style>
+        </Style>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
 </ResourceDictionary>

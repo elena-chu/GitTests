@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:extensions="http://schemas.insightec.com/wpf/"
   xmlns:sys="clr-namespace:System;assembly=mscorlib">
-  
+
   <sys:Double x:Key="XDouble.Width.Slider.Thermal">36</sys:Double>
   <GridLength x:Key="XGridLength.ThermalColumn">0.37*</GridLength>
   <GridLength x:Key="XGridLength.ThumbColumn">0.63*</GridLength>
@@ -23,7 +23,7 @@
             <ItemsControl ItemsSource="{Binding DegreesAboveValue, RelativeSource={RelativeSource AncestorType={x:Type extensions:ThermalSlider}}, Mode=OneWay}">
               <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                  <Border Background="{Binding Path=., Converter={extensions:TemperatureToBrushConverter}}"/>
+                  <Border Background="{Binding Path=., Converter={extensions:TemperatureToBrushConverter}}" Margin="0,-1,0,0"/>
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
               <ItemsControl.ItemsPanel>
@@ -124,15 +124,18 @@
               <Track.Thumb>
                 <Thumb Style="{StaticResource XStyle.Thumb.ThermalSlider}"/>
               </Track.Thumb>
+              <Track.Effect>
+                <DropShadowEffect Direction="-75" ShadowDepth="2" Opacity="0.8" BlurRadius="2" Color="Black"/>
+              </Track.Effect>
             </Track>
             <Popup
               x:Name="Popup"
-              Placement="Right"
-              extensions:IndependentSize.HorizontalOffset="3"
+              Placement="Relative"
+              extensions:IndependentSize.VerticalOffset="-20"
               AllowsTransparency="True"
               Focusable="False"
               PopupAnimation="Fade">
-              <Grid Height="{Binding ActualHeight, ElementName=PART_Track}">
+              <Grid Height="{Binding ActualHeight, ElementName=PART_Track, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE*1.16}">
                 <TextBlock VerticalAlignment="Top" Text="{TemplateBinding extensions:ControlExtensions.CaptionMax}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
                 <TextBlock VerticalAlignment="Bottom" Text="{TemplateBinding extensions:ControlExtensions.CaptionMin}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
               </Grid>

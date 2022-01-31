@@ -58,9 +58,11 @@
       </Setter.Value>
     </Setter>
   </Style>
-  
+
   <Style x:Key="XStyle.ContextMenu" TargetType="{x:Type ContextMenu}">
     <Setter Property="extensions:IndependentSize.HorizontalOffset" Value="4"/>
+    <Setter Property="extensions:IndependentSize.MinWidth" Value="120" />
+    <Setter Property="Placement" Value="Left" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>

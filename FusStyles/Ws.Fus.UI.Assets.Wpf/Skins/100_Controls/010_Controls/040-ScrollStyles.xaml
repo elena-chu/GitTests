@@ -39,9 +39,23 @@
           </BeginStoryboard>
         </Trigger.ExitActions>
       </Trigger>
-      <Trigger Property="IsMouseOver" Value="True">
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+          <Condition Binding="{Binding Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollBar}}" Value="Horizontal" />
+        </MultiDataTrigger.Conditions>
+        <Setter Property="extensions:IndependentSize.Margin" Value="0,-2,0,0"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+          <Condition Binding="{Binding Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollBar}}" Value="Vertical" />
+        </MultiDataTrigger.Conditions>
         <Setter Property="extensions:IndependentSize.Margin" Value="-2,0,0,0"/>
-      </Trigger>
+      </MultiDataTrigger>
+      <!--<Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="extensions:IndependentSize.Margin" Value="-2,0,0,0"/>
+      </Trigger>-->
     </Style.Triggers>
   </Style>
 
@@ -151,6 +165,17 @@
               Visibility="Collapsed"
               Fill="{TemplateBinding Background}"/>
           </Grid>
+          <ControlTemplate.Triggers>
+            <!--The next property: extensions:ControlExtensions.HorizontalPlacement is used as hack for resolving the next problem:
+                For ScrollContentPresenter containing the WrapPaanel
+                when in ScrollContentPresenter Grid.RowSpan set to 2, somehow column where placed VerticalScrollBar is extended instead of 9px to 800
+                Setting ColumnSpan to 1 resolve this issue.
+                Used only in one place - SeriesSelectorView.
+            -->
+            <Trigger Property="extensions:ControlExtensions.HorizontalPlacement" Value="Left">
+              <Setter Property="Grid.ColumnSpan" TargetName="PART_ScrollContentPresenter" Value="1" />
+            </Trigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

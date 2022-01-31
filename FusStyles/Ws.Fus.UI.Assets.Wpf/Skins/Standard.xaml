@@ -49,8 +49,11 @@
   <sys:Double x:Key="XDouble.FontSize.ToolTip">14</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Title">13</sys:Double>
   <sys:Double x:Key="XDouble.FontSize.Thumbnail">12</sys:Double>
-  <sys:Double x:Key="XDouble.ColumnGap.Preferences">75</sys:Double>
-  <sys:Double x:Key="XDouble.Width.Preferences">205</sys:Double>
+  <sys:Double x:Key="XDouble.ColumnGap.Preferences">50</sys:Double>
+  <sys:Double x:Key="XDouble.ColumnGap.Big.Preferences">68</sys:Double>
+  <sys:Double x:Key="XDouble.PlaceHolderWidth.Preferences">350</sys:Double>
+  <!--<sys:Double x:Key="XDouble.GapWidth.Layout.Preferences">50</sys:Double>
+  <sys:Double x:Key="XDouble.PlaceHolderWidth.Preferences">350</sys:Double>-->
   <sys:Double x:Key="XDouble.Chart.Label.Size">8</sys:Double>
   <!---->
   <!--Merged from file Skins\005_Basics\020-MiscDefinitions.xaml-->
@@ -80,9 +83,10 @@
   <Color x:Key="XColor.AlmostTransparent">#01000000</Color>
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
   <!--Severity-->
-  <Color x:Key="XColor.Safety">#FFF50000</Color>
-  <Color x:Key="XColor.Error">#FFeb571d</Color>
-  <Color x:Key="XColor.Warning">#FFe39718</Color>
+  <Color x:Key="XColor.Safety">#FFb73f3f</Color>
+  <Color x:Key="XColor.Safety.Pressed">#FF8c3030</Color>
+  <Color x:Key="XColor.Error">#FFeb701d</Color>
+  <Color x:Key="XColor.Warning">#FFe3b118</Color>
   <!--Controls-->
   <Color x:Key="XColor.Control.Background.Disabled">#FF191919</Color>
   <Color x:Key="XColor.Control.Foreground.Disabled">#FF666666</Color>
@@ -100,9 +104,11 @@
   <Color x:Key="XColor.Button.IconButton.Beta">#FF7F7F7F</Color>
   <Color x:Key="XColor.RadioButton.MainMenu.Inactive">#FF999999</Color>
   <!--Switch-->
-  <Color x:Key="XColor.Switch.Background.On">#ff002d33</Color>
+  <Color x:Key="XColor.Switch.Background">#ff002d33</Color>
   <!--Frame/Line-->
   <Color x:Key="XColor.Line">#FF333333</Color>
+  <!--Chart-->
+  <Color x:Key="XColor.TimeIndicator">#FF527033</Color>
   <!--Temperatures-->
   <Color x:Key="XColor.Temperature.37">#FF059DC7</Color>
   <Color x:Key="XColor.Temperature.38">#FF2b9ea7</Color>
@@ -207,6 +213,7 @@
   <SolidColorBrush x:Key="XBrush.Background.Emphasis" Color="{StaticResource XColor.Background.Emphasis}" />
   <!--Severity-->
   <SolidColorBrush x:Key="XBrush.Safety" Color="{StaticResource XColor.Safety}" />
+  <SolidColorBrush x:Key="XBrush.Safety.Pressed" Color="{StaticResource XColor.Safety.Pressed}" />
   <SolidColorBrush x:Key="XBrush.Error" Color="{StaticResource XColor.Error}" />
   <SolidColorBrush x:Key="XBrush.Warning" Color="{StaticResource XColor.Warning}" />
   <SolidColorBrush x:Key="XBrush.Info" Color="{StaticResource XColor.Application.Active}" />
@@ -234,9 +241,11 @@
   <SolidColorBrush x:Key="XBrush.RadioButton.NavigationMenu.Active" Color="{StaticResource XColor.Button.Primary.Background.Hover}" />
   <!--Switch-->
   <SolidColorBrush x:Key="XBrush.Switch.Foreground.On" Color="{StaticResource XColor.Application.Active}" />
-  <SolidColorBrush x:Key="XBrush.Switch.Background.On" Color="{StaticResource XColor.Switch.Background.On}" />
-  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.IconButton.Beta}" />
-  <SolidColorBrush x:Key="XBrush.Switch.Background.Off" Color="{StaticResource XColor.Control.Background.Disabled}" />
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Off" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}" />
+  <SolidColorBrush x:Key="XBrush.Switch.Background" Color="{StaticResource XColor.Switch.Background}" />
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Disabled.On" Color="{StaticResource XColor.Button.IconButton.Caption}" />
+  <SolidColorBrush x:Key="XBrush.Switch.Foreground.Disabled.Off" Color="{StaticResource XColor.Button.IconButton.Beta}" />
+  <SolidColorBrush x:Key="XBrush.Switch.Background.Disabled" Color="{StaticResource XColor.Line}" />
   <!--Frame/Line-->
   <SolidColorBrush x:Key="XBrush.Frame" Color="{StaticResource XColor.Button.Secondary.Background.Pressed}" />
   <SolidColorBrush x:Key="XBrush.Line" Color="{StaticResource XColor.Line}" />
@@ -264,6 +273,8 @@
     <GradientStop Color="{StaticResource XColor.Application.Active}" Offset="0.3" />
     <GradientStop Color="{StaticResource XColor.Application.Active.Transparent}" Offset="1.0" />
   </RadialGradientBrush>
+  <!--Chart-->
+  <SolidColorBrush x:Key="XBrush.TimeIndicator" Color="{StaticResource XColor.TimeIndicator}" />
   <!--Temperature-->
   <SolidColorBrush x:Key="XBrush.Temperature.37" Color="{StaticResource XColor.Temperature.37}" />
   <SolidColorBrush x:Key="XBrush.Temperature.38" Color="{StaticResource XColor.Temperature.38}" />
@@ -522,6 +533,7 @@
   <Geometry x:Key="XGeometry.Play">M 19.30493 16.137622 V 33.862383 L 30.695164 24.859078 Z</Geometry>
   <Geometry x:Key="XGeometry.Pause">m 27.072987,17.039399 h 5.572421 v 15.921202 h -5.572421 z m -9.718396,0 h 5.572421 v 15.921202 h -5.572421 z</Geometry>
   <Geometry x:Key="XGeometry.StopSign">m 14.17808,14.216878 c 0.65933,-1.834968 3.20277,-1.521274 3.63978,0 v 8.37685 c 0.24296,0.726853 1.12518,0.637383 1.09729,0 V 10.603861 c 0.69802,-1.736429 3.0943,-1.8240852 3.88064,0 v 12.257495 c 0.28217,0.531902 0.8727,0.336438 1.04376,0 V 8.9713122 c 0.40321,-1.7016271 3.13842,-1.8039032 3.72008,0 V 22.593725 c 0.25871,0.504045 0.8475,0.504032 1.04376,0 V 10.577098 c 0.57987,-1.7574489 3.07775,-1.6236223 3.63978,0 v 16.405775 c 0.17842,0.41037 0.46389,0.46389 0.85642,0.160578 0,0 1.30042,-2.819997 1.9537,-4.228569 0.41774,-0.900697 0.96348,-1.418443 1.7396,-1.793126 0.89298,-0.631225 1.84919,-0.619298 2.59602,-0.187342 0.77251,0.446812 0.26764,1.632549 0.26764,1.632549 -1.66099,4.298161 -3.48551,8.535865 -5.11175,12.846283 -0.66682,1.786636 -3.11172,4.05666 -3.31863,4.22857 -3.89822,3.238752 -10.2951,2.772633 -13.48859,0 -2.14069,-1.858574 -3.46985,-5.004266 -3.5595,-8.590953 z M 14.64454,0 0,14.644531 V 35.355468 L 14.64454,50 H 35.35351 L 50,35.355468 V 14.644531 L 35.35351,0 Z m 1.24218,3 h 18.2246 L 47,15.888672 V 34.113281 L 34.11132,47 H 15.88672 L 3,34.113281 V 15.888672 Z</Geometry>
+  <Geometry x:Key="XGeometry.Octagon">M 15.264283,1.4961735 1.4961735,15.264275 V 34.735726 L 15.264283,48.503828 H 34.733885 L 48.503828,34.735726 V 15.264275 L 34.733885,1.4961735 Z</Geometry>
   <Geometry x:Key="XGeometry.Triangle">M 47.248248,45.063931 H 2.8119734 C 1.1492034,45.043215 1.39668,44.043168 1.8730914,43.216999 L 23.82035,5.2758147 c 1.161239,-1.8172413 2.024709,-1.1031386 2.842415,0 L 48.418951,43.216999 c 0.189175,1.050254 0.0243,1.834939 -1.170703,1.846932 z</Geometry>
   <Geometry x:Key="XGeometry.CogWheel">m 46.454323,20.709928 h -4.756987 c -0.388925,-1.548856 -0.997575,-3.033762 -1.807737,-4.409217 l 3.425124,-3.432057 c 0.3995,-0.401997 0.623632,-0.946169 0.623632,-1.51343 0,-0.56726 -0.224132,-1.111432 -0.623632,-1.513429 L 40.175124,6.7910838 C 39.773861,6.3908494 39.230717,6.1661306 38.664661,6.1661306 c -0.566056,0 -1.1092,0.2247188 -1.510169,0.6249532 L 33.729368,10.223112 C 32.356674,9.4113925 30.874705,8.8013913 29.328993,8.4117613 v -4.76674 c 0,-0.5688763 -0.2256,-1.1144875 -0.627157,-1.5167488 C 28.300574,1.7259819 27.755991,1.5 27.18826,1.5 h -4.281375 c -0.56776,0 -1.112255,0.2259819 -1.513694,0.6282725 -0.401468,0.4022613 -0.627009,0.9478725 -0.627009,1.5167488 v 4.76674 c -1.545713,0.38963 -3.027623,0.9996312 -4.400287,1.8113507 L 12.940799,6.7910838 C 12.539596,6.3908494 11.99654,6.1661306 11.430425,6.1661306 c -0.566115,0 -1.1092,0.2247188 -1.5103743,0.6249532 L 6.8755083,9.841795 c -0.3994412,0.401997 -0.6236899,0.946169 -0.6236899,1.513429 0,0.567261 0.2242487,1.111433 0.6236899,1.51343 l 3.4250957,3.432057 C 9.4905295,17.676166 8.881762,19.161072 8.4929252,20.709928 H 3.7358203 c -0.6541659,-0.03831 -1.1709755,0.187791 -1.5755574,0.593551 -0.4630665,0.464415 -0.5570936,0.991539 -0.6602619,1.5515 v 4.290042 c 0,0.568906 0.2255413,1.114429 0.62698,1.516867 0.4014681,0.402143 0.9459631,0.628037 1.5137231,0.628037 h 4.7570754 c 0.3888369,1.548944 0.9976044,3.03385 1.8076785,4.409481 l -3.3299497,3.455675 c -0.3994412,0.402144 -0.6236899,0.946169 -0.6236899,1.5134 0,0.567525 0.2242487,1.11155 0.6236899,1.513694 l 3.0445424,3.050594 c 0.4011743,0.400087 0.9442593,0.624806 1.5103743,0.624806 0.566115,0 1.109171,-0.224719 1.510374,-0.624806 L 16.365895,39.7768 c 1.372664,0.811925 2.854574,1.42175 4.400287,1.811556 v 4.766682 c 0,0.5687 0.225541,1.114487 0.627009,1.516631 C 21.79463,48.274106 22.339125,48.5 22.906885,48.5 h 4.281375 c 0.567731,0 1.112314,-0.225894 1.513576,-0.628331 0.401557,-0.402144 0.627157,-0.947931 0.627157,-1.516631 v -4.766682 c 1.545712,-0.389806 3.027681,-0.999631 4.400375,-1.811556 l 3.448624,3.432175 c 0.401263,0.400087 0.944407,0.624806 1.510463,0.624806 0.566056,0 1.1092,-0.224719 1.510462,-0.624806 l 3.044425,-3.050888 c 0.3995,-0.401849 0.623631,-0.946168 0.623631,-1.5134 0,-0.567231 -0.224131,-1.111256 -0.623631,-1.5134 l -3.448918,-3.431881 c 0.810162,-1.375631 1.419106,-2.860537 1.807737,-4.409481 h 4.757281 c 0.567525,0 1.112138,-0.225894 1.513694,-0.628037 0.401262,-0.402438 0.626862,-0.947961 0.626862,-1.516867 v -4.290042 c 5.88e-4,-0.552779 -0.211793,-1.084408 -0.593081,-1.484055 -0.380994,-0.399617 -0.901519,-0.636409 -1.452594,-0.660996 z</Geometry>
   <Geometry x:Key="XGeometry.Refresh">m 37.604949,11.743262 -6.628369,6.628369 h 17.675652 l 1e-6,-17.6756525 -6.62837,6.6283697 c -9.765798,-9.7657979 -25.585507,-9.7657972 -35.3513045,0 C 3.2037115,10.793196 0.99425484,15.035353 0,19.47636 h 6.4516132 c 0.8395929,-2.828104 2.4083079,-5.501547 4.6398578,-7.733098 7.313302,-7.3133028 19.200178,-7.3133028 26.513478,0 z m 11.091473,18.780382 h -6.451614 c -0.883782,2.828103 -2.408307,5.501546 -4.639859,7.733096 -7.313302,7.313302 -19.200176,7.313302 -26.513478,0 L 17.71984,31.628371 H 0.04418879 l -9e-8,17.675653 6.6283698,-6.62837 c 9.7657985,9.765798 25.5855065,9.765796 35.3513045,0 3.468846,-3.468846 5.678304,-7.711003 6.672559,-12.15201 z</Geometry>
@@ -592,6 +604,7 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.TransducerLocationArrowHead}" />
   </Canvas>
   <Canvas x:Key="XCanvas.StopSign" Style="{StaticResource XStyle.Canvas.Icon}">
+    <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Fill="{StaticResource XBrush.Application.Background}" Data="{StaticResource XGeometry.Octagon}" />
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.StopSign}" />
   </Canvas>
   <Canvas x:Key="XCanvas.Info" Style="{StaticResource XStyle.Canvas.Icon}">
@@ -1175,7 +1188,7 @@
   </Canvas>
   <!---->
   <!--Merged from file Skins\057_Animations\01-Animations.xaml-->
-  <!--ColorAnimations-->
+  <!--ColorAnimations: Primary-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.ToBase.Stop.Primary" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop" />
   </Storyboard>
@@ -1188,6 +1201,7 @@
   <Storyboard x:Key="XStoryboard.ColorAnimation.ToPressed.Primary" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.Button.Primary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}" />
   </Storyboard>
+  <!--ColorAnimations: Secondary-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.ToBase.Stop.Secondary" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop" />
   </Storyboard>
@@ -1200,6 +1214,24 @@
   <Storyboard x:Key="XStoryboard.ColorAnimation.ToPressed.Secondary" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}" />
   </Storyboard>
+  <!--ColorAnimations: Faded Secondary (Switch background)-->
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.FadedSecondary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Switch.Background}" Duration="{StaticResource XDuration.Animation.Short}" />
+  </Storyboard>
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Stop.FadedSecondary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Switch.Background}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop" />
+  </Storyboard>
+  <!--ColorAnimations: Safety-->
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Safety" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Safety}" Duration="{StaticResource XDuration.Animation.Short}" />
+  </Storyboard>
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Stop.Safety" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Safety}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop" />
+  </Storyboard>
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToPressed.Safety" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Safety.Pressed}" Duration="{StaticResource XDuration.Animation.Short}" />
+  </Storyboard>
+  <!--ColorAnimations: General-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.Stop.ToTransparent" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop" />
   </Storyboard>
@@ -1249,6 +1281,26 @@
         <Setter Property="Stroke" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
       </Trigger>
       <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}" />
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard Storyboard.TargetProperty="Stroke.Color">
+              <ColorAnimation To="{StaticResource XColor.Application.Foreground}" Duration="{StaticResource XDuration.Animation.Short}" />
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="XStyle.Path.Chevron.Press" TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Path.Chevron}">
+    <Style.Triggers>
+      <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard>
             <Storyboard Storyboard.TargetProperty="Stroke.Color">
@@ -1471,6 +1523,35 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+  <Style x:Key="XStyle.Border.HoverAndPress.TransparentToSafety" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Safety}" />
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}" />
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Safety}" />
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}" />
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToPressed.Safety}" />
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Stop.Safety}" />
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
   <Style x:Key="XStyle.Border.HoverAndIndependentPress.TransparentToSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
     <Style.Triggers>
       <EventTrigger RoutedEvent="MouseDown">
@@ -1479,6 +1560,35 @@
       <EventTrigger RoutedEvent="MouseUp">
         <BeginStoryboard Storyboard="{StaticResource XStoryboard.BooleanAnimation.ToUnpressed}" />
       </EventTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="XStyle.Border.Hover.TransparentToFadedSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.FadedSecondary}" />
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}" />
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Hover" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.FadedSecondary}" />
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToTransparent}" />
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.FadedSecondary}" />
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Stop.FadedSecondary}" />
+        </Trigger.ExitActions>
+      </Trigger>
     </Style.Triggers>
   </Style>
   <Style x:Key="XStyle.Border.Active.Secondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
@@ -1566,9 +1676,9 @@
     <Setter Property="extensions:IndependentSize.Padding" Value="30 15" />
   </Style>
   <Style x:Key="XStyle.Border.Preferences.Seperator" TargetType="Rectangle">
-    <Setter Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Background.Hover}" />
+    <Setter Property="Fill" Value="{StaticResource XBrush.Button.Secondary.Background.Pressed}" />
     <Setter Property="extensions:IndependentSize.Margin" Value="0 20" />
-    <Setter Property="extensions:IndependentSize.Height" Value="3" />
+    <Setter Property="extensions:IndependentSize.Height" Value="1.3" />
   </Style>
   <Style x:Key="XStyle.Border.Ripple" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="extensions:IndependentSize.Margin" Value="20" />
@@ -1879,6 +1989,11 @@
     <Setter Property="extensions:IndependentSize.Margin" Value="0 0 0 6" />
     <Setter Property="extensions:IndependentSize.FontSize" Value="16" />
   </Style>
+  <Style x:Key="XStyle.TextBlock.Title.Module.Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Title}">
+    <Setter Property="extensions:IndependentSize.FontSize" Value="24" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0" />
+    <Setter Property="FontWeight" Value="Light" />
+  </Style>
   <!---->
   <!--Merged from file Skins\100_Controls\020_TextElements\030-ToolTipStyles.xaml-->
   <!--ToolTip-->
@@ -1945,12 +2060,7 @@
     <Setter Property="CaretBrush" Value="{StaticResource XBrush.Application.Foreground}" />
   </Style>
   <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}" BasedOn="{StaticResource XStyle.TextBox}" />
-  <Style x:Key="XStyle.TextBox.Preference" TargetType="TextBox">
-    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}" />
-    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background}" />
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
-    <!--<Setter Property="extensions:IndependentSize.Margin" Value="0 0 0 6"/>-->
-  </Style>
+  <Style x:Key="XStyle.TextBox.Preference" TargetType="TextBox" BasedOn="{StaticResource XStyle.TextBox}" />
   <!---->
   <!--Merged from file Skins\100_Controls\020_TextElements\101-HeaderStyle.xaml-->
   <!-- Label used as header -->
@@ -1984,7 +2094,7 @@
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Center" />
   </Style>
-  <Style x:Key="XStyle.Label.Caption.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}"></Style>
+  <Style x:Key="XStyle.Label.Caption.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}" />
   <Style x:Key="XStyle.Label.Caption.Marked.Preference" TargetType="Label" BasedOn="{StaticResource XStyle.Label.Caption.Preference}">
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}" />
   </Style>
@@ -1993,8 +2103,9 @@
   </Style>
   <Style x:Key="XStyle.Label.Title.Preference" TargetType="{x:Type Label}" BasedOn="{StaticResource XStyle.Label.Caption}">
     <Setter Property="FontSize" Value="{StaticResource XDouble.FontSize.Title}" />
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}" />
-    <Setter Property="extensions:IndependentSize.Margin" Value="0 0 0 5" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+    <Setter Property="extensions:IndependentSize.Margin" Value="0 0 8 5" />
+    <Setter Property="FontWeight" Value="Bold" />
   </Style>
   <!---->
   <!--Merged from file Skins\100_Controls\020_TextElements\103-TextStyle.xaml-->
@@ -2026,13 +2137,27 @@
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
           <Viewbox Stretch="Uniform" extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}" extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}" IsHitTestVisible="False">
-            <ContentControl Content="{Binding (extensions:ControlExtensions.Severity), RelativeSource={RelativeSource Self}, Converter={extensions:SeverityToIconConverter}}" />
+            <ContentControl Content="{Binding (extensions:IconedButton.ActiveIcon), RelativeSource={RelativeSource TemplatedParent}}" />
           </Viewbox>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+    <Style.Triggers>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Safety">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Safety}" />
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Error">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Error}" />
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Warning">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Warning}" />
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Severity" Value="Info">
+        <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Message.Info}" />
+      </Trigger>
+    </Style.Triggers>
   </Style>
   <Style x:Key="XStyle.ContentControl.Switch" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -2042,7 +2167,7 @@
         <ControlTemplate TargetType="{x:Type ContentControl}">
           <Viewbox Stretch="Uniform">
             <Canvas Width="90" Height="50">
-              <Rectangle x:Name="SwitchBackground" Canvas.Left="0" Canvas.Top="0" Width="90" Height="50" RadiusX="26" RadiusY="26" Fill="{StaticResource XBrush.Switch.Background.Off}" extensions:IndependentSize.StrokeThickness="1.5" Stroke="{StaticResource XBrush.AlmostTransparent}" />
+              <Rectangle x:Name="SwitchBackground" Canvas.Left="0" Canvas.Top="0" Width="90" Height="50" RadiusX="26" RadiusY="26" Fill="{StaticResource XBrush.Switch.Background}" extensions:IndependentSize.StrokeThickness="1.5" Stroke="{StaticResource XBrush.AlmostTransparent}" />
               <Ellipse x:Name="SwitchIndicator" Canvas.Left="8" Canvas.Top="9" Width="32" Height="32" Fill="{StaticResource XBrush.Switch.Foreground.Off}" />
             </Canvas>
           </Viewbox>
@@ -2051,7 +2176,6 @@
               <DataTrigger.EnterActions>
                 <BeginStoryboard x:Name="ToRightBeginStoryboard">
                   <Storyboard>
-                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Control.Background.Disabled}" To="{StaticResource XColor.Switch.Background.On}" Duration="{StaticResource XDuration.Animation.Short}" />
                     <DoubleAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="(Canvas.Left)" From="8" To="50" Duration="{StaticResource XDuration.Animation.Short}" />
                     <ColorAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Button.IconButton.Beta}" To="{StaticResource XColor.Application.Active}" Duration="{StaticResource XDuration.Animation.Short}" />
                   </Storyboard>
@@ -2060,9 +2184,8 @@
               <DataTrigger.ExitActions>
                 <BeginStoryboard x:Name="ToLeftBeginStoryboard">
                   <Storyboard>
-                    <ColorAnimation Storyboard.TargetName="SwitchBackground" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Switch.Background.On}" To="{StaticResource XColor.Control.Background.Disabled}" Duration="{StaticResource XDuration.Animation.Short}" />
                     <DoubleAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="(Canvas.Left)" To="8" Duration="{StaticResource XDuration.Animation.Short}" />
-                    <ColorAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Application.Active}" To="{StaticResource XColor.Button.IconButton.Beta}" Duration="{StaticResource XDuration.Animation.Short}" />
+                    <ColorAnimation Storyboard.TargetName="SwitchIndicator" Storyboard.TargetProperty="Fill.Color" From="{StaticResource XColor.Application.Active}" To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}" />
                   </Storyboard>
                 </BeginStoryboard>
               </DataTrigger.ExitActions>
@@ -2083,6 +2206,23 @@
                 </BeginStoryboard>
               </DataTrigger.ExitActions>
             </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="SwitchBackground" Property="Fill" Value="{StaticResource XBrush.Switch.Background.Disabled}" />
+            </Trigger>
+            <MultiDataTrigger>
+              <MultiDataTrigger.Conditions>
+                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="False" />
+                <Condition Binding="{Binding Path=(extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="Right" />
+              </MultiDataTrigger.Conditions>
+              <Setter TargetName="SwitchIndicator" Property="Fill" Value="{StaticResource XBrush.Switch.Foreground.Disabled.On}" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+              <MultiDataTrigger.Conditions>
+                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="False" />
+                <Condition Binding="{Binding Path=(extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="Left" />
+              </MultiDataTrigger.Conditions>
+              <Setter TargetName="SwitchIndicator" Property="Fill" Value="{StaticResource XBrush.Switch.Foreground.Disabled.Off}" />
+            </MultiDataTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
@@ -2105,7 +2245,7 @@
   </Style>
   <Style x:Key="XStyle.ContentControl.Info" TargetType="{x:Type ContentControl}">
     <Setter Property="SnapsToDevicePixels" Value="True" />
-    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.Control.Small}" />
+    <Setter Property="extensions:IndependentSize.Width" Value="27" />
     <Setter Property="Height" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
     <Setter Property="Template">
       <Setter.Value>
@@ -2113,7 +2253,7 @@
           <Grid x:Name="MainGrid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
             <Border Style="{StaticResource XStyle.Border.Frame}" BorderBrush="{StaticResource XBrush.Control.Foreground.Disabled}" Background="{StaticResource XBrush.Application.Background.Complementary}" />
             <Ellipse Width="{Binding ActualWidth, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.55}" Height="{Binding ActualHeight, ElementName=MainGrid, Converter={extensions:ScalarConverter}, ConverterParameter=0.55}" extensions:IndependentSize.StrokeThickness="1.5" Stroke="{StaticResource XBrush.Control.Foreground.Disabled}" />
-            <TextBlock Text="i" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource XStyle.TextBlock.Base}" Foreground="{StaticResource XBrush.Control.Foreground.Disabled}" />
+            <TextBlock Text="i" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource XStyle.TextBlock.Caption}" Foreground="{StaticResource XBrush.Control.Foreground.Disabled}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -2189,6 +2329,51 @@
       </MultiTrigger>
     </Style.Triggers>
   </Style>
+  <Style x:Key="XStyle.ContentControl.MessagePanel" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="extensions:IndependentSize.Padding" Value="12" />
+    <Setter Property="extensions:IconedButton.IconSize" Value="30" />
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="2" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Border Style="{StaticResource XStyle.Border.Message}" extensions:IndependentSize.BorderThickness="{TemplateBinding extensions:IndependentSize.BorderThickness}">
+            <Grid Margin="{TemplateBinding Padding}">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <ContentControl Grid.Row="0" Grid.Column="0" extensions:IndependentSize.Margin="0,0,12,0" Style="{StaticResource XStyle.ContentControl.SeverityIcon}" extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}" />
+              <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding (extensions:ControlExtensions.AlternativeText), RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Style="{StaticResource XStyle.TextBlock.Base}" extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Header2}" />
+              <ContentPresenter x:Name="ContentPresenter" Grid.Row="1" Grid.ColumnSpan="2" extensions:IndependentSize.Margin="0,12,0,0" Content="{TemplateBinding Content}">
+                <ContentPresenter.Resources>
+                  <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}" />
+                </ContentPresenter.Resources>
+              </ContentPresenter>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="extensions:ControlExtensions.AlternativeText" Value="">
+              <Setter TargetName="ContentPresenter" Property="Grid.Row" Value="0" />
+              <Setter TargetName="ContentPresenter" Property="Grid.RowSpan" Value="2" />
+              <Setter TargetName="ContentPresenter" Property="Grid.Column" Value="1" />
+              <Setter TargetName="ContentPresenter" Property="Grid.ColumnSpan" Value="1" />
+              <Setter TargetName="ContentPresenter" Property="extensions:IndependentSize.Margin" Value="6,0,0,0" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="XStyle.ContentControl.MessagePanel.Minor" TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.MessagePanel}">
+    <Setter Property="extensions:IconedButton.IconSize" Value="20" />
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1" />
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.ToolTip}" />
+  </Style>
   <!---->
   <!--Merged from file Skins\100_Controls\030_ContentControls\020-Windows.xaml-->
   <Style x:Key="XStyle.Window.Message" TargetType="{x:Type Window}">
@@ -2235,9 +2420,12 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+  <Style x:Key="XStyle.ButtonBase.Safety" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
+    <Setter Property="extensions:IndependentSize.Height" Value="NaN" />
+  </Style>
   <!--Text-->
   <ControlTemplate x:Key="XControlTemplate.Button.Primary" TargetType="{x:Type Button}">
-    <Border extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}" extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}" extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.Primary}">
+    <Border extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.Primary}">
       <ContentPresenter extensions:IndependentSize.Margin="1,0,1,1" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}">
@@ -2251,7 +2439,7 @@
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.Primary}" />
   </Style>
   <ControlTemplate x:Key="XControlTemplate.Button.Secondary" TargetType="{x:Type Button}">
-    <Border extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}" extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}" extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
+    <Border extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
       <ContentPresenter extensions:IndependentSize.Margin="1,0,1,1" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}">
@@ -2263,6 +2451,20 @@
   </ControlTemplate>
   <Style x:Key="XStyle.Button.Secondary" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.Secondary}" />
+  </Style>
+  <ControlTemplate x:Key="XControlTemplate.Button.TransparentToSafety" TargetType="{x:Type Button}">
+    <Border extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSafety}">
+      <ContentPresenter extensions:IndependentSize.Margin="1,0,1,1" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
+        <ContentPresenter.Resources>
+          <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True" />
+          </Style>
+        </ContentPresenter.Resources>
+      </ContentPresenter>
+    </Border>
+  </ControlTemplate>
+  <Style x:Key="XStyle.Button.TransparentToSafety" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Safety}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.TransparentToSafety}" />
   </Style>
   <!--Transparent Button with MouseOver-->
   <Style x:Key="XStyle.Button.Transparent" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource XStyle.ButtonBase.Text}">
@@ -2285,7 +2487,7 @@
     </Setter>
   </Style>
   <!--Text With Side Icon-->
-  <ControlTemplate x:Key="XControlTemplate.Button.TextWithSideIcon" TargetType="{x:Type Button}">
+  <ControlTemplate x:Key="XControlTemplate.Button.Secondary.TextWithSideIcon" TargetType="{x:Type Button}">
     <Border extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}" extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}" extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
       <Grid>
         <Grid.ColumnDefinitions>
@@ -2306,7 +2508,7 @@
     </Border>
   </ControlTemplate>
   <Style x:Key="XStyle.Button.Secondary.TextWithSideIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.TextWithSideIcon}" />
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.Secondary.TextWithSideIcon}" />
     <Setter Property="extensions:IconedButton.IconSize" Value="22" />
   </Style>
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.TextWithSideIcon" TargetType="{x:Type ToggleButton}">
@@ -2435,7 +2637,7 @@
   <!--Switch Button-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Switch" TargetType="{x:Type ToggleButton}">
     <Border Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{StaticResource XBrush.AlmostTransparent}">
-      <ContentControl x:Name="Switch" Grid.Row="0" Grid.Column="1" extensions:IndependentSize.Margin="3,0,0,0" extensions:IndependentSize.Height="20" Style="{StaticResource XStyle.ContentControl.Switch}" extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" />
+      <ContentControl x:Name="Switch" Grid.Row="0" Grid.Column="1" extensions:IndependentSize.Margin="3,0,0,0" extensions:IndependentSize.Height="20" Style="{StaticResource XStyle.ContentControl.Switch}" extensions:IconedButton.IconHorizontalAlignment="{Binding (extensions:IconedButton.IconHorizontalAlignment), RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" extensions:ControlExtensions.Hover="{Binding Path=(extensions:ControlExtensions.Hover), RelativeSource={RelativeSource TemplatedParent}}" />
     </Border>
   </ControlTemplate>
   <Style x:Key="XStyle.ToggleButton.Switch" TargetType="{x:Type ToggleButton}">
@@ -2450,6 +2652,9 @@
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
+      </Trigger>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="extensions:ControlExtensions.Hover" Value="True" />
       </Trigger>
     </Style.Triggers>
   </Style>
@@ -2567,6 +2772,76 @@
     <Setter Property="extensions:IndependentSize.Width" Value="20" />
     <Setter Property="extensions:IndependentSize.Padding" Value="4" />
   </Style>
+  <ControlTemplate x:Key="XControlTemplate.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+    <Border Style="{StaticResource XStyle.Border.Hover.TransparentToFadedSecondary}" extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}">
+      <Grid>
+        <Border x:Name="TopBottomChevronBorder" Padding="0" extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}" extensions:IndependentSize.Width="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding (extensions:ControlExtensions.Direction), RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Top|Bottom'}">
+          <Path extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Path.Chevron.Press}" RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+              <ScaleTransform x:Name="TopBottomChevronScaleTransform" ScaleX="1" ScaleY="1" />
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+        <Border x:Name="LeftRightChevronBorder" Padding="0" extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}" extensions:IndependentSize.Width="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding (extensions:ControlExtensions.Direction), RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Left|Right'}">
+          <Path extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Path.Chevron.Press}" RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+              <TransformGroup>
+                <RotateTransform Angle="90" />
+                <ScaleTransform x:Name="LeftRightChevronScaleTransform" ScaleX="1" ScaleY="1" />
+              </TransformGroup>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+      </Grid>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="extensions:ControlExtensions.Direction" Value="Top">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBottomChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1" />
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBottomChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Direction" Value="Right">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftRightChevronScaleTransform" Storyboard.TargetProperty="ScaleX">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1" />
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftRightChevronScaleTransform" Storyboard.TargetProperty="ScaleX">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <Style x:Key="XStyle.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="extensions:IconedButton.IconSize" Value="20" />
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Chevron}" />
+  </Style>
   <!--Expander-->
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.Expander" TargetType="{x:Type ToggleButton}">
     <Grid>
@@ -2582,7 +2857,11 @@
           </Path.RenderTransform>
         </Path>
       </Border>
-      <ContentPresenter Grid.Column="1" extensions:IndependentSize.Margin="6,0,8,0" HorizontalAlignment="Left" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" />
+      <ContentPresenter Grid.Column="1" extensions:IndependentSize.Margin="6,0,8,0" HorizontalAlignment="Left" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center">
+        <ContentPresenter.Resources>
+          <Style TargetType="TextBlock" BasedOn="{StaticResource XStyle.TextBlock.ToolTip}" />
+        </ContentPresenter.Resources>
+      </ContentPresenter>
     </Grid>
     <ControlTemplate.Triggers>
       <Trigger Property="IsChecked" Value="True">
@@ -2667,6 +2946,11 @@
   </Style>
   <Style x:Key="XStyle.ToggleButton.ToggleIcon" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ButtonBase.Icon}">
     <Setter Property="extensions:ControlExtensions.IsActive" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}}" />
+  </Style>
+  <Style x:Key="XStyle.ToggleButton.Icon.Small" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
+    <Setter Property="extensions:IconedButton.IconSize" Value="20" />
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}" />
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Height.Control.Small}" />
   </Style>
   <!--Icon over Text-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.IconOverText" TargetType="{x:Type ButtonBase}">
@@ -2849,6 +3133,14 @@
     <Setter Property="extensions:IndependentSize.Height" Value="NaN" />
     <Setter Property="extensions:IndependentSize.Padding" Value="10,0,5,0" />
   </Style>
+  <Style x:Key="XStyle.Button.Specific.Refresh" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon.Small}">
+    <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Refresh}" />
+  </Style>
+  <Style x:Key="XStyle.Button.Specific.Refresh.Small" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Specific.Refresh}">
+    <Setter Property="extensions:IconedButton.IconSize" Value="15" />
+    <Setter Property="extensions:IndependentSize.Width" Value="22" />
+    <Setter Property="extensions:IndependentSize.Height" Value="22" />
+  </Style>
   <!---->
   <!--Merged from file Skins\100_Controls\060_Buttons\020-RadioButtonStyles.xaml-->
   <!--Main Menu RadioButtons-->
@@ -2959,8 +3251,29 @@
     <Setter Property="DataContext" Value="{Binding Path=[Planning]}" />
     <Setter Property="GroupName" Value="1" />
   </Style>
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Preplanning" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_PREPLANNING}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Preparation.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Preparation.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Planning]}" />
+    <Setter Property="GroupName" Value="1" />
+  </Style>
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Planning.Dqa" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SETUP}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Dqa.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Dqa.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Planning]}" />
+    <Setter Property="GroupName" Value="1" />
+  </Style>
   <Style x:Key="XStyle.RadioButton.ModuleButton.Surgical" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
     <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Surgical.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Surgical.Beta}" />
+    <Setter Property="DataContext" Value="{Binding Path=[Surgical]}" />
+    <Setter Property="GroupName" Value="2" />
+  </Style>
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Surgical.Dqa" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL_DQA}" />
     <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Surgical.Alpha}" />
     <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Surgical.Beta}" />
     <Setter Property="DataContext" Value="{Binding Path=[Surgical]}" />
@@ -2975,7 +3288,7 @@
   </Style>
   <!--RadioButton Panel-->
   <ControlTemplate x:Key="XControlTemplate.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
-    <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}" extensions:ControlExtensions.HorizontalPlacement="{TemplateBinding extensions:ControlExtensions.HorizontalPlacement}" extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}" extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}" extensions:IndependentSize.MaxWidth="{TemplateBinding extensions:IndependentSize.MaxWidth}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+    <Grid x:Name="MainGrid" Background="{TemplateBinding Background}" extensions:ControlExtensions.HorizontalPlacement="{TemplateBinding extensions:ControlExtensions.HorizontalPlacement}" extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}" extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}" extensions:IndependentSize.MaxWidth="{TemplateBinding extensions:IndependentSize.MaxWidth}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
       <Border x:Name="ActiveBorder" extensions:ControlExtensions.IsActive="{TemplateBinding IsChecked}" Style="{StaticResource XStyle.Border.Active.Secondary}" extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}" />
       <Border x:Name="HoverBorder" extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}">
         <ContentPresenter x:Name="ContentPresenter" extensions:IndependentSize.Margin="{TemplateBinding Padding}" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -3013,6 +3326,7 @@
     <Setter Property="extensions:IndependentSize.CornerRadius" Value="0" />
     <Setter Property="IsThreeState" Value="False" />
     <Setter Property="extensions:IndependentSize.Padding" Value="15,0" />
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
@@ -3064,20 +3378,20 @@
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="extensions:ControlExtensions.HorizontalPlacement" Value="Middle" />
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}" />
-    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}" />
-    <Setter Property="extensions:IndependentSize.Height" Value="22" />
+    <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Caption}" />
+    <Setter Property="extensions:IndependentSize.Height" Value="18" />
     <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
-    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Active}" />
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="IsThreeState" Value="False" />
     <Setter Property="Padding" Value="6,0" />
-    <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+    <Setter Property="Foreground" Value="{StaticResource XBrush.RadioButton.MainMenu.Inactive}" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}" />
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
-        <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Primary.Background}" />
+        <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>
@@ -3122,13 +3436,13 @@
   <!--RadioButton Navigation-->
   <Style x:Key="XStyle.RadioButton.Navigation" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.RadioButtonPanel}">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="extensions:IndependentSize.Height" Value="44" />
+    <Setter Property="extensions:IndependentSize.Height" Value="40" />
     <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,4" />
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Header4}" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type RadioButton}">
-          <Border extensions:IndependentSize.Margin="30,0,0,0" extensions:IndependentSize.CornerRadius="20,0,0,20" x:Name="_corderTest" Background="{StaticResource XBrush.RadioButton.NavigationMenu.Inactive}" BorderThickness="{TemplateBinding BorderThickness}">
+          <Border extensions:IndependentSize.Margin="25,0,0,0" extensions:IndependentSize.CornerRadius="20,0,0,20" x:Name="_corderTest" Background="{StaticResource XBrush.RadioButton.NavigationMenu.Inactive}" BorderThickness="{TemplateBinding BorderThickness}">
             <ContentPresenter HorizontalAlignment="Right" extensions:IndependentSize.Margin="0,2,10,2" VerticalAlignment="Center" />
           </Border>
           <ControlTemplate.Triggers>
@@ -3137,6 +3451,13 @@
               <Setter Property="Background" TargetName="_corderTest" Value="{StaticResource XBrush.RadioButton.NavigationMenu.Active}" />
               <Setter Property="FontWeight" Value="SemiBold" />
             </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsMouseOver" Value="True" />
+                <Condition Property="IsChecked" Value="False" />
+              </MultiTrigger.Conditions>
+              <Setter Property="Background" TargetName="_corderTest" Value="{StaticResource  XBrush.Button.Secondary.Background.Hover}" />
+            </MultiTrigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
@@ -3154,6 +3475,7 @@
       <Border Grid.Column="0" extensions:ControlExtensions.IsActive="{TemplateBinding IsChecked}" Width="{Binding ActualWidth, ElementName=HoverBorder}" Height="{Binding ActualHeight, ElementName=HoverBorder}">
         <Border.Style>
           <Style TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.Active.Secondary}">
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
             <Style.Triggers>
               <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -3202,10 +3524,11 @@
   </ControlTemplate>
   <Style x:Key="XStyle.CheckBox" TargetType="{x:Type CheckBox}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.CheckBox}" />
-    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}" />
+    <Setter Property="extensions:IndependentSize.Height" Value="20" />
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}" />
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}" />
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground}" />
+    <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
@@ -3461,13 +3784,13 @@
     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
-        <RowDefinition />
+        <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
       <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
         <ToggleButton x:Name="HeaderToggleButton" extensions:IndependentSize.Margin="0,0,4,0" Command="{TemplateBinding extensions:ControlExtensions.ControlCommand}" IsChecked="{TemplateBinding extensions:ControlExtensions.IsActive}" Style="{StaticResource XStyle.ToggleButton.Icon}" extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}" extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}" />
         <ToggleButton Style="{StaticResource XStyle.ToggleButton.ChevonRotate90}" Height="{Binding ActualHeight, ElementName=HeaderToggleButton}" IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
         <!-- Popup -->
-        <Popup Name="PART_Popup" AllowsTransparency="True" RenderOptions.ClearTypeHint="Enabled" Placement="Left" IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="Fade" extensions:IndependentSize.HorizontalOffset="4" MinWidth="{Binding ElementName=MainGrid, Path=ActualWidth}">
+        <Popup Name="PART_Popup" AllowsTransparency="True" RenderOptions.ClearTypeHint="Enabled" Placement="Right" IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="Fade" extensions:IndependentSize.HorizontalOffset="4" MinWidth="{Binding ElementName=MainGrid, Path=ActualWidth}">
           <Grid>
             <Border x:Name="DropDownBorder" Style="{StaticResource XStyle.Border.Frame}">
               <ContentControl x:Name="Popupcontent">
@@ -3526,8 +3849,17 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+  <Style x:Key="XStyle.Separator.ContextMenu" TargetType="{x:Type Separator}">
+    <Setter Property="OverridesDefaultStyle" Value="True" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Separator}">
+          <Border extensions:IndependentSize.Margin="9,3" extensions:IndependentSize.BorderThickness="0,1,0,0" BorderBrush="{StaticResource XBrush.Frame}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
   <Style x:Key="XStyle.ContextMenu" TargetType="{x:Type ContextMenu}">
-    <Setter Property="ItemContainerStyle" Value="{StaticResource XStyle.MenuItem.ContextMenu}" />
     <Setter Property="extensions:IndependentSize.HorizontalOffset" Value="4" />
     <Setter Property="Template">
       <Setter.Value>
@@ -3538,6 +3870,10 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+    <Style.Resources>
+      <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource XStyle.MenuItem.ContextMenu}" />
+      <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="{x:Type Separator}" BasedOn="{StaticResource XStyle.Separator.ContextMenu}" />
+    </Style.Resources>
   </Style>
   <Style x:Key="XStyle.ToggleButton.IconAndChevronOverText" TargetType="{x:Type ToggleButton}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ToggleButton.IconAndChevronOverText}" />
@@ -4162,6 +4498,150 @@
                         </MultiTrigger>-->
           </ControlTemplate.Triggers>
         </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <!---->
+  <!--Merged from file Skins\100_Controls\210_DataGrid\010-DataGrid.xaml-->
+  <Style x:Key="DataGridCommon" TargetType="{x:Type DataGrid}">
+    <Setter Property="CanUserAddRows" Value="False" />
+    <Setter Property="AutoGenerateColumns" Value="False" />
+    <Setter Property="IsReadOnly" Value="True" />
+    <Setter Property="AlternationCount" Value="2" />
+    <Setter Property="AlternatingRowBackground" Value="LightGray" />
+  </Style>
+  <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+    <Setter Property="Width" Value="1" />
+    <Setter Property="Background" Value="{StaticResource XBrush.Button.Secondary.Background}" />
+    <Setter Property="Cursor" Value="SizeWE" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Thumb}">
+          <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+    <Setter Property="Background" Value="LightBlue" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Height" Value="32" />
+    <Setter Property="Padding" Value="5 0" />
+    <Setter Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+          <Grid>
+            <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" x:Name="_headerBorder">
+              <Grid Margin="{TemplateBinding Padding}">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="auto" />
+                  <ColumnDefinition Width="auto" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" TextBlock.Foreground="{StaticResource XBrush.Button.IconButton.Alpha}" />
+                <Path Grid.Column="1" Style="{StaticResource XStyle.Path.Chevron}" x:Name="_sortDirection" Stretch="Uniform" extensions:IndependentSize.Margin="5 0 0 0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                  <Path.LayoutTransform>
+                    <RotateTransform Angle="0" />
+                  </Path.LayoutTransform>
+                </Path>
+              </Grid>
+            </Border>
+            <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}" />
+            <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}" />
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="SortDirection" Value="{x:Null}">
+              <Setter TargetName="_sortDirection" Property="Visibility" Value="Collapsed" />
+              <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background}" />
+            </Trigger>
+            <Trigger Property="SortDirection" Value="Ascending">
+              <Setter TargetName="_sortDirection" Property="LayoutTransform">
+                <Setter.Value>
+                  <RotateTransform Angle="180" />
+                </Setter.Value>
+              </Setter>
+              <Setter TargetName="_sortDirection" Property="Visibility" Value="Visible" />
+              <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}" />
+            </Trigger>
+            <Trigger Property="SortDirection" Value="Descending">
+              <Setter TargetName="_headerBorder" Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="DataGridStyle1" TargetType="DataGrid">
+    <Setter Property="CanUserAddRows" Value="False" />
+    <Setter Property="AutoGenerateColumns" Value="False" />
+    <Setter Property="IsReadOnly" Value="True" />
+    <!--<Setter Property="Background" Value="LightGray"/>-->
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+    <Setter Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Background}" />
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1" />
+    <Setter Property="GridLinesVisibility" Value="All" />
+    <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource XBrush.Button.Secondary.Background}" />
+    <Setter Property="VerticalGridLinesBrush" Value="{StaticResource XBrush.Button.Secondary.Background}" />
+    <Setter Property="HeadersVisibility" Value="Column" />
+    <Setter Property="SelectionMode" Value="Single" />
+    <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
+    <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+    <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+    <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+    <Setter Property="RowStyle">
+      <Setter.Value>
+        <Style TargetType="DataGridRow">
+          <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Caption}" />
+          <Setter Property="Background" Value="Transparent" />
+          <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter Property="Background" Value="{DynamicResource XBrush.DataGrid.Header.Selected}" />
+            </Trigger>
+          </Style.Triggers>
+        </Style>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="CellStyle">
+      <Setter.Value>
+        <Style TargetType="DataGridCell">
+          <Setter Property="BorderBrush" Value="Transparent" />
+          <Setter Property="Background" Value="Transparent" />
+          <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Caption}" />
+          <Setter Property="extensions:IndependentSize.Padding" Value="4,3,4,3" />
+          <Setter Property="BorderThickness" Value="1" />
+          <Setter Property="Template">
+            <Setter.Value>
+              <ControlTemplate TargetType="DataGridCell">
+                <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                  <ContentPresenter />
+                </Border>
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+          <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+              <Style TargetType="Control">
+                <Setter Property="BorderBrush" Value="Transparent" />
+              </Style>
+            </Setter.Value>
+          </Setter>
+          <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Alpha}" />
+            </Trigger>
+          </Style.Triggers>
+          <!-- Highlight selected rows -->
+          <!--<Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource XBrush.Button.Secondary.Background.Active}" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="Foreground" Value="{DynamicResource XBrush.Button.IconButton.Alpha}" />
+                        </Trigger>
+                    </Style.Triggers>-->
+        </Style>
       </Setter.Value>
     </Setter>
   </Style>

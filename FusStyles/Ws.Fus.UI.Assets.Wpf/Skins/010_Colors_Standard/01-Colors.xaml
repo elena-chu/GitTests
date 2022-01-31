@@ -18,6 +18,8 @@
   <!--General-->
   <Color x:Key="XColor.AlmostTransparent">#01000000</Color>
   <Color x:Key="XColor.Background.Emphasis">#ee1c1f21</Color>
+  <Color x:Key="XColor.BackgroundDark">#FF00171A</Color>
+
 
   <!--Severity-->
   <Color x:Key="XColor.Safety">#FFb73f3f</Color>

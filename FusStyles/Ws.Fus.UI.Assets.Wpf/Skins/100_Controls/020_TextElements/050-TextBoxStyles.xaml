@@ -20,7 +20,7 @@
             Style="{StaticResource XStyle.TextBlock.Base}"
             Foreground="{StaticResource XBrush.Application.Active}"
             Opacity="0.5"
-            VerticalAlignment="Center"
+            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
             Visibility="{TemplateBinding Text, Converter={extensions:StringHasContentToVisibilityConverter}, ConverterParameter=!}"/>
         </Grid>
       </Border>
@@ -35,7 +35,7 @@
   <Style x:Key="XStyle.TextBox" TargetType="{x:Type TextBox}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.TextBox}"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Small}"/>
     <Setter Property="FontFamily" Value="{StaticResource XFontFamily.Base}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="TextWrapping" Value="Wrap"/>
@@ -67,7 +67,7 @@
       </Trigger>
     </Style.Triggers>
   </Style>
-  
+
   <Style x:Key="XStyle.TextBox.Preference" TargetType="TextBox" BasedOn="{StaticResource XStyle.TextBox}" />
 
 </ResourceDictionary>

@@ -281,9 +281,10 @@ namespace Ws.Extensions.UI.Wpf.Controls
         }
         private static void OnValidationRelevantPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            //NumericUpDown control = d as NumericUpDown;
-            //if (control != null)
-            //    control.UpdateNumericValidator();
+            NumericUpDown control = d as NumericUpDown;
+            if (control != null)
+                control.RaiseCanExecute();
+            //control.UpdateNumericValidator();
         }
 
         /// <summary>
@@ -403,6 +404,15 @@ namespace Ws.Extensions.UI.Wpf.Controls
             set { this.SetValue(IsButtonsPressedProperty, value); }
         }
 
+
+        public static readonly DependencyProperty IntervalProperty = DependencyProperty.Register(
+            nameof(Interval), typeof(int), typeof(NumericUpDown), new PropertyMetadata(33));
+        public int Interval
+        {
+            get { return (int)this.GetValue(IntervalProperty); }
+            set { this.SetValue(IntervalProperty, value); }
+        }
+
         private DelegateCommand IncreaseCommand;
         private void IncreaseExecute()
         {
@@ -413,6 +423,9 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 Value = GetDefaultValue() + Increment;
             else
                 Value += Increment;
+
+            if (Value.Value >= MaxValue)
+                StoppedValue = Value;
 
             UpdateDisplay();
         }
@@ -432,11 +445,20 @@ namespace Ws.Extensions.UI.Wpf.Controls
             else
                 Value -= Increment;
 
+            if (Value.Value <= MinValue)
+                StoppedValue = Value;
+
             UpdateDisplay();
         }
         private bool DecreaseCanExecute()
         {
             return DisplayStatus == DisplayStatus.Active && (!Value.HasValue || Value.Value > MinValue);
+        }
+
+        internal void RaiseCanExecute()
+        {
+            IncreaseCommand.RaiseCanExecuteChanged();
+            DecreaseCommand.RaiseCanExecuteChanged();
         }
 
         private RepeatButton _downButtonElement;

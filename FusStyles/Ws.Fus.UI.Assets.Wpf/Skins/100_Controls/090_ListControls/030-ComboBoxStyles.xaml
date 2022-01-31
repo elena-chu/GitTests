@@ -124,6 +124,9 @@
       <Trigger Property="HasItems" Value="False">
         <Setter Property="IsEnabled" Value="False" />
       </Trigger>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Opacity" TargetName="ContentPresenter" Value=".35" />
+      </Trigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
@@ -153,7 +156,7 @@
     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
-        <RowDefinition/>
+        <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
         <ToggleButton
@@ -174,7 +177,7 @@
             Name="PART_Popup"
             AllowsTransparency="True"
             RenderOptions.ClearTypeHint="Enabled"
-            Placement="Left"
+            Placement="Right"
             IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
             PopupAnimation="Fade"
             extensions:IndependentSize.HorizontalOffset="4"

@@ -118,9 +118,12 @@
     <Setter Property="IsChecked" Value="{Binding IsActive, Mode=OneWay}" />
     <Style.Triggers>
       <DataTrigger Binding="{Binding IsActive}" Value="True">
-        <Setter Property="extensions:IndependentSize.FontSize" Value="22" />
+        <Setter Property="extensions:IndependentSize.FontSize" Value="21" />
         <Setter Property="extensions:IconedButton.IconSize" Value="58" />
       </DataTrigger>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Opacity" Value=".45"/>
+      </Trigger>
     </Style.Triggers>
   </Style>
 
