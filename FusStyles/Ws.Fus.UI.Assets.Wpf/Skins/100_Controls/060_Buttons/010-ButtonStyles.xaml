@@ -88,9 +88,9 @@
   <ControlTemplate x:Key="XControlTemplate.Button.TransparentToSafety" TargetType="{x:Type Button}">
     <Border extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}" Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSafety}">
       <ContentPresenter
-        extensions:IndependentSize.Margin="1,0,1,1"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
+        extensions:IndependentSize.Margin="{TemplateBinding extensions:IndependentSize.Padding}"
+        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
         IsHitTestVisible="False">
         <ContentPresenter.Resources>
           <Style TargetType="{x:Type TextBlock}">
@@ -404,27 +404,52 @@
   <!--Chevron-->
   <ControlTemplate x:Key="XControlTemplate.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
     <Border Background="{StaticResource XBrush.AlmostTransparent}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-      <Border x:Name="ChevronBorder" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
-        <Path
-          extensions:IndependentSize.Margin="0,2,0,0"
-          VerticalAlignment="Top"
-          Style="{StaticResource XStyle.Path.Chevron}"
-          extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
-          RenderTransformOrigin="0.5,0.5">
-          <Path.RenderTransform>
-            <ScaleTransform x:Name="ChevronScaleTransform" ScaleX="1" ScaleY="1"/>
-          </Path.RenderTransform>
-        </Path>
-      </Border>
+      <Grid>
+        <Border
+          x:Name="TopBottomChevronBorder"
+          Padding="0"
+          extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          extensions:IndependentSize.Width="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Visibility="{Binding (extensions:ControlExtensions.Direction), RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Top|Bottom'}">
+          <Path
+            extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
+            Style="{StaticResource XStyle.Path.Chevron}"
+            RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+              <ScaleTransform x:Name="TopBottomChevronScaleTransform" ScaleX="1" ScaleY="1"/>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+        <Border
+          x:Name="LeftRightChevronBorder"
+          Padding="0"
+          extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          extensions:IndependentSize.Width="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource TemplatedParent}}"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Visibility="{Binding (extensions:ControlExtensions.Direction), RelativeSource={RelativeSource TemplatedParent}, Converter={extensions:EnumToVisibilityConverter}, ConverterParameter='Left|Right'}">
+          <Path
+            extensions:ControlExtensions.Hover="{TemplateBinding IsMouseOver}"
+            Style="{StaticResource XStyle.Path.Chevron}"
+            RenderTransformOrigin="0.5,0.5">
+            <Path.RenderTransform>
+              <TransformGroup>
+                <RotateTransform Angle="90"/>
+                <ScaleTransform x:Name="LeftRightChevronScaleTransform" ScaleX="1" ScaleY="1"/>
+              </TransformGroup>
+            </Path.RenderTransform>
+          </Path>
+        </Border>
+      </Grid>
     </Border>
     <ControlTemplate.Triggers>
-      <Trigger Property="extensions:ControlExtensions.VerticalPlacement" Value="Top">
-        <Setter Property="extensions:IndependentSize.Margin" Value="0,0,0,2" TargetName="ChevronBorder"/>
-        <Setter Property="VerticalAlignment" Value="Bottom" TargetName="ChevronBorder"/>
+      <Trigger Property="extensions:ControlExtensions.Direction" Value="Top">
         <Trigger.EnterActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBottomChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
                 <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
@@ -433,7 +458,27 @@
         <Trigger.ExitActions>
           <BeginStoryboard>
             <Storyboard>
-              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TopBottomChevronScaleTransform" Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.Direction" Value="Right">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftRightChevronScaleTransform" Storyboard.TargetProperty="ScaleX">
+                <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="-1"/>
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftRightChevronScaleTransform" Storyboard.TargetProperty="ScaleX">
                 <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
               </DoubleAnimationUsingKeyFrames>
             </Storyboard>
@@ -540,7 +585,7 @@
     <Setter Property="extensions:IndependentSize.Padding" Value="4"/>
   </Style>
 
-  <ControlTemplate x:Key="XControlTemplate.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+  <ControlTemplate x:Key="XControlTemplate.ButtonBase.Chevron" TargetType="{x:Type ButtonBase}">
     <Border
       Style="{StaticResource XStyle.Border.Hover.TransparentToFadedSecondary}"
       extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}">
@@ -628,10 +673,16 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+  <Style x:Key="XStyle.Button.Chevron" TargetType="{x:Type Button}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.Chevron}"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
-    <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Chevron}"/>
+  </Style>
+
+  <Style x:Key="XStyle.RepeatButton.Chevron" TargetType="{x:Type RepeatButton}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ButtonBase.Chevron}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
   </Style>
 
 
@@ -1034,17 +1085,18 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
+  <!-- Specific buttons, that used in several places-->
+
   <Style x:Key="XStyle.Button.QuitModule" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.TransparentToSafety}">
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground.Secondary}" />
     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
     <Setter Property="TextBlock.HorizontalAlignment" Value="Left" />
-    <Setter Property="extensions:IndependentSize.Padding" Value="10,0,5,0" />
+    <Setter Property="extensions:IndependentSize.Padding" Value="20,0,5,0" />
   </Style>
-
-  <!-- Specific buttons, that used in several places-->
 
   <Style x:Key="XStyle.Button.Specific.Refresh" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon.Small}">
     <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Refresh}"/>
