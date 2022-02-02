@@ -77,14 +77,14 @@
             <TextBlock
                         extensions:IndependentSize.MinWidth="30"
                         extensions:IndependentSize.FontSize="30"
-                        Text="{Binding CurrentSliceOffset}" 
+                        Text="{Binding CurrentSliceOffset, FallbackValue=0}" 
                         TextAlignment="Right"/>
             <TextBlock 
                         extensions:IndependentSize.FontSize="30"
                         Text="/" />
             <TextBlock 
                         extensions:IndependentSize.FontSize="30"
-                        Text="{Binding SliceCount}" />
+                        Text="{Binding SliceCount, FallbackValue=3}" />
 
           </StackPanel>
         </Grid>
