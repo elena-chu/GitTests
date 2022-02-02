@@ -24,5 +24,14 @@ namespace Ws.Fus.ImageViewer.Interfaces.Entities
         /// Blend between two images.
         /// </summary>
         Fusion
-    }    
+    }
+
+    public enum StripOrientation
+    {
+        eTOR_MRI_NO_ORIENTATION,
+        eTOR_MRI_CORONAL_SLICE,
+        eTOR_MRI_AXIAL_SLICE,
+        eTOR_MRI_SAGITTAL_SLICE,
+    }
+
 }

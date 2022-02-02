@@ -82,6 +82,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SurgicalMode.cs" />
     <Compile Include="SurgicalNavigationConsts.cs" />
+    <Compile Include="ViewModels\SliceSelectorViewModel.cs" />
     <Compile Include="ViewModels\SurgicalMainViewModel.cs" />
     <Compile Include="Views\ActualSonicationParamsView.xaml.cs">
       <DependentUpon>ActualSonicationParamsView.xaml</DependentUpon>
