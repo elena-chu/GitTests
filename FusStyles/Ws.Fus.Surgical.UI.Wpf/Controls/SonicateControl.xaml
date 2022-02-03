@@ -32,7 +32,7 @@
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.4">0:0:3.5</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.5">0:0:4.5</sys:TimeSpan>
 
-    <sys:TimeSpan x:Key="LTimeSpan.Press.1">0:0:2</sys:TimeSpan>
+    <sys:TimeSpan x:Key="LTimeSpan.Press.1">0:0:1</sys:TimeSpan>
     
     <sys:TimeSpan x:Key="LTimeSpan.Reset.Delay">0:0:0.5</sys:TimeSpan>
     
@@ -247,6 +247,7 @@
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.SonicateReady.Swell">
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Opacity" To="1"/>
       <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMask}" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Opacity" To="0.1" BeginTime="{StaticResource LTimeSpan.Swell.0}" Duration="{StaticResource LDuration.Short}"/>
       <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="486" BeginTime="{StaticResource LTimeSpan.Swell.1}" Duration="{StaticResource LDuration.Short}"/>
@@ -317,14 +318,14 @@
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.SonicatePress.Swell">
-      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMax}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="500" Duration="{StaticResource LDuration.Long}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMax}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.LongArcMax}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="LongArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="ShortArcEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Boundary}" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="500" Duration="{StaticResource LDuration.Short}"/>
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.Sonicate.BlackHole">
@@ -338,6 +339,7 @@
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.Reset" Duration="{StaticResource LDuration.Short}">
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Opacity" To="0"/>
       <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.TrioMaskMin}"/>
       <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Opacity" To="0"/>
       <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="{StaticResource LDouble.Width.Back}"/>
@@ -386,6 +388,7 @@
     <Style x:Key="LStyle.Ellipse.TrioMask" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
       <Setter Property="Width" Value="{StaticResource LDouble.Width.TrioMaskMin}"/>
       <Setter Property="Fill" Value="{StaticResource LRadialGradientBrush.TrioMask}"/>
+      <Setter Property="Opacity" Value="0"/>
     </Style>
 
     <Style x:Key="LStyle.Ellipse.Back" TargetType="{x:Type Ellipse}" BasedOn="{StaticResource LStyle.Ellipse}">
@@ -621,12 +624,6 @@
         </TranslateTransform.Y>
       </TranslateTransform>
     </Grid.RenderTransform>
-    <!--<Border
-      x:Name="RemoveMe"
-      Height="{Binding SonicateArcHeight, ElementName=_thisSonicateControl}"
-      VerticalAlignment="Top"
-      BorderBrush="HotPink"
-      BorderThickness="0.5"/>-->
     <Viewbox Stretch="Uniform">
       <Grid Width="{StaticResource LDouble.Width.Boundary}" Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
         <Ellipse x:Name="TrioMaskEllipse" Style="{StaticResource LStyle.Ellipse.TrioMask}"/>
