@@ -1,0 +1,158 @@
+﻿<UserControl
+  x:Class="Ws.Fus.Surgical.UI.Wpf.SliceSelectorControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:extensions="http://schemas.insightec.com/wpf/"
+  xmlns:local="clr-namespace:Ws.Fus.Surgical.UI.Wpf"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  mc:Ignorable="d"
+  x:Name="_thisSliceSelectorControl">
+
+  <UserControl.Resources>
+    <!--Cyclic Button-->
+    <Geometry x:Key="LGeometry.Head.Axial">m 44.957908,26.101017 c 0.399943,0.720084 0.475076,4.670135 0.195358,5.535108 -0.299262,0.925407 -1.015768,1.478686 -1.938137,1.249024 -2.336794,14.085704 -10.338971,17.114849 -18.284706,17.114849 -7.889258,0 -15.6769701,-2.929161 -18.0624326,-16.931133 -0.9370096,0.04595 -1.6535142,-0.507333 -1.952777,-1.43274 C 4.6354947,30.771152 4.5022795,26.656406 5.1105706,26.101017 5.5742984,25.67762 6.2087043,25.458495 6.6008973,25.022519 7.2261156,13.680998 13.673519,6.5854698 15.808619,5.9030412 18.084789,5.1755224 20.8101,4.5955495 21.398182,4.660867 c 0.706066,-2.0633083 2.250886,-4.75882624 3.532241,-4.6581268 1.281354,0.1006974 2.491377,2.7183734 3.532138,4.6581268 1.653461,0.036544 3.07633,0.4529954 5.589574,1.2421742 2.11474,0.6640454 8.590803,7.6684718 9.393646,18.9177858 0.01571,0.173003 0.98202,0.325747 1.512127,1.28019 z</Geometry>
+    <Geometry x:Key="LGeometry.Head.Sagittal">M 15.286956,49.999998 V 37.689479 H 9.9389078 C 8.0976008,37.202097 6.3253538,36.50761 5.4614628,33.088577 v -7.08788 L 2.7252578,25.876343 C 0.68032185,25.48383 -0.13883515,24.08549 0.48653485,23.140672 L 6.0833238,14.684956 c 0,0 -0.583548,-6.7744725 0,-7.5852726 2.912555,-4.0467479 7.6470792,-6.90687068 15.2326922,-7.08787922 7.386327,-0.1762601 13.275651,1.57017732 18.099338,8.70441382 4.427935,6.548934 5.370966,14.51075 -1.368104,21.76103 -2.841807,3.057385 -5.099307,4.725252 -5.099307,4.725252 v 14.797498</Geometry>
+
+    <Style x:Key="LStyle.Path" TargetType="{x:Type Path}" BasedOn="{StaticResource XStyle.Shape.Icon.Line}">
+      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Active}"/>
+    </Style>
+    
+    <Canvas x:Key="LCanvas.Head.Axial" Style="{StaticResource XStyle.Canvas.Icon}">
+      <Path Style="{StaticResource LStyle.Path}" Data="{StaticResource LGeometry.Head.Axial}"/>
+    </Canvas>
+    
+    <Canvas x:Key="LCanvas.Head.Sagittal" Style="{StaticResource XStyle.Canvas.Icon}">
+      <Path Style="{StaticResource LStyle.Path}" Data="{StaticResource LGeometry.Head.Sagittal}"/>
+    </Canvas>
+
+    <ControlTemplate x:Key="LControlTemplate.Button.Cyclic" TargetType="{x:Type Button}">
+      <Border
+        extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
+        Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+        <Viewbox
+          IsHitTestVisible="False"
+          Stretch="Uniform"
+          extensions:IndependentSize.Height="{TemplateBinding extensions:IconedButton.IconSize}"
+          extensions:IndependentSize.Width="{TemplateBinding extensions:IconedButton.IconSize}">
+          <ContentControl Content="{TemplateBinding extensions:IconedButton.Icon}"/>
+        </Viewbox>
+      </Border>
+    </ControlTemplate>
+
+    <Style x:Key="LStyle.Button.Cyclic" TargetType="{x:Type Button}">
+      <Setter Property="Template" Value="{StaticResource LControlTemplate.Button.Cyclic}"/>
+      <Setter Property="SnapsToDevicePixels" Value="True"/>
+      <Setter Property="extensions:ControlExtensions.IsActive" Value="False"/>
+      <Setter Property="extensions:IconedButton.IconSize" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}, Converter={extensions:ScalarConverter}, ConverterParameter=0.98}"/>
+      <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
+      <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource LCanvas.Head.Sagittal}"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding ScanOrientation}" Value="eTOR_MRI_SAGITTAL_SLICE">
+          <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource LCanvas.Head.Axial}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <!--Slice List-->
+    <Style x:Key="LStyle.Line" TargetType="{x:Type Line}">
+      <Setter Property="Stroke" Value="{StaticResource XBrush.Application.Foreground}"/>
+      <Setter Property="extensions:IndependentSize.StrokeThickness" Value="1"/>
+      <Setter Property="StrokeDashArray" Value="5,5"/>
+      <Setter Property="X1" Value="0"/>
+      <Setter Property="Y1" Value="0"/>
+      <Setter Property="X2" Value="0"/>
+      <Setter Property="Y2" Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding DataContext.ScanOrientation, ElementName=_thisSliceSelectorControl}" Value="eTOR_MRI_AXIAL_SLICE">
+          <Setter Property="X2" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"/>
+          <Setter Property="Y2" Value="0"/>
+        </DataTrigger>
+        <DataTrigger Value="True">
+          <DataTrigger.Binding>
+            <MultiBinding Converter="{extensions:ObjectEqualityToBooleanConverter}">
+              <Binding Path="."/>
+              <Binding Path="DataContext.CurrentSliceOffset" ElementName="_thisSliceSelectorControl"/>
+            </MultiBinding>
+          </DataTrigger.Binding>
+          <Setter Property="extensions:IndependentSize.StrokeThickness" Value="1.5"/>
+          <Setter Property="StrokeDashArray" Value="{x:Null}"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <DataTemplate x:Key="LDataTemplate.Line">
+      <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Line Style="{StaticResource LStyle.Line}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </DockPanel>
+    </DataTemplate>
+
+    <ItemsPanelTemplate x:Key="LItemsPanelTemplate.Vertical">
+      <UniformGrid Columns="{Binding DataContext.SliceCount, ElementName=_thisSliceSelectorControl}" Rows="1"/>
+    </ItemsPanelTemplate>
+
+    <ItemsPanelTemplate x:Key="LItemsPanelTemplate.Horizontal">
+      <UniformGrid Columns="1" Rows="{Binding DataContext.SliceCount, ElementName=_thisSliceSelectorControl}">
+        <UniformGrid.LayoutTransform>
+          <ScaleTransform ScaleY="-1"/>
+        </UniformGrid.LayoutTransform>
+      </UniformGrid>
+    </ItemsPanelTemplate>
+  </UserControl.Resources>
+  
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition extensions:IndependentSize.ColumnWidth="6"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Button
+      Grid.Column="0"
+      Grid.Row="0"
+      extensions:IndependentSize.Width="32"
+      VerticalAlignment="Bottom"
+      Style="{StaticResource XStyle.Button.Chevron}"
+      extensions:ControlExtensions.Direction="Top"
+      Command="{Binding IncreaseSliceNumberCommand}"/>
+    <Button
+      Grid.Column="0"
+      Grid.Row="1"
+      extensions:IndependentSize.Width="32"
+      VerticalAlignment="Top"
+      Style="{StaticResource XStyle.Button.Chevron}"
+      extensions:ControlExtensions.Direction="Bottom"
+      Command="{Binding DecreaseSliceNumberCommand}"/>
+    <Button
+      x:Name="CyclicButton"
+      Grid.Column="2"
+      Grid.RowSpan="2"
+      Style="{StaticResource LStyle.Button.Cyclic}"
+      Command="{Binding CycleSliceNumberCommand}"/>
+    <ItemsControl
+      Grid.Column="2"
+      Grid.RowSpan="2"
+      IsHitTestVisible="False"
+      ItemsSource="{Binding SliceNumbers}"
+      ItemTemplate="{StaticResource LDataTemplate.Line}">
+      <ItemsControl.Style>
+        <Style TargetType="{x:Type ItemsControl}">
+          <Setter Property="extensions:IndependentSize.Height" Value="{Binding (extensions:IconedButton.IconSize), ElementName=CyclicButton, Converter={extensions:ScalarConverter}, ConverterParameter=1.2}"/>
+          <Setter Property="extensions:IndependentSize.Width" Value="{Binding (extensions:IconedButton.IconSize), ElementName=CyclicButton, Converter={extensions:ScalarConverter}, ConverterParameter=0.8}"/>
+          <Setter Property="ItemsPanel" Value="{StaticResource LItemsPanelTemplate.Vertical}"/>
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding ScanOrientation}" Value="eTOR_MRI_AXIAL_SLICE">
+              <Setter Property="extensions:IndependentSize.Height" Value="{Binding (extensions:IconedButton.IconSize), ElementName=CyclicButton, Converter={extensions:ScalarConverter}, ConverterParameter=0.8}"/>
+              <Setter Property="extensions:IndependentSize.Width" Value="{Binding (extensions:IconedButton.IconSize), ElementName=CyclicButton, Converter={extensions:ScalarConverter}, ConverterParameter=1.2}"/>
+              <Setter Property="ItemsPanel" Value="{StaticResource LItemsPanelTemplate.Horizontal}"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </ItemsControl.Style>
+    </ItemsControl>
+  </Grid>
+</UserControl>

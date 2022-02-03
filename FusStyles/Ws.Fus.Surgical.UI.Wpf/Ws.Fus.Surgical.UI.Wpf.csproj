@@ -76,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\SurgicalModuleController.cs" />
+    <Compile Include="Controls\SliceSelectorControl.xaml.cs">
+      <DependentUpon>SliceSelectorControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\Point3dToStringConverter.cs" />
     <Compile Include="Converters\SurgicalStageToProgressStateConverter.cs" />
     <Compile Include="Module\FusSurgicalUiModule.cs" />
@@ -160,6 +163,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\SliceSelectorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ActualSonicationParamsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

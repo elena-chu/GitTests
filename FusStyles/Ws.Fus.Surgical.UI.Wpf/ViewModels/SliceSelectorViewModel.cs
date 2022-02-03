@@ -1,10 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using Ws.Fus.ImageViewer.Interfaces.Entities;
 
 namespace Ws.Fus.Surgical.UI.Wpf
@@ -12,8 +9,6 @@ namespace Ws.Fus.Surgical.UI.Wpf
     public class SliceSelectorViewModel : BindableBase
     {
         private readonly Action<int> _switchPlaneAction;
-        private int _minSliceNumber = 0;
-        private int _maxSliceNumber = 0;
 
         public SliceSelectorViewModel(Action<int> switchPlaneAction)
         {
@@ -21,6 +16,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
             IncreaseSliceNumberCommand = new DelegateCommand(IncreaseExecute, IncreaseCanExecute);
             DecreaseSliceNumberCommand = new DelegateCommand(DecreaseExecute, DecreaseCanExecute);
+            CycleSliceNumberCommand = new DelegateCommand(CycleSliceNumberExecute);
         }
 
         #region Commands
@@ -28,7 +24,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
         public DelegateCommand IncreaseSliceNumberCommand { get; }
         public void IncreaseExecute()
         {
-            _switchPlaneAction(++CurrentSliceOffset);
+            _switchPlaneAction?.Invoke(++CurrentSliceOffset);
         }
         public bool IncreaseCanExecute()
         {
@@ -38,7 +34,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
         public DelegateCommand DecreaseSliceNumberCommand { get; }
         public void DecreaseExecute()
         {
-            _switchPlaneAction(--CurrentSliceOffset);
+            _switchPlaneAction?.Invoke(--CurrentSliceOffset);
         }
         public bool DecreaseCanExecute()
         {
@@ -56,7 +52,12 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         #endregion
 
-       
+
+        #region Slices
+
+        private int _minSliceNumber = 0;
+        private int _maxSliceNumber = 0;
+
         private int _currentSliceOffset = 0;
         public int CurrentSliceOffset
         {
@@ -85,11 +86,33 @@ namespace Ws.Fus.Surgical.UI.Wpf
                     RaisePropertyChanged(nameof(IsMultiSlice));
                     IncreaseSliceNumberCommand.RaiseCanExecuteChanged();
                     DecreaseSliceNumberCommand.RaiseCanExecuteChanged();
+                    SetSliceNumbers();
                 }
             }
         }
 
         public bool IsMultiSlice => SliceCount > 1;
+
+        public void UpdateByCurrentStrip(int sliceCount, int offset)
+        {
+            SliceCount = sliceCount;
+            if (SliceCount > 1)
+                CurrentSliceOffset = offset;
+        }
+
+        public ObservableCollection<int> SliceNumbers { get; private set; }
+        private void SetSliceNumbers()
+        {
+            SliceNumbers = new ObservableCollection<int>();
+            for (int i = _minSliceNumber; i <= _maxSliceNumber; i++)
+                SliceNumbers.Add(i);
+            RaisePropertyChanged(nameof(SliceNumbers));
+        }
+
+        #endregion
+
+
+        #region Orientation
 
         private StripOrientation _scanOrientation;
         public StripOrientation ScanOrientation
@@ -98,12 +121,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             set { SetProperty(ref _scanOrientation, value); }
         }
 
-        public void UpdateByCurrentStrip(int sliceCount, int offset)
-        {
-            SliceCount = sliceCount;
-            if (SliceCount > 1)
-                CurrentSliceOffset = offset;
-        }
+        #endregion
     }
 }
 

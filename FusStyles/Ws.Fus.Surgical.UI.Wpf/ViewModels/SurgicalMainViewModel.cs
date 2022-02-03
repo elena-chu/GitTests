@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using Prism.Commands;
 using Prism.Regions;
 using Ws.Extensions.Mvvm;
+using Ws.Fus.ImageViewer.Interfaces.Entities;
 //using Ws.Fus.Surgical.Interfaces;
 using Ws.Fus.Surgical.UI.Wpf;
 using Ws.Fus.UI.Navigation.Wpf;
@@ -36,6 +37,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
             ChangeSurgicalStageCommand = new DelegateCommand<SurgicalMode?>(ChangeSurgicalStageExecute);
             InitSonicationCommands();
             InitCoolingTimer();
+            InitSliceSelector();
         }
 
         #region Commands
@@ -267,6 +269,24 @@ namespace Ws.Fus.Surgical.UI.Wpf
             ToggleCoolingAvailableCommand = new DelegateCommand(() => CoolingAvailable = !CoolingAvailable);
             ToggleSonicateAvailableCommand = new DelegateCommand(() => SonicationAvailable = !SonicationAvailable);
             ToggleSonicateEnabledCommand = new DelegateCommand(() => SonicationEnabled = !SonicationEnabled);
+        }
+
+        #endregion
+
+
+        #region Slice Selector
+
+        public SliceSelectorViewModel SliceSelectorViewModel { get; set; } = new SliceSelectorViewModel(ChangeSlice);
+
+        private static void ChangeSlice(int sliceNumber)
+        {
+            Console.WriteLine("Changing slice to " + sliceNumber);
+        }
+
+        private void InitSliceSelector()
+        {
+            SliceSelectorViewModel.SliceCount = 3;
+            SliceSelectorViewModel.ScanOrientation = StripOrientation.eTOR_MRI_CORONAL_SLICE;
         }
 
         #endregion

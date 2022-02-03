@@ -22,74 +22,6 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="SurgicalStyles.xaml"/>
       </ResourceDictionary.MergedDictionaries>
-
-      <DataTemplate x:Key="InAllViewersSurgicalControlsTemplate">
-        <Grid 
-                Visibility="{Binding IsMultiSlice, Converter={StaticResource BooleanToVisibilityConverter}}"
-                VerticalAlignment="Bottom" 
-                HorizontalAlignment="Right"
-                DataContext="{Binding SliceSelector}">
-          <Grid.Style>
-            <Style TargetType="Grid">
-              <Setter Property="extensions:IndependentSize.Margin" Value="0,0,10,10"/>
-              <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter, AncestorLevel=5}, Mode=OneWay}" Value="eMainStrip">
-                  <Setter Property="extensions:IndependentSize.Margin" Value="0, 0,140,10" />
-                </DataTrigger>
-              </Style.Triggers>
-            </Style>
-          </Grid.Style>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-          </Grid.ColumnDefinitions>
-
-          <Button 
-                    Command="{Binding IncreaseSliceNumberCommand}"
-                    Content="+"
-                    FontWeight="Bold"
-                    extensions:IndependentSize.Width="25"
-                    extensions:IndependentSize.Height="25"
-                    />
-          <Button 
-                    Grid.Row="1"
-                    Command="{Binding DecreaseSliceNumberCommand}"
-                    Content="-"
-                    FontWeight="Bold"
-                    extensions:IndependentSize.Width="25"
-                    extensions:IndependentSize.Height="25"
-                    />
-          <StackPanel
-                    Orientation="Horizontal"
-                    Grid.Column="1"
-                    Grid.RowSpan="2"
-                    Width="Auto"
-                    Height="Auto"
-                    VerticalAlignment="Center"
-                    TextBlock.Foreground="{StaticResource XBrush.Application.Foreground}"
-                    extensions:IndependentSize.Margin="10,0,10,0"
-                    >
-
-            <TextBlock
-                        extensions:IndependentSize.MinWidth="30"
-                        extensions:IndependentSize.FontSize="30"
-                        Text="{Binding CurrentSliceOffset, FallbackValue=0}" 
-                        TextAlignment="Right"/>
-            <TextBlock 
-                        extensions:IndependentSize.FontSize="30"
-                        Text="/" />
-            <TextBlock 
-                        extensions:IndependentSize.FontSize="30"
-                        Text="{Binding SliceCount, FallbackValue=3}" />
-
-          </StackPanel>
-        </Grid>
-      </DataTemplate>
-
     </ResourceDictionary>
   </UserControl.Resources>
  
@@ -197,24 +129,14 @@
         Grid.Column="1" Grid.Row="1"
         Style="{StaticResource styleStripsViewer}"  />
 
-      <ContentPresenter 
-          x:Name="ControlsPresenter" Content="{Binding }"
-          Grid.Column="1" Grid.Row="1"
-          VerticalAlignment="Bottom"
-        HorizontalAlignment="Center"
-          extensions:IndependentSize.Margin="0,5"
-          >
-        <ContentPresenter.Style>
-          <Style TargetType="ContentPresenter">
-            <Setter Property="ContentTemplate" Value="{StaticResource InAllViewersSurgicalControlsTemplate}" />
-            <!--<Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter, AncestorLevel=4}, Mode=OneWay}" Value="eMainStrip">
-                            <Setter Property="ContentTemplate" Value="{StaticResource InMainViewerSurgicalControlsTemplate}" />
-                        </DataTrigger>
-                    </Style.Triggers>-->
-          </Style>
-        </ContentPresenter.Style>
-      </ContentPresenter>
+      <local:SliceSelectorControl
+        Grid.Column="1"
+        Grid.Row="1"
+        extensions:IndependentSize.Margin="12,0,0,6"
+        DataContext="{Binding DataContext.SliceSelectorViewModel, ElementName=_thisSurgicalMainView}"
+        extensions:IndependentSize.Height="50"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"/>
 
 
       <!-- Floating Strips Menu -->
