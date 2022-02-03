@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Ws.Extensions.UI.Wpf.Converters
@@ -191,27 +190,61 @@ namespace Ws.Extensions.UI.Wpf.Converters
         }
     }
 
-    /// <summary>
-    /// Value 0: ItemsPresenter
-    /// Value 1: an item under ItemsPresenter
-    /// Returns Item's index under ItemsPresenter
-    /// </summary>
-    public class ItemToIndexConverter : MultiConverterMarkupExtension<ItemToIndexConverter>
+    public class SignedNumberConverter : IValueConverter
     {
-        public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        private const string ValueMode = "value";
+        private const string SignMode = "sign";
+
+        private double _dbl;
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!ConverterAssists.CheckAllValuesValidity(values))
-                return Binding.DoNothing;
+            _dbl = (double)value;
 
-            if (values[0] is ItemsControl itemsControl && values[1] is DependencyObject item)
-                return itemsControl.ItemContainerGenerator.IndexFromContainer(item);
-
-            return Binding.DoNothing;
+            var mode = (string)parameter;
+            switch (mode.ToLower())
+            {
+                case ValueMode:
+                    return Math.Abs(_dbl);
+                case SignMode:
+                    return _dbl < 0;
+                default:
+                    return Binding.DoNothing;
+            }
         }
 
-        public override object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var mode = (string)parameter;
+                switch (mode.ToLower())
+                {
+                    case ValueMode:
+                        var strDbl = (string)value;
+                        var dbl = 0.0;
+                        double.TryParse(strDbl, out dbl);
+                        _dbl = _dbl < 0 ? -dbl : dbl;
+
+                        return _dbl;
+
+                    case SignMode:
+                        var isNegative = (bool)value;
+
+                        _dbl = Math.Abs(_dbl);
+                        if (isNegative)
+                            _dbl = -_dbl;
+
+                        return _dbl;
+
+                    default:
+                        return DependencyProperty.UnsetValue;
+                }
+            }
+            catch (Exception ex)
+            {
+                return DependencyProperty.UnsetValue;
+            }
         }
     }
 }

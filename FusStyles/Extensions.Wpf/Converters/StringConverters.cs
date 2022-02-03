@@ -76,4 +76,139 @@ namespace Ws.Extensions.UI.Wpf.Converters
             throw new NotImplementedException();
         }
     }
+
+    class PrefixFormatConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var prefix = parameter != null ? parameter.ToString() : string.Empty;
+            var val = value ?? string.Empty;
+            return $"{prefix}{val}";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class PostfixFormatConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var postFix = parameter != null ? parameter.ToString() : string.Empty;
+            var val = value ?? string.Empty;
+            return $"{val}{postFix}";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class FormatConverter : IValueConverter
+    {
+        public string Format { get; set; } = "{0}";
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                var format = parameter as string ?? Format;
+                return string.Format(format, value);
+            }
+            catch (Exception ex)
+            {
+                return DependencyProperty.UnsetValue;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+    }
+
+    class MultiFormatConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                return string.Format(parameter as string, values);
+            }
+            catch (Exception ex)
+            {
+                return DependencyProperty.UnsetValue;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class StringToNullableNumberConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string stringValue = value as string;
+            if (stringValue != null)
+            {
+                if (targetType == typeof(int?))
+                {
+                    int result;
+                    if (int.TryParse(stringValue, out result))
+                        return result;
+
+                    return null;
+                }
+
+                if (targetType == typeof(decimal?))
+                {
+                    decimal result;
+                    if (decimal.TryParse(stringValue, out result))
+                        return result;
+
+                    return null;
+                }
+
+                if (targetType == typeof(long?))
+                {
+                    long result;
+                    if (long.TryParse(stringValue, out result))
+                        return result;
+
+                    return null;
+                }
+
+                if (targetType == typeof(double?))
+                {
+                    double result;
+                    if (double.TryParse(stringValue, out result))
+                        return result;
+
+                    return null;
+                }
+
+                if (targetType == typeof(float?))
+                {
+                    float result;
+                    if (float.TryParse(stringValue, out result))
+                        return result;
+
+                    return null;
+                }
+            }
+
+            return value;
+        }
+    }
 }
