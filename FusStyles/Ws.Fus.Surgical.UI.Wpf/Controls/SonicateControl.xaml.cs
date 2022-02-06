@@ -242,7 +242,7 @@ namespace Ws.Fus.Surgical.UI.Wpf
                 return;
 
             CoolingIncrementAngle = -0.5 * CoolingAlpha;
-            if (CoolingValue >= CoolingMaximum)
+            if (CoolingValue > CoolingMaximum)
                 CoolingIncrementAngle += CoolingAlpha;
             if (CoolingValue >= CoolingMinimum && CoolingValue <= CoolingMaximum)
                 CoolingIncrementAngle += CoolingAlpha * CoolingValue / (CoolingMaximum - CoolingMinimum);
