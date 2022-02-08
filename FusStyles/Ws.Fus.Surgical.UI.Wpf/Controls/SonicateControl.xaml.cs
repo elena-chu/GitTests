@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -331,28 +332,56 @@ namespace Ws.Fus.Surgical.UI.Wpf
         private const string _resetStoryboardName = "LStoryboard.Reset";
         private Storyboard _resetStoryboard;
 
-        private void InitAnimationResources()
+        private bool _animationResourcesInitialized = false;
+        private bool InitAnimationResources()
         {
+            if (_animationResourcesInitialized)
+                return true;
+
             _coolingAppearStoryboard = FindResource(_coolingAppearStoryboardName) as Storyboard;
+            _animationResourcesInitialized = _coolingAppearStoryboard != null;
+
             _coolingDisappearStoryboard = FindResource(_coolingDisappearStoryboardName) as Storyboard;
+            _animationResourcesInitialized &= _coolingDisappearStoryboard != null;
 
             _sonicateReadySwellStoryboard = FindResource(_sonicateReadySwellStoryboardName) as Storyboard;
+            _animationResourcesInitialized &= _sonicateReadySwellStoryboard != null;
+            
             _sonicateReadyGrowArcsStoryboard = FindResource(_sonicateReadyGrowArcsStoryboardName) as Storyboard;
+            _animationResourcesInitialized &= _sonicateReadyGrowArcsStoryboard != null;
 
             _sonicateReadyOscillateDelayTimeSpan = (TimeSpan)FindResource(_sonicateReadyOscillateDelayTimeSpanName);
+            _animationResourcesInitialized &= _sonicateReadyOscillateDelayTimeSpan != null;
+
             _sonicateReadyOscillateStoryboards = new List<Storyboard>();
             foreach (var storyBoardName in _sonicateReadyOscillateStoryboardNames)
-                _sonicateReadyOscillateStoryboards.Add(FindResource(storyBoardName) as Storyboard);
+            {
+                var storyboard = FindResource(storyBoardName) as Storyboard;
+                if (storyboard != null)
+                    _sonicateReadyOscillateStoryboards.Add(storyboard);
+            }
+            _animationResourcesInitialized &= _sonicateReadyOscillateStoryboards.Any();
 
             _press1TimeSpan = (TimeSpan)FindResource(_sonicatePress1TimespanName);
+            _animationResourcesInitialized &= _press1TimeSpan != null;
+
             _sonicatePressSwellStoryboard = FindResource(_sonicatePressSwellStoryboardName) as Storyboard;
+            _animationResourcesInitialized &= _sonicatePressSwellStoryboard != null;
+
             _sonicateBlackHoleStoryboard = FindResource(_sonicateBlackHoldStoryboardName) as Storyboard;
+            _animationResourcesInitialized &= _sonicateBlackHoleStoryboard != null;
 
             _resetStoryboard = FindResource(_resetStoryboardName) as Storyboard;
+            _animationResourcesInitialized &= _resetStoryboard != null;
+
+            return _animationResourcesInitialized;
         }
 
         private void ClearStageForCooling()
         {
+            if (!InitAnimationResources())
+                return;
+
             if (_previousSonicateControlState == SonicateControlState.SonicateReady)
                 StopSonicateReadyOscillate();
             if (_previousSonicateControlState == SonicateControlState.SonicateReady || _previousSonicateControlState == SonicateControlState.SonicateDisabled)
@@ -367,16 +396,25 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void AnimateCoolingAppear()
         {
+            if (!InitAnimationResources())
+                return;
+
             _coolingAppearStoryboard.Begin();
         }
 
         private void AnimateCoolingDisappear()
         {
+            if (!InitAnimationResources())
+                return;
+
             _coolingDisappearStoryboard.Begin();
         }
 
         private void AnimateSonicateReady()
         {
+            if (!InitAnimationResources())
+                return;
+
             _sonicateReadySwellStoryboard.Begin();
             AnimateCoolingDisappear();
             if (SonicateControlState == SonicateControlState.SonicateReady)
@@ -385,6 +423,9 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void AnimateSonicateReadyOscillate(TimeSpan delayTimeSpan)
         {
+            if (!InitAnimationResources())
+                return;
+
             _sonicateReadyGrowArcsStoryboard.BeginTime = delayTimeSpan;
             _sonicateReadyGrowArcsStoryboard.Begin();
 
@@ -407,6 +448,9 @@ namespace Ws.Fus.Surgical.UI.Wpf
         bool _oscillatePaused = false;
         private void PauseSonicateReadyOscillate()
         {
+            if (!InitAnimationResources())
+                return;
+
             foreach (var storyboard in _sonicateReadyOscillateStoryboards)
                 storyboard.Pause();
             _oscillatePaused = true;
@@ -414,12 +458,18 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void StopSonicateReadyOscillate()
         {
+            if (!InitAnimationResources())
+                return;
+
             foreach (var storyboard in _sonicateReadyOscillateStoryboards)
                 storyboard.Stop();
         }
 
         private void AnimateSonicatePress()
         {
+            if (!InitAnimationResources())
+                return;
+
             StopSonicateReadyOscillate();
 
             _sonicateBlackHoleStoryboard.BeginTime = _press1TimeSpan;
@@ -432,6 +482,9 @@ namespace Ws.Fus.Surgical.UI.Wpf
 
         private void SonicatePressAnimationCompleted(object sender, EventArgs e)
         {
+            if (!InitAnimationResources())
+                return;
+
             _sonicateBlackHoleStoryboard.Completed -= SonicatePressAnimationCompleted;
             _sonicateBlackHoleStoryboard.BeginTime = TimeSpan.Zero;
             SonicateCommand?.Execute(null);
@@ -440,6 +493,9 @@ namespace Ws.Fus.Surgical.UI.Wpf
         private bool _resetRequired = false;
         private void AnimateReset()
         {
+            if (!InitAnimationResources())
+                return;
+
             _resetStoryboard.Begin();
             _resetRequired = false;
         }
