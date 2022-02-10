@@ -179,24 +179,29 @@
   <ControlTemplate x:Key="XControlTemplate.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
     <Grid
       x:Name="MainGrid"
-      Background="{TemplateBinding Background}"
       extensions:ControlExtensions.HorizontalPlacement="{TemplateBinding extensions:ControlExtensions.HorizontalPlacement}"
       extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
       extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
       extensions:IndependentSize.MaxWidth="{TemplateBinding extensions:IndependentSize.MaxWidth}"
       HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
       <Border
+        x:Name="BackgroundBorder"
+        Background="{TemplateBinding Background}"
+        Style="{StaticResource XStyle.Border}"
+        extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
+        extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}"/>
+      <Border
         x:Name="ActiveBorder"
         extensions:ControlExtensions.IsActive="{TemplateBinding IsChecked}"
         Style="{StaticResource XStyle.Border.Active.Secondary}"
-        extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}"/>
+        extensions:IndependentSize.CornerRadius="{Binding (extensions:IndependentSize.CornerRadius), ElementName=BackgroundBorder}"/>
       <Border
         x:Name="HoverBorder"
         extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
         Style="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}"
         BorderBrush="{TemplateBinding BorderBrush}"
         BorderThickness="{TemplateBinding BorderThickness}"
-        extensions:IndependentSize.CornerRadius="{TemplateBinding extensions:IndependentSize.CornerRadius}">
+        extensions:IndependentSize.CornerRadius="{Binding (extensions:IndependentSize.CornerRadius), ElementName=BackgroundBorder}">
         <ContentPresenter
           x:Name="ContentPresenter"
           extensions:IndependentSize.Margin="{TemplateBinding Padding}"
@@ -215,12 +220,10 @@
     </Grid>
     <ControlTemplate.Triggers>
       <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.HorizontalPlacement), ElementName=MainGrid}" Value="Left">
-        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
-        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="ActiveBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="BackgroundBorder" Value="{StaticResource XCornerRadius.Frame.Left}"/>
       </DataTrigger>
       <DataTrigger Binding="{Binding Path=(extensions:ControlExtensions.HorizontalPlacement), ElementName=MainGrid}" Value="Right">
-        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="HoverBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
-        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="ActiveBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
+        <Setter Property="extensions:IndependentSize.CornerRadius" TargetName="BackgroundBorder" Value="{StaticResource XCornerRadius.Frame.Right}"/>
       </DataTrigger>
     </ControlTemplate.Triggers>
   </ControlTemplate>
@@ -237,8 +240,8 @@
     <Setter Property="extensions:IndependentSize.BorderThickness" Value="{StaticResource XThickness.Frame.Left}"/>
     <Setter Property="extensions:IndependentSize.CornerRadius" Value="0"/>
     <Setter Property="IsThreeState" Value="False"/>
-    <Setter Property="extensions:IndependentSize.Padding" Value="15,0" />
-    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}" />
+    <Setter Property="extensions:IndependentSize.Padding" Value="15,0"/>
+    <Setter Property="Background" Value="{StaticResource XBrush.AlmostTransparent}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
