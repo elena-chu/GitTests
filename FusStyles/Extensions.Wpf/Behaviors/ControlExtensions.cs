@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Ws.Extensions.UI.Wpf.Controls;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
 {
@@ -125,5 +126,16 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty SeverityProperty = DependencyProperty.RegisterAttached("Severity", typeof(Severity), typeof(ControlExtensions), new FrameworkPropertyMetadata(Severity.Info, FrameworkPropertyMetadataOptions.Inherits));
         public static Severity GetSeverity(DependencyObject obj) { return (Severity)obj.GetValue(SeverityProperty); }
         public static void SetSeverity(DependencyObject obj, Severity value) { obj.SetValue(SeverityProperty, value); }
+
+        /// <summary>
+        /// DisplayStatus
+        /// </summary>
+        public static readonly DependencyProperty DisplayStatusProperty = DependencyProperty.RegisterAttached("DisplayStatus", typeof(DisplayStatus), typeof(ControlExtensions), new FrameworkPropertyMetadata(DisplayStatus.Active, FrameworkPropertyMetadataOptions.Inherits));
+        public static DisplayStatus GetDisplayStatus(DependencyObject obj) { return (DisplayStatus)obj.GetValue(DisplayStatusProperty); }
+        public static void SetDisplayStatus(DependencyObject obj, DisplayStatus value) { obj.SetValue(DisplayStatusProperty, value); }
+
+
+
+
     }
 }

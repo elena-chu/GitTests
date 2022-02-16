@@ -44,6 +44,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         #region Active/Inactive State
 
         // Cannot use MenuItem's IsChecked because it doesn't fire when not IsCheckable (see above)
+        /// <summary>
+        /// One of most important propertis of HeaderMenuItem.
+        /// Responsible for Header Visual status(presentation) that depends on user interaction and on statuses of its SubmenuItems
+        /// </summary>
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ToolbarMenuHeader), new PropertyMetadata(false, OnActivationStateChanged));
         public bool IsActive
         {
@@ -59,29 +63,42 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         }
 
         public delegate void Activated(ToolbarMenuHeader menuHeader);
-        public event Activated ActivatedEvent;
+        public event Activated ActivatedChanged;
 
         private void NotifyActivationState()
         {
-            if (IsActive)
-                ActivatedEvent?.Invoke(this);
+            ActivatedChanged?.Invoke(this);
         }
 
+        /// <summary>
+        /// Decides about IsActive status of Header depending on ToolbarItemType and SubItems statuses.
+        /// </summary>
         private void UpdateActiveStatusByCheckedItems()
         {
-            if (HasCheckableItems() || ToolbarItemType == ToolbarItemType.SelectCaptionToggle)
+            if (HasCheckableItems() || ToolbarItemType == ToolbarItemType.SelectCaptionToggle || ToolbarItemType == ToolbarItemType.SelectToggle)
             {
-                IsActive = Items.Cast<ToolbarMenuItem>().Any(x => x.IsChecked);
-                if (ToolbarItemType == ToolbarItemType.SelectCaptionToggle && _selectedItem != null)
+                var checkedItems = Items.Cast<ToolbarMenuItem>().Where(x => x.IsChecked);
+                if (ToolbarItemType == ToolbarItemType.Toggle) //Overlays
+                    IsActive = checkedItems.Any(el => el.Command != null && el.Command.CanExecute(null));
+                else
+                    IsActive = checkedItems.Any();
+
+                if (ToolbarItemType == ToolbarItemType.SelectCaptionToggle && _selectedItem != null)//Compare
                     ActiveHeader = _selectedItem.Header;
             }
+
+            NotifyActivationState();
         }
 
         #endregion
 
 
-        #region Header Click
+        #region Header Click Command
 
+        /// <summary>
+        /// Inner HeaderClickCommand that used inside control template for innner bindings.
+        /// This Command aim is to deside which command or action call for outside bindings
+        /// </summary>
         public static readonly DependencyProperty HeaderClickCommandProperty = DependencyProperty.Register(nameof(HeaderClickCommand), typeof(DelegateCommand), typeof(ToolbarMenuHeader));
         public DelegateCommand HeaderClickCommand
         {
@@ -92,14 +109,15 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         private void HeaderClickExecute()
         {
             bool requestedCheck = !this.IsActive;
-
-            if (ToolbarItemType.IsSelectable())
+            if (ToolbarItemType == ToolbarItemType.Fire)
             {
-                ExecuteItemCommandByHeaderStatus(_selectedItem, requestedCheck);
-                if (ToolbarItemType.IsToggleable())
-                    IsActive = requestedCheck;
+                Command?.Execute(CommandParameter);
+                return;
             }
-            else if (HasCheckableItems())
+
+            //Check whether some of SubmenuItems defined in UI as checkable and have some UI control for change status
+            //For such items are executing bulk operation
+            if (HasCheckableItems())
             {
                 IEnumerable<ToolbarMenuItem> items = requestedCheck ? _activeSet : Items.Cast<ToolbarMenuItem>();
 
@@ -108,8 +126,16 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                     ExecuteItemCommandByHeaderStatus(item, requestedCheck);
 
                 _isBulkUpdating = false;
-                UpdateActiveStatusByCheckedItems();
             }
+
+            //If Header is of type Selectable it means it represents some action
+            //of selected SubmenuItem
+            if (ToolbarItemType.IsSelectable())
+            {
+                ExecuteItemCommandByHeaderStatus(_selectedItem, requestedCheck);
+            }
+
+            UpdateActiveStatusByCheckedItems();
         }
 
         private bool HeaderClickCanExecute()
@@ -154,7 +180,15 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                 x.Click += MenuItemClicked;
                 x.Checked += OnCheckedChanged;
                 x.Unchecked += OnCheckedChanged;
+                if (x.Command != null)
+                    x.Command.CanExecuteChanged += OnCommandCanExecuteChanged;
             });
+        }
+
+        private void OnCommandCanExecuteChanged(object sender, EventArgs e)
+        {
+            UpdateActiveStatusByCheckedItems();
+            HeaderClickCommand.RaiseCanExecuteChanged();
         }
 
         private void UnregisterEvents()
@@ -164,6 +198,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
                 x.Click -= MenuItemClicked;
                 x.Checked -= OnCheckedChanged;
                 x.Unchecked -= OnCheckedChanged;
+                if (x.Command != null)
+                    x.Command.CanExecuteChanged -= OnCommandCanExecuteChanged;
             });
         }
 
@@ -177,6 +213,10 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         #region Items and Active Set
 
+        /// <summary>
+        /// Active set (relevant for Toggle ToolbarItemType like Overlays) defines set 
+        /// on which executing bulk operation
+        /// </summary>
         private List<ToolbarMenuItem> _activeSet = new List<ToolbarMenuItem>();
 
         public static readonly DependencyProperty UncheckedCommandParameterProperty = DependencyProperty.Register("UncheckedCommandParameter", typeof(object), typeof(ToolbarMenuHeader), new PropertyMetadata(null));
@@ -193,22 +233,51 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             set { SetValue(CheckedCommandParameterProperty, value); }
         }
 
+        /// <summary>
+        /// Handler for MenuItem checked property changed. 
+        /// This event is relevant for Checkable MenuItems that have UI control for changing status
+        /// as well as the regular MenuItems that have only Checked property but don't have UI option for selection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCheckedChanged(object sender, RoutedEventArgs e)
         {
             if (_isBulkUpdating)
                 return;
 
             ToolbarMenuItem item = sender as ToolbarMenuItem;
-            if (item != null && !IsSubmenuOpen)
+            if (item == null)
+                return;
+
+            /* Overlay menu has different behavior than other menus- its type is Toggle 
+             * and it toggles action for whole group od items that user defines when menu is open.
+             * When menu is closed some background actions can happend (coming from Fus etc.)
+             * and can influence the header status
+             * */
+            if (ToolbarItemType == ToolbarItemType.Toggle && item.IsCheckable) //Overlay
             {
-                if (!this.IsActive)
+                if (IsSubmenuOpen)
                 {
-                    if (item.IsChecked)
-                        _activeSet = new List<ToolbarMenuItem>() { item };
+                    if (!this.IsActive)
+                    {
+                        //If changed item check when menu is open and whole menu status is Hidden
+                        //It means that user creates the new set for futher group action
+                        if (item.IsCheckable && item.IsChecked)
+                            _activeSet = new List<ToolbarMenuItem>() { item };
+                    }
+                    else
+                        UpdateActiveSet();
                 }
-                else
-                    UpdateActiveSet();
+                else //background actions while menu is closed
+                {
+                    //Add to _activeSet for futher usage in bulk show/hide
+                    if (item.IsChecked && !_activeSet.Contains(item))
+                        _activeSet.Add(item);
+                    else if (!item.IsChecked && !_activeSet.Contains(item))
+                        _activeSet.Remove(item);
+                }
             }
+
             UpdateActiveStatusByCheckedItems();
         }
 
@@ -229,8 +298,17 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             UpdateActiveStatusByCheckedItems();
         }
 
+        /// <summary>
+        /// Acion which decides which Command and with what CommandParameter to call
+        /// depending on selected item and requested action for Header
+        /// </summary>
+        /// <param name="item">Current selected item</param>
+        /// <param name="requestedCheck">Requested action for Header</param>
         private void ExecuteItemCommandByHeaderStatus(ToolbarMenuItem item, bool requestedCheck)
         {
+            if (item == null || item.Command == null)
+                return;
+
             object commandParam = null;
             if (requestedCheck)
             {
@@ -241,7 +319,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
             try
             {
-                item.Command?.Execute(commandParam);
+                item.Command.Execute(commandParam);
             }
             catch (Exception ex)
             {
@@ -251,7 +329,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
 
         private void UpdateActiveSet()
         {
-            _activeSet = Items?.Cast<ToolbarMenuItem>().Where(x => x.IsChecked).ToList();/*.ToDictionary(x => x, x => x.IsChecked)*/;
+            _activeSet = Items?.Cast<ToolbarMenuItem>().Where(x => x.IsCheckable && x.IsChecked).ToList();/*.ToDictionary(x => x, x => x.IsChecked)*/;
         }
 
         #endregion
@@ -271,34 +349,32 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
             }
         }
 
+        /// <summary>
+        /// Is Header is of type Selectable it means that it should visually represent selected tem
+        /// This function updates visual properties of Header by Selected item
+        /// </summary>
+        /// <param name="item"></param>
         private void SetSelectedItem(ToolbarMenuItem item)
         {
-            if (_selectedItem != null && _selectedItem.Command != null)
-                _selectedItem.Command.CanExecuteChanged -= OnSelectedItemCommandCanExecuteChanged; ;
             _selectedItem = item;
-            if (_selectedItem != null && _selectedItem.Command != null)
-                _selectedItem.Command.CanExecuteChanged += OnSelectedItemCommandCanExecuteChanged; ;
+            if (_selectedItem == null)
+            {
+                HeaderClickCommand.RaiseCanExecuteChanged();
+                return;
+            }
 
-            ToolbarItemType = _selectedItem.ToolbarItemType;
             SetValue(IconedButton.IconProperty, _selectedItem.GetValue(IconedButton.IconProperty));
             SetValue(IconedButton.ActiveIconProperty, _selectedItem.GetValue(IconedButton.ActiveIconProperty));
             SetValue(IconedButton.InactiveIconProperty, _selectedItem.GetValue(IconedButton.InactiveIconProperty));
             if (_selectedItem.ToolbarItemType == ToolbarItemType.SelectCaptionToggle)
                 ActiveHeader = _selectedItem.Header;
-            //Command = _selectedItem.Command;
 
-            HeaderClickCommand.RaiseCanExecuteChanged();
-
-        }
-
-        private void OnSelectedItemCommandCanExecuteChanged(object sender, System.EventArgs e)
-        {
             HeaderClickCommand.RaiseCanExecuteChanged();
         }
 
         #endregion
 
-
+        //Not in use
         #region Exclusive Group
 
         public bool MemberOfMutuallyExclusiveGroup

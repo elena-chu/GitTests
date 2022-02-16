@@ -1,0 +1,67 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestDrawing"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="TestDrawing.SquareView"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <Grid>
+    <Canvas>
+      <Canvas x:Name="axisCanv" Height="Auto" Margin="80,-0.8,100,0.8">
+        <Canvas.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+          </TransformGroup>
+        </Canvas.RenderTransform>
+        <Path x:Name="errows" Fill="#FF2D2DCA" Canvas.Left="4.673" Canvas.Top="33.014">
+          <Path.Data>
+            <PathGeometry Figures="M16.568325,0.5 L18.676674,8.6132317 19.534081,8.4620819 C34.455772,5.9826317 49.652477,10.681675 61.314202,19.718323 70.546399,26.87233 77.563098,36.744871 80.473902,47.926391 81.594179,52.229805 82.106277,56.727109 81.902426,61.337948 L81.8839,61.639687 90.636244,61.639687 79.296659,80.952688 68.864244,61.639687 77.354989,61.639687 77.377393,60.305342 C77.383516,31.915123 50.154097,8.7495804 20.451366,12.81596 L19.793713,12.911766 22.044212,21.57201 0.5,15.454456 z">
+              <PathGeometry.Transform>
+                <RotateTransform  Angle="-37.972"/>
+              </PathGeometry.Transform>
+            </PathGeometry>
+          </Path.Data>
+          <Path.RenderTransform>
+            <TransformGroup>
+              <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+              <SkewTransform/>
+              <!--<RotateTransform Angle="-37.972"/>-->
+              <!--<TranslateTransform X="13.205" Y="4.761"/>-->
+            </TransformGroup>
+          </Path.RenderTransform>
+          <Path.RenderTransformOrigin>
+            <Point X="0.5" Y="0.5" />
+          </Path.RenderTransformOrigin>
+        </Path>
+        <Path x:Name="axis" Data="M58.4,39.2 L58.4,260" 
+            Fill="#FF2D2DCA" 
+            Stroke="#FF2D2DCA" StrokeDashArray="5 3" 
+            Height="264.8" Canvas.Left="55.2" 
+            Stretch="Fill" Canvas.Top="33.6" 
+            Width="14.4" StrokeThickness="2" />
+
+        <Line x:Name="lineAxis" Canvas.Left="65" Canvas.Top="38"
+            Fill="Red" Stroke="Red" StrokeDashArray="5 3" 
+            StrokeThickness="2" Y1="0" Y2="264" />
+
+        <!--<ed:BlockArrow Fill="#FF2D2DCA" ed:GeometryEffect.GeometryEffect="Sketch" Height="0" Canvas.Left="85.169" Orientation="Right" Stroke="Black" Canvas.Top="95.021" Width="73.729"/>-->
+
+
+      </Canvas>
+
+      <Canvas>
+        <Rectangle Width="100" Height="200" Stroke="Blue" StrokeThickness="2" >
+
+        </Rectangle>
+      </Canvas>
+    </Canvas>
+
+
+
+  </Grid>
+</UserControl>

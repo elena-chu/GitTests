@@ -98,6 +98,116 @@
     </StackPanel>-->
 
 
+    <!-- 
+    =================Content with icons ==========================================
+    -->
+
+    <!--<StackPanel>
+      <TextBlock Text="Thermal Slider:"/>
+      <extensions:ThermalSlider
+        HorizontalAlignment="Center"
+        Style="{StaticResource XStyle.ThermalSlider}"
+        Minimum="37"
+        Maximum="63"
+        Value="44"
+        extensions:IndependentSize.Height="250"
+        extensions:IndependentSize.Width="70"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="9 Setup MRI:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Setup}" extensions:IconedButton.IconSize="26"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="13 Monitoring Volume:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.MonitoringVolume}" extensions:IconedButton.IconSize="30"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="16 Scan Params:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ScanParams}" extensions:IconedButton.IconSize="30"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="17 Correct Spot Alignment:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.CorrectSpotAlignment}" extensions:IconedButton.IconSize="30"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="18 Reset spot alignment:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ResetSpotAlignment}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="19 Update max temperature:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.UpdateMaxTemperature}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="20 Background elimination:"/>
+      <ToggleButton
+        Content="Background Elimination"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="21 Accept:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ThumbsUp}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="21 Reject:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ThumbsDown}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="23 Expand:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Expand}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="23 Contract:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Contract}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="24 Report:"/>
+      <ToggleButton
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Report}"
+        Style="{StaticResource XStyle.ToggleButton.TextWithSideIcon}"
+        extensions:IconedButton.IconSize="18"
+        Content="Report Thingie"
+        HorizontalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Ghost Cursor:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.GhostCursor}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="26 Manual/Auto Calc:"/>
+      <ToggleButton
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.ManualCalculation}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.AutoCalculation}"
+        extensions:IconedButton.IconSize="25"
+        Style="{StaticResource XStyle.ToggleButton.Icon}"/>
+    </StackPanel>-->
+
+    <!-- 
+    ================= End Content with icons ==========================================
+    -->
+
+
+    <!-- 
+    =================Content with messages ==========================================
+    -->
+
+    
     <!--<StackPanel>
       <TextBlock Text="Thermal Slider:"/>
       <extensions:ThermalSlider
@@ -264,6 +374,10 @@
           extensions:ControlExtensions.Direction="Right"/>
       </StackPanel>
     </StackPanel>-->
+
+    <!-- 
+    ================= End Content with messages ==========================================
+    -->
 
     <StackPanel>
       <TextBlock Text="Radio:"/>

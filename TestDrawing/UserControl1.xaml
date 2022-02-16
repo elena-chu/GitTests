@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="TestDrawing.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestDrawing"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <Grid>
+    <Path Data="M35.517998,17.5355 C35.517998,26.943948 27.678953,34.571001 18.008999,34.571001 8.339046,34.571001 0.5,26.943948 0.5,17.5355 0.5,8.1270533 8.339046,0.5 18.008999,0.5 27.678953,0.5 35.517998,8.1270533 35.517998,17.5355 z M28.172,17.5355 C28.172,23.279538 23.621646,27.935999 18.0085,27.935999 12.395354,27.935999 7.845,23.279538 7.845,17.5355 7.845,11.791462 12.395354,7.135 18.0085,7.135 23.621646,7.135 28.172,11.791462 28.172,17.5355 z" HorizontalAlignment="Left" Height="35.071" Margin="31.694,16.824,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="36.018"/>
+    <Grid HorizontalAlignment="Left" Height="37.334" Margin="31.866,70.666,0,0" VerticalAlignment="Top" Width="37.334">
+      <Path Data="M36.334,18.667 C36.334,28.424215 28.424215,36.334 18.667,36.334 C8.9097853,36.334 1,28.424215 1,18.667 C1,8.9097853 8.9097853,1 18.667,1 C28.424215,1 36.334,8.9097853 36.334,18.667 z" Stretch="Fill" Stroke="Black" StrokeThickness="2" StrokeDashArray="2" StrokeDashCap="Round" />
+      <Path Data="M40.179964,88.828841 L43.223852,85.537268 49.682442,92.415611 59.197805,81.994108 62.095761,85.591337 49.779623,99.328249 z" Margin="7.234,10.384,5.9,7.675" Stretch="Fill" Fill="Black" StrokeThickness="0"/>
+    </Grid>
+    <!--<Path Data="M40.933333,84.8 L48.933668,96.000003 59.067753,80.533338" HorizontalAlignment="Left" Height="17.467" Margin="40.466,80.6,0,0" Stretch="Fill" Stroke="Black" StrokeThickness="4" VerticalAlignment="Top" Width="20.134"/>-->
+    <Path Data="M21.999999,1.0000001 L11.492886,12.588374 4.3611408,4.9398796 1.0000001,8.6000015 11.600196,20.275005 25.199998,5.000002 z" Height="21.275" Margin="123.5,87.05,0,0" Stretch="Fill" StrokeDashCap="Round" Stroke="Black" StrokeDashArray="0" VerticalAlignment="Top" Fill="Black" HorizontalAlignment="Left" Width="26.2" StrokeThickness="0" />
+    <Grid Height="37.334" Margin="117.266,77.666,145.4,0" VerticalAlignment="Top">
+      <Path Data="M18.667,1 C28.424216,1 36.334,8.9097854 36.334,18.667 36.334,28.424216 28.424216,36.334 18.667,36.334 8.9097854,36.334 1,28.424216 1,18.667 1,8.9097854 8.9097854,1 18.667,1 z" Stretch="Fill" StrokeDashCap="Round" Stroke="Black" StrokeThickness="2" StrokeDashArray="0" />
+
+    </Grid>
+
+  </Grid>
+</UserControl>

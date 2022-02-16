@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Ws.Fus.PlanningScans.UI.Wpf.Controls.ScanBox.ScanBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ws.Fus.PlanningScans.UI.Wpf.Controls.ScanBox"
+             xmlns:extensions="http://schemas.insightec.com/wpf/"
+             x:Name="ScanBoxControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ScanBoxResources.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+
+
+      <DataTemplate x:Key="NullTemplate">
+        <Canvas  />
+      </DataTemplate>
+
+      <DataTemplate x:Key="MainOrientationTemplate">
+        <Canvas ClipToBounds="True">
+          <local:MainOrientationPanel Style="{StaticResource MainOrientationPanelStyle}">
+            <TextBlock Background="#44FF0000" Foreground="White" Width="Auto" Padding="10,3"
+                   Canvas.Left="{Binding Path=(Canvas.Left), ElementName=MainSquare, Mode=OneWay}"
+                   Canvas.Top="{Binding Path=(Canvas.Top), ElementName=MainSquare, Mode=OneWay}">
+              <TextBlock.Inlines>
+                <Run Text="{Binding SliceNumber, RelativeSource={RelativeSource FindAncestor, AncestorType=local:BaseActionPanel}, Mode=OneWay}" />
+                <Run Text=" Slices" />
+              </TextBlock.Inlines>
+            </TextBlock>
+            <Rectangle x:Name="MainSquare" Canvas.Left="-2000" Canvas.Top="-2000" Style="{StaticResource MainSquare}" />
+            <Rectangle x:Name="SecSquare" Style="{StaticResource SecSquare}" />
+          </local:MainOrientationPanel>
+        </Canvas>
+      </DataTemplate>
+
+      <DataTemplate x:Key="SecondaryOrientationTemplate">
+        <Canvas ClipToBounds="True">
+          <local:SecondaryOrientationPanel Style="{StaticResource SecondaryOrientationPanelStyle}">
+            <Rectangle x:Name="MainSquare" Canvas.Left="-2000" Canvas.Top="-2000" Style="{StaticResource MainSquare}" />
+            <Rectangle x:Name="SecSquare" Style="{StaticResource SecSquare}" />
+
+            <!--<Border x:Name="Rotator" Background="Transparent" 
+                  Width="Auto" Height="Auto" Padding="0, 10" 
+                  Canvas.Left="-1000" Canvas.Top="-1000"  
+                  Style="{StaticResource ClicableElement}" Cursor="ScrollWE">
+              <Path x:Name="errows" Style="{StaticResource RotateErrowStyle}" />
+            </Border>-->
+
+            <Line x:Name="lineAxis" Canvas.Left="-2000" Canvas.Top="-2000"
+                Style="{StaticResource AxisStyle}"
+                StrokeDashArray="6 4" Y1="0" Y2="20" Cursor="Hand" />
+
+            <Grid x:Name="Rotator"  Canvas.Left="-1000" Canvas.Top="-1000" Style="{StaticResource ClicableElement}" Cursor="ScrollWE">
+              <Border Background="Transparent" HorizontalAlignment="Center"
+                  Width="Auto" Height="40" Padding="0, 10" VerticalAlignment="Top">
+                <Path x:Name="errows" Style="{StaticResource RotateErrowStyle}" />
+              </Border>
+              <Rectangle Width="15" Height="{Binding ActualHeight, ElementName=lineAxis}" Fill="Transparent"
+                         HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 20,0,0" />
+            </Grid>
+
+            <local:DragEdge x:Name="FromDragger" IsFrom="True" Style="{StaticResource DraggerStyle}" Width="50" />
+            <local:DragEdge x:Name="ToDragger" IsFrom="False" Style="{StaticResource DraggerStyle}" Width="50" />
+          </local:SecondaryOrientationPanel>
+        </Canvas>
+      </DataTemplate>
+
+      <extensions:BooleanToTrueFalseValueConverter x:Key="BooleanToTrueFalseValueConverter" 
+          IsThreeState="True"  
+          NullValue="{StaticResource NullTemplate}"
+          TrueValue="{StaticResource MainOrientationTemplate}" 
+          FalseValue="{StaticResource SecondaryOrientationTemplate}" />
+    </ResourceDictionary>
+
+  </UserControl.Resources>
+
+  <ContentPresenter x:Name="Root" ContentTemplate="{Binding IsMainOrientation, ElementName=ScanBoxControl, Converter={StaticResource BooleanToTrueFalseValueConverter}}" />
+</UserControl>

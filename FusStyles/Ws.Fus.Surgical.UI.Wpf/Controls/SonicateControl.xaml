@@ -32,7 +32,7 @@
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.4">0:0:3.5</sys:TimeSpan>
     <sys:TimeSpan x:Key="LTimeSpan.Oscillate.5">0:0:4.5</sys:TimeSpan>
 
-    <sys:TimeSpan x:Key="LTimeSpan.Press.1">0:0:0.6</sys:TimeSpan>
+      <sys:TimeSpan x:Key="LTimeSpan.Press.1">0:0:0.5</sys:TimeSpan>
     
     <sys:TimeSpan x:Key="LTimeSpan.Reset.Delay">0:0:0.5</sys:TimeSpan>
     
@@ -329,13 +329,13 @@
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.Sonicate.BlackHole">
-      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Long}"/>
-      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="230" Duration="{StaticResource LDuration.Short}"/>
-      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.FontSize)" To="14" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="TrioMaskEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="BackEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="HighlightEllipse" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="HaloBorder" Storyboard.TargetProperty="Width" To="0" Duration="{StaticResource LDuration.Short}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.Y)" To="230" Duration="{StaticResource LDuration.VeryShort}"/>
+      <DoubleAnimation Storyboard.TargetName="SonicateTextBlock" Storyboard.TargetProperty="(TextBlock.FontSize)" To="14" Duration="{StaticResource LDuration.VeryShort}"/>
     </Storyboard>
 
     <Storyboard x:Key="LStoryboard.Reset" Duration="{StaticResource LDuration.Short}">

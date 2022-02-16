@@ -94,6 +94,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\PlanningModuleController.cs" />
+    <Compile Include="Controls\ScanBox\BaseActionPanel.cs" />
+    <Compile Include="Controls\ScanBox\DragEdge.xaml.cs">
+      <DependentUpon>DragEdge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScanBox\DraggerPositionMultiConverter.cs" />
+    <Compile Include="Controls\ScanBox\IScanBoxAware.cs" />
+    <Compile Include="Controls\ScanBox\MainOrientationPanel.cs" />
+    <Compile Include="Controls\ScanBox\ScanBox.xaml.cs">
+      <DependentUpon>ScanBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScanBox\ScanBoxParams.cs" />
+    <Compile Include="Controls\ScanBox\SecondaryOrientationPanel.cs" />
     <Compile Include="Menus\AcPcMenuView.xaml.cs">
       <DependentUpon>AcPcMenuView.xaml</DependentUpon>
     </Compile>
@@ -132,6 +144,18 @@
     <Compile Include="Views\TitleBarToolsView.xaml.cs">
       <DependentUpon>TitleBarToolsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\ScanBox\DragEdge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ScanBox\ScanBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ScanBox\ScanBoxResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
