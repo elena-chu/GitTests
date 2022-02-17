@@ -629,11 +629,15 @@ namespace Ws.Extensions.UI.Wpf.Controls
 
         private void OnTextElementGotFocus(object sender, RoutedEventArgs e)
         {
-            SelectAll();
             IsChildWithFocus = true;
         }
 
         private void OnTextElementGotMouseCapture(object sender, MouseEventArgs e)
+        {
+            IsChildWithFocus = true;
+        }
+
+        private void OnTextElementDoubleClick(object sender, MouseButtonEventArgs e)
         {
             SelectAll();
             IsChildWithFocus = true;
@@ -716,6 +720,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 _textElement.LostFocus += OnTextElementLostFocus;
                 _textElement.TextChanged += OnTextChanged;
                 _textElement.GotMouseCapture += OnTextElementGotMouseCapture;
+                _textElement.MouseDoubleClick += OnTextElementDoubleClick;
             }
         }
 
@@ -727,6 +732,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 _textElement.LostFocus -= OnTextElementLostFocus;
                 _textElement.TextChanged -= OnTextChanged;
                 _textElement.GotMouseCapture -= OnTextElementGotMouseCapture;
+                _textElement.MouseDoubleClick -= OnTextElementDoubleClick;
             }
         }
 
@@ -748,7 +754,6 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 Dispatcher.BeginInvoke((Action)(() =>
                 {
                     TextElement.Text = (string)TextElement.Tag;
-                    TextElement.CaretIndex = TextElement.Text.Length;
                 }));
             }
 
@@ -771,7 +776,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
             if (Value.HasValue)
             {
                 string displayedNumber = Math.Abs(Value.Value).ToString(format);
-                return $"{ValueSignCode}{HAIR_SPACE}{displayedNumber}";
+                return !string.IsNullOrEmpty(ValueSignCode) ? $"{ValueSignCode}{HAIR_SPACE}{displayedNumber}" : displayedNumber;
             }
             else { return string.Empty; }
         }
