@@ -152,8 +152,18 @@
             </Style.Triggers>
           </Style>
         </UniformGrid.Style>
-        <RepeatButton Name="PART_UpButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Top"/>
-        <RepeatButton Name="PART_DownButton" Style="{StaticResource XStyle.RepeatButton.Spinner}" extensions:ControlExtensions.VerticalPlacement="Bottom"/>
+        <RepeatButton
+          Name="PART_UpButton"
+          extensions:IndependentSize.Margin="0,3,0,0"
+          Style="{StaticResource XStyle.RepeatButton.Spinner}"
+          extensions:ControlExtensions.Direction="Top"
+          extensions:IconedButton.IconSize="12"/>
+        <RepeatButton
+          Name="PART_DownButton"
+          extensions:IndependentSize.Margin="0,0,0,3"
+          Style="{StaticResource XStyle.RepeatButton.Spinner}"
+          extensions:ControlExtensions.Direction="Bottom"
+          extensions:IconedButton.IconSize="12"/>
       </UniformGrid>
 
       <TextBlock
