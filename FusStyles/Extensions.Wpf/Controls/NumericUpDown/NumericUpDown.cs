@@ -227,7 +227,8 @@ namespace Ws.Extensions.UI.Wpf.Controls
                 if (control.UpButtonElement == null || control.DownButtonElement == null ||
                     !control.UpButtonElement.IsPressed && !control.DownButtonElement.IsPressed)
                 {
-                    control.StoppedValue = control.Value;
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() => control.StoppedValue = control.Value));
+                    //control.StoppedValue = control.Value;
                 }
             }
         }
@@ -345,6 +346,8 @@ namespace Ws.Extensions.UI.Wpf.Controls
 
                 number = Math.Round(number, NumberOfFractionDigits);
                 Value = GetValueInMinMaxRange(number);
+                IncreaseCommand.RaiseCanExecuteChanged();
+                DecreaseCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -424,10 +427,11 @@ namespace Ws.Extensions.UI.Wpf.Controls
             else
                 Value += Increment;
 
+            UpdateDisplay();
+
             if (Value.Value >= MaxValue)
                 StoppedValue = Value;
 
-            UpdateDisplay();
         }
         private bool IncreaseCanExecute()
         {
@@ -445,10 +449,11 @@ namespace Ws.Extensions.UI.Wpf.Controls
             else
                 Value -= Increment;
 
+            UpdateDisplay();
+
             if (Value.Value <= MinValue)
                 StoppedValue = Value;
 
-            UpdateDisplay();
         }
         private bool DecreaseCanExecute()
         {
@@ -524,7 +529,7 @@ namespace Ws.Extensions.UI.Wpf.Controls
         private void OnUpDownButtonMouseUp(object sender, MouseButtonEventArgs e)
         {
             IsButtonsPressed = false;
-            StoppedValue = Value;
+            Application.Current.Dispatcher.BeginInvoke((Action)(() => StoppedValue = Value));
         }
 
         private void OnUpDownButtonMouseDown(object sender, MouseButtonEventArgs e)
