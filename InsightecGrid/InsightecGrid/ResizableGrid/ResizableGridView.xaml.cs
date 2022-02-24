@@ -71,28 +71,28 @@ namespace InsightecGrid.ResizableGrid
 
         private void AlignTilesToOrigin()
         {
-            if (Origin.X < 0 || Origin.Y < 0 || Origin.X > PlaygroundCanvas.ActualWidth || Origin.Y > PlaygroundCanvas.ActualHeight)
+            if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
 
             Canvas.SetLeft(SouthEastGridLinesRectangle, Origin.X);
             Canvas.SetTop(SouthEastGridLinesRectangle, Origin.Y);
-            SouthEastGridLinesRectangle.Width = PlaygroundCanvas.ActualWidth - Origin.X;
-            SouthEastGridLinesRectangle.Height = PlaygroundCanvas.ActualHeight - Origin.Y;
+            SouthEastGridLinesRectangle.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X, 0);
+            SouthEastGridLinesRectangle.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y, 0);
 
             Canvas.SetLeft(SouthWestGridLinesRectangle, 0);
             Canvas.SetTop(SouthWestGridLinesRectangle, Origin.Y);
-            SouthWestGridLinesRectangle.Width = Origin.X;
-            SouthWestGridLinesRectangle.Height = PlaygroundCanvas.ActualHeight - Origin.Y;
+            SouthWestGridLinesRectangle.Width = Math.Max(Origin.X,0);
+            SouthWestGridLinesRectangle.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y, 0);
 
             Canvas.SetLeft(NorthWestGridLinesRectangle, 0);
             Canvas.SetTop(NorthWestGridLinesRectangle, 0);
-            NorthWestGridLinesRectangle.Width = Origin.X;
-            NorthWestGridLinesRectangle.Height = Origin.Y;
+            NorthWestGridLinesRectangle.Width = Math.Max(Origin.X, 0);
+            NorthWestGridLinesRectangle.Height = Math.Max(Origin.Y, 0);
 
             Canvas.SetLeft(NorthEastGridLinesRectangle, Origin.X);
             Canvas.SetTop(NorthEastGridLinesRectangle, 0);
-            NorthEastGridLinesRectangle.Width = PlaygroundCanvas.ActualWidth - Origin.X;
-            NorthEastGridLinesRectangle.Height = Origin.Y;
+            NorthEastGridLinesRectangle.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X, 0);
+            NorthEastGridLinesRectangle.Height = Math.Max(Origin.Y, 0);
         }
 
         #endregion
@@ -102,26 +102,26 @@ namespace InsightecGrid.ResizableGrid
 
         private void AlignAxesToOrigin()
         {
-            if (Origin.X < 0 || Origin.Y < 0 || Origin.X > PlaygroundCanvas.ActualWidth || Origin.Y > PlaygroundCanvas.ActualHeight)
+            if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
 
             double halfTile = Math.Round(TileSize / 2);
 
             Canvas.SetLeft(EastAxisRectangle, Origin.X);
             Canvas.SetTop(EastAxisRectangle, Origin.Y - halfTile);
-            EastAxisRectangle.Width = PlaygroundCanvas.ActualWidth - Origin.X;
+            EastAxisRectangle.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X, 0);
 
             Canvas.SetLeft(WestAxisRectangle, 0);
             Canvas.SetTop(WestAxisRectangle, Origin.Y - halfTile);
-            WestAxisRectangle.Width = Origin.X;
+            WestAxisRectangle.Width = Math.Max(Origin.X, 0);
 
             Canvas.SetLeft(SouthAxisRectangle, Origin.X - halfTile);
             Canvas.SetTop(SouthAxisRectangle, Origin.Y);
-            SouthAxisRectangle.Height = PlaygroundCanvas.ActualHeight - Origin.Y;
+            SouthAxisRectangle.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y, 0);
 
             Canvas.SetLeft(NorthAxisRectangle, Origin.X - halfTile);
             Canvas.SetTop(NorthAxisRectangle, 0);
-            NorthAxisRectangle.Height = Origin.Y;
+            NorthAxisRectangle.Height = Math.Max(Origin.Y, 0);
         }
 
         public ObservableCollection<double> TickLabels { get; set; } = new ObservableCollection<double>()
@@ -131,7 +131,7 @@ namespace InsightecGrid.ResizableGrid
 
         private void AlignLabelsToOrigin()
         {
-            if (Origin.X < 0 || Origin.Y < 0 || Origin.X > PlaygroundCanvas.ActualWidth || Origin.Y > PlaygroundCanvas.ActualHeight)
+            if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
 
             double halfTile = Math.Round(TileSize / 2);
@@ -189,7 +189,7 @@ namespace InsightecGrid.ResizableGrid
 
         private void AlignToOrigin()
         {
-            if (Origin.X < 0 || Origin.Y < 0 || Origin.X > PlaygroundCanvas.ActualWidth || Origin.Y > PlaygroundCanvas.ActualHeight)
+            if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
 
             AlignTilesToOrigin();

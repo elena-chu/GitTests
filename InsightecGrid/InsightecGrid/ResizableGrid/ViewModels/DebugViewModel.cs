@@ -17,7 +17,7 @@ namespace ResizableGrid.ViewModels
             await Task.Delay(3000);
             Resolution = 120;
             await Task.Delay(3000);
-            Origin = new Point(240, 240);
+            Origin = new Point(-240, 240);
             await Task.Delay(3000);
             Resolution = 70;
             await Task.Delay(3000);

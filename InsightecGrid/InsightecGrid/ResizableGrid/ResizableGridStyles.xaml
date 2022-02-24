@@ -14,7 +14,7 @@
   <SolidColorBrush x:Key="XBrush.ResizableGrid.Line" Color="{StaticResource XColor.ResizableGrid.Line}"/>
   <SolidColorBrush x:Key="XBrush.ResizableGrid.Origin" Color="{StaticResource XColor.ResizableGrid.Origin}"/>
 
-  <Style x:Key="XStyle.Rectangle" TargetType="{x:Type Rectangle}">
+  <Style x:Key="XStyle.Rectangle.Line" TargetType="{x:Type Rectangle}">
     <Setter Property="IsHitTestVisible" Value="False"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Fill" Value="{StaticResource XBrush.ResizableGrid.Line}"/>
@@ -22,62 +22,96 @@
     <Setter Property="HorizontalAlignment" Value="Center"/>
   </Style>
 
-  <Style x:Key="XStyle.Rectangle.Horizontal" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle}">
+  <Style x:Key="XStyle.Rectangle.HorizontalLine" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.Line}">
     <Setter Property="behaviors:IndependentSize.Height" Value="1"/>
     <Setter Property="Width" Value="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}}"/>
   </Style>
 
-  <Style x:Key="XStyle.Rectangle.Vertical" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle}">
+  <Style x:Key="XStyle.Rectangle.VerticalLine" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.Line}">
     <Setter Property="behaviors:IndependentSize.Width" Value="1"/>
     <Setter Property="Height" Value="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}}"/>
   </Style>
 
   <!--Grid Lines-->
-  <VisualBrush x:Key="XVisualBrush.Tile.GridLines" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+  <Storyboard x:Key="XStoryboard.MouseOver" Storyboard.TargetProperty="Opacity">
+    <DoubleAnimation To="1" Duration="0:0:0.2"/>
+  </Storyboard>
+  
+  <Storyboard x:Key="XStoryboard.MouseOut" Storyboard.TargetProperty="Opacity">
+    <DoubleAnimation To="0" Duration="0:0:0.2"/>
+  </Storyboard>
+  
+  <VisualBrush x:Key="XVisualBrush.GridLines" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
     <VisualBrush.Visual>
       <Grid>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}" VerticalAlignment="Bottom" Opacity="{StaticResource XDouble.Opacity.ResizableGridLines}"/>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}" HorizontalAlignment="Right" Opacity="{StaticResource XDouble.Opacity.ResizableGridLines}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.HorizontalLine}" VerticalAlignment="Bottom" Opacity="{StaticResource XDouble.Opacity.ResizableGridLines}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.VerticalLine}" HorizontalAlignment="Right" Opacity="{StaticResource XDouble.Opacity.ResizableGridLines}"/>
       </Grid>
     </VisualBrush.Visual>
   </VisualBrush>
 
   <Style x:Key="XStyle.Rectangle.GridLines" TargetType="{x:Type Rectangle}">
-    <Setter Property="Fill" Value="{StaticResource XVisualBrush.Tile.GridLines}"/>
+    <Setter Property="Fill" Value="{StaticResource XVisualBrush.GridLines}"/>
     <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+    <Setter Property="Opacity" Value="0"/>
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOver}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOut}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <!--Axis-->
-  <VisualBrush x:Key="XVisualBrush.Tile.HorizontalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+  <VisualBrush x:Key="XVisualBrush.HorizontalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
     <VisualBrush.Visual>
       <Grid>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}"/>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}" HorizontalAlignment="Right" Height="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.7}"/>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}" Height="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.3}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.HorizontalLine}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.VerticalLine}" HorizontalAlignment="Right" Height="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.7}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.VerticalLine}" Height="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.3}"/>
       </Grid>
     </VisualBrush.Visual>
   </VisualBrush>
 
-  <VisualBrush x:Key="XVisualBrush.Tile.VerticalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+  <VisualBrush x:Key="XVisualBrush.VerticalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
     <VisualBrush.Visual>
       <Grid>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}"/>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}" VerticalAlignment="Bottom" Width="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.7}"/>
-        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}" Width="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.3}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.VerticalLine}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.HorizontalLine}" VerticalAlignment="Bottom" Width="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.7}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.HorizontalLine}" Width="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.3}"/>
       </Grid>
     </VisualBrush.Visual>
   </VisualBrush>
 
-  <Style x:Key="XStyle.Rectangle.HorizontalAxis" TargetType="{x:Type Rectangle}">
-    <Setter Property="Fill" Value="{StaticResource XVisualBrush.Tile.HorizontalAxis}"/>
-    <Setter Property="Height" Value="{Binding TileSize, ElementName=_thisResizableGridView}"/>
+  <Style x:Key="XStyle.Rectangle.Axis" TargetType="{x:Type Rectangle}">
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+    <Setter Property="Opacity" Value="0"/>
+    <Style.Triggers>
+      <Trigger Property="behaviors:ControlExtensions.IsActive" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOver}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOut}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.Rectangle.VerticalAxis" TargetType="{x:Type Rectangle}">
-    <Setter Property="Fill" Value="{StaticResource XVisualBrush.Tile.VerticalAxis}"/>
+  <Style x:Key="XStyle.Rectangle.HorizontalAxis" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.Axis}">
+    <Setter Property="Fill" Value="{StaticResource XVisualBrush.HorizontalAxis}"/>
+    <Setter Property="Height" Value="{Binding TileSize, ElementName=_thisResizableGridView}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Rectangle.VerticalAxis" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.Axis}">
+    <Setter Property="Fill" Value="{StaticResource XVisualBrush.VerticalAxis}"/>
     <Setter Property="Width" Value="{Binding TileSize, ElementName=_thisResizableGridView}"/>
-    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
   </Style>
 
   <!--Tick Labels-->
@@ -91,8 +125,11 @@
   </DataTemplate>
 
   <Style x:Key="XStyle.ItemsControl.TickLabels" TargetType="{x:Type ItemsControl}">
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="ItemsSource" Value="{Binding TickLabels, ElementName=_thisResizableGridView}"/>
     <Setter Property="ItemTemplate" Value="{StaticResource XDataTemplate.TickLabel}"/>
+    <Setter Property="Opacity" Value="0"/>
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
@@ -100,6 +137,16 @@
         </ItemsPanelTemplate>
       </Setter.Value>
     </Setter>
+    <Style.Triggers>
+      <Trigger Property="behaviors:ControlExtensions.IsActive" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOver}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOut}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <Style x:Key="XStyle.ContentPresenter.TickLabels.East" TargetType="{x:Type ContentPresenter}">

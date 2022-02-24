@@ -6,6 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
   xmlns:local="clr-namespace:InsightecGrid.ResizableGrid"
   xmlns:behaviors="clr-namespace:Ws.Extensions.UI.Wpf.Behaviors"
+  xmlns:extensions="clr-namespace:Ws.Extensions.UI.Wpf.Converters"
   mc:Ignorable="d"
   Loaded="OnLoad"
   x:Name="_thisResizableGridView">
@@ -22,7 +23,7 @@
     <Canvas.Resources>
       <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource XStyle.ItemsControl.TickLabels}"/>
     </Canvas.Resources>
-    
+
     <Rectangle x:Name="SouthEastGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}"/>
     <Rectangle x:Name="SouthWestGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}">
       <Rectangle.RenderTransform>
@@ -40,17 +41,67 @@
       </Rectangle.RenderTransform>
     </Rectangle>
 
-    <Rectangle x:Name="EastAxisRectangle" Style="{StaticResource XStyle.Rectangle.HorizontalAxis}"/>
-    <Rectangle x:Name="WestAxisRectangle" Style="{StaticResource XStyle.Rectangle.HorizontalAxis}">
+    <Rectangle x:Name="EastAxisRectangle">
+      <Rectangle.Style>
+        <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.HorizontalAxis}">
+          <Setter Property="behaviors:ControlExtensions.IsActive">
+            <Setter.Value>
+              <MultiBinding Converter="{extensions:OrConverter}">
+                <Binding Path="IsMouseOver" ElementName="SouthEastGridLinesRectangle"/>
+                <Binding Path="IsMouseOver" ElementName="NorthEastGridLinesRectangle"/>
+              </MultiBinding>
+            </Setter.Value>
+          </Setter>
+        </Style>
+      </Rectangle.Style>
+    </Rectangle>
+    <Rectangle x:Name="WestAxisRectangle">
       <Rectangle.RenderTransform>
         <ScaleTransform ScaleX="-1"/>
       </Rectangle.RenderTransform>
+      <Rectangle.Style>
+        <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.HorizontalAxis}">
+          <Setter Property="behaviors:ControlExtensions.IsActive">
+            <Setter.Value>
+              <MultiBinding Converter="{extensions:OrConverter}">
+                <Binding Path="IsMouseOver" ElementName="SouthWestGridLinesRectangle"/>
+                <Binding Path="IsMouseOver" ElementName="NorthWestGridLinesRectangle"/>
+              </MultiBinding>
+            </Setter.Value>
+          </Setter>
+        </Style>
+      </Rectangle.Style>
     </Rectangle>
-    <Rectangle x:Name="SouthAxisRectangle" Style="{StaticResource XStyle.Rectangle.VerticalAxis}"/>
-    <Rectangle x:Name="NorthAxisRectangle" Style="{StaticResource XStyle.Rectangle.VerticalAxis}">
+    <Rectangle x:Name="SouthAxisRectangle">
+      <Rectangle.Style>
+        <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.VerticalAxis}">
+          <Setter Property="behaviors:ControlExtensions.IsActive">
+            <Setter.Value>
+              <MultiBinding Converter="{extensions:OrConverter}">
+                <Binding Path="IsMouseOver" ElementName="SouthEastGridLinesRectangle"/>
+                <Binding Path="IsMouseOver" ElementName="SouthWestGridLinesRectangle"/>
+              </MultiBinding>
+            </Setter.Value>
+          </Setter>
+        </Style>
+      </Rectangle.Style>
+    </Rectangle>
+    <Rectangle x:Name="NorthAxisRectangle">
       <Rectangle.RenderTransform>
         <ScaleTransform ScaleY="-1"/>
       </Rectangle.RenderTransform>
+      <Rectangle.Style>
+        <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.VerticalAxis}">
+          <Setter Property="behaviors:ControlExtensions.IsActive">
+            <Setter.Value>
+              <MultiBinding Converter="{extensions:OrConverter}">
+                <Binding Path="IsMouseOver" ElementName="NorthEastGridLinesRectangle"/>
+                <Binding Path="IsMouseOver" ElementName="NorthWestGridLinesRectangle"/>
+              </MultiBinding>
+            </Setter.Value>
+          </Setter>
+        </Style>
+      </Rectangle.Style>
     </Rectangle>
 
     <Ellipse
@@ -61,16 +112,40 @@
       behaviors:IndependentSize.StrokeThickness="1"
       Stroke="Black"/>
 
-    <ItemsControl x:Name="EastTopTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.East}"/>
-    <ItemsControl x:Name="EastBottomTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.East}"/>
+    <ItemsControl
+      x:Name="EastTopTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.East}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthEastGridLinesRectangle}"/>
+    <ItemsControl
+      x:Name="EastBottomTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.East}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthEastGridLinesRectangle}"/>
 
-    <ItemsControl x:Name="WestTopTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.West}"/>
-    <ItemsControl x:Name="WestBottomTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.West}"/>
+    <ItemsControl
+      x:Name="WestTopTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.West}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthWestGridLinesRectangle}"/>
+    <ItemsControl
+      x:Name="WestBottomTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.West}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthWestGridLinesRectangle}"/>
 
-    <ItemsControl x:Name="SouthLeftTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.South}"/>
-    <ItemsControl x:Name="SouthRightTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.South}"/>
+    <ItemsControl
+      x:Name="SouthLeftTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.South}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthEastGridLinesRectangle}"/>
+    <ItemsControl
+      x:Name="SouthRightTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.South}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthWestGridLinesRectangle}"/>
 
-    <ItemsControl x:Name="NorthLeftTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.North}"/>
-    <ItemsControl x:Name="NorthRightTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.North}"/>
+    <ItemsControl
+      x:Name="NorthLeftTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.North}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthEastGridLinesRectangle}"/>
+    <ItemsControl
+      x:Name="NorthRightTickLabelsItemsControl"
+      ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.North}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthWestGridLinesRectangle}"/>
   </Canvas>
 </UserControl>
