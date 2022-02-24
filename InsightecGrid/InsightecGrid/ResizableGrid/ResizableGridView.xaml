@@ -1,0 +1,76 @@
+﻿<UserControl
+  x:Class="InsightecGrid.ResizableGrid.ResizableGridView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  xmlns:local="clr-namespace:InsightecGrid.ResizableGrid"
+  xmlns:behaviors="clr-namespace:Ws.Extensions.UI.Wpf.Behaviors"
+  mc:Ignorable="d"
+  Loaded="OnLoad"
+  x:Name="_thisResizableGridView">
+  
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ResizableGridStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+  <Canvas x:Name="PlaygroundCanvas" SizeChanged="PlaygroundCanvas_SizeChanged">
+    <Canvas.Resources>
+      <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource XStyle.ItemsControl.TickLabels}"/>
+    </Canvas.Resources>
+    
+    <Rectangle x:Name="SouthEastGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}"/>
+    <Rectangle x:Name="SouthWestGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}">
+      <Rectangle.RenderTransform>
+        <ScaleTransform ScaleX="-1"/>
+      </Rectangle.RenderTransform>
+    </Rectangle>
+    <Rectangle x:Name="NorthWestGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}">
+      <Rectangle.RenderTransform>
+        <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+      </Rectangle.RenderTransform>
+    </Rectangle>
+    <Rectangle x:Name="NorthEastGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}">
+      <Rectangle.RenderTransform>
+        <ScaleTransform ScaleY="-1"/>
+      </Rectangle.RenderTransform>
+    </Rectangle>
+
+    <Rectangle x:Name="EastAxisRectangle" Style="{StaticResource XStyle.Rectangle.HorizontalAxis}"/>
+    <Rectangle x:Name="WestAxisRectangle" Style="{StaticResource XStyle.Rectangle.HorizontalAxis}">
+      <Rectangle.RenderTransform>
+        <ScaleTransform ScaleX="-1"/>
+      </Rectangle.RenderTransform>
+    </Rectangle>
+    <Rectangle x:Name="SouthAxisRectangle" Style="{StaticResource XStyle.Rectangle.VerticalAxis}"/>
+    <Rectangle x:Name="NorthAxisRectangle" Style="{StaticResource XStyle.Rectangle.VerticalAxis}">
+      <Rectangle.RenderTransform>
+        <ScaleTransform ScaleY="-1"/>
+      </Rectangle.RenderTransform>
+    </Rectangle>
+
+    <Ellipse
+      x:Name="OriginEllipse"
+      Fill="{StaticResource XBrush.ResizableGrid.Origin}"
+      behaviors:IndependentSize.Height="8"
+      behaviors:IndependentSize.Width="8"
+      behaviors:IndependentSize.StrokeThickness="1"
+      Stroke="Black"/>
+
+    <ItemsControl x:Name="EastTopTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.East}"/>
+    <ItemsControl x:Name="EastBottomTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.East}"/>
+
+    <ItemsControl x:Name="WestTopTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.West}"/>
+    <ItemsControl x:Name="WestBottomTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.West}"/>
+
+    <ItemsControl x:Name="SouthLeftTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.South}"/>
+    <ItemsControl x:Name="SouthRightTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.South}"/>
+
+    <ItemsControl x:Name="NorthLeftTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.North}"/>
+    <ItemsControl x:Name="NorthRightTickLabelsItemsControl" ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.North}"/>
+  </Canvas>
+</UserControl>

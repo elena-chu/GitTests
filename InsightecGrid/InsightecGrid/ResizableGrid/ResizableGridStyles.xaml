@@ -1,0 +1,121 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+  xmlns:resizablegrid="clr-namespace:InsightecGrid.ResizableGrid"
+  xmlns:extensions="clr-namespace:Ws.Extensions.UI.Wpf.Converters"
+  xmlns:behaviors="clr-namespace:Ws.Extensions.UI.Wpf.Behaviors">
+
+  <sys:Double x:Key="XDouble.Opacity.ResizableGridLines">0.5</sys:Double>
+  
+  <Color x:Key="XColor.ResizableGrid.Line">#FFa5d671</Color>
+  <Color x:Key="XColor.ResizableGrid.Origin">#FFff8600</Color>
+
+  <SolidColorBrush x:Key="XBrush.ResizableGrid.Line" Color="{StaticResource XColor.ResizableGrid.Line}"/>
+  <SolidColorBrush x:Key="XBrush.ResizableGrid.Origin" Color="{StaticResource XColor.ResizableGrid.Origin}"/>
+
+  <Style x:Key="XStyle.Rectangle" TargetType="{x:Type Rectangle}">
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Fill" Value="{StaticResource XBrush.ResizableGrid.Line}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+  </Style>
+
+  <Style x:Key="XStyle.Rectangle.Horizontal" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle}">
+    <Setter Property="behaviors:IndependentSize.Height" Value="1"/>
+    <Setter Property="Width" Value="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}}"/>
+  </Style>
+
+  <Style x:Key="XStyle.Rectangle.Vertical" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle}">
+    <Setter Property="behaviors:IndependentSize.Width" Value="1"/>
+    <Setter Property="Height" Value="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}}"/>
+  </Style>
+
+  <!--Grid Lines-->
+  <VisualBrush x:Key="XVisualBrush.Tile.GridLines" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+    <VisualBrush.Visual>
+      <Grid>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}" VerticalAlignment="Bottom" Opacity="{StaticResource XDouble.Opacity.ResizableGridLines}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}" HorizontalAlignment="Right" Opacity="{StaticResource XDouble.Opacity.ResizableGridLines}"/>
+      </Grid>
+    </VisualBrush.Visual>
+  </VisualBrush>
+
+  <Style x:Key="XStyle.Rectangle.GridLines" TargetType="{x:Type Rectangle}">
+    <Setter Property="Fill" Value="{StaticResource XVisualBrush.Tile.GridLines}"/>
+    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+  </Style>
+
+  <!--Axis-->
+  <VisualBrush x:Key="XVisualBrush.Tile.HorizontalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+    <VisualBrush.Visual>
+      <Grid>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}" HorizontalAlignment="Right" Height="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.7}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}" Height="{Binding Viewport.Height, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.3}"/>
+      </Grid>
+    </VisualBrush.Visual>
+  </VisualBrush>
+
+  <VisualBrush x:Key="XVisualBrush.Tile.VerticalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+    <VisualBrush.Visual>
+      <Grid>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Vertical}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}" VerticalAlignment="Bottom" Width="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.7}"/>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.Horizontal}" Width="{Binding Viewport.Width, RelativeSource={RelativeSource AncestorType={x:Type VisualBrush}}, Converter={extensions:ScalarConverter}, ConverterParameter=0.3}"/>
+      </Grid>
+    </VisualBrush.Visual>
+  </VisualBrush>
+
+  <Style x:Key="XStyle.Rectangle.HorizontalAxis" TargetType="{x:Type Rectangle}">
+    <Setter Property="Fill" Value="{StaticResource XVisualBrush.Tile.HorizontalAxis}"/>
+    <Setter Property="Height" Value="{Binding TileSize, ElementName=_thisResizableGridView}"/>
+    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+  </Style>
+
+  <Style x:Key="XStyle.Rectangle.VerticalAxis" TargetType="{x:Type Rectangle}">
+    <Setter Property="Fill" Value="{StaticResource XVisualBrush.Tile.VerticalAxis}"/>
+    <Setter Property="Width" Value="{Binding TileSize, ElementName=_thisResizableGridView}"/>
+    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+  </Style>
+
+  <!--Tick Labels-->
+  <DataTemplate x:Key="XDataTemplate.TickLabel">
+    <Border
+      Padding="0"
+      Width="{Binding TileSize, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}"
+      Height="{Binding TileSize, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+      <TextBlock Text="{Binding}" Foreground="{StaticResource XBrush.ResizableGrid.Line}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Border>
+  </DataTemplate>
+
+  <Style x:Key="XStyle.ItemsControl.TickLabels" TargetType="{x:Type ItemsControl}">
+    <Setter Property="ItemsSource" Value="{Binding TickLabels, ElementName=_thisResizableGridView}"/>
+    <Setter Property="ItemTemplate" Value="{StaticResource XDataTemplate.TickLabel}"/>
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <DockPanel IsItemsHost="True"/>
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentPresenter.TickLabels.East" TargetType="{x:Type ContentPresenter}">
+    <Setter Property="DockPanel.Dock" Value="Left"/>
+  </Style> 
+
+  <Style x:Key="XStyle.ContentPresenter.TickLabels.West" TargetType="{x:Type ContentPresenter}">
+    <Setter Property="DockPanel.Dock" Value="Right"/>
+  </Style> 
+
+  <Style x:Key="XStyle.ContentPresenter.TickLabels.South" TargetType="{x:Type ContentPresenter}">
+    <Setter Property="DockPanel.Dock" Value="Top"/>
+  </Style> 
+
+  <Style x:Key="XStyle.ContentPresenter.TickLabels.North" TargetType="{x:Type ContentPresenter}">
+    <Setter Property="DockPanel.Dock" Value="Bottom"/>
+  </Style> 
+  
+</ResourceDictionary>
