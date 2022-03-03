@@ -55,7 +55,9 @@ namespace InsightecGrid.ResizableGrid
 
         private void UpdateGrid()
         {
-            ResizeTiles();
+            ResizeTile();
+            LimitGridLineQuarters();
+            LimitAxes();
             SetTicks();
             AlignToOrigin();
         }
@@ -95,15 +97,33 @@ namespace InsightecGrid.ResizableGrid
         }
         public static readonly DependencyProperty GridViewportProperty = DependencyProperty.Register(nameof(GridViewport), typeof(Rect), typeof(ResizableGridView), new PropertyMetadata(new Rect(0,0,30,30)));
 
-        private void ResizeTiles()
+        private void ResizeTile()
         {
             double tileSize = Math.Round(Resolution * ResolutionToTickFrequency());
             TileSize = tileSize;
             if (PlaygroundCanvas.ActualWidth > 0 && Resolution > 0)
                 GridViewport = new Rect(0, 0, tileSize, tileSize);
         }
+        
+        #endregion
 
-        private void AlignTilesToOrigin()
+
+        #region Grid Line Quarters
+
+        private void LimitGridLineQuarters()
+        {
+            double limitation = MaxRangeFromOrigin * Resolution;
+            SouthEastGridLinesRectangle.MaxWidth = limitation;
+            SouthEastGridLinesRectangle.MaxHeight = limitation;
+            SouthWestGridLinesRectangle.MaxWidth = limitation;
+            SouthWestGridLinesRectangle.MaxHeight = limitation;
+            NorthEastGridLinesRectangle.MaxWidth = limitation;
+            NorthEastGridLinesRectangle.MaxHeight = limitation;
+            NorthWestGridLinesRectangle.MaxWidth = limitation;
+            NorthWestGridLinesRectangle.MaxHeight = limitation;
+        }
+
+        private void AlignGridLinesToOrigin()
         {
             if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
@@ -113,18 +133,18 @@ namespace InsightecGrid.ResizableGrid
             SouthEastGridLinesRectangle.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X, 0);
             SouthEastGridLinesRectangle.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y, 0);
 
-            Canvas.SetLeft(SouthWestGridLinesRectangle, 0);
+            Canvas.SetRight(SouthWestGridLinesRectangle, PlaygroundCanvas.ActualWidth - Origin.X);
             Canvas.SetTop(SouthWestGridLinesRectangle, Origin.Y);
             SouthWestGridLinesRectangle.Width = Math.Max(Origin.X,0);
             SouthWestGridLinesRectangle.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y, 0);
 
-            Canvas.SetLeft(NorthWestGridLinesRectangle, 0);
-            Canvas.SetTop(NorthWestGridLinesRectangle, 0);
+            Canvas.SetRight(NorthWestGridLinesRectangle, PlaygroundCanvas.ActualWidth - Origin.X);
+            Canvas.SetBottom(NorthWestGridLinesRectangle, PlaygroundCanvas.ActualHeight - Origin.Y);
             NorthWestGridLinesRectangle.Width = Math.Max(Origin.X, 0);
             NorthWestGridLinesRectangle.Height = Math.Max(Origin.Y, 0);
 
             Canvas.SetLeft(NorthEastGridLinesRectangle, Origin.X);
-            Canvas.SetTop(NorthEastGridLinesRectangle, 0);
+            Canvas.SetBottom(NorthEastGridLinesRectangle, PlaygroundCanvas.ActualHeight - Origin.Y);
             NorthEastGridLinesRectangle.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X, 0);
             NorthEastGridLinesRectangle.Height = Math.Max(Origin.Y, 0);
         }
@@ -133,6 +153,15 @@ namespace InsightecGrid.ResizableGrid
 
 
         #region Axes
+
+        private void LimitAxes()
+        {
+            double limitation = MaxRangeFromOrigin * Resolution;
+            EastAxisRectangle.MaxWidth = limitation;
+            WestAxisRectangle.MaxWidth = limitation;
+            SouthAxisRectangle.MaxHeight = limitation;
+            NorthAxisRectangle.MaxHeight = limitation;
+        }
 
         private void AlignAxesToOrigin()
         {
@@ -145,7 +174,7 @@ namespace InsightecGrid.ResizableGrid
             Canvas.SetTop(EastAxisRectangle, Origin.Y - halfTile);
             EastAxisRectangle.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X, 0);
 
-            Canvas.SetLeft(WestAxisRectangle, 0);
+            Canvas.SetRight(WestAxisRectangle, PlaygroundCanvas.ActualWidth - Origin.X);
             Canvas.SetTop(WestAxisRectangle, Origin.Y - halfTile);
             WestAxisRectangle.Width = Math.Max(Origin.X, 0);
 
@@ -154,7 +183,7 @@ namespace InsightecGrid.ResizableGrid
             SouthAxisRectangle.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y, 0);
 
             Canvas.SetLeft(NorthAxisRectangle, Origin.X - halfTile);
-            Canvas.SetTop(NorthAxisRectangle, 0);
+            Canvas.SetBottom(NorthAxisRectangle, PlaygroundCanvas.ActualHeight - Origin.Y);
             NorthAxisRectangle.Height = Math.Max(Origin.Y, 0);
         }
 
@@ -258,7 +287,7 @@ namespace InsightecGrid.ResizableGrid
             if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
 
-            AlignTilesToOrigin();
+            AlignGridLinesToOrigin();
             AlignAxesToOrigin();
             AlignLabelsToOrigin();
 
