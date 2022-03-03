@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace ResizableGrid.ViewModels
 {
@@ -7,28 +6,7 @@ namespace ResizableGrid.ViewModels
     {
         #region Start, End
 
-        public DebugViewModel()
-        {
-            SetStuffAsync();
-        }
-
-        private async Task SetStuffAsync()
-        {
-            await Task.Delay(3000);
-            Resolution = 120;
-            await Task.Delay(3000);
-            Origin = new Point(-240, 240);
-            await Task.Delay(3000);
-            Resolution = 70;
-            await Task.Delay(3000);
-            Origin = new Point(900, 240);
-            await Task.Delay(3000);
-            Origin = new Point(0, 0);
-            Resolution = 100;
-            await Task.Delay(3000);
-            Resolution = 70;
-            Origin = new Point(300, 300);
-        }
+        public DebugViewModel() {}
 
         #endregion
 
@@ -51,14 +29,27 @@ namespace ResizableGrid.ViewModels
 
         #region Origin
 
-        private Point _origin = new Point(200, 200);
-        public Point Origin
+        public Point Origin { get => new Point(OriginX, OriginY); }
+
+        private double _originX = 200;
+        public double OriginX
         {
-            get => _origin;
+            get => _originX;
             set
             {
-                _origin = value;
-                OnPropertyChanged();
+                _originX = value;
+                OnPropertyChanged(nameof(Origin));
+            }
+        }
+
+        private double _originY = 200;
+        public double OriginY
+        {
+            get => _originY;
+            set
+            {
+                _originY = value;
+                OnPropertyChanged(nameof(Origin));
             }
         }
 

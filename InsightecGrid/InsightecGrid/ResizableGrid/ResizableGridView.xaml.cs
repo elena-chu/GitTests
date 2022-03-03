@@ -19,6 +19,39 @@ namespace InsightecGrid.ResizableGrid
             UpdateGrid();
         }
 
+        #endregion
+
+
+        #region Grid External Properties
+
+        /// <summary>
+        /// Max Range from Origin, in mm
+        /// </summary>
+        public double MaxRangeFromOrigin
+        {
+            get { return (double)GetValue(MaxRangeFromOriginProperty); }
+            set { SetValue(MaxRangeFromOriginProperty, value); }
+        }
+        public static readonly DependencyProperty MaxRangeFromOriginProperty =
+            DependencyProperty.Register(nameof(MaxRangeFromOrigin), typeof(double), typeof(ResizableGridView), new PropertyMetadata(80.0, OnGridExternalPropertiesChanged));
+
+        /// <summary>
+        /// Resolution in Pixels per mm
+        /// </summary>
+        public double Resolution
+        {
+            get { return (double)GetValue(ResolutionProperty); }
+            set { SetValue(ResolutionProperty, value); }
+        }
+        public static readonly DependencyProperty ResolutionProperty =
+            DependencyProperty.Register(nameof(Resolution), typeof(double), typeof(ResizableGridView), new PropertyMetadata(4.0, OnGridExternalPropertiesChanged));
+
+        private static void OnGridExternalPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is ResizableGridView resizableGridView)
+                resizableGridView.UpdateGrid();
+        }
+
         private void UpdateGrid()
         {
             ResizeTiles();
@@ -30,29 +63,12 @@ namespace InsightecGrid.ResizableGrid
 
         #region Tiles
 
-        /// <summary>
-        /// Resolution in Pixels per mm
-        /// </summary>
-        public double Resolution
-        {
-            get { return (double)GetValue(ResolutionProperty); }
-            set { SetValue(ResolutionProperty, value); }
-        }
-        public static readonly DependencyProperty ResolutionProperty =
-            DependencyProperty.Register(nameof(Resolution), typeof(double), typeof(ResizableGridView), new PropertyMetadata(30.0, OnResolutionChanged));
-
-        private static void OnResolutionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is ResizableGridView resizableGridView)
-                resizableGridView.UpdateGrid();
-        }
-
         public double TileSize
         {
             get { return (double)GetValue(TileSizeProperty); }
             set { SetValue(TileSizeProperty, value); }
         }
-        public static readonly DependencyProperty TileSizeProperty = DependencyProperty.Register(nameof(TileSize), typeof(double), typeof(ResizableGridView), new PropertyMetadata(30.0));
+        public static readonly DependencyProperty TileSizeProperty = DependencyProperty.Register(nameof(TileSize), typeof(double), typeof(ResizableGridView), new PropertyMetadata(1.0));
 
         public Rect GridViewport
         {
@@ -63,10 +79,11 @@ namespace InsightecGrid.ResizableGrid
 
         private void ResizeTiles()
         {
-            double tileSize = Math.Round(Resolution);
+            double tileSize = Math.Round(Resolution * 10); // LA TODO: calc according to jumps
             TileSize = tileSize;
             if (PlaygroundCanvas.ActualWidth > 0 && Resolution > 0)
                 GridViewport = new Rect(0, 0, tileSize, tileSize);
+            ResizeTickLabelsLengthToTiles();
         }
 
         private void AlignTilesToOrigin()
@@ -124,10 +141,29 @@ namespace InsightecGrid.ResizableGrid
             NorthAxisRectangle.Height = Math.Max(Origin.Y, 0);
         }
 
+        #endregion
+
+
+        #region Tick Labels
+
         public ObservableCollection<double> TickLabels { get; set; } = new ObservableCollection<double>()
         {
             10, 20, 30, 40, 50, 60, 70, 80
         };
+
+        private void ResizeTickLabelsLengthToTiles()
+        {
+            double tickLabelsLength = TileSize * TickLabels.Count;
+
+            EastTopTickLabelsItemsControl.Width = tickLabelsLength;
+            EastBottomTickLabelsItemsControl.Width = tickLabelsLength;
+            WestTopTickLabelsItemsControl.Width = tickLabelsLength;
+            WestBottomTickLabelsItemsControl.Width = tickLabelsLength;
+            SouthLeftTickLabelsItemsControl.Height = tickLabelsLength;
+            SouthRightTickLabelsItemsControl.Height = tickLabelsLength;
+            NorthLeftTickLabelsItemsControl.Height = tickLabelsLength;
+            NorthRightTickLabelsItemsControl.Height = tickLabelsLength;
+        }
 
         private void AlignLabelsToOrigin()
         {
@@ -138,35 +174,27 @@ namespace InsightecGrid.ResizableGrid
 
             Canvas.SetLeft(EastTopTickLabelsItemsControl, Origin.X + halfTile);
             Canvas.SetTop(EastTopTickLabelsItemsControl, Origin.Y - TileSize);
-            EastTopTickLabelsItemsControl.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X - halfTile, 0);
 
             Canvas.SetLeft(EastBottomTickLabelsItemsControl, Origin.X + halfTile);
             Canvas.SetTop(EastBottomTickLabelsItemsControl, Origin.Y);
-            EastBottomTickLabelsItemsControl.Width = Math.Max(PlaygroundCanvas.ActualWidth - Origin.X - halfTile, 0);
 
-            Canvas.SetLeft(WestTopTickLabelsItemsControl, 0);
+            Canvas.SetLeft(WestTopTickLabelsItemsControl, Origin.X - WestTopTickLabelsItemsControl.ActualWidth - halfTile);
             Canvas.SetTop(WestTopTickLabelsItemsControl, Origin.Y - TileSize);
-            WestTopTickLabelsItemsControl.Width = Math.Max(Origin.X - halfTile, 0);
 
-            Canvas.SetLeft(WestBottomTickLabelsItemsControl, 0);
+            Canvas.SetLeft(WestBottomTickLabelsItemsControl, Origin.X - WestBottomTickLabelsItemsControl.ActualWidth - halfTile);
             Canvas.SetTop(WestBottomTickLabelsItemsControl, Origin.Y);
-            WestBottomTickLabelsItemsControl.Width = Math.Max(Origin.X - halfTile, 0);
 
             Canvas.SetLeft(SouthLeftTickLabelsItemsControl, Origin.X - TileSize);
             Canvas.SetTop(SouthLeftTickLabelsItemsControl, Origin.Y + halfTile);
-            SouthLeftTickLabelsItemsControl.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y - halfTile, 0);
 
             Canvas.SetLeft(SouthRightTickLabelsItemsControl, Origin.X);
             Canvas.SetTop(SouthRightTickLabelsItemsControl, Origin.Y + halfTile);
-            SouthRightTickLabelsItemsControl.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y - halfTile, 0);
 
             Canvas.SetLeft(NorthLeftTickLabelsItemsControl, Origin.X - TileSize);
-            Canvas.SetTop(NorthLeftTickLabelsItemsControl, 0);
-            NorthLeftTickLabelsItemsControl.Height = Math.Max(Origin.Y - halfTile, 0);
+            Canvas.SetTop(NorthLeftTickLabelsItemsControl, Origin.Y - NorthLeftTickLabelsItemsControl.ActualHeight - halfTile);
 
             Canvas.SetLeft(NorthRightTickLabelsItemsControl, Origin.X);
-            Canvas.SetTop(NorthRightTickLabelsItemsControl, 0);
-            NorthRightTickLabelsItemsControl.Height = Math.Max(Origin.Y - halfTile, 0);
+            Canvas.SetTop(NorthRightTickLabelsItemsControl, Origin.Y - NorthRightTickLabelsItemsControl.ActualHeight - halfTile);
         }
 
         #endregion
