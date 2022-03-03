@@ -84,14 +84,14 @@ namespace InsightecGrid.ResizableGrid
         public double TileSize
         {
             get { return (double)GetValue(TileSizeProperty); }
-            set { SetValue(TileSizeProperty, value); }
+            private set { SetValue(TileSizeProperty, value); }
         }
         public static readonly DependencyProperty TileSizeProperty = DependencyProperty.Register(nameof(TileSize), typeof(double), typeof(ResizableGridView), new PropertyMetadata(1.0));
 
         public Rect GridViewport
         {
             get { return (Rect)GetValue(GridViewportProperty); }
-            set { SetValue(GridViewportProperty, value); }
+            private set { SetValue(GridViewportProperty, value); }
         }
         public static readonly DependencyProperty GridViewportProperty = DependencyProperty.Register(nameof(GridViewport), typeof(Rect), typeof(ResizableGridView), new PropertyMetadata(new Rect(0,0,30,30)));
 
@@ -166,7 +166,7 @@ namespace InsightecGrid.ResizableGrid
         public ObservableCollection<double> TickLabels
         {
             get { return (ObservableCollection<double>)GetValue(TickLabelsProperty); }
-            set { SetValue(TickLabelsProperty, value); }
+            private set { SetValue(TickLabelsProperty, value); }
         }
         public static readonly DependencyProperty TickLabelsProperty = DependencyProperty.Register(nameof(TickLabels), typeof(ObservableCollection<double>), typeof(ResizableGridView));
 
