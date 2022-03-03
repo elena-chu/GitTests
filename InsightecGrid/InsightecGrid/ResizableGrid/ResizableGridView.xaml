@@ -9,6 +9,7 @@
   xmlns:extensions="clr-namespace:Ws.Extensions.UI.Wpf.Converters"
   mc:Ignorable="d"
   Loaded="OnLoad"
+  Unloaded="OnUnload"
   x:Name="_thisResizableGridView">
   
   <UserControl.Resources>
@@ -24,23 +25,41 @@
       <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource XStyle.ItemsControl.TickLabels}"/>
     </Canvas.Resources>
 
-    <Rectangle x:Name="SouthEastGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}"/>
-    <Rectangle x:Name="SouthWestGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}">
+    <!--Grid Lines-->
+    <Rectangle
+      x:Name="SouthEastGridLinesRectangle"
+      Style="{StaticResource XStyle.Rectangle.GridLines}"
+      MouseEnter="SouthEastGridLinesRectangle_MouseEnter"
+      MouseLeave="SouthEastGridLinesRectangle_MouseLeave"/>
+    <Rectangle
+      x:Name="SouthWestGridLinesRectangle"
+      Style="{StaticResource XStyle.Rectangle.GridLines}"
+      MouseEnter="SouthWestGridLinesRectangle_MouseEnter"
+      MouseLeave="SouthWestGridLinesRectangle_MouseLeave">
       <Rectangle.RenderTransform>
         <ScaleTransform ScaleX="-1"/>
       </Rectangle.RenderTransform>
     </Rectangle>
-    <Rectangle x:Name="NorthWestGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}">
+    <Rectangle
+      x:Name="NorthWestGridLinesRectangle"
+      Style="{StaticResource XStyle.Rectangle.GridLines}"
+      MouseEnter="NorthWestGridLinesRectangle_MouseEnter"
+      MouseLeave="NorthWestGridLinesRectangle_MouseLeave">
       <Rectangle.RenderTransform>
         <ScaleTransform ScaleX="-1" ScaleY="-1"/>
       </Rectangle.RenderTransform>
     </Rectangle>
-    <Rectangle x:Name="NorthEastGridLinesRectangle" Style="{StaticResource XStyle.Rectangle.GridLines}">
+    <Rectangle
+      x:Name="NorthEastGridLinesRectangle"
+      Style="{StaticResource XStyle.Rectangle.GridLines}"
+      MouseEnter="NorthEastGridLinesRectangle_MouseEnter"
+      MouseLeave="NorthEastGridLinesRectangle_MouseLeave">
       <Rectangle.RenderTransform>
         <ScaleTransform ScaleY="-1"/>
       </Rectangle.RenderTransform>
     </Rectangle>
 
+    <!--Axes-->
     <Rectangle x:Name="EastAxisRectangle">
       <Rectangle.Style>
         <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.HorizontalAxis}">
@@ -104,6 +123,7 @@
       </Rectangle.Style>
     </Rectangle>
 
+    <!--Origin-->
     <Ellipse
       x:Name="OriginEllipse"
       Fill="{StaticResource XBrush.ResizableGrid.Origin}"
@@ -112,6 +132,7 @@
       behaviors:IndependentSize.StrokeThickness="1"
       Stroke="Black"/>
 
+    <!--Tick Labels-->
     <ItemsControl
       x:Name="EastTopTickLabelsItemsControl"
       ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.East}"
@@ -147,5 +168,43 @@
       x:Name="NorthRightTickLabelsItemsControl"
       ItemContainerStyle="{StaticResource XStyle.ContentPresenter.TickLabels.North}"
       behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthWestGridLinesRectangle}"/>
+
+    <!--Mouse Position Lines-->
+    <Line
+      x:Name="SouthEastMousePositionHorizontalLine"
+      Canvas.Left="{Binding Origin.X, ElementName=_thisResizableGridView}"
+      Style="{StaticResource XStyle.Line.MousePosition.Horizontal}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthEastGridLinesRectangle}"/>
+    <Line
+      x:Name="SouthEastMousePositionVerticalLine"
+      Canvas.Top="{Binding Origin.Y, ElementName=_thisResizableGridView}"
+      Style="{StaticResource XStyle.Line.MousePosition.Vertical}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthEastGridLinesRectangle}"/>
+    <Line
+      x:Name="SouthWestMousePositionHorizontalLine"
+      Style="{StaticResource XStyle.Line.MousePosition.Horizontal}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthWestGridLinesRectangle}"/>
+    <Line
+      x:Name="SouthWestMousePositionVerticalLine"
+      Canvas.Top="{Binding Origin.Y, ElementName=_thisResizableGridView}"
+      Style="{StaticResource XStyle.Line.MousePosition.Vertical}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=SouthWestGridLinesRectangle}"/>
+    <Line
+      x:Name="NorthWestMousePositionHorizontalLine"
+      Style="{StaticResource XStyle.Line.MousePosition.Horizontal}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthWestGridLinesRectangle}"/>
+    <Line
+      x:Name="NorthWestMousePositionVerticalLine"
+      Style="{StaticResource XStyle.Line.MousePosition.Vertical}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthWestGridLinesRectangle}"/>
+    <Line
+      x:Name="NorthEastMousePositionHorizontalLine"
+      Canvas.Left="{Binding Origin.X, ElementName=_thisResizableGridView}"
+      Style="{StaticResource XStyle.Line.MousePosition.Horizontal}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthEastGridLinesRectangle}"/>
+    <Line
+      x:Name="NorthEastMousePositionVerticalLine"
+      Style="{StaticResource XStyle.Line.MousePosition.Vertical}"
+      behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthEastGridLinesRectangle}"/>
   </Canvas>
 </UserControl>

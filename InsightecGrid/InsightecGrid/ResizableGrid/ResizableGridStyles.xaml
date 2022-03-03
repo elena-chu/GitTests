@@ -165,4 +165,36 @@
     <Setter Property="DockPanel.Dock" Value="Bottom"/>
   </Style> 
   
+  <!--Mouse Position Lines-->
+  <Style x:Key="XStyle.Line.MousePosition" TargetType="{x:Type Line}">
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Stroke" Value="{StaticResource XBrush.ResizableGrid.Line}"/>
+    <Setter Property="behaviors:IndependentSize.StrokeThickness" Value="1"/>
+    <Setter Property="StrokeDashArray" Value="4,4"/>
+    <Setter Property="Opacity" Value="0"/>
+    <Style.Triggers>
+      <Trigger Property="behaviors:ControlExtensions.IsActive" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOver}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOut}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="XStyle.Line.MousePosition.Horizontal" TargetType="{x:Type Line}" BasedOn="{StaticResource XStyle.Line.MousePosition}">
+    <Setter Property="X1" Value="0"/>
+    <Setter Property="Y1" Value="0"/>
+    <Setter Property="Y2" Value="0"/>
+  </Style>
+
+  <Style x:Key="XStyle.Line.MousePosition.Vertical" TargetType="{x:Type Line}" BasedOn="{StaticResource XStyle.Line.MousePosition}">
+    <Setter Property="X1" Value="0"/>
+    <Setter Property="X2" Value="0"/>
+    <Setter Property="Y1" Value="0"/>
+  </Style>
+  
 </ResourceDictionary>

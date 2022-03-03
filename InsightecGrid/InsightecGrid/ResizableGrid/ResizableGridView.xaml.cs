@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Shapes;
 
 namespace InsightecGrid.ResizableGrid
 {
@@ -18,6 +20,14 @@ namespace InsightecGrid.ResizableGrid
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             UpdateGrid();
+        }
+
+        private void OnUnload(object sender, RoutedEventArgs e)
+        {
+            SouthEastGridLinesRectangle.MouseMove -= SouthEastGridLinesRectangle_MouseMove;
+            SouthWestGridLinesRectangle.MouseMove -= SouthWestGridLinesRectangle_MouseMove;
+            NorthWestGridLinesRectangle.MouseMove -= NorthWestGridLinesRectangle_MouseMove;
+            NorthEastGridLinesRectangle.MouseMove -= NorthEastGridLinesRectangle_MouseMove;
         }
 
         #endregion
@@ -304,7 +314,100 @@ namespace InsightecGrid.ResizableGrid
         {
             UpdateGrid();
         }
-        
+
+        #endregion
+
+        #region Mouse Position
+
+        private void SouthEastGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SouthEastGridLinesRectangle.MouseMove -= SouthEastGridLinesRectangle_MouseMove;
+            SouthEastGridLinesRectangle.MouseMove += SouthEastGridLinesRectangle_MouseMove;
+        }
+
+        private void SouthEastGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SouthEastGridLinesRectangle.MouseMove -= SouthEastGridLinesRectangle_MouseMove;
+        }
+
+        private void SouthEastGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (sender is Rectangle seRectangle)
+            {
+                SouthEastMousePositionHorizontalLine.X2 = e.GetPosition(seRectangle).X;
+                Canvas.SetTop(SouthEastMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).Y);
+                SouthEastMousePositionVerticalLine.Y2 = e.GetPosition(seRectangle).Y;
+                Canvas.SetLeft(SouthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
+            }
+        }
+
+        private void SouthWestGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SouthWestGridLinesRectangle.MouseMove -= SouthWestGridLinesRectangle_MouseMove;
+            SouthWestGridLinesRectangle.MouseMove += SouthWestGridLinesRectangle_MouseMove;
+        }
+
+        private void SouthWestGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SouthWestGridLinesRectangle.MouseMove -= SouthWestGridLinesRectangle_MouseMove;
+        }
+
+        private void SouthWestGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (sender is Rectangle swRectangle)
+            {
+                SouthWestMousePositionHorizontalLine.X2 = Origin.X - e.GetPosition(PlaygroundCanvas).X;
+                Canvas.SetLeft(SouthWestMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).X);
+                Canvas.SetTop(SouthWestMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).Y);
+                SouthWestMousePositionVerticalLine.Y2 = e.GetPosition(swRectangle).Y;
+                Canvas.SetLeft(SouthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
+            }
+        }
+
+        private void NorthWestGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            NorthWestGridLinesRectangle.MouseMove -= NorthWestGridLinesRectangle_MouseMove;
+            NorthWestGridLinesRectangle.MouseMove += NorthWestGridLinesRectangle_MouseMove;
+        }
+
+        private void NorthWestGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            NorthWestGridLinesRectangle.MouseMove -= NorthWestGridLinesRectangle_MouseMove;
+        }
+
+        private void NorthWestGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            NorthWestMousePositionHorizontalLine.X2 = Origin.X - e.GetPosition(PlaygroundCanvas).X;
+            Canvas.SetLeft(NorthWestMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).X);
+            Canvas.SetTop(NorthWestMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).Y);
+            NorthWestMousePositionVerticalLine.Y2 = Origin.Y - e.GetPosition(PlaygroundCanvas).Y;
+            Canvas.SetLeft(NorthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
+            Canvas.SetTop(NorthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).Y);
+        }
+
+        private void NorthEastGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            NorthEastGridLinesRectangle.MouseMove -= NorthEastGridLinesRectangle_MouseMove;
+            NorthEastGridLinesRectangle.MouseMove += NorthEastGridLinesRectangle_MouseMove;
+        }
+
+        private void NorthEastGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            NorthEastGridLinesRectangle.MouseMove -= NorthEastGridLinesRectangle_MouseMove;
+        }
+
+        private void NorthEastGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (sender is Rectangle neRectangle)
+            {
+                NorthEastMousePositionHorizontalLine.X2 = e.GetPosition(neRectangle).X;
+                Canvas.SetTop(NorthEastMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).Y);
+                NorthEastMousePositionVerticalLine.Y2 = Origin.Y - e.GetPosition(PlaygroundCanvas).Y;
+                Canvas.SetLeft(NorthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
+                Canvas.SetTop(NorthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).Y);
+            }
+        }
+
         #endregion
     }
 }
