@@ -28,7 +28,7 @@
     <Rectangle Grid.Column="1" Fill="#FF101010" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     <StackPanel Grid.Column="1" Margin="12" VerticalAlignment="Center">
       <TextBlock Margin="0,0,0,6" Text="Resolution:" Foreground="OliveDrab"/>
-      <Slider x:Name="ResolutionSlider" Margin="0,0,0,18" Minimum="4" Maximum="20" Value="10" ToolTip="{Binding Value, RelativeSource={RelativeSource Self}, StringFormat=d2}"/>
+      <Slider x:Name="ResolutionSlider" Margin="0,0,0,18" Minimum="4" Maximum="200" Value="10" TickFrequency="0.05" IsSnapToTickEnabled="True" ToolTip="{Binding Value, RelativeSource={RelativeSource Self}}"/>
       <TextBlock Margin="0,0,0,6" Text="Origin X:" Foreground="OliveDrab"/>
       <Slider x:Name="OriginXSlider" Margin="0,0,0,18" Value="{Binding OriginX}" Minimum="-200" Maximum="1000"/>
       <TextBlock Margin="0,0,0,6" Text="Origin Y:" Foreground="OliveDrab"/>

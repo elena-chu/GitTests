@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -55,6 +56,7 @@ namespace InsightecGrid.ResizableGrid
         private void UpdateGrid()
         {
             ResizeTiles();
+            SetTicks();
             AlignToOrigin();
         }
 
@@ -62,6 +64,22 @@ namespace InsightecGrid.ResizableGrid
 
 
         #region Tiles
+
+        private double ResolutionToTickFrequency()
+        {
+            if (Resolution <= 4)
+                return 20;
+            else if (Resolution <= 8)
+                return 10;
+            else if (Resolution <= 16)
+                return 5;
+            else if (Resolution <= 32)
+                return 4;
+            else if (Resolution <= 64)
+                return 2;
+            else
+                return 1;
+        }
 
         public double TileSize
         {
@@ -79,11 +97,10 @@ namespace InsightecGrid.ResizableGrid
 
         private void ResizeTiles()
         {
-            double tileSize = Math.Round(Resolution * 10); // LA TODO: calc according to jumps
+            double tileSize = Math.Round(Resolution * ResolutionToTickFrequency());
             TileSize = tileSize;
             if (PlaygroundCanvas.ActualWidth > 0 && Resolution > 0)
                 GridViewport = new Rect(0, 0, tileSize, tileSize);
-            ResizeTickLabelsLengthToTiles();
         }
 
         private void AlignTilesToOrigin()
@@ -146,13 +163,34 @@ namespace InsightecGrid.ResizableGrid
 
         #region Tick Labels
 
-        public ObservableCollection<double> TickLabels { get; set; } = new ObservableCollection<double>()
+        public ObservableCollection<double> TickLabels
         {
-            10, 20, 30, 40, 50, 60, 70, 80
-        };
+            get { return (ObservableCollection<double>)GetValue(TickLabelsProperty); }
+            set { SetValue(TickLabelsProperty, value); }
+        }
+        public static readonly DependencyProperty TickLabelsProperty = DependencyProperty.Register(nameof(TickLabels), typeof(ObservableCollection<double>), typeof(ResizableGridView));
+
+        private void SetTicks()
+        {
+            SetTickLabels();
+            ResizeTickLabelsLengthToTiles();
+        }
+
+        private void SetTickLabels()
+        {
+            double tickFrequency = ResolutionToTickFrequency();
+            int numberOfTicks = Math.Min((int)(MaxRangeFromOrigin / tickFrequency), 20);
+            ObservableCollection<double> tickLabels = new ObservableCollection<double>();
+            for (int i = 1; i <= numberOfTicks; i++)
+                tickLabels.Add(i * tickFrequency);
+            TickLabels = tickLabels;
+        }
 
         private void ResizeTickLabelsLengthToTiles()
         {
+            if (TickLabels == null || !TickLabels.Any())
+                return;
+
             double tickLabelsLength = TileSize * TickLabels.Count;
 
             EastTopTickLabelsItemsControl.Width = tickLabelsLength;
@@ -178,10 +216,10 @@ namespace InsightecGrid.ResizableGrid
             Canvas.SetLeft(EastBottomTickLabelsItemsControl, Origin.X + halfTile);
             Canvas.SetTop(EastBottomTickLabelsItemsControl, Origin.Y);
 
-            Canvas.SetLeft(WestTopTickLabelsItemsControl, Origin.X - WestTopTickLabelsItemsControl.ActualWidth - halfTile);
+            Canvas.SetRight(WestTopTickLabelsItemsControl, PlaygroundCanvas.ActualWidth - Origin.X + halfTile);
             Canvas.SetTop(WestTopTickLabelsItemsControl, Origin.Y - TileSize);
 
-            Canvas.SetLeft(WestBottomTickLabelsItemsControl, Origin.X - WestBottomTickLabelsItemsControl.ActualWidth - halfTile);
+            Canvas.SetRight(WestBottomTickLabelsItemsControl, PlaygroundCanvas.ActualWidth - Origin.X + halfTile);
             Canvas.SetTop(WestBottomTickLabelsItemsControl, Origin.Y);
 
             Canvas.SetLeft(SouthLeftTickLabelsItemsControl, Origin.X - TileSize);
@@ -191,10 +229,10 @@ namespace InsightecGrid.ResizableGrid
             Canvas.SetTop(SouthRightTickLabelsItemsControl, Origin.Y + halfTile);
 
             Canvas.SetLeft(NorthLeftTickLabelsItemsControl, Origin.X - TileSize);
-            Canvas.SetTop(NorthLeftTickLabelsItemsControl, Origin.Y - NorthLeftTickLabelsItemsControl.ActualHeight - halfTile);
+            Canvas.SetBottom(NorthLeftTickLabelsItemsControl, PlaygroundCanvas.ActualHeight - Origin.Y + halfTile);
 
             Canvas.SetLeft(NorthRightTickLabelsItemsControl, Origin.X);
-            Canvas.SetTop(NorthRightTickLabelsItemsControl, Origin.Y - NorthRightTickLabelsItemsControl.ActualHeight - halfTile);
+            Canvas.SetBottom(NorthRightTickLabelsItemsControl, PlaygroundCanvas.ActualHeight - Origin.Y + halfTile);
         }
 
         #endregion
