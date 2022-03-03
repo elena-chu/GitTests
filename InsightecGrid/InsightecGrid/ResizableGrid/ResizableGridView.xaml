@@ -206,5 +206,11 @@
       x:Name="NorthEastMousePositionVerticalLine"
       Style="{StaticResource XStyle.Line.MousePosition.Vertical}"
       behaviors:ControlExtensions.IsActive="{Binding IsMouseOver, ElementName=NorthEastGridLinesRectangle}"/>
+
+    <TextBlock x:Name="SouthEastMousePositionLabelTextBlock" Style="{StaticResource XStyle.TextBlock.MousePosition}" Opacity="{Binding Opacity, ElementName=SouthEastMousePositionHorizontalLine}"/>
+    <TextBlock x:Name="SouthWestMousePositionLabelTextBlock" Style="{StaticResource XStyle.TextBlock.MousePosition}" Opacity="{Binding Opacity, ElementName=SouthWestMousePositionHorizontalLine}"/>
+    <TextBlock x:Name="NorthWestMousePositionLabelTextBlock" Style="{StaticResource XStyle.TextBlock.MousePosition}" Opacity="{Binding Opacity, ElementName=NorthWestMousePositionHorizontalLine}"/>
+    <TextBlock x:Name="NorthEastMousePositionLabelTextBlock" Style="{StaticResource XStyle.TextBlock.MousePosition}" Opacity="{Binding Opacity, ElementName=NorthEastMousePositionHorizontalLine}"/>
+
   </Canvas>
 </UserControl>

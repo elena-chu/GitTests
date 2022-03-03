@@ -317,6 +317,7 @@ namespace InsightecGrid.ResizableGrid
 
         #endregion
 
+
         #region Mouse Position
 
         private void SouthEastGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
@@ -338,6 +339,10 @@ namespace InsightecGrid.ResizableGrid
                 Canvas.SetTop(SouthEastMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).Y);
                 SouthEastMousePositionVerticalLine.Y2 = e.GetPosition(seRectangle).Y;
                 Canvas.SetLeft(SouthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
+
+                SetMousePositionLabel(SouthEastMousePositionHorizontalLine.X2, SouthEastMousePositionVerticalLine.Y2);
+                Canvas.SetLeft(SouthEastMousePositionLabelTextBlock, Origin.X + SouthEastMousePositionHorizontalLine.X2);
+                Canvas.SetTop(SouthEastMousePositionLabelTextBlock, Origin.Y + SouthEastMousePositionVerticalLine.Y2);
             }
         }
 
@@ -361,6 +366,10 @@ namespace InsightecGrid.ResizableGrid
                 Canvas.SetTop(SouthWestMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).Y);
                 SouthWestMousePositionVerticalLine.Y2 = e.GetPosition(swRectangle).Y;
                 Canvas.SetLeft(SouthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
+                
+                SetMousePositionLabel(SouthWestMousePositionHorizontalLine.X2, SouthWestMousePositionVerticalLine.Y2);
+                Canvas.SetLeft(SouthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).X - SouthWestMousePositionLabelTextBlock.ActualWidth);
+                Canvas.SetTop(SouthWestMousePositionLabelTextBlock, Origin.Y + SouthWestMousePositionVerticalLine.Y2);
             }
         }
 
@@ -383,6 +392,10 @@ namespace InsightecGrid.ResizableGrid
             NorthWestMousePositionVerticalLine.Y2 = Origin.Y - e.GetPosition(PlaygroundCanvas).Y;
             Canvas.SetLeft(NorthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
             Canvas.SetTop(NorthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).Y);
+
+            SetMousePositionLabel(NorthWestMousePositionHorizontalLine.X2, NorthWestMousePositionVerticalLine.Y2);
+            Canvas.SetLeft(NorthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).X - NorthWestMousePositionLabelTextBlock.ActualWidth);
+            Canvas.SetTop(NorthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).Y - NorthWestMousePositionLabelTextBlock.ActualHeight);
         }
 
         private void NorthEastGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
@@ -405,7 +418,41 @@ namespace InsightecGrid.ResizableGrid
                 NorthEastMousePositionVerticalLine.Y2 = Origin.Y - e.GetPosition(PlaygroundCanvas).Y;
                 Canvas.SetLeft(NorthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
                 Canvas.SetTop(NorthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).Y);
+
+                SetMousePositionLabel(NorthEastMousePositionHorizontalLine.X2, NorthEastMousePositionVerticalLine.Y2);
+                Canvas.SetLeft(NorthEastMousePositionLabelTextBlock, Origin.X + NorthEastMousePositionHorizontalLine.X2);
+                Canvas.SetTop(NorthEastMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).Y - NorthEastMousePositionLabelTextBlock.ActualHeight);
             }
+        }
+
+        #endregion
+
+
+        #region Mouse Position Label
+
+        public string MousePositionLabel
+        {
+            get { return (string)GetValue(MousePositionLabelProperty); }
+            private set { SetValue(MousePositionLabelProperty, value); }
+        }
+        public static readonly DependencyProperty MousePositionLabelProperty = DependencyProperty.Register(nameof(MousePositionLabel), typeof(string), typeof(ResizableGridView));
+
+        private int ResolutionToRoundingPrecision()
+        {
+            if (Resolution <= 16)
+                return 0;
+            else if (Resolution <= 64)
+                return 1;
+            return 2;
+        }
+
+        private void SetMousePositionLabel(double mouseDistanceFromOriginX, double mouseDistanceFromOriginY)
+        {
+            if (Resolution == 0)
+                return;
+
+            int roundingPrecision = ResolutionToRoundingPrecision();
+            MousePositionLabel = "(" + Math.Round(mouseDistanceFromOriginX / Resolution, roundingPrecision) + ", " + Math.Round(mouseDistanceFromOriginY / Resolution, roundingPrecision) + ")";
         }
 
         #endregion
