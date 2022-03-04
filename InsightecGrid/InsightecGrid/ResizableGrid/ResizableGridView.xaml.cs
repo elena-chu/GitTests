@@ -344,6 +344,7 @@ namespace InsightecGrid.ResizableGrid
                 Canvas.SetLeft(SouthEastMousePositionLabelTextBlock, Origin.X + SouthEastMousePositionHorizontalLine.X2);
                 Canvas.SetTop(SouthEastMousePositionLabelTextBlock, Origin.Y + SouthEastMousePositionVerticalLine.Y2);
             }
+            e.Handled = false;
         }
 
         private void SouthWestGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
@@ -371,6 +372,7 @@ namespace InsightecGrid.ResizableGrid
                 Canvas.SetLeft(SouthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).X - SouthWestMousePositionLabelTextBlock.ActualWidth);
                 Canvas.SetTop(SouthWestMousePositionLabelTextBlock, Origin.Y + SouthWestMousePositionVerticalLine.Y2);
             }
+            e.Handled = false;
         }
 
         private void NorthWestGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
@@ -396,6 +398,8 @@ namespace InsightecGrid.ResizableGrid
             SetMousePositionLabel(NorthWestMousePositionHorizontalLine.X2, NorthWestMousePositionVerticalLine.Y2);
             Canvas.SetLeft(NorthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).X - NorthWestMousePositionLabelTextBlock.ActualWidth);
             Canvas.SetTop(NorthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).Y - NorthWestMousePositionLabelTextBlock.ActualHeight);
+
+            e.Handled = false;
         }
 
         private void NorthEastGridLinesRectangle_MouseEnter(object sender, MouseEventArgs e)
@@ -423,6 +427,7 @@ namespace InsightecGrid.ResizableGrid
                 Canvas.SetLeft(NorthEastMousePositionLabelTextBlock, Origin.X + NorthEastMousePositionHorizontalLine.X2);
                 Canvas.SetTop(NorthEastMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).Y - NorthEastMousePositionLabelTextBlock.ActualHeight);
             }
+            e.Handled = false;
         }
 
         #endregion
