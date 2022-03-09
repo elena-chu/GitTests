@@ -35,6 +35,7 @@
 
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
       <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="IsHitTestVisible" Value="False"/>
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Primary}">
@@ -65,7 +66,13 @@
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
-      <ContentControl Grid.Row="0" Grid.Column="0" extensions:IndependentSize.Margin="0,0,12,0" Style="{StaticResource XStyle.ContentControl.SeverityIcon}" extensions:IconedButton.IconSize="30"/>
+      <ContentControl
+        Grid.Row="0"
+        Grid.Column="0"
+        extensions:IndependentSize.Margin="0,0,12,0"
+        Style="{StaticResource XStyle.ContentControl.SeverityIcon}"
+        extensions:IconedButton.IconSize="30"
+        IsHitTestVisible="False"/>
       <TextBlock
         Grid.Row="0"
         Grid.Column="1"
@@ -74,7 +81,7 @@
         extensions:IndependentSize.MaxWidth="500"/>
       <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding MessageId}"/>
 
-      <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" extensions:IndependentSize.Margin="0,12,0,0">
+      <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" extensions:IndependentSize.Margin="0,12,0,0" IsHitTestVisible="False">
         <TextBlock Text="{Binding MessageText}" extensions:IndependentSize.MaxWidth="500"/>
       </ScrollViewer>
       

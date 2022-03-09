@@ -86,6 +86,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LA\DebugViewArchive.xaml.cs">
+      <DependentUpon>DebugViewArchive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LA\DebugView.xaml.cs">
       <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <DependentUpon>Skin.tt</DependentUpon>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LA\DebugViewArchive.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LA\DebugView.xaml">
       <Generator>MSBuild:Compile</Generator>

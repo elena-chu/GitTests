@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Windows;
+using System.Windows.Input;
 using Ws.Fus.Treatment.UI.Wpf.LA.Messages.ViewModels;
 using Ws.Fus.Treatment.UI.Wpf.LA.Messages.Views;
 
@@ -46,6 +47,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.LA.Messages
             wnd.Content = v;
             wnd.Owner = Application.Current.MainWindow;
             wnd.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            wnd.MouseDown += Wnd_MouseDown;
             vm.CloseWindow = () =>
             {
                 ea.ActionChecked = vm.ActionChecked;
@@ -79,6 +81,12 @@ namespace Ws.Fus.Treatment.UI.Wpf.LA.Messages
 
             //ea.ActionChecked = vm.ActionChecked;
             //ea.SelectedButtonResult = vm.SelectedButtonResult;
+        }
+
+        private static void Wnd_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Window window && e.ChangedButton == MouseButton.Left)
+                window.DragMove();
         }
     }
 }

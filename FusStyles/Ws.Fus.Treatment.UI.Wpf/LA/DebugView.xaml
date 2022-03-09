@@ -28,27 +28,19 @@
 
   <UniformGrid Columns="5" Margin="0,20,0,0">
 
-    <!--<RichTextBox
-      Name="richTB"
-      FontFamily="{StaticResource XFontFamily.Base}"
-      extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Base}">
-      <FlowDocument>
-        <Paragraph>
-          <Run FontSize="{Binding FontSize, ElementName=richTB}">L 13.4</Run>
-          <Run IsEnabled="False" BaselineAlignment="Subscript" FontSize="{Binding FontSize, ElementName=richTB, Converter={extensions:ScalarConverter}, ConverterParameter=0.8}">Joules</Run>
-        </Paragraph>
-        <Paragraph>
-          <Run>- 45.3</Run>
-          <Run BaselineAlignment="Center">&#176;C</Run>
-        </Paragraph>
-      </FlowDocument>
-    </RichTextBox>-->
-
     <StackPanel>
       <TextBlock Text="TextBox text only:"/>
       <TextBox Style="{StaticResource XStyle.TextBox.TextOnly}" Text="6" extensions:IndependentSize.Height="32"/>
     </StackPanel>
-    
+
+    <Button
+      Content="Message"
+      Width="100"
+      Height="50"
+      Style="{StaticResource XStyle.Button.Primary}"
+      VerticalAlignment="Top"
+      Command="{Binding SendMessageCommand}"/>
+
   </UniformGrid>
 
 </UserControl>

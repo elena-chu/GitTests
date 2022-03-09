@@ -1,0 +1,400 @@
+﻿<UserControl
+  x:Class="Ws.Fus.Treatment.UI.Wpf.LA.DebugViewArchive"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:prism="http://prismlibrary.com/"
+  xmlns:extensions="http://schemas.insightec.com/wpf/"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  prism:ViewModelLocator.AutoWireViewModel="True"
+  Background="{StaticResource XBrush.Application.Background}"
+  mc:Ignorable="d">
+
+  <UserControl.Resources>
+    <Style TargetType="{x:Type extensions:NumericUpDown}" BasedOn="{StaticResource XStyle.NumericUpDown}"/>
+
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.Base}">
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="Foreground" Value="HotPink"/>
+      <Setter Property="Margin" Value="0,0,0,12"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon}">
+      <Setter Property="extensions:IconedButton.IconSize" Value="28"/>
+    </Style>
+  </UserControl.Resources>
+
+  <UniformGrid Columns="5" Margin="0,20,0,0">
+
+    <!--<RichTextBox
+      Name="richTB"
+      FontFamily="{StaticResource XFontFamily.Base}"
+      extensions:IndependentSize.FontSize="{StaticResource XDouble.FontSize.Base}">
+      <FlowDocument>
+        <Paragraph>
+          <Run FontSize="{Binding FontSize, ElementName=richTB}">L 13.4</Run>
+          <Run IsEnabled="False" BaselineAlignment="Subscript" FontSize="{Binding FontSize, ElementName=richTB, Converter={extensions:ScalarConverter}, ConverterParameter=0.8}">Joules</Run>
+        </Paragraph>
+        <Paragraph>
+          <Run>- 45.3</Run>
+          <Run BaselineAlignment="Center">&#176;C</Run>
+        </Paragraph>
+      </FlowDocument>
+    </RichTextBox>-->
+
+    <StackPanel>
+      <TextBlock Text="TextBox text only:"/>
+      <TextBox Style="{StaticResource XStyle.TextBox.TextOnly}" Text="6" extensions:IndependentSize.Height="32"/>
+    </StackPanel>
+
+    <!--<StackPanel>
+      <TextBlock Text="SingleLetter Chevron:"/>
+      <ToggleButton x:Name="ChevronButton">
+        <ToggleButton.Style>
+          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.SingleLetter.Chevron}">
+            <Setter Property="IsEnabled" Value="True"/>
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding (extensions:ControlExtensions.ControlState), ElementName=RippleButton}" Value="CallToAction">
+                <Setter Property="IsEnabled" Value="False"/>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ToggleButton.Style>
+      </ToggleButton>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="ToggleButton with Combo (two lines):"/>
+      <ComboBox
+        Style="{StaticResource XStyle.ComboBox.ToggleButtonAndTextHeader}"
+        extensions:ControlExtensions.AlternativeText="Blue whales are very very long "
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}">
+        <ComboBoxItem Content="Grey"/>
+        <ComboBoxItem Content="Humpback"/>
+        <ComboBoxItem Content="Bowhead"/>
+        <ComboBoxItem Content="Common Minke"/>
+      </ComboBox>
+    </StackPanel>-->
+
+    <!--<StackPanel>
+      <TextBlock Text="Info Content Control:"/>
+
+      <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Source="{Binding TestImage}" Style="{StaticResource XStyle.Strips.Image}" Width="300" Height="300"/>
+        <ContentControl
+          extensions:IndependentSize.Margin="12,0,0,12"
+          Style="{StaticResource XStyle.ContentControl.Info}"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Bottom"/>
+      </Grid>
+    </StackPanel>-->
+
+    <!--<StackPanel>
+      <TextBlock Text="Small Slider:"/>
+      <Slider Style="{StaticResource XStyle.Slider.Small}" Width="213" Minimum="0" Maximum="30" Value="13"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Small Slider Disabled:"/>
+      <Slider Style="{StaticResource XStyle.Slider.Small}" Width="253" Minimum="0" Maximum="30" Value="13" IsEnabled="False"/>
+    </StackPanel>-->
+
+
+    <!-- 
+    =================Content with icons ==========================================
+    -->
+
+    <!--<StackPanel>
+      <TextBlock Text="Thermal Slider:"/>
+      <extensions:ThermalSlider
+        HorizontalAlignment="Center"
+        Style="{StaticResource XStyle.ThermalSlider}"
+        Minimum="37"
+        Maximum="63"
+        Value="44"
+        extensions:IndependentSize.Height="250"
+        extensions:IndependentSize.Width="70"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="9 Setup MRI:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Setup}" extensions:IconedButton.IconSize="26"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="13 Monitoring Volume:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.MonitoringVolume}" extensions:IconedButton.IconSize="30"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="16 Scan Params:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ScanParams}" extensions:IconedButton.IconSize="30"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="17 Correct Spot Alignment:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.CorrectSpotAlignment}" extensions:IconedButton.IconSize="30"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="18 Reset spot alignment:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ResetSpotAlignment}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="19 Update max temperature:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.UpdateMaxTemperature}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="20 Background elimination:"/>
+      <ToggleButton
+        Content="Background Elimination"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="21 Accept:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ThumbsUp}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="21 Reject:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.ThumbsDown}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="23 Expand:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Expand}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="23 Contract:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Contract}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="24 Report:"/>
+      <ToggleButton
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Report}"
+        Style="{StaticResource XStyle.ToggleButton.TextWithSideIcon}"
+        extensions:IconedButton.IconSize="18"
+        Content="Report Thingie"
+        HorizontalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="25 Ghost Cursor:"/>
+      <Button extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Overlays.GhostCursor}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="26 Manual/Auto Calc:"/>
+      <ToggleButton
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.ManualCalculation}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.AutoCalculation}"
+        extensions:IconedButton.IconSize="25"
+        Style="{StaticResource XStyle.ToggleButton.Icon}"/>
+    </StackPanel>-->
+
+    <!-- 
+    ================= End Content with icons ==========================================
+    -->
+
+
+    <!-- 
+    =================Content with messages ==========================================
+    -->
+
+
+    <!--<StackPanel>
+      <TextBlock Text="Thermal Slider:"/>
+      <extensions:ThermalSlider
+        HorizontalAlignment="Center"
+        Style="{StaticResource XStyle.ThermalSlider}"
+        Minimum="37"
+        Maximum="63"
+        Value="44"
+        extensions:IndependentSize.Height="250"
+        extensions:IndependentSize.Width="70"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="20 Background elimination:"/>
+      <ToggleButton
+        Content="Background Elimination"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Switch disabled:"/>
+      <ToggleButton
+        IsEnabled="False"
+        Content="Background Elimination"
+        extensions:IconedButton.IconSize="{StaticResource XDouble.IconSize.SquareTemplate}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}"
+        Style="{StaticResource XStyle.ToggleButton.IconAndSwitchOverText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="24 Report:"/>
+      <ToggleButton
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Report}"
+        Style="{StaticResource XStyle.ToggleButton.TextWithSideIcon}"
+        extensions:IconedButton.IconSize="18"
+        Content="Report Thingie"
+        HorizontalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Chevron:"/>
+      <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Horizontal">
+          <RepeatButton Style="{StaticResource XStyle.RepeatButton.Chevron}" extensions:IndependentSize.Height="36" extensions:IndependentSize.Width="22" extensions:ControlExtensions.Direction="Left"/>
+          <RepeatButton Style="{StaticResource XStyle.RepeatButton.Chevron}" extensions:IndependentSize.Height="36" extensions:IndependentSize.Width="22" extensions:ControlExtensions.Direction="Right"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+          <RepeatButton Style="{StaticResource XStyle.RepeatButton.Chevron}" extensions:IndependentSize.Height="22" extensions:IndependentSize.Width="36" extensions:ControlExtensions.Direction="Top"/>
+          <RepeatButton Style="{StaticResource XStyle.RepeatButton.Chevron}" extensions:IndependentSize.Height="22" extensions:IndependentSize.Width="36" extensions:ControlExtensions.Direction="Bottom"/>
+        </StackPanel>
+      </Grid>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Status MRI:"/>
+      <ContentControl
+        extensions:ControlExtensions.ControlState="Busy"
+        HorizontalAlignment="Center"
+        Content="Boo!"
+        extensions:IconedButton.IconSize="21"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Mri}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Status Connection:"/>
+      <ContentControl
+        extensions:ControlExtensions.ControlState="Normal"
+        HorizontalAlignment="Center"
+        Content="Double Boo!!"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Connection}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Status Circulation:"/>
+      <ContentControl
+        extensions:ControlExtensions.ControlState="Error"
+        HorizontalAlignment="Center"
+        Content="Triple Boo!!!"
+        extensions:IconedButton.IconSize="26"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Circulation}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Status Disabled:"/>
+      <ContentControl
+        IsEnabled="False"
+        extensions:ControlExtensions.ControlState="Error"
+        HorizontalAlignment="Center"
+        Content="Boo hoo hoo..."
+        extensions:IconedButton.IconSize="26"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Status.Circulation}"
+        Style="{StaticResource XStyle.ContentControl.StatusIconAndText}"/>
+    </StackPanel>
+
+    <Button
+      Content="Message"
+      Width="100"
+      Height="50"
+      Style="{StaticResource XStyle.Button.Primary}"
+      VerticalAlignment="Top"
+      Command="{Binding SendMessageCommand}"/>
+
+    <StackPanel>
+      <TextBlock Text="Message Panel + text:"/>
+      <ContentControl
+        extensions:IndependentSize.Width="200"
+        extensions:ControlExtensions.Severity="Error"
+        extensions:ControlExtensions.AlternativeText="Title"
+        Content="Most people are other people. Their thoughts are someone else's opinions, their lives a mimicry, their passions a quotation."
+        Style="{StaticResource XStyle.ContentControl.MessagePanel}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Message Panel + content:"/>
+      <ContentControl
+        extensions:ControlExtensions.Severity="Warning"
+        extensions:ControlExtensions.AlternativeText="Title"
+        Style="{StaticResource XStyle.ContentControl.MessagePanel}">
+        <StackPanel>
+          <Button extensions:IndependentSize.Margin="6" Style="{StaticResource XStyle.Button.Primary}" Content="Albert Einstein"/>
+          <Button extensions:IndependentSize.Margin="6" Style="{StaticResource XStyle.Button.Primary}" Content="Socrates"/>
+          <Button extensions:IndependentSize.Margin="6" Style="{StaticResource XStyle.Button.Primary}" Content="Oscar Wilde"/>
+        </StackPanel>
+      </ContentControl>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Minor Message Panel:"/>
+      <ContentControl
+        extensions:IndependentSize.Width="180"
+        extensions:ControlExtensions.Severity="Info"
+        Content="Everything that happens once can never happen again. But everything that happens twice will surely happen a third time."
+        extensions:ControlExtensions.AlternativeText="Tt"
+        Style="{StaticResource XStyle.ContentControl.MessagePanel.Minor}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Button Chevron:"/>
+      <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button
+          Margin="0,0,6,0"
+          Style="{StaticResource XStyle.Button.Chevron}"
+          extensions:IndependentSize.Height="50"
+          extensions:IndependentSize.Width="28"
+          extensions:IconedButton.IconSize="36"
+          extensions:ControlExtensions.Direction="Left"/>
+        <Button
+          Margin="6,0,0,0"
+          Style="{StaticResource XStyle.Button.Chevron}"
+          extensions:IndependentSize.Height="50"
+          extensions:IndependentSize.Width="28"
+          extensions:IconedButton.IconSize="36"
+          extensions:ControlExtensions.Direction="Right"/>
+      </StackPanel>
+    </StackPanel>-->
+
+    <!-- 
+    ================= End Content with messages ==========================================
+    -->
+
+    <!--<StackPanel>
+      <TextBlock Text="Radio:"/>
+      <Border Padding="12">
+        <StackPanel Orientation="Horizontal">
+          <RadioButton Content="AX" IsChecked="{Binding IsAxial,Mode=TwoWay}" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Left}"/>
+          <RadioButton Content="COR" IsChecked="{Binding IsCoronal,Mode=TwoWay}" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel}"  />
+          <RadioButton Content="SAG" IsChecked="{Binding IsSaggital,Mode=TwoWay}" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}"  />
+        </StackPanel>
+      </Border>
+    </StackPanel>-->
+
+  </UniformGrid>
+
+</UserControl>
