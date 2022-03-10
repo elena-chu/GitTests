@@ -340,7 +340,7 @@
         ToolbarItemType="Fire"
         Command="{Binding CycleCommand}"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Menu.Cycle}"
-        extensions:IconedButton.IconSize="28"/>
+        extensions:IconedButton.IconSize="30"/>
 
       <local:ToolbarMenuHeader
           x:Name="TbmItemView"
