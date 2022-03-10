@@ -90,9 +90,19 @@
 
 
   <!--Ripple Animation-->
-  <Storyboard x:Key="XStoryboard.RippleAnimation">
-    <ThicknessAnimation Storyboard.TargetProperty="Margin" To="0" Duration="0:0:1.5" RepeatBehavior="Forever"/>
-    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:1.5" RepeatBehavior="Forever"/>
+  <Storyboard x:Key="XStoryboard.RippleAnimation" RepeatBehavior="Forever">
+    <ThicknessAnimation Storyboard.TargetProperty="Margin" To="0" Duration="0:0:1.5"/>
+    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:1.5"/>
+  </Storyboard>
+
+  <!--Ripple Animation-->
+  <Storyboard x:Key="XStoryboard.PulseAnimation" Duration="0:0:3" RepeatBehavior="Forever">
+    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" From="0" To="1" BeginTime="0:0:0" Duration="0:0:0.5"/>
+    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="0" BeginTime="0:0:0.5" Duration="0:0:2"/>
+    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" From="0" To="1" BeginTime="0:0:0" Duration="0:0:0.5"/>
+    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="0" BeginTime="0:0:0.5" Duration="0:0:2"/>
+    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" BeginTime="0:0:0" Duration="0:0:0.5"/>
+    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:0.5" Duration="0:0:2"/>
   </Storyboard>
 
 
