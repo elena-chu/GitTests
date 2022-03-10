@@ -46,6 +46,18 @@
       <RadioButton Style="{StaticResource XStyle.RadioButton.ModuleButton.Shutdown}"/>
     </StackPanel>
 
+    <StackPanel>
+      <TextBlock Text="Thermal Slider:"/>
+      <extensions:ThermalSlider
+        HorizontalAlignment="Center"
+        Style="{StaticResource XStyle.ThermalSlider}"
+        Minimum="37"
+        Maximum="63"
+        Value="44"
+        extensions:IndependentSize.Height="250"
+        extensions:IndependentSize.Width="70"/>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>
