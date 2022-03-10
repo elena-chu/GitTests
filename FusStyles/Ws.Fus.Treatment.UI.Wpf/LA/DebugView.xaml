@@ -41,6 +41,11 @@
       VerticalAlignment="Top"
       Command="{Binding SendMessageCommand}"/>
 
+    <StackPanel>
+      <TextBlock Text="Shutdown button:"/>
+      <RadioButton Style="{StaticResource XStyle.RadioButton.ModuleButton.Shutdown}"/>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>

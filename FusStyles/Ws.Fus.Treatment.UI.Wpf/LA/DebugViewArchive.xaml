@@ -44,10 +44,10 @@
       </FlowDocument>
     </RichTextBox>-->
 
-    <StackPanel>
+    <!--<StackPanel>
       <TextBlock Text="TextBox text only:"/>
       <TextBox Style="{StaticResource XStyle.TextBox.TextOnly}" Text="6" extensions:IndependentSize.Height="32"/>
-    </StackPanel>
+    </StackPanel>-->
 
     <!--<StackPanel>
       <TextBlock Text="SingleLetter Chevron:"/>
@@ -393,6 +393,11 @@
           <RadioButton Content="SAG" IsChecked="{Binding IsSaggital,Mode=TwoWay}" Style="{StaticResource XStyle.RadioButton.RadioButtonPanel.Right}"  />
         </StackPanel>
       </Border>
+    </StackPanel>-->
+
+    <!--<StackPanel>
+      <TextBlock Text="Shutdown button:"/>
+      <RadioButton Style="{StaticResource XStyle.RadioButton.ModuleButton.Shutdown}"/>
     </StackPanel>-->
 
   </UniformGrid>

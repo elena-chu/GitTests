@@ -175,6 +175,14 @@
     <Setter Property="GroupName" Value="3" />
   </Style>
 
+  <Style x:Key="XStyle.RadioButton.ModuleButton.Shutdown" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
+    <Setter Property="Content" Value="SHUTDOWN"/>
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Shutdown.Alpha}"/>
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Shutdown.Beta}"/>
+    <!--<Setter Property="DataContext" Value="{Binding Path=[Shutdown]}"/>
+    <Setter Property="GroupName" Value="4"/>-->
+  </Style>
+
   <!--RadioButton Panel-->
   <ControlTemplate x:Key="XControlTemplate.RadioButton.RadioButtonPanel" TargetType="{x:Type RadioButton}">
     <Grid
