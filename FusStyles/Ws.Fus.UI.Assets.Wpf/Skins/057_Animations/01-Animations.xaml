@@ -37,6 +37,19 @@
     <ColorAnimation To="{StaticResource XColor.Button.Secondary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
+  <!--ColorAnimations: Supplementary -->
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Supplementary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Supplementary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToPressed.Supplementary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Supplementary.Background.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
+  </Storyboard>
+
+  <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.Stop.Supplementary" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Button.Supplementary.Background.Hover}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
   <!--ColorAnimations: Faded Secondary (Switch background)-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.ToHover.FadedSecondary" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.Switch.Background}" Duration="{StaticResource XDuration.Animation.Short}"/>
