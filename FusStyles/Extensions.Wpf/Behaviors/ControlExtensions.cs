@@ -93,6 +93,13 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static void SetIsActive(DependencyObject obj, bool value) { obj.SetValue(IsActiveProperty, value); }
 
         /// <summary>
+        /// Used to cancel Selectable looking parts (as in - no background) without cancelling IsActive
+        /// </summary>
+        public static readonly DependencyProperty IsSelectableProperty = DependencyProperty.RegisterAttached("IsSelectable", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(true));
+        public static bool GetIsSelectable(DependencyObject obj) { return (bool)obj.GetValue(IsSelectableProperty); }
+        public static void SetIsSelectable(DependencyObject obj, bool value) { obj.SetValue(IsSelectableProperty, value); }
+
+        /// <summary>
         /// Hover over control
         /// </summary>
         public static readonly DependencyProperty HoverProperty = DependencyProperty.RegisterAttached("Hover", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
@@ -133,9 +140,5 @@ namespace Ws.Extensions.UI.Wpf.Behaviors
         public static readonly DependencyProperty DisplayStatusProperty = DependencyProperty.RegisterAttached("DisplayStatus", typeof(DisplayStatus), typeof(ControlExtensions), new FrameworkPropertyMetadata(DisplayStatus.Active, FrameworkPropertyMetadataOptions.Inherits));
         public static DisplayStatus GetDisplayStatus(DependencyObject obj) { return (DisplayStatus)obj.GetValue(DisplayStatusProperty); }
         public static void SetDisplayStatus(DependencyObject obj, DisplayStatus value) { obj.SetValue(DisplayStatusProperty, value); }
-
-
-
-
     }
 }

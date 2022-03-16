@@ -58,6 +58,37 @@
         extensions:IndependentSize.Width="70"/>
     </StackPanel>
 
+    <StackPanel>
+      <TextBlock Text="Place holder"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Button:"/>
+      <Button Style="{StaticResource XStyle.Button.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.BackgroundEllimination}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Toggle Background:"/>
+      <ToggleButton Style="{StaticResource XStyle.ToggleButton.Icon}" extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Toggle Icon and Background:"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.Icon}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.ExclamationMark}"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Help}"/>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="Toggle Icon:"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.Icon}"
+        extensions:IconedButton.InactiveIcon="{StaticResource XCanvas.Unlock}"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Lock}"
+        extensions:ControlExtensions.IsSelectable="False"/>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>

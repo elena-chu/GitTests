@@ -777,7 +777,8 @@
         extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
         extensions:IndependentSize.Height="{TemplateBinding extensions:IndependentSize.Height}"
         extensions:ControlExtensions.IsActive="{TemplateBinding extensions:ControlExtensions.IsActive}"
-        Style="{StaticResource XStyle.Border.Active.Secondary}"/>
+        Style="{StaticResource XStyle.Border.Active.Secondary}"
+        Visibility="{TemplateBinding extensions:ControlExtensions.IsSelectable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
       <Border
         HorizontalAlignment="Center"
         extensions:IndependentSize.Width="{TemplateBinding extensions:IndependentSize.Width}"
