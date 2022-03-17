@@ -13,17 +13,17 @@ namespace Ws.Fus.Treatment.UI.Wpf.LA
 
         //private void ChangeControlState(object sender, System.Windows.RoutedEventArgs e)
         //{
-        //    switch (ControlExtensions.GetControlState(RippleButton))
+        //    switch (ControlExtensions.GetControlState(PlusButton))
         //    {
         //        case ControlState.Normal:
-        //            ControlExtensions.SetControlState(RippleButton, ControlState.CallToAction);
+        //            ControlExtensions.SetControlState(PlusButton, ControlState.CallToAction);
         //            break;
         //        case ControlState.CallToAction:
-        //            ControlExtensions.SetControlState(RippleButton, ControlState.Busy);
+        //            ControlExtensions.SetControlState(PlusButton, ControlState.Busy);
         //            DelayAndReset();
         //            break;
         //        case ControlState.Busy:
-        //            ControlExtensions.SetControlState(RippleButton, ControlState.Normal);
+        //            ControlExtensions.SetControlState(PlusButton, ControlState.Normal);
         //            break;
         //        default:
         //            break;
@@ -33,7 +33,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.LA
         //private async Task DelayAndReset()
         //{
         //    await Task.Delay(18000);
-        //    ControlExtensions.SetControlState(RippleButton, ControlState.Normal);
+        //    ControlExtensions.SetControlState(PlusButton, ControlState.Normal);
         //}
     }
 }

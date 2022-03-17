@@ -50,22 +50,6 @@
     </StackPanel>-->
 
     <!--<StackPanel>
-      <TextBlock Text="SingleLetter Chevron:"/>
-      <ToggleButton x:Name="ChevronButton">
-        <ToggleButton.Style>
-          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.SingleLetter.Chevron}">
-            <Setter Property="IsEnabled" Value="True"/>
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding (extensions:ControlExtensions.ControlState), ElementName=RippleButton}" Value="CallToAction">
-                <Setter Property="IsEnabled" Value="False"/>
-              </DataTrigger>
-            </Style.Triggers>
-          </Style>
-        </ToggleButton.Style>
-      </ToggleButton>
-    </StackPanel>
-
-    <StackPanel>
       <TextBlock Text="ToggleButton with Combo (two lines):"/>
       <ComboBox
         Style="{StaticResource XStyle.ComboBox.ToggleButtonAndTextHeader}"
@@ -398,6 +382,28 @@
     <!--<StackPanel>
       <TextBlock Text="Shutdown button:"/>
       <RadioButton Style="{StaticResource XStyle.RadioButton.ModuleButton.Shutdown}"/>
+    </StackPanel>-->
+
+    <!--<StackPanel>
+      <TextBlock Text="SingleLetter Plus:"/>
+      <Button x:Name="PlusButton" Style="{StaticResource XStyle.Button.SingleLetter.Plus}" extensions:ControlExtensions.ControlState="Normal" Click="ChangeControlState"/>
+    </StackPanel>-->
+
+
+    <!--<StackPanel>
+      <TextBlock Text="SingleLetter Chevron:"/>
+      <ToggleButton x:Name="ChevronButton">
+        <ToggleButton.Style>
+          <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.SingleLetter.Chevron}">
+            <Setter Property="IsEnabled" Value="True"/>
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding (extensions:ControlExtensions.ControlState), ElementName=PlusButton}" Value="CallToAction">
+                <Setter Property="IsEnabled" Value="False"/>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ToggleButton.Style>
+      </ToggleButton>
     </StackPanel>-->
 
   </UniformGrid>

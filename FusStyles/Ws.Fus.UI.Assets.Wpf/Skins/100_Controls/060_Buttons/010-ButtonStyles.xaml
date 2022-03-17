@@ -227,16 +227,24 @@
   </Style>
 
 
-  <!--Plus / Exit-->
+  <!--Single Letter: Plus / Chevron / Exit-->
   <ControlTemplate x:Key="XControlTemplate.ButtonBase.SingleLetter" TargetType="{x:Type ButtonBase}">
     <Border
       Padding="{TemplateBinding Padding}"
       Height="{TemplateBinding Height}"
       Width="{TemplateBinding Height}"
       extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
-      extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
-      BorderBrush="{TemplateBinding Foreground}"
-      Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
+      extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}">
+      <Border.Style>
+        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+          <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}"/>
+          <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="BorderBrush" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </Trigger>
+          </Style.Triggers>
+        </Style>
+      </Border.Style>
       <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Border>
   </ControlTemplate>
@@ -267,15 +275,23 @@
       Height="{TemplateBinding Height}"
       Width="{TemplateBinding Height}"
       extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
-      extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
-      BorderBrush="{TemplateBinding Foreground}"
-      Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}">
+      extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}">
+      <Border.Style>
+        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+          <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}"/>
+          <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="BorderBrush" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </Trigger>
+          </Style.Triggers>
+        </Style>
+      </Border.Style>
       <Border x:Name="ChevronBorder" extensions:IndependentSize.MaxWidth="13" HorizontalAlignment="Center">
         <Path
           extensions:IndependentSize.Margin="0,2,0,0"
           VerticalAlignment="Center"
           Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
-          RenderTransformOrigin="0.5,0.5">
+          RenderTransformOrigin="0.5,0.3">
           <Path.RenderTransform>
             <RotateTransform x:Name="ChevronRotateTransform" Angle="0"/>
           </Path.RenderTransform>
@@ -323,6 +339,12 @@
     </ControlTemplate.Resources>
     <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Height}">
       <Border
+        x:Name="PulseBorder"
+        extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
+        Style="{StaticResource XStyle.Border.Pulse}"
+        extensions:ControlExtensions.IsActive="False"
+        Visibility="Hidden"/>
+      <Border
         x:Name="RippleBorder"
         extensions:IndependentSize.Margin="{StaticResource LThickness.BorderMargins}"
         Style="{StaticResource XStyle.Border.Ripple}"
@@ -334,9 +356,17 @@
         Padding="{TemplateBinding Padding}"
         extensions:ControlExtensions.IsPressed="{TemplateBinding IsPressed}"
         extensions:ControlExtensions.ControlState="{TemplateBinding extensions:ControlExtensions.ControlState}"
-        extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}"
-        Style="{StaticResource XStyle.Border.HoverAndPress.Secondary}"
-        BorderBrush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+        extensions:IndependentSize.BorderThickness="{StaticResource XThickness.Frame}">
+        <Border.Style>
+          <Style TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
+            <Setter Property="BorderBrush" Value="{StaticResource XBrush.Application.Foreground}"/>
+            <Style.Triggers>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="BorderBrush" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Border.Style>
         <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
       </Border>
       <Control
@@ -349,6 +379,8 @@
       <Trigger Property="extensions:ControlExtensions.ControlState" Value="{x:Static extensions:ControlState.CallToAction}">
         <Setter TargetName="RippleBorder" Property="Visibility" Value="Visible"/>
         <Setter TargetName="RippleBorder" Property="extensions:ControlExtensions.IsActive" Value="True"/>
+        <Setter TargetName="PulseBorder" Property="Visibility" Value="Visible"/>
+        <Setter TargetName="PulseBorder" Property="extensions:ControlExtensions.IsActive" Value="True"/>
         <Setter TargetName="HoverAndPressBorder" Property="BorderBrush" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
       </Trigger>
       <Trigger Property="extensions:ControlExtensions.ControlState" Value="{x:Static extensions:ControlState.Busy}">

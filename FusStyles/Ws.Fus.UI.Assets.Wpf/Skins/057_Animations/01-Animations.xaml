@@ -108,7 +108,7 @@
     <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:1.5"/>
   </Storyboard>
 
-  <!--Ripple Animation-->
+  <!--Pulse Animation-->
   <Storyboard x:Key="XStoryboard.PulseAnimation" Duration="0:0:3" RepeatBehavior="Forever">
     <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" From="0" To="1" BeginTime="0:0:0" Duration="0:0:0.5"/>
     <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="0" BeginTime="0:0:0.5" Duration="0:0:2"/>
