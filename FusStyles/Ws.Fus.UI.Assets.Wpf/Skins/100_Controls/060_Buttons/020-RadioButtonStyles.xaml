@@ -10,16 +10,32 @@
   <extensions:BooleanToVisibilityConverter x:Key="XConverter.BooleanToVisibility.Radio.Hidden" Invisible="Hidden"/>
 
   <ControlTemplate x:Key="XControlTemplate.RadioButton.MainMenu" TargetType="{x:Type RadioButton}">
-    <Grid x:Name="MainGrid" Background="{StaticResource XBrush.AlmostTransparent}">
+    <Grid x:Name="MainGrid">
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
+      <Rectangle x:Name="MouseOverRectangle" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{StaticResource XBrush.AlmostTransparent}"/>
       <Grid
         Grid.Row="0"
         HorizontalAlignment="Left"
         VerticalAlignment="Bottom"
         extensions:IndependentSize.Height="{Binding (extensions:IconedButton.IconSize), RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}}}">
+        <Border
+          x:Name="PulseBorder"
+          Style="{StaticResource XStyle.Border.Pulse}"
+          extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Circle}"
+          extensions:ControlExtensions.IsActive="False"
+          Visibility="Hidden"/>
+        <Border extensions:IndependentSize.Margin="-10" Padding="0">
+          <Border
+            x:Name="RippleBorder"
+            extensions:IndependentSize.Margin="10"
+            Style="{StaticResource XStyle.Border.Ripple}"
+            extensions:IndependentSize.CornerRadius="{StaticResource XCornerRadius.Circle}"
+            extensions:ControlExtensions.IsActive="False"
+            Visibility="Hidden"/>
+        </Border>
         <Viewbox
           Stretch="Uniform"
           HorizontalAlignment="Center"
@@ -66,6 +82,14 @@
         <Setter Property="Fill" TargetName="AlphaPath" Value="{StaticResource XBrush.Application.Active}"/>
         <Setter Property="Fill" TargetName="BetaPath" Value="{StaticResource XBrush.Application.Foreground}"/>
         <Setter Property="TextBlock.Foreground" Value="{StaticResource XBrush.Application.Active}" TargetName="ContentPresenter"/>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.ControlState" Value="{x:Static extensions:ControlState.CallToAction}">
+        <Setter TargetName="PulseBorder" Property="Visibility" Value="Visible"/>
+        <Setter TargetName="PulseBorder" Property="extensions:ControlExtensions.IsActive" Value="True"/>
+        <Setter TargetName="RippleBorder" Property="Visibility" Value="Visible"/>
+        <Setter TargetName="RippleBorder" Property="extensions:ControlExtensions.IsActive" Value="True"/>
+        <Setter Property="Fill" TargetName="AlphaPath" Value="{StaticResource XBrush.Application.Foreground}"/>
+        <Setter Property="Fill" TargetName="BetaPath" Value="{StaticResource XBrush.Application.Foreground}"/>
       </Trigger>
       <Trigger Property="IsMouseOver" Value="True">
         <Trigger.EnterActions>

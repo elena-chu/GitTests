@@ -83,6 +83,14 @@
       <Button x:Name="ExitButton" Style="{StaticResource XStyle.Button.SingleLetter.Exit}"/>
     </StackPanel>
 
+    <StackPanel>
+      <TextBlock Text="Therapy Button:"/>
+      <RadioButton
+        Style="{StaticResource XStyle.RadioButton.ModuleButton.Surgical}"
+        HorizontalAlignment="Center"
+        extensions:ControlExtensions.ControlState="{Binding (extensions:ControlExtensions.ControlState), ElementName=PlusButton}"/>
+    </StackPanel>
+
   </UniformGrid>
 
 </UserControl>
