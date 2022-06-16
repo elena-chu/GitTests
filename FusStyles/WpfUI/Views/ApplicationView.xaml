@@ -25,10 +25,9 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
-    <Border Grid.Row="0" Grid.Column="0" extensions:IndependentSize.Padding="16,5">
+    <Border Grid.Row="0" Grid.Column="0" extensions:IndependentSize.Padding="10,5">
       <ContentControl
         x:Name="Logo"
-        extensions:IndependentSize.Height="30"
         HorizontalAlignment="Left"
         Style="{StaticResource XStyle.ContentControl.Logo}"/>
     </Border>
@@ -60,6 +59,17 @@
     </Grid>
 
     <ContentControl Grid.Row="1" Grid.ColumnSpan="2" prism:RegionManager.RegionName="{x:Static core:RegionNames.ModuleMainRegion}"/>
+
+    <Border Grid.Row="1" Grid.ColumnSpan="2" extensions:IndependentSize.Padding="16,5">
+      <ContentControl
+        x:Name="LogoTest"
+        extensions:IndependentSize.Height="500"
+        extensions:IndependentSize.Width="800"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Style="{StaticResource XStyle.ContentControl.Logo.Swirl.Exablate}"/>
+    </Border>
+
 
 
     <extensions:BusyIndicator Grid.RowSpan="2" Grid.ColumnSpan="2" IsBusy="{Binding IsBusy, FallbackValue=False}" />

@@ -523,7 +523,13 @@
   <Style x:Key="XStyle.RepeatButton.Spinner" TargetType="{x:Type RepeatButton}">
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.RepeatButton.Spinner}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Opacity" Value=".45" />
+      </Trigger>
+    </Style.Triggers>
   </Style>
+
 
   <ControlTemplate x:Key="XControlTemplate.ToggleButton.ChevonRotate180" TargetType="{x:Type ToggleButton}">
     <Border 
@@ -1141,7 +1147,7 @@
     <Setter Property="extensions:IndependentSize.Height" Value="22" />
   </Style>
 
-  <Style x:Key="XStyle.Button.Specific.Play>pause" TargetType="ToggleButton" BasedOn="{StaticResource XStyle.ToggleButton.Icon.Small}">
+  <Style x:Key="XStyle.Button.Specific.PlayPause" TargetType="ToggleButton" BasedOn="{StaticResource XStyle.ToggleButton.Icon.Small}">
     <Setter Property="extensions:IconedButton.ActiveIcon" Value="{StaticResource XCanvas.Menu.Compare.Pause}" />
     <Setter Property="extensions:IconedButton.InactiveIcon" Value="{StaticResource XCanvas.Menu.Compare.Play}" />
     <Setter Property="Content" Value="Play/Pause" />

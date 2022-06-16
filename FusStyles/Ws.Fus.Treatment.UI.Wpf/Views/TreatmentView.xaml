@@ -85,7 +85,8 @@
         Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>
 
-    <la:DebugView Grid.Column="1" Grid.ColumnSpan="2"/>
-    
+    <!--<la:DebugView Grid.Column="1" Grid.ColumnSpan="2"/>-->
+    <la:DebugViewArchive Grid.Column="1" Grid.ColumnSpan="2"/>
+
   </Grid>
 </UserControl>

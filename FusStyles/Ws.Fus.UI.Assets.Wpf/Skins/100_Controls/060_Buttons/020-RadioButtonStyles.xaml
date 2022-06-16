@@ -185,8 +185,8 @@
 
   <Style x:Key="XStyle.RadioButton.ModuleButton.Surgical.Dqa" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource XStyle.RadioButton.ModuleButton}">
     <Setter Property="Content" Value="{lex:LocTextUpper IDS_LBL_MENU_SURGICAL_DQA}" />
-    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.Surgical.Alpha}" />
-    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.Surgical.Beta}" />
+    <Setter Property="extensions:IconedButton.AlphaGeometry" Value="{StaticResource XGeometry.DqaTherapy.Alpha}" />
+    <Setter Property="extensions:IconedButton.BetaGeometry" Value="{StaticResource XGeometry.DqaTherapy.Beta}" />
     <Setter Property="DataContext" Value="{Binding Path=[Surgical]}" />
     <Setter Property="GroupName" Value="2" />
   </Style>

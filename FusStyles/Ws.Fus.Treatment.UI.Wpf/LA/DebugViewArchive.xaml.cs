@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using Ws.Extensions.UI.Wpf.Behaviors;
+using Ws.Extensions.UI.Wpf.Utils;
 
 namespace Ws.Fus.Treatment.UI.Wpf.LA
 {
@@ -9,6 +11,15 @@ namespace Ws.Fus.Treatment.UI.Wpf.LA
         public DebugViewArchive()
         {
             InitializeComponent();
+        }
+        private void MenuOpenerButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ToggleButton menuOpenerToggleButton = (ToggleButton)sender;
+            MenuItem menuItem = menuOpenerToggleButton.ParentOfType<MenuItem>() as MenuItem;
+            if (menuItem != null)
+            {
+                menuItem.IsSubmenuOpen = !menuItem.IsSubmenuOpen;
+            }
         }
 
         //private void ChangeControlState(object sender, System.Windows.RoutedEventArgs e)

@@ -243,7 +243,7 @@
 
   <Style x:Key="XStyle.Border.Message" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
     <Setter Property="Background" Value="{StaticResource XBrush.Application.Background}"/>
-    <Setter Property="extensions:IndependentSize.BorderThickness" Value="2"/>
+    <Setter Property="extensions:IndependentSize.BorderThickness" Value="1.5"/>
     <Setter Property="BorderBrush" Value="{Binding (extensions:ControlExtensions.Severity), RelativeSource={RelativeSource Self}, Converter={extensions:SeverityToBrushConverter}}"/>
   </Style>
 

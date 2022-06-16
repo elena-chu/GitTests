@@ -7,7 +7,9 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   prism:ViewModelLocator.AutoWireViewModel="True"
+  xmlns:imv="clr-namespace:Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu;assembly=Ws.Fus.ImageViewer.UI.Wpf"
   Background="{StaticResource XBrush.Application.Background}"
+  
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -49,7 +51,29 @@
       <TextBox Style="{StaticResource XStyle.TextBox.TextOnly}" Text="6" extensions:IndependentSize.Height="32"/>
     </StackPanel>-->
 
-    <!--<StackPanel>
+
+    <!-- 
+    =================Toggles with drop down menue ==========================================
+    -->
+
+    <StackPanel>
+      <TextBlock Text="ToggleButton with ContextMenu:"/>
+      <ToggleButton
+        Style="{StaticResource XStyle.ToggleButton.IconAndChevronOverText}"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Lock}"
+        Content="Choose Whale">
+        <ToggleButton.ContextMenu>
+          <ContextMenu>
+            <MenuItem Header="Blue"/>
+            <MenuItem Header="North Atlantic Right"/>
+            <MenuItem Header="Beluga"/>
+            <MenuItem Header="Pygmy" IsEnabled="False"/>
+          </ContextMenu>
+        </ToggleButton.ContextMenu>
+      </ToggleButton>
+    </StackPanel>
+
+    <StackPanel>
       <TextBlock Text="ToggleButton with Combo (two lines):"/>
       <ComboBox
         Style="{StaticResource XStyle.ComboBox.ToggleButtonAndTextHeader}"
@@ -61,7 +85,193 @@
         <ComboBoxItem Content="Bowhead"/>
         <ComboBoxItem Content="Common Minke"/>
       </ComboBox>
-    </StackPanel>-->
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="ToggleButton Menu Header:"/>
+      <Grid>
+        <Grid.Resources>
+          <ControlTemplate x:Key="XControlTemplate.ToolbarMenuHeader" TargetType="{x:Type imv:ToolbarMenuHeader}">
+            <Grid Width="Auto" HorizontalAlignment="Center">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <Grid Width="Auto" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton
+                  x:Name="MenuOpenerButton"
+                  Grid.Row="0"
+                  Grid.Column="1"
+                  extensions:IndependentSize.Margin="3,0,0,0"
+                  Click="MenuOpenerButton_Click"
+                  IsChecked="{TemplateBinding IsSubmenuOpen}"
+                  Style="{StaticResource XStyle.ToggleButton.ChevonRotate180}"
+                  HorizontalAlignment="Left"
+                  Visibility="{TemplateBinding HasItems, Converter={StaticResource BooleanToVisibilityConverter}}">
+                  <!--<ToggleButton.Style>
+              <Style TargetType="ToggleButton" BasedOn="{StaticResource XStyle.ToggleButton.ChevonRotate180}">
+                <Setter Property="IsChecked" Value="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+              </Style>
+            </ToggleButton.Style>-->
+                </ToggleButton>
+                <Popup
+                  x:Name="Popup"
+                  Placement="Right"
+                  extensions:IndependentSize.VerticalOffset="28"
+                  extensions:IndependentSize.HorizontalOffset="-45"
+                  IsOpen="{TemplateBinding IsSubmenuOpen}"
+                  AllowsTransparency="True"
+                  RenderOptions.ClearTypeHint="Enabled"
+                  Focusable="False"
+                  PopupAnimation="Fade">
+                  <Grid>
+                    <Border x:Name="DropDownBorder" Style="{StaticResource XStyle.Border.Frame}">
+                      <ContentControl x:Name="Popupcontent">
+                        <ScrollViewer>
+                          <ItemsPresenter TextElement.FontSize="{TemplateBinding FontSize}" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                        </ScrollViewer>
+                      </ContentControl>
+                    </Border>
+                  </Grid>
+                  <!--<Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border
+                x:Name="ArrowBorder"
+                extensions:IndependentSize.Margin="20,0,0,0"
+                extensions:IndependentSize.Width="25"
+                extensions:IndependentSize.Height="45"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Panel.ZIndex="5">
+                      <Grid>
+                        <Border Height="1" VerticalAlignment="Bottom" Background="{StaticResource XBrush.Application.Background}" Margin="1,0,1,-1"/>
+                        <Path
+                    Margin="0,0,0,-1"
+                    IsHitTestVisible="False"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Stretch="Uniform"
+                    Data="{StaticResource XGeometry.Chevron.Down}"
+                    Stroke="{StaticResource XBrush.Frame}"
+                    extensions:IndependentSize.StrokeThickness="1"
+                    Fill="{StaticResource XBrush.Application.Background}"
+                    RenderTransformOrigin="0.5,0.5">
+                          <Path.RenderTransform>
+                            <TransformGroup>
+                              <RotateTransform Angle="180"/>
+                            </TransformGroup>
+                          </Path.RenderTransform>
+                        </Path>
+                      </Grid>
+                    </Border>
+                    <Border
+                Grid.Row="1"
+                Style="{StaticResource XStyle.Border.Frame}">
+                      <StackPanel IsItemsHost="True"/>
+                    </Border>
+                  </Grid>-->
+                </Popup>
+
+                <ToggleButton
+                  x:Name="MenuToggleBtn"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  IsChecked="{TemplateBinding IsActive}"
+                  Command="{Binding HeaderClickCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                  CommandParameter="{TemplateBinding CommandParameter}"
+                  extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
+                  extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}">
+                  <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon}">
+                      <Setter Property="Visibility" Value="Collapsed"/>
+                      <!--<Setter Property="IsChecked" Value="False" />-->
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="SelectToggle">
+                          <Setter Property="Visibility" Value="Visible"/>
+                          <!--<Setter Property="extensions:IconedButton.Icon" Value="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}" />-->
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="SelectCaptionToggle">
+                          <Setter Property="Visibility" Value="Visible"/>
+                          <!--<Setter Property="extensions:IconedButton.Icon" Value="{Binding (extensions:IconedButton.Icon), RelativeSource={RelativeSource TemplatedParent}}" />-->
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ToolbarItemType, RelativeSource={RelativeSource TemplatedParent}}" Value="Toggle">
+                          <Setter Property="Visibility" Value="Visible"/>
+                          <!--<Setter Property="extensions:IconedButton.ActiveIcon" Value="{Binding (extensions:IconedButton.ActiveIcon), RelativeSource={RelativeSource TemplatedParent}}" />
+                          <Setter Property="extensions:IconedButton.InactiveIcon" Value="{Binding (extensions:IconedButton.InactiveIcon), RelativeSource={RelativeSource TemplatedParent}}" />-->
+                        </DataTrigger>
+                        <!--<DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                    <Setter Property="IsChecked" Value="True" />
+                  </DataTrigger>-->
+                      </Style.Triggers>
+                    </Style>
+                  </ToggleButton.Style>
+                </ToggleButton>
+
+              </Grid>
+              <TextBlock
+                x:Name="HeaderTextBlock"
+                Grid.Row="1"
+                Text="{TemplateBinding extensions:ControlExtensions.AlternativeText}"
+                Style="{StaticResource XStyle.TextBlock.Caption}"/>
+
+              <!--<TextBlock
+                x:Name="HeaderTextBlock"
+                Grid.Row="1"
+                Text="{TemplateBinding Header}"
+                HorizontalAlignment="Center"
+                extensions:IndependentSize.MinWidth="70"
+                TextAlignment="Center"
+                Style="{StaticResource XStyle.TextBlock.Caption}"
+                Foreground="{StaticResource XBrush.Button.IconButton.Caption}"/>-->
+            </Grid>
+            <ControlTemplate.Triggers>
+              <DataTrigger Binding="{Binding IsEnabled}" Value="False">
+                <Setter TargetName="HeaderTextBlock" Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
+              </DataTrigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+
+          <Style x:Key="{x:Type imv:ToolbarMenuHeader}" TargetType="{x:Type imv:ToolbarMenuHeader}">
+            <Setter Property="Template" Value="{StaticResource XControlTemplate.ToolbarMenuHeader}"/>
+            <Setter Property="extensions:IconedButton.Icon" Value="{StaticResource XCanvas.Lock}"/>
+            <Setter Property="extensions:IconedButton.IconSize" Value="23"/>
+            <Setter Property="extensions:IndependentSize.Margin" Value="0,0,20,0"/>
+          </Style>
+        </Grid.Resources>
+        
+        <imv:ToolbarMenuHeader
+          ToolbarItemType="SelectToggle"
+          extensions:ControlExtensions.AlternativeText="Blue whales are very very long "
+          IsActive="False"
+          CheckedCommandParameter ="{StaticResource XBoolean.True}"
+          UncheckedCommandParameter ="{StaticResource XBoolean.False}" >
+          <imv:ToolbarMenuItem Header="Radius 1mm" />
+          <imv:ToolbarMenuItem Header="Radius 2mm" />
+          <imv:ToolbarMenuItem Header="Radius 4mm" />
+        </imv:ToolbarMenuHeader>
+      </Grid>
+    </StackPanel>
+
+    <StackPanel>
+      <TextBlock Text="ContentControl with ContextMenu:"/>
+      <ContentControl
+        Style="{StaticResource XStyle.ContentControl.IconAndChevronOverText}"
+        extensions:ControlExtensions.AlternativeText="Blue whales are very very long "
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Calibration.Save}"
+        extensions:IndependentSize.Height="{StaticResource XDouble.Height.IconOverText.TwoLines}">
+      </ContentControl>
+    </StackPanel>
+
+    <!-- 
+    ================= End Toggles with drop down menue ==========================================
+    -->
 
     <!--<StackPanel>
       <TextBlock Text="Info Content Control:"/>

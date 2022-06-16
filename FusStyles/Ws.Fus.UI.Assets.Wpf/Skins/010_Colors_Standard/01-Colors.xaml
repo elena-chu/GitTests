@@ -57,7 +57,7 @@
   <Color x:Key="XColor.Line">#FF333333</Color>
 
   <!--Chart-->
-  <Color x:Key="XColor.TimeIndicator">#FF527033</Color>
+  <Color x:Key="XColor.TimeIndicator">#FFB5E61D</Color>
 
   <!--Temperatures-->
   <Color x:Key="XColor.Temperature.37">#FF059DC7</Color>
