@@ -66,6 +66,7 @@
   <!--Logo-->
   <SolidColorBrush x:Key="XBrush.Logo.Plus" Color="{StaticResource XColor.Application.Active}"/>
   <SolidColorBrush x:Key="XBrush.Logo.Text" Color="{StaticResource XColor.Application.Foreground}"/>
+  <SolidColorBrush x:Key="XBrush.Logo.Positive" Color="{StaticResource XColor.Logo.Positive}"/>
 
   <!-- Gradient Brushes-->
   <LinearGradientBrush x:Key="ActiveToTransparentGradientBrush" StartPoint="0,0">
