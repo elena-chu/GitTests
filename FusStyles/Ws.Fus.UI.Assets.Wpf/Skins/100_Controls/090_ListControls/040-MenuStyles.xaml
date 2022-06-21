@@ -96,4 +96,85 @@
     </Style.Resources>
   </Style>
 
+  <ControlTemplate x:Key="XControlTemplate.ContentControl.ToggleButtonAndTextHeader" TargetType="{x:Type ContentControl}">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+
+      <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Background="Transparent">
+        <ToggleButton
+          x:Name="HeaderToggleButton"
+          extensions:IndependentSize.Margin="0,0,4,0"
+          Command="{TemplateBinding extensions:ControlExtensions.ControlCommand}"
+          IsChecked="{TemplateBinding extensions:ControlExtensions.IsActive}"
+          Style="{StaticResource XStyle.ToggleButton.Icon}"
+          extensions:IconedButton.Icon="{TemplateBinding extensions:IconedButton.Icon}"
+          extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"/>
+        <ToggleButton
+          x:Name="ShevronBtn"
+          Style="{StaticResource XStyle.ToggleButton.ChevonRotate90}"
+          extensions:LeftClickContextMenu.IsLeftClickEnabled="True"
+          extensions:LeftClickContextMenu.OpeningFlag="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+          ContextMenuService.IsEnabled="False"
+          ContextMenuService.Placement="Right"
+          Height="{Binding ActualHeight, ElementName=HeaderToggleButton}"
+          >
+          <!--IsChecked="{Binding (ContextMenu.IsOpen), RelativeSource={RelativeSource TemplatedParent}, Mode=OneWayToSource}"-->
+          <ToggleButton.ContextMenu>
+            <ContextMenu Placement="Right" IsOpen="{Binding IsChecked, ElementName=ShevronBtn}" >
+              <MenuItem Header="Blue" IsCheckable="True"/>
+              <MenuItem Header="North Atlantic Right" IsCheckable="True"/>
+              <MenuItem Header="Beluga" />
+              <MenuItem Header="Pygmy" IsEnabled="False" />
+            </ContextMenu>
+          </ToggleButton.ContextMenu>
+        </ToggleButton>
+
+      </StackPanel>
+      <TextBlock
+        IsHitTestVisible="False"
+        Grid.Row="1"
+        Text="{TemplateBinding extensions:ControlExtensions.AlternativeText}"
+        Style="{StaticResource XStyle.TextBlock.Caption}"/>
+    </Grid>
+    <!--<ControlTemplate.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="-90" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="ChevronRotateTransform" Storyboard.TargetProperty="Angle" To="0" Duration="{StaticResource XDuration.Animation.Short}"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </Trigger.ExitActions>
+      </Trigger>
+    </ControlTemplate.Triggers>-->
+  </ControlTemplate>
+
+  <Style x:Key="XStyle.ContentControl.IconAndChevronOverText" TargetType="{x:Type ContentControl}">
+    <Setter Property="Template" Value="{StaticResource XControlTemplate.ContentControl.ToggleButtonAndTextHeader}"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="extensions:IndependentSize.Padding" Value="0,0,0,0"/>
+    <!--<Setter Property="extensions:LeftClickContextMenu.IsLeftClickEnabled" Value="True"/>-->
+    <Setter Property="ContextMenuService.IsEnabled" Value="False"/>
+    <Setter Property="ContextMenuService.Placement" Value="Right"/>
+    <Setter Property="ContextMenuService.HorizontalOffset" Value="4"/>
+    <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
+    <!--<Setter Property="IsChecked" Value="{Binding ContextMenu.IsOpen, RelativeSource={RelativeSource Self}}"/>-->
+    <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Width.IconOverText}"/>
+    <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.OneLine}"/>
+    <!--To show two text lines below button, set IndependentSize.Height to XDouble.Height.IconOverText.TwoLines on individual button-->
+    <Style.Resources>
+      <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource XStyle.ContextMenu}"/>
+    </Style.Resources>
+  </Style>
+
 </ResourceDictionary>

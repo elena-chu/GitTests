@@ -53,6 +53,7 @@ namespace WpfUI.Messages
                 ea.ActionChecked = vm.ActionChecked;
                 ea.SelectedButtonResult = vm.SelectedButtonResult;
 
+                wnd.MouseDown -= Wnd_MouseDown;
                 wnd.Close();
                 closeCallback?.Invoke(ea);
             };
