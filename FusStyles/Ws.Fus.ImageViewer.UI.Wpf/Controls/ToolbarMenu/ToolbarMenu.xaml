@@ -148,6 +148,7 @@
           <Button
             Grid.Row="0"
             Grid.Column="0"
+            Focusable="False"
             Command="{Binding HeaderClickCommand, RelativeSource={RelativeSource TemplatedParent}}"
             CommandParameter="{TemplateBinding CommandParameter}"
             extensions:IconedButton.IconSize="{TemplateBinding extensions:IconedButton.IconSize}"
@@ -171,6 +172,7 @@
             x:Name="MenuToggleBtn"
             Grid.Row="0"
             Grid.Column="0"
+            Focusable="False"
             IsChecked="{TemplateBinding IsActive}"
             Command="{Binding HeaderClickCommand, RelativeSource={RelativeSource TemplatedParent}}"
             CommandParameter="{TemplateBinding CommandParameter}"
