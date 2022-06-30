@@ -343,7 +343,8 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Controls.ToolbarMenu
         {
             if (Items != null && !Items.IsEmpty)
             {
-                var selectableItem = Items.Cast<ToolbarMenuItem>().FirstOrDefault(x => x.ToolbarItemType.IsSelectable());
+                var selectableItems = Items.Cast<ToolbarMenuItem>().Where(x => x.ToolbarItemType.IsSelectable());
+                var selectableItem = selectableItems.FirstOrDefault(el => el.IsChecked) ?? selectableItems.FirstOrDefault();
                 if (selectableItem != null)
                     SetSelectedItem(selectableItem);
             }
