@@ -156,9 +156,9 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ContentControl}">
           <Viewbox Stretch="Uniform">
-            <Canvas Width="414.52991" Height="45.108">
-              <Path Canvas.Left="0" Canvas.Top="0" Fill="{TemplateBinding Foreground}" Data="{StaticResource XGeometry.Logo.Exablate}"/>
-              <Path Canvas.Left="262.893" Canvas.Top="0.015" Fill="{TemplateBinding Foreground}" Data="{StaticResource XGeometry.Logo.Prime}"/>
+            <Canvas Width="409.932" Height="45.108">
+              <Path Canvas.Left="0" Canvas.Top="0" Fill="{TemplateBinding Foreground}" Data="{StaticResource XGeometry.Logo.Exablate}" Stroke="{TemplateBinding Foreground}" StrokeThickness="1"/>
+              <Path Canvas.Left="260" Canvas.Top="0" Fill="{TemplateBinding Foreground}" Data="{StaticResource XGeometry.Logo.Prime}" Stroke="{TemplateBinding Foreground}" StrokeThickness="1"/>
             </Canvas>
           </Viewbox>
         </ControlTemplate>
