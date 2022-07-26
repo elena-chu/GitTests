@@ -63,6 +63,21 @@ namespace InsightecGrid.ResizableGrid
                 resizableGridView.UpdateGrid();
         }
 
+        public Size ContainerSize
+        {
+            get { return (Size)GetValue(ContainerSizeProperty); }
+            set { SetValue(ContainerSizeProperty, value); }
+        }
+        public static readonly DependencyProperty ContainerSizeProperty =
+            DependencyProperty.Register(nameof(ContainerSize), typeof(Size), typeof(ResizableGridView), null);
+
+        private void SetContainerSize()
+        {
+            FrameworkElement parent = (FrameworkElement)(this.VisualParent);
+            Size size = new Size(parent.ActualWidth, parent.ActualHeight);
+            ContainerSize = size;
+        }
+
         private void UpdateGrid()
         {
             ResizeTile();
@@ -312,6 +327,7 @@ namespace InsightecGrid.ResizableGrid
 
         private void PlaygroundCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            SetContainerSize();
             UpdateGrid();
         }
 
@@ -324,11 +340,13 @@ namespace InsightecGrid.ResizableGrid
         {
             SouthEastGridLinesRectangle.MouseMove -= SouthEastGridLinesRectangle_MouseMove;
             SouthEastGridLinesRectangle.MouseMove += SouthEastGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void SouthEastGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
         {
             SouthEastGridLinesRectangle.MouseMove -= SouthEastGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void SouthEastGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
@@ -351,11 +369,13 @@ namespace InsightecGrid.ResizableGrid
         {
             SouthWestGridLinesRectangle.MouseMove -= SouthWestGridLinesRectangle_MouseMove;
             SouthWestGridLinesRectangle.MouseMove += SouthWestGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void SouthWestGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
         {
             SouthWestGridLinesRectangle.MouseMove -= SouthWestGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void SouthWestGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
@@ -367,7 +387,7 @@ namespace InsightecGrid.ResizableGrid
                 Canvas.SetTop(SouthWestMousePositionHorizontalLine, e.GetPosition(PlaygroundCanvas).Y);
                 SouthWestMousePositionVerticalLine.Y2 = e.GetPosition(swRectangle).Y;
                 Canvas.SetLeft(SouthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
-                
+
                 SetMousePositionLabel(SouthWestMousePositionHorizontalLine.X2, SouthWestMousePositionVerticalLine.Y2);
                 Canvas.SetLeft(SouthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).X - SouthWestMousePositionLabelTextBlock.ActualWidth);
                 Canvas.SetTop(SouthWestMousePositionLabelTextBlock, Origin.Y + SouthWestMousePositionVerticalLine.Y2);
@@ -379,11 +399,13 @@ namespace InsightecGrid.ResizableGrid
         {
             NorthWestGridLinesRectangle.MouseMove -= NorthWestGridLinesRectangle_MouseMove;
             NorthWestGridLinesRectangle.MouseMove += NorthWestGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void NorthWestGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
         {
             NorthWestGridLinesRectangle.MouseMove -= NorthWestGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void NorthWestGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
@@ -406,11 +428,13 @@ namespace InsightecGrid.ResizableGrid
         {
             NorthEastGridLinesRectangle.MouseMove -= NorthEastGridLinesRectangle_MouseMove;
             NorthEastGridLinesRectangle.MouseMove += NorthEastGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void NorthEastGridLinesRectangle_MouseLeave(object sender, MouseEventArgs e)
         {
             NorthEastGridLinesRectangle.MouseMove -= NorthEastGridLinesRectangle_MouseMove;
+            e.Handled = false;
         }
 
         private void NorthEastGridLinesRectangle_MouseMove(object sender, MouseEventArgs e)
