@@ -6,7 +6,7 @@
   xmlns:extensions="clr-namespace:Ws.Extensions.UI.Wpf.Converters"
   xmlns:behaviors="clr-namespace:Ws.Extensions.UI.Wpf.Behaviors">
 
-  <sys:Double x:Key="XDouble.Opacity.ResizableGridLines">0.5</sys:Double>
+  <sys:Double x:Key="XDouble.Opacity.ResizableGridLines">0.6</sys:Double>
   
   <Color x:Key="XColor.ResizableGrid.Line">#FFa5d671</Color>
   <Color x:Key="XColor.ResizableGrid.Origin">#FFff8600</Color>
