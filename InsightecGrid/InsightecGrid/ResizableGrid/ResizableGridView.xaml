@@ -7,6 +7,7 @@
   xmlns:local="clr-namespace:InsightecGrid.ResizableGrid"
   xmlns:behaviors="clr-namespace:Ws.Extensions.UI.Wpf.Behaviors"
   xmlns:extensions="clr-namespace:Ws.Extensions.UI.Wpf.Converters"
+  ClipToBounds="True"
   mc:Ignorable="d"
   Loaded="OnLoad"
   Unloaded="OnUnload"
