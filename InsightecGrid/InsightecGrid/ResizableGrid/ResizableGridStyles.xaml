@@ -82,7 +82,7 @@
   </Style>
 
   <!--Axis-->
-  <VisualBrush x:Key="XVisualBrush.HorizontalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+  <VisualBrush x:Key="XVisualBrush.HorizontalAxisAndTicks" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
     <VisualBrush.Visual>
       <Grid>
         <Rectangle Style="{StaticResource XStyle.Rectangle.HorizontalLine}"/>
@@ -92,7 +92,16 @@
     </VisualBrush.Visual>
   </VisualBrush>
 
-  <VisualBrush x:Key="XVisualBrush.VerticalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+  <!--Axis-->
+  <VisualBrush x:Key="XVisualBrush.HorizontalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+    <VisualBrush.Visual>
+      <Grid>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.HorizontalLine}"/>
+      </Grid>
+    </VisualBrush.Visual>
+  </VisualBrush>
+
+  <VisualBrush x:Key="XVisualBrush.VerticalAxisAndTicks" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
     <VisualBrush.Visual>
       <Grid>
         <Rectangle Style="{StaticResource XStyle.Rectangle.VerticalLine}"/>
@@ -102,13 +111,31 @@
     </VisualBrush.Visual>
   </VisualBrush>
 
+  <VisualBrush x:Key="XVisualBrush.VerticalAxis" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
+    <VisualBrush.Visual>
+      <Grid>
+        <Rectangle Style="{StaticResource XStyle.Rectangle.VerticalLine}"/>
+      </Grid>
+    </VisualBrush.Visual>
+  </VisualBrush>
+
   <Style x:Key="XStyle.Rectangle.Axis" TargetType="{x:Type Rectangle}">
     <Setter Property="IsHitTestVisible" Value="False"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
     <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
     <Setter Property="Opacity" Value="0"/>
+    <Setter Property="behaviors:ControlExtensions.Hover">
+      <Setter.Value>
+        <MultiBinding Converter="{extensions:OrConverter}">
+          <Binding Path="IsMouseOver" ElementName="SouthEastGridLinesRectangle"/>
+          <Binding Path="IsMouseOver" ElementName="SouthWestGridLinesRectangle"/>
+          <Binding Path="IsMouseOver" ElementName="NorthWestGridLinesRectangle"/>
+          <Binding Path="IsMouseOver" ElementName="NorthEastGridLinesRectangle"/>
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
     <Style.Triggers>
-      <Trigger Property="behaviors:ControlExtensions.IsActive" Value="True">
+      <Trigger Property="behaviors:ControlExtensions.Hover" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOver}"/>
         </Trigger.EnterActions>
@@ -122,11 +149,21 @@
   <Style x:Key="XStyle.Rectangle.HorizontalAxis" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.Axis}">
     <Setter Property="Fill" Value="{StaticResource XVisualBrush.HorizontalAxis}"/>
     <Setter Property="Height" Value="{Binding TileSize, ElementName=_thisResizableGridView}"/>
+    <Style.Triggers>
+      <Trigger Property="behaviors:ControlExtensions.IsActive" Value="True">
+        <Setter Property="Fill" Value="{StaticResource XVisualBrush.HorizontalAxisAndTicks}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <Style x:Key="XStyle.Rectangle.VerticalAxis" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.Axis}">
     <Setter Property="Fill" Value="{StaticResource XVisualBrush.VerticalAxis}"/>
     <Setter Property="Width" Value="{Binding TileSize, ElementName=_thisResizableGridView}"/>
+    <Style.Triggers>
+      <Trigger Property="behaviors:ControlExtensions.IsActive" Value="True">
+        <Setter Property="Fill" Value="{StaticResource XVisualBrush.VerticalAxisAndTicks}"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <!--Tick Labels-->
