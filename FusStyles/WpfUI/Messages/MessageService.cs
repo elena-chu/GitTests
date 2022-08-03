@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using WpfUI.Messages.ViewModels;
 using WpfUI.Messages.Views;
+using Ws.Extensions.UI.Wpf.Utils;
 
 namespace WpfUI.Messages
 {
@@ -75,8 +76,7 @@ namespace WpfUI.Messages
                 default:
                     break;
             }
-            SoundPlayer soundPlayer = new SoundPlayer(messageStream);
-            soundPlayer.Play();
+            SoundsHelper.PlaySound(messageStream);
 
             wnd.ShowDialog();
 
