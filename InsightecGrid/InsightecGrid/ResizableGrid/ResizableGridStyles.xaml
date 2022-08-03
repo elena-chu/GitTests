@@ -7,7 +7,7 @@
   xmlns:behaviors="clr-namespace:Ws.Extensions.UI.Wpf.Behaviors">
 
   <sys:Double x:Key="XDouble.Opacity.ResizableGridLines">0.6</sys:Double>
-  
+
   <Color x:Key="XColor.ResizableGrid.Line">#FFa5d671</Color>
   <Color x:Key="XColor.ResizableGrid.Origin">#FFff8600</Color>
 
@@ -16,7 +16,7 @@
 
   <Style x:Key="XStyle.Rectangle.Line" TargetType="{x:Type Rectangle}">
     <Setter Property="IsHitTestVisible" Value="False"/>
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="SnapsToDevicePixels" Value="False"/>
     <Setter Property="Fill" Value="{StaticResource XBrush.ResizableGrid.Line}"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -34,7 +34,7 @@
 
   <Style x:Key="XStyle.TextBlock.TickLabel" TargetType="{x:Type TextBlock}">
     <Setter Property="IsHitTestVisible" Value="False"/>
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="SnapsToDevicePixels" Value="False"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.ResizableGrid.Line}"/>
     <Setter Property="behaviors:IndependentSize.FontSize" Value="16"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -42,20 +42,31 @@
   </Style>
 
   <Style x:Key="XStyle.TextBlock.MousePosition" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource XStyle.TextBlock.TickLabel}">
-    <Setter Property="behaviors:IndependentSize.Padding" Value="12,12,6,6"/>
+    <Setter Property="behaviors:IndependentSize.Padding" Value="5,0,2,1"/>
     <Setter Property="Text" Value="{Binding MousePositionLabel, ElementName=_thisResizableGridView}"/>
+    <Setter Property="Background" Value="#77000000" />
     <Setter Property="Opacity" Value="0"/>
+    <!--<Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect
+            ShadowDepth="1"
+            Direction="315"
+            Color="Black"
+            Opacity="1"
+            BlurRadius="3"/>
+      </Setter.Value>
+    </Setter>-->
   </Style>
 
   <!--Grid Lines-->
   <Storyboard x:Key="XStoryboard.MouseOver" Storyboard.TargetProperty="Opacity">
     <DoubleAnimation To="1" Duration="0:0:0.2"/>
   </Storyboard>
-  
+
   <Storyboard x:Key="XStoryboard.MouseOut" Storyboard.TargetProperty="Opacity">
     <DoubleAnimation To="0" Duration="0:0:0.2"/>
   </Storyboard>
-  
+
   <VisualBrush x:Key="XVisualBrush.GridLines" Stretch="Uniform" TileMode="Tile" ViewportUnits="Absolute" Viewport="{Binding GridViewport, RelativeSource={RelativeSource AncestorType={x:Type resizablegrid:ResizableGridView}}}">
     <VisualBrush.Visual>
       <Grid>
@@ -121,7 +132,7 @@
 
   <Style x:Key="XStyle.Rectangle.Axis" TargetType="{x:Type Rectangle}">
     <Setter Property="IsHitTestVisible" Value="False"/>
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="SnapsToDevicePixels" Value="False"/>
     <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
     <Setter Property="Opacity" Value="0"/>
     <Setter Property="behaviors:ControlExtensions.Hover">
@@ -178,7 +189,7 @@
 
   <Style x:Key="XStyle.ItemsControl.TickLabels" TargetType="{x:Type ItemsControl}">
     <Setter Property="IsHitTestVisible" Value="False"/>
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="SnapsToDevicePixels" Value="False"/>
     <Setter Property="ItemsSource" Value="{Binding TickLabels, ElementName=_thisResizableGridView}"/>
     <Setter Property="ItemTemplate" Value="{StaticResource XDataTemplate.TickLabel}"/>
     <Setter Property="Opacity" Value="0"/>
@@ -203,25 +214,25 @@
 
   <Style x:Key="XStyle.ContentPresenter.TickLabels.East" TargetType="{x:Type ContentPresenter}">
     <Setter Property="DockPanel.Dock" Value="Left"/>
-  </Style> 
+  </Style>
 
   <Style x:Key="XStyle.ContentPresenter.TickLabels.West" TargetType="{x:Type ContentPresenter}">
     <Setter Property="DockPanel.Dock" Value="Right"/>
-  </Style> 
+  </Style>
 
   <Style x:Key="XStyle.ContentPresenter.TickLabels.South" TargetType="{x:Type ContentPresenter}">
     <Setter Property="DockPanel.Dock" Value="Top"/>
-  </Style> 
+  </Style>
 
   <Style x:Key="XStyle.ContentPresenter.TickLabels.North" TargetType="{x:Type ContentPresenter}">
     <Setter Property="DockPanel.Dock" Value="Bottom"/>
-  </Style> 
-  
+  </Style>
+
   <!--Mouse Position Lines-->
   <Style x:Key="XStyle.Line.MousePosition" TargetType="{x:Type Line}">
     <Setter Property="IsHitTestVisible" Value="False"/>
-    <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <Setter Property="Stroke" Value="{StaticResource XBrush.ResizableGrid.Line}"/>
+    <Setter Property="SnapsToDevicePixels" Value="False"/>
+    <Setter Property="Stroke" Value="#FFB5E61D"/>
     <Setter Property="behaviors:IndependentSize.StrokeThickness" Value="1"/>
     <Setter Property="StrokeDashArray" Value="4,4"/>
     <Setter Property="Opacity" Value="0"/>
@@ -248,5 +259,5 @@
     <Setter Property="X2" Value="0"/>
     <Setter Property="Y1" Value="0"/>
   </Style>
-  
+
 </ResourceDictionary>

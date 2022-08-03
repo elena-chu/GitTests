@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -120,16 +121,16 @@ namespace InsightecGrid.ResizableGrid
             get { return (Rect)GetValue(GridViewportProperty); }
             private set { SetValue(GridViewportProperty, value); }
         }
-        public static readonly DependencyProperty GridViewportProperty = DependencyProperty.Register(nameof(GridViewport), typeof(Rect), typeof(ResizableGridView), new PropertyMetadata(new Rect(0,0,30,30)));
+        public static readonly DependencyProperty GridViewportProperty = DependencyProperty.Register(nameof(GridViewport), typeof(Rect), typeof(ResizableGridView), new PropertyMetadata(new Rect(0, 0, 30, 30)));
 
         private void ResizeTile()
         {
-            double tileSize = Math.Round(Resolution * ResolutionToTickFrequency());
+            double tileSize = Resolution * ResolutionToTickFrequency();
             TileSize = tileSize;
             if (PlaygroundCanvas.ActualWidth > 0 && Resolution > 0)
                 GridViewport = new Rect(0, 0, tileSize, tileSize);
         }
-        
+
         #endregion
 
 
@@ -160,7 +161,7 @@ namespace InsightecGrid.ResizableGrid
 
             Canvas.SetRight(SouthWestGridLinesRectangle, PlaygroundCanvas.ActualWidth - Origin.X);
             Canvas.SetTop(SouthWestGridLinesRectangle, Origin.Y);
-            SouthWestGridLinesRectangle.Width = Math.Max(Origin.X,0);
+            SouthWestGridLinesRectangle.Width = Math.Max(Origin.X, 0);
             SouthWestGridLinesRectangle.Height = Math.Max(PlaygroundCanvas.ActualHeight - Origin.Y, 0);
 
             Canvas.SetRight(NorthWestGridLinesRectangle, PlaygroundCanvas.ActualWidth - Origin.X);
@@ -193,7 +194,7 @@ namespace InsightecGrid.ResizableGrid
             if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
 
-            double halfTile = Math.Round(TileSize / 2);
+            double halfTile = TileSize / 2;
 
             Canvas.SetLeft(EastAxisRectangle, Origin.X);
             Canvas.SetTop(EastAxisRectangle, Origin.Y - halfTile);
@@ -262,7 +263,7 @@ namespace InsightecGrid.ResizableGrid
             if (PlaygroundCanvas.ActualWidth <= 0 || PlaygroundCanvas.ActualHeight <= 0)
                 return;
 
-            double halfTile = Math.Round(TileSize / 2);
+            double halfTile = TileSize / 2;
 
             Canvas.SetLeft(EastTopTickLabelsItemsControl, Origin.X + halfTile);
             Canvas.SetTop(EastTopTickLabelsItemsControl, Origin.Y - TileSize);
@@ -358,9 +359,16 @@ namespace InsightecGrid.ResizableGrid
                 SouthEastMousePositionVerticalLine.Y2 = e.GetPosition(seRectangle).Y;
                 Canvas.SetLeft(SouthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
 
-                SetMousePositionLabel(SouthEastMousePositionHorizontalLine.X2, SouthEastMousePositionVerticalLine.Y2);
-                Canvas.SetLeft(SouthEastMousePositionLabelTextBlock, Origin.X + SouthEastMousePositionHorizontalLine.X2);
-                Canvas.SetTop(SouthEastMousePositionLabelTextBlock, Origin.Y + SouthEastMousePositionVerticalLine.Y2);
+                SetMousePositionLabel(SouthEastMousePositionHorizontalLine.X2, -SouthEastMousePositionVerticalLine.Y2);
+
+                double left = Origin.X + SouthEastMousePositionHorizontalLine.X2;
+                if (left + NorthEastMousePositionLabelTextBlock.ActualWidth > PlaygroundCanvas.ActualWidth)
+                    left = left - NorthEastMousePositionLabelTextBlock.ActualWidth;
+                double top = Origin.Y + SouthEastMousePositionVerticalLine.Y2;
+                if (top + SouthWestMousePositionLabelTextBlock.ActualHeight > PlaygroundCanvas.ActualHeight)
+                    top = top - SouthWestMousePositionVerticalLine.Y2;
+                Canvas.SetLeft(SouthEastMousePositionLabelTextBlock, left);
+                Canvas.SetTop(SouthEastMousePositionLabelTextBlock, top);
             }
             e.Handled = false;
         }
@@ -388,9 +396,16 @@ namespace InsightecGrid.ResizableGrid
                 SouthWestMousePositionVerticalLine.Y2 = e.GetPosition(swRectangle).Y;
                 Canvas.SetLeft(SouthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
 
-                SetMousePositionLabel(SouthWestMousePositionHorizontalLine.X2, SouthWestMousePositionVerticalLine.Y2);
-                Canvas.SetLeft(SouthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).X - SouthWestMousePositionLabelTextBlock.ActualWidth);
-                Canvas.SetTop(SouthWestMousePositionLabelTextBlock, Origin.Y + SouthWestMousePositionVerticalLine.Y2);
+                SetMousePositionLabel(-SouthWestMousePositionHorizontalLine.X2, -SouthWestMousePositionVerticalLine.Y2);
+
+                double left = e.GetPosition(PlaygroundCanvas).X - SouthWestMousePositionLabelTextBlock.ActualWidth;
+                if (left < 0)
+                    left = e.GetPosition(PlaygroundCanvas).X;
+                double top = Origin.Y + SouthWestMousePositionVerticalLine.Y2;
+                if (top + SouthWestMousePositionLabelTextBlock.ActualHeight > PlaygroundCanvas.ActualHeight)
+                    top = top - SouthWestMousePositionLabelTextBlock.ActualHeight;
+                Canvas.SetLeft(SouthWestMousePositionLabelTextBlock, left);
+                Canvas.SetTop(SouthWestMousePositionLabelTextBlock, top);
             }
             e.Handled = false;
         }
@@ -417,9 +432,16 @@ namespace InsightecGrid.ResizableGrid
             Canvas.SetLeft(NorthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).X);
             Canvas.SetTop(NorthWestMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).Y);
 
-            SetMousePositionLabel(NorthWestMousePositionHorizontalLine.X2, NorthWestMousePositionVerticalLine.Y2);
-            Canvas.SetLeft(NorthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).X - NorthWestMousePositionLabelTextBlock.ActualWidth);
-            Canvas.SetTop(NorthWestMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).Y - NorthWestMousePositionLabelTextBlock.ActualHeight);
+            SetMousePositionLabel(-NorthWestMousePositionHorizontalLine.X2, NorthWestMousePositionVerticalLine.Y2);
+
+            double left = e.GetPosition(PlaygroundCanvas).X - NorthWestMousePositionLabelTextBlock.ActualWidth;
+            if (left < 0)
+                left = e.GetPosition(PlaygroundCanvas).X;
+            double top = e.GetPosition(PlaygroundCanvas).Y - NorthWestMousePositionLabelTextBlock.ActualHeight;
+            if (top < 0)
+                top = e.GetPosition(PlaygroundCanvas).Y;
+            Canvas.SetLeft(NorthWestMousePositionLabelTextBlock, left);
+            Canvas.SetTop(NorthWestMousePositionLabelTextBlock, top);
 
             e.Handled = false;
         }
@@ -448,8 +470,15 @@ namespace InsightecGrid.ResizableGrid
                 Canvas.SetTop(NorthEastMousePositionVerticalLine, e.GetPosition(PlaygroundCanvas).Y);
 
                 SetMousePositionLabel(NorthEastMousePositionHorizontalLine.X2, NorthEastMousePositionVerticalLine.Y2);
-                Canvas.SetLeft(NorthEastMousePositionLabelTextBlock, Origin.X + NorthEastMousePositionHorizontalLine.X2);
-                Canvas.SetTop(NorthEastMousePositionLabelTextBlock, e.GetPosition(PlaygroundCanvas).Y - NorthEastMousePositionLabelTextBlock.ActualHeight);
+
+                double left = Origin.X + NorthEastMousePositionHorizontalLine.X2;
+                if (left + NorthEastMousePositionLabelTextBlock.ActualWidth > PlaygroundCanvas.ActualWidth)
+                    left = left - NorthEastMousePositionLabelTextBlock.ActualWidth;
+                double top = e.GetPosition(PlaygroundCanvas).Y - NorthEastMousePositionLabelTextBlock.ActualHeight;
+                if (top < 0)
+                    top = e.GetPosition(PlaygroundCanvas).Y;
+                Canvas.SetLeft(NorthEastMousePositionLabelTextBlock, left);
+                Canvas.SetTop(NorthEastMousePositionLabelTextBlock, top);
             }
             e.Handled = false;
         }
@@ -466,22 +495,39 @@ namespace InsightecGrid.ResizableGrid
         }
         public static readonly DependencyProperty MousePositionLabelProperty = DependencyProperty.Register(nameof(MousePositionLabel), typeof(string), typeof(ResizableGridView));
 
-        private int ResolutionToRoundingPrecision()
+
+        public Func<double, double, string> CoordinateConverter
         {
-            if (Resolution <= 16)
-                return 0;
-            else if (Resolution <= 64)
-                return 1;
-            return 2;
+            get { return (Func<double, double, string>)GetValue(CoordinateConverterProperty); }
+            set { SetValue(CoordinateConverterProperty, value); }
         }
+        public static readonly DependencyProperty CoordinateConverterProperty = DependencyProperty.Register(nameof(CoordinateConverter), typeof(Func<double, double, string>), typeof(ResizableGridView));
+
+        //private int ResolutionToRoundingPrecision()
+        //{
+        //    if (Resolution <= 16)
+        //        return 0;
+        //    else if (Resolution <= 64)
+        //        return 1;
+        //    return 2;
+        //}
 
         private void SetMousePositionLabel(double mouseDistanceFromOriginX, double mouseDistanceFromOriginY)
         {
             if (Resolution == 0)
                 return;
 
-            int roundingPrecision = ResolutionToRoundingPrecision();
-            MousePositionLabel = "(" + Math.Round(mouseDistanceFromOriginX / Resolution, roundingPrecision) + ", " + Math.Round(mouseDistanceFromOriginY / Resolution, roundingPrecision) + ")";
+            double x = mouseDistanceFromOriginX / Resolution;
+            double y = mouseDistanceFromOriginY / Resolution;
+            if (CoordinateConverter != null)
+            {
+                MousePositionLabel = CoordinateConverter(x, y);
+            }
+            else
+            {
+                int roundingPrecision = 1;//ResolutionToRoundingPrecision();
+                MousePositionLabel = Math.Round(Math.Abs(x), roundingPrecision) + ", " + Math.Round(Math.Abs(y), roundingPrecision);
+            }
         }
 
         #endregion

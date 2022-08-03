@@ -12,12 +12,14 @@
   Loaded="OnLoad"
   Unloaded="OnUnload"
   x:Name="_thisResizableGridView">
-  
+
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ResizableGridStyles.xaml"/>
       </ResourceDictionary.MergedDictionaries>
+
+      <extensions:OrConverter x:Key="OrConverter" />
     </ResourceDictionary>
   </UserControl.Resources>
 
@@ -66,7 +68,7 @@
         <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.HorizontalAxis}">
           <Setter Property="behaviors:ControlExtensions.IsActive">
             <Setter.Value>
-              <MultiBinding Converter="{extensions:OrConverter}">
+              <MultiBinding Converter="{StaticResource OrConverter}">
                 <Binding Path="IsMouseOver" ElementName="SouthEastGridLinesRectangle"/>
                 <Binding Path="IsMouseOver" ElementName="NorthEastGridLinesRectangle"/>
               </MultiBinding>
@@ -83,7 +85,7 @@
         <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.HorizontalAxis}">
           <Setter Property="behaviors:ControlExtensions.IsActive">
             <Setter.Value>
-              <MultiBinding Converter="{extensions:OrConverter}">
+              <MultiBinding Converter="{StaticResource OrConverter}">
                 <Binding Path="IsMouseOver" ElementName="SouthWestGridLinesRectangle"/>
                 <Binding Path="IsMouseOver" ElementName="NorthWestGridLinesRectangle"/>
               </MultiBinding>
@@ -97,7 +99,7 @@
         <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.VerticalAxis}">
           <Setter Property="behaviors:ControlExtensions.IsActive">
             <Setter.Value>
-              <MultiBinding Converter="{extensions:OrConverter}">
+              <MultiBinding Converter="{StaticResource OrConverter}">
                 <Binding Path="IsMouseOver" ElementName="SouthEastGridLinesRectangle"/>
                 <Binding Path="IsMouseOver" ElementName="SouthWestGridLinesRectangle"/>
               </MultiBinding>
@@ -114,7 +116,7 @@
         <Style TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.VerticalAxis}">
           <Setter Property="behaviors:ControlExtensions.IsActive">
             <Setter.Value>
-              <MultiBinding Converter="{extensions:OrConverter}">
+              <MultiBinding Converter="{StaticResource OrConverter}">
                 <Binding Path="IsMouseOver" ElementName="NorthEastGridLinesRectangle"/>
                 <Binding Path="IsMouseOver" ElementName="NorthWestGridLinesRectangle"/>
               </MultiBinding>
@@ -131,6 +133,7 @@
       behaviors:IndependentSize.Height="8"
       behaviors:IndependentSize.Width="8"
       behaviors:IndependentSize.StrokeThickness="1"
+      IsHitTestVisible="False"
       Stroke="Black"/>
 
     <!--Tick Labels-->
