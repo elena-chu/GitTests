@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Linq;
 using Ws.Fus.UI.Navigation.Wpf;
+using Ws.Extensions.UI.Wpf.Utils;
 
 namespace WpfUI.ViewModels
 {
@@ -35,6 +36,7 @@ namespace WpfUI.ViewModels
             HelpCommand = new DelegateCommand(HelpExecute);
             QuitCommand = new DelegateCommand(QuitExecute, QuitCanExecute);
             OpenSettingsCommand = new DelegateCommand(OpenSettingsExecute, OpenSettingsCanExecute);
+            ToggleVolumeCommand = new DelegateCommand(ToggleVolume);
 
             _timer = new AdjustedTimer(() => TimeNow = DateTime.Now);
             _timer.IntervalMilliSeconds = 1000;
@@ -66,7 +68,16 @@ namespace WpfUI.ViewModels
         public bool OpenSettingsCanExecute()
         {
             return !_isMainModuleActive;
-        } 
+        }
+
+        public DelegateCommand ToggleVolumeCommand { get; private set; }
+        public void ToggleVolume()
+        {
+            SoundsHelper.MuteAllSoundsExceptEmergency = !SoundsHelper.MuteAllSoundsExceptEmergency;
+            RaisePropertyChanged(nameof(MuteAllSoundsExceptEmergency));
+        }
+
+        public bool MuteAllSoundsExceptEmergency => SoundsHelper.MuteAllSoundsExceptEmergency;
 
         #endregion
 

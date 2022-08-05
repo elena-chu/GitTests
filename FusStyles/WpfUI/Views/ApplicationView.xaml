@@ -60,7 +60,7 @@
 
     <ContentControl Grid.Row="1" Grid.ColumnSpan="2" prism:RegionManager.RegionName="{x:Static core:RegionNames.ModuleMainRegion}"/>
 
-    <Border Grid.Row="1" Grid.ColumnSpan="2" extensions:IndependentSize.Padding="16,5">
+    <!--<Border Grid.Row="1" Grid.ColumnSpan="2" extensions:IndependentSize.Padding="16,5">
       <ContentControl
         x:Name="LogoTest"
         extensions:IndependentSize.Height="500"
@@ -68,7 +68,7 @@
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         Style="{StaticResource XStyle.ContentControl.Logo.SwirlExablate}"/>
-    </Border>
+    </Border>-->
 
 
 

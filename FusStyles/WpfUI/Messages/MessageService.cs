@@ -76,7 +76,7 @@ namespace WpfUI.Messages
                 default:
                     break;
             }
-            SoundsHelper.PlaySound(messageStream);
+            SoundsHelper.PlaySound(messageStream, vm.MessageType == GenericMessageType.Safety);
 
             wnd.ShowDialog();
 

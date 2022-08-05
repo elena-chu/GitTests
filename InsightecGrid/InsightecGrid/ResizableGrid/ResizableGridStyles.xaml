@@ -134,7 +134,7 @@
     <Setter Property="IsHitTestVisible" Value="False"/>
     <Setter Property="SnapsToDevicePixels" Value="False"/>
     <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-    <Setter Property="Opacity" Value="0"/>
+    <!--<Setter Property="Opacity" Value="0"/>-->
     <Setter Property="behaviors:ControlExtensions.Hover">
       <Setter.Value>
         <MultiBinding Converter="{extensions:OrConverter}">
@@ -145,7 +145,7 @@
         </MultiBinding>
       </Setter.Value>
     </Setter>
-    <Style.Triggers>
+    <!--<Style.Triggers>
       <Trigger Property="behaviors:ControlExtensions.Hover" Value="True">
         <Trigger.EnterActions>
           <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOver}"/>
@@ -154,7 +154,7 @@
           <BeginStoryboard Storyboard="{StaticResource XStoryboard.MouseOut}"/>
         </Trigger.ExitActions>
       </Trigger>
-    </Style.Triggers>
+    </Style.Triggers>-->
   </Style>
 
   <Style x:Key="XStyle.Rectangle.HorizontalAxis" TargetType="{x:Type Rectangle}" BasedOn="{StaticResource XStyle.Rectangle.Axis}">

@@ -23,6 +23,10 @@
       <Setter Property="extensions:IndependentSize.Margin" Value="6,0"/>
     </Style>
 
+    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource XStyle.ToggleButton.Icon.Small}">
+      <Setter Property="extensions:IndependentSize.Margin" Value="6,0"/>
+    </Style>
+
   </UserControl.Resources>
 
   <Grid >
@@ -50,6 +54,13 @@
         x:Name="SettngsBtn"
         extensions:IconedButton.Icon="{StaticResource XCanvas.Settings}"
         Command="{Binding OpenSettingsCommand}"
+        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+      <ToggleButton
+        x:Name="VolumeToggleButton"
+        extensions:IconedButton.Icon="{StaticResource XCanvas.Volume}"
+        extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Mute}"
+        Command="{Binding ToggleVolumeCommand}"
+        IsChecked="{Binding MuteAllSoundsExceptEmergency, Mode=OneWay}"
         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
       <Button
         extensions:IconedButton.Icon="{StaticResource XCanvas.Quit.Circular}" Command="{Binding QuitCommand}"

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Media;
 using System.Windows;
 using System.Windows.Input;
+using Ws.Extensions.UI.Wpf.Utils;
 using Ws.Fus.Treatment.UI.Wpf.LA.Messages.ViewModels;
 using Ws.Fus.Treatment.UI.Wpf.LA.Messages.Views;
 
@@ -74,8 +75,8 @@ namespace Ws.Fus.Treatment.UI.Wpf.LA.Messages
                 default:
                     break;
             }
-            SoundPlayer soundPlayer = new SoundPlayer(messageStream);
-            soundPlayer.Play();
+
+            SoundsHelper.PlaySound(messageStream, vm.MessageType == GenericMessageType.Safety);
 
             wnd.ShowDialog();
 
