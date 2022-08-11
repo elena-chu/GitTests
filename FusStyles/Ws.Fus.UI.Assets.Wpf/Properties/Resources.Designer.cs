@@ -19,7 +19,7 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -61,7 +61,52 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Treatment Brain Side.
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string HDR_DATE {
+            get {
+                return ResourceManager.GetString("HDR_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string HDR_ID {
+            get {
+                return ResourceManager.GetString("HDR_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load All.
+        /// </summary>
+        public static string HDR_LOAD_ALL {
+            get {
+                return ResourceManager.GetString("HDR_LOAD_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string HDR_NAME {
+            get {
+                return ResourceManager.GetString("HDR_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-Lateral.
+        /// </summary>
+        public static string IDS_LBL_BI_LATERAL {
+            get {
+                return ResourceManager.GetString("IDS_LBL_BI_LATERAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Location.
         /// </summary>
         public static string IDS_LBL_BRAIN_SIDE {
             get {
@@ -160,7 +205,7 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PRE-PLANNING.
+        ///   Looks up a localized string similar to PREPARATION.
         /// </summary>
         public static string IDS_LBL_MENU_PREPLANNING {
             get {
@@ -205,11 +250,38 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SURGICAL.
+        ///   Looks up a localized string similar to SET-UP.
+        /// </summary>
+        public static string IDS_LBL_MENU_SETUP {
+            get {
+                return ResourceManager.GetString("IDS_LBL_MENU_SETUP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THERAPY.
         /// </summary>
         public static string IDS_LBL_MENU_SURGICAL {
             get {
                 return ResourceManager.GetString("IDS_LBL_MENU_SURGICAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SONICATE.
+        /// </summary>
+        public static string IDS_LBL_MENU_SURGICAL_DQA {
+            get {
+                return ResourceManager.GetString("IDS_LBL_MENU_SURGICAL_DQA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TARGET &amp; SAVE.
+        /// </summary>
+        public static string IDS_LBL_MENU_TARGET_SAVE {
+            get {
+                return ResourceManager.GetString("IDS_LBL_MENU_TARGET_SAVE", resourceCulture);
             }
         }
         
@@ -237,6 +309,24 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         public static string IDS_LBL_MRI {
             get {
                 return ResourceManager.GetString("IDS_LBL_MRI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NO.
+        /// </summary>
+        public static string IDS_LBL_NO {
+            get {
+                return ResourceManager.GetString("IDS_LBL_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string IDS_LBL_OK {
+            get {
+                return ResourceManager.GetString("IDS_LBL_OK", resourceCulture);
             }
         }
         
@@ -277,6 +367,25 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to QUIT DQA.
+        /// </summary>
+        public static string IDS_LBL_QUIT_DQA {
+            get {
+                return ResourceManager.GetString("IDS_LBL_QUIT_DQA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to END
+        ///TREATMENT.
+        /// </summary>
+        public static string IDS_LBL_QUIT_TREATMENT {
+            get {
+                return ResourceManager.GetString("IDS_LBL_QUIT_TREATMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right.
         /// </summary>
         public static string IDS_LBL_RIGHT {
@@ -286,11 +395,20 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Profile.
+        ///   Looks up a localized string similar to Treating Physician.
         /// </summary>
-        public static string IDS_LBL_TRTM_SELECT_PROFILE {
+        public static string IDS_LBL_TRTM_PHYSICIAN {
             get {
-                return ResourceManager.GetString("IDS_LBL_TRTM_SELECT_PROFILE", resourceCulture);
+                return ResourceManager.GetString("IDS_LBL_TRTM_PHYSICIAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preference Profile.
+        /// </summary>
+        public static string IDS_LBL_TRTM_PROTOCOL {
+            get {
+                return ResourceManager.GetString("IDS_LBL_TRTM_PROTOCOL", resourceCulture);
             }
         }
         
@@ -304,7 +422,7 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Session.
+        ///   Looks up a localized string similar to Start Pre-Planning.
         /// </summary>
         public static string IDS_LBL_TRTM_START_SESSION {
             get {
@@ -336,6 +454,15 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         public static string IDS_LBL_WATER_SYSTEM {
             get {
                 return ResourceManager.GetString("IDS_LBL_WATER_SYSTEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YES.
+        /// </summary>
+        public static string IDS_LBL_YES {
+            get {
+                return ResourceManager.GetString("IDS_LBL_YES", resourceCulture);
             }
         }
         
@@ -372,6 +499,204 @@ namespace Ws.Fus.UI.Assets.Wpf.Properties {
         public static string IDS_TT_STATE_UNAVAILABLE {
             get {
                 return ResourceManager.GetString("IDS_TT_STATE_UNAVAILABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  ).
+        /// </summary>
+        public static string INFO_CLOSE_BRACKET {
+            get {
+                return ResourceManager.GetString("INFO_CLOSE_BRACKET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string INFO_DURATION {
+            get {
+                return ResourceManager.GetString("INFO_DURATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limit.
+        /// </summary>
+        public static string INFO_LIMIT {
+            get {
+                return ResourceManager.GetString("INFO_LIMIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OFF.
+        /// </summary>
+        public static string INFO_OFF {
+            get {
+                return ResourceManager.GetString("INFO_OFF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ON.
+        /// </summary>
+        public static string INFO_ON {
+            get {
+                return ResourceManager.GetString("INFO_ON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (.
+        /// </summary>
+        public static string INFO_OPEN_BRACKET {
+            get {
+                return ResourceManager.GetString("INFO_OPEN_BRACKET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient ID.
+        /// </summary>
+        public static string INFO_PATIENT_ID {
+            get {
+                return ResourceManager.GetString("INFO_PATIENT_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient Name.
+        /// </summary>
+        public static string INFO_PATIENT_NAME {
+            get {
+                return ResourceManager.GetString("INFO_PATIENT_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Power.
+        /// </summary>
+        public static string INFO_POWER {
+            get {
+                return ResourceManager.GetString("INFO_POWER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target.
+        /// </summary>
+        public static string INFO_TARGET {
+            get {
+                return ResourceManager.GetString("INFO_TARGET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string INFO_WARNING {
+            get {
+                return ResourceManager.GetString("INFO_WARNING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Changes.
+        /// </summary>
+        public static string LBL_APPLY_CHANGES {
+            get {
+                return ResourceManager.GetString("LBL_APPLY_CHANGES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string LBL_CANCEL {
+            get {
+                return ResourceManager.GetString("LBL_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string LBL_DEFAULT {
+            get {
+                return ResourceManager.GetString("LBL_DEFAULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discard Changes.
+        /// </summary>
+        public static string LBL_DISCARD_CHANGES {
+            get {
+                return ResourceManager.GetString("LBL_DISCARD_CHANGES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        public static string LBL_LOAD {
+            get {
+                return ResourceManager.GetString("LBL_LOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Pre-Treatment Plan.
+        /// </summary>
+        public static string LBL_LOAD_PREPLAN {
+            get {
+                return ResourceManager.GetString("LBL_LOAD_PREPLAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string LBL_PROFILE {
+            get {
+                return ResourceManager.GetString("LBL_PROFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SHUTDOWN.
+        /// </summary>
+        public static string LBL_SHUTDOWN {
+            get {
+                return ResourceManager.GetString("LBL_SHUTDOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        public static string LBL_SYSTEM {
+            get {
+                return ResourceManager.GetString("LBL_SYSTEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string TT_CLOSE {
+            get {
+                return ResourceManager.GetString("TT_CLOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        public static string TT_ENABLE {
+            get {
+                return ResourceManager.GetString("TT_ENABLE", resourceCulture);
             }
         }
     }

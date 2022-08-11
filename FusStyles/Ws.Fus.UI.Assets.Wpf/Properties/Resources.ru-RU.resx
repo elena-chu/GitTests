@@ -117,219 +117,223 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="APPLY_CHANGES" xml:space="preserve">
+    <value />
+  </data>
   <data name="HDR_DATE" xml:space="preserve">
-    <value>Date</value>
+    <value>Свидание</value>
   </data>
   <data name="HDR_ID" xml:space="preserve">
-    <value>ID</value>
+    <value>Я БЫ</value>
   </data>
   <data name="HDR_LOAD_ALL" xml:space="preserve">
-    <value>Load All</value>
+    <value>Загрузить все</value>
   </data>
   <data name="HDR_NAME" xml:space="preserve">
-    <value>Name</value>
+    <value>Имя</value>
   </data>
   <data name="IDS_LBL_BI_LATERAL" xml:space="preserve">
-    <value>Bi-Lateral</value>
+    <value>Би Латерал</value>
   </data>
   <data name="IDS_LBL_BRAIN_SIDE" xml:space="preserve">
-    <value>Target Location</value>
+    <value>Место цели</value>
   </data>
   <data name="IDS_LBL_DEVICE" xml:space="preserve">
-    <value>Device</value>
+    <value>Прибор</value>
   </data>
   <data name="IDS_LBL_EXAM_INFO" xml:space="preserve">
-    <value>Current Exam Information</value>
+    <value>Информация о текущем экзаме</value>
   </data>
   <data name="IDS_LBL_EXAM_N" xml:space="preserve">
-    <value>Exam#:</value>
+    <value>Экзам#:</value>
   </data>
   <data name="IDS_LBL_LEFT" xml:space="preserve">
-    <value>Left</value>
+    <value>Слева</value>
   </data>
   <data name="IDS_LBL_MENU_AC_PC" xml:space="preserve">
-    <value>AC-PC PLANE</value>
+    <value>ПЛОСКОСТЬ AC-PC</value>
   </data>
   <data name="IDS_LBL_MENU_CALIBRATION" xml:space="preserve">
-    <value>CALIBRATION</value>
+    <value>КАЛИБРАЦИЯ</value>
     <comment>Length sensitive. Max: 12</comment>
   </data>
   <data name="IDS_LBL_MENU_DATABASE" xml:space="preserve">
-    <value>DATABASE</value>
+    <value>БАЗА ДАННЫХ</value>
   </data>
   <data name="IDS_LBL_MENU_DQA" xml:space="preserve">
-    <value>DQA</value>
+    <value>ТЕСТИРОВАНИЕ</value>
   </data>
   <data name="IDS_LBL_MENU_NPR" xml:space="preserve">
-    <value>NPR REVIEW</value>
+    <value>ПРОСМОТР НПР</value>
   </data>
   <data name="IDS_LBL_MENU_PLANNING_SCAN" xml:space="preserve">
-    <value>SCAN</value>
+    <value>СКАНИРОВАНИЕ</value>
   </data>
   <data name="IDS_LBL_MENU_PREPLANNING" xml:space="preserve">
-    <value>PREPARATION</value>
+    <value>ПРЕД-ПЛАН</value>
   </data>
   <data name="IDS_LBL_MENU_REGISTRATION" xml:space="preserve">
-    <value>REGISTRATION</value>
+    <value>РЕГИСТРАЦИЯ</value>
   </data>
   <data name="IDS_LBL_MENU_REPORT" xml:space="preserve">
-    <value>REPORT</value>
+    <value>ОТЧЕТ</value>
   </data>
   <data name="IDS_LBL_MENU_SCREENING" xml:space="preserve">
-    <value>SCREENING</value>
+    <value>СКРИНИНГ</value>
   </data>
   <data name="IDS_LBL_MENU_SETTINGS" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>УСТАНОВКИ</value>
   </data>
   <data name="IDS_LBL_MENU_SETUP" xml:space="preserve">
-    <value>SET-UP</value>
+    <value>УСТАНОВКИ</value>
   </data>
   <data name="IDS_LBL_MENU_SURGICAL" xml:space="preserve">
-    <value>THERAPY</value>
+    <value>ТЕРАПИЯ</value>
   </data>
   <data name="IDS_LBL_MENU_SURGICAL_DQA" xml:space="preserve">
-    <value>SONICATE</value>
+    <value>СОНИКАЦИЯ</value>
   </data>
   <data name="IDS_LBL_MENU_TARGETING" xml:space="preserve">
-    <value>TARGETING</value>
+    <value>ЦЕЛЬ</value>
   </data>
   <data name="IDS_LBL_MENU_TARGET_SAVE" xml:space="preserve">
-    <value>TARGET &amp; SAVE</value>
+    <value>ЦЕЛЬ &amp; СОХРАНИТЬ</value>
   </data>
   <data name="IDS_LBL_MENU_TREATMENT" xml:space="preserve">
-    <value>TREATMENT</value>
+    <value>ЛЕЧЕНИЕ</value>
   </data>
   <data name="IDS_LBL_MRI" xml:space="preserve">
-    <value>MRI</value>
+    <value>МРT</value>
   </data>
   <data name="IDS_LBL_NO" xml:space="preserve">
-    <value>NO</value>
+    <value>НЕТ</value>
   </data>
   <data name="IDS_LBL_OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="IDS_LBL_PATIENT_ID" xml:space="preserve">
-    <value>Patient ID:</value>
+    <value>Паспорт:</value>
   </data>
   <data name="IDS_LBL_PATIENT_NAME" xml:space="preserve">
-    <value>Patient Name:</value>
+    <value>Имя пациента:</value>
   </data>
   <data name="IDS_LBL_PLANNING" xml:space="preserve">
-    <value>PLAN</value>
+    <value>ПЛАН</value>
   </data>
   <data name="IDS_LBL_QUIT" xml:space="preserve">
-    <value>QUIT</value>
+    <value>ВЫХОД</value>
   </data>
   <data name="IDS_LBL_QUIT_DQA" xml:space="preserve">
-    <value>QUIT DQA</value>
+    <value>ЗАКОНЧИТЬ 
+ТЕСТИРОВАНИЕ</value>
   </data>
   <data name="IDS_LBL_QUIT_TREATMENT" xml:space="preserve">
-    <value>END
-TREATMENT</value>
+    <value>ЗАКОНЧИТЬ 
+ЛЕЧЕНИЕ</value>
   </data>
   <data name="IDS_LBL_RIGHT" xml:space="preserve">
-    <value>Right</value>
+    <value>Справа</value>
   </data>
   <data name="IDS_LBL_TRTM_PHYSICIAN" xml:space="preserve">
-    <value>Treating Physician</value>
+    <value>Лечащий врач</value>
   </data>
   <data name="IDS_LBL_TRTM_PROTOCOL" xml:space="preserve">
-    <value>Preference Profile</value>
+    <value>Профиль предпочтений</value>
   </data>
   <data name="IDS_LBL_TRTM_START_DQA" xml:space="preserve">
-    <value>Start DQA</value>
+    <value>Начать тестирование</value>
   </data>
   <data name="IDS_LBL_TRTM_START_SESSION" xml:space="preserve">
-    <value>Start Pre-Planning</value>
+    <value>Начать пред-план</value>
   </data>
   <data name="IDS_LBL_TRTM_START_TREATMENT" xml:space="preserve">
-    <value>Start Treatment</value>
+    <value>Начать лечение</value>
   </data>
   <data name="IDS_LBL_USER_NAME" xml:space="preserve">
-    <value>User name</value>
+    <value>Имя пользователя</value>
   </data>
   <data name="IDS_LBL_WATER_SYSTEM" xml:space="preserve">
-    <value>Water System</value>
+    <value>Система воды</value>
   </data>
   <data name="IDS_LBL_YES" xml:space="preserve">
-    <value>YES</value>
+    <value>ДА</value>
   </data>
   <data name="IDS_TT_STATE_AVAILABLE" xml:space="preserve">
-    <value>Screen is available</value>
+    <value>Экран доступен</value>
   </data>
   <data name="IDS_TT_STATE_CALL_TO_ACTION" xml:space="preserve">
-    <value>Screen is available and waiting for activity</value>
+    <value>Экран доступен и ждет действий</value>
   </data>
   <data name="IDS_TT_STATE_COMPLETED" xml:space="preserve">
-    <value>Screen is completed</value>
+    <value>Экран завершен</value>
   </data>
   <data name="IDS_TT_STATE_UNAVAILABLE" xml:space="preserve">
-    <value>Screen is unavailable</value>
+    <value>Экран не доступен</value>
   </data>
   <data name="INFO_CLOSE_BRACKET" xml:space="preserve">
-    <value> )</value>
+    <value>)</value>
   </data>
   <data name="INFO_DURATION" xml:space="preserve">
-    <value>Duration</value>
+    <value>Продолжительность</value>
   </data>
   <data name="INFO_LIMIT" xml:space="preserve">
-    <value>Limit</value>
+    <value>Ограничение</value>
   </data>
   <data name="INFO_OFF" xml:space="preserve">
-    <value>OFF</value>
+    <value>ВЫКЛЮЧЕННЫЙ</value>
   </data>
   <data name="INFO_ON" xml:space="preserve">
-    <value>ON</value>
+    <value>НА</value>
   </data>
   <data name="INFO_OPEN_BRACKET" xml:space="preserve">
     <value>(</value>
   </data>
   <data name="INFO_PATIENT_ID" xml:space="preserve">
-    <value>Patient ID</value>
+    <value>Идентификатор пациента</value>
   </data>
   <data name="INFO_PATIENT_NAME" xml:space="preserve">
-    <value>Patient Name</value>
+    <value>Имя пациента</value>
   </data>
   <data name="INFO_POWER" xml:space="preserve">
-    <value>Power</value>
+    <value>Сила</value>
   </data>
   <data name="INFO_TARGET" xml:space="preserve">
-    <value>Target</value>
+    <value>Цель</value>
   </data>
   <data name="INFO_WARNING" xml:space="preserve">
-    <value>Warning</value>
+    <value>включить</value>
   </data>
   <data name="LBL_APPLY_CHANGES" xml:space="preserve">
-    <value>Apply Changes</value>
+    <value>Применять изменения</value>
   </data>
   <data name="LBL_CANCEL" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Отмена</value>
   </data>
   <data name="LBL_DEFAULT" xml:space="preserve">
-    <value>Default</value>
+    <value />
   </data>
   <data name="LBL_DISCARD_CHANGES" xml:space="preserve">
-    <value>Discard Changes</value>
+    <value>Отменить изменения</value>
   </data>
   <data name="LBL_LOAD" xml:space="preserve">
-    <value>Load</value>
+    <value>Нагрузка</value>
   </data>
   <data name="LBL_LOAD_PREPLAN" xml:space="preserve">
-    <value>Load Pre-Treatment Plan</value>
+    <value>Загрузить пред-план</value>
   </data>
   <data name="LBL_PROFILE" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="LBL_SHUTDOWN" xml:space="preserve">
-    <value>SHUTDOWN</value>
+    <value>Профиль</value>
   </data>
   <data name="LBL_SYSTEM" xml:space="preserve">
-    <value>System</value>
+    <value>Система</value>
   </data>
   <data name="TT_CLOSE" xml:space="preserve">
-    <value>Close</value>
+    <value>Закрывать</value>
   </data>
   <data name="TT_ENABLE" xml:space="preserve">
-    <value>Enable</value>
+    <value>включить</value>
+  </data>
+  <data name="LBL_SHUTDOWN" xml:space="preserve">
+    <value>ВЫКЛЮЧИТЬ</value>
   </data>
 </root>

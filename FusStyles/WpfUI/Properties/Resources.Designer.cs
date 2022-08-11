@@ -22,7 +22,7 @@ namespace WpfUI.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace WpfUI.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WpfUI.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace WpfUI.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace WpfUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream CautionMsg {
+        public static System.IO.UnmanagedMemoryStream CautionMsg {
             get {
                 return ResourceManager.GetStream("CautionMsg", resourceCulture);
             }
@@ -72,25 +72,475 @@ namespace WpfUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ErrorMsg {
+        public static System.IO.UnmanagedMemoryStream ErrorMsg {
             get {
                 return ResourceManager.GetStream("ErrorMsg", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized string similar to DQA Plan Follow-up.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Infomsg {
+        public static string INFO_DQA_PLAN_FOLLOW_UP {
             get {
-                return ResourceManager.GetStream("Infomsg", resourceCulture);
+                return ResourceManager.GetString("INFO_DQA_PLAN_FOLLOW_UP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Calibration Scans.
+        /// </summary>
+        public static string INFO_MANUAL_CLIBRATION_SCANS {
+            get {
+                return ResourceManager.GetString("INFO_MANUAL_CLIBRATION_SCANS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual transducer calibration. Scan around:.
+        /// </summary>
+        public static string INFO_TRANDUCER_CALIBRATION_SCAN_AROUND {
+            get {
+                return ResourceManager.GetString("INFO_TRANDUCER_CALIBRATION_SCAN_AROUND", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream WarningMsg {
+        public static System.IO.UnmanagedMemoryStream Infomsg {
+            get {
+                return ResourceManager.GetStream("Infomsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acquire Localizer.
+        /// </summary>
+        public static string LBL_ACQUIRE_LOCALIZER {
+            get {
+                return ResourceManager.GetString("LBL_ACQUIRE_LOCALIZER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acquire Movement Reference.
+        /// </summary>
+        public static string LBL_ACQUIRE_MOVMENT_REFRENCE {
+            get {
+                return ResourceManager.GetString("LBL_ACQUIRE_MOVMENT_REFRENCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto B1 adjustment.
+        /// </summary>
+        public static string LBL_AUTO_B1_ADJUSTMENT {
+            get {
+                return ResourceManager.GetString("LBL_AUTO_B1_ADJUSTMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto B1 calculation.
+        /// </summary>
+        public static string LBL_AUTO_B1_CALCULATION {
+            get {
+                return ResourceManager.GetString("LBL_AUTO_B1_CALCULATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B1 adjustment value override.
+        /// </summary>
+        public static string LBL_B1_ADJUSTMENT_VALUE_OVERRIDE {
+            get {
+                return ResourceManager.GetString("LBL_B1_ADJUSTMENT_VALUE_OVERRIDE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic NPR calculation is not expected to detect all abnormalities, please review carefully and augment as needed.
+        /// </summary>
+        public static string LBL_CALCULATION_NOT_EXPECTED_DETECT_ABNORMALITIES {
+            get {
+                return ResourceManager.GetString("LBL_CALCULATION_NOT_EXPECTED_DETECT_ABNORMALITIES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calibration (Advanced).
+        /// </summary>
+        public static string LBL_CALIBRATION_ADVANCED {
+            get {
+                return ResourceManager.GetString("LBL_CALIBRATION_ADVANCED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CF shift limit.
+        /// </summary>
+        public static string LBL_CF_SHIFT_LIMIT {
+            get {
+                return ResourceManager.GetString("LBL_CF_SHIFT_LIMIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CF shift limit [Hz].
+        /// </summary>
+        public static string LBL_CF_SHIFT_LIMIT_HZ {
+            get {
+                return ResourceManager.GetString("LBL_CF_SHIFT_LIMIT_HZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CF value override.
+        /// </summary>
+        public static string LBL_CF_VALUE_OVERRIDE {
+            get {
+                return ResourceManager.GetString("LBL_CF_VALUE_OVERRIDE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CT NPRs Approved.
+        /// </summary>
+        public static string LBL_CT_NPRS_APPROVED {
+            get {
+                return ResourceManager.GetString("LBL_CT_NPRS_APPROVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detect Calcifications.
+        /// </summary>
+        public static string LBL_DETECT_CALCIFICATIONS {
+            get {
+                return ResourceManager.GetString("LBL_DETECT_CALCIFICATIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detect Folds.
+        /// </summary>
+        public static string LBL_DETECT_FOLDS {
+            get {
+                return ResourceManager.GetString("LBL_DETECT_FOLDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detect Sinuses.
+        /// </summary>
+        public static string LBL_DETECT_SINUSES {
+            get {
+                return ResourceManager.GetString("LBL_DETECT_SINUSES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Polygon NPR.
+        /// </summary>
+        public static string LBL_DRAW_POLYGON_NPR {
+            get {
+                return ResourceManager.GetString("LBL_DRAW_POLYGON_NPR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Parallel Imaging (PI).
+        /// </summary>
+        public static string LBL_ENABLE_PAEALLEL_IMAGING {
+            get {
+                return ResourceManager.GetString("LBL_ENABLE_PAEALLEL_IMAGING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Central Frequency.
+        /// </summary>
+        public static string LBL_FIND_CENTRAL_FREQUENCY {
+            get {
+                return ResourceManager.GetString("LBL_FIND_CENTRAL_FREQUENCY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locate Transducer.
+        /// </summary>
+        public static string LBL_LOCATE_TRANSDUCER {
+            get {
+                return ResourceManager.GetString("LBL_LOCATE_TRANSDUCER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Calibration Scan.
+        /// </summary>
+        public static string LBL_MANUAL_CALIBRATION_SCAN {
+            get {
+                return ResourceManager.GetString("LBL_MANUAL_CALIBRATION_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Membrane Folds Scan.
+        /// </summary>
+        public static string LBL_MEMBARNE_FOLDS_SCAN {
+            get {
+                return ResourceManager.GetString("LBL_MEMBARNE_FOLDS_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-Calibrate.
+        /// </summary>
+        public static string LBL_MENU_AUTOCALIBRATE {
+            get {
+                return ResourceManager.GetString("LBL_MENU_AUTOCALIBRATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place Transducer Manually.
+        /// </summary>
+        public static string LBL_MENU_PLACE_XD_MANUAL {
+            get {
+                return ResourceManager.GetString("LBL_MENU_PLACE_XD_MANUAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movement Evaluation.
+        /// </summary>
+        public static string LBL_MOVMENT_EVALUATION {
+            get {
+                return ResourceManager.GetString("LBL_MOVMENT_EVALUATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MRI NPRs Approved.
+        /// </summary>
+        public static string LBL_MRI_NPRS_APPROVED {
+            get {
+                return ResourceManager.GetString("LBL_MRI_NPRS_APPROVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NPRs Approved.
+        /// </summary>
+        public static string LBL_NPRS_APPEOVED {
+            get {
+                return ResourceManager.GetString("LBL_NPRS_APPEOVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perform PI calibration scan.
+        /// </summary>
+        public static string LBL_PERFORM_PI_CALIBRATION_SCAN {
+            get {
+                return ResourceManager.GetString("LBL_PERFORM_PI_CALIBRATION_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Planning Scan.
+        /// </summary>
+        public static string LBL_PLANNING_SCAN {
+            get {
+                return ResourceManager.GetString("LBL_PLANNING_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PURE\PI Calibration scans.
+        /// </summary>
+        public static string LBL_PURE_CALIBRATION_SCANS {
+            get {
+                return ResourceManager.GetString("LBL_PURE_CALIBRATION_SCANS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Re-acquire Fold Scan.
+        /// </summary>
+        public static string LBL_REACQUIRE_FOLD_SCAN {
+            get {
+                return ResourceManager.GetString("LBL_REACQUIRE_FOLD_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Calcifications.
+        /// </summary>
+        public static string LBL_REMOVE_CALCIFICATIONS {
+            get {
+                return ResourceManager.GetString("LBL_REMOVE_CALCIFICATIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove CT Markings.
+        /// </summary>
+        public static string LBL_REMOVE_CT_MARKING {
+            get {
+                return ResourceManager.GetString("LBL_REMOVE_CT_MARKING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Folds.
+        /// </summary>
+        public static string LBL_REMOVE_FOLDS {
+            get {
+                return ResourceManager.GetString("LBL_REMOVE_FOLDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove MR Markings.
+        /// </summary>
+        public static string LBL_REMOVE_MR_MARKING {
+            get {
+                return ResourceManager.GetString("LBL_REMOVE_MR_MARKING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Sinuses.
+        /// </summary>
+        public static string LBL_REMOVE_SINUSES {
+            get {
+                return ResourceManager.GetString("LBL_REMOVE_SINUSES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan Series from MR.
+        /// </summary>
+        public static string LBL_SCAN_SERIES_FROM_MR {
+            get {
+                return ResourceManager.GetString("LBL_SCAN_SERIES_FROM_MR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set CT Threshold.
+        /// </summary>
+        public static string LBL_SET_CT_THRESHOLD {
+            get {
+                return ResourceManager.GetString("LBL_SET_CT_THRESHOLD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NPR Substage unavailable.
+        /// </summary>
+        public static string MSG_NPR_SUBSTAGE_UNVAILABLE {
+            get {
+                return ResourceManager.GetString("MSG_NPR_SUBSTAGE_UNVAILABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve CT NPRs.
+        /// </summary>
+        public static string TT_APPROVE_CT_NPRS {
+            get {
+                return ResourceManager.GetString("TT_APPROVE_CT_NPRS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve MRI NPRs.
+        /// </summary>
+        public static string TT_APPROVE_MRI_NPRS {
+            get {
+                return ResourceManager.GetString("TT_APPROVE_MRI_NPRS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve NPRs.
+        /// </summary>
+        public static string TT_APPROVE_NPRS {
+            get {
+                return ResourceManager.GetString("TT_APPROVE_NPRS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3D Localizer.
+        /// </summary>
+        public static string TTL_3D_LOCALIZER {
+            get {
+                return ResourceManager.GetString("TTL_3D_LOCALIZER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Central Frequency.
+        /// </summary>
+        public static string TTL_CENTRAL_FREQUENCY {
+            get {
+                return ResourceManager.GetString("TTL_CENTRAL_FREQUENCY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Membrane Fold scan.
+        /// </summary>
+        public static string TTL_MEMBRANE_FOLD_SCAN {
+            get {
+                return ResourceManager.GetString("TTL_MEMBRANE_FOLD_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movement Reference Scan.
+        /// </summary>
+        public static string TTL_MOVEMENT_REFERENCE_SCAN {
+            get {
+                return ResourceManager.GetString("TTL_MOVEMENT_REFERENCE_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Planning Scan.
+        /// </summary>
+        public static string TTL_PLANNING_SCAN {
+            get {
+                return ResourceManager.GetString("TTL_PLANNING_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop Sonication Button:.
+        /// </summary>
+        public static string TTL_STOP_SONICATION_BUTTON {
+            get {
+                return ResourceManager.GetString("TTL_STOP_SONICATION_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transducer Focal Location.
+        /// </summary>
+        public static string TTL_TRANSDUCER_FOCAL_LOCATION {
+            get {
+                return ResourceManager.GetString("TTL_TRANSDUCER_FOCAL_LOCATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream WarningMsg {
             get {
                 return ResourceManager.GetStream("WarningMsg", resourceCulture);
             }

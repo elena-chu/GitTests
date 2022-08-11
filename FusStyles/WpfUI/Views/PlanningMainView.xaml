@@ -6,7 +6,8 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              xmlns:extensions="http://schemas.insightec.com/wpf/"
-             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:xresx="clr-namespace:Ws.Fus.UI.Assets.Wpf.Properties;assembly=Ws.Fus.UI.Assets.Wpf"
+             xmlns:lresx="clr-namespace:WpfUI.Properties"
              xmlns:local="clr-namespace:WpfUI.Views"
              x:Name="Control"
              xmlns:locControls="clr-namespace:WpfUI.Controls"
@@ -218,22 +219,22 @@
           <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <locControls:ProgressNavigationButton x:Name="CalibBtn" Grid.Row="0" Content="{lex:LocTextUpper IDS_LBL_MENU_CALIBRATION}" CommandParameter="Calibration" />
+        <locControls:ProgressNavigationButton x:Name="CalibBtn" Grid.Row="0" Content="{x:Static xresx:Resources.IDS_LBL_MENU_CALIBRATION}" CommandParameter="Calibration" />
         <!--<Rectangle Grid.Row="0" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
-        <locControls:ProgressNavigationButton x:Name="PlanBtn" Grid.Row="1" Content="{lex:LocTextUpper IDS_LBL_MENU_PLANNING_SCAN}" CommandParameter="PlanningScan" />
+        <locControls:ProgressNavigationButton x:Name="PlanBtn" Grid.Row="1" Content="{x:Static xresx:Resources.IDS_LBL_MENU_PLANNING_SCAN}" CommandParameter="PlanningScan" />
         <!--<Rectangle Grid.Row="1" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
-        <locControls:ProgressNavigationButton x:Name="RegBtn" Grid.Row="2"  Content="{lex:LocTextUpper IDS_LBL_MENU_REGISTRATION}" CommandParameter="Registration" />
+        <locControls:ProgressNavigationButton x:Name="RegBtn" Grid.Row="2"  Content="{x:Static xresx:Resources.IDS_LBL_MENU_REGISTRATION}" CommandParameter="Registration" />
         <!--<Rectangle Grid.Row="2" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
-        <locControls:ProgressNavigationButton x:Name="AcPcBtn" Grid.Row="3"  Content="{lex:LocTextUpper IDS_LBL_MENU_AC_PC}" CommandParameter="AcPc" />
+        <locControls:ProgressNavigationButton x:Name="AcPcBtn" Grid.Row="3"  Content="{x:Static xresx:Resources.IDS_LBL_MENU_AC_PC}" CommandParameter="AcPc" />
         <!--<Rectangle Grid.Row="3" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
-        <locControls:ProgressNavigationButton x:Name="NprBtn" Grid.Row="4"  Content="{lex:LocTextUpper IDS_LBL_MENU_NPR}" CommandParameter="Npr" />
+        <locControls:ProgressNavigationButton x:Name="NprBtn" Grid.Row="4"  Content="{x:Static xresx:Resources.IDS_LBL_MENU_NPR}" CommandParameter="Npr" />
         <!--<Rectangle Grid.Row="4" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
-        <locControls:ProgressNavigationButton x:Name="TargBtn" Grid.Row="5"  Content="{lex:LocTextUpper IDS_LBL_MENU_TARGETING}" CommandParameter="Targeting" />
+        <locControls:ProgressNavigationButton x:Name="TargBtn" Grid.Row="5"  Content="{x:Static xresx:Resources.IDS_LBL_MENU_TARGETING}" CommandParameter="Targeting" />
         <!--<Rectangle Grid.Row="5" Style="{StaticResource HorizontalMenuSeparator}"  />-->
 
       </Grid>

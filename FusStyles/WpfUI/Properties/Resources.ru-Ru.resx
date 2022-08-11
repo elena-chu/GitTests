@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+<!-- From Calibration -->
+  <data name="INFO_DQA_PLAN_FOLLOW_UP" xml:space="preserve">
+    <value>Последующие действия по плану DQA</value>
+  </data>
+  <data name="INFO_MANUAL_CLIBRATION_SCANS" xml:space="preserve">
+    <value>Калибровка вручную</value>
+  </data>
+  <data name="INFO_TRANDUCER_CALIBRATION_SCAN_AROUND" xml:space="preserve">
+    <value>Калибровка датчика вручную. Просканируйте вокруг:</value>
+  </data>
+  <data name="LBL_ACQUIRE_LOCALIZER" xml:space="preserve">
+    <value>Получить локализатор</value>
+  </data>
+  <data name="LBL_ACQUIRE_MOVMENT_REFRENCE" xml:space="preserve">
+    <value>Получить ссылку на движение</value>
+  </data>
+  <data name="LBL_AUTO_B1_ADJUSTMENT" xml:space="preserve">
+    <value>Автоматическая настройка B1</value>
+  </data>
+  <data name="LBL_AUTO_B1_CALCULATION" xml:space="preserve">
+    <value>Автоматический расчет B1</value>
+  </data>
+  <data name="LBL_B1_ADJUSTMENT_VALUE_OVERRIDE" xml:space="preserve">
+    <value>Переопределение значения регулировки B1</value>
+  </data>
+  <data name="LBL_CALIBRATION_ADVANCED" xml:space="preserve">
+    <value>Калибровка (дополнительно)</value>
+  </data>
+  <data name="LBL_CF_SHIFT_LIMIT" xml:space="preserve">
+    <value>Лимит сдвига CF</value>
+  </data>
+  <data name="LBL_CF_SHIFT_LIMIT_HZ" xml:space="preserve">
+    <value>Предел смещения CF [Hz]</value>
+  </data>
+  <data name="LBL_CF_VALUE_OVERRIDE" xml:space="preserve">
+    <value>Переопределение значения CF</value>
+  </data>
+  <data name="LBL_ENABLE_PAEALLEL_IMAGING" xml:space="preserve">
+    <value>Включить параллельную визуализацию (PI)</value>
+  </data>
+  <data name="LBL_FIND_CENTRAL_FREQUENCY" xml:space="preserve">
+    <value>Найдите центральную частоту</value>
+  </data>
+  <data name="LBL_LOCATE_TRANSDUCER" xml:space="preserve">
+    <value>Найдите преобразователь</value>
+  </data>
+  <data name="LBL_MANUAL_CALIBRATION_SCAN" xml:space="preserve">
+    <value>Ручное калибровочное сканирование</value>
+  </data>
+  <data name="LBL_MEMBARNE_FOLDS_SCAN" xml:space="preserve">
+    <value>Сканирование складок мембраны</value>
+  </data>
+  <data name="LBL_MENU_AUTOCALIBRATE" xml:space="preserve">
+    <value>Авто калибрация</value>
+  </data>
+  <data name="LBL_MENU_PLACE_XD_MANUAL" xml:space="preserve">
+    <value>Установить трансдьюсер вручную</value>
+  </data>
+  <data name="LBL_MOVMENT_EVALUATION" xml:space="preserve">
+    <value>Оценка движения</value>
+  </data>
+  <data name="LBL_PERFORM_PI_CALIBRATION_SCAN" xml:space="preserve">
+    <value>Выполнение калибровочного сканирования PI</value>
+  </data>
+  <data name="LBL_PLANNING_SCAN" xml:space="preserve">
+    <value>Планирование сканирования</value>
+  </data>
+  <data name="LBL_PURE_CALIBRATION_SCANS" xml:space="preserve">
+    <value>Калибровочные сканы PURE\PI</value>
+  </data>
+  <data name="LBL_SCAN_SERIES_FROM_MR" xml:space="preserve">
+    <value>Серия сканов от MR</value>
+  </data>
+  <data name="TTL_3D_LOCALIZER" xml:space="preserve">
+    <value>3D-локализатор</value>
+  </data>
+  <data name="TTL_CENTRAL_FREQUENCY" xml:space="preserve">
+    <value>Центральная частота</value>
+  </data>
+  <data name="TTL_MEMBRANE_FOLD_SCAN" xml:space="preserve">
+    <value>Сканирование складок мембраны</value>
+  </data>
+  <data name="TTL_MOVEMENT_REFERENCE_SCAN" xml:space="preserve">
+    <value>Контрольное сканирование движения</value>
+  </data>
+  <data name="TTL_PLANNING_SCAN" xml:space="preserve">
+    <value>Планирование сканирования</value>
+  </data>
+  <data name="TTL_STOP_SONICATION_BUTTON" xml:space="preserve">
+    <value>Кнопка остановки ультразвука:</value>
+  </data>
+  <data name="TTL_TRANSDUCER_FOCAL_LOCATION" xml:space="preserve">
+    <value>Фокусное расположение преобразователя</value>
+  </data>
+  
+<!-- From NPR -->
+  <data name="LBL_CALCULATION_NOT_EXPECTED_DETECT_ABNORMALITIES" xml:space="preserve">
+    <value>Не ожидается, что автоматический расчет NPR обнаружит все аномалии, пожалуйста, внимательно изучите и дополните по мере необходимости.</value>
+  </data>
+  <data name="LBL_CT_NPRS_APPROVED" xml:space="preserve">
+    <value>Утвержденные NPR CT</value>
+  </data>
+  <data name="LBL_DETECT_CALCIFICATIONS" xml:space="preserve">
+    <value>Обнаружение кальцификации</value>
+  </data>
+  <data name="LBL_DETECT_FOLDS" xml:space="preserve">
+    <value>Обнаружение складок</value>
+  </data>
+  <data name="LBL_DETECT_SINUSES" xml:space="preserve">
+    <value>Обнаружение синусов</value>
+  </data>
+  <data name="LBL_DRAW_POLYGON_NPR" xml:space="preserve">
+    <value>Нарисовать многоугольник NPR</value>
+  </data>
+  <data name="LBL_MRI_NPRS_APPROVED" xml:space="preserve">
+    <value>Одобрено NPR MRI</value>
+  </data>
+  <data name="LBL_NPRS_APPEOVED" xml:space="preserve">
+    <value>Одобрено NPR</value>
+  </data>
+  <data name="LBL_REACQUIRE_FOLD_SCAN" xml:space="preserve">
+    <value>Повторное сканирование фолда</value>
+  </data>
+  <data name="LBL_REMOVE_CALCIFICATIONS" xml:space="preserve">
+    <value>Удалить кальцинаты</value>
+  </data>
+  <data name="LBL_REMOVE_CT_MARKING" xml:space="preserve">
+    <value>Удалить маркировку CT</value>
+  </data>
+  <data name="LBL_REMOVE_FOLDS" xml:space="preserve">
+    <value>Удалить складки</value>
+  </data>
+  <data name="LBL_REMOVE_MR_MARKING" xml:space="preserve">
+    <value>Удалить маркировку MR</value>
+  </data>
+  <data name="LBL_REMOVE_SINUSES" xml:space="preserve">
+    <value>Удалить пазухи</value>
+  </data>
+  <data name="LBL_SET_CT_THRESHOLD" xml:space="preserve">
+    <value>Установить пороговое значение CT</value>
+  </data>
+  <data name="MSG_NPR_SUBSTAGE_UNVAILABLE" xml:space="preserve">
+    <value>Подэтап NPR недоступен</value>
+  </data>
+  <data name="TT_APPROVE_CT_NPRS" xml:space="preserve">
+    <value>Утвердить NPR CT</value>
+  </data>
+  <data name="TT_APPROVE_MRI_NPRS" xml:space="preserve">
+    <value>Утвердить MRI NPRs</value>
+  </data>
+  <data name="TT_APPROVE_NPRS" xml:space="preserve">
+    <value>Утвердить NPR</value>
+  </data>
+
+</root>

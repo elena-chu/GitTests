@@ -7,7 +7,8 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:lex="http://wpflocalizeextension.codeplex.com"
+  xmlns:xresx="clr-namespace:Ws.Fus.UI.Assets.Wpf.Properties;assembly=Ws.Fus.UI.Assets.Wpf"
+  xmlns:lresx="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Properties"
   xmlns:mainScr="clr-namespace:Ws.Fus.Treatment.UI.Wpf"
   prism:ViewModelLocator.AutoWireViewModel="True"
   mc:Ignorable="d">
@@ -38,7 +39,7 @@
 
         <RadioButton
           Grid.Row="0"
-          Content="{lex:LocTextUpper IDS_LBL_MENU_TREATMENT}"
+          Content="{x:Static xresx:Resources.IDS_LBL_MENU_TREATMENT}"
           CommandParameter="{x:Static mainScr:MainScreenAction.Treatment}"
           extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Treatment.Alpha}"
           extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Treatment.Beta}"
@@ -47,7 +48,7 @@
 
         <RadioButton
           Grid.Row="1"
-          Content="{lex:LocTextUpper IDS_LBL_MENU_DQA}"
+          Content="{x:Static xresx:Resources.IDS_LBL_MENU_DQA}"
           CommandParameter="{x:Static mainScr:MainScreenAction.DQA}"
           extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Dqa.Alpha}"
           extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Dqa.Beta}"
@@ -56,7 +57,7 @@
 
         <RadioButton
           Grid.Row="2"
-          Content="{lex:LocTextUpper IDS_LBL_MENU_SCREENING}"
+          Content="{x:Static xresx:Resources.IDS_LBL_MENU_SCREENING}"
           CommandParameter="{x:Static mainScr:MainScreenAction.Screening}" 
           extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Screening.Alpha}"
           extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Screening.Beta}"
@@ -65,7 +66,7 @@
 
         <RadioButton
           Grid.Row="3"
-          Content="{lex:LocTextUpper IDS_LBL_MENU_PREPLANNING}"
+          Content="{x:Static xresx:Resources.IDS_LBL_MENU_PREPLANNING}"
           CommandParameter="{x:Static mainScr:MainScreenAction.PrePlanning}" 
           extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Preparation.Alpha}"
           extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Preparation.Beta}"
@@ -74,7 +75,7 @@
         
         <RadioButton
           Grid.Row="4"
-          Content="{lex:LocTextUpper IDS_LBL_MENU_DATABASE}"
+          Content="{x:Static xresx:Resources.IDS_LBL_MENU_DATABASE}"
           CommandParameter="{x:Static mainScr:MainScreenAction.DataBase}"  
           extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Database.Alpha}"
           extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Database.Beta}"
@@ -83,14 +84,14 @@
 
         <RadioButton
           Grid.Row="5"
-          Content="{lex:LocTextUpper IDS_LBL_MENU_SETTINGS}"
+          Content="{x:Static xresx:Resources.IDS_LBL_MENU_SETTINGS}"
           CommandParameter="{x:Static mainScr:MainScreenAction.Settings}"
           extensions:IconedButton.AlphaGeometry="{StaticResource XGeometry.Settings.Alpha}"
           extensions:IconedButton.BetaGeometry="{StaticResource XGeometry.Settings.Beta}"
           IsChecked="{Binding CurrentScreen, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static mainScr:MainScreenAction.Settings}, Mode=OneWay}"/>
         <Rectangle Grid.Row="5" Style="{StaticResource HorizontalMenuSeparator}"/>
 
-        <Button Grid.Row="7" Style="{StaticResource XStyle.Button.TransparentToSafety}" Content="END TREATMENT"/>
+        <Button Grid.Row="7" Style="{StaticResource XStyle.Button.TransparentToSafety}" Content="{x:Static xresx:Resources.IDS_LBL_QUIT_TREATMENT}"/>
       </Grid>
     </Grid>
 

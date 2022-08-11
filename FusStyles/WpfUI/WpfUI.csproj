@@ -133,6 +133,11 @@
       <DependentUpon>GenericMessageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Module\WpfUiModule.cs" />
+    <Compile Include="Properties\Resources.ru-Ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ru-Ru.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\PlanningMainViewModel.cs" />
     <Compile Include="Views\ApplicationView.xaml.cs">
@@ -225,8 +230,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru-Ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ru-Ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
