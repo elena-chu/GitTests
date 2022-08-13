@@ -59,7 +59,8 @@
         extensions:IconedButton.Icon="{StaticResource XCanvas.Volume}"
         extensions:IconedButton.ActiveIcon="{StaticResource XCanvas.Mute}"
         Command="{Binding ToggleVolumeCommand}"
-        IsChecked="{Binding MuteAllSoundsExceptEmergency, Mode=OneWay}"/>
+        IsChecked="{Binding MuteAllSoundsExceptEmergency, Mode=OneWay}"
+        extensions:ControlExtensions.IsSelectable="False"/>
       <Button
         extensions:IconedButton.Icon="{StaticResource XCanvas.Quit.Circular}" Command="{Binding QuitCommand}"
         Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>

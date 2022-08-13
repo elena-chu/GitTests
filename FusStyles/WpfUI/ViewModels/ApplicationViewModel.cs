@@ -73,11 +73,11 @@ namespace WpfUI.ViewModels
         public DelegateCommand ToggleVolumeCommand { get; private set; }
         public void ToggleVolume()
         {
-            SoundsHelper.MuteAllSoundsExceptEmergency = !SoundsHelper.MuteAllSoundsExceptEmergency;
+            SoundsHelper.ToggleMuteAllSoundsExceptEmergency();
             RaisePropertyChanged(nameof(MuteAllSoundsExceptEmergency));
         }
 
-        public bool MuteAllSoundsExceptEmergency => SoundsHelper.MuteAllSoundsExceptEmergency;
+        public bool MuteAllSoundsExceptEmergency => SoundsHelper.MuteSounds;
 
         #endregion
 
