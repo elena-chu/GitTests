@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using Ws.Fus.Mr.UI.Wpf.Views;
 using Ws.Fus.UI.Assets.Wpf;
 using Prism.Regions;
-using Ws.Fus.ImageViewer.UI.Wpf;
 using Ws.Fus.UI.Navigation.Wpf;
 
 namespace Ws.Fus.Mr.UI.Wpf

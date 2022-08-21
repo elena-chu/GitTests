@@ -5,7 +5,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
   xmlns:local="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Views"
   xmlns:ctrl="clr-namespace:Ws.Fus.Treatment.UI.Wpf.Controls"
-  xmlns:ent="clr-namespace:Ws.Fus.Sys.Interfaces.Entities;assembly=Ws.Fus.Sys.Interfaces"             
   xmlns:prism="http://prismlibrary.com/"
   prism:ViewModelLocator.AutoWireViewModel="True"                          
   mc:Ignorable="d" 

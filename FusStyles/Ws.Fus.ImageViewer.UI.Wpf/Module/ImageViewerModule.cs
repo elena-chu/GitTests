@@ -10,7 +10,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Module
         [MethodImpl(MethodImplOptions.NoInlining)]
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            SkinManager.LoadResources();
+            //SkinManager.LoadResources();
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

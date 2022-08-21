@@ -161,9 +161,9 @@
           Margin="0,0,1,0" />
         <sm:StripsMenu
           Grid.Row="1"
-          Style="{StaticResource PlannindStripsMenuStyle}" 
           Strips="{Binding DataContext.Strips, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"
         />
+        <!--Style="{StaticResource PlannindStripsMenuStyle}"-->
       </Grid>
 
       <Grid Grid.Column="1">

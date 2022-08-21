@@ -106,7 +106,7 @@ namespace WpfUI.ViewModels
 
         private void InitStrips(bool registration, bool compareMode)
         {
-            var imageFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\ImageLoad\ImageLoad\Images\");
+            var imageFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\..\ImageLoad\ImageLoad\Images\");
             var fullPath = Path.GetFullPath(new Uri(imageFolder).LocalPath);
             var imageFiles = Directory.GetFiles(fullPath, "*.*").Where(file => file.ToLower().EndsWith("png") || file.ToLower().EndsWith("bmp")).ToList();
             var random = new Random();

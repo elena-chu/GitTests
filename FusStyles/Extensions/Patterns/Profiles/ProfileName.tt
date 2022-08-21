@@ -9,6 +9,6 @@ using System;
 namespace Ws.Extensions.Patterns.Profiles
 {
 <#
-GenerateStringWrapper("ProfileName", true);
+GenerateStringWrapper("ProfileName", true, true);
 #>
 }

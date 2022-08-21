@@ -70,7 +70,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.Controls
 
             var prefUid = PrefUid;
             var prefMode = PrefMode;
-            Task.Run(() => vm.CreateSectionAsync(prefUid, prefMode));
+            //Task.Run(() => vm.CreateSectionAsync(prefUid, prefMode));
         }
 
         private void OnVmPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -80,13 +80,13 @@ namespace Ws.Fus.Treatment.UI.Wpf.Controls
                 if (e.PropertyName != PrefUid)
                     return;
 
-                var content = (sender as PreferencesViewModel).GetSectionViewModel(PrefUid);
+                //var content = (sender as PreferencesViewModel).GetSectionViewModel(PrefUid);
 
-                if (content != Content)
-                {
-                    Content = content;
-                    IsEnabled = true;
-                };
+                //if (content != Content)
+                //{
+                //    Content = content;
+                //    IsEnabled = true;
+                //};
             });
         }
     }

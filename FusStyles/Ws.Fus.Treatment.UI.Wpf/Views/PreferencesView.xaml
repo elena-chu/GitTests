@@ -13,7 +13,7 @@
   d:DesignHeight="300" d:DesignWidth="700">
   <UserControl.Resources>
     <Style TargetType="Label" BasedOn="{StaticResource styleLabelBright_Base}" />
-    <extensions:ProfileNameConverter x:Key="profileNameConverter" />
+    <!--<extensions:ProfileNameConverter x:Key="profileNameConverter" />-->
   </UserControl.Resources>
   <Grid>
     <Grid.RowDefinitions>
@@ -28,14 +28,14 @@
       <ComboBox  Margin="2,2,2,2" MinWidth="170" ItemsSource="{Binding Path=TreatmentProfiles}" SelectedItem="{Binding SelectedTreatmentProfile}" />
       <Button Margin="2,2,2,2" Content="Save" Command="{Binding SaveCommand}" CommandParameter="{x:Static ent:SavePreferencesMode.Save}" />
       <Button Margin="2,2,2,2" Content="SaveAs" Command="{Binding SaveCommand}" CommandParameter="{x:Static ent:SavePreferencesMode.SaveAs}" />
-      <TextBox  Margin="2,2,2,2" MinWidth="150" Text="{Binding SaveAsTreatmentProfile, Converter={StaticResource profileNameConverter}}" />
+      <TextBox  Margin="2,2,2,2" MinWidth="150" Text="Save as" />
       <TextBlock Margin="5,5,10,5" HorizontalAlignment="Right">
         <Hyperlink Command="{Binding GoBackCommand}" Foreground="Red">
           BACK
         </Hyperlink>
       </TextBlock>
     </StackPanel>
-    <ctrl:PrefSection Grid.Row="1" Grid.Column="0" PrefUid="http://insightec.com/fus/planning-scans/PlanningScanPreferences" />
-    <ctrl:PrefSection Grid.Row="1" Grid.Column="1" PrefUid="http://insightec.com/fus/targeting/TargettingPrefernces" />
+    <!--<ctrl:PrefSection Grid.Row="1" Grid.Column="0" PrefUid="http://insightec.com/fus/planning-scans/PlanningScanPreferences" />
+    <ctrl:PrefSection Grid.Row="1" Grid.Column="1" PrefUid="http://insightec.com/fus/targeting/TargettingPrefernces" />-->
   </Grid>
 </UserControl>

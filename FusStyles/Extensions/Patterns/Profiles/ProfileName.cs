@@ -12,7 +12,7 @@ namespace Ws.Extensions.Patterns.Profiles
     {
         public static readonly ProfileName Empty = new ProfileName(string.Empty);
 		
-        public string Name { get; }
+        public string Name { get; set; }
 
         public ProfileName(string name)
         {

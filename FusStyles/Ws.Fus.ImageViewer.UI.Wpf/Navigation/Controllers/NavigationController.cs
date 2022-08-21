@@ -7,6 +7,7 @@ using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using Ws.Fus.ImageViewer.UI.Wpf.Navigation;
+using Ws.Fus.UI.Navigation.Wpf;
 
 namespace Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers
 {
@@ -16,7 +17,7 @@ namespace Ws.Fus.ImageViewer.UI.Wpf.Navigation.Controllers
         {
             {ApplicationModule.MainScreen, RegionNames.MainScreenRegion },
             {ApplicationModule.Planning, RegionNames.PlanningScreensRegion },
-            {ApplicationModule.Surgery, RegionNames.SurgeryScreensRegion },
+            {ApplicationModule.Surgical, RegionNames.SurgicalScreensRegion },
         };
 
         private readonly IRegionManager _regionManager;

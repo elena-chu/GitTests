@@ -11,6 +11,7 @@ namespace Ws.Fus.UI.Navigation.Wpf
         MainScreen,
         Planning,
         Surgical,
-        Reports
+        Reports,
+        Replay
     }
 }

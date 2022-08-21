@@ -77,7 +77,9 @@
 
         <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Resources.xaml"/>
         <ResourceDictionary Source="/Ws.Extensions.UI.Wpf;component/Themes/Generic.xaml"/>
-        
+
+        <ResourceDictionary Source="/Ws.Fus.ImageViewer.UI.Wpf;component/Assets/Skins/300_UserControls/100_StripsViewer/100-StripsViewer.xaml"/>
+
         <!--<ResourceDictionary Source="/Ws.Fus.UI.Assets.Wpf;component/Skins/Current.xaml"/>
        
         

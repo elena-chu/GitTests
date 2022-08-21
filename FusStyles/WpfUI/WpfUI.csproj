@@ -1,315 +1,102 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!--<Import Project="..\Source\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\Source\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />-->
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7DCC5F46-0DF8-4A97-860D-249B7675CEA0}</ProjectGuid>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfUI</RootNamespace>
-    <AssemblyName>WpfUI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <!--<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>-->
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <ApplicationIcon>WS9.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Prism.Unity.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Unity.7.1.0.431\lib\net45\Prism.Unity.Wpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Prism.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\Prism.Wpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.Abstractions.3.3.1\lib\net46\Unity.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Unity.Container, Version=5.8.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.Container.5.8.11\lib\net46\Unity.Container.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="WPFLocalizeExtension, Version=3.8.0.0, Culture=neutral, PublicKeyToken=c726e0262981a1eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPFLocalizeExtension.3.8.0\lib\net452\WPFLocalizeExtension.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="XAMLMarkupExtensions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c726e0262981a1eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\XAMLMarkupExtensions.2.0.0\lib\net452\XAMLMarkupExtensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Controllers\PlanningModuleController.cs" />
-    <Compile Include="Controls\ScanBox\BaseActionPanel.cs" />
-    <Compile Include="Controls\ScanBox\DragEdge.xaml.cs">
-      <DependentUpon>DragEdge.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ScanBox\DraggerPositionMultiConverter.cs" />
-    <Compile Include="Controls\ScanBox\IScanBoxAware.cs" />
-    <Compile Include="Controls\ScanBox\MainOrientationPanel.cs" />
-    <Compile Include="Controls\ScanBox\ScanBox.xaml.cs">
-      <DependentUpon>ScanBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ScanBox\ScanBoxParams.cs" />
-    <Compile Include="Controls\ScanBox\SecondaryOrientationPanel.cs" />
-    <Compile Include="Menus\AcPcMenuView.xaml.cs">
-      <DependentUpon>AcPcMenuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Menus\CalibrationScanMenuView.xaml.cs">
-      <DependentUpon>CalibrationScanMenuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Menus\NprMenusContainerView.xaml.cs">
-      <DependentUpon>NprMenusContainerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Menus\PlanningScanMenuView.xaml.cs">
-      <DependentUpon>PlanningScanMenuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Menus\RegistrationMenuView.xaml.cs">
-      <DependentUpon>RegistrationMenuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Menus\TargetingMenuView.xaml.cs">
-      <DependentUpon>TargetingMenuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Messages\MessageRequestedEventHandler.cs" />
-    <Compile Include="Messages\MessageService.cs" />
-    <Compile Include="Messages\ViewModels\GenericMessageButton.cs" />
-    <Compile Include="Messages\GenericMessageType.cs" />
-    <Compile Include="Messages\ViewModels\GenericMessageViewModel.cs" />
-    <Compile Include="Messages\Views\GenericMessageView.xaml.cs">
-      <DependentUpon>GenericMessageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Module\WpfUiModule.cs" />
-    <Compile Include="Properties\Resources.ru-Ru.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ru-Ru.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\ApplicationViewModel.cs" />
-    <Compile Include="ViewModels\PlanningMainViewModel.cs" />
-    <Compile Include="Views\ApplicationView.xaml.cs">
-      <DependentUpon>ApplicationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PlanningMainView.xaml.cs">
-      <DependentUpon>PlanningMainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TitleBarToolsView.xaml.cs">
-      <DependentUpon>TitleBarToolsView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Controls\ScanBox\DragEdge.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ScanBox\ScanBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ScanBox\ScanBoxResources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controls\ProgressNavigationButton\ProgressNavigationButton.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Menus\AcPcMenuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Menus\CalibrationScanMenuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Menus\NprMenusContainerView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Menus\PlanningScanMenuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Menus\RegistrationMenuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Menus\TargetingMenuView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Messages\Views\GenericMessageView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ApplicationView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PlanningMainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TitleBarToolsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ru-Ru.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ru-Ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\Extensions.Mvvm\Ws.Extensions.Mvvm.csproj" />
+    <ProjectReference Include="..\Extensions.Wpf\Ws.Extensions.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Extensions\Ws.Extensions.csproj" />
+    <ProjectReference Include="..\Fus.Wpf\Ws.Fus.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj" />
+    <ProjectReference Include="..\Ws.Fus.ImageViewer.UI.Wpf\Ws.Fus.ImageViewer.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.Mr.UI.Wpf\Ws.Fus.Mr.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.Reports.UI.Wpf\Ws.Fus.Reports.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.Surgical.UI.Wpf\Ws.Fus.Surgical.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.Treatment.UI.Wpf\Ws.Fus.Treatment.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.UI.Assets.Wpf\Ws.Fus.UI.Assets.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.UI.Navigation.Wpf\Ws.Fus.UI.Navigation.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Extensions.Mvvm\Ws.Extensions.Mvvm.csproj">
-      <Project>{037089e8-5112-4347-b5b4-fa84693dda9d}</Project>
-      <Name>Ws.Extensions.Mvvm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Extensions.Wpf\Ws.Extensions.UI.Wpf.csproj">
-      <Project>{31b8a50f-7c39-4903-8d27-4f07ed22726a}</Project>
-      <Name>Ws.Extensions.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Extensions\Ws.Extensions.csproj">
-      <Project>{79b49f0d-df9c-4c4f-8169-0686352589e1}</Project>
-      <Name>Ws.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fus.Wpf\Ws.Fus.UI.Wpf.csproj">
-      <Project>{8e4a847e-2e40-4f5f-ad62-77220f10fb6f}</Project>
-      <Name>Ws.Fus.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj">
-      <Project>{490ab4aa-3706-4137-afc6-0877b435d6b1}</Project>
-      <Name>Ws.Fus.ImageViewer.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.ImageViewer.UI.Wpf\Ws.Fus.ImageViewer.UI.Wpf.csproj">
-      <Project>{ba3a5528-aa5a-49ec-b5f5-3af32f79eedf}</Project>
-      <Name>Ws.Fus.ImageViewer.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.Mr.UI.Wpf\Ws.Fus.Mr.UI.Wpf.csproj">
-      <Project>{217eb230-d3a1-4f95-a2e5-f427a3257092}</Project>
-      <Name>Ws.Fus.Mr.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.Reports.UI.Wpf\Ws.Fus.Reports.UI.Wpf.csproj">
-      <Project>{17C709FA-80A2-420E-822E-D00916DF23F8}</Project>
-      <Name>Ws.Fus.Reports.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.Surgical.UI.Wpf\Ws.Fus.Surgical.UI.Wpf.csproj">
-      <Project>{45EEB77B-1BCF-439A-8DCB-6570010281AF}</Project>
-      <Name>Ws.Fus.Surgical.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.Treatment.UI.Wpf\Ws.Fus.Treatment.UI.Wpf.csproj">
-      <Project>{b6464e2d-4e9f-438b-8bda-f747091de660}</Project>
-      <Name>Ws.Fus.Treatment.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.UI.Assets.Wpf\Ws.Fus.UI.Assets.Wpf.csproj">
-      <Project>{5f4a6c6f-9c99-4588-bafe-f26b9fa43a6c}</Project>
-      <Name>Ws.Fus.UI.Assets.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.UI.Navigation.Wpf\Ws.Fus.UI.Navigation.Wpf.csproj">
-      <Project>{e0022a5e-b480-4fb9-81a6-0b3317dbdff0}</Project>
-      <Name>Ws.Fus.UI.Navigation.Wpf</Name>
-    </ProjectReference>
+    <Resource Include="WS9.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+	<PackageReference Include="Serilog" Version="2.10.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModels\MainViewModelObsolete.cs" />
+    <Compile Remove="ViewModels\ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="UIServices\**" />
+    <EmbeddedResource Remove="UIServices\**" />
+    <None Remove="**\*.ccexclude" />
+    <None Remove="**\*.contrib*" />
+    <None Remove="**\*.keep" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    <None Remove="LayoutsObsolete.json" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Messages\Assets\Sounds\CautionMsg.wav" />
     <Content Include="Messages\Assets\Sounds\ErrorMsg.wav" />
     <Content Include="Messages\Assets\Sounds\Infomsg.wav" />
     <Content Include="Messages\Assets\Sounds\WarningMsg.wav" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+  <!--<ItemGroup>
+    <SplashScreen Include="Insightec-logo.png" />
+  </ItemGroup>-->
+  <PropertyGroup>
+    <Major>1</Major>
+    <Minor>0</Minor>
+    <Build>$([System.DateTime]::Now.ToString("yy"))$([System.DateTime]::Now.DayOfYear)</Build>
+    <Intermedia>$([MSBuild]::Multiply($([System.DateTime]::Now.Second), 9))</Intermedia>
+    <RevisionFloat>$([System.DateTime]::Now.ToString("HHmm"))$([MSBuild]::Divide($(Intermedia), 59))</RevisionFloat>
+    <Revision>$([System.Convert]::ToInt32($([System.Double]::Parse($(RevisionFloat)))))</Revision>
+    <Revision3>$([System.Convert]::ToByte(1.1)</Revision3>
+    <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
+    <Month>$([System.DateTime]::Now.ToString("MM"))</Month>
+    <Date>$([System.DateTime]::Now.ToString("dd"))</Date>
+    <Time>$([System.DateTime]::Now.ToString("HHmm"))</Time>
+    <AssemblyFileVersionAttribute>[assembly:System.Reflection.AssemblyFileVersion("$(Major).$(Minor).$(Build).$(Revision)")]</AssemblyFileVersionAttribute>
+  </PropertyGroup>
   <Target Name="BeforeBuild">
+    <WriteLinesToFile File="Properties\VersionInfo.cs" Lines="$(AssemblyFileVersionAttribute)" Overwrite="true" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

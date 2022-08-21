@@ -1,317 +1,91 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA3A5528-AA5A-49EC-B5F5-3AF32F79EEDF}</ProjectGuid>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ws.Fus.ImageViewer.UI.Wpf</RootNamespace>
-    <AssemblyName>Ws.Fus.ImageViewer.UI.Wpf</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Prism.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\Prism.Wpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="WPFLocalizeExtension, Version=3.8.0.0, Culture=neutral, PublicKeyToken=c726e0262981a1eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPFLocalizeExtension.3.8.0\lib\net452\WPFLocalizeExtension.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="XAMLMarkupExtensions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c726e0262981a1eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\XAMLMarkupExtensions.2.0.0\lib\net452\XAMLMarkupExtensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Behaviors\UiMode.cs" />
-    <Compile Include="Behaviors\UiModeEnter.cs" />
-    <Compile Include="Behaviors\UiModeShow.cs" />
-    <Compile Include="Controls\StepProgress\StepProgress.xaml.cs">
-      <DependentUpon>StepProgress.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\StripsMenu\IStripActionsHolder.cs" />
-    <Compile Include="Controls\StripsMenu\StripOrientationToTextConverter.cs" />
-    <Compile Include="Controls\StripsMenu\StripsMenu.xaml.cs">
-      <DependentUpon>StripsMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\StripsMenu\StripsMenuConstants.cs" />
-    <Compile Include="Controls\StripsMenu\StripToCategoryConverter.cs" />
-    <Compile Include="Controls\StripsMenu\StripToImageConverter.cs" />
-    <Compile Include="Controls\StripsMenu\StripToStudyNumberConverter.cs" />
-    <Compile Include="Controls\ToolbarMenu\ToolbarMenuCommon.cs" />
-    <Compile Include="Controls\ToolbarMenu\ToolbarMenuHeaderCompare.cs" />
-    <Compile Include="Controls\ToolbarMenu\ToolbarMenuItem.cs" />
-    <Compile Include="Controls\ToolbarMenu\ToolbarMenuHeader.cs" />
-    <Compile Include="Controls\ToolbarMenu\ToolbarMenu.xaml.cs">
-      <DependentUpon>ToolbarMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Converters\CompositeOverlayVmConverter.cs" />
-    <Compile Include="Converters\FgeBufferConverter.cs" />
-    <Compile Include="Converters\MultiMeasureVmConverter.cs" />
-    <Compile Include="Converters\SliderValueToWidthConverter.cs" />
-    <Compile Include="Converters\ToGraphicEngineWindowSizeConverter.cs" />
-    <Compile Include="Entities\ProgressNavigationStateEnum.cs" />
-    <Compile Include="ImageModes\Flicker\Views\FlickerModeControlView.xaml.cs">
-      <DependentUpon>FlickerModeControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Flicker\Views\FlickerModeInViewerControlView.xaml.cs">
-      <DependentUpon>FlickerModeInViewerControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Flicker\Views\FlickerModeViewer.xaml.cs">
-      <DependentUpon>FlickerModeViewer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Fusion\Views\FusionModeControlView.xaml.cs">
-      <DependentUpon>FusionModeControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Fusion\Views\FusionModeInViewerControlView.xaml.cs">
-      <DependentUpon>FusionModeInViewerControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Fusion\Views\FusionModeViewer.xaml.cs">
-      <DependentUpon>FusionModeViewer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Slider\Views\SliderModeControlView.xaml.cs">
-      <DependentUpon>SliderModeControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Slider\Views\SliderModeInViewerControlView.xaml.cs">
-      <DependentUpon>SliderModeInViewerControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ImageModes\Slider\Views\SliderModeViewer.xaml.cs">
-      <DependentUpon>SliderModeViewer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Module\ImageViewerModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Entities\Autogenerated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>Autogenerated.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="ViewModels\Strips\ImageGeometry.cs" />
-    <Compile Include="ViewModels\Strips\StripServices.cs" />
-    <Compile Include="ViewModels\Strips\IStrip.cs" />
-    <Compile Include="ViewModels\Strips\RegistrationStripVm.cs" />
-    <Compile Include="ViewModels\Strips\Series.cs" />
-    <Compile Include="ViewModels\Strips\Striplet.cs" />
-    <Compile Include="ViewModels\Strips\StripVM.cs" />
-    <Compile Include="ViewModels\Switch\CompositeSwitch.cs" />
-    <Compile Include="ViewModels\Switch\IMultiSwitch{T}.cs" />
-    <Compile Include="ViewModels\Switch\ISwitch.cs" />
-    <Compile Include="ViewModels\Switch\MultiSwitch.cs" />
-    <Compile Include="ViewModels\Switch\SubSwitchInfo.cs" />
-    <Compile Include="ViewModels\Switch\Switch.cs" />
-    <Compile Include="ViewModels\Switch\SwitchBase.cs" />
-    <Compile Include="Views\StripsViewer.xaml.cs">
-      <DependentUpon>StripsViewer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\StripViewer.xaml.cs">
-      <DependentUpon>StripViewer.xaml</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <Content Include="Entities\Autogenerated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Autogenerated.cs</LastGenOutput>
+    </Content>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Extensions.Wpf\Ws.Extensions.UI.Wpf.csproj">
-      <Project>{31b8a50f-7c39-4903-8d27-4f07ed22726a}</Project>
-      <Name>Ws.Extensions.UI.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Extensions\Ws.Extensions.csproj">
-      <Project>{79B49F0D-DF9C-4C4F-8169-0686352589E1}</Project>
-      <Name>Ws.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj">
-      <Project>{490ab4aa-3706-4137-afc6-0877b435d6b1}</Project>
-      <Name>Ws.Fus.ImageViewer.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.UI.Assets.Wpf\Ws.Fus.UI.Assets.Wpf.csproj">
-      <Project>{5f4a6c6f-9c99-4588-bafe-f26b9fa43a6c}</Project>
-      <Name>Ws.Fus.UI.Assets.Wpf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ws.Fus.UI.Navigation.Wpf\Ws.Fus.UI.Navigation.Wpf.csproj">
-      <Project>{e0022a5e-b480-4fb9-81a6-0b3317dbdff0}</Project>
-      <Name>Ws.Fus.UI.Navigation.Wpf</Name>
-    </ProjectReference>
+    <Compile Remove="Configuration\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <None Remove="**\*.ccexclude" />
+    <None Remove="**\*.contrib*" />
+    <None Remove="**\*.keep*" />
+    <None Remove="**\*.merge*" />
+    <None Remove="Configuration\**" />
+    <Page Remove="Configuration\**" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\Skins\300_UserControls\100_StripsViewer\100-StripsViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\Skins\300_UserControls\150_StripsMenu\100-StripsMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\Skins\300_UserControls\200_OperativeScreen\100-OperativeScreenMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\Skins\500_DataTemplates\050-StripsMenuItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\Skins\Current.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <DependentUpon>Skin.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\Skins\Standard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <DependentUpon>Skin.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\StepProgress\StepProgress.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\StripsMenu\StripsMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ToolbarMenu\ToolbarMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Flicker\Views\FlickerModeControlView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Flicker\Views\FlickerModeInViewerControlView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Flicker\Views\FlickerModeViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Fusion\Views\FusionModeControlView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Fusion\Views\FusionModeInViewerControlView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Fusion\Views\FusionModeViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Slider\Views\SliderModeControlView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Slider\Views\SliderModeInViewerControlView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ImageModes\Slider\Views\SliderModeViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\StripsViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\StripViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <ProjectReference Include="..\Extensions.Mvvm\Ws.Extensions.Mvvm.csproj" />
+    <ProjectReference Include="..\Extensions.Wpf\Ws.Extensions.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Extensions\Ws.Extensions.csproj" />
+    <ProjectReference Include="..\Fus.Wpf\Ws.Fus.UI.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.ImageViewer.Interfaces\Ws.Fus.ImageViewer.Interfaces.csproj" />
+    <ProjectReference Include="..\Ws.Fus.UI.Assets.Wpf\Ws.Fus.UI.Assets.Wpf.csproj" />
+    <ProjectReference Include="..\Ws.Fus.UI.Navigation.Wpf\Ws.Fus.UI.Navigation.Wpf.csproj" />
+    <!--<ProjectReference Include="..\Ws.Fus.UI.SkinsManager.Wpf\Ws.Fus.UI.SkinsManager.Wpf.csproj" />-->
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Skins\Skin.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Skin1.txt</LastGenOutput>
-    </Content>
-    <Content Include="Assets\Skins\Skin1.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Skin.tt</DependentUpon>
-    </Content>
-    <Resource Include="Assets\Skins\Skin.txt" />
+  <ItemGroup><!--<Folder Include="Assets\Skins\100_Controls\" />-->
+  
+    <Folder Include="Navigation\Entities\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Skins\100_Controls\" />
+    <Compile Remove="Modes\ViewModels\StripViewerModeViewModelObsolete.cs" />
+    <Compile Remove="Navigation\Consts.cs" />
+    <Compile Remove="Navigation\Entities\ApplicationModuleEnum.cs" />
+    <Compile Remove="Navigation\Entities\ModuleChangedEvent.cs" />
+    <Compile Remove="Navigation\Entities\ProgressNavigationStateEnum.cs" />
+    <!--<Compile Remove="Settings\LayoutGroupSettingsObsolete.cs" />
+    <Compile Remove="Settings\StripsViewerModeSettingsObsolete.cs" />
+    <Compile Remove="Settings\StripsViewerSettingsObsolete.cs" />-->
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="WPFLocalizeExtension" Version="3.9.1" />
+	<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+	  <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+	  <Compile Update="Properties\Resources.Designer.cs">
+		  <DependentUpon>Resources.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+	  </Compile>
+  </ItemGroup>
+  <!--<ItemGroup>
+    <None Update="Properties\Resources.ru-RU.resx">
+      <Generator></Generator>
+    </None>
+  </ItemGroup>-->
+  <!--<ItemGroup>
+    <None Update="Assets\Skins\Skin.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Skin.tt</DependentUpon>
+    </None>
+  </ItemGroup>-->
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <!--<Import Project="$(ProjectDir)..\UI.Wpf.targets" />-->
 </Project>

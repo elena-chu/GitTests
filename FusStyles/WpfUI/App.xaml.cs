@@ -17,6 +17,7 @@ using Ws.Fus.Mr.UI.Wpf;
 using Ws.Fus.Reports.UI.Wpf;
 using Ws.Fus.Surgical.UI.Wpf;
 using Ws.Fus.Treatment.UI.Wpf.Module;
+using Ws.Fus.UI.Navigation.Wpf;
 
 namespace WpfUI
 {
@@ -60,6 +61,7 @@ namespace WpfUI
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
+            moduleCatalog.AddModule<FusNavigationModule>();
             moduleCatalog.AddModule<ImageViewerModule>();
             moduleCatalog.AddModule<FusTreatmentUiModule>();
             moduleCatalog.AddModule<FusMrUiModule>();

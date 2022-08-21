@@ -12,6 +12,29 @@ using Ws.Fus.Fge.Interfaces;
 using Ws.Fus.Fge.Interfaces.Entities;
 using System.Diagnostics;
 
+namespace Ws.Fus.Fge.Interfaces.Entities
+{
+    public enum GraphicEngineMouseEvent
+    {
+        MouseMove,
+        MouseDown,
+        MouseUp,
+        MouseEnter,
+        MouseLeave,
+        MouseDoubleClick,
+        MouseWheel,
+
+    }
+    public enum GraphicEngineMouseButton
+    {
+        None,
+        LeftButton,
+        RightButton,
+        MiddleButton
+
+    }
+}
+
 namespace Ws.Fus.ImageViewer.UI.Wpf.Controls
 {
     public class GraphicEngineInteraction : Decorator
