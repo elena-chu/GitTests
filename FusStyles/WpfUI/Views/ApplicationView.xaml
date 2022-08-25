@@ -42,9 +42,30 @@
 
     <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource XBrush.Line}" VerticalAlignment="Bottom"/>
 
-    <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Stretch="Fill" HorizontalAlignment="Stretch">
+    <Rectangle Grid.Row="1" Grid.ColumnSpan="2">
       <Rectangle.Fill>
-        <ImageBrush ImageSource="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Main_Background.png" AlignmentX="Right"/>
+        <VisualBrush>
+          <VisualBrush.Visual>
+            <MediaElement x:Name="NeuronVideo" Stretch="UniformToFill">
+              <MediaElement.Triggers>
+                <EventTrigger RoutedEvent="MediaElement.Loaded">
+                  <EventTrigger.Actions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                          <!--Source="..\..\Ws.Fus.UI.Assets.Wpf\Images\Common\Neuron.mp4"-->
+                          <!--Source="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Neuron.mp4"-->
+                        <MediaTimeline
+                          Source="pack://application:,,,/Ws.Fus.UI.Assets.Wpf;component/Images/Common/Neuron.mp4"
+                          Storyboard.TargetName="NeuronVideo"
+                          RepeatBehavior="Forever"/>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </EventTrigger.Actions>
+                </EventTrigger>
+              </MediaElement.Triggers>
+            </MediaElement>
+          </VisualBrush.Visual>
+        </VisualBrush>
       </Rectangle.Fill>
     </Rectangle>
 

@@ -7,7 +7,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   prism:ViewModelLocator.AutoWireViewModel="True"
-  Background="{StaticResource XBrush.Application.Background}"
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -26,7 +25,7 @@
     </Style>
   </UserControl.Resources>
 
-  <UniformGrid Columns="5" Margin="0,20,0,0">
+  <UniformGrid Columns="5" Margin="60" Background="#66000000">
 
     <Button Style="{StaticResource XStyle.Button.Primary}" Content="Message" Command="{Binding SendMessageCommand}" Height="30" Width="130"/>
 
