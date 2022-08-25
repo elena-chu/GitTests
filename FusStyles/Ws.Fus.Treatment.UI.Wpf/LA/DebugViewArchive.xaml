@@ -711,6 +711,25 @@
       <ContentControl Style="{StaticResource XStyle.ContentControl.Logo.Swirl}"/>
     </StackPanel>-->
 
+
+    <!--<StackPanel VerticalAlignment="Center">
+      <TextBlock Text="Rotation Handle on partially transparent background"/>
+      <Border Height="50" Width="50" Padding="6" Background="#66FFFFFF">
+        <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center">
+          <ContentControl Content="{StaticResource XCanvas.RotationHandle}"/>
+        </Viewbox>
+      </Border>
+    </StackPanel>-->
+
+    <!--<StackPanel VerticalAlignment="Center">
+      <TextBlock Text="Large checkmark"/>
+      <Border Height="50" Width="50" Padding="6">
+        <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center">
+          <ContentControl Content="{StaticResource XCanvas.Checkmark}"/>
+        </Viewbox>
+      </Border>
+    </StackPanel>-->
+
   </UniformGrid>
 
 </UserControl>
