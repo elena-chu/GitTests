@@ -21,6 +21,8 @@
     <!--<Rectangle Stretch="Fill" Grid.Column="1" Fill="Yellow" />-->
 
     <Slider
+      x:Name="HorizontalSlider"
+      Grid.Row="0"
       Grid.Column="1"
       Style="{StaticResource XStyle.Slider.ViewerControl.Horizontal}"
       HorizontalAlignment="Stretch" 
@@ -28,8 +30,22 @@
       Value="{Binding SlidedValue, FallbackValue=0.5, Mode=TwoWay}" 
       extensions:ControlExtensions.CaptionMax="Secondary Images"
       extensions:ControlExtensions.CaptionMin="Main Images"/>
+    <ContentControl
+      x:Name="HorizontalSliderGhost"
+      Grid.Row="{Binding (Grid.Row), ElementName=HorizontalSlider}"
+      Grid.Column="{Binding (Grid.Column), ElementName=HorizontalSlider}"
+      Margin="{Binding Margin, ElementName=HorizontalSlider}"
+      HorizontalAlignment="{Binding HorizontalAlignment, ElementName=HorizontalSlider}"
+      VerticalAlignment="{Binding VerticalAlignment, ElementName=HorizontalSlider}"
+      Width="{Binding ActualWidth, ElementName=HorizontalSlider}"
+      Height="{Binding ActualHeight, ElementName=HorizontalSlider}"
+      Visibility="{Binding IsEnabled, ElementName=HorizontalSlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
+      extensions:ControlExtensions.CaptionMax="{Binding (extensions:ControlExtensions.CaptionMax), ElementName=HorizontalSlider}"
+      extensions:ControlExtensions.CaptionMin="{Binding (extensions:ControlExtensions.CaptionMin), ElementName=HorizontalSlider}"
+      Style="{StaticResource XStyle.ContentControl.ViewerControlHorizontalSliderGhost}"/>
 
-    <Slider 
+    <Slider
+      x:Name="VerticalSlider"
       Grid.Row="1"
       Grid.Column="0"
       Style="{StaticResource XStyle.Slider.ViewerControl.Vertical}"
@@ -41,6 +57,20 @@
       Value="{Binding OpacitySlidedValue, FallbackValue=0.5, Mode=TwoWay}"
       extensions:ControlExtensions.CaptionMax="100%"
       extensions:ControlExtensions.CaptionMin="0%"/>
+    <ContentControl
+      x:Name="VerticalSliderGhost"
+      Grid.Row="{Binding (Grid.Row), ElementName=VerticalSlider}"
+      Grid.Column="{Binding (Grid.Column), ElementName=VerticalSlider}"
+      Margin="{Binding Margin, ElementName=VerticalSlider}"
+      HorizontalAlignment="{Binding HorizontalAlignment, ElementName=VerticalSlider}"
+      VerticalAlignment="{Binding VerticalAlignment, ElementName=VerticalSlider}"
+      Width="{Binding ActualWidth, ElementName=VerticalSlider}"
+      Height="{Binding ActualHeight, ElementName=VerticalSlider}"
+      Visibility="{Binding IsEnabled, ElementName=VerticalSlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
+      extensions:ControlExtensions.CaptionMax="{Binding (extensions:ControlExtensions.CaptionMax), ElementName=VerticalSlider}"
+      extensions:ControlExtensions.CaptionMin="{Binding (extensions:ControlExtensions.CaptionMin), ElementName=VerticalSlider}"
+      Style="{StaticResource XStyle.ContentControl.ViewerControlVerticalSliderGhost}"/>
+
     <!--<Canvas
         Grid.Row="1"
         Grid.Column="0"

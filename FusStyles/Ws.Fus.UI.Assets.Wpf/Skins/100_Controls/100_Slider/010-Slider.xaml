@@ -160,6 +160,38 @@
     </Setter>
   </Style>
 
+  <Style x:Key="XStyle.ContentControl.ViewerControlHorizontalSliderGhost" TargetType="{x:Type ContentControl}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid MinHeight="{TemplateBinding MinHeight}">
+            <Rectangle x:Name="Rectangle" Fill="Transparent"/>
+            <Popup
+              x:Name="Popup"
+              Placement="Bottom"
+              extensions:IndependentSize.VerticalOffset="-4"
+              AllowsTransparency="True"
+              Focusable="False"
+              PopupAnimation="Fade">
+              <Grid Width="{Binding ActualWidth, ElementName=Rectangle}">
+                <TextBlock HorizontalAlignment="Left" Text="{TemplateBinding extensions:ControlExtensions.CaptionMax}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+                <TextBlock HorizontalAlignment="Right" Text="{TemplateBinding extensions:ControlExtensions.CaptionMin}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+              </Grid>
+            </Popup>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="IsOpen" TargetName="Popup" Value="True"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+              <Setter Property="IsOpen" TargetName="Popup" Value="False"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Style x:Key="XStyle.Slider.ViewerControl.Vertical" TargetType="{x:Type Slider}" BasedOn="{StaticResource XStyle.Slider.ViewerControl}">
     <Setter Property="Orientation" Value="Vertical"/>
     <Setter Property="extensions:IndependentSize.MinWidth" Value="18"/>
@@ -203,6 +235,38 @@
               Focusable="False"
               PopupAnimation="Fade">
               <Grid Height="{Binding ActualHeight, ElementName=PART_Track}">
+                <TextBlock VerticalAlignment="Top" Text="{TemplateBinding extensions:ControlExtensions.CaptionMax}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+                <TextBlock VerticalAlignment="Bottom" Text="{TemplateBinding extensions:ControlExtensions.CaptionMin}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
+              </Grid>
+            </Popup>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="IsOpen" TargetName="Popup" Value="True"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+              <Setter Property="IsOpen" TargetName="Popup" Value="False"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="XStyle.ContentControl.ViewerControlVerticalSliderGhost" TargetType="{x:Type ContentControl}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid MinHeight="{TemplateBinding MinHeight}">
+            <Rectangle x:Name="Rectangle" Fill="Transparent"/>
+            <Popup
+              x:Name="Popup"
+              Placement="Right"
+              extensions:IndependentSize.HorizontalOffset="3"
+              AllowsTransparency="True"
+              Focusable="False"
+              PopupAnimation="Fade">
+              <Grid Height="{Binding ActualHeight, ElementName=Rectangle}">
                 <TextBlock VerticalAlignment="Top" Text="{TemplateBinding extensions:ControlExtensions.CaptionMax}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
                 <TextBlock VerticalAlignment="Bottom" Text="{TemplateBinding extensions:ControlExtensions.CaptionMin}" Style="{StaticResource XStyle.TextBlock.Slider.ViewerControl}"/>
               </Grid>
