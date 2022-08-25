@@ -118,6 +118,8 @@
             />
       <!--DisplayStatus ="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedValCompariosionConverter}, ConverterParameter={x:Static sonDef:SonicationCalculatedParam.eDurationCalculated}}"-->
       <Slider
+        x:Name="DurationSlider"
+        Grid.Column="0"
         Grid.Row="2"
         LargeChange="1"
         Minimum="{Binding MinDuration}"
@@ -125,8 +127,21 @@
         Value="{Binding Duration}"
         Style="{StaticResource XStyle.Slider.Small}"/>
         <!--IsEnabled="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedParameterConverter}, ConverterParameter=duration}"-->
+      <ContentControl
+        x:Name="DurationSliderGhost"
+        Grid.Row="{Binding (Grid.Row), ElementName=DurationSlider}"
+        Grid.Column="{Binding (Grid.Column), ElementName=DurationSlider}"
+        Margin="{Binding Margin, ElementName=DurationSlider}"
+        HorizontalAlignment="{Binding HorizontalAlignment, ElementName=DurationSlider}"
+        VerticalAlignment="{Binding VerticalAlignment, ElementName=DurationSlider}"
+        Width="{Binding ActualWidth, ElementName=DurationSlider}"
+        Height="{Binding ActualHeight, ElementName=DurationSlider}"
+        Visibility="{Binding IsEnabled, ElementName=DurationSlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
+        extensions:ControlExtensions.CaptionMax="{Binding Maximum, ElementName=DurationSlider}"
+        extensions:ControlExtensions.CaptionMin="{Binding Minimum, ElementName=DurationSlider}"
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>
 
-        <TextBlock Grid.Column ="2" Text="Power" Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" />
+      <TextBlock Grid.Column ="2" Text="Power" Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" />
             <ToggleButton 
               Grid.Column ="2"
               Style="{StaticResource LStyle.Surgical.ToggleButton.CalculatedParam}"
@@ -147,6 +162,7 @@
              />
       <!--DisplayStatus ="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedValCompariosionConverter}, ConverterParameter={x:Static sonDef:SonicationCalculatedParam.ePowerCalculated}}"-->
       <Slider
+        x:Name="PowerSlider"
         Grid.Row="2"
         Grid.Column="2"
         Minimum="{Binding MinPower}"
@@ -154,6 +170,19 @@
         Value="{Binding Power}"
         Style="{StaticResource XStyle.Slider.Small}"/>
       <!--IsEnabled="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedParameterConverter}, ConverterParameter=power}"-->
+      <ContentControl
+        x:Name="PowerSliderGhost"
+        Grid.Row="{Binding (Grid.Row), ElementName=PowerSlider}"
+        Grid.Column="{Binding (Grid.Column), ElementName=PowerSlider}"
+        Margin="{Binding Margin, ElementName=PowerSlider}"
+        HorizontalAlignment="{Binding HorizontalAlignment, ElementName=PowerSlider}"
+        VerticalAlignment="{Binding VerticalAlignment, ElementName=PowerSlider}"
+        Width="{Binding ActualWidth, ElementName=PowerSlider}"
+        Height="{Binding ActualHeight, ElementName=PowerSlider}"
+        Visibility="{Binding IsEnabled, ElementName=PowerSlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
+        extensions:ControlExtensions.CaptionMax="{Binding Maximum, ElementName=PowerSlider}"
+        extensions:ControlExtensions.CaptionMin="{Binding Minimum, ElementName=PowerSlider}"
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>
 
       <TextBlock Grid.Column ="4" Text="Energy" Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" />
             <extensions:NumericUpDown 
@@ -168,6 +197,7 @@
             />
       
       <Slider
+        x:Name="EnergySlider"
         Grid.Row="2"
         Grid.Column="4"
         IsEnabled="False"
@@ -175,6 +205,19 @@
         Maximum="{Binding MaxEnergy}"
         Value="{Binding Energy, Mode=OneWay}"
         Style="{StaticResource XStyle.Slider.Small}"/>
+      <ContentControl
+        x:Name="EnergySliderGhost"
+        Grid.Row="{Binding (Grid.Row), ElementName=EnergySlider}"
+        Grid.Column="{Binding (Grid.Column), ElementName=EnergySlider}"
+        Margin="{Binding Margin, ElementName=EnergySlider}"
+        HorizontalAlignment="{Binding HorizontalAlignment, ElementName=EnergySlider}"
+        VerticalAlignment="{Binding VerticalAlignment, ElementName=EnergySlider}"
+        Width="{Binding ActualWidth, ElementName=EnergySlider}"
+        Height="{Binding ActualHeight, ElementName=EnergySlider}"
+        Visibility="{Binding IsEnabled, ElementName=EnergySlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
+        extensions:ControlExtensions.CaptionMax="{Binding Maximum, ElementName=EnergySlider}"
+        extensions:ControlExtensions.CaptionMin="{Binding Minimum, ElementName=EnergySlider}"
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>
 
     </Grid>
 
