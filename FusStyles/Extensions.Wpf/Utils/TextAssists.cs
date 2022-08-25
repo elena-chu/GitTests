@@ -1,61 +1,137 @@
-﻿using System.Windows;
+﻿using System;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace Ws.Extensions.UI.Wpf.Utils
 {
     public static class TextAssists
     {
-        public static bool IsFrameworkElementTrimmedOrWrapped<T>(T frameworkElement) where T : FrameworkElement
+        public static bool IsFrameworkElementTrimmed<T>(T frameworkElement) where T : FrameworkElement
         {
-            if (frameworkElement is TextBlock)
-                return IsTextBlockTrimmed(frameworkElement as TextBlock);
-            else
-                return IsChildTextBlockTrimmedOrWrapped(frameworkElement);
+            if (frameworkElement == null)
+                return false;
+
+            // Simple TextBlock
+            if (frameworkElement is TextBlock textBlock)
+                return IsTextBlockTrimmed(textBlock);
+
+            if (frameworkElement is TextBox textBox)
+                return IsTextBoxTrimmed(textBox);
+
+            if (frameworkElement is ComboBox comboBox)
+                return IsComboBoxTrimmed(comboBox);
+
+            textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
+            return textBlock == null ? false : IsTextBlockTrimmed(textBlock);
         }
 
         public static bool IsTextBlockTrimmed(TextBlock textBlock)
         {
-            if (string.IsNullOrEmpty(textBlock.Text))
+            if (textBlock == null || textBlock.Text == string.Empty)
                 return false;
 
-            textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-
-            // Measure against Border parent that might be narrower
-            var border = textBlock.ParentOfType<Border>();
-            if (border != null && textBlock.DesiredSize.Width > border.ActualWidth)
-                return true;
-
-            // Measure against ContentPresenter parent if exists
-            var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
-            if (contentPresenter != null && textBlock.DesiredSize.Width > contentPresenter.ActualWidth)
-                return true;
-
-            return textBlock.DesiredSize.Width > textBlock.ActualWidth;
+            FormattedText formattedText = GetFormattedText(textBlock.Text, textBlock);
+            formattedText.MaxTextWidth = Math.Ceiling(textBlock.ActualWidth);
+            if (textBlock.LineStackingStrategy == LineStackingStrategy.BlockLineHeight && textBlock.LineHeight != double.NaN)
+                formattedText.LineHeight = textBlock.LineHeight;
+            return Math.Floor(formattedText.Height) > textBlock.ActualHeight || Math.Floor(formattedText.MinWidth) > formattedText.MaxTextWidth;
         }
 
-        public static bool IsChildTextBlockTrimmedOrWrapped(FrameworkElement frameworkElement)
+        public static bool IsTextBoxTrimmed(TextBox textBox)
         {
-            // Get text and measure
-            TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
-            if (textBlock == null || string.IsNullOrEmpty(textBlock.Text))
+            if (textBox == null || textBox.Text == string.Empty || textBox.ActualWidth == 0)
                 return false;
 
-            textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            return Math.Floor(GetFormattedText(textBox).Width) > textBox.ViewportWidth;
+        }
 
-            if (frameworkElement is ContentPresenter || frameworkElement is Border)
-                return textBlock.DesiredSize.Width > frameworkElement.ActualWidth;
+        public static bool IsComboBoxTrimmed(ComboBox comboBox)
+        {
+            if (comboBox == null || comboBox.ActualWidth == 0)
+                return false;
 
-            // Measure against Border if exists between frameworkElement and text
-            var border = textBlock.ParentOfType<Border>();
-            if (border != null && border.IsDescendantOf(frameworkElement) && textBlock.DesiredSize.Width > border.ActualWidth)
+            bool noSelectedItem = comboBox.Items.Count == 0 ||
+                                  comboBox.SelectedIndex < 0 ||
+                                  comboBox.SelectedItem == null ||
+                                  comboBox.SelectedValue == null ||
+                                  (comboBox.SelectedValue is string selectedValueString && string.IsNullOrEmpty(selectedValueString));
+
+            if (noSelectedItem)
+                return false;
+
+            TextBlock selectedItemTextBlock = comboBox.GetFirstDescendantOfType<TextBlock>();
+            return IsTextBlockTrimmed(selectedItemTextBlock);
+        }
+
+        public static string GetFrameworkElementText<T>(T frameworkElement) where T : FrameworkElement
+        {
+            if (frameworkElement is TextBlock textBlock)
+                return textBlock.Text;
+
+            if (frameworkElement is ComboBox comboBox && comboBox.SelectedValue != null)
+            {
+                if (comboBox.SelectedValue is string)
+                    return comboBox.SelectedValue.ToString();
+                else
+                {
+                    if (comboBox.SelectedItem is FrameworkElement selectedItem)
+                    {
+                        var selectedItemChildTextBlock = selectedItem.GetFirstDescendantOfType<TextBlock>();
+                        return selectedItemChildTextBlock != null ? selectedItemChildTextBlock.Text : string.Empty;
+                    }
+                }
+            }
+
+            if (frameworkElement is TextBox textBox)
+                return textBox.Text;
+
+            var childTextBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
+            if (childTextBlock != null)
+                return childTextBlock.Text;
+
+            return string.Empty;
+        }
+
+        public static FormattedText GetFormattedText(string text, TextBlock textBlockContainingFormat)
+        {
+            var typeface = new Typeface(textBlockContainingFormat.FontFamily, textBlockContainingFormat.FontStyle, textBlockContainingFormat.FontWeight, textBlockContainingFormat.FontStretch);
+            DpiScale dpiScale = VisualTreeHelper.GetDpi(textBlockContainingFormat);
+            double pixelsPerDip = dpiScale.PixelsPerDip;
+            return new FormattedText(text, 
+                                     CultureInfo.CurrentCulture,
+                                     textBlockContainingFormat.FlowDirection,
+                                     typeface, textBlockContainingFormat.FontSize,
+                                     textBlockContainingFormat.Foreground, pixelsPerDip);
+        }
+
+        public static FormattedText GetFormattedText(TextBox textBox)
+        {
+            var typeface = new Typeface(textBox.FontFamily, textBox.FontStyle, textBox.FontWeight, textBox.FontStretch);
+            DpiScale dpiScale = VisualTreeHelper.GetDpi(textBox);
+            double pixelsPerDip = dpiScale.PixelsPerDip;
+            return new FormattedText(textBox.Text, CultureInfo.CurrentCulture, textBox.FlowDirection, typeface, textBox.FontSize, textBox.Foreground, pixelsPerDip);
+        }
+
+        public static bool ContainsText(this FrameworkElement frameworkElement)
+        {
+            if (frameworkElement == null)
+                return false;
+
+            if (frameworkElement is TextBlock ||
+                frameworkElement is Label ||
+                frameworkElement is AccessText ||
+                frameworkElement is TextBoxBase ||
+                frameworkElement is PasswordBox)
                 return true;
 
-            // Measure against ContentPresenter if exists between frameworkElement and text
-            var contentPresenter = textBlock.ParentOfType<ContentPresenter>();
-            if (contentPresenter != null && contentPresenter.IsDescendantOf(frameworkElement))
-                return textBlock.DesiredSize.Width > contentPresenter.ActualWidth;
+            TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
+            if (textBlock != null)
+                return true;
 
-            return textBlock.DesiredSize.Width > frameworkElement.ActualWidth;
+            return false;
         }
 
         public static bool IsTextOverflowingWidth(FrameworkElement frameworkElement, double availableWidth)
@@ -74,18 +150,6 @@ namespace Ws.Extensions.UI.Wpf.Utils
             }
 
             return false;
-        }
-
-        public static string GetFrameworkElementText<T>(T frameworkElement) where T : FrameworkElement
-        {
-            var textBlock = (frameworkElement as FrameworkElement).GetFirstDescendantOfType<TextBlock>();
-            if (textBlock != null)
-                return textBlock.Text;
-
-            if (frameworkElement is ComboBox && (frameworkElement as ComboBox).SelectedValue != null)
-                return (frameworkElement as ComboBox).SelectedValue.ToString();
-
-            return string.Empty;
         }
     }
 }

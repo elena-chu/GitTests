@@ -81,6 +81,7 @@
         Grid.Row="4"
         Margin="0,20,0,0"
         Content="{lex:Loc IDS_LBL_TRTM_START_TREATMENT}"
+        extensions:ToolTipExtension.AutoToolTipContent="{lex:Loc IDS_LBL_TRTM_START_TREATMENT}"
         Command="{Binding StartTreatmentCommand}"
         Style="{StaticResource XStyle.Button.Primary}"/>
     </Grid>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -84,6 +80,17 @@ namespace Ws.Extensions.UI.Wpf.Utils
             var devicePoint = matrix.Transform(e.GetPosition(el));
             posX = (int)(devicePoint.X);
             posY = (int)(devicePoint.Y);
+        }
+
+        public static float[] GetScreenDpi()
+        {
+            using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromHwnd(IntPtr.Zero))
+            {
+                float dpiX = graphics.DpiX;
+                float dpiY = graphics.DpiY;
+                float[] result = new float[] { dpiX, dpiY };
+                return result;
+            }
         }
     }
 }

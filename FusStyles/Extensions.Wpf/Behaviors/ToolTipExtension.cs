@@ -1,137 +1,207 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Ws.Extensions.UI.Wpf.Utils;
 
 namespace Ws.Extensions.UI.Wpf.Behaviors
 {
     public static class ToolTipExtension
     {
-        #region AutoToolTip attached property
+        #region ToolTip Content
 
-        public static bool GetAutoToolTip(DependencyObject obj)
+        /// <summary>
+        /// ToolTip content. If this is not set, content will be the text as it was before it was trimmed
+        /// </summary>
+        public static string GetAutoToolTipContent(DependencyObject obj) { return (string)obj.GetValue(AutoToolTipContentProperty); }
+        public static void SetAutoToolTipContent(DependencyObject obj, string value) { obj.SetValue(AutoToolTipContentProperty, value); }
+        public static readonly DependencyProperty AutoToolTipContentProperty = DependencyProperty.RegisterAttached("AutoToolTipContent", typeof(string), typeof(ToolTipExtension), new PropertyMetadata(null, OnAutoToolTipContentPropertyChanged));
+
+        private static void OnAutoToolTipContentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            return (bool)obj.GetValue(AutoToolTipProperty);
+            if (d is FrameworkElement frameworkElement)
+                UpdateAutoToolTip(GetAutoToolTip(d), frameworkElement);
         }
-
-        public static void SetAutoToolTip(DependencyObject obj, bool value)
-        {
-            obj.SetValue(AutoToolTipProperty, value);
-        }
-
-        public static readonly DependencyProperty AutoToolTipProperty =
-            DependencyProperty.RegisterAttached("AutoToolTip", typeof(bool), typeof(ToolTipExtension), new PropertyMetadata(false, OnAutoToolTipPropertyChanged));
-
 
         #endregion
 
 
-        #region Events
+        #region Auto ToolTip
+
+        /// <summary>
+        /// AutoToolTip On/Off
+        /// </summary>
+        public static bool GetAutoToolTip(DependencyObject obj) { return (bool)obj.GetValue(AutoToolTipProperty); }
+        public static void SetAutoToolTip(DependencyObject obj, bool value) { obj.SetValue(AutoToolTipProperty, value); }
+        public static readonly DependencyProperty AutoToolTipProperty = 
+            DependencyProperty.RegisterAttached("AutoToolTip", typeof(bool), typeof(ToolTipExtension),
+                                                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits, OnAutoToolTipPropertyChanged));
 
         private static void OnAutoToolTipPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            FrameworkElement frameworkElement = d as FrameworkElement;
-            if (frameworkElement == null)
-                return;
-
-            if (!frameworkElement.IsLoaded)
+            if (d is FrameworkElement frameworkElement)
             {
-                if (e.NewValue.Equals(true))
-                    frameworkElement.Loaded += OnLoadTurnAutoToolTipOn;
-                else
-                    frameworkElement.Loaded += OnLoadTurnAutoToolTipOff;
+                if (!frameworkElement.IsLoaded)
+                {
+                    if (e.NewValue.Equals(true))
+                        frameworkElement.Loaded += OnLoadTurnAutoToolTipOn;
+                    else
+                        frameworkElement.Loaded += OnLoadTurnAutoToolTipOff;
+                    return;
+                }
+
+                UpdateAutoToolTip((bool)e.NewValue, frameworkElement);
             }
-            else
-                OnAutoToolTipChanged((bool)e.NewValue, frameworkElement);
         }
 
-        private static void OnLoadTurnAutoToolTipOn(object sender, RoutedEventArgs e)
+        private static void UpdateAutoToolTip(bool turnOnAutoToolTip, FrameworkElement frameworkElement)
         {
-            FrameworkElement frameworkElement = sender as FrameworkElement;
-            OnAutoToolTipChanged(true, frameworkElement);
-            frameworkElement.Loaded -= OnLoadTurnAutoToolTipOn;
-        }
-
-        private static void OnLoadTurnAutoToolTipOff(object sender, RoutedEventArgs e)
-        {
-            FrameworkElement frameworkElement = sender as FrameworkElement;
-            OnAutoToolTipChanged(false, frameworkElement);
-            frameworkElement.Loaded -= OnLoadTurnAutoToolTipOff;
-        }
-
-        private static void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            FrameworkElement frameworkElement = sender as FrameworkElement;
-            if (frameworkElement != null)
-                SetToolTipIfTrimmed(frameworkElement);
-        }
-
-        private static void FrameworkElement_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            FrameworkElement frameworkElement = sender as FrameworkElement;
-            if (frameworkElement != null)
-                SetToolTipIfTrimmed(frameworkElement);
-        }
-
-        #endregion
-
-
-        #region Set ToolTip
-
-        private static void OnAutoToolTipChanged(bool turnOnAutoToolTip, FrameworkElement frameworkElement)
-        {
-            if (frameworkElement == null)
+            if (!frameworkElement.ContainsText())
                 return;
 
             if (turnOnAutoToolTip)
             {
-                TextBlock textBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
-                if (textBlock == null)
-                    return;
+                SetToolTipOnTrimmedTextAsync(frameworkElement, DispatcherPriority.DataBind);
+                SetTextTrimming(frameworkElement);
+                RegisterFrameworkElementEvents(frameworkElement);
+            }
+            else
+                UnregisterFrameworkElementEvents(frameworkElement);
 
-                textBlock.TextTrimming = TextTrimming.CharacterEllipsis;
-                SetToolTipIfTrimmed(frameworkElement);
-                frameworkElement.SizeChanged += FrameworkElement_SizeChanged;
-                if (frameworkElement is ComboBox)
-                    ((ComboBox)frameworkElement).SelectionChanged += ComboBox_SelectionChanged;
+            frameworkElement.Unloaded += OnUnload;
+        }
+
+        /// <summary>
+        /// Assigns the ToolTip for the given FrameworkElement based on whether the text is trimmed
+        /// </summary>
+        private static async Task SetToolTipOnTrimmedTextAsync(FrameworkElement frameworkElement, DispatcherPriority dispatcherPriority)
+        {
+            bool trimmed = false;
+            if (frameworkElement.Visibility == Visibility.Visible && frameworkElement.ActualWidth > 0 && frameworkElement.ActualHeight > 0)
+            {
+                if (dispatcherPriority == DispatcherPriority.Normal)
+                    trimmed = TextAssists.IsFrameworkElementTrimmed(frameworkElement);
+                else
+                {
+                    await frameworkElement.Dispatcher.BeginInvoke((ThreadStart)delegate
+                    {
+                        trimmed = TextAssists.IsFrameworkElementTrimmed(frameworkElement);
+                    }, dispatcherPriority);
+                }
+            }
+
+            if (trimmed)
+            {
+                string toolTip = (string)frameworkElement.GetValue(AutoToolTipContentProperty);
+                if (!string.IsNullOrEmpty(toolTip))
+                    ToolTipService.SetToolTip(frameworkElement, toolTip);
+                else
+                    ToolTipService.SetToolTip(frameworkElement, TextAssists.GetFrameworkElementText(frameworkElement));
             }
             else
             {
-                frameworkElement.SizeChanged -= FrameworkElement_SizeChanged;
-                if (frameworkElement is ComboBox)
-                    ((ComboBox)frameworkElement).SelectionChanged -= ComboBox_SelectionChanged;
-            }
-        }
-
-        private static void SetToolTipIfTrimmed(FrameworkElement frameworkElement)
-        {
-            if (TextAssists.IsFrameworkElementTrimmedOrWrapped(frameworkElement))
-                SetToolTip(frameworkElement);
-            else
                 ToolTipService.SetToolTip(frameworkElement, null);
+            }
         }
 
-        private static void SetToolTip(FrameworkElement frameworkElement)
+        #endregion
+
+
+        #region FrameworkElement Events
+
+        private static void OnLoadTurnAutoToolTipOn(object sender, RoutedEventArgs e)
         {
-            if (frameworkElement.IsHitTestVisible)
+            if (sender is FrameworkElement frameworkElement)
             {
-                ToolTipService.SetToolTip(frameworkElement, TextAssists.GetFrameworkElementText(frameworkElement));
+                UpdateAutoToolTip(true, frameworkElement);
+                frameworkElement.Loaded -= OnLoadTurnAutoToolTipOn;
+            }
+        }
+
+        private static void OnLoadTurnAutoToolTipOff(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement frameworkElement)
+            {
+                UpdateAutoToolTip(false, frameworkElement);
+                frameworkElement.Loaded -= OnLoadTurnAutoToolTipOff;
+            }
+        }
+
+        private static void OnUnload(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement frameworkElement)
+                UnregisterFrameworkElementEvents(frameworkElement);
+        }
+
+        private static void RegisterFrameworkElementEvents(FrameworkElement frameworkElement)
+        {
+            if (frameworkElement != null)
+            {
+                frameworkElement.SizeChanged += OnFrameworkElementChanged;
+                if (frameworkElement is ComboBox comboBox)
+                    comboBox.SelectionChanged += OnComboBoxSelectionChanged;
+                if (frameworkElement is TextBox textBox)
+                    textBox.TextChanged += OnFrameworkElementChanged;
+            }
+        }
+
+        private static void UnregisterFrameworkElementEvents(FrameworkElement frameworkElement)
+        {
+            if (frameworkElement != null)
+            {
+                frameworkElement.SizeChanged -= OnFrameworkElementChanged;
+                if (frameworkElement is ComboBox comboBox)
+                    comboBox.SelectionChanged -= OnComboBoxSelectionChanged;
+                if (frameworkElement is TextBox textBox)
+                    textBox.TextChanged -= OnFrameworkElementChanged;
+            }
+        }
+
+        private static void OnFrameworkElementChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement frameworkElement)
+                SetToolTipOnTrimmedTextAsync(frameworkElement, DispatcherPriority.Normal);
+        }
+
+        private static void OnComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox)
+                SetToolTipOnTrimmedTextAsync(comboBox, DispatcherPriority.ApplicationIdle);
+        }
+
+        #endregion
+
+
+        #region Text Trimming
+
+        /// <summary>
+        /// Default TextTrimming is CharacterEllipsis. Word Ellipsis or no trimming have to set explicitly
+        /// </summary>
+        public static TextTrimming GetAutoToolTipTextTrimming(DependencyObject obj) { return (TextTrimming)obj.GetValue(AutoToolTipTextTrimmingProperty); }
+        public static void SetAutoToolTipTextTrimming(DependencyObject obj, TextTrimming value) { obj.SetValue(AutoToolTipTextTrimmingProperty, value); }
+        public static readonly DependencyProperty AutoToolTipTextTrimmingProperty = DependencyProperty.RegisterAttached("AutoToolTipTextTrimming", typeof(TextTrimming), typeof(ToolTipExtension), new PropertyMetadata(TextTrimming.CharacterEllipsis, OnAutoToolTipTextTrimmingPropertyChanged));
+
+        private static void OnAutoToolTipTextTrimmingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is FrameworkElement frameworkElement && GetAutoToolTipTextTrimming(d) != TextTrimming.None)
+                SetTextTrimming(frameworkElement);
+        }
+
+        private static void SetTextTrimming(FrameworkElement frameworkElement)
+        {
+            if (frameworkElement == null)
+                return;
+
+            if (frameworkElement is TextBlock textBlock && textBlock.TextTrimming == TextTrimming.None)
+            {
+                textBlock.TextTrimming = GetAutoToolTipTextTrimming(frameworkElement);
                 return;
             }
 
-            TextBlock textBlock = frameworkElement as TextBlock;
-            if (textBlock != null)
-            {
-                // LA: To be used when moving to VS2019 (remove function IsToolTipable):
-                //Func<FrameworkElement, bool> condition = x => x is Control && x.IsHitTestVisible;
-                //var parent = textBlock.ParentOfTypeOnCondition(condition);
-                var parent = textBlock.ParentOfTypeOnCondition<FrameworkElement>(IsToolTipableControl);
-                ToolTipService.SetToolTip(parent ?? textBlock, textBlock.Text);
-            }
-        }
-
-        private static bool IsToolTipableControl(FrameworkElement frameworkElement)
-        {
-            return frameworkElement != null && frameworkElement is Control && frameworkElement.IsHitTestVisible;
+            TextBlock childTextBlock = frameworkElement.GetFirstDescendantOfType<TextBlock>();
+            if (childTextBlock != null && childTextBlock.TextTrimming == TextTrimming.None)
+                childTextBlock.TextTrimming = GetAutoToolTipTextTrimming(frameworkElement);
         }
 
         #endregion
