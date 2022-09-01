@@ -129,6 +129,11 @@
         <!--IsEnabled="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedParameterConverter}, ConverterParameter=duration}"-->
       <ContentControl
         x:Name="DurationSliderGhost"
+        DataContext="{Binding ElementName=DurationSlider}"
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost.SliderBound}"
+       />
+          <!--<ContentControl
+        x:Name="DurationSliderGhost"
         Grid.Row="{Binding (Grid.Row), ElementName=DurationSlider}"
         Grid.Column="{Binding (Grid.Column), ElementName=DurationSlider}"
         Margin="{Binding Margin, ElementName=DurationSlider}"
@@ -139,7 +144,7 @@
         Visibility="{Binding IsEnabled, ElementName=DurationSlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
         extensions:ControlExtensions.CaptionMax="{Binding Maximum, ElementName=DurationSlider}"
         extensions:ControlExtensions.CaptionMin="{Binding Minimum, ElementName=DurationSlider}"
-        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>-->
 
       <TextBlock Grid.Column ="2" Text="Power" Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" />
             <ToggleButton 
@@ -172,6 +177,11 @@
       <!--IsEnabled="{Binding SelectedCalculatedParameter, Converter={StaticResource CalculatedParameterConverter}, ConverterParameter=power}"-->
       <ContentControl
         x:Name="PowerSliderGhost"
+        DataContext="{Binding ElementName=PowerSlider}"
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost.SliderBound}"
+       />
+          <!--<ContentControl
+        x:Name="PowerSliderGhost"
         Grid.Row="{Binding (Grid.Row), ElementName=PowerSlider}"
         Grid.Column="{Binding (Grid.Column), ElementName=PowerSlider}"
         Margin="{Binding Margin, ElementName=PowerSlider}"
@@ -182,7 +192,7 @@
         Visibility="{Binding IsEnabled, ElementName=PowerSlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
         extensions:ControlExtensions.CaptionMax="{Binding Maximum, ElementName=PowerSlider}"
         extensions:ControlExtensions.CaptionMin="{Binding Minimum, ElementName=PowerSlider}"
-        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>-->
 
       <TextBlock Grid.Column ="4" Text="Energy" Style="{StaticResource XStyle.TextBlock.Menu.Label.First}" />
             <extensions:NumericUpDown 
@@ -207,6 +217,12 @@
         Style="{StaticResource XStyle.Slider.Small}"/>
       <ContentControl
         x:Name="EnergySliderGhost"
+        DataContext="{Binding ElementName=EnergySlider}"
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost.SliderBound}"
+       />
+
+          <!--<ContentControl
+        x:Name="EnergySliderGhost"
         Grid.Row="{Binding (Grid.Row), ElementName=EnergySlider}"
         Grid.Column="{Binding (Grid.Column), ElementName=EnergySlider}"
         Margin="{Binding Margin, ElementName=EnergySlider}"
@@ -217,7 +233,7 @@
         Visibility="{Binding IsEnabled, ElementName=EnergySlider, Converter={StaticResource XConverter.InverseBooleanToVisibility}}"
         extensions:ControlExtensions.CaptionMax="{Binding Maximum, ElementName=EnergySlider}"
         extensions:ControlExtensions.CaptionMin="{Binding Minimum, ElementName=EnergySlider}"
-        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>
+        Style="{StaticResource XStyle.ContentControl.SmallSliderGhost}"/>-->
 
     </Grid>
 

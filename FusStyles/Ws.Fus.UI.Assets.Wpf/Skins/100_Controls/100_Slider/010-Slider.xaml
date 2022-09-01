@@ -415,4 +415,17 @@
     </Setter>
   </Style>
 
+  <Style x:Key="XStyle.ContentControl.SmallSliderGhost.SliderBound" TargetType="{x:Type ContentControl}" BasedOn="{StaticResource XStyle.ContentControl.SmallSliderGhost}">
+    <Setter Property="Grid.Row" Value="{Binding (Grid.Row)}" />
+    <Setter Property="Grid.Column" Value="{Binding (Grid.Column)}" />
+    <Setter Property="Margin" Value="{Binding Margin}" />
+    <Setter Property="HorizontalAlignment" Value="{Binding HorizontalAlignment}" />
+    <Setter Property="VerticalAlignment" Value="{Binding VerticalAlignment}" />
+    <Setter Property="Width" Value="{Binding ActualWidth}" />
+    <Setter Property="Height" Value="{Binding ActualHeight}" />
+    <Setter Property="Visibility" Value="{Binding IsEnabled, Converter={StaticResource XConverter.InverseBooleanToVisibility}}" />
+    <Setter Property="extensions:ControlExtensions.CaptionMax" Value="{Binding Maximum}" />
+    <Setter Property="extensions:ControlExtensions.CaptionMin" Value="{Binding Minimum}" />
+  </Style>
+
 </ResourceDictionary>
