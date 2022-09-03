@@ -947,6 +947,7 @@
     <Setter Property="extensions:IconedButton.IconSize" Value="25"/>
     <Setter Property="extensions:IndependentSize.Width" Value="{StaticResource XDouble.Width.IconOverText}"/>
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.IconOverText.OneLine}"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
     <!--To show two text lines below button, set IndependentSize.Height to XDouble.Height.IconOverText.TwoLines on individual button-->
   </Style>
 

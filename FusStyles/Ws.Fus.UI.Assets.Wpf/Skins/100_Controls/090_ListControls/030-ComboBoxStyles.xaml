@@ -141,6 +141,8 @@
     <Setter Property="extensions:IndependentSize.Padding" Value="9,0,9,1"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="{StaticResource XDouble.FontSize.Base}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Button.Secondary.Foreground}"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTip" Value="True"/>
+    <Setter Property="extensions:ToolTipExtension.AutoToolTipContent" Value="{Binding SelectedItem.Content, RelativeSource={RelativeSource Self}}"/>
     <Style.Triggers>
       <Trigger Property="IsEnabled" Value="False">
         <Setter Property="Foreground" Value="{StaticResource XBrush.Control.Foreground.Disabled}"/>
