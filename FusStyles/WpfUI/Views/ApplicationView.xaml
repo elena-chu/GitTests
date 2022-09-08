@@ -52,10 +52,8 @@
                   <EventTrigger.Actions>
                     <BeginStoryboard>
                       <Storyboard>
-                          <!--Source="..\..\Ws.Fus.UI.Assets.Wpf\Images\Common\Neuron.mp4"-->
-                          <!--Source="/Ws.Fus.UI.Assets.Wpf;Component/Images/Common/Neuron.mp4"-->
                         <MediaTimeline
-                          Source="pack://application:,,,/Ws.Fus.UI.Assets.Wpf;component/Images/Common/Neuron.mp4"
+                          Source="./Assets/Videos/Neuron.mp4"
                           Storyboard.TargetName="NeuronVideo"
                           RepeatBehavior="Forever"/>
                       </Storyboard>

@@ -28,7 +28,6 @@
     <None Remove="**\*.keep" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Images\Common\Neuron.mp4" />
     <None Remove="Skins\Current.xaml.contrib" />
     <None Remove="Skins\Current.xaml.keep" />
   </ItemGroup>
@@ -36,7 +35,6 @@
     <!--<Resource Include="Images\Common\Exablate_Neuro.png" />
     <Resource Include="Images\Common\Insightec-Logo.png" />-->
     <Resource Include="Images\Common\Main_Background.png" />
-    <Resource Include="Images\Common\Neuron.mp4" />
     <!--<Resource Include="Images\Common\Top_Background.png" />-->
     <Resource Include="Images\Common\Top_Pattern.png" />
   </ItemGroup>
