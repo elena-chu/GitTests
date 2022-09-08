@@ -74,10 +74,18 @@
     <None Remove="LayoutsObsolete.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Messages\Assets\Sounds\CautionMsg.wav" />
-    <Content Include="Messages\Assets\Sounds\ErrorMsg.wav" />
-    <Content Include="Messages\Assets\Sounds\Infomsg.wav" />
-    <Content Include="Messages\Assets\Sounds\WarningMsg.wav" />
+    <Content Include="Messages\Assets\Sounds\CautionMsg.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Messages\Assets\Sounds\ErrorMsg.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Messages\Assets\Sounds\Infomsg.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Messages\Assets\Sounds\WarningMsg.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <!--<ItemGroup>
     <SplashScreen Include="Insightec-logo.png" />

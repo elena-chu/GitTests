@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Media;
 using System.Windows;
 using System.Windows.Input;
 using WpfUI.Messages.ViewModels;
@@ -59,29 +57,37 @@ namespace WpfUI.Messages
                 closeCallback?.Invoke(ea);
             };
 
-            Stream messageStream = Properties.Resources.Infomsg;
-            switch (vm.MessageType)
-            {
-                case GenericMessageType.Safety:
-                    messageStream = Properties.Resources.WarningMsg;
-                    break;
-                case GenericMessageType.UserError:
-                    messageStream = Properties.Resources.CautionMsg;
-                    break;
-                case GenericMessageType.SystemError:
-                    messageStream = Properties.Resources.ErrorMsg;
-                    break;
-                case GenericMessageType.UserInfo:
-                case GenericMessageType.SystemStatus:
-                default:
-                    break;
-            }
-            SoundsHelper.PlaySound(messageStream, vm.MessageType == GenericMessageType.Safety);
+            PlayMessageSound(vm.MessageType);
 
             wnd.ShowDialog();
 
             //ea.ActionChecked = vm.ActionChecked;
             //ea.SelectedButtonResult = vm.SelectedButtonResult;
+        }
+
+        private static void PlayMessageSound(GenericMessageType messageType)
+        {
+            string soundFileName = "./Messages/Assets/Sounds/";
+            switch (messageType)
+            {
+                case GenericMessageType.Safety:
+                    soundFileName += "WarningMsg.wav";
+                    break;
+                case GenericMessageType.UserError:
+                    soundFileName += "CautionMsg.wav";
+                    break;
+                case GenericMessageType.SystemError:
+                    soundFileName += "ErrorMsg.wav";
+                    break;
+                case GenericMessageType.UserInfo:
+                case GenericMessageType.SystemStatus:
+                    soundFileName += "InfoMsg.wav";
+                    break;
+                default:
+                    break;
+            }
+
+            SoundsHelper.PlaySound(soundFileName, messageType == GenericMessageType.Safety);
         }
 
         private static void Wnd_MouseDown(object sender, MouseButtonEventArgs e)

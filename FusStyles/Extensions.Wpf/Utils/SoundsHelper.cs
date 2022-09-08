@@ -5,15 +5,14 @@ namespace Ws.Extensions.UI.Wpf.Utils
 {
     public static class SoundsHelper
     {
-        public static void PlaySound(Stream sound, bool isEmergencySound = false)
+        public static void PlaySound(string soundFileName, bool isEmergencySound = false)
         {
-            SoundPlayer soundPlayer = new SoundPlayer(sound);
             if (!MuteSounds)
-                soundPlayer.Play();
+                NAudioHelper.Play(soundFileName);
             else if (isEmergencySound)
             {
                 AudioManager.SetMasterVolumeMute(true);
-                soundPlayer.Play();
+                NAudioHelper.Play(soundFileName);
                 AudioManager.SetMasterVolumeMute(false);
             }
         }
