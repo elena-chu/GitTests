@@ -920,7 +920,7 @@
 
   <Geometry x:Key="XGeometry.RoundDoubleEndedArrow">M 14.658203,0 A 10.95057,10.95057 0 0 0 3.904297,9.126953 H 0 l 5.505859,7.96875 5.50586,-7.96875 H 7.189453 a 7.7262354,7.7262354 0 0 1 7.46875,-5.902343 7.7262354,7.7262354 0 0 1 7.496094,5.902343 h -3.849609 l 5.505859,7.96875 5.505859,-7.96875 H 25.433594 A 10.95057,10.95057 0 0 0 14.658203,0 Z</Geometry>
 
-  <Canvas x:Key="XCanvas.RotationHandle" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.RotationHandle" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse
       Width="{StaticResource XDouble.IconCanvasSize}"
       Height="{StaticResource XDouble.IconCanvasSize}"
