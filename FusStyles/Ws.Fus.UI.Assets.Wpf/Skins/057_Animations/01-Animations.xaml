@@ -72,6 +72,10 @@
     <ColorAnimation To="{StaticResource XColor.Safety.Pressed}" Duration="{StaticResource XDuration.Animation.Short}"/>
   </Storyboard>
 
+  <Storyboard x:Key="XStoryboard.ColorAnimation.Stop.ToSafetyDisabled" Storyboard.TargetProperty="Background.Color">
+    <ColorAnimation To="{StaticResource XColor.Safety.Disabled}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>
+  </Storyboard>
+
   <!--ColorAnimations: General-->
   <Storyboard x:Key="XStoryboard.ColorAnimation.Stop.ToTransparent" Storyboard.TargetProperty="Background.Color">
     <ColorAnimation To="{StaticResource XColor.AlmostTransparent}" Duration="{StaticResource XDuration.Animation.Short}" FillBehavior="Stop"/>

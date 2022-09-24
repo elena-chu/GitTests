@@ -26,6 +26,7 @@
   <!--Severity-->
   <Color x:Key="XColor.Safety">#FFb73f3f</Color>
   <Color x:Key="XColor.Safety.Pressed">#FF8c3030</Color>
+  <Color x:Key="XColor.Safety.Disabled">#FF352e2e</Color>
   <Color x:Key="XColor.Error">#FFeb701d</Color>
   <Color x:Key="XColor.Warning">#FFe3b118</Color>
   

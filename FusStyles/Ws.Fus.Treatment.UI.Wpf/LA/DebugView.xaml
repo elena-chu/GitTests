@@ -29,32 +29,6 @@
 
     <Button Style="{StaticResource XStyle.Button.Primary}" Content="Message" Command="{Binding SendMessageCommand}" Height="30" Width="130"/>
 
-    <StackPanel VerticalAlignment="Center">
-      <TextBlock Text="Rotation Handle on partially transparent background"/>
-      <Border Height="50" Width="50" Padding="6" Background="#66FFFFFF">
-        <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center">
-          <ContentControl Content="{StaticResource XCanvas.RotationHandle}"/>
-        </Viewbox>
-      </Border>
-    </StackPanel>
-
-    <StackPanel VerticalAlignment="Center">
-      <TextBlock Text="Twin"/>
-      <Border Height="50" Width="50" Padding="6" Background="#66FFFFFF">
-        <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center">
-          <ContentControl Content="{StaticResource XCanvas.RotationHandle}"/>
-        </Viewbox>
-      </Border>
-    </StackPanel>
-
-    <StackPanel VerticalAlignment="Center">
-      <TextBlock Text="Large checkmark"/>
-      <Border Height="50" Width="50" Padding="6">
-        <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center">
-          <ContentControl Content="{StaticResource XCanvas.Checkmark}"/>
-        </Viewbox>
-      </Border>
-    </StackPanel>
   </UniformGrid>
 
 </UserControl>

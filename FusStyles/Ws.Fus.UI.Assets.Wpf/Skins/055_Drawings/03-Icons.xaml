@@ -139,11 +139,11 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.x}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Lock" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Lock" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Lock}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Unlock" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Unlock" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Unlock}"/>
   </Canvas>
 

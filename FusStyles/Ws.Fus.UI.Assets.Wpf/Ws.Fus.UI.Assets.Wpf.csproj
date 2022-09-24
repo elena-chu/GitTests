@@ -28,6 +28,7 @@
     <None Remove="**\*.keep" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Skins\150_ComplexControls\01_SafetyContentControlStyle.xaml" />
     <None Remove="Skins\Current.xaml.contrib" />
     <None Remove="Skins\Current.xaml.keep" />
   </ItemGroup>
@@ -71,6 +72,11 @@
     <None Update="Skins\100_Controls\210_DataGrid\010-DataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Skins\150_ComplexControls\01_SafetyContentControlStyle.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />  
   <!--<Import Project="$(ProjectDir)..\UI.Wpf.targets" />-->

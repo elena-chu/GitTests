@@ -124,6 +124,28 @@
     </Style.Triggers>
   </Style>
 
+  <Style x:Key="XStyle.Border.DisabledToSafety" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border}">
+    <Setter Property="Background" Value="{StaticResource XBrush.Safety.Disabled}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Safety}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.Stop.ToSafetyDisabled}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+      <Trigger Property="extensions:ControlExtensions.IsPressed" Value="True">
+        <Trigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToPressed.Safety}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard Storyboard="{StaticResource XStoryboard.ColorAnimation.ToHover.Stop.Safety}"/>
+        </Trigger.ExitActions>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
   <Style x:Key="XStyle.Border.HoverAndIndependentPress.TransparentToSecondary" TargetType="{x:Type Border}" BasedOn="{StaticResource XStyle.Border.HoverAndPress.TransparentToSecondary}">
     <Style.Triggers>
       <EventTrigger RoutedEvent="MouseDown">
