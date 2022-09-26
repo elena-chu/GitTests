@@ -119,11 +119,11 @@
   <Geometry x:Key="XGeometry.Refresh">m 37.604949,11.743262 -6.628369,6.628369 h 17.675652 l 1e-6,-17.6756525 -6.62837,6.6283697 c -9.765798,-9.7657979 -25.585507,-9.7657972 -35.3513045,0 C 3.2037115,10.793196 0.99425484,15.035353 0,19.47636 h 6.4516132 c 0.8395929,-2.828104 2.4083079,-5.501547 4.6398578,-7.733098 7.313302,-7.3133028 19.200178,-7.3133028 26.513478,0 z m 11.091473,18.780382 h -6.451614 c -0.883782,2.828103 -2.408307,5.501546 -4.639859,7.733096 -7.313302,7.313302 -19.200176,7.313302 -26.513478,0 L 17.71984,31.628371 H 0.04418879 l -9e-8,17.675653 6.6283698,-6.62837 c 9.7657985,9.765798 25.5855065,9.765796 35.3513045,0 3.468846,-3.468846 5.678304,-7.711003 6.672559,-12.15201 z</Geometry>
   <Geometry x:Key="XGeometry.NewEntry">M 5.1858449,1.1870206e-4 C 3.5991549,0.0413187 2.2851949,0.9375187 1.5255349,2.0452987 0.01504681,5.2495071 -0.30757134,8.2070088 0.26730494,11.417659 c 0.19579361,0.57947 0.73659926,0.972069 1.34859996,0.97902 1.01801,0.0116 2.03523,0.0158 3.05231,0.0178 v 26.02555 c 0,3.33619 2.72953,6.06384 6.0680601,6.06384 h 10.78096 c 2.80655,3.38324 7.02441,5.53365 11.74214,5.49563 0.02906,-0.0048 0.05797,-0.01047 0.0867,-0.0169 0.01504,0.0059 0.03017,0.0115 0.0454,0.0169 8.39987,-0.14145 15.0473,-7.17606 14.92844,-15.59313 -0.0844,-5.9775 -3.56467,-11.1578 -8.5826,-13.62291 V 6.0639587 c 0,-3.33619 -2.72951,-6.06383999794 -6.06806,-6.06383999794 C 33.614868,0.011196 33.561211,0.02558958 33.508585,0.0432187 33.432297,0.02249312 33.35443,0.00807779 33.275775,1.1870206e-4 H 5.2228549 c -0.012333,-1.58269408e-4 -0.024667,-1.58269408e-4 -0.037,0 z M 33.864125,2.7273287 c 1.78369,0.0982 3.15349,1.52531 3.15349,3.33663 V 19.762759 c -1.29598,-0.34725 -2.65806,-0.52905 -4.06552,-0.51153 -4.05405,0.0505 -7.70346,1.71148 -10.3884,4.35969 h -12.25789 c -0.7516979,-3.48e-4 -1.3611567,0.608681 -1.3608101,1.35985 6.814e-4,0.750442 0.609839,1.358338 1.3608101,1.35799 h 10.06283 c -1.02175,1.60865 -1.757,3.41759 -2.12997,5.35182 H 9.9938247 c -0.7500493,9.48e-4 -1.3577743,0.608458 -1.3584598,1.35798 -3.522e-4,0.750256 0.6076762,1.358911 1.3584598,1.35986 h 7.9708303 c 0.09788,2.602282 0.725708,5.384008 1.75013,7.38809 h -8.9784 c -1.8785301,0 -3.3483601,-1.46928 -3.3483601,-3.34647 v -26.03071 c 7.4203501,-0.0356 14.8166501,-0.25021 22.1867801,-0.2656 0.8104,-0.0017 1.459971,-0.67073 1.43713,-1.48024 -0.11129,-3.9353203 0.75579,-5.8879003 1.47744,-6.8512703 0.344677,-0.4844529 0.860845,-0.8152793 1.37475,-1.08489 z m -4.04818,0.15177 c -0.83706,1.38197 -1.41967,3.47437 -1.53973,6.3983 -8.48861,0.0432 -16.94561,0.29105 -25.3688201,0.23 -0.1303636,-2.084713 0.1310992,-4.0212246 0.99404,-5.83524 0.38208,-0.55716 0.68173,-0.7755 1.02008,-0.78428 z M 10.860425,15.541259 c -0.751694,-3.42e-4 -1.3611467,0.608685 -1.3608001,1.35985 -9.22e-5,0.750985 0.6092861,1.359732 1.3608001,1.35939 h 21.48364 c 0.751518,3.48e-4 1.360902,-0.608401 1.36081,-1.35939 3.47e-4,-0.751169 -0.609112,-1.360198 -1.36081,-1.35985 z m 22.13055,6.68545 c 6.63882,-0.0827 12.14082,5.32193 12.23821,12.21949 0.0974,6.89755 -5.25359,12.46605 -11.89203,12.57784 -0.0095,0.0095 -0.01887,0.01921 -0.0281,0.029 -0.02503,-0.01031 -0.05034,-0.01998 -0.0759,-0.029 -6.63911,0.0535 -12.11803,-5.37543 -12.18624,-12.27336 -0.0682,-6.89794 5.30526,-12.44133 11.94406,-12.52397 z m -1.09426,4.08096 v 0.0211 l -0.12975,6.64563 -6.89859,-0.0305 -0.0225,-4.8e-4 -0.0361,2.97594 0.022,4.8e-4 6.89718,0.12507 -0.0309,6.64657 v 0.0216 l 3.08836,0.0347 v -0.0211 l 0.13023,-6.64563 6.89811,0.0305 h 0.022 l 0.0361,-2.97547 -6.91919,-0.12554 0.0314,-6.64704 v -0.0211 z</Geometry>
 
-  <Canvas x:Key="XCanvas.Undo" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Undo" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Undo}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Redo" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Redo" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Undo}">
       <Path.RenderTransform>
         <TransformGroup>
@@ -134,7 +134,7 @@
     </Path>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Clear" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Clear" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.x}"/>
   </Canvas>
@@ -147,40 +147,40 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Unlock}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.ExclamationMark" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.ExclamationMark" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ExclamationMark}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Help" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Help" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.QuestionMark}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Settings" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Settings" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.CogWheel}"/>
     <Ellipse Canvas.Left="15" Canvas.Top="15" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="20" Height="20"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Volume" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Volume" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Loudspeaker}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Soundwaves}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Mute" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Mute" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Loudspeaker}"/>
     <Path Canvas.Left="16" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.x}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Refresh" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Refresh" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Refresh}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.NewEntry" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.NewEntry" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Canvas.Left="2" Canvas.Top="4" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.NewEntry}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.ActionRequired" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.ActionRequired" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse
       Style="{StaticResource XStyle.Shape.Icon.LineAlpha}"
       StrokeDashArray="3,2"
@@ -190,19 +190,19 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Checkmark}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Done" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Done" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.FilledCircleCheckmark}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Target" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Target" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Target}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Sonicate" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Sonicate" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Sonicate}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.TractOverlay" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.TractOverlay" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.TractOverlay}"/>
   </Canvas>
 
@@ -210,23 +210,23 @@
   <Geometry x:Key="XGeometry.TransducerLocationBeta">m 18.238207 31.550969 h 31.4587 m -3.42169 -9.377933 H 27.436493 c 0 0 0.355642 -3.73933 3.392917 -5.545732 3.037228 -1.806401 15.147806 -0.96228 15.147806 -0.96228</Geometry>
   <Geometry x:Key="XGeometry.TransducerLocationArrowHead">m 15.854575 34.471556 9.592309 -9.724041 9.525108 9.724041 z</Geometry>
 
-  <Canvas x:Key="XCanvas.TransducerLocation" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.TransducerLocation" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.TransducerLocationBeta}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.TransducerLocationAlpha}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.TransducerLocationArrowHead}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.StopSign" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.StopSign" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Fill="{StaticResource XBrush.Application.Background}" Data="{StaticResource XGeometry.Octagon}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.StopSign}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Info" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Info" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.i}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Quit.Circular" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Quit.Circular" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.x}" RenderTransformOrigin="0.8,0.8">
       <Path.RenderTransform>
@@ -235,7 +235,7 @@
     </Path>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Quit" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Quit" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.x}" RenderTransformOrigin="0.8,0.8">
       <Path.RenderTransform>
         <ScaleTransform ScaleX="1.3" ScaleY="1.3"/>
@@ -244,12 +244,12 @@
   </Canvas>
 
   <!--Messages-->
-  <Canvas x:Key="XCanvas.Message.Info" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Message.Info" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50" Stroke="{StaticResource XBrush.Info}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.i}" Fill="{StaticResource XBrush.Info}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Message.Warning" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Message.Warning" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Triangle}" Stroke="{StaticResource XBrush.Warning}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ExclamationMark}" Fill="{StaticResource XBrush.Warning}">
       <Path.RenderTransform>
@@ -261,17 +261,17 @@
     </Path>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Message.Error" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Message.Error" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50" Stroke="{StaticResource XBrush.Error}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.x}" Stroke="{StaticResource XBrush.Error}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Message.Safety" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Message.Safety" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50" Stroke="{StaticResource XBrush.Safety}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ExclamationMark}" Fill="{StaticResource XBrush.Safety}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Checkmark" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Checkmark" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Canvas.Left="6.205" Canvas.Top="10.519" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.CheckmarkLarge}"/>
   </Canvas>
 
@@ -293,67 +293,67 @@
   <Geometry x:Key="XGeometry.Npr.RightBrain">m 24.126215 5.0039944 c 0 0 6.885945 -2.6468368 10.100909 0.017281 3.214937 2.6640981 4.826539 7.0034899 5.55803 11.1819439 0.378116 2.159889 2.675758 8.090245 2.763414 11.028921 0.08772 2.941187 0.167262 9.560171 -6.131887 14.596878 -5.186919 4.147364 -11.474017 4.26382 -11.474017 4.26382</Geometry>
   <Geometry x:Key="XGeometry.Npr.UpDownArrows">m 24.991796 41.062438 -8.52886 -11.464509 5.277933 -0.01197 v -3.25541 h 6.527275 v 3.24305 l 5.276911 -0.01197 z m 0 -32.2747567 -8.52886 11.4645287 5.277933 0.01197 v 3.25541 h 6.527275 v -3.243046 l 5.276911 0.01197 z</Geometry>
 
-  <Canvas x:Key="XCanvas.Npr.Manual" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.Manual" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.Pencil}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Npr.Manual}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.Spherical" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.Spherical" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.Pencil}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Npr.Spherical}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.RemoveManualMarkings" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.RemoveManualMarkings" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.Pencil}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.SmallX}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.ResetSinuses" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.ResetSinuses" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.ArrowTail}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.ArrowHead}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Sinuses}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.RemoveSinuses" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.RemoveSinuses" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LargeX}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Sinuses}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.ResetCalcifications" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.ResetCalcifications" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.ArrowTail}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.ArrowHead}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Calcifications}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.RemoveCalcifications" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.RemoveCalcifications" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LargeX}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Calcifications}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.ResetFolds" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.ResetFolds" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.ArrowTail}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.ArrowHead}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Folds}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.RemoveFolds" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.RemoveFolds" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LargeX}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Folds}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.CtThreshold" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.CtThreshold" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.LeftBrain}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" StrokeDashArray="1.3,1.3" Data="{StaticResource XGeometry.Npr.RightBrain}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.UpDownArrows}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Npr.ReacquireFolds" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Npr.ReacquireFolds" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.AgainArrows}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Npr.BrainOutlineShort}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Npr.Folds}"/>
@@ -366,12 +366,12 @@
   <Geometry x:Key="XGeometry.Registration.HeadOuter">M 18.823524 50 V 38.058497 h -5.18632 C 11.851578 37.585725 10.132926 36.912056 9.2951594 33.595511 V 26.720097 L 6.6416991 26.59947 C 4.6586032 26.218723 3.8642176 24.8623 4.4706766 23.945804 l 5.4275387 -8.202249 c 0 0 -0.5659022 -6.5714018 0 -7.3578973 C 12.722692 4.460215 17.314042 1.685827 24.670262 1.5102436 c 7.16296 -0.1709765 12.874187 1.5231103 17.552002 8.4434913 4.294032 6.3526251 5.208545 14.0757781 -1.326731 21.1087241 -2.75587 2.965737 -4.945101 4.583609 -4.945101 4.583609 V 50</Geometry>
   <Geometry x:Key="XGeometry.Registration.HeadInner">m 30.161057 25.0314 3.276444 4.074188 m -4.723793 11.700684 v 3.894131 m 0 0.641143 v 3.926453 M 16.022519 20.930275 17.10803 18.759093 c 0 0 -0.63914 -6.167918 0 -6.999545 1.786311 -2.3242898 4.97201 -3.4945071 9.675892 -3.6151275 4.703865 -0.1206274 8.268171 3.7166995 10.081058 7.3309645 2.018864 4.024875 1.803011 9.826009 -1.326747 12.062128 0 0 -5.006709 4.121644 -6.703906 5.575511 -0.303423 0.259921 0 4.824852 0 4.824852 M 17.014339 33.474889 v -4.583608 c 0.274285 -0.956331 0.479701 -1.958577 1.688567 -2.291806 h 3.015297</Geometry>
 
-  <Canvas x:Key="XCanvas.Registration.CtOverlay" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Registration.CtOverlay" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.HeadInner}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.HeadOuter}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Registration.AutoRegister" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Registration.AutoRegister" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.BrainSecondary}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.Brain}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAreaAlpha}" Data="{StaticResource XGeometry.Registration.Play}"/>
@@ -394,45 +394,45 @@
   <Geometry x:Key="XGeometry.Calibration.Save">M 24.99999 0.7499995 V 30.62381 M 14.310842 20.115235 24.99999 31.031814 35.689159 20.115235 m 8.924507 7.931185 v 16.351363 c 0 1.857129 -1.441792 3.352217 -3.232701 3.352217 H 8.6190355 c -1.790909 0 -3.232702 -1.495088 -3.232702 -3.352217 V 28.613645</Geometry>
   <Geometry x:Key="XGeometry.Calibration.Transducer">M 47.190653 28.3967 H 28.088506 c -0.07132 0.02034 -0.136742 -4.117305 3.603072 -5.818386 1.976628 -0.89909 3.853586 -0.970761 3.853586 -0.970761 H 47.190653 M 19.497176 37.160262 H 49.25009 m -35.096596 0.0066 C 7.1822258 36.495452 2.2500938 31.290732 2.2500938 24.969658 c 0 -6.171397 5.170832 -11.278673 11.9034002 -12.141919 m 7.930179 12.129763 a 4.2309517 3.8829745 0 0 1 -4.230958 3.882965 4.2309517 3.8829745 0 0 1 -4.230942 -3.882965 4.2309517 3.8829745 0 0 1 4.230942 -3.88298 4.2309517 3.8829745 0 0 1 4.230958 3.88298 z</Geometry>
 
-  <Canvas x:Key="XCanvas.Calibration.LoadPrePlan" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.LoadPrePlan" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.LoadPrePlan}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.Save" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.Save" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.Save}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.LocateTransducer" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.LocateTransducer" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.Transducer}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.FindCentralFrequency" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.FindCentralFrequency" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.Frequency}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.3dLocalizer" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.3dLocalizer" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.3dCube}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Calibration.3dArrows}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.CalibrateTg" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.CalibrateTg" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.TgLine}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Calibration.Tg}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.MembraneFoldScan" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.MembraneFoldScan" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.BrainOutline}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Calibration.Folds}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Calibration.ScanArrows}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.ScanMdReference" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.ScanMdReference" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Calibration.HeadSmallSecondary}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.HeadSmall}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Corners}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Calibration.MovementEvaluation" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Calibration.MovementEvaluation" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Calibration.HeadLargeSecondary}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Calibration.HeadLarge}"/>
   </Canvas>
@@ -445,30 +445,30 @@
   <Geometry x:Key="XGeometry.AcPc.Brain.Incomplete">m 28.577174 45.170851 c 0 0 -1.337818 -7.80253 -5.783008 -9.704941 -4.44519 -1.902425 -6.672009 -1.060795 -8.009827 -2.340763 -1.337752 -1.27999 -0.939782 -3.392768 -2.904168 -4.322064 C 9.9158477 27.873782 6.5798274 29.548274 4.3614547 27.549394 2.143117 25.550531 1.7278333 24.367505 1.4996007 22.113914 1.3435067 20.571236 2.7236558 18.668271 3.4957695 17.29453 4.2127019 16.019012 3.701318 14.753297 5.0473031 13.136621 6.2205125 11.727534 7.4180642 12.724553 8.662721 11.874196 c 1.2446436 -0.85037 1.524041 -1.797232 2.590896 -2.6388668 1.066819 -0.841563 2.582474 0.7013829 3.573118 0.026471 0.99066 -0.6750414 0.719664 -1.5867771 2.624741 -2.3495387 1.905093 -0.7627081 3.336071 0.3419176 4.733068 0.2367256 1.397081 -0.1051072 1.041441 -0.9205252 2.599376 -1.0607767 1.557936 -0.1402025 1.922042 1.9900734 3.454562 2.0689819 1.532571 0.078623 2.527679 -1.1981758 4.292785 0 0.547846 0.3718973 1.282722 2.1675807 2.088948 2.6055307 1.075255 0.584071 2.075291 0.119784 2.652603 0.673287 1.837332 1.762124 0.846721 3.243745 1.972821 4.33963 1.126118 1.095818 2.159092 1.446543 2.768681 3.471658 0.260132 0.864191 -0.08201 1.796778 -0.255718 2.822481 m -12.762491 15.650142 0.749527 7.380932</Geometry>
   <Geometry x:Key="XGeometry.AcPc.Pc">m 38.22691 26.444781 3.058248 0.327591 q -0.295103 2.686256 -2.132736 4.429049 -1.824208 1.729685 -4.80199 1.729685 -2.508285 0 -4.077651 -1.231746 -1.555958 -1.231747 -2.401004 -3.341442 -0.845027 -2.109694 -0.845027 -4.651808 0 -4.08835 1.985175 -6.643572 1.985176 -2.568321 5.459233 -2.568321 2.722941 0 4.533722 1.63796 1.810818 1.63796 2.280278 4.691121 l -3.058248 0.31449 q -0.845046 -4.049041 -3.728917 -4.049041 -1.851061 0 -2.883872 1.690376 -1.019422 1.677272 -1.019422 4.874572 0 3.249715 1.099906 4.913884 1.099888 1.651065 2.910687 1.651065 1.44864 0 2.468081 -1.113814 1.019403 -1.113814 1.153537 -2.660049 z M 14.833963 32.655929 H 11.534282 V 14.769394 h 7.498077 c 2.137186 0 3.404794 0.528515 4.433155 1.585545 1.037299 1.048298 1.555958 2.288779 1.555958 3.72145 0 1.633593 -0.558902 3.508628 -1.676685 4.521979 -1.117783 1.013352 -2.535119 1.520028 -4.252045 1.520028 h -4.258779 z m 0 -9.302411 h 3.903313 c 1.019403 0 1.482187 -0.244602 2.018742 -0.733806 0.536536 -0.489204 0.804804 -1.691585 0.804804 -2.504013 0 -0.733808 -0.250391 -1.362785 -0.751173 -1.886931 -0.491825 -0.524147 -1.070847 -0.786222 -2.367476 -0.786222 h -3.60821 z</Geometry>
 
-  <Canvas x:Key="XCanvas.AcPc.Overlay" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.AcPc.Overlay" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.AcPc.Brain}"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="13.8" Canvas.Top="13.9" Width="10" Height="10"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="26.7" Canvas.Top="22.1" Width="10" Height="10"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.AcPc.Recalculate" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.AcPc.Recalculate" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.AcPc.Brain.Incomplete}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAreaAlpha}" Data="{StaticResource XGeometry.AcPc.Play}"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="11" Canvas.Top="15" Width="9" Height="9"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="23" Canvas.Top="22" Width="9" Height="9"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.AcPc.Ac" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.AcPc.Ac" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Canvas.Left="0" Canvas.Top="0" Width="50" Height="50"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.AcPc.Ac}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.AcPc.Pc" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.AcPc.Pc" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Canvas.Left="0" Canvas.Top="0" Width="50" Height="50"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.AcPc.Pc}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.AcPc.Center" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.AcPc.Center" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Corners}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.AcPc.Brain.Small}"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="13" Canvas.Top="17" Width="8" Height="8"/>
@@ -478,14 +478,14 @@
   <!--Scan-->
   <Geometry x:Key="XGeometry.Scan.SeriesFromMri">M 35.92287,41.001764 C 32.289911,43.900142 27.65135,45.638206 22.597806,45.638206 10.945809,45.638206 1.5,36.398167 1.5,25 1.5,13.601835 10.945809,4.3617947 22.597806,4.3617945 c 5.085559,0 9.75086,1.760154 13.393988,4.691665 M 47.716306,26.219557 H 29.446748 v 0 c 0,-3.88495 3.06723,-7.034507 6.851084,-7.034507 h 11.418474 m -24.54972,3.517232 a 3.9964657,4.1034899 0 0 1 -3.996466,4.10349 3.9964657,4.1034899 0 0 1 -3.996465,-4.10349 3.9964657,4.1034899 0 0 1 3.996465,-4.10349 3.9964657,4.1034899 0 0 1 3.996466,4.10349 z M 20.31197,35.598964 H 50</Geometry>
 
-  <Canvas x:Key="XCanvas.Scan.SeriesFromMri" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Scan.SeriesFromMri" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Scan.SeriesFromMri}"/>
   </Canvas>
 
   <!--Menu: Cycle-->
   <Geometry x:Key="XGeometry.Menu.Cycle">m 16.483182,40.640535 25.828757,-4.1e-5 c 1.296792,0 2.348068,-0.960167 2.348068,-2.144619 V 9.3463745 M 22.153768,46.003686 16.483182,40.6899 22.153768,35.376111 M 33.516819,9.3594664 7.6880602,9.3595079 c -1.2967907,0 -2.3480679,0.9601691 -2.3480679,2.1446211 V 40.653627 M 27.846232,3.9963146 33.516819,9.3101001 27.846232,14.623891</Geometry>
 
-  <Canvas x:Key="XCanvas.Menu.Cycle" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Cycle" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Cycle}"/>
   </Canvas>
 
@@ -502,40 +502,40 @@
   <Geometry x:Key="XGeometry.Menu.Umbrella">m 2.0963103,27.043291 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.40245498,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.77640198,3.017545 z M 21.971298,26.002474 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m -5.925182,0.02494 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m -7.1108308,0.648289 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.4024548,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.7764018,-3.017545 z m -5.037585,4.763872 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m 18.0735978,0.513019 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m -8.321221,3.690992 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m -6.7187428,1.937829 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m 6.3372718,5.847849 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.068689 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m 6.62618,-4.180293 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m 1.606845,6.744614 c -1.703688,0.0069 -2.453337,1.93166 -1.626053,3.159572 0.827283,1.227912 2.6891,1.06869 3.402455,-0.142027 0.65116,-1.279328 0.0035,-3.024752 -1.776402,-3.017545 z m 6.528755,-19.991111 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m 5.925182,0.02494 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m 7.110831,0.648289 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m 5.037585,4.763872 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m -18.073598,0.513019 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m 8.321221,3.690992 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m 6.718743,1.937829 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m -6.337272,5.847849 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.068689 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m -6.62618,-4.180293 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142027 -0.65116,-1.279328 -0.0035,-3.024752 1.776402,-3.017545 z m -1.606845,6.744614 c 1.703688,0.0069 2.453337,1.93166 1.626053,3.159572 -0.827283,1.227912 -2.6891,1.06869 -3.402455,-0.142028 -0.65116,-1.279327 -0.0035,-3.024751 1.776402,-3.017544 z M 21.971298,24.027121 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.159572 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.142027 0.65116,1.279328 0.0035,3.024752 -1.776402,3.017545 z m -5.925182,-0.02494 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.159572 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.142027 0.65116,1.279328 0.0035,3.024752 -1.776402,3.017545 z M 8.9352852,23.353892 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.159572 0.827283,-1.227912 2.6891,-1.06869 3.4024548,0.142027 0.65116,1.279328 0.0035,3.024752 -1.7764018,3.017545 z M 3.8977002,18.59002 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.159572 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.142027 0.65116,1.279328 0.0035,3.024752 -1.776402,3.017545 z M 21.971298,18.077001 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.159572 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.142027 0.65116,1.279328 0.0035,3.024752 -1.776402,3.017545 z m -8.321221,-3.690992 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.159572 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.142027 0.65116,1.279328 0.0035,3.024752 -1.776402,3.017545 z M 6.9313342,12.44818 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.1595719 0.827283,-1.2279118 2.6891,-1.06869 3.402455,0.142027 0.65116,1.2793279 0.0035,3.0247519 -1.776402,3.0175449 z M 13.268606,6.6003314 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.1595719 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.142027 0.65116,1.2793279 0.0035,3.0247519 -1.776402,3.0175449 z m 6.62618,4.1802926 c -1.703688,-0.0069 -2.453337,-1.9316599 -1.626053,-3.1595718 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.142027 0.65116,1.2793279 0.0035,3.0247518 -1.776402,3.0175448 z m 1.606845,-6.7446136 c -1.703688,-0.0069 -2.453337,-1.93166 -1.626053,-3.15957194 0.827283,-1.227912 2.6891,-1.06869 3.402455,0.14202704 0.65116,1.2793279 0.0035,3.0247519 -1.776402,3.0175449 z m 6.528755,19.9911106 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.776402,3.017545 z m 5.925182,-0.02494 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.776402,3.017545 z m 7.110831,-0.648289 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.776402,3.017545 z m 5.037585,-4.763872 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.776402,3.017545 z M 28.030386,18.077001 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.776402,3.017545 z m 8.321221,-3.690992 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.776402,3.017545 z M 43.07035,12.44818 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.1595719 -0.827283,-1.2279118 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.2793279 -0.0035,3.0247519 1.776402,3.0175449 z M 36.733078,6.6003314 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.1595719 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.2793279 -0.0035,3.0247519 1.776402,3.0175449 z m -6.62618,4.1802926 c 1.703688,-0.0069 2.453337,-1.9316599 1.626053,-3.1595718 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.2793279 -0.0035,3.0247518 1.776402,3.0175448 z M 28.500053,4.0360104 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.15957194 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.14202704 -0.65116,1.2793279 -0.0035,3.0247519 1.776402,3.0175449 z M 47.999728,27.002187 c 1.703688,-0.0069 2.453337,-1.93166 1.626053,-3.159572 -0.827283,-1.227912 -2.6891,-1.06869 -3.402455,0.142027 -0.65116,1.279328 -0.0035,3.024752 1.776402,3.017545 z</Geometry>
   <Geometry x:Key="XGeometry.Menu.Screenshot">M 31.633635 1.5 H 47.554347 M 34.287082 28.640845 a 9.287082 9.2676055 0 0 1 -9.287081 9.267605 9.287082 9.2676055 0 0 1 -9.287082 -9.267605 9.287082 9.2676055 0 0 1 9.287082 -9.267606 9.287082 9.2676055 0 0 1 9.287081 9.267606 z M 7.752562 8.78169 h 34.494876 c 2.940025 0 5.306904 2.361915 5.306904 5.295774 v 29.126761 c 0 2.933859 -2.366879 5.295775 -5.306904 5.295775 H 7.752562 C 4.812537 48.5 2.445658 46.138084 2.445658 43.204225 V 14.077464 c 0 -2.933859 2.366879 -5.295774 5.306904 -5.295774 z</Geometry>
 
-  <Canvas x:Key="XCanvas.Menu.View.Zoom" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.Zoom" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.Zoom}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.View.Pan" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.Pan" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Pan}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.View.Window" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.Window" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.Menu.WindowArea}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.WindowLine}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.View.ResetView" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.ResetView" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.ResetArrowTail}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.ResetArrowHead}"/>
     <Ellipse Canvas.Left="12.5" Canvas.Top="3.9" Width="9" Height="9" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.View.CenterOnClick" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.CenterOnClick" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.CornerFrame}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.CenterOnClick}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.View.CenterOnTarget" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.CenterOnTarget" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.CornerFrame}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.CenterOnTarget}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.View.TransducerMap" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.TransducerMap" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.Umbrella}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.View.Screenshot" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.View.Screenshot" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Screenshot}"/>
   </Canvas>
 
@@ -547,32 +547,32 @@
   <Geometry x:Key="XGeometry.Menu.AngleAcPc">m 35.21485 37.5 h -22.5 m 0 -37.5 v 50</Geometry>
   <Geometry x:Key="XGeometry.Menu.Cross">M 7.7514 25 H 42.2486 M 25 7.7514 v 34.4972</Geometry>
 
-  <Canvas x:Key="XCanvas.Menu.Draw.Line" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Draw.Line" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Line}"/>
     <Ellipse Canvas.Left="1" Canvas.Top="0.1" Width="12" Height="12" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
     <Ellipse Canvas.Left="36.2" Canvas.Top="37.1" Width="12" Height="12" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Draw.Area" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Draw.Area" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Area}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Draw.Angle" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Draw.Angle" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Angle}"/>
     <Ellipse Canvas.Left="40" Canvas.Top="36.1" Width="10" Height="10" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Draw.Angle90" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Draw.Angle90" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Angle90}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Draw.AngleAcPc" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Draw.AngleAcPc" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.AngleAcPc}"/>
     <Ellipse Canvas.Left="7.2" Canvas.Top="32" Width="10" Height="10" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
     <Ellipse Canvas.Left="32.8" Canvas.Top="32" Width="10" Height="10" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Draw.Fiducial" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Draw.Fiducial" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Cross}"/>
   </Canvas>
 
@@ -595,92 +595,92 @@
   <Geometry x:Key="XGeometry.Menu.Bone">m 47.133488 17.148463 v 8.252426 M 2.866512 17.148463 v 8.252426 M 2.366508 21.274675 h 45.26698</Geometry>
   <Geometry x:Key="XGeometry.Menu.Grid">M 7.46359 19.121358 H 42.53641 M 7.46359 30.878643 H 42.53641 M 30.87864 7.4635921 V 42.536408 M 19.121355 7.4635921 V 42.536408</Geometry>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Shown" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Shown" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.EyeOpen}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Hidden" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Hidden" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.EyeClosed}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.ReferenceLines" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.ReferenceLines" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.LargeBrain}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.RightCross}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Info" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Info" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Width="50" Height="50" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" extensions:IndependentSize.StrokeThickness="2"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.i}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.LineArea" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.LineArea" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Pencil}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Fiducials" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Fiducials" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Cross}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Transducer" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Transducer" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.Head}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Helmet}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Envelope" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Envelope" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.Helmet}"/>
     <Ellipse Canvas.Left="13.4" Canvas.Top="11.7" Width="23.2" Height="23.2" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}"/>
     <Ellipse Canvas.Left="20.5" Canvas.Top="18.7" Width="9.1" Height="9.1" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.GhostCursor" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.GhostCursor" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.Cursor}"/>
     <Path Canvas.Left="14" Canvas.Top="-5" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Cursor}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.NonPassRegions" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.NonPassRegions" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.NonPassLine}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.NonPassArea}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Skull" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Skull" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Registration.HeadInner}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.HeadOuter}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.AcPc" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.AcPc" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.LargeBrain}"/>
     <Ellipse Canvas.Left="14" Canvas.Top="16.8" Width="8.7" Height="8.7" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
     <Ellipse Canvas.Left="26.7" Canvas.Top="23.6" Width="8.7" Height="8.7" Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.ActiveElements" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.ActiveElements" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.PartialCircle}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Beams}"/>
     <Ellipse Canvas.Left="20.2" Canvas.Top="35.8" Width="9.6" Height="9.6" Style="{StaticResource XStyle.Shape.Icon.AreaBeta}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.DisabledElements" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.DisabledElements" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.PartialCircle}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Beams}" StrokeDashArray="1,1"/>
     <Ellipse Canvas.Left="20.2" Canvas.Top="35.8" Width="9.6" Height="9.6" Style="{StaticResource XStyle.Shape.Icon.AreaBeta}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Tracts" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Tracts" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.TractOverlay}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Dose" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Dose" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Ameba}"/>
     <Ellipse Canvas.Left="15" Canvas.Top="15.9" Width="18.3" Height="18.3" Style="{StaticResource XStyle.Shape.Icon.LineBeta}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.TargetMarks}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.ScanPlane" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.ScanPlane" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.SmallBrain}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Bone}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Overlays.Grid" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Overlays.Grid" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Grid}"/>
   </Canvas>
 
@@ -691,12 +691,12 @@
   <Geometry x:Key="XGeometry.Menu.DeleteAllLineAlpha">M 12.921832,16.60842 H 50 m -14.419287,0 v -4.518878 c 0,-1.247843 -0.922216,-2.2594387 -2.059899,-2.2594387 h -4.119796 c -1.137682,0 -2.059899,1.0115957 -2.059899,2.2594387 v 4.518878 m -10.299491,0 v 29.632143 c 0,1.247889 0.922258,2.259439 2.059899,2.259439 h 24.718779 c 1.137681,0 2.059897,-1.01155 2.059897,-2.259439 V 16.60842</Geometry>
   <Geometry x:Key="XGeometry.Menu.DeleteAllLineArea">M 26.31117,24.638735 V 40.454807 H 23.221324 V 24.638735 Z m 6.179694,0 V 40.454807 H 29.401018 V 24.638735 Z M 38.67056,40.454807 V 24.638735 h -3.089847 v 15.816072 z</Geometry>
 
-  <Canvas x:Key="XCanvas.Menu.Delete" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Delete" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteLine}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteArea}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.DeleteAll" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.DeleteAll" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.DeleteAllLineBeta}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DeleteAllLineAlpha}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.DeleteAllLineArea}"/>
@@ -718,20 +718,20 @@
   <Geometry x:Key="XGeometry.Menu.PlayOn">M 20.672942,15.227423 V 34.772584 L 33.32716,24.844606 Z M 47.589806,25 A 22.589806,22.589806 0 0 1 25,47.589806 22.589806,22.589806 0 0 1 2.4101944,25 22.589806,22.589806 0 0 1 25,2.4101944 22.589806,22.589806 0 0 1 47.589806,25 Z</Geometry>
   <Geometry x:Key="XGeometry.Menu.PlayOff">M 30.818987,26.812415 33.32716,24.844606 20.672942,15.227423 v 1.702189 m 0,7.099514 v 10.743458 l 6.19367,-4.859298 M 10.873087,7.3714297 C 14.741729,4.2672365 19.653997,2.4101945 25,2.4101944 37.476005,2.4101942 47.589806,12.523995 47.589806,25 c 0,5.164707 -1.733224,9.924599 -4.64975,13.729751 m -3.519808,3.6594 C 35.508026,45.637037 30.48206,47.589806 25,47.589806 12.523995,47.589806 2.4101942,37.476005 2.4101944,25 2.4101945,19.568457 4.3271403,14.58464 7.5213937,10.688188 M 1.1460965,4.6116134 46.487399,48.889025</Geometry>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.SwipeOpacity" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.SwipeOpacity" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.SwipeOpacity}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Flicker" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.Flicker" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.Flicker}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Fusion" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.Fusion" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.FusionArea}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.FusionLine}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Play" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.Play" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Play}" RenderTransformOrigin="0.5,0.5">
       <Path.RenderTransform>
         <TransformGroup>
@@ -742,7 +742,7 @@
     </Path>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Pause" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.Pause" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Pause}" RenderTransformOrigin="0.5,0.5">
       <Path.RenderTransform>
         <TransformGroup>
@@ -753,44 +753,44 @@
     </Path>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Forward" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.Forward" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.FastForward" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.FastForward" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Canvas.Left="-7" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
     <Path Canvas.Left="7" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.VeryFastForward" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.VeryFastForward" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Canvas.Left="-9" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
     <Path Canvas.Left="2" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
     <Path Canvas.Left="13" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Play}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.LinkOn" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.LinkOn" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.LinkOnArea}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.LinkOff" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.LinkOff" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.LinkOffArea}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DiagonalLine}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Shown" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.Shown" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.EyeOpen}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.Hidden" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.Hidden" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.EyeClosed}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.ColorOn" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.ColorOn" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.ColorOnArea}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.ColorDropLine}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Menu.Compare.ColorOff" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Menu.Compare.ColorOff" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Menu.ColorOffArea}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.ColorDropLine}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Menu.DiagonalLine}"/>
@@ -817,20 +817,20 @@
   <Geometry x:Key="XGeometry.Drop">m 16.782385,20.792228 c 0.426503,-4.938382 8.217616,-14.3032648 8.217616,-14.3032648 0,0 7.791111,9.3648828 8.217614,14.3032648 0.353501,4.093105 -1.628439,8.088744 -8.217615,8.088744 -6.589177,0 -8.571115,-3.995639 -8.217615,-8.088744 z</Geometry>
   <Geometry x:Key="XGeometry.Waves">m 6.5505072,35.033001 c -1.4727134,4e-5 -1.5695452,1.455728 -2.840822,4.376347 C 3.0153778,41.004442 1.8012697,42.284037 0,42.314234 v 1.861849 c 0.44072809,0.0094 1.870256,0.318986 3.8197945,-1.727716 2.1938219,-2.30316 2.1133657,-4.548186 2.7307127,-4.548518 0.6173479,-3.32e-4 0.5365627,2.245014 2.7307126,4.548518 1.5504822,1.627757 2.7625632,1.762424 3.4193962,1.745734 0.656653,0.01682 1.868319,-0.117351 3.419397,-1.745734 2.193823,-2.30316 2.113366,-4.548186 2.730713,-4.548518 0.617348,-3.32e-4 0.536564,2.245014 2.730713,4.548518 1.550482,1.627757 2.762563,1.762424 3.419396,1.745734 0.656653,0.01682 1.868318,-0.117351 3.419397,-1.745734 2.193822,-2.30316 2.113366,-4.548186 2.730712,-4.548518 0.617349,-3.32e-4 0.536564,2.245014 2.730714,4.548518 1.550481,1.627757 2.762563,1.762424 3.419396,1.745734 0.656653,0.01682 1.868318,-0.117351 3.419397,-1.745734 2.193822,-2.30316 2.113366,-4.548186 2.730712,-4.548518 0.617349,-3.32e-4 0.536564,2.245014 2.730713,4.548518 1.94954,2.046702 3.379066,1.737108 3.819795,1.727716 v -1.861849 c -1.80127,-0.0302 -3.015379,-1.309792 -3.709685,-2.904886 -1.271312,-2.920699 -1.368109,-4.376386 -2.840823,-4.376347 -1.472713,4e-5 -1.569544,1.455728 -2.840821,4.376347 -0.641314,1.473346 -1.725929,2.675823 -3.307286,2.874856 -1.582434,-0.198275 -2.669707,-1.400893 -3.311289,-2.874856 -1.271312,-2.920699 -1.368108,-4.376386 -2.840823,-4.376347 -1.472713,4e-5 -1.569544,1.455728 -2.84082,4.376347 -0.641315,1.473346 -1.72593,2.675823 -3.307287,2.874856 -1.582434,-0.198275 -2.669707,-1.400893 -3.311289,-2.874856 -1.271312,-2.920699 -1.368108,-4.376386 -2.840822,-4.376347 -1.472714,4e-5 -1.569545,1.455728 -2.840821,4.376347 -0.641315,1.473346 -1.72593,2.675823 -3.307287,2.874856 C 11.120184,42.085929 10.032911,40.883311 9.3913292,39.409348 8.1200175,36.488649 8.0232206,35.032962 6.5505072,35.033001 Z</Geometry>
 
-  <Canvas x:Key="XCanvas.MonitoringVolume" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.MonitoringVolume" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.MonitoringVolume.AlmostEllipse}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" extensions:IndependentSize.StrokeThickness="2.5" Data="{StaticResource XGeometry.MonitoringVolume.Objects}"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="12" Canvas.Top="22" Width="6" Height="6"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.CorrectSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.CorrectSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Left="0" Canvas.Top="20.5" Width="26" Height="26"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Canvas.Left="7.5" Canvas.Top="28" Width="10.5" Height="10.5"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.CorrectSpotAlignment.Ameba}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.CorrectSpotAlignment.Target}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.ResetSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.ResetSpotAlignment" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Left="0" Canvas.Top="20.5" Width="26" Height="26"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Canvas.Left="7.5" Canvas.Top="28" Width="10.5" Height="10.5"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.ResetSpotAlignment.Ameba}"/>
@@ -838,17 +838,17 @@
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.ResetSpotAlignment.ArrowHead}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.UpdateMaxTemperature" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.UpdateMaxTemperature" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.UpdateMaxTemperature.Thermometer}"/>
     <Ellipse Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="16" Canvas.Top="34" Width="10" Height="10"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.UpdateMaxTemperature.Checkmark}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.ThumbsUp" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.ThumbsUp" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.ThumbsUp}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.ThumbsDown" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.ThumbsDown" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.ThumbsUp}">
       <Path.RenderTransform>
         <ScaleTransform ScaleY="-1"/>
@@ -856,25 +856,25 @@
     </Path>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Expand" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Expand" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="50" Height="50" RadiusX="3" RadiusY="3"/>
     <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Canvas.Top="18" Width="32" Height="32" RadiusX="3" RadiusY="3"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Contract" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Contract" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Width="50" Height="50" RadiusX="3" RadiusY="3"/>
     <Rectangle Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Canvas.Top="18" Width="32" Height="32" RadiusX="3" RadiusY="3"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Report" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Report" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Data="{StaticResource XGeometry.Suitcase}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Setup" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Setup" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Tools}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.BackgroundEllimination" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.BackgroundEllimination" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.BackgroundEllimination.Blurred}">
       <Path.Effect>
         <BlurEffect Radius="15" KernelType="Box"/>
@@ -884,7 +884,7 @@
     <Rectangle Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Canvas.Left="23" Width="4" Height="50"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.ScanParams" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.ScanParams" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Menu.CornerFrame}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.LineBeta}" Data="{StaticResource XGeometry.Registration.HeadOuter}">
       <Path.RenderTransform>
@@ -895,25 +895,25 @@
     <Rectangle Canvas.Left="23.5" Style="{StaticResource XStyle.Shape.Icon.LineAlpha}" Width="3" Height="50"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.ManualCalculation" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.ManualCalculation" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaAlpha}" Data="{StaticResource XGeometry.Pen}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.AutoCalculation" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.AutoCalculation" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaBeta}" Data="{StaticResource XGeometry.Wand}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Status.Mri" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Status.Mri" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaStatus}" Data="{StaticResource XGeometry.Mri}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Status.Connection" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Status.Connection" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Rectangle Canvas.Left="23" Width="4" Height="50" Style="{StaticResource XStyle.Shape.Icon.AreaStatus}"/>
     <Rectangle Canvas.Top="23" Width="19" Height="4" Style="{StaticResource XStyle.Shape.Icon.AreaStatus}"/>
     <Rectangle Canvas.Top="23" Canvas.Left="31" Width="19" Height="4" Style="{StaticResource XStyle.Shape.Icon.AreaStatus}"/>
   </Canvas>
 
-  <Canvas x:Key="XCanvas.Status.Circulation" Style="{StaticResource XStyle.Canvas.Icon}">
+  <Canvas x:Key="XCanvas.Status.Circulation" Style="{StaticResource XStyle.Canvas.Icon}" x:Shared="False">
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaStatus}" Data="{StaticResource XGeometry.Drop}"/>
     <Path Style="{StaticResource XStyle.Shape.Icon.AreaStatus}" Data="{StaticResource XGeometry.Waves}"/>
   </Canvas>
