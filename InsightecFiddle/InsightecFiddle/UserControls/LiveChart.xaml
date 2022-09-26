@@ -48,17 +48,17 @@
             Opacity="0.5"
             Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}">
           <telerik:CartesianMarkedZoneAnnotation.VerticalFrom>
-              <MultiBinding Converter="{conv:AdditionConverter}">
-                <Binding Path="Target"/>
-                <Binding Path="ToleranceAboveTarget"/>
-              </MultiBinding>
-            </telerik:CartesianMarkedZoneAnnotation.VerticalFrom>
-            <telerik:CartesianMarkedZoneAnnotation.VerticalTo>
-              <MultiBinding Converter="{conv:NonNegativeSubtractionConverter}">
-                <Binding Path="Target"/>
-                <Binding Path="ToleranceBelowTarget"/>
-              </MultiBinding>
-            </telerik:CartesianMarkedZoneAnnotation.VerticalTo>
+            <MultiBinding Converter="{conv:AdditionConverter}">
+              <Binding Path="Target"/>
+              <Binding Path="ToleranceAboveTarget"/>
+            </MultiBinding>
+          </telerik:CartesianMarkedZoneAnnotation.VerticalFrom>
+          <telerik:CartesianMarkedZoneAnnotation.VerticalTo>
+            <MultiBinding Converter="{conv:NonNegativeSubtractionConverter}">
+              <Binding Path="Target"/>
+              <Binding Path="ToleranceBelowTarget"/>
+            </MultiBinding>
+          </telerik:CartesianMarkedZoneAnnotation.VerticalTo>
           </telerik:CartesianMarkedZoneAnnotation>
           <telerik:CartesianGridLineAnnotation
             x:Name="TargetLine"
@@ -92,7 +92,7 @@
             Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
           <telerik:CartesianGridLineAnnotation
             Axis="{Binding ElementName=VerticalAxis}"
-            Value="{Binding Value, ElementName=LimitLine}" 
+            Value="{Binding Value, ElementName=LimitLine}"
             StrokeThickness="1"
             Stroke="{StaticResource XBrush.Temperature.Limit}"
             DashArray="4,2"
@@ -100,8 +100,18 @@
             ZIndex="50"
             Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
           <telerik:CartesianGridLineAnnotation
+            x:Name="TimeIndicatorLine"
             Axis="{Binding ElementName=HorizontalAxis}"
-            Value="{Binding TimeIndication, Mode=TwoWay}" 
+            Value="{Binding TimeIndication, Mode=TwoWay}"
+            StrokeThickness="21"
+            Stroke="{StaticResource XBrush.AlmostTransparent}"
+            IsHitTestVisible="True"
+            ZIndex="-152"
+            utilities:AnnotationUtilities.IsDraggingEnabled="True"
+            Visibility="{Binding SonicationState, Converter={conv:EnumToVisibilityConverter}, ConverterParameter=Preparation}"/>
+          <telerik:CartesianGridLineAnnotation
+            Axis="{Binding ElementName=HorizontalAxis}"
+            Value="{Binding Value, ElementName=TimeIndicatorLine}"
             StrokeThickness="1"
             Stroke="{StaticResource XBrush.TimeIndicator}"
             IsHitTestVisible="False"
