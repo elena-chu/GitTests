@@ -46,21 +46,25 @@
       <Rectangle.Fill>
         <VisualBrush>
           <VisualBrush.Visual>
-            <MediaElement x:Name="NeuronVideo" Stretch="UniformToFill">
-              <MediaElement.Triggers>
-                <EventTrigger RoutedEvent="MediaElement.Loaded">
-                  <EventTrigger.Actions>
-                    <BeginStoryboard>
-                      <Storyboard>
-                        <MediaTimeline
-                          Source="./Assets/Videos/Neuron.mp4"
-                          Storyboard.TargetName="NeuronVideo"
-                          RepeatBehavior="Forever"/>
-                      </Storyboard>
-                    </BeginStoryboard>
-                  </EventTrigger.Actions>
-                </EventTrigger>
-              </MediaElement.Triggers>
+            <MediaElement x:Name="NeuronVideoMediaElement" Stretch="UniformToFill" LoadedBehavior="Manual" UnloadedBehavior="Stop">
+              <MediaElement.Style>
+                <Style TargetType="{x:Type MediaElement}">
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding RunVideo}" Value="True">
+                      <DataTrigger.EnterActions>
+                        <BeginStoryboard x:Name="NeuronVideoBeginStoryboard">
+                          <Storyboard>
+                            <MediaTimeline Source="./Assets/Videos/Neuron.mp4" RepeatBehavior="Forever"/>
+                          </Storyboard>
+                        </BeginStoryboard>
+                      </DataTrigger.EnterActions>
+                      <DataTrigger.ExitActions>
+                        <StopStoryboard BeginStoryboardName="NeuronVideoBeginStoryboard"/>
+                      </DataTrigger.ExitActions>
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </MediaElement.Style>
             </MediaElement>
           </VisualBrush.Visual>
         </VisualBrush>

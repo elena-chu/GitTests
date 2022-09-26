@@ -90,6 +90,16 @@ namespace WpfUI.ViewModels
             set { SetProperty(ref _timeNow, value); }
         }
 
+        private bool _runVideo = true;
+        public bool RunVideo
+        {
+            get => _runVideo;
+            set
+            {
+                _runVideo = value;
+                RaisePropertyChanged();
+            }
+        }
 
         #region Strips
 
