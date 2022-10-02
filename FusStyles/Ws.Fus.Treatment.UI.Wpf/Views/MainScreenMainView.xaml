@@ -12,12 +12,31 @@
   xmlns:mainScr="clr-namespace:Ws.Fus.Treatment.UI.Wpf"
   prism:ViewModelLocator.AutoWireViewModel="True"
   mc:Ignorable="d">
+  <UserControl.Resources>
+    <extensions:ComparisonConverter x:Key="NullToBooleanConverter" TrueValue="{StaticResource XBoolean.True}" FalseValue="{StaticResource XBoolean.False}" />
+  </UserControl.Resources>
 
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="{StaticResource NavigationMenuWidth}"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
+
+    <ContentControl Grid.ColumnSpan="2"
+                    x:Name="AnimatedBkg"
+                    Style="{StaticResource XStyle.ContentControl.Logo.Background.Animated}"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch"
+                    extensions:ControlExtensions.IsActive="{Binding CurrentScreen, Converter={StaticResource NullToBooleanConverter}, ConverterParameter={x:Null}}"
+                    />
+    <ContentControl
+      Grid.Column="1"
+      x:Name="LogoSwirl"
+      extensions:IndependentSize.Width="240"
+      extensions:IndependentSize.Margin="30,53"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Bottom"
+      Style="{StaticResource XStyle.ContentControl.Logo.SwirlExablate}"/>
 
     <Grid x:Name="MenuGrid" Background="{StaticResource XBrush.Application.Background.Complementary}" ClipToBounds="True">
       <Rectangle Style="{StaticResource VerticalMenuSeparator}" />

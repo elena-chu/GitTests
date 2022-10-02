@@ -40,7 +40,7 @@ namespace Ws.Extensions.UI.Wpf.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            bool equal = value != null && value.Equals(parameter);
+            bool equal = value == null && parameter == null || value != null && value.Equals(parameter);
             if (TrueValue != null && FalseValue != null)
             {
                 return equal ? TrueValue : FalseValue;

@@ -42,7 +42,7 @@
 
     <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource XBrush.Line}" VerticalAlignment="Bottom"/>
 
-    <Rectangle Grid.Row="1" Grid.ColumnSpan="2">
+    <!--<Rectangle Grid.Row="1" Grid.ColumnSpan="2">
       <Rectangle.Fill>
         <VisualBrush>
           <VisualBrush.Visual>
@@ -69,7 +69,7 @@
           </VisualBrush.Visual>
         </VisualBrush>
       </Rectangle.Fill>
-    </Rectangle>
+    </Rectangle>-->
 
     <Grid x:Name="StatusBar" Grid.Row="2" Grid.ColumnSpan="2">
       <Grid.ColumnDefinitions>

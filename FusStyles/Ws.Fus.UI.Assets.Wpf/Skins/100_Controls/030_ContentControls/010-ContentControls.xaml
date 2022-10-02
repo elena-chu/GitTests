@@ -271,6 +271,48 @@
     </Setter>
   </Style>
 
+  <Style x:Key="XStyle.ContentControl.Logo.Background.Animated" TargetType="{x:Type ContentControl}">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ContentControl}">
+          <Grid>
+            <Rectangle>
+              <Rectangle.Fill>
+                <VisualBrush>
+                  <VisualBrush.Visual>
+                    <MediaElement x:Name="NeuronVideoMediaElement" Stretch="UniformToFill" LoadedBehavior="Manual" UnloadedBehavior="Stop">
+                      <MediaElement.Style>
+                        <Style TargetType="{x:Type MediaElement}">
+                          <Style.Triggers>
+                            <DataTrigger Binding="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                              <DataTrigger.EnterActions>
+                                <BeginStoryboard x:Name="NeuronVideoBeginStoryboard">
+                                  <Storyboard>
+                                    <MediaTimeline Source="./Videos/NEURON_Of.mp4" RepeatBehavior="Forever"/>
+                                  </Storyboard>
+                                </BeginStoryboard>
+                              </DataTrigger.EnterActions>
+                              <DataTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="NeuronVideoBeginStoryboard"/>
+                              </DataTrigger.ExitActions>
+                            </DataTrigger>
+                          </Style.Triggers>
+                        </Style>
+                      </MediaElement.Style>
+                    </MediaElement>
+                  </VisualBrush.Visual>
+                </VisualBrush>
+              </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="ShadeRec" Fill="Black" Opacity=".6" Visibility="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <!-- End of Logos-->
 
   <Style x:Key="XStyle.ContentControl.Info" TargetType="{x:Type ContentControl}">
