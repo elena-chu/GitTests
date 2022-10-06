@@ -71,11 +71,16 @@
   </ItemGroup>
   <ItemGroup>
     
+    <None Remove="Assets\Videos\NEURON_Of.mp4" />
+    
     <None Remove="LayoutsObsolete.json" />
     
     <None Remove="Neuron.mp4" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Videos\NEURON_Of.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Messages\Assets\Sounds\CautionMsg.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -86,9 +91,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Messages\Assets\Sounds\WarningMsg.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Videos\Neuron.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

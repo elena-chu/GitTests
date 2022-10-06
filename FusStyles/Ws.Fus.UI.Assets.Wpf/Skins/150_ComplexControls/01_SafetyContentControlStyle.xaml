@@ -126,8 +126,6 @@
               </Track.IncreaseRepeatButton>
             </Track>
           </Grid>
-          <ControlTemplate.Triggers>
-          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

@@ -42,35 +42,6 @@
 
     <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="1" HorizontalAlignment="Stretch" Fill="{StaticResource XBrush.Line}" VerticalAlignment="Bottom"/>
 
-    <!--<Rectangle Grid.Row="1" Grid.ColumnSpan="2">
-      <Rectangle.Fill>
-        <VisualBrush>
-          <VisualBrush.Visual>
-            <MediaElement x:Name="NeuronVideoMediaElement" Stretch="UniformToFill" LoadedBehavior="Manual" UnloadedBehavior="Stop">
-              <MediaElement.Style>
-                <Style TargetType="{x:Type MediaElement}">
-                  <Style.Triggers>
-                    <DataTrigger Binding="{Binding RunVideo}" Value="True">
-                      <DataTrigger.EnterActions>
-                        <BeginStoryboard x:Name="NeuronVideoBeginStoryboard">
-                          <Storyboard>
-                            <MediaTimeline Source="./Assets/Videos/Neuron.mp4" RepeatBehavior="Forever"/>
-                          </Storyboard>
-                        </BeginStoryboard>
-                      </DataTrigger.EnterActions>
-                      <DataTrigger.ExitActions>
-                        <StopStoryboard BeginStoryboardName="NeuronVideoBeginStoryboard"/>
-                      </DataTrigger.ExitActions>
-                    </DataTrigger>
-                  </Style.Triggers>
-                </Style>
-              </MediaElement.Style>
-            </MediaElement>
-          </VisualBrush.Visual>
-        </VisualBrush>
-      </Rectangle.Fill>
-    </Rectangle>-->
-
     <Grid x:Name="StatusBar" Grid.Row="2" Grid.ColumnSpan="2">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
