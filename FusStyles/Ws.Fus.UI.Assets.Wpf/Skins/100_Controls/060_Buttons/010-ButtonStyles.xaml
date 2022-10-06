@@ -32,10 +32,6 @@
     </Style.Triggers>
   </Style>
 
-  <Style x:Key="XStyle.ButtonBase.Safety" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
-    <Setter Property="extensions:IndependentSize.Height" Value="NaN"/>
-  </Style>
-
   <!--Text-->
   <ControlTemplate x:Key="XControlTemplate.Button.Primary" TargetType="{x:Type Button}">
     <Border
@@ -101,7 +97,8 @@
     </Border>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.Button.TransparentToSafety" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Safety}">
+  <Style x:Key="XStyle.Button.TransparentToSafety" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
+    <Setter Property="extensions:IndependentSize.Height" Value="NaN"/>
     <Setter Property="Template" Value="{StaticResource XControlTemplate.Button.TransparentToSafety}"/>
   </Style>
 

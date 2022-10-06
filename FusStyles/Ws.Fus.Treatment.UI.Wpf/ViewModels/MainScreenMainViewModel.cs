@@ -10,6 +10,7 @@ using Ws.Fus.ImageViewer.UI.Wpf;
 using Ws.Fus.Treatment.UI.Wpf;
 using System.Windows.Threading;
 using Ws.Fus.UI.Navigation.Wpf;
+using System.Windows.Input;
 
 namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 {
@@ -23,6 +24,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
             SwitchScreenCommand = new DelegateCommand<object>(SwitchScreenExecute);
             ShutDownCommand = new DelegateCommand(ShutDownExecute);
+            QuitTreatmentCommand = new DelegateCommand(QuitTreatment);
         }
 
         #region Commands
@@ -54,7 +56,19 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
             get { return _currentScreen; }
             set { SetProperty(ref _currentScreen, value); }
         }
-        
+
+        #region Quit Treatment
+
+        public ICommand QuitTreatmentCommand { set; get; }
+        public bool CanUnlockQuitTreatment { get => QuitTreatmentCommand.CanExecute(null); }
+
+        private void QuitTreatment()
+        {
+            //...
+        }
+
+        #endregion
+
         #region INavigationAware
 
         public void OnNavigatedTo(NavigationContext navigationContext)

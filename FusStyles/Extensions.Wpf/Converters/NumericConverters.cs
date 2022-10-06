@@ -48,7 +48,7 @@ namespace Ws.Extensions.UI.Wpf.Converters
     }
 
     /// <summary>
-    /// Returns Visible if input is more than param
+    /// Returns True if input is more than param
     /// </summary>
     public class MoreThanToBooleanConverter : ConverterMarkupExtension<MoreThanToBooleanConverter>
     {
@@ -83,6 +83,52 @@ namespace Ws.Extensions.UI.Wpf.Converters
             double valueNum, paramNum;
             if (double.TryParse(value.ToString(), out valueNum) && double.TryParse(parameter.ToString(), out paramNum))
                 return (valueNum > paramNum) ? Visibility.Visible : Visibility.Collapsed;
+
+            return Binding.DoNothing;
+        }
+
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Returns True if input is less than param
+    /// </summary>
+    public class LessThanToBooleanConverter : ConverterMarkupExtension<LessThanToBooleanConverter>
+    {
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!ConverterAssists.CheckValueValidity(value) || !ConverterAssists.CheckValueValidity(parameter))
+                return Binding.DoNothing;
+
+            double valueNum, paramNum;
+            if (double.TryParse(value.ToString(), out valueNum) && double.TryParse(parameter.ToString(), out paramNum))
+                return valueNum < paramNum;
+
+            return Binding.DoNothing;
+        }
+
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// Returns Visible if input is less than param
+    /// </summary>
+    public class LessThanToVisibilityConverter : ConverterMarkupExtension<LessThanToVisibilityConverter>
+    {
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!ConverterAssists.CheckValueValidity(value) || !ConverterAssists.CheckValueValidity(parameter))
+                return Binding.DoNothing;
+
+            double valueNum, paramNum;
+            if (double.TryParse(value.ToString(), out valueNum) && double.TryParse(parameter.ToString(), out paramNum))
+                return (valueNum < paramNum) ? Visibility.Visible : Visibility.Collapsed;
 
             return Binding.DoNothing;
         }

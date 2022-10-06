@@ -24,7 +24,7 @@
     <Setter Property="extensions:IndependentSize.Margin" Value="100,0" />
   </Style>
 
-  <Style x:Key="LStyle.Button.StopSonicate" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Safety}">
+  <Style x:Key="LStyle.Button.StopSonicate" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.ButtonBase.Secondary}">
     <Setter Property="extensions:IndependentSize.Height" Value="{StaticResource XDouble.Height.Control.Default}"/>
     <Setter Property="extensions:IconedButton.IconSize" Value="20"/>
     <Setter Property="Template">
