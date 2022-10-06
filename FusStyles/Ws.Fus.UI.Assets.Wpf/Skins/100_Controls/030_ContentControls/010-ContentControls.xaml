@@ -288,15 +288,21 @@
                         <Style.Triggers>
                           <DataTrigger Binding="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource TemplatedParent}}" Value="True">
                             <DataTrigger.EnterActions>
-                              <BeginStoryboard x:Name="NeuronVideoBeginStoryboard">
-                                <Storyboard>
-                                  <MediaTimeline Source="./Assets/Videos/NEURON_Of.mp4" RepeatBehavior="Forever"/>
+                              <BeginStoryboard x:Name="NeuronVideoStartBeginStoryboard">
+                                <Storyboard RepeatBehavior="Forever">
+                                  <MediaTimeline Source="./Assets/Videos/NEURON_Of.mp4"/>
                                 </Storyboard>
                               </BeginStoryboard>
                             </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                              <StopStoryboard BeginStoryboardName="NeuronVideoBeginStoryboard"/>
-                            </DataTrigger.ExitActions>
+                          </DataTrigger>
+                          <DataTrigger Binding="{Binding (extensions:ControlExtensions.IsActive), RelativeSource={RelativeSource TemplatedParent}}" Value="False">
+                            <DataTrigger.EnterActions>
+                              <BeginStoryboard x:Name="NeuronVideoStopBeginStoryboard">
+                                <Storyboard Duration="0:0:0.2">
+                                  <MediaTimeline Source="./Assets/Videos/NEURON_Of.mp4"/>
+                                </Storyboard>
+                              </BeginStoryboard>
+                            </DataTrigger.EnterActions>
                           </DataTrigger>
                         </Style.Triggers>
                       </Style>
@@ -309,6 +315,11 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+    <Style.Triggers>
+      <Trigger Property="extensions:ControlExtensions.IsActive" Value="True">
+        <Setter Property="Opacity" Value="1"/>
+      </Trigger>
+    </Style.Triggers>
   </Style>
 
   <!-- End of Logos-->
