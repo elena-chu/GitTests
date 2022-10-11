@@ -24,7 +24,7 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
             SwitchScreenCommand = new DelegateCommand<object>(SwitchScreenExecute);
             ShutDownCommand = new DelegateCommand(ShutDownExecute);
-            QuitTreatmentCommand = new DelegateCommand(QuitTreatment);
+            QuitTreatmentCommand = new DelegateCommand(QuitTreatment, () => CanIQuit);
         }
 
         #region Commands
@@ -59,8 +59,19 @@ namespace Ws.Fus.Treatment.UI.Wpf.ViewModels
 
         #region Quit Treatment
 
-        public ICommand QuitTreatmentCommand { set; get; }
-        public bool CanUnlockQuitTreatment { get => QuitTreatmentCommand.CanExecute(null); }
+        public DelegateCommand QuitTreatmentCommand { set; get; }
+
+        private bool _canIQuit = true;
+        public bool CanIQuit
+        {
+            get => _canIQuit;
+            set
+            {
+                _canIQuit = value;
+                RaisePropertyChanged();
+                QuitTreatmentCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         private void QuitTreatment()
         {

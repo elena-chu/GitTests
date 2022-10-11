@@ -129,7 +129,7 @@
   </Style>
 
   <!--ContentControl-->
-  <ControlTemplate x:Key="XControlTemplate.ContentControl.Safety" TargetType="{x:Type ContentControl}">
+  <ControlTemplate x:Key="XControlTemplate.ContentControl.Safety" TargetType="{x:Type extensions:CanExecuteContentControl}">
     <Grid>
       <Border
         x:Name="BackgroundBorder"
@@ -141,7 +141,7 @@
         x:Name="Button"
         Style="{StaticResource XStyle.Button.Empty}"
         IsEnabled="False"
-        Command="{Binding (extensions:ControlExtensions.ControlCommand), RelativeSource={RelativeSource TemplatedParent}}"/>
+        Command="{TemplateBinding Command}"/>
       <TextBlock
         x:Name="Text"
         extensions:IndependentSize.Margin="20,10"
@@ -198,7 +198,7 @@
     </ControlTemplate.Triggers>
   </ControlTemplate>
 
-  <Style x:Key="XStyle.ContentControl.Safety" TargetType="{x:Type ContentControl}">
+  <Style x:Key="XStyle.ContentControl.Safety" TargetType="{x:Type extensions:CanExecuteContentControl}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ContentControl.Safety}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground.Secondary}"/>
