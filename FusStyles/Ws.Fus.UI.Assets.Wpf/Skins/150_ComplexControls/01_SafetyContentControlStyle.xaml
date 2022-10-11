@@ -149,9 +149,8 @@
         IsHitTestVisible="False"
         Focusable="False"
         Foreground="{TemplateBinding Foreground}"
-        extensions:ControlExtensions.IsActive="{Binding IsEnabled, ElementName=Button}"
-        extensions:IndependentSize.FontSize="{TemplateBinding extensions:IndependentSize.FontSize}"
-        Text="{Binding (extensions:ControlExtensions.AlternativeText), RelativeSource={RelativeSource TemplatedParent}}"/>
+        FontSize="{TemplateBinding FontSize}"
+        Text="{TemplateBinding Content}"/>
       <Slider
         x:Name="UnlockSlider"
         extensions:IndependentSize.Margin="9,0"
@@ -174,6 +173,7 @@
       <Trigger Property="Value" SourceName="UnlockSlider" Value="0">
         <Setter Property="IsEnabled" TargetName="Button" Value="True"/>
         <Setter Property="IsHitTestVisible" TargetName="UnlockSlider" Value="False"/>
+        <Setter Property="Text" TargetName="Text" Value="{Binding (extensions:ControlExtensions.AlternativeText), RelativeSource={RelativeSource TemplatedParent}}"/>
       </Trigger>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
@@ -201,6 +201,7 @@
   <Style x:Key="XStyle.ContentControl.Safety" TargetType="{x:Type extensions:CanExecuteContentControl}">
     <Setter Property="Template" Value="{StaticResource XControlTemplate.ContentControl.Safety}"/>
     <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
+    <Setter Property="extensions:ControlExtensions.AlternativeText" Value="{Binding Content, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Foreground" Value="{StaticResource XBrush.Application.Foreground.Secondary}"/>
     <Setter Property="extensions:ControlExtensions.Hover" Value="False"/>
     <Style.Triggers>

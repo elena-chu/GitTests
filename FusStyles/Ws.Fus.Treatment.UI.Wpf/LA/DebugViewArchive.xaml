@@ -749,6 +749,28 @@
         extensions:ControlExtensions.ControlCommand="{Binding SendMessageCommand}"/>
     </StackPanel>-->
 
+    <!--<StackPanel VerticalAlignment="Center">
+      <TextBlock Text="Quit Button"/>
+      <Button
+        x:Name="End_Treatment"
+        Command="{Binding QuitTreatmentCommand}"
+        VerticalAlignment="Bottom"
+        HorizontalAlignment="Stretch"
+        Height="{Binding ActualHeight, ElementName=ExitSafetyButton}"
+        Style="{StaticResource XStyle.Button.QuitModule}"
+        Content="{x:Static xresx:Resources.IDS_LBL_QUIT_TREATMENT}"/>
+    </StackPanel>-->
+
+    <!--<StackPanel VerticalAlignment="Center">
+      <TextBlock Text="Quit Safety Button"/>
+      <extensions:CanExecuteContentControl
+        x:Name="ExitSafetyButton"
+        Style="{StaticResource XStyle.ContentControl.Safety}"
+        Content="{x:Static xresx:Resources.IDS_LBL_QUIT_TREATMENT}"
+        extensions:ControlExtensions.AlternativeText="END TREATMENT UNLOCKED"
+        Command="{Binding QuitTreatmentCommand}"/>
+    </StackPanel>-->
+
   </UniformGrid>
 
 </UserControl>

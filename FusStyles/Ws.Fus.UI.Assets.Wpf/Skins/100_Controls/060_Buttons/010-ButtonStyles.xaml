@@ -1133,6 +1133,7 @@
     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
     <Setter Property="TextBlock.HorizontalAlignment" Value="Left" />
     <Setter Property="extensions:IndependentSize.Padding" Value="20,0,5,0" />
+    <Setter Property="extensions:IndependentSize.FontSize" Value="18"/>
   </Style>
 
   <Style x:Key="XStyle.Button.Specific.Refresh" TargetType="{x:Type Button}" BasedOn="{StaticResource XStyle.Button.Icon.Small}">

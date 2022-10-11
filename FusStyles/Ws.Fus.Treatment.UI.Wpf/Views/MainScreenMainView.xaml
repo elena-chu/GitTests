@@ -110,21 +110,12 @@
           IsChecked="{Binding CurrentScreen, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static mainScr:MainScreenAction.Settings}, Mode=OneWay}"/>
         <Rectangle Grid.Row="5" Style="{StaticResource HorizontalMenuSeparator}"/>
 
-        <Button
-          Grid.Row="6"
-          x:Name="End_Treatment"
-          Command="{Binding QuitTreatmentCommand}"
-          VerticalAlignment="Bottom"
-          HorizontalAlignment="Stretch"
-          Height="{Binding ActualHeight, ElementName=ExitSafetyButton}"
-          Style="{StaticResource XStyle.Button.QuitModule}"
-          Content="{x:Static xresx:Resources.IDS_LBL_QUIT_TREATMENT}"/>
-
         <extensions:CanExecuteContentControl
           x:Name="ExitSafetyButton"
           Grid.Row="7"
           Style="{StaticResource XStyle.ContentControl.Safety}"
-          extensions:ControlExtensions.AlternativeText="{x:Static xresx:Resources.IDS_LBL_QUIT_TREATMENT}"
+          Content="{x:Static xresx:Resources.IDS_LBL_QUIT_TREATMENT}"
+          extensions:ControlExtensions.AlternativeText="END TREATMENT UNLOCKED"
           Command="{Binding QuitTreatmentCommand}"/>
       </Grid>
     </Grid>
